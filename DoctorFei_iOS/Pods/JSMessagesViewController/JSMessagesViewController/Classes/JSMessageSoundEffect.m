@@ -22,26 +22,27 @@ static NSString * const kJSMessageSent = @"message-sent";
 
 + (void)playMessageReceivedSound
 {
-    [[JSQSystemSoundPlayer sharedPlayer] playSoundWithName:kJSMessageReceived
-                                                 extension:kJSQSystemSoundTypeAIFF];
+    [[JSQSystemSoundPlayer sharedPlayer] playSoundWithFilename:kJSMessageReceived fileExtension:kJSQSystemSoundTypeAIFF];
+//    [[JSQSystemSoundPlayer sharedPlayer] playSoundWithName:kJSMessageReceived
+//                                                 extension:kJSQSystemSoundTypeAIFF];
 }
 
 + (void)playMessageReceivedAlert
 {
-    [[JSQSystemSoundPlayer sharedPlayer] playAlertSoundWithName:kJSMessageReceived
-                                                      extension:kJSQSystemSoundTypeAIFF];
+    [[JSQSystemSoundPlayer sharedPlayer] playAlertSoundWithFilename:kJSMessageReceived
+                                                      fileExtension:kJSQSystemSoundTypeAIFF];
 }
 
 + (void)playMessageSentSound
 {
-    [[JSQSystemSoundPlayer sharedPlayer] playSoundWithName:kJSMessageSent
-                                                 extension:kJSQSystemSoundTypeAIFF];
+    [[JSQSystemSoundPlayer sharedPlayer] playSoundWithFilename:kJSMessageSent
+                                                 fileExtension:kJSQSystemSoundTypeAIFF];
 }
 
 + (void)playMessageSentAlert
 {
-    [[JSQSystemSoundPlayer sharedPlayer] playAlertSoundWithName:kJSMessageSent
-                                                      extension:kJSQSystemSoundTypeAIFF];
+    [[JSQSystemSoundPlayer sharedPlayer] playAlertSoundWithFilename:kJSMessageSent
+                                                      fileExtension:kJSQSystemSoundTypeAIFF];
 }
 
 @end
