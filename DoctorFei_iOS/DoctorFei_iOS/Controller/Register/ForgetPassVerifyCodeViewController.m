@@ -1,30 +1,25 @@
 //
-//  MainTabBarViewController.m
+//  ForgetPassVerifyCodeViewController.m
 //  DoctorFei_iOS
 //
-//  Created by GuJunjia on 14/11/22.
+//  Created by GuJunjia on 14/11/23.
 //
 //
 
-#import "MainTabBarViewController.h"
+#import "ForgetPassVerifyCodeViewController.h"
 
-@interface MainTabBarViewController ()
+@interface ForgetPassVerifyCodeViewController ()
 
+- (IBAction)backButtonClicked:(id)sender;
 @end
 
-@implementation MainTabBarViewController
+@implementation ForgetPassVerifyCodeViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
 }
 
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-    [self performSegueWithIdentifier:@"LoginSegueIdentifier" sender:nil];
-
-}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -40,4 +35,7 @@
 }
 */
 
+- (IBAction)backButtonClicked:(id)sender {
+    [self.navigationController popViewControllerAnimated:YES];
+}
 @end

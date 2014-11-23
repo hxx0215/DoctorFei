@@ -431,6 +431,10 @@
 		6A73764F1A20D829006EF54F /* MainTabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A73764E1A20D829006EF54F /* MainTabBarViewController.m */; };
 		6A7376531A20D84C006EF54F /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A7376521A20D84C006EF54F /* LoginViewController.m */; };
 		6A7376571A20E4CC006EF54F /* RegisterTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A7376561A20E4CC006EF54F /* RegisterTableViewController.m */; };
+		6A78BE271A2215DD005457F3 /* RegisterMoreTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A78BE261A2215DD005457F3 /* RegisterMoreTableViewController.m */; };
+		6A78BE2A1A2229F8005457F3 /* ForgetPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A78BE291A2229F8005457F3 /* ForgetPasswordViewController.m */; };
+		6A78BE2D1A222C13005457F3 /* ForgetPassVerifyCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A78BE2C1A222C13005457F3 /* ForgetPassVerifyCodeViewController.m */; };
+		6A78BE331A222C5B005457F3 /* SetNewPasswordTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A78BE321A222C5B005457F3 /* SetNewPasswordTableViewController.m */; };
 		E5DC0A78865BEBA4AB7CC615 /* libPods-DoctorFei_iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 57A1FFA4D74E0A39C5ACB6D1 /* libPods-DoctorFei_iOS.a */; };
 /* End PBXBuildFile section */
 
@@ -883,6 +887,14 @@
 		6A7376521A20D84C006EF54F /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		6A7376551A20E4CC006EF54F /* RegisterTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterTableViewController.h; sourceTree = "<group>"; };
 		6A7376561A20E4CC006EF54F /* RegisterTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterTableViewController.m; sourceTree = "<group>"; };
+		6A78BE251A2215DD005457F3 /* RegisterMoreTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterMoreTableViewController.h; sourceTree = "<group>"; };
+		6A78BE261A2215DD005457F3 /* RegisterMoreTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterMoreTableViewController.m; sourceTree = "<group>"; };
+		6A78BE281A2229F8005457F3 /* ForgetPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForgetPasswordViewController.h; sourceTree = "<group>"; };
+		6A78BE291A2229F8005457F3 /* ForgetPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgetPasswordViewController.m; sourceTree = "<group>"; };
+		6A78BE2B1A222C13005457F3 /* ForgetPassVerifyCodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForgetPassVerifyCodeViewController.h; sourceTree = "<group>"; };
+		6A78BE2C1A222C13005457F3 /* ForgetPassVerifyCodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgetPassVerifyCodeViewController.m; sourceTree = "<group>"; };
+		6A78BE311A222C5B005457F3 /* SetNewPasswordTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetNewPasswordTableViewController.h; sourceTree = "<group>"; };
+		6A78BE321A222C5B005457F3 /* SetNewPasswordTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetNewPasswordTableViewController.m; sourceTree = "<group>"; };
 		CA31D965F02E0840CC32B219 /* Pods-DoctorFei_iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DoctorFei_iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DoctorFei_iOS/Pods-DoctorFei_iOS.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -1537,6 +1549,14 @@
 			children = (
 				6A7376551A20E4CC006EF54F /* RegisterTableViewController.h */,
 				6A7376561A20E4CC006EF54F /* RegisterTableViewController.m */,
+				6A78BE251A2215DD005457F3 /* RegisterMoreTableViewController.h */,
+				6A78BE261A2215DD005457F3 /* RegisterMoreTableViewController.m */,
+				6A78BE281A2229F8005457F3 /* ForgetPasswordViewController.h */,
+				6A78BE291A2229F8005457F3 /* ForgetPasswordViewController.m */,
+				6A78BE2B1A222C13005457F3 /* ForgetPassVerifyCodeViewController.h */,
+				6A78BE2C1A222C13005457F3 /* ForgetPassVerifyCodeViewController.m */,
+				6A78BE311A222C5B005457F3 /* SetNewPasswordTableViewController.h */,
+				6A78BE321A222C5B005457F3 /* SetNewPasswordTableViewController.m */,
 			);
 			path = Register;
 			sourceTree = "<group>";
@@ -2103,7 +2123,11 @@
 				6A7376481A20D052006EF54F /* MyselfTableViewController.m in Sources */,
 				6A73764F1A20D829006EF54F /* MainTabBarViewController.m in Sources */,
 				6A7372C91A2034B4006EF54F /* main.m in Sources */,
+				6A78BE2D1A222C13005457F3 /* ForgetPassVerifyCodeViewController.m in Sources */,
 				6A73763A1A208972006EF54F /* MainViewController.m in Sources */,
+				6A78BE331A222C5B005457F3 /* SetNewPasswordTableViewController.m in Sources */,
+				6A78BE2A1A2229F8005457F3 /* ForgetPasswordViewController.m in Sources */,
+				6A78BE271A2215DD005457F3 /* RegisterMoreTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
