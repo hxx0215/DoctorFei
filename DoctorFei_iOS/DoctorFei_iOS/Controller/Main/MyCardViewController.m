@@ -1,30 +1,25 @@
 //
-//  MainTabBarViewController.m
+//  MyCardViewController.m
 //  DoctorFei_iOS
 //
-//  Created by GuJunjia on 14/11/22.
+//  Created by GuJunjia on 14/11/24.
 //
 //
 
-#import "MainTabBarViewController.h"
+#import "MyCardViewController.h"
 
-@interface MainTabBarViewController ()
+@interface MyCardViewController ()
 
+- (IBAction)backButtonClicked:(id)sender;
 @end
 
-@implementation MainTabBarViewController
+@implementation MyCardViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
 }
 
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-//    [self performSegueWithIdentifier:@"LoginSegueIdentifier" sender:nil];
-
-}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -40,4 +35,7 @@
 }
 */
 
+- (IBAction)backButtonClicked:(id)sender {
+    [self.navigationController popViewControllerAnimated:YES];
+}
 @end
