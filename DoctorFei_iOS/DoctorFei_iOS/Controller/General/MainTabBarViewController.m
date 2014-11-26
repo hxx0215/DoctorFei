@@ -7,7 +7,7 @@
 //
 
 #import "MainTabBarViewController.h"
-
+#import "Constants.h"
 @interface MainTabBarViewController ()
 
 @end
@@ -17,6 +17,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [[UITabBar appearance]setTintColor:UIColorFromRGB(0x6EA800)];
+    
+    for (UITabBarItem *item in self.tabBar.items) {
+        NSUInteger index = [self.tabBar.items indexOfObject:item];
+//        UIImage *unselect = [UIImage imageNamed:[NSString stringWithFormat:@"tab_0%lu", index + 1]];
+        UIImage *select = [UIImage imageNamed:[NSString stringWithFormat:@"tab_0%lu_after", index + 1]];
+//        [item setImage:[unselect imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
+        [item setSelectedImage:[select imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated

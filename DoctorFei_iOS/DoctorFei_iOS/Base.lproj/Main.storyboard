@@ -11,7 +11,7 @@
         <!--患者-->
         <scene sceneID="eg0-qy-D7E">
             <objects>
-                <viewController hidesBottomBarWhenPushed="YES" id="cVJ-je-ZKu" customClass="ContactViewController" sceneMemberID="viewController">
+                <viewController id="cVJ-je-ZKu" customClass="ContactViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="I9I-NC-ugS"/>
                         <viewControllerLayoutGuide type="bottom" id="M1m-gi-n0P"/>
@@ -166,6 +166,7 @@
                         <viewControllerLayoutGuide type="bottom" id="6xZ-Vt-ozy"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="EfW-kW-Y1v">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="487"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -173,7 +174,7 @@
                         <barButtonItem key="leftBarButtonItem" image="return.png" id="B4C-0g-wlM">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="个人信息" id="PPH-uv-qZ0">
+                        <barButtonItem key="rightBarButtonItem" image="button_details.png" id="PPH-uv-qZ0">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <segue destination="mZ8-1i-3x3" kind="show" id="afd-UP-joz"/>
@@ -190,77 +191,11 @@
             <objects>
                 <tableViewController id="mZ8-1i-3x3" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="cjm-fp-VJT">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="487"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93333333330000001" green="0.93333333330000001" blue="0.93333333330000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <view key="tableHeaderView" contentMode="scaleToFill" id="FTq-qD-fqr">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <subviews>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nKW-Zq-MYt">
-                                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                    <constraints>
-                                        <constraint firstAttribute="width" constant="40" id="UVN-cV-W3M"/>
-                                    </constraints>
-                                    <variation key="default">
-                                        <mask key="constraints">
-                                            <exclude reference="UVN-cV-W3M"/>
-                                        </mask>
-                                    </variation>
-                                    <variation key="heightClass=regular-widthClass=compact">
-                                        <mask key="constraints">
-                                            <include reference="UVN-cV-W3M"/>
-                                        </mask>
-                                    </variation>
-                                </imageView>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="用户名" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hBH-ag-jhC">
-                                    <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                            </subviews>
-                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                            <constraints>
-                                <constraint firstItem="hBH-ag-jhC" firstAttribute="leading" secondItem="nKW-Zq-MYt" secondAttribute="trailing" constant="20" id="3cN-0w-iLY"/>
-                                <constraint firstItem="nKW-Zq-MYt" firstAttribute="leading" secondItem="FTq-qD-fqr" secondAttribute="leading" constant="20" id="FG6-ey-GIE"/>
-                                <constraint firstItem="nKW-Zq-MYt" firstAttribute="centerY" secondItem="FTq-qD-fqr" secondAttribute="centerY" id="TXE-0m-Xk4"/>
-                                <constraint firstItem="nKW-Zq-MYt" firstAttribute="top" secondItem="hBH-ag-jhC" secondAttribute="top" id="UyQ-Yb-cNb"/>
-                                <constraint firstItem="nKW-Zq-MYt" firstAttribute="top" secondItem="FTq-qD-fqr" secondAttribute="top" constant="19" id="f3J-4Y-2iR"/>
-                                <constraint firstAttribute="trailing" secondItem="hBH-ag-jhC" secondAttribute="trailing" constant="20" id="sPc-0o-DXn"/>
-                                <constraint firstAttribute="bottom" secondItem="hBH-ag-jhC" secondAttribute="bottom" constant="38" id="tVe-FN-vOM"/>
-                            </constraints>
-                            <variation key="default">
-                                <mask key="subviews">
-                                    <exclude reference="nKW-Zq-MYt"/>
-                                    <exclude reference="hBH-ag-jhC"/>
-                                </mask>
-                                <mask key="constraints">
-                                    <exclude reference="FG6-ey-GIE"/>
-                                    <exclude reference="TXE-0m-Xk4"/>
-                                    <exclude reference="UyQ-Yb-cNb"/>
-                                    <exclude reference="f3J-4Y-2iR"/>
-                                    <exclude reference="3cN-0w-iLY"/>
-                                    <exclude reference="sPc-0o-DXn"/>
-                                    <exclude reference="tVe-FN-vOM"/>
-                                </mask>
-                            </variation>
-                            <variation key="heightClass=regular-widthClass=compact">
-                                <mask key="subviews">
-                                    <include reference="nKW-Zq-MYt"/>
-                                    <include reference="hBH-ag-jhC"/>
-                                </mask>
-                                <mask key="constraints">
-                                    <include reference="FG6-ey-GIE"/>
-                                    <include reference="TXE-0m-Xk4"/>
-                                    <include reference="UyQ-Yb-cNb"/>
-                                    <include reference="f3J-4Y-2iR"/>
-                                    <include reference="3cN-0w-iLY"/>
-                                    <include reference="sPc-0o-DXn"/>
-                                    <include reference="tVe-FN-vOM"/>
-                                </mask>
-                            </variation>
-                        </view>
                         <view key="tableFooterView" contentMode="scaleToFill" id="ukj-LP-GmR">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                            <rect key="frame" x="0.0" y="725" width="600" height="568"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uLg-eR-fjO">
@@ -298,6 +233,42 @@
                         <sections>
                             <tableViewSection id="C9V-nK-mtN">
                                 <cells>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="78" id="u6c-TM-3tz">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="u6c-TM-3tz" id="edX-Mn-HLG">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nKW-Zq-MYt">
+                                                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                                    <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                                        <rect key="frame" x="20" y="19" width="40" height="40"/>
+                                                    </variation>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="用户名" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hBH-ag-jhC">
+                                                    <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                                        <rect key="frame" x="80" y="19" width="300" height="25"/>
+                                                    </variation>
+                                                </label>
+                                            </subviews>
+                                            <variation key="default">
+                                                <mask key="subviews">
+                                                    <exclude reference="nKW-Zq-MYt"/>
+                                                    <exclude reference="hBH-ag-jhC"/>
+                                                </mask>
+                                            </variation>
+                                            <variation key="heightClass=regular-widthClass=compact">
+                                                <mask key="subviews">
+                                                    <include reference="nKW-Zq-MYt"/>
+                                                    <include reference="hBH-ag-jhC"/>
+                                                </mask>
+                                            </variation>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" rowHeight="45" id="7qS-Hm-FK1">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7qS-Hm-FK1" id="5wu-XH-nTl">
@@ -344,13 +315,13 @@
                                                     <exclude reference="2BV-gY-LqS"/>
                                                 </mask>
                                                 <mask key="constraints">
+                                                    <exclude reference="ZBp-Nj-j2z"/>
+                                                    <exclude reference="sRA-De-fEC"/>
                                                     <exclude reference="2SU-y3-ZRN"/>
                                                     <exclude reference="2TZ-m6-VVx"/>
                                                     <exclude reference="4BX-0V-bD6"/>
                                                     <exclude reference="K4T-w5-3mo"/>
                                                     <exclude reference="dz1-dr-RQR"/>
-                                                    <exclude reference="ZBp-Nj-j2z"/>
-                                                    <exclude reference="sRA-De-fEC"/>
                                                 </mask>
                                             </variation>
                                             <variation key="heightClass=regular-widthClass=compact">
@@ -359,13 +330,13 @@
                                                     <include reference="2BV-gY-LqS"/>
                                                 </mask>
                                                 <mask key="constraints">
+                                                    <include reference="ZBp-Nj-j2z"/>
+                                                    <include reference="sRA-De-fEC"/>
                                                     <include reference="2SU-y3-ZRN"/>
                                                     <include reference="2TZ-m6-VVx"/>
                                                     <include reference="4BX-0V-bD6"/>
                                                     <include reference="K4T-w5-3mo"/>
                                                     <include reference="dz1-dr-RQR"/>
-                                                    <include reference="ZBp-Nj-j2z"/>
-                                                    <include reference="sRA-De-fEC"/>
                                                 </mask>
                                             </variation>
                                         </tableViewCellContentView>
@@ -573,6 +544,7 @@
             <objects>
                 <tableViewController id="gjd-jH-L0S" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="EDy-Yy-atN">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="487"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93333333330000001" green="0.93333333330000001" blue="0.93333333330000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <sections>
@@ -616,7 +588,7 @@
                         <barButtonItem key="leftBarButtonItem" title="取消" id="mii-AD-mib">
                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="保存" id="tse-ee-ZDY">
+                        <barButtonItem key="rightBarButtonItem" title="保存" style="done" id="tse-ee-ZDY">
                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                         </barButtonItem>
                     </navigationItem>
@@ -1190,7 +1162,7 @@
                     <tabBar key="tabBar" contentMode="scaleToFill" translucent="NO" id="Iax-Ou-RLv">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <color key="barTintColor" red="0.97254901960784312" green="0.97254901960784312" blue="0.97254901960784312" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBar>
                     <connections>
                         <segue destination="BiJ-DQ-ho2" kind="relationship" relationship="viewControllers" id="Ad4-ud-4ja"/>
@@ -2639,7 +2611,9 @@
         <scene sceneID="pkM-wl-HUV">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="BiJ-DQ-ho2" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="首页" id="o0H-gU-nP6"/>
+                    <tabBarItem key="tabBarItem" title="首页" image="tab_01.png" id="o0H-gU-nP6">
+                        <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="-5"/>
+                    </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" translucent="NO" id="BU9-PZ-mzS">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -2663,7 +2637,9 @@
         <scene sceneID="GHO-Dm-o5q">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="PfZ-BT-0Ww" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="患者" id="Qgg-1Z-MQ1"/>
+                    <tabBarItem key="tabBarItem" title="患者" image="tab_02.png" id="Qgg-1Z-MQ1">
+                        <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="-5"/>
+                    </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" translucent="NO" id="hmb-uk-EL5">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -3215,7 +3191,9 @@
         <scene sceneID="Glk-z4-ETe">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="oF2-NT-LM3" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="我" id="vZU-Mp-7eu"/>
+                    <tabBarItem key="tabBarItem" title="我" image="tab_03.png" id="vZU-Mp-7eu">
+                        <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="-5"/>
+                    </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" translucent="NO" id="QOT-rL-h9U">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -3451,7 +3429,9 @@
         <scene sceneID="C5Y-cE-ZBu">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="cpZ-eG-eXy" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="设置" id="Kq5-tE-PM7"/>
+                    <tabBarItem key="tabBarItem" title="设置" image="tab_04.png" id="Kq5-tE-PM7">
+                        <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="-5"/>
+                    </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" translucent="NO" id="nvw-jZ-vTk">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -3497,6 +3477,7 @@
     </scenes>
     <resources>
         <image name="business-card_bg.png" width="280" height="380"/>
+        <image name="button_details.png" width="44" height="43"/>
         <image name="button_login.png" width="88" height="30"/>
         <image name="button_login_after.png" width="88" height="30"/>
         <image name="button_next.png" width="180" height="38"/>
@@ -3519,5 +3500,9 @@
         <image name="logo_set.png" width="58" height="94"/>
         <image name="refresh.png" width="44" height="43"/>
         <image name="return.png" width="44" height="44"/>
+        <image name="tab_01.png" width="16" height="18"/>
+        <image name="tab_02.png" width="16" height="19"/>
+        <image name="tab_03.png" width="18" height="18"/>
+        <image name="tab_04.png" width="18" height="18"/>
     </resources>
 </document>
