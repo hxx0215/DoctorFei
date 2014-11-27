@@ -439,6 +439,7 @@
 		6AEA74781A2611E300EEF37C /* tab_04.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AEA74661A2611E300EEF37C /* tab_04.png */; };
 		6AEA74791A2611E300EEF37C /* tab_04@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AEA74671A2611E300EEF37C /* tab_04@2x.png */; };
 		6AEA747A1A2611E300EEF37C /* tab_04@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AEA74681A2611E300EEF37C /* tab_04@3x.png */; };
+		6AEA74801A26219A00EEF37C /* CountDownManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AEA747F1A26219A00EEF37C /* CountDownManager.m */; };
 		E5DC0A78865BEBA4AB7CC615 /* libPods-DoctorFei_iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 57A1FFA4D74E0A39C5ACB6D1 /* libPods-DoctorFei_iOS.a */; };
 /* End PBXBuildFile section */
 
@@ -905,6 +906,8 @@
 		6AEA74661A2611E300EEF37C /* tab_04.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tab_04.png; sourceTree = "<group>"; };
 		6AEA74671A2611E300EEF37C /* tab_04@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab_04@2x.png"; sourceTree = "<group>"; };
 		6AEA74681A2611E300EEF37C /* tab_04@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab_04@3x.png"; sourceTree = "<group>"; };
+		6AEA747E1A26219A00EEF37C /* CountDownManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CountDownManager.h; sourceTree = "<group>"; };
+		6AEA747F1A26219A00EEF37C /* CountDownManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CountDownManager.m; sourceTree = "<group>"; };
 		CA31D965F02E0840CC32B219 /* Pods-DoctorFei_iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DoctorFei_iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DoctorFei_iOS/Pods-DoctorFei_iOS.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -1486,6 +1489,8 @@
 			isa = PBXGroup;
 			children = (
 				6AEA74501A260DD900EEF37C /* Constants.h */,
+				6AEA747E1A26219A00EEF37C /* CountDownManager.h */,
+				6AEA747F1A26219A00EEF37C /* CountDownManager.m */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -2144,6 +2149,7 @@
 				6A7372C91A2034B4006EF54F /* main.m in Sources */,
 				6A78BE2D1A222C13005457F3 /* ForgetPassVerifyCodeViewController.m in Sources */,
 				6A73763A1A208972006EF54F /* MainViewController.m in Sources */,
+				6AEA74801A26219A00EEF37C /* CountDownManager.m in Sources */,
 				6A4F2E011A237FFF008C2D10 /* MyCardViewController.m in Sources */,
 				6A78BE331A222C5B005457F3 /* SetNewPasswordTableViewController.m in Sources */,
 				6A78BE2A1A2229F8005457F3 /* ForgetPasswordViewController.m in Sources */,

@@ -7,16 +7,52 @@
 //
 
 #import "RegisterTableViewController.h"
+#import "CountDownManager.h"
+
+static const NSTimeInterval kDuration = 60;
 
 @interface RegisterTableViewController ()
 - (IBAction)backButtonClicked:(id)sender;
+@property (weak, nonatomic) IBOutlet UITextField *phoneTextField;
+@property (weak, nonatomic) IBOutlet UITextField *capthaTextField;
+@property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
+@property (weak, nonatomic) IBOutlet UITextField *passwordAgainTextField;
+@property (weak, nonatomic) IBOutlet UIButton *getCapthaButton;
+- (IBAction)getCapthaButtonClicked:(id)sender;
+- (IBAction)nextButtonClicked:(id)sender;
 
 @end
 
 @implementation RegisterTableViewController
+{
+    NSTimer *countDownTimer;
+    long timeCount;
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    NSNumber *recordTime = [[NSUserDefaults standardUserDefaults]objectForKey:@"LastTimeGetCapthaTime"];
+    if (recordTime) {
+        long nowTime = [[NSDate date]timeIntervalSince1970];
+        long interval = (nowTime - [recordTime longValue]);
+        if (interval > kDuration) {
+            [self.getCapthaButton setEnabled:YES];
+            [self.getCapthaButton.titleLabel setFont:[UIFont systemFontOfSize:14.0f]];
+        }
+        else{
+            [self.getCapthaButton setEnabled:NO];
+            [self.getCapthaButton.titleLabel setFont:[UIFont systemFontOfSize:11.0f]];
+            timeCount = kDuration - interval;
+            [self.getCapthaButton setTitle:[NSString stringWithFormat:@"%ld秒后重新获取", timeCount] forState:UIControlStateDisabled];
+            countDownTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(countDown) userInfo:nil repeats:YES];
+        }
+    }
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -30,65 +66,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-
-//#pragma mark - Table view data source
-//
-//- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-//#warning Potentially incomplete method implementation.
-//    // Return the number of sections.
-//    return 0;
-//}
-//
-//- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-//#warning Incomplete method implementation.
-//    // Return the number of rows in the section.
-//    return 0;
-//}
-
-/*
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
-    
-    // Configure the cell...
-    
-    return cell;
-}
-*/
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
 /*
 #pragma mark - Navigation
 
@@ -98,8 +75,36 @@
     // Pass the selected object to the new view controller.
 }
 */
+- (void)countDown
+{
+    timeCount --;
+    if (timeCount > 0) {
+        [self.getCapthaButton setTitle:[NSString stringWithFormat:@"%ld秒后重新获取", timeCount] forState:UIControlStateDisabled];
+    }
+    else{
+        [self.getCapthaButton setEnabled:YES];
+        [self.getCapthaButton.titleLabel setFont:[UIFont systemFontOfSize:14.0f]];
+        [countDownTimer invalidate];
+        countDownTimer = nil;
+    }
+}
 
 - (IBAction)backButtonClicked:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
+}
+- (IBAction)getCapthaButtonClicked:(id)sender {
+    long nowTime = [[NSDate date]timeIntervalSince1970];
+    [[NSUserDefaults standardUserDefaults]setObject:@(nowTime) forKey:@"LastTimeGetCapthaTime"];
+    [[NSUserDefaults standardUserDefaults]synchronize];
+    [self.getCapthaButton setEnabled:NO];
+    [self.getCapthaButton.titleLabel setFont:[UIFont systemFontOfSize:11.0f]];
+    timeCount = 60;
+    [self.getCapthaButton setTitle:[NSString stringWithFormat:@"%ld秒后重新获取", timeCount] forState:UIControlStateDisabled];
+    countDownTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(countDown) userInfo:nil repeats:YES];
+        //TODO 获取验证码请求
+    //保存上次点击获取验证码按钮时间 比较当前时间
+}
+
+- (IBAction)nextButtonClicked:(id)sender {
 }
 @end

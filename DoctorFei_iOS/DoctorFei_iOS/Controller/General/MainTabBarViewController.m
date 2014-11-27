@@ -31,7 +31,7 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-//    [self performSegueWithIdentifier:@"LoginSegueIdentifier" sender:nil];
+    [self performSegueWithIdentifier:@"LoginSegueIdentifier" sender:nil];
 
 }
 - (void)didReceiveMemoryWarning {

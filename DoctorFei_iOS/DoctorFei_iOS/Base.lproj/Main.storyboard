@@ -59,6 +59,9 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
+                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                        <rect key="frame" x="70" y="22" width="230" height="20.5"/>
+                                                    </variation>
                                                 </label>
                                             </subviews>
                                             <constraints>
@@ -1390,6 +1393,10 @@
                         </variation>
                     </view>
                     <navigationItem key="navigationItem" id="yhn-OW-jpE"/>
+                    <connections>
+                        <outlet property="passwordTextField" destination="KMS-0S-vlm" id="K8A-Ft-A0I"/>
+                        <outlet property="phoneTextField" destination="BtX-YS-6zp" id="VxS-OC-Koy"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qzi-1g-hyi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1415,6 +1422,7 @@
                                     </state>
                                     <state key="highlighted" backgroundImage="button_next_after.png"/>
                                     <connections>
+                                        <action selector="nextButtonClicked:" destination="kKj-km-Y5u" eventType="touchUpInside" id="7E9-lK-xP2"/>
                                         <segue destination="aDs-Ox-Imj" kind="show" id="0Hh-p5-x2D"/>
                                     </connections>
                                 </button>
@@ -1470,15 +1478,18 @@
                                                         </mask>
                                                     </variation>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0W4-KL-GRF">
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0W4-KL-GRF">
                                                     <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="90" id="oRy-dW-8Ss"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <state key="normal" title="获取验证码" backgroundImage="button_verification-code.png">
-                                                        <color key="titleColor" red="0.64313725489999995" green="0.64313725489999995" blue="0.64313725489999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <state key="disabled">
+                                                        <color key="titleColor" red="0.64313725489999995" green="0.64313725489999995" blue="0.64313725489999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </state>
                                                     <state key="highlighted" backgroundImage="button_verification-code_after.png"/>
                                                     <variation key="default">
@@ -1491,6 +1502,9 @@
                                                             <include reference="oRy-dW-8Ss"/>
                                                         </mask>
                                                     </variation>
+                                                    <connections>
+                                                        <action selector="getCapthaButtonClicked:" destination="kKj-km-Y5u" eventType="touchUpInside" id="Idb-Ly-ahV"/>
+                                                    </connections>
                                                 </button>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入手机号" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="WT6-3k-lGB">
                                                     <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
@@ -1567,7 +1581,7 @@
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入手机验证码" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="2Sf-Wa-gxF">
                                                     <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                                    <textInputTraits key="textInputTraits"/>
+                                                    <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -1755,6 +1769,13 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="capthaTextField" destination="2Sf-Wa-gxF" id="t36-Rp-bDs"/>
+                        <outlet property="getCapthaButton" destination="0W4-KL-GRF" id="p3I-za-IIY"/>
+                        <outlet property="passwordAgainTextField" destination="R68-cz-m2h" id="eDr-Az-5DS"/>
+                        <outlet property="passwordTextField" destination="MC1-Io-AgW" id="v4U-Gd-Ube"/>
+                        <outlet property="phoneTextField" destination="WT6-3k-lGB" id="ugQ-9Y-KbJ"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GbZ-LL-AVh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
