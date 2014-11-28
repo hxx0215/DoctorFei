@@ -8,8 +8,8 @@
 
 #import "RegisterTableViewController.h"
 #import "CountDownManager.h"
-
-static const NSTimeInterval kDuration = 60;
+#import "NSString+Crypt.h"
+static const NSTimeInterval kDuration = 1;
 
 @interface RegisterTableViewController ()
 - (IBAction)backButtonClicked:(id)sender;
@@ -52,8 +52,6 @@ static const NSTimeInterval kDuration = 60;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
-    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -98,11 +96,27 @@ static const NSTimeInterval kDuration = 60;
     [[NSUserDefaults standardUserDefaults]synchronize];
     [self.getCapthaButton setEnabled:NO];
     [self.getCapthaButton.titleLabel setFont:[UIFont systemFontOfSize:11.0f]];
-    timeCount = 60;
+    timeCount = kDuration;
     [self.getCapthaButton setTitle:[NSString stringWithFormat:@"%ld秒后重新获取", timeCount] forState:UIControlStateDisabled];
     countDownTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(countDown) userInfo:nil repeats:YES];
-        //TODO 获取验证码请求
-    //保存上次点击获取验证码按钮时间 比较当前时间
+    //TODO 获取验证码请求
+    NSDictionary *params = @{@"mobile": @"18073181979", @"type": @(1)};
+    NSError *error;
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:params options:0 error:&error];
+    NSString *jsonString = nil;
+    if (jsonData) {
+        jsonString = [[NSString alloc]initWithData:jsonData encoding:NSUTF8StringEncoding];
+    }
+    NSString *urlString =[NSString createResponseURLWithMethod:@"set.sms.sendcode" Params:jsonString];
+    NSLog(@"%@", urlString);
+    [[[NSURLSession sharedSession]dataTaskWithURL:[NSURL URLWithString:urlString] completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        if (error) {
+            NSLog(@"%@",error.localizedDescription);
+        }
+        else{
+            NSLog(@"%@", data);
+        }
+    }]resume];
 }
 
 - (IBAction)nextButtonClicked:(id)sender {
