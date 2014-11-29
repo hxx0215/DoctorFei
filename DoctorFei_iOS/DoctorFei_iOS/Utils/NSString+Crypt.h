@@ -10,6 +10,6 @@
 
 @interface NSString (Crypt)
 +(NSString *)createResponseURLWithMethod:(NSString *)method Params:(NSString *)params;
-
-
+- (NSString *)decryptWithDES;
++ (NSString *)decodeFromPercentEscapeString: (NSString *) input;
 @end

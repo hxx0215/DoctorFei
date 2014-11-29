@@ -115,6 +115,8 @@ static const NSTimeInterval kDuration = 1;
         }
         else{
             NSLog(@"%@", data);
+            NSString *retStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+            NSString *retJson =[NSString decodeFromPercentEscapeString:[retStr decryptWithDES]];
         }
     }]resume];
 }
