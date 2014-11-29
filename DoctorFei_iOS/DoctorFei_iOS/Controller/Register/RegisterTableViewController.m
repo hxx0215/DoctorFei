@@ -57,6 +57,7 @@ static const NSTimeInterval kDuration = 1;
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    NSLog(@"%@",[NSString decodeFromPercentEscapeString:[@"2683FBD8159DE6CB3389957A16931A6DE06099CD76DDB652D209D31F2CFCE86EEB39553B780CB6302544DE4AF187398FD24BBF33388A9BC71ED99560201C03F30326C99E9AB230504B6CDDECB2E10D92E3456FDA8C5BDF844AAD8BC5D1F8231165F432A7207579C313A264F388AD9813E242D9E3A3DC92EBC24EFF5B8D04A4E594D4159EE2774CA64C97174C7A5F4798" decryptWithDES]]);
 }
 
 - (void)didReceiveMemoryWarning {
@@ -110,6 +111,7 @@ static const NSTimeInterval kDuration = 1;
     NSString *urlString =[NSString createResponseURLWithMethod:@"set.sms.sendcode" Params:jsonString];
     NSLog(@"%@", urlString);
     [[[NSURLSession sharedSession]dataTaskWithURL:[NSURL URLWithString:urlString] completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+
         if (error) {
             NSLog(@"%@",error.localizedDescription);
         }
@@ -117,6 +119,7 @@ static const NSTimeInterval kDuration = 1;
             NSLog(@"%@", data);
             NSString *retStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
             NSString *retJson =[NSString decodeFromPercentEscapeString:[retStr decryptWithDES]];
+            NSLog(@"%@",retJson);
         }
     }]resume];
 }

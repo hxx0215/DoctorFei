@@ -6,7 +6,7 @@
 //
 //
 
-#define KeyStr @"feiyi#8"
+#define KeyStr @"feiyi#8("
 #define baseURL @"http://fei.eredian.com"
 #import "NSString+Crypt.h"
 #import <CommonCrypto/CommonCryptor.h>
