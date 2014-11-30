@@ -7,9 +7,11 @@
 //
 
 #import "RegisterTableViewController.h"
-#import "CountDownManager.h"
-#import "NSString+Crypt.h"
-static const NSTimeInterval kDuration = 1;
+#import "RegisterAPI.h"
+#import <MBProgressHUD.h>
+#import "DeviceUtil.h"
+#import <ReactiveCocoa.h>
+static const NSTimeInterval kDuration = 60;
 
 @interface RegisterTableViewController ()
 - (IBAction)backButtonClicked:(id)sender;
@@ -18,6 +20,7 @@ static const NSTimeInterval kDuration = 1;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordAgainTextField;
 @property (weak, nonatomic) IBOutlet UIButton *getCapthaButton;
+@property (weak, nonatomic) IBOutlet UIButton *nextButton;
 - (IBAction)getCapthaButtonClicked:(id)sender;
 - (IBAction)nextButtonClicked:(id)sender;
 
@@ -57,7 +60,12 @@ static const NSTimeInterval kDuration = 1;
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    NSLog(@"%@",[NSString decodeFromPercentEscapeString:[@"2683FBD8159DE6CB3389957A16931A6DE06099CD76DDB652D209D31F2CFCE86EEB39553B780CB6302544DE4AF187398FD24BBF33388A9BC71ED99560201C03F30326C99E9AB230504B6CDDECB2E10D92E3456FDA8C5BDF844AAD8BC5D1F8231165F432A7207579C313A264F388AD9813E242D9E3A3DC92EBC24EFF5B8D04A4E594D4159EE2774CA64C97174C7A5F4798" decryptWithDES]]);
+    RAC(self.getCapthaButton, enabled) = [RACSignal combineLatest:@[self.phoneTextField.rac_textSignal] reduce:^(NSString *phone){
+        return @(phone.length == 11);
+    }];
+    RAC(self.nextButton, enabled) = [RACSignal combineLatest:@[self.phoneTextField.rac_textSignal, self.passwordTextField.rac_textSignal, self.passwordAgainTextField.rac_textSignal] reduce:^(NSString *phone, NSString *password, NSString *passwordAgain){
+        return @(phone.length == 11 && password.length > 5 && [passwordAgain isEqualToString:password]);
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -100,30 +108,63 @@ static const NSTimeInterval kDuration = 1;
     timeCount = kDuration;
     [self.getCapthaButton setTitle:[NSString stringWithFormat:@"%ld秒后重新获取", timeCount] forState:UIControlStateDisabled];
     countDownTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(countDown) userInfo:nil repeats:YES];
-    //TODO 获取验证码请求
-    NSDictionary *params = @{@"mobile": @"18073181979", @"type": @(1)};
-    NSError *error;
-    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:params options:0 error:&error];
-    NSString *jsonString = nil;
-    if (jsonData) {
-        jsonString = [[NSString alloc]initWithData:jsonData encoding:NSUTF8StringEncoding];
-    }
-    NSString *urlString =[NSString createResponseURLWithMethod:@"set.sms.sendcode" Params:jsonString];
-    NSLog(@"%@", urlString);
-    [[[NSURLSession sharedSession]dataTaskWithURL:[NSURL URLWithString:urlString] completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-
-        if (error) {
-            NSLog(@"%@",error.localizedDescription);
+    
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.dimBackground = YES;
+    [hud setLabelText:@"获取验证码中..."];
+    
+    //获取验证码请求
+    NSDictionary *params = @{@"mobile": self.phoneTextField.text, @"type": @(0)};
+    [RegisterAPI getCpathaWithParameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSDictionary *dataDict = [responseObject firstObject];
+        hud.mode = MBProgressHUDModeText;
+        if ([dataDict[@"state"]intValue] == 1) {
+            hud.labelText = dataDict[@"msg"];
         }
         else{
-            NSLog(@"%@", data);
-            NSString *retStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-            NSString *retJson =[NSString decodeFromPercentEscapeString:[retStr decryptWithDES]];
-            NSLog(@"%@",retJson);
+            hud.labelText = @"获取错误";
+            hud.detailsLabelText = dataDict[@"msg"];
         }
-    }]resume];
+        [hud hide:YES afterDelay:1.5f];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"%@", error.localizedDescription);
+        hud.mode = MBProgressHUDModeText;
+        hud.labelText = @"网络错误";
+        hud.detailsLabelText = error.localizedDescription;
+        [hud hide:YES afterDelay:1.5f];
+    }];
 }
 
 - (IBAction)nextButtonClicked:(id)sender {
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.dimBackground = YES;
+    [hud setLabelText:@"提交注册申请中..."];
+    NSDictionary *params = @{
+                             @"mobile": self.phoneTextField.text,
+                             @"code": self.capthaTextField.text,
+                             @"password": self.passwordTextField.text,
+                             @"sn": [DeviceUtil getUUID]
+                             };
+    [RegisterAPI registerWithParameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSDictionary *dataDict = [responseObject firstObject];
+        hud.mode = MBProgressHUDModeText;
+        if ([dataDict[@"state"]intValue] == 1) {
+            hud.labelText = dataDict[@"msg"];
+            [[NSUserDefaults standardUserDefaults]setObject:[NSNumber numberWithInt:[dataDict[@"userid"] intValue]] forKey:@"userId"];
+            [[NSUserDefaults standardUserDefaults]synchronize];
+            //TODO 跳转完善资料
+        }
+        else{
+            hud.labelText = @"注册错误";
+            hud.detailsLabelText = dataDict[@"msg"];
+        }
+        [hud hide:YES afterDelay:1.5f];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"%@", error.localizedDescription);
+        hud.mode = MBProgressHUDModeText;
+        hud.labelText = @"网络错误";
+        hud.detailsLabelText = error.localizedDescription;
+        [hud hide:YES afterDelay:1.5f];
+    }];
 }
 @end

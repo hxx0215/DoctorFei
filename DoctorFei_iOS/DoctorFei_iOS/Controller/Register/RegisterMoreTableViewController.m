@@ -99,6 +99,6 @@
 */
 
 - (IBAction)backButtonClicked:(id)sender {
-        [self.navigationController popViewControllerAnimated:YES];
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 @end

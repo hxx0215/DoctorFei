@@ -7,6 +7,7 @@
 //
 
 #import "LoginViewController.h"
+#import <IHKeyboardAvoiding.h>
 
 @interface LoginViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *phoneTextField;
