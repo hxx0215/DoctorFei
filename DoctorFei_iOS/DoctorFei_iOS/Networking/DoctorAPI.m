@@ -10,6 +10,7 @@
 #define kMethodUpdateInfomation @"update.doctor.information"
 #define kMethodLogin @"set.doctor.login"
 #define kMethodOnline @"set.doctor.online"
+#define kMethodQRCode @"get.doctor.qrscene"
 
 @implementation DoctorAPI
 + (void)updateInfomationWithParameters: (id)parameters success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
@@ -24,6 +25,10 @@
 + (void)onlineWithParameters: (id)parameters success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
 {
     [[self sharedManager]defaultPostWithMethod:kMethodOnline WithParameters:parameters success:success failure:failure];
+}
++ (void)getQRCodeWithParameters: (id)parameters success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
+{
+    [[self sharedManager]defaultPostWithMethod:kMethodQRCode WithParameters:parameters success:success failure:failure];
 }
 
 @end

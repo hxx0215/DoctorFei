@@ -8,7 +8,11 @@
 
 #import "MoreTableViewController.h"
 #import "DoctorAPI.h"
+#import "DataUtil.h"
+#import <MBProgressHUD.h>
 @interface MoreTableViewController ()
+    <UIAlertViewDelegate>
+
 - (IBAction)logoutButtonClicked:(id)sender;
 
 @end
@@ -92,6 +96,38 @@
 }
 */
 
+- (void)logoutAction {
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view.window animated:YES];
+    hud.dimBackground = YES;
+    [hud setLabelText:@"退出登录中..."];
+    NSDictionary *params = @{
+                             @"doctorid": [[NSUserDefaults standardUserDefaults]objectForKey:@"UserId"],
+                             @"online": @(0)
+                             };
+    [DoctorAPI onlineWithParameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSDictionary *dataDict = [responseObject firstObject];
+        NSLog(@"%@",dataDict);
+        hud.mode = MBProgressHUDModeText;
+        if ([dataDict[@"state"]intValue] == 1) {
+            hud.labelText = @"退出登录成功";
+            [DataUtil cleanUserDefault];
+            [self.tabBarController setSelectedIndex:0];
+            [self.tabBarController performSegueWithIdentifier:@"LoginSegueIdentifier" sender:nil];
+        }
+        else{
+            hud.labelText = @"退出登录错误";
+            hud.detailsLabelText = dataDict[@"msg"];
+        }
+        [hud hide:YES afterDelay:1.5f];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"%@", error.localizedDescription);
+        hud.mode = MBProgressHUDModeText;
+        hud.labelText = @"错误";
+        hud.detailsLabelText = error.localizedDescription;
+        [hud hide:YES afterDelay:1.5f];
+    }];
+}
+
 /*
 #pragma mark - Navigation
 
@@ -103,7 +139,15 @@
 */
 
 - (IBAction)logoutButtonClicked:(id)sender {
-    
-    
+    UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"确认退出登录?" message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+    [alertView show];
+}
+
+#pragma mark - UIAlertView Delegate
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 1) {
+        [self logoutAction];
+    }
 }
 @end

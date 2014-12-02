@@ -36,6 +36,7 @@
 		6A78BE2A1A2229F8005457F3 /* ForgetPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A78BE291A2229F8005457F3 /* ForgetPasswordViewController.m */; };
 		6A78BE2D1A222C13005457F3 /* ForgetPassVerifyCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A78BE2C1A222C13005457F3 /* ForgetPassVerifyCodeViewController.m */; };
 		6A78BE331A222C5B005457F3 /* SetNewPasswordTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A78BE321A222C5B005457F3 /* SetNewPasswordTableViewController.m */; };
+		6A9177F61A2DE2E2000645A4 /* DataUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A9177F51A2DE2E2000645A4 /* DataUtil.m */; };
 		6AB359B11A2B5758008C48B4 /* BaseHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AB359B01A2B5758008C48B4 /* BaseHTTPRequestOperationManager.m */; };
 		6AB359B71A2B638C008C48B4 /* RegisterAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AB359B61A2B638C008C48B4 /* RegisterAPI.m */; };
 		6AB359BA1A2B6C3B008C48B4 /* DeviceUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AB359B91A2B6C3B008C48B4 /* DeviceUtil.m */; };
@@ -312,6 +313,8 @@
 		6A78BE2C1A222C13005457F3 /* ForgetPassVerifyCodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgetPassVerifyCodeViewController.m; sourceTree = "<group>"; };
 		6A78BE311A222C5B005457F3 /* SetNewPasswordTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetNewPasswordTableViewController.h; sourceTree = "<group>"; };
 		6A78BE321A222C5B005457F3 /* SetNewPasswordTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetNewPasswordTableViewController.m; sourceTree = "<group>"; };
+		6A9177F41A2DE2E2000645A4 /* DataUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataUtil.h; sourceTree = "<group>"; };
+		6A9177F51A2DE2E2000645A4 /* DataUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataUtil.m; sourceTree = "<group>"; };
 		6AB359AF1A2B5758008C48B4 /* BaseHTTPRequestOperationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseHTTPRequestOperationManager.h; sourceTree = "<group>"; };
 		6AB359B01A2B5758008C48B4 /* BaseHTTPRequestOperationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseHTTPRequestOperationManager.m; sourceTree = "<group>"; };
 		6AB359B51A2B638C008C48B4 /* RegisterAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterAPI.h; sourceTree = "<group>"; };
@@ -912,6 +915,8 @@
 				6AC6EA061A28C4B5007689D8 /* NSString+Crypt.m */,
 				6AB359B81A2B6C3B008C48B4 /* DeviceUtil.h */,
 				6AB359B91A2B6C3B008C48B4 /* DeviceUtil.m */,
+				6A9177F41A2DE2E2000645A4 /* DataUtil.h */,
+				6A9177F51A2DE2E2000645A4 /* DataUtil.m */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -1380,6 +1385,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6AC6EA071A28C4B5007689D8 /* NSString+Crypt.m in Sources */,
+				6A9177F61A2DE2E2000645A4 /* DataUtil.m in Sources */,
 				6AB359B11A2B5758008C48B4 /* BaseHTTPRequestOperationManager.m in Sources */,
 				6A7376531A20D84C006EF54F /* LoginViewController.m in Sources */,
 				6AB359BA1A2B6C3B008C48B4 /* DeviceUtil.m in Sources */,
@@ -1514,6 +1520,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iOS Development: Deying Yu (EG87838K93)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iOS Development: Deying Yu (EG87838K93)";
 				INFOPLIST_FILE = DoctorFei_iOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1533,6 +1540,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iOS Development: Deying Yu (EG87838K93)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iOS Development: Deying Yu (EG87838K93)";
 				INFOPLIST_FILE = DoctorFei_iOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

@@ -10,4 +10,6 @@
 
 @interface SetNewPasswordTableViewController : UITableViewController
 
+@property (nonatomic, copy) NSString *currentPhone;
+
 @end

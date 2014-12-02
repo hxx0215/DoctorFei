@@ -34,8 +34,7 @@ static const NSTimeInterval kDuration = 60;
     int currentUserId;
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
+- (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     timeCount = 0;
     NSNumber *recordTime = [[NSUserDefaults standardUserDefaults]objectForKey:@"LastTimeGetCapthaTime"];
@@ -56,6 +55,14 @@ static const NSTimeInterval kDuration = 60;
     }
 }
 
+- (void)viewWillDisappear:(BOOL)animated {
+    if (countDownTimer) {
+        [countDownTimer invalidate];
+        countDownTimer = nil;
+    }
+    [super viewWillDisappear:animated];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Uncomment the following line to preserve selection between presentations.
@@ -72,8 +79,8 @@ static const NSTimeInterval kDuration = 60;
             return @(NO);
         }
     }];
-    RAC(self.nextButton, enabled) = [RACSignal combineLatest:@[self.phoneTextField.rac_textSignal, self.passwordTextField.rac_textSignal, self.passwordAgainTextField.rac_textSignal] reduce:^(NSString *phone, NSString *password, NSString *passwordAgain){
-        return @(phone.length == 11 && password.length > 5 && [passwordAgain isEqualToString:password]);
+    RAC(self.nextButton, enabled) = [RACSignal combineLatest:@[self.phoneTextField.rac_textSignal, self.capthaTextField.rac_textSignal, self.passwordTextField.rac_textSignal, self.passwordAgainTextField.rac_textSignal] reduce:^(NSString *phone, NSString *captha, NSString *password, NSString *passwordAgain){
+        return @(phone.length == 11 && captha.length == 6 && password.length > 5 && [passwordAgain isEqualToString:password]);
     }];
 }
 
@@ -91,11 +98,11 @@ static const NSTimeInterval kDuration = 60;
         RegisterMoreTableViewController *vc = [segue destinationViewController];
         [vc setUserId:currentUserId];
     }
-    //仅供调试下一步专用
-    else if ([segue.identifier isEqualToString:@"DebugMoreSegueIdentifier"]) {
-        RegisterMoreTableViewController *vc = [segue destinationViewController];
-        [vc setUserId:33];
-    }
+//    //仅供调试下一步专用
+//    else if ([segue.identifier isEqualToString:@"DebugMoreSegueIdentifier"]) {
+//        RegisterMoreTableViewController *vc = [segue destinationViewController];
+//        [vc setUserId:33];
+//    }
 }
 
 #pragma mark - Actions
