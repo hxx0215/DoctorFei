@@ -7,13 +7,29 @@
 //
 
 #import "RegisterMoreTableViewController.h"
-
+#import <IHKeyboardAvoiding.h>
+#import <ReactiveCocoa.h>
+#import <MBProgressHUD.h>
+#import "DoctorAPI.h"
+#import "APService.h"
 @interface RegisterMoreTableViewController ()
-
+    <UITextFieldDelegate>
 - (IBAction)backButtonClicked:(id)sender;
+
+@property (weak, nonatomic) IBOutlet UITextField *nameLabel;
+@property (weak, nonatomic) IBOutlet UITextField *hospitalNameLabel;
+@property (weak, nonatomic) IBOutlet UITextField *departmentLabel;
+@property (weak, nonatomic) IBOutlet UITextField *jobTitleLabel;
+@property (weak, nonatomic) IBOutlet UITextField *emailLabel;
+@property (weak, nonatomic) IBOutlet UITextView *introductionTextView;
+@property (weak, nonatomic) IBOutlet UIButton *confirmButton;
+- (IBAction)confirmButtonClicked:(id)sender;
+
+
 @end
 
 @implementation RegisterMoreTableViewController
+@synthesize userId = _userId;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -23,6 +39,16 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+    CGRect tableViewFooterFrame = self.tableView.tableFooterView.frame;
+    tableViewFooterFrame.size.height = 78.0f;
+    [self.tableView.tableFooterView setFrame:tableViewFooterFrame];
+    
+//    [IHKeyboardAvoiding setAvoidingView:self.confirmButton withTarget:self.introductionTextView];
+    
+    RAC(self.confirmButton, enabled) = [RACSignal combineLatest:@[self.nameLabel.rac_textSignal, self.hospitalNameLabel.rac_textSignal, self.departmentLabel.rac_textSignal, self.jobTitleLabel.rac_textSignal, self.emailLabel.rac_textSignal, self.introductionTextView.rac_textSignal] reduce:^(NSString *name, NSString *hospitalName, NSString *department, NSString *jobTitle, NSString *email, NSString *introduction){
+        return @(name.length > 0 && hospitalName.length > 0 && department.length > 0 && jobTitle.length > 0 && email.length > 0 && introduction.length > 0);
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -100,5 +126,62 @@
 
 - (IBAction)backButtonClicked:(id)sender {
     [self.navigationController popToRootViewControllerAnimated:YES];
+}
+- (IBAction)confirmButtonClicked:(id)sender {
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view.window animated:YES];
+    hud.dimBackground = YES;
+    [hud setLabelText:@"提交注册申请中..."];
+    NSDictionary *params = @{
+                             @"doctorid": @(_userId),
+                             @"realname": self.nameLabel.text,
+                             @"email": self.emailLabel.text,
+                             @"hospital": self.hospitalNameLabel.text,
+                             @"department": self.departmentLabel.text,
+                             @"jobtitle": self.jobTitleLabel.text,
+                             @"othercontact": self.introductionTextView.text
+                             };
+    [DoctorAPI updateInfomationWithParameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSDictionary *dataDict = [responseObject firstObject];
+        hud.mode = MBProgressHUDModeText;
+        if ([dataDict[@"state"]intValue] == 1) {
+            hud.labelText = @"完善资料成功";
+//            hud.detailsLabelText = dataDict[@"msg"];
+            [self.navigationController popToRootViewControllerAnimated:YES];
+        }
+        else{
+            hud.labelText = @"完善资料错误";
+            hud.detailsLabelText = dataDict[@"msg"];
+        }
+        [hud hide:YES afterDelay:1.5f];
+
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"%@", error.localizedDescription);
+        hud.mode = MBProgressHUDModeText;
+        hud.labelText = @"网络错误";
+        hud.detailsLabelText = error.localizedDescription;
+        [hud hide:YES afterDelay:1.5f];
+    }];
+}
+
+#pragma mark - UITextField Delegate
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    if (textField == self.nameLabel) {
+        [self.hospitalNameLabel becomeFirstResponder];
+    }
+    else if (textField == self.hospitalNameLabel){
+        [self.departmentLabel becomeFirstResponder];
+    }
+    else if (textField == self.departmentLabel){
+        [self.jobTitleLabel becomeFirstResponder];
+    }
+    else if (textField == self.jobTitleLabel){
+        [self.emailLabel becomeFirstResponder];
+    }
+    else if (textField == self.emailLabel){
+        [self.introductionTextView becomeFirstResponder];
+    }
+    return YES;
 }
 @end

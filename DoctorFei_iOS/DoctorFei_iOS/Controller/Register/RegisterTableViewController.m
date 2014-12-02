@@ -11,6 +11,7 @@
 #import <MBProgressHUD.h>
 #import "DeviceUtil.h"
 #import <ReactiveCocoa.h>
+#import "RegisterMoreTableViewController.h"
 static const NSTimeInterval kDuration = 60;
 
 @interface RegisterTableViewController ()
@@ -30,17 +31,19 @@ static const NSTimeInterval kDuration = 60;
 {
     NSTimer *countDownTimer;
     long timeCount;
+    int currentUserId;
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    timeCount = 0;
     NSNumber *recordTime = [[NSUserDefaults standardUserDefaults]objectForKey:@"LastTimeGetCapthaTime"];
     if (recordTime) {
         long nowTime = [[NSDate date]timeIntervalSince1970];
         long interval = (nowTime - [recordTime longValue]);
         if (interval > kDuration) {
-            [self.getCapthaButton setEnabled:YES];
+//            [self.getCapthaButton setEnabled:YES];
             [self.getCapthaButton.titleLabel setFont:[UIFont systemFontOfSize:14.0f]];
         }
         else{
@@ -61,7 +64,13 @@ static const NSTimeInterval kDuration = 60;
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     RAC(self.getCapthaButton, enabled) = [RACSignal combineLatest:@[self.phoneTextField.rac_textSignal] reduce:^(NSString *phone){
-        return @(phone.length == 11);
+        if (phone.length == 11 && timeCount == 0) {
+            [self.getCapthaButton.titleLabel setFont:[UIFont systemFontOfSize:14.0f]];
+            return @(YES);
+        }
+        else{
+            return @(NO);
+        }
     }];
     RAC(self.nextButton, enabled) = [RACSignal combineLatest:@[self.phoneTextField.rac_textSignal, self.passwordTextField.rac_textSignal, self.passwordAgainTextField.rac_textSignal] reduce:^(NSString *phone, NSString *password, NSString *passwordAgain){
         return @(phone.length == 11 && password.length > 5 && [passwordAgain isEqualToString:password]);
@@ -73,15 +82,23 @@ static const NSTimeInterval kDuration = 60;
     // Dispose of any resources that can be recreated.
 }
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    if ([segue.identifier isEqualToString:@"RegisterNextSegueIdentifier"]) {
+        RegisterMoreTableViewController *vc = [segue destinationViewController];
+        [vc setUserId:currentUserId];
+    }
+    //仅供调试下一步专用
+    else if ([segue.identifier isEqualToString:@"DebugMoreSegueIdentifier"]) {
+        RegisterMoreTableViewController *vc = [segue destinationViewController];
+        [vc setUserId:33];
+    }
 }
-*/
+
+#pragma mark - Actions
 - (void)countDown
 {
     timeCount --;
@@ -109,7 +126,7 @@ static const NSTimeInterval kDuration = 60;
     [self.getCapthaButton setTitle:[NSString stringWithFormat:@"%ld秒后重新获取", timeCount] forState:UIControlStateDisabled];
     countDownTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(countDown) userInfo:nil repeats:YES];
     
-    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view.window animated:YES];
     hud.dimBackground = YES;
     [hud setLabelText:@"获取验证码中..."];
     
@@ -119,7 +136,8 @@ static const NSTimeInterval kDuration = 60;
         NSDictionary *dataDict = [responseObject firstObject];
         hud.mode = MBProgressHUDModeText;
         if ([dataDict[@"state"]intValue] == 1) {
-            hud.labelText = dataDict[@"msg"];
+            hud.labelText = @"获取成功";
+            hud.detailsLabelText = dataDict[@"msg"];
         }
         else{
             hud.labelText = @"获取错误";
@@ -129,14 +147,14 @@ static const NSTimeInterval kDuration = 60;
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"%@", error.localizedDescription);
         hud.mode = MBProgressHUDModeText;
-        hud.labelText = @"网络错误";
+        hud.labelText = @"错误";
         hud.detailsLabelText = error.localizedDescription;
         [hud hide:YES afterDelay:1.5f];
     }];
 }
 
 - (IBAction)nextButtonClicked:(id)sender {
-    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view.window animated:YES];
     hud.dimBackground = YES;
     [hud setLabelText:@"提交注册申请中..."];
     NSDictionary *params = @{
@@ -150,9 +168,8 @@ static const NSTimeInterval kDuration = 60;
         hud.mode = MBProgressHUDModeText;
         if ([dataDict[@"state"]intValue] == 1) {
             hud.labelText = dataDict[@"msg"];
-            [[NSUserDefaults standardUserDefaults]setObject:[NSNumber numberWithInt:[dataDict[@"userid"] intValue]] forKey:@"userId"];
-            [[NSUserDefaults standardUserDefaults]synchronize];
-            //TODO 跳转完善资料
+            currentUserId = [dataDict[@"userid"]intValue];
+            [self performSegueWithIdentifier:@"RegisterNextSegueIdentifier" sender:nil];
         }
         else{
             hud.labelText = @"注册错误";
@@ -162,7 +179,7 @@ static const NSTimeInterval kDuration = 60;
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"%@", error.localizedDescription);
         hud.mode = MBProgressHUDModeText;
-        hud.labelText = @"网络错误";
+        hud.labelText = @"错误";
         hud.detailsLabelText = error.localizedDescription;
         [hud hide:YES afterDelay:1.5f];
     }];

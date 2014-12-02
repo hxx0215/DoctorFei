@@ -8,6 +8,18 @@
 
 /* Begin PBXBuildFile section */
 		6A4F2E011A237FFF008C2D10 /* MyCardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A4F2E001A237FFF008C2D10 /* MyCardViewController.m */; };
+		6A69A0121A2CBB2500D85777 /* DoctorAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A69A0111A2CBB2500D85777 /* DoctorAPI.m */; };
+		6A69A0171A2CC8EB00D85777 /* libPushSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A69A0161A2CC8EB00D85777 /* libPushSDK.a */; };
+		6A69A0191A2CC8FE00D85777 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A69A0181A2CC8FE00D85777 /* CFNetwork.framework */; };
+		6A69A01B1A2CC90400D85777 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A69A01A1A2CC90400D85777 /* CoreFoundation.framework */; };
+		6A69A01D1A2CC91100D85777 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A69A01C1A2CC91100D85777 /* CoreTelephony.framework */; };
+		6A69A01E1A2CC91A00D85777 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AB359BB1A2B6C93008C48B4 /* SystemConfiguration.framework */; };
+		6A69A0201A2CC92300D85777 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A69A01F1A2CC92300D85777 /* CoreGraphics.framework */; };
+		6A69A0221A2CC92D00D85777 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A69A0211A2CC92D00D85777 /* Foundation.framework */; };
+		6A69A0241A2CC93E00D85777 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A69A0231A2CC93E00D85777 /* UIKit.framework */; };
+		6A69A0261A2CC94500D85777 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A69A0251A2CC94500D85777 /* Security.framework */; };
+		6A69A0281A2CC94C00D85777 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A69A0271A2CC94C00D85777 /* libz.dylib */; };
+		6A69A02A1A2D4DC500D85777 /* PushConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6A69A0291A2D4DC500D85777 /* PushConfig.plist */; };
 		6A7372C91A2034B4006EF54F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A7372C81A2034B4006EF54F /* main.m */; };
 		6A7372CC1A2034B4006EF54F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A7372CB1A2034B4006EF54F /* AppDelegate.m */; };
 		6A7372D21A2034B4006EF54F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6A7372D01A2034B4006EF54F /* Main.storyboard */; };
@@ -156,7 +168,7 @@
 		6AC6E9B21A28C015007689D8 /* login-text_di@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AC6E8E11A28C015007689D8 /* login-text_di@2x.png */; };
 		6AC6E9B31A28C015007689D8 /* login-text_di@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AC6E8E21A28C015007689D8 /* login-text_di@3x.png */; };
 		6AC6E9B41A28C015007689D8 /* logo_login.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AC6E8E31A28C015007689D8 /* logo_login.png */; };
-		6AC6E9B51A28C015007689D8 /* logo_login@2x .png in Resources */ = {isa = PBXBuildFile; fileRef = 6AC6E8E41A28C015007689D8 /* logo_login@2x .png */; };
+		6AC6E9B51A28C015007689D8 /* logo_login@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AC6E8E41A28C015007689D8 /* logo_login@2x.png */; };
 		6AC6E9B61A28C015007689D8 /* logo_login@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AC6E8E51A28C015007689D8 /* logo_login@3x.png */; };
 		6AC6E9B71A28C015007689D8 /* logo_prompt-01.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AC6E8E61A28C015007689D8 /* logo_prompt-01.png */; };
 		6AC6E9B81A28C015007689D8 /* logo_prompt-01@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AC6E8E71A28C015007689D8 /* logo_prompt-01@2x.png */; };
@@ -255,6 +267,19 @@
 		57A1FFA4D74E0A39C5ACB6D1 /* libPods-DoctorFei_iOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DoctorFei_iOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6A4F2DFF1A237FFF008C2D10 /* MyCardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyCardViewController.h; sourceTree = "<group>"; };
 		6A4F2E001A237FFF008C2D10 /* MyCardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyCardViewController.m; sourceTree = "<group>"; };
+		6A69A0101A2CBB2500D85777 /* DoctorAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoctorAPI.h; sourceTree = "<group>"; };
+		6A69A0111A2CBB2500D85777 /* DoctorAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DoctorAPI.m; sourceTree = "<group>"; };
+		6A69A0151A2CC8EB00D85777 /* APService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APService.h; sourceTree = "<group>"; };
+		6A69A0161A2CC8EB00D85777 /* libPushSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libPushSDK.a; sourceTree = "<group>"; };
+		6A69A0181A2CC8FE00D85777 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		6A69A01A1A2CC90400D85777 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		6A69A01C1A2CC91100D85777 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		6A69A01F1A2CC92300D85777 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		6A69A0211A2CC92D00D85777 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		6A69A0231A2CC93E00D85777 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		6A69A0251A2CC94500D85777 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		6A69A0271A2CC94C00D85777 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		6A69A0291A2D4DC500D85777 /* PushConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = PushConfig.plist; sourceTree = "<group>"; };
 		6A7372C31A2034B4006EF54F /* DoctorFei_iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DoctorFei_iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6A7372C71A2034B4006EF54F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6A7372C81A2034B4006EF54F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -423,7 +448,7 @@
 		6AC6E8E11A28C015007689D8 /* login-text_di@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login-text_di@2x.png"; sourceTree = "<group>"; };
 		6AC6E8E21A28C015007689D8 /* login-text_di@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login-text_di@3x.png"; sourceTree = "<group>"; };
 		6AC6E8E31A28C015007689D8 /* logo_login.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo_login.png; sourceTree = "<group>"; };
-		6AC6E8E41A28C015007689D8 /* logo_login@2x .png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo_login@2x .png"; sourceTree = "<group>"; };
+		6AC6E8E41A28C015007689D8 /* logo_login@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo_login@2x.png"; sourceTree = "<group>"; };
 		6AC6E8E51A28C015007689D8 /* logo_login@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo_login@3x.png"; sourceTree = "<group>"; };
 		6AC6E8E61A28C015007689D8 /* logo_prompt-01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo_prompt-01.png"; sourceTree = "<group>"; };
 		6AC6E8E71A28C015007689D8 /* logo_prompt-01@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo_prompt-01@2x.png"; sourceTree = "<group>"; };
@@ -514,6 +539,16 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6A69A0281A2CC94C00D85777 /* libz.dylib in Frameworks */,
+				6A69A0261A2CC94500D85777 /* Security.framework in Frameworks */,
+				6A69A0241A2CC93E00D85777 /* UIKit.framework in Frameworks */,
+				6A69A0221A2CC92D00D85777 /* Foundation.framework in Frameworks */,
+				6A69A0201A2CC92300D85777 /* CoreGraphics.framework in Frameworks */,
+				6A69A01E1A2CC91A00D85777 /* SystemConfiguration.framework in Frameworks */,
+				6A69A01D1A2CC91100D85777 /* CoreTelephony.framework in Frameworks */,
+				6A69A01B1A2CC90400D85777 /* CoreFoundation.framework in Frameworks */,
+				6A69A0191A2CC8FE00D85777 /* CFNetwork.framework in Frameworks */,
+				6A69A0171A2CC8EB00D85777 /* libPushSDK.a in Frameworks */,
 				E5DC0A78865BEBA4AB7CC615 /* libPods-DoctorFei_iOS.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -531,10 +566,35 @@
 		137C0372ACB57CB9BA345D67 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6A69A0271A2CC94C00D85777 /* libz.dylib */,
+				6A69A0251A2CC94500D85777 /* Security.framework */,
+				6A69A0231A2CC93E00D85777 /* UIKit.framework */,
+				6A69A0211A2CC92D00D85777 /* Foundation.framework */,
+				6A69A01F1A2CC92300D85777 /* CoreGraphics.framework */,
+				6A69A01C1A2CC91100D85777 /* CoreTelephony.framework */,
+				6A69A01A1A2CC90400D85777 /* CoreFoundation.framework */,
+				6A69A0181A2CC8FE00D85777 /* CFNetwork.framework */,
 				6AB359BB1A2B6C93008C48B4 /* SystemConfiguration.framework */,
 				57A1FFA4D74E0A39C5ACB6D1 /* libPods-DoctorFei_iOS.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		6A69A0131A2CC8E400D85777 /* Dependence */ = {
+			isa = PBXGroup;
+			children = (
+				6A69A0141A2CC8EB00D85777 /* JPush */,
+			);
+			path = Dependence;
+			sourceTree = "<group>";
+		};
+		6A69A0141A2CC8EB00D85777 /* JPush */ = {
+			isa = PBXGroup;
+			children = (
+				6A69A0151A2CC8EB00D85777 /* APService.h */,
+				6A69A0161A2CC8EB00D85777 /* libPushSDK.a */,
+			);
+			path = JPush;
 			sourceTree = "<group>";
 		};
 		6A7372BA1A2034B4006EF54F = {
@@ -560,6 +620,7 @@
 		6A7372C51A2034B4006EF54F /* DoctorFei_iOS */ = {
 			isa = PBXGroup;
 			children = (
+				6A69A0131A2CC8E400D85777 /* Dependence */,
 				6A7372CA1A2034B4006EF54F /* AppDelegate.h */,
 				6A7372CB1A2034B4006EF54F /* AppDelegate.m */,
 				6A73748D1A207E88006EF54F /* Controller */,
@@ -580,6 +641,7 @@
 			children = (
 				6A7372C71A2034B4006EF54F /* Info.plist */,
 				6A7372C81A2034B4006EF54F /* main.m */,
+				6A69A0291A2D4DC500D85777 /* PushConfig.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -758,7 +820,7 @@
 				6AC6E8E11A28C015007689D8 /* login-text_di@2x.png */,
 				6AC6E8E21A28C015007689D8 /* login-text_di@3x.png */,
 				6AC6E8E31A28C015007689D8 /* logo_login.png */,
-				6AC6E8E41A28C015007689D8 /* logo_login@2x .png */,
+				6AC6E8E41A28C015007689D8 /* logo_login@2x.png */,
 				6AC6E8E51A28C015007689D8 /* logo_login@3x.png */,
 				6AC6E8E61A28C015007689D8 /* logo_prompt-01.png */,
 				6AC6E8E71A28C015007689D8 /* logo_prompt-01@2x.png */,
@@ -888,6 +950,8 @@
 				6AB359B01A2B5758008C48B4 /* BaseHTTPRequestOperationManager.m */,
 				6AB359B51A2B638C008C48B4 /* RegisterAPI.h */,
 				6AB359B61A2B638C008C48B4 /* RegisterAPI.m */,
+				6A69A0101A2CBB2500D85777 /* DoctorAPI.h */,
+				6A69A0111A2CBB2500D85777 /* DoctorAPI.m */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -1016,6 +1080,12 @@
 				TargetAttributes = {
 					6A7372C21A2034B4006EF54F = {
 						CreatedOnToolsVersion = 6.1;
+						DevelopmentTeam = N4Q8DG7HD5;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 					6A7372DB1A2034B4006EF54F = {
 						CreatedOnToolsVersion = 6.1;
@@ -1151,10 +1221,11 @@
 				6AC6E9421A28C015007689D8 /* button_login_after@3x.png in Resources */,
 				6AC6E9BD1A28C015007689D8 /* logo_set.png in Resources */,
 				6AC6E9701A28C015007689D8 /* button_sign-in.png in Resources */,
-				6AC6E9B51A28C015007689D8 /* logo_login@2x .png in Resources */,
+				6AC6E9B51A28C015007689D8 /* logo_login@2x.png in Resources */,
 				6AC6E9F21A28C015007689D8 /* tab_04@3x.png in Resources */,
 				6AC6E9B41A28C015007689D8 /* logo_login.png in Resources */,
 				6AC6E9B11A28C015007689D8 /* login-text_di.png in Resources */,
+				6A69A02A1A2D4DC500D85777 /* PushConfig.plist in Resources */,
 				6AC6E99A1A28C015007689D8 /* id_example_01.png in Resources */,
 				6AC6E9DF1A28C015007689D8 /* tab_01@2x.png in Resources */,
 				6AC6E9981A28C015007689D8 /* id_04@2x.png in Resources */,
@@ -1321,6 +1392,7 @@
 				6A73764F1A20D829006EF54F /* MainTabBarViewController.m in Sources */,
 				6A7372C91A2034B4006EF54F /* main.m in Sources */,
 				6A78BE2D1A222C13005457F3 /* ForgetPassVerifyCodeViewController.m in Sources */,
+				6A69A0121A2CBB2500D85777 /* DoctorAPI.m in Sources */,
 				6A73763A1A208972006EF54F /* MainViewController.m in Sources */,
 				6A4F2E011A237FFF008C2D10 /* MyCardViewController.m in Sources */,
 				6A78BE331A222C5B005457F3 /* SetNewPasswordTableViewController.m in Sources */,
@@ -1376,7 +1448,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iOS Development: Deying Yu (EG87838K93)";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -1441,10 +1513,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iOS Development: Deying Yu (EG87838K93)";
 				INFOPLIST_FILE = DoctorFei_iOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/DoctorFei_iOS/Dependence/JPush",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "fddccbcf-953b-4673-8e1c-4ac5fdf59ad9";
 			};
 			name = Debug;
 		};
@@ -1454,10 +1532,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iOS Development: Deying Yu (EG87838K93)";
 				INFOPLIST_FILE = DoctorFei_iOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/DoctorFei_iOS/Dependence/JPush",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "fddccbcf-953b-4673-8e1c-4ac5fdf59ad9";
 			};
 			name = Release;
 		};

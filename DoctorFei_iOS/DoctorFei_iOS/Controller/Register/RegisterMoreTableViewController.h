@@ -10,4 +10,6 @@
 
 @interface RegisterMoreTableViewController : UITableViewController
 
+@property (nonatomic, assign) int userId;
+
 @end

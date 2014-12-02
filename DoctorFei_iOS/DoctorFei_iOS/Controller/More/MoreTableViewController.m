@@ -7,8 +7,9 @@
 //
 
 #import "MoreTableViewController.h"
-
+#import "DoctorAPI.h"
 @interface MoreTableViewController ()
+- (IBAction)logoutButtonClicked:(id)sender;
 
 @end
 
@@ -22,6 +23,10 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+    CGRect tableViewFooterRect = self.tableView.tableFooterView.frame;
+    tableViewFooterRect.size.height = 78.0f;
+    [self.tableView.tableFooterView setFrame:tableViewFooterRect];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -97,4 +102,8 @@
 }
 */
 
+- (IBAction)logoutButtonClicked:(id)sender {
+    
+    
+}
 @end

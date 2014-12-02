@@ -22,7 +22,7 @@
     for (UITabBarItem *item in self.tabBar.items) {
         NSUInteger index = [self.tabBar.items indexOfObject:item];
 //        UIImage *unselect = [UIImage imageNamed:[NSString stringWithFormat:@"tab_0%lu", index + 1]];
-        UIImage *select = [UIImage imageNamed:[NSString stringWithFormat:@"tab_0%lu_after", index + 1]];
+        UIImage *select = [UIImage imageNamed:[NSString stringWithFormat:@"tab_0%ud_after", index + 1]];
 //        [item setImage:[unselect imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
         [item setSelectedImage:[select imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
     }
@@ -31,7 +31,10 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    [self performSegueWithIdentifier:@"LoginSegueIdentifier" sender:nil];
+    if ([[NSUserDefaults standardUserDefaults]objectForKey:@"UserId"] == nil) {
+        [self performSegueWithIdentifier:@"LoginSegueIdentifier" sender:nil];
+    }
+
 
 }
 - (void)didReceiveMemoryWarning {
