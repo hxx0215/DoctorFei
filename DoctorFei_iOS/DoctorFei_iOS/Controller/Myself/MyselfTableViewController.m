@@ -6,13 +6,31 @@
 //
 //
 
+#define kMyselfInfoNameArray @[@"头像", @"姓名", @"医院", @"科室", @"职称", @"邮箱"]
+#define kMyselfInfoKeyArray @[@"headimage", @"realname", @"hospital", @"department", @"jobtitle", @"email"]
 #import "MyselfTableViewController.h"
+#import "MySelfBasicInfoEditTableViewController.h"
+#import "MyselfIntroInfoEditTableViewController.h"
 
 @interface MyselfTableViewController ()
+
+@property (weak, nonatomic) IBOutlet UIImageView *avatarImageView;
+@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *hospitalNameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *departmengLabel;
+@property (weak, nonatomic) IBOutlet UILabel *jobTitleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *emailLabel;
+@property (weak, nonatomic) IBOutlet UITextView *introductionTextView;
+//@property (weak, nonatomic) IBOutlet UILabel *introductionLabel;
+
 
 @end
 
 @implementation MyselfTableViewController
+{
+    NSArray *basicInfoArray;
+    NSString *icon, *name, *hospital, *department, *jobTitle, *email, *introduction;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -22,6 +40,32 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    [self.introductionTextView setTextContainerInset:UIEdgeInsetsZero];
+    
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    icon = [[[NSUserDefaults standardUserDefaults]objectForKey:@"UserIcon"] copy];
+    name = [[[NSUserDefaults standardUserDefaults]objectForKey:@"UserRealName"] copy];
+    hospital = [[[NSUserDefaults standardUserDefaults]objectForKey:@"UserHospital"] copy];
+    department = [[[NSUserDefaults standardUserDefaults]objectForKey:@"UserDepartment"] copy];
+    jobTitle = [[[NSUserDefaults standardUserDefaults]objectForKey:@"UserJobTitle"] copy];
+    email = [[[NSUserDefaults standardUserDefaults]objectForKey:@"UserEmail"] copy];
+    introduction = [[[NSUserDefaults standardUserDefaults]objectForKey:@"UserOtherContact"]copy];
+    basicInfoArray = @[icon, name, hospital, department, jobTitle, email];
+    
+    //TODO 头像未处理
+    [self.nameLabel setText:name];
+    [self.hospitalNameLabel setText:hospital];
+    [self.departmengLabel setText:department];
+    [self.jobTitleLabel setText:jobTitle];
+    [self.emailLabel setText:email];
+    [self.introductionTextView setText:introduction];
+
+//    [self.introductionLabel setText:introduction];
+//    [self.introductionLabel sizeToFit];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -29,72 +73,34 @@
     // Dispose of any resources that can be recreated.
 }
 
-//#pragma mark - Table view data source
-//
-//- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-//#warning Potentially incomplete method implementation.
-//    // Return the number of sections.
-//    return 0;
-//}
-//
-//- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-//#warning Incomplete method implementation.
-//    // Return the number of rows in the section.
-//    return 0;
-//}
-
-/*
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
-    
-    // Configure the cell...
-    
-    return cell;
-}
-*/
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if ([segue.identifier isEqualToString:@"MyselfBasicInfoEditSegueIdentifier"]) {
+        MySelfBasicInfoEditTableViewController *vc = [segue destinationViewController];
+        [vc setName:kMyselfInfoNameArray[indexPath.row]];
+        [vc setKey:kMyselfInfoKeyArray[indexPath.row]];
+        [vc setValue:basicInfoArray[indexPath.row]];
+    }
+    else if ([segue.identifier isEqualToString:@"MyselfIntroInfoEditSegueIdentifier"]) {
+        MyselfIntroInfoEditTableViewController *vc = [segue destinationViewController];
+        [vc setIntroValue:introduction];
+    }
 }
-*/
 
+#pragma mark - UITableView Delegate
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section == 0 && indexPath.row != 0) {
+        [self performSegueWithIdentifier:@"MyselfBasicInfoEditSegueIdentifier" sender:nil];
+    }
+    else if (indexPath.section == 1 && indexPath.row == 0) {
+        [self performSegueWithIdentifier:@"MyselfIntroInfoEditSegueIdentifier" sender:nil];
+    }
+}
 @end

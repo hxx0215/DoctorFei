@@ -42,6 +42,8 @@
 - (void)viewWillDisappear:(BOOL)animated
 {
     [self.navigationController setNavigationBarHidden:NO animated:YES];
+    [self.phoneTextField resignFirstResponder];
+    [self.passwordTextField resignFirstResponder];
     [super viewWillDisappear:animated];
 }
 
@@ -69,8 +71,7 @@
 
 #pragma mark - Actions
 - (IBAction)loginButtonClicked:(id)sender {
-    [self.phoneTextField resignFirstResponder];
-    [self.passwordTextField resignFirstResponder];
+
 //    NSLog(@"%@",[APService registrationID]);
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view.window animated:YES];
     hud.dimBackground = YES;
