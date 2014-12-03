@@ -103,6 +103,12 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="cVJ-je-ZKu" id="gvi-8t-1ah"/>
+                                    <outlet property="delegate" destination="cVJ-je-ZKu" id="5Wb-hB-0fl"/>
+                                    <outlet property="emptyDataSetDelegate" destination="cVJ-je-ZKu" id="Jzb-qj-glx"/>
+                                    <outlet property="emptyDataSetSource" destination="cVJ-je-ZKu" id="nZm-za-aXS"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -142,6 +148,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="searchDisplayController" destination="f5O-qJ-8da" id="JUj-gk-DcI"/>
+                        <outlet property="tableView" destination="0nR-px-MK6" id="haH-Z4-XAG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nd3-BB-qhP" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -986,7 +993,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="呼吸科  医师" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yd7-BF-M6J">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="呼吸科 医师" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yd7-BF-M6J">
                                         <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="15" id="Dp6-TP-53X"/>
@@ -1149,6 +1156,11 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="infoLabel" destination="Yd7-BF-M6J" id="bsV-D0-t0O"/>
+                        <outlet property="nameLabel" destination="OfB-PS-x2i" id="SbY-l1-pQC"/>
+                        <outlet property="qRCodeImageView" destination="paX-kN-BsI" id="Srt-Lg-OM4"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fes-ry-jSm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1871,7 +1883,7 @@
                         <viewControllerLayoutGuide type="bottom" id="eGE-UU-Yy8"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="57N-4p-unz">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="您的手机" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UsG-gY-cKz">
@@ -2063,10 +2075,10 @@
                                     <exclude reference="I87-cI-2FF"/>
                                 </mask>
                                 <mask key="constraints">
-                                    <exclude reference="MXZ-mE-89l"/>
-                                    <exclude reference="rl1-q4-5L3"/>
                                     <exclude reference="B39-hM-yP5"/>
                                     <exclude reference="zNu-Mn-Sms"/>
+                                    <exclude reference="MXZ-mE-89l"/>
+                                    <exclude reference="rl1-q4-5L3"/>
                                 </mask>
                             </variation>
                             <variation key="heightClass=regular-widthClass=compact">
@@ -2075,10 +2087,10 @@
                                     <include reference="I87-cI-2FF"/>
                                 </mask>
                                 <mask key="constraints">
-                                    <include reference="MXZ-mE-89l"/>
-                                    <include reference="rl1-q4-5L3"/>
                                     <include reference="B39-hM-yP5"/>
                                     <include reference="zNu-Mn-Sms"/>
+                                    <include reference="MXZ-mE-89l"/>
+                                    <include reference="rl1-q4-5L3"/>
                                 </mask>
                             </variation>
                         </view>
@@ -2141,11 +2153,11 @@
                                                     <exclude reference="CzS-HX-8uf"/>
                                                 </mask>
                                                 <mask key="constraints">
+                                                    <exclude reference="347-P1-AzY"/>
+                                                    <exclude reference="Xk6-xd-g5t"/>
                                                     <exclude reference="DAF-tD-QdS"/>
                                                     <exclude reference="SBZ-yu-U6p"/>
                                                     <exclude reference="lrG-3F-jFp"/>
-                                                    <exclude reference="347-P1-AzY"/>
-                                                    <exclude reference="Xk6-xd-g5t"/>
                                                     <exclude reference="M5H-bg-KGI"/>
                                                     <exclude reference="S8B-EZ-TC3"/>
                                                     <exclude reference="Vnx-PA-Zeg"/>
@@ -2159,11 +2171,11 @@
                                                     <include reference="CzS-HX-8uf"/>
                                                 </mask>
                                                 <mask key="constraints">
+                                                    <include reference="347-P1-AzY"/>
+                                                    <include reference="Xk6-xd-g5t"/>
                                                     <include reference="DAF-tD-QdS"/>
                                                     <include reference="SBZ-yu-U6p"/>
                                                     <include reference="lrG-3F-jFp"/>
-                                                    <include reference="347-P1-AzY"/>
-                                                    <include reference="Xk6-xd-g5t"/>
                                                     <include reference="M5H-bg-KGI"/>
                                                     <include reference="S8B-EZ-TC3"/>
                                                     <include reference="Vnx-PA-Zeg"/>
@@ -2218,13 +2230,13 @@
                                                     <exclude reference="tbU-cF-YCz"/>
                                                 </mask>
                                                 <mask key="constraints">
-                                                    <exclude reference="XMI-u4-VKf"/>
-                                                    <exclude reference="eh7-cH-MDt"/>
-                                                    <exclude reference="iOm-YU-x32"/>
                                                     <exclude reference="LDr-Xk-eAX"/>
                                                     <exclude reference="Z6M-cZ-6jF"/>
                                                     <exclude reference="aOA-IJ-B5a"/>
                                                     <exclude reference="cMw-lt-6eb"/>
+                                                    <exclude reference="XMI-u4-VKf"/>
+                                                    <exclude reference="eh7-cH-MDt"/>
+                                                    <exclude reference="iOm-YU-x32"/>
                                                 </mask>
                                             </variation>
                                             <variation key="heightClass=regular-widthClass=compact">
@@ -2233,13 +2245,13 @@
                                                     <include reference="tbU-cF-YCz"/>
                                                 </mask>
                                                 <mask key="constraints">
-                                                    <include reference="XMI-u4-VKf"/>
-                                                    <include reference="eh7-cH-MDt"/>
-                                                    <include reference="iOm-YU-x32"/>
                                                     <include reference="LDr-Xk-eAX"/>
                                                     <include reference="Z6M-cZ-6jF"/>
                                                     <include reference="aOA-IJ-B5a"/>
                                                     <include reference="cMw-lt-6eb"/>
+                                                    <include reference="XMI-u4-VKf"/>
+                                                    <include reference="eh7-cH-MDt"/>
+                                                    <include reference="iOm-YU-x32"/>
                                                 </mask>
                                             </variation>
                                         </tableViewCellContentView>
@@ -2281,12 +2293,12 @@
                                                 </mask>
                                                 <mask key="constraints">
                                                     <exclude reference="tLl-2K-DsE"/>
+                                                    <exclude reference="5W7-xu-orj"/>
                                                     <exclude reference="Fzs-Mn-kRP"/>
-                                                    <exclude reference="ydo-rG-z3i"/>
-                                                    <exclude reference="mBt-mr-yIT"/>
                                                     <exclude reference="LaI-dk-wYC"/>
                                                     <exclude reference="R0g-xE-WYT"/>
-                                                    <exclude reference="5W7-xu-orj"/>
+                                                    <exclude reference="mBt-mr-yIT"/>
+                                                    <exclude reference="ydo-rG-z3i"/>
                                                 </mask>
                                             </variation>
                                             <variation key="heightClass=regular-widthClass=compact">
@@ -2296,12 +2308,12 @@
                                                 </mask>
                                                 <mask key="constraints">
                                                     <include reference="tLl-2K-DsE"/>
+                                                    <include reference="5W7-xu-orj"/>
                                                     <include reference="Fzs-Mn-kRP"/>
-                                                    <include reference="ydo-rG-z3i"/>
-                                                    <include reference="mBt-mr-yIT"/>
                                                     <include reference="LaI-dk-wYC"/>
                                                     <include reference="R0g-xE-WYT"/>
-                                                    <include reference="5W7-xu-orj"/>
+                                                    <include reference="mBt-mr-yIT"/>
+                                                    <include reference="ydo-rG-z3i"/>
                                                 </mask>
                                             </variation>
                                         </tableViewCellContentView>
@@ -2338,13 +2350,13 @@
                                                     <exclude reference="n5y-Zo-ea0"/>
                                                 </mask>
                                                 <mask key="constraints">
-                                                    <exclude reference="Y2C-1T-NKe"/>
-                                                    <exclude reference="Mwv-wZ-Q7f"/>
-                                                    <exclude reference="qM3-vS-0Kd"/>
-                                                    <exclude reference="YjI-dX-OKc"/>
-                                                    <exclude reference="ocQ-Ll-MhA"/>
                                                     <exclude reference="Fo2-D3-IDQ"/>
                                                     <exclude reference="iRo-fw-fj9"/>
+                                                    <exclude reference="Mwv-wZ-Q7f"/>
+                                                    <exclude reference="Y2C-1T-NKe"/>
+                                                    <exclude reference="YjI-dX-OKc"/>
+                                                    <exclude reference="ocQ-Ll-MhA"/>
+                                                    <exclude reference="qM3-vS-0Kd"/>
                                                 </mask>
                                             </variation>
                                             <variation key="heightClass=regular-widthClass=compact">
@@ -2353,13 +2365,13 @@
                                                     <include reference="n5y-Zo-ea0"/>
                                                 </mask>
                                                 <mask key="constraints">
-                                                    <include reference="Y2C-1T-NKe"/>
-                                                    <include reference="Mwv-wZ-Q7f"/>
-                                                    <include reference="qM3-vS-0Kd"/>
-                                                    <include reference="YjI-dX-OKc"/>
-                                                    <include reference="ocQ-Ll-MhA"/>
                                                     <include reference="Fo2-D3-IDQ"/>
                                                     <include reference="iRo-fw-fj9"/>
+                                                    <include reference="Mwv-wZ-Q7f"/>
+                                                    <include reference="Y2C-1T-NKe"/>
+                                                    <include reference="YjI-dX-OKc"/>
+                                                    <include reference="ocQ-Ll-MhA"/>
+                                                    <include reference="qM3-vS-0Kd"/>
                                                 </mask>
                                             </variation>
                                         </tableViewCellContentView>
