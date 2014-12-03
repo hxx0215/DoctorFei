@@ -42,6 +42,8 @@
 - (void)viewWillDisappear:(BOOL)animated
 {
     [self.navigationController setNavigationBarHidden:NO animated:YES];
+    [self.phoneTextField resignFirstResponder];
+    [self.passwordTextField resignFirstResponder];
     [super viewWillDisappear:animated];
 }
 
@@ -69,9 +71,8 @@
 
 #pragma mark - Actions
 - (IBAction)loginButtonClicked:(id)sender {
-    [self.phoneTextField resignFirstResponder];
-    [self.passwordTextField resignFirstResponder];
-    NSLog(@"%@",[APService registrationID]);
+
+//    NSLog(@"%@",[APService registrationID]);
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view.window animated:YES];
     hud.dimBackground = YES;
     [hud setLabelText:@"登录中..."];
@@ -80,7 +81,7 @@
                              @"password": self.passwordTextField.text,
                              @"sn": [APService registrationID]
                              };
-    NSLog(@"%@",params);
+//    NSLog(@"%@",params);
     [DoctorAPI loginWithParameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"%@",responseObject);
         NSDictionary *dataDict = [responseObject firstObject];

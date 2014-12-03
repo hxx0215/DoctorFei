@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		6A4F2E011A237FFF008C2D10 /* MyCardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A4F2E001A237FFF008C2D10 /* MyCardViewController.m */; };
+		6A4FC15C1A2EFF4F0042497C /* MySelfBasicInfoEditTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A4FC15B1A2EFF4F0042497C /* MySelfBasicInfoEditTableViewController.m */; };
+		6A4FC15F1A2F063B0042497C /* MyselfIntroInfoEditTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A4FC15E1A2F063B0042497C /* MyselfIntroInfoEditTableViewController.m */; };
 		6A69A0121A2CBB2500D85777 /* DoctorAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A69A0111A2CBB2500D85777 /* DoctorAPI.m */; };
 		6A69A0171A2CC8EB00D85777 /* libPushSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A69A0161A2CC8EB00D85777 /* libPushSDK.a */; };
 		6A69A0191A2CC8FE00D85777 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A69A0181A2CC8FE00D85777 /* CFNetwork.framework */; };
@@ -257,6 +259,10 @@
 		57A1FFA4D74E0A39C5ACB6D1 /* libPods-DoctorFei_iOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DoctorFei_iOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6A4F2DFF1A237FFF008C2D10 /* MyCardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyCardViewController.h; sourceTree = "<group>"; };
 		6A4F2E001A237FFF008C2D10 /* MyCardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyCardViewController.m; sourceTree = "<group>"; };
+		6A4FC15A1A2EFF4F0042497C /* MySelfBasicInfoEditTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MySelfBasicInfoEditTableViewController.h; sourceTree = "<group>"; };
+		6A4FC15B1A2EFF4F0042497C /* MySelfBasicInfoEditTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MySelfBasicInfoEditTableViewController.m; sourceTree = "<group>"; };
+		6A4FC15D1A2F063B0042497C /* MyselfIntroInfoEditTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyselfIntroInfoEditTableViewController.h; sourceTree = "<group>"; };
+		6A4FC15E1A2F063B0042497C /* MyselfIntroInfoEditTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyselfIntroInfoEditTableViewController.m; sourceTree = "<group>"; };
 		6A69A0101A2CBB2500D85777 /* DoctorAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoctorAPI.h; sourceTree = "<group>"; };
 		6A69A0111A2CBB2500D85777 /* DoctorAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DoctorAPI.m; sourceTree = "<group>"; };
 		6A69A0151A2CC8EB00D85777 /* APService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APService.h; sourceTree = "<group>"; };
@@ -955,6 +961,10 @@
 			children = (
 				6A7376461A20D052006EF54F /* MyselfTableViewController.h */,
 				6A7376471A20D052006EF54F /* MyselfTableViewController.m */,
+				6A4FC15A1A2EFF4F0042497C /* MySelfBasicInfoEditTableViewController.h */,
+				6A4FC15B1A2EFF4F0042497C /* MySelfBasicInfoEditTableViewController.m */,
+				6A4FC15D1A2F063B0042497C /* MyselfIntroInfoEditTableViewController.h */,
+				6A4FC15E1A2F063B0042497C /* MyselfIntroInfoEditTableViewController.m */,
 			);
 			path = Myself;
 			sourceTree = "<group>";
@@ -1338,6 +1348,7 @@
 				6A9177F61A2DE2E2000645A4 /* DataUtil.m in Sources */,
 				6AB359B11A2B5758008C48B4 /* BaseHTTPRequestOperationManager.m in Sources */,
 				6A7376531A20D84C006EF54F /* LoginViewController.m in Sources */,
+				6A4FC15F1A2F063B0042497C /* MyselfIntroInfoEditTableViewController.m in Sources */,
 				6AB359BA1A2B6C3B008C48B4 /* DeviceUtil.m in Sources */,
 				6AB359B71A2B638C008C48B4 /* RegisterAPI.m in Sources */,
 				6A7376571A20E4CC006EF54F /* RegisterTableViewController.m in Sources */,
@@ -1350,6 +1361,7 @@
 				6A78BE2D1A222C13005457F3 /* ForgetPassVerifyCodeViewController.m in Sources */,
 				6A69A0121A2CBB2500D85777 /* DoctorAPI.m in Sources */,
 				6A73763A1A208972006EF54F /* MainViewController.m in Sources */,
+				6A4FC15C1A2EFF4F0042497C /* MySelfBasicInfoEditTableViewController.m in Sources */,
 				6A4F2E011A237FFF008C2D10 /* MyCardViewController.m in Sources */,
 				6A78BE331A222C5B005457F3 /* SetNewPasswordTableViewController.m in Sources */,
 				6A78BE2A1A2229F8005457F3 /* ForgetPasswordViewController.m in Sources */,

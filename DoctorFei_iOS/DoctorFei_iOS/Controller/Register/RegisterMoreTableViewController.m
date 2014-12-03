@@ -6,6 +6,7 @@
 //
 //
 
+
 #import "RegisterMoreTableViewController.h"
 #import <IHKeyboardAvoiding.h>
 #import <ReactiveCocoa.h>
@@ -130,7 +131,7 @@
 - (IBAction)confirmButtonClicked:(id)sender {
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view.window animated:YES];
     hud.dimBackground = YES;
-    [hud setLabelText:@"提交注册申请中..."];
+    [hud setLabelText:@"完善资料中..."];
     NSDictionary *params = @{
                              @"doctorid": @(_userId),
                              @"realname": self.nameLabel.text,
@@ -157,7 +158,7 @@
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"%@", error.localizedDescription);
         hud.mode = MBProgressHUDModeText;
-        hud.labelText = @"网络错误";
+        hud.labelText = @"错误";
         hud.detailsLabelText = error.localizedDescription;
         [hud hide:YES afterDelay:1.5f];
     }];
