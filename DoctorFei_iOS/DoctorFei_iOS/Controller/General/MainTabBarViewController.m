@@ -7,7 +7,6 @@
 //
 
 #import "MainTabBarViewController.h"
-#import "Constants.h"
 @interface MainTabBarViewController ()
 
 @end

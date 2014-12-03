@@ -10,6 +10,9 @@
 		6A4F2E011A237FFF008C2D10 /* MyCardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A4F2E001A237FFF008C2D10 /* MyCardViewController.m */; };
 		6A4FC15C1A2EFF4F0042497C /* MySelfBasicInfoEditTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A4FC15B1A2EFF4F0042497C /* MySelfBasicInfoEditTableViewController.m */; };
 		6A4FC15F1A2F063B0042497C /* MyselfIntroInfoEditTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A4FC15E1A2F063B0042497C /* MyselfIntroInfoEditTableViewController.m */; };
+		6A4FC1621A2F51360042497C /* MainCoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6A4FC1601A2F51360042497C /* MainCoreData.xcdatamodeld */; };
+		6A4FC1651A2F52EF0042497C /* Friends.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A4FC1641A2F52EF0042497C /* Friends.m */; };
+		6A4FC1691A2F67F10042497C /* ContactFriendTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A4FC1681A2F67F10042497C /* ContactFriendTableViewCell.m */; };
 		6A69A0121A2CBB2500D85777 /* DoctorAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A69A0111A2CBB2500D85777 /* DoctorAPI.m */; };
 		6A69A0171A2CC8EB00D85777 /* libPushSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A69A0161A2CC8EB00D85777 /* libPushSDK.a */; };
 		6A69A0191A2CC8FE00D85777 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A69A0181A2CC8FE00D85777 /* CFNetwork.framework */; };
@@ -26,7 +29,6 @@
 		6A7372CC1A2034B4006EF54F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A7372CB1A2034B4006EF54F /* AppDelegate.m */; };
 		6A7372D21A2034B4006EF54F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6A7372D01A2034B4006EF54F /* Main.storyboard */; };
 		6A7372D41A2034B4006EF54F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6A7372D31A2034B4006EF54F /* Images.xcassets */; };
-		6A7372E31A2034B4006EF54F /* DoctorFei_iOSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A7372E21A2034B4006EF54F /* DoctorFei_iOSTests.m */; };
 		6A73763A1A208972006EF54F /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A7376391A208972006EF54F /* MainViewController.m */; };
 		6A73763D1A20CFAD006EF54F /* ContactViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A73763C1A20CFAD006EF54F /* ContactViewController.m */; };
 		6A7376481A20D052006EF54F /* MyselfTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A7376471A20D052006EF54F /* MyselfTableViewController.m */; };
@@ -255,16 +257,6 @@
 		E5DC0A78865BEBA4AB7CC615 /* libPods-DoctorFei_iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 57A1FFA4D74E0A39C5ACB6D1 /* libPods-DoctorFei_iOS.a */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		6A7372DD1A2034B4006EF54F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 6A7372BB1A2034B4006EF54F /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 6A7372C21A2034B4006EF54F;
-			remoteInfo = DoctorFei_iOS;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
 		42764DE19551474565D51270 /* Pods-DoctorFei_iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DoctorFei_iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-DoctorFei_iOS/Pods-DoctorFei_iOS.release.xcconfig"; sourceTree = "<group>"; };
 		57A1FFA4D74E0A39C5ACB6D1 /* libPods-DoctorFei_iOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DoctorFei_iOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -274,6 +266,12 @@
 		6A4FC15B1A2EFF4F0042497C /* MySelfBasicInfoEditTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MySelfBasicInfoEditTableViewController.m; sourceTree = "<group>"; };
 		6A4FC15D1A2F063B0042497C /* MyselfIntroInfoEditTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyselfIntroInfoEditTableViewController.h; sourceTree = "<group>"; };
 		6A4FC15E1A2F063B0042497C /* MyselfIntroInfoEditTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyselfIntroInfoEditTableViewController.m; sourceTree = "<group>"; };
+		6A4FC1611A2F51360042497C /* MainCoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MainCoreData.xcdatamodel; sourceTree = "<group>"; };
+		6A4FC1631A2F52EF0042497C /* Friends.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Friends.h; sourceTree = "<group>"; };
+		6A4FC1641A2F52EF0042497C /* Friends.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Friends.m; sourceTree = "<group>"; };
+		6A4FC1661A2F61160042497C /* DoctorFei_iOS-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DoctorFei_iOS-Prefix.pch"; sourceTree = "<group>"; };
+		6A4FC1671A2F67F10042497C /* ContactFriendTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactFriendTableViewCell.h; sourceTree = "<group>"; };
+		6A4FC1681A2F67F10042497C /* ContactFriendTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactFriendTableViewCell.m; sourceTree = "<group>"; };
 		6A69A0101A2CBB2500D85777 /* DoctorAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoctorAPI.h; sourceTree = "<group>"; };
 		6A69A0111A2CBB2500D85777 /* DoctorAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DoctorAPI.m; sourceTree = "<group>"; };
 		6A69A0151A2CC8EB00D85777 /* APService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APService.h; sourceTree = "<group>"; };
@@ -294,9 +292,6 @@
 		6A7372CB1A2034B4006EF54F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		6A7372D11A2034B4006EF54F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		6A7372D31A2034B4006EF54F /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		6A7372DC1A2034B4006EF54F /* DoctorFei_iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DoctorFei_iOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		6A7372E11A2034B4006EF54F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		6A7372E21A2034B4006EF54F /* DoctorFei_iOSTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DoctorFei_iOSTests.m; sourceTree = "<group>"; };
 		6A7376381A208972006EF54F /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		6A7376391A208972006EF54F /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		6A73763B1A20CFAD006EF54F /* ContactViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactViewController.h; sourceTree = "<group>"; };
@@ -562,13 +557,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		6A7372D91A2034B4006EF54F /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -610,7 +598,6 @@
 			isa = PBXGroup;
 			children = (
 				6A7372C51A2034B4006EF54F /* DoctorFei_iOS */,
-				6A7372DF1A2034B4006EF54F /* DoctorFei_iOSTests */,
 				6A7372C41A2034B4006EF54F /* Products */,
 				E9702F7C5EE5E17D0B5B9F80 /* Pods */,
 				137C0372ACB57CB9BA345D67 /* Frameworks */,
@@ -621,7 +608,6 @@
 			isa = PBXGroup;
 			children = (
 				6A7372C31A2034B4006EF54F /* DoctorFei_iOS.app */,
-				6A7372DC1A2034B4006EF54F /* DoctorFei_iOSTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -629,18 +615,18 @@
 		6A7372C51A2034B4006EF54F /* DoctorFei_iOS */ = {
 			isa = PBXGroup;
 			children = (
-				6A69A0131A2CC8E400D85777 /* Dependence */,
 				6A7372CA1A2034B4006EF54F /* AppDelegate.h */,
 				6A7372CB1A2034B4006EF54F /* AppDelegate.m */,
-				6A73748D1A207E88006EF54F /* Controller */,
 				6A7372D31A2034B4006EF54F /* Images.xcassets */,
 				6A7372D01A2034B4006EF54F /* Main.storyboard */,
+				6A7375611A207E89006EF54F /* View */,
+				6A73748D1A207E88006EF54F /* Controller */,
 				6A73748E1A207E88006EF54F /* Modal */,
 				6A7376371A207EFD006EF54F /* Networking */,
 				6A73748F1A207E88006EF54F /* Resource */,
-				6A7372C61A2034B4006EF54F /* Supporting Files */,
+				6A69A0131A2CC8E400D85777 /* Dependence */,
 				6A7375601A207E89006EF54F /* Utils */,
-				6A7375611A207E89006EF54F /* View */,
+				6A7372C61A2034B4006EF54F /* Supporting Files */,
 			);
 			path = DoctorFei_iOS;
 			sourceTree = "<group>";
@@ -651,23 +637,7 @@
 				6A7372C71A2034B4006EF54F /* Info.plist */,
 				6A7372C81A2034B4006EF54F /* main.m */,
 				6A69A0291A2D4DC500D85777 /* PushConfig.plist */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		6A7372DF1A2034B4006EF54F /* DoctorFei_iOSTests */ = {
-			isa = PBXGroup;
-			children = (
-				6A7372E21A2034B4006EF54F /* DoctorFei_iOSTests.m */,
-				6A7372E01A2034B4006EF54F /* Supporting Files */,
-			);
-			path = DoctorFei_iOSTests;
-			sourceTree = "<group>";
-		};
-		6A7372E01A2034B4006EF54F /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				6A7372E11A2034B4006EF54F /* Info.plist */,
+				6A4FC1661A2F61160042497C /* DoctorFei_iOS-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -689,6 +659,9 @@
 		6A73748E1A207E88006EF54F /* Modal */ = {
 			isa = PBXGroup;
 			children = (
+				6A4FC1601A2F51360042497C /* MainCoreData.xcdatamodeld */,
+				6A4FC1631A2F52EF0042497C /* Friends.h */,
+				6A4FC1641A2F52EF0042497C /* Friends.m */,
 			);
 			path = Modal;
 			sourceTree = "<group>";
@@ -930,6 +903,8 @@
 		6A7375611A207E89006EF54F /* View */ = {
 			isa = PBXGroup;
 			children = (
+				6A4FC1671A2F67F10042497C /* ContactFriendTableViewCell.h */,
+				6A4FC1681A2F67F10042497C /* ContactFriendTableViewCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1067,24 +1042,6 @@
 			productReference = 6A7372C31A2034B4006EF54F /* DoctorFei_iOS.app */;
 			productType = "com.apple.product-type.application";
 		};
-		6A7372DB1A2034B4006EF54F /* DoctorFei_iOSTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 6A7372E91A2034B4006EF54F /* Build configuration list for PBXNativeTarget "DoctorFei_iOSTests" */;
-			buildPhases = (
-				6A7372D81A2034B4006EF54F /* Sources */,
-				6A7372D91A2034B4006EF54F /* Frameworks */,
-				6A7372DA1A2034B4006EF54F /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				6A7372DE1A2034B4006EF54F /* PBXTargetDependency */,
-			);
-			name = DoctorFei_iOSTests;
-			productName = DoctorFei_iOSTests;
-			productReference = 6A7372DC1A2034B4006EF54F /* DoctorFei_iOSTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -1102,10 +1059,6 @@
 							};
 						};
 					};
-					6A7372DB1A2034B4006EF54F = {
-						CreatedOnToolsVersion = 6.1;
-						TestTargetID = 6A7372C21A2034B4006EF54F;
-					};
 				};
 			};
 			buildConfigurationList = 6A7372BE1A2034B4006EF54F /* Build configuration list for PBXProject "DoctorFei_iOS" */;
@@ -1122,7 +1075,6 @@
 			projectRoot = "";
 			targets = (
 				6A7372C21A2034B4006EF54F /* DoctorFei_iOS */,
-				6A7372DB1A2034B4006EF54F /* DoctorFei_iOSTests */,
 			);
 		};
 /* End PBXProject section */
@@ -1347,13 +1299,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		6A7372DA1A2034B4006EF54F /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
@@ -1400,6 +1345,7 @@
 				6A7376531A20D84C006EF54F /* LoginViewController.m in Sources */,
 				6A4FC15F1A2F063B0042497C /* MyselfIntroInfoEditTableViewController.m in Sources */,
 				6AB359BA1A2B6C3B008C48B4 /* DeviceUtil.m in Sources */,
+				6A4FC1691A2F67F10042497C /* ContactFriendTableViewCell.m in Sources */,
 				6AB359B71A2B638C008C48B4 /* RegisterAPI.m in Sources */,
 				6A7376571A20E4CC006EF54F /* RegisterTableViewController.m in Sources */,
 				6A73764B1A20D05A006EF54F /* MoreTableViewController.m in Sources */,
@@ -1409,8 +1355,10 @@
 				6A73764F1A20D829006EF54F /* MainTabBarViewController.m in Sources */,
 				6A7372C91A2034B4006EF54F /* main.m in Sources */,
 				6A78BE2D1A222C13005457F3 /* ForgetPassVerifyCodeViewController.m in Sources */,
+				6A4FC1651A2F52EF0042497C /* Friends.m in Sources */,
 				6A69A0121A2CBB2500D85777 /* DoctorAPI.m in Sources */,
 				6A73763A1A208972006EF54F /* MainViewController.m in Sources */,
+				6A4FC1621A2F51360042497C /* MainCoreData.xcdatamodeld in Sources */,
 				6A4FC15C1A2EFF4F0042497C /* MySelfBasicInfoEditTableViewController.m in Sources */,
 				6A4F2E011A237FFF008C2D10 /* MyCardViewController.m in Sources */,
 				6A78BE331A222C5B005457F3 /* SetNewPasswordTableViewController.m in Sources */,
@@ -1419,23 +1367,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		6A7372D81A2034B4006EF54F /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				6A7372E31A2034B4006EF54F /* DoctorFei_iOSTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		6A7372DE1A2034B4006EF54F /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 6A7372C21A2034B4006EF54F /* DoctorFei_iOS */;
-			targetProxy = 6A7372DD1A2034B4006EF54F /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		6A7372D01A2034B4006EF54F /* Main.storyboard */ = {
@@ -1472,6 +1404,7 @@
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREFIX_HEADER = "DoctorFei_iOS/DoctorFei_iOS-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -1512,6 +1445,7 @@
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PREFIX_HEADER = "DoctorFei_iOS/DoctorFei_iOS-Prefix.pch";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -1565,40 +1499,6 @@
 			};
 			name = Release;
 		};
-		6A7372EA1A2034B4006EF54F /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = DoctorFei_iOSTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DoctorFei_iOS.app/DoctorFei_iOS";
-			};
-			name = Debug;
-		};
-		6A7372EB1A2034B4006EF54F /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = DoctorFei_iOSTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DoctorFei_iOS.app/DoctorFei_iOS";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1620,16 +1520,20 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		6A7372E91A2034B4006EF54F /* Build configuration list for PBXNativeTarget "DoctorFei_iOSTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				6A7372EA1A2034B4006EF54F /* Debug */,
-				6A7372EB1A2034B4006EF54F /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		6A4FC1601A2F51360042497C /* MainCoreData.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				6A4FC1611A2F51360042497C /* MainCoreData.xcdatamodel */,
+			);
+			currentVersion = 6A4FC1611A2F51360042497C /* MainCoreData.xcdatamodel */;
+			path = MainCoreData.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 6A7372BB1A2034B4006EF54F /* Project object */;
 }

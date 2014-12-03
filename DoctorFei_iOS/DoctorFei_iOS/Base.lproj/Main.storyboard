@@ -32,7 +32,7 @@
                                     </connections>
                                 </searchBar>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="65" id="vG6-Kv-lIY">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ContactFriendCellIdentifier" rowHeight="65" id="vG6-Kv-lIY" customClass="ContactFriendTableViewCell">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vG6-Kv-lIY" id="Qu8-su-CUw">
@@ -101,6 +101,10 @@
                                                 </mask>
                                             </variation>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="avatarImageView" destination="8nD-v5-t0r" id="fQ1-5b-IiC"/>
+                                            <outlet property="nameLabel" destination="TYW-dN-VdT" id="hBa-3I-DKe"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -2965,7 +2969,7 @@
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="id_01.png" translatesAutoresizingMaskIntoConstraints="NO" id="P5E-id-RcJ">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="id_example_01.png" translatesAutoresizingMaskIntoConstraints="NO" id="P5E-id-RcJ">
                                                     <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="40" id="j4q-FE-87Q"/>
@@ -3949,6 +3953,7 @@
         <image name="id_01.png" width="72" height="72"/>
         <image name="id_02.png" width="40" height="40"/>
         <image name="id_03.png" width="44" height="44"/>
+        <image name="id_example_01.png" width="72" height="72"/>
         <image name="line.png" width="220" height="2"/>
         <image name="login-text_di.png" width="226" height="312"/>
         <image name="login_bg.png" width="320" height="480"/>

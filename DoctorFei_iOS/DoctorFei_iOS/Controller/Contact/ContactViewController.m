@@ -10,23 +10,36 @@
 #import <UIScrollView+EmptyDataSet.h>
 #import "DoctorAPI.h"
 #import <MBProgressHUD.h>
+#import "Friends.h"
+#import "ContactFriendTableViewCell.h"
 @interface ContactViewController ()
     <UITableViewDelegate, UITableViewDataSource, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @end
 
 @implementation ContactViewController
-
+{
+    NSArray *friendArray;
+    NSMutableArray *searchResultArray;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    searchResultArray = [NSMutableArray array];
+    
     [self.tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
     [self fetchFriend];
+    [self reloadTableViewData];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)reloadTableViewData {
+    friendArray = [Friends MR_findAll];
+    [self.tableView reloadData];
 }
 
 - (void)fetchFriend
@@ -37,6 +50,22 @@
                              };
     [DoctorAPI getFriendsWithParameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"%@",responseObject);
+        NSArray *dataArray = (NSArray *)responseObject;
+        for (NSDictionary *dict in dataArray) {
+            Friends *friend = [Friends MR_findFirstByAttribute:@"userid" withValue:dict[@"userid"]];
+            if (friend == nil) {
+                friend = [Friends MR_createEntity];
+                friend.userid = dict[@"userid"];
+            }
+            friend.email = dict[@"Email"];
+            friend.gender = dict[@"Gender"];
+            friend.mobile = dict[@"Mobile"];
+            friend.realname = dict[@"RealName"];
+            friend.icon = dict[@"icon"];
+            friend.usertype = dict[@"usertype"];
+            [[NSManagedObjectContext MR_defaultContext]MR_saveToPersistentStoreAndWait];
+        }
+        [self reloadTableViewData];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view.window animated:YES];
         hud.mode = MBProgressHUDModeText;
@@ -57,14 +86,27 @@
 
 #pragma mark - UITableView DataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 0;
+    if (tableView == self.searchDisplayController.searchResultsTableView) {
+        return searchResultArray.count;
+    }
+    return friendArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return nil;
+    if (tableView == self.searchDisplayController.searchResultsTableView) {
+        return nil;
+    }
+    static NSString *ContactFriendCellIdentifier = @"ContactFriendCellIdentifier";
+    ContactFriendTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ContactFriendCellIdentifier forIndexPath:indexPath];
+    [cell setDataFriend:friendArray[indexPath.row]];
+    return cell;
+
 }
 
 #pragma mark - UITableView Delegate
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 65.0f;
+}
 
 #pragma mark - DZNEmptyDataSetSource
 

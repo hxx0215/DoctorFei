@@ -9,7 +9,7 @@
 #import "AppDelegate.h"
 #import "AFNetworkActivityIndicatorManager.h"
 #import "APService.h"
-
+#import <CoreData+MagicalRecord.h>
 @interface AppDelegate ()
 
 @end
@@ -23,6 +23,7 @@
     NSLog(@"Documents Directory: %@", [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject]);
 #endif
     
+    [MagicalRecord setupCoreDataStackWithStoreNamed:@"DoctorFei.sqlite"];
     
     [AFNetworkActivityIndicatorManager sharedManager].enabled = YES;
     
