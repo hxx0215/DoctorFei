@@ -52,6 +52,17 @@
     }];
 }
 
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [self.nameLabel resignFirstResponder];
+    [self.hospitalNameLabel resignFirstResponder];
+    [self.departmentLabel resignFirstResponder];
+    [self.jobTitleLabel resignFirstResponder];
+    [self.emailLabel resignFirstResponder];
+    [self.introductionTextView resignFirstResponder];
+    [super viewWillDisappear:animated];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

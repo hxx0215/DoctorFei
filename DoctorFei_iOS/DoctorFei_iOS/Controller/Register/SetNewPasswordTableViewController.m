@@ -56,6 +56,9 @@ static const NSTimeInterval kDuration = 60;
         [countDownTimer invalidate];
         countDownTimer = nil;
     }
+    [self.capthaTextField resignFirstResponder];
+    [self.passwordTextField resignFirstResponder];
+    [self.passwordAgainTextField resignFirstResponder];
     [super viewWillDisappear:animated];
 }
 - (void)countDown
