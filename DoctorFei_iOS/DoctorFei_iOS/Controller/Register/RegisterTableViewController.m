@@ -60,6 +60,11 @@ static const NSTimeInterval kDuration = 60;
         [countDownTimer invalidate];
         countDownTimer = nil;
     }
+    [self.phoneTextField resignFirstResponder];
+    [self.passwordTextField resignFirstResponder];
+    [self.passwordAgainTextField resignFirstResponder];
+    [self.capthaTextField resignFirstResponder];
+    
     [super viewWillDisappear:animated];
 }
 
@@ -70,6 +75,9 @@ static const NSTimeInterval kDuration = 60;
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    CGRect tableViewFooterFrame = self.tableView.tableFooterView.frame;
+    tableViewFooterFrame.size.height = 78.0f;
+    [self.tableView.tableFooterView setFrame:tableViewFooterFrame];
     RAC(self.getCapthaButton, enabled) = [RACSignal combineLatest:@[self.phoneTextField.rac_textSignal] reduce:^(NSString *phone){
         if (phone.length == 11 && timeCount == 0) {
             [self.getCapthaButton.titleLabel setFont:[UIFont systemFontOfSize:14.0f]];

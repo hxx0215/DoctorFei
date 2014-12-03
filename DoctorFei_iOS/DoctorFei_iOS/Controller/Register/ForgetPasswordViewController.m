@@ -51,6 +51,7 @@ static const NSTimeInterval kDuration = 60;
         [countDownTimer invalidate];
         countDownTimer = nil;
     }
+    [self.phoneTextField resignFirstResponder];
     [super viewWillDisappear:animated];
 }
 - (void)countDown
