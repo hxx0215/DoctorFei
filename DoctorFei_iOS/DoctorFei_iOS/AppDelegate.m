@@ -10,6 +10,9 @@
 #import "AFNetworkActivityIndicatorManager.h"
 #import "APService.h"
 #import <CoreData+MagicalRecord.h>
+#import "DeviceUtil.h"
+#import "SetOnlineStateUtil.h"
+#import "MobileAPI.h"
 @interface AppDelegate ()
 
 @end
@@ -46,23 +49,30 @@
 #endif
     // Required
     [APService setupWithOption:launchOptions];
+//    [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
+    
+    [SetOnlineStateUtil online];
+    [self setPushUser];
 
-    [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
     return YES;
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
+//    [SetOnlineStateUtil offline];
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    [SetOnlineStateUtil offline];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+    [SetOnlineStateUtil online];
+    [self setPushUser];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
@@ -75,15 +85,10 @@
 
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     [APService registerDeviceToken:deviceToken];
-//    const unsigned *tokenBytes = [deviceToken bytes];
-//    NSString *hexToken = [NSString stringWithFormat:@"%08x%08x%08x%08x%08x%08x%08x%08x",
-//                          ntohl(tokenBytes[0]), ntohl(tokenBytes[1]), ntohl(tokenBytes[2]),
-//                          ntohl(tokenBytes[3]), ntohl(tokenBytes[4]), ntohl(tokenBytes[5]),
-//                          ntohl(tokenBytes[6]), ntohl(tokenBytes[7])];
-//    NSLog(@"%@", hexToken);
-//    [[NSUserDefaults standardUserDefaults]setObject:hexToken forKey:@"DeviceToken"];
-//    [[NSUserDefaults standardUserDefaults] synchronize];
+    //使用UUID设置别名
+    [APService setAlias: [DeviceUtil getUUID] callbackSelector:@selector(tagsAliasCallback:tags:alias:) object:self];
 }
+
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
     [APService handleRemoteNotification:userInfo];
@@ -92,6 +97,35 @@
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
     [APService handleRemoteNotification:userInfo];
     completionHandler(UIBackgroundFetchResultNewData);
+}
+
+
+- (void)tagsAliasCallback:(int)iResCode tags:(NSSet *)tags alias:(NSString *)alias {
+    NSString *callbackString = [NSString stringWithFormat:@"%d, alias: %@\n", iResCode, alias];
+    NSLog(@"TagsAlias回调:%@", callbackString);
+    if (iResCode != 0){
+        NSLog(@"注册别名失败");
+    }
+}
+
+- (void)setPushUser {
+    NSDictionary *params = @{
+                             @"sn": [DeviceUtil getUUID],
+                             @"cityid": @(0),
+                             @"model": [DeviceUtil getDeviceModalDescription],
+                             @"type": @(2)
+                             };
+    [MobileAPI setPushUserWithParameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSDictionary *dataDict = [responseObject firstObject];
+        if ([dataDict[@"state"]intValue] == 1) {
+            NSLog(@"SetPushUserSuccess");
+        }
+        else{
+            NSLog(@"SetPushUserFailedMessage:%@", dataDict[@"msg"]);
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"%@",error.localizedDescription);
+    }];
 }
 
 @end
