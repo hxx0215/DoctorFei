@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="hjp-xA-J3Y">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="hjp-xA-J3Y">
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+        <deployment defaultVersion="1792" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -59,6 +59,9 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
+                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                        <rect key="frame" x="70" y="22" width="230" height="20"/>
+                                                    </variation>
                                                 </label>
                                             </subviews>
                                             <constraints>
@@ -3766,6 +3769,9 @@
                                                 </mask>
                                             </variation>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="uaT-mB-nYo" kind="show" id="zUl-ro-hpk"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" rowHeight="45" id="Cst-ry-3FX">
                                         <autoresizingMask key="autoresizingMask"/>
@@ -3845,6 +3851,117 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CSg-m1-T22" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-5403" y="2031"/>
+        </scene>
+        <!--软件升级-->
+        <scene sceneID="Qbu-dY-hFO">
+            <objects>
+                <viewController hidesBottomBarWhenPushed="YES" id="uaT-mB-nYo" customClass="MoreUpdateViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ybd-ku-cpS"/>
+                        <viewControllerLayoutGuide type="bottom" id="Aem-Fc-F96"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Yya-Fb-7V9">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="487"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PEc-RO-KdE">
+                                <rect key="frame" x="86" y="288" width="428" height="109"/>
+                                <state key="normal" title="软件升级" backgroundImage="button_next_after.png">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="heightClass=compact-widthClass=compact" ambiguous="YES">
+                                    <rect key="frame" x="86" y="179" width="228" height="18"/>
+                                </variation>
+                                <connections>
+                                    <action selector="updateButtonClicked:" destination="uaT-mB-nYo" eventType="touchUpInside" id="9cb-u2-xol"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" 当前已是最高版本" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3nR-5a-xa1">
+                                <rect key="frame" x="230" y="252" width="141" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="heightClass=compact-widthClass=compact" ambiguous="YES" misplaced="YES">
+                                    <rect key="frame" x="130" y="164" width="141" height="0.0"/>
+                                </variation>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="picture_download.png" translatesAutoresizingMaskIntoConstraints="NO" id="4Zb-sb-bA1">
+                                <rect key="frame" x="106" y="80" width="388" height="132"/>
+                                <variation key="heightClass=compact-widthClass=compact" ambiguous="YES" misplaced="YES">
+                                    <rect key="frame" x="106" y="80" width="188" height="44"/>
+                                </variation>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="PEc-RO-KdE" firstAttribute="top" secondItem="3nR-5a-xa1" secondAttribute="bottom" constant="15" id="1iE-yg-gSZ"/>
+                            <constraint firstItem="PEc-RO-KdE" firstAttribute="leading" secondItem="Yya-Fb-7V9" secondAttribute="leadingMargin" constant="70" id="70t-te-aDl"/>
+                            <constraint firstItem="3nR-5a-xa1" firstAttribute="centerX" secondItem="4Zb-sb-bA1" secondAttribute="centerX" id="9X8-Ky-dch"/>
+                            <constraint firstItem="3nR-5a-xa1" firstAttribute="top" secondItem="4Zb-sb-bA1" secondAttribute="bottom" constant="40" id="Eem-Xn-F2r">
+                                <variation key="heightClass=regular-widthClass=compact" constant="40"/>
+                            </constraint>
+                            <constraint firstAttribute="trailingMargin" secondItem="PEc-RO-KdE" secondAttribute="trailing" constant="70" id="Efx-NR-hhc"/>
+                            <constraint firstItem="4Zb-sb-bA1" firstAttribute="top" secondItem="ybd-ku-cpS" secondAttribute="bottom" constant="80" id="HiZ-ZH-x0v"/>
+                            <constraint firstItem="PEc-RO-KdE" firstAttribute="top" secondItem="3nR-5a-xa1" secondAttribute="bottom" constant="15" id="LKI-F5-jLr"/>
+                            <constraint firstItem="4Zb-sb-bA1" firstAttribute="centerX" secondItem="Yya-Fb-7V9" secondAttribute="centerX" id="Mm9-CP-z0v"/>
+                            <constraint firstItem="PEc-RO-KdE" firstAttribute="leading" secondItem="Yya-Fb-7V9" secondAttribute="leadingMargin" constant="70" id="OZ6-Kg-HzG"/>
+                            <constraint firstAttribute="centerX" secondItem="3nR-5a-xa1" secondAttribute="centerX" id="VqW-31-ytw"/>
+                            <constraint firstItem="4Zb-sb-bA1" firstAttribute="leading" secondItem="Yya-Fb-7V9" secondAttribute="leadingMargin" constant="90" id="XOh-UH-NZn">
+                                <variation key="heightClass=regular-widthClass=compact" constant="116"/>
+                            </constraint>
+                            <constraint firstItem="3nR-5a-xa1" firstAttribute="centerX" secondItem="PEc-RO-KdE" secondAttribute="centerX" id="ZMR-YC-F1y"/>
+                            <constraint firstItem="4Zb-sb-bA1" firstAttribute="top" secondItem="ybd-ku-cpS" secondAttribute="bottom" constant="80" id="iep-S3-cJH">
+                                <variation key="heightClass=regular-widthClass=compact" constant="80"/>
+                            </constraint>
+                            <constraint firstAttribute="trailingMargin" secondItem="4Zb-sb-bA1" secondAttribute="trailing" constant="90" id="kSM-21-dtr">
+                                <variation key="heightClass=regular-widthClass=compact" constant="116"/>
+                            </constraint>
+                            <constraint firstItem="3nR-5a-xa1" firstAttribute="top" secondItem="4Zb-sb-bA1" secondAttribute="bottom" constant="40" id="lf0-g5-Edn"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="HiZ-ZH-x0v"/>
+                                <exclude reference="Mm9-CP-z0v"/>
+                                <exclude reference="9X8-Ky-dch"/>
+                                <exclude reference="ZMR-YC-F1y"/>
+                                <exclude reference="lf0-g5-Edn"/>
+                                <exclude reference="LKI-F5-jLr"/>
+                                <exclude reference="OZ6-Kg-HzG"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular-widthClass=compact">
+                            <mask key="constraints">
+                                <include reference="HiZ-ZH-x0v"/>
+                                <include reference="Mm9-CP-z0v"/>
+                                <exclude reference="XOh-UH-NZn"/>
+                                <exclude reference="iep-S3-cJH"/>
+                                <exclude reference="kSM-21-dtr"/>
+                                <include reference="9X8-Ky-dch"/>
+                                <exclude reference="Eem-Xn-F2r"/>
+                                <exclude reference="VqW-31-ytw"/>
+                                <include reference="ZMR-YC-F1y"/>
+                                <include reference="lf0-g5-Edn"/>
+                                <exclude reference="1iE-yg-gSZ"/>
+                                <exclude reference="70t-te-aDl"/>
+                                <exclude reference="Efx-NR-hhc"/>
+                                <include reference="LKI-F5-jLr"/>
+                                <include reference="OZ6-Kg-HzG"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <navigationItem key="navigationItem" title="软件升级" id="yCh-Hv-JQa">
+                        <barButtonItem key="leftBarButtonItem" image="return.png" id="SoI-yW-u0a">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="backButtonClicked:" destination="uaT-mB-nYo" id="82m-L8-y0d"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="P70-aw-wnF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-5415" y="2691"/>
         </scene>
         <!--修改介绍-->
         <scene sceneID="zTr-Bg-YYP">
@@ -4005,6 +4122,7 @@
         <image name="login_bg.png" width="320" height="480"/>
         <image name="logo_login.png" width="52" height="86"/>
         <image name="logo_set.png" width="58" height="94"/>
+        <image name="picture_download.png" width="136" height="132"/>
         <image name="refresh.png" width="44" height="43"/>
         <image name="return.png" width="44" height="44"/>
         <image name="tab_01.png" width="16" height="18"/>

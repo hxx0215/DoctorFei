@@ -10,4 +10,5 @@
 
 @interface MobileAPI : BaseHTTPRequestOperationManager
 + (void)setPushUserWithParameters: (id)parameters success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
++ (void)getMobileVersionWithParameters: (id)parameters succsess:(void (^)(AFHTTPRequestOperation *peration, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
 @end

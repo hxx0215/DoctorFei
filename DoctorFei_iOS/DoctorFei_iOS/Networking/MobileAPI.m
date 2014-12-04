@@ -8,11 +8,20 @@
 
 #import "MobileAPI.h"
 #define kMethodSetPushUser @"set.mobile.pushuser"
+#define kMethodGetVersion @"get.mobile.version"
+
 @implementation MobileAPI
 + (void)setPushUserWithParameters: (id)parameters success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
 {
     [[self sharedManager]defaultPostWithMethod:kMethodSetPushUser WithParameters:parameters success:success failure:failure];
 }
 
-
++ (void)getMobileVersionWithParameters:(id)parameters
+                              succsess:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+                               failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure{
+    [[self sharedManager] defaultPostWithMethod:kMethodGetVersion
+                                 WithParameters:parameters
+                                        success:success
+                                        failure:failure];
+}
 @end
