@@ -13,6 +13,7 @@
 #import "DeviceUtil.h"
 #import "SetOnlineStateUtil.h"
 #import "MobileAPI.h"
+#import "SocketConnection.h"
 @interface AppDelegate ()
 
 @end
@@ -53,7 +54,8 @@
     
     [SetOnlineStateUtil online];
     [self setPushUser];
-
+    [[SocketConnection sharedConnection]beginListen];
+    [[SocketConnection sharedConnection]sendKeepAlive];
     return YES;
 }
 
@@ -67,12 +69,16 @@
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
     [SetOnlineStateUtil offline];
+    [[SocketConnection sharedConnection]stopListen];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
     [SetOnlineStateUtil online];
     [self setPushUser];
+    [[SocketConnection sharedConnection]beginListen];
+    [[SocketConnection sharedConnection]sendKeepAlive];
+
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
