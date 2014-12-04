@@ -1,1 +1,0 @@
-../../../JSMessagesViewController/JSMessagesViewController/Classes/Factories/JSAvatarImageFactory.h

@@ -46,7 +46,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    
+
     icon = [[[NSUserDefaults standardUserDefaults]objectForKey:@"UserIcon"] copy];
     name = [[[NSUserDefaults standardUserDefaults]objectForKey:@"UserRealName"] copy];
     hospital = [[[NSUserDefaults standardUserDefaults]objectForKey:@"UserHospital"] copy];
@@ -54,6 +54,14 @@
     jobTitle = [[[NSUserDefaults standardUserDefaults]objectForKey:@"UserJobTitle"] copy];
     email = [[[NSUserDefaults standardUserDefaults]objectForKey:@"UserEmail"] copy];
     introduction = [[[NSUserDefaults standardUserDefaults]objectForKey:@"UserOtherContact"]copy];
+    
+    icon ? nil : (icon = @"");
+    name ? nil : (name = @"");
+    hospital ? nil : (hospital = @"");
+    department ? nil : (department = @"");
+    jobTitle ? nil : (jobTitle = @"");
+    email ? nil : (email = @"");
+    introduction ? nil : (introduction = @"");
     basicInfoArray = @[icon, name, hospital, department, jobTitle, email];
     
     //TODO 头像未处理

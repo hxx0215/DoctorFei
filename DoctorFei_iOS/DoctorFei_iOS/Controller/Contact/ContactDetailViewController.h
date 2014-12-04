@@ -6,9 +6,8 @@
 //
 //
 
-#import "JSMessagesViewController.h"
-
-@interface ContactDetailViewController : JSMessagesViewController
+#import <JSQMessages.h>
+@interface ContactDetailViewController : JSQMessagesViewController
 
 @property (nonatomic, strong) NSNumber *friendId;
 

@@ -1,1 +1,0 @@
-../../../JSMessagesViewController/JSMessagesViewController/Classes/JSMessageData.h

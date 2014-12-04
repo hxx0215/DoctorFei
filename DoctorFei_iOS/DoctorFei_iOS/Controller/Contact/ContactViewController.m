@@ -12,6 +12,7 @@
 #import <MBProgressHUD.h>
 #import "Friends.h"
 #import "ContactFriendTableViewCell.h"
+#import "ContactDetailViewController.h"
 @interface ContactViewController ()
     <UITableViewDelegate, UITableViewDataSource, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -52,10 +53,10 @@
         NSLog(@"%@",responseObject);
         NSArray *dataArray = (NSArray *)responseObject;
         for (NSDictionary *dict in dataArray) {
-            Friends *friend = [Friends MR_findFirstByAttribute:@"userid" withValue:dict[@"userid"]];
+            Friends *friend = [Friends MR_findFirstByAttribute:@"userid" withValue:dict[@"userId"]];
             if (friend == nil) {
                 friend = [Friends MR_createEntity];
-                friend.userid = dict[@"userid"];
+                friend.userid = dict[@"userId"];
             }
             friend.email = dict[@"Email"];
             friend.gender = dict[@"Gender"];
@@ -81,6 +82,12 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    if ([segue.identifier isEqualToString:@"ContactDetailSegueIdentifier"]) {
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        ContactDetailViewController *vc = [segue destinationViewController];
+        [vc setFriendId:[friendArray[indexPath.row] userid]];
+        [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+    }
 }
 
 

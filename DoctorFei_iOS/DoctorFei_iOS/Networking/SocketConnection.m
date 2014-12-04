@@ -65,9 +65,15 @@
         [self connectSocket];
     }
     [self.socket writeData:data withTimeout:kSendKeepAliveDuration tag:0];
-    [self.socket readDataWithTimeout:-1 tag:0];
+//    [self.socket readDataWithTimeout:-1 tag:0];
     isAlive = NO;
     NSLog(@"SendKeepAlive");
+//    dict = @{
+//                           @"sn": [DeviceUtil getUUID],
+//                           @"type": @(1)
+//                           };
+//    data = [dict JSONData];
+//    [self.socket writeData:data withTimeout:kSendKeepAliveDuration tag:0];
 }
 
 - (void)beginListen {

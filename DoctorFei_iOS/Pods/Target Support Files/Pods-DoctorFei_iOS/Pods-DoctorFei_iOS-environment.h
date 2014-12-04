@@ -66,17 +66,17 @@
 #define COCOAPODS_VERSION_MINOR_IHKeyboardAvoiding 1
 #define COCOAPODS_VERSION_PATCH_IHKeyboardAvoiding 1
 
-// JSMessagesViewController
-#define COCOAPODS_POD_AVAILABLE_JSMessagesViewController
-#define COCOAPODS_VERSION_MAJOR_JSMessagesViewController 4
-#define COCOAPODS_VERSION_MINOR_JSMessagesViewController 0
-#define COCOAPODS_VERSION_PATCH_JSMessagesViewController 4
-
 // JSONKit-NoWarning
 #define COCOAPODS_POD_AVAILABLE_JSONKit_NoWarning
 #define COCOAPODS_VERSION_MAJOR_JSONKit_NoWarning 1
 #define COCOAPODS_VERSION_MINOR_JSONKit_NoWarning 2
 #define COCOAPODS_VERSION_PATCH_JSONKit_NoWarning 0
+
+// JSQMessagesViewController
+#define COCOAPODS_POD_AVAILABLE_JSQMessagesViewController
+#define COCOAPODS_VERSION_MAJOR_JSQMessagesViewController 6
+#define COCOAPODS_VERSION_MINOR_JSQMessagesViewController 1
+#define COCOAPODS_VERSION_PATCH_JSQMessagesViewController 0
 
 // JSQSystemSoundPlayer
 #define COCOAPODS_POD_AVAILABLE_JSQSystemSoundPlayer

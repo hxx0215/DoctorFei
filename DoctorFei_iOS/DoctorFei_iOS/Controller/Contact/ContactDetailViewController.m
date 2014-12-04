@@ -7,18 +7,33 @@
 //
 
 #import "ContactDetailViewController.h"
-
+#import "Friends.h"
+#import "DeviceUtil.h"
 @interface ContactDetailViewController ()
 - (IBAction)backButtonClicked:(id)sender;
 
 @end
 
 @implementation ContactDetailViewController
+{
+    Friends *currentFriend;
+}
 @synthesize friendId = _friendId;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    currentFriend = [Friends MR_findFirstByAttribute:@"userid" withValue:_friendId];
+    if (currentFriend) {
+        self.title = currentFriend.realname;
+    }
+    
+    self.senderId = [DeviceUtil getUUID];
+    self.senderDisplayName = @"我";
+    self.showLoadEarlierMessagesHeader = YES;
+    
+    self.inputToolbar.contentView.leftBarButtonItem = nil;
+    
 }
 
 - (void)didReceiveMemoryWarning {
