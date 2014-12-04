@@ -18,8 +18,10 @@
 @end
 
 @implementation SocketConnection
+{
+    BOOL isAlive;
+}
 @synthesize socket = _socket, timer = _timer;
-
 
 + (SocketConnection *)sharedConnection {
     static SocketConnection *sharedConnection = nil;
@@ -42,8 +44,13 @@
 
 - (void)connectSocket {
     NSError *error = nil;
+    if ([self.socket isConnected]){
+        [self.socket disconnect];
+    }
     if (![self.socket connectToHost:kSocketAddress onPort:kSocketPort error:&error]) {
         NSLog(@"%@",error.localizedDescription);
+    }else{
+        isAlive = YES;
     }
 }
 
@@ -53,17 +60,18 @@
                            @"type": @(0)
                            };
     NSData *data = [dict JSONData];
-    [self.socket writeData:data withTimeout:kSendKeepAliveDuration tag:0];
-    if ([self.socket isDisconnected]) {
+    if ([self.socket isDisconnected] || !isAlive) {
         NSLog(@"Reconnect Socket!!!");
         [self connectSocket];
     }
+    [self.socket writeData:data withTimeout:kSendKeepAliveDuration tag:0];
     [self.socket readDataWithTimeout:-1 tag:0];
+    isAlive = NO;
     NSLog(@"SendKeepAlive");
 }
 
 - (void)beginListen {
-    if (![self.socket isConnected]) {
+    if ([self.socket isDisconnected]) {
         [self connectSocket];
     }
     if (self.timer) {
@@ -91,10 +99,12 @@
 - (void)socket:(GCDAsyncSocket *)sock didReadData:(NSData *)data withTag:(long)tag {
     NSString *string = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
     NSLog(@"Socket Receive: %@", string);
+    isAlive = YES;
     [sock readDataWithTimeout:-1 tag:0];
 }
 
 - (void)socketDidDisconnect:(GCDAsyncSocket *)sock withError:(NSError *)err{
     NSLog(@"Socket Disconnect: %@",err);
+    isAlive = NO;
 }
 @end

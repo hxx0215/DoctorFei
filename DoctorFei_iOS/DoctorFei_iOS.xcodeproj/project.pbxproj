@@ -10,6 +10,7 @@
 		6A2BD5CC1A300207002F7644 /* MobileAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A2BD5CB1A300207002F7644 /* MobileAPI.m */; };
 		6A2BD5CF1A3008BF002F7644 /* SetOnlineStateUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A2BD5CE1A3008BF002F7644 /* SetOnlineStateUtil.m */; };
 		6A2BD5D21A3031F7002F7644 /* SocketConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A2BD5D11A3031F7002F7644 /* SocketConnection.m */; };
+		6A2BD5D51A306252002F7644 /* ContactDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A2BD5D41A306252002F7644 /* ContactDetailViewController.m */; };
 		6A4F2E011A237FFF008C2D10 /* MyCardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A4F2E001A237FFF008C2D10 /* MyCardViewController.m */; };
 		6A4FC15C1A2EFF4F0042497C /* MySelfBasicInfoEditTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A4FC15B1A2EFF4F0042497C /* MySelfBasicInfoEditTableViewController.m */; };
 		6A4FC15F1A2F063B0042497C /* MyselfIntroInfoEditTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A4FC15E1A2F063B0042497C /* MyselfIntroInfoEditTableViewController.m */; };
@@ -270,6 +271,8 @@
 		6A2BD5CE1A3008BF002F7644 /* SetOnlineStateUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetOnlineStateUtil.m; sourceTree = "<group>"; };
 		6A2BD5D01A3031F7002F7644 /* SocketConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocketConnection.h; sourceTree = "<group>"; };
 		6A2BD5D11A3031F7002F7644 /* SocketConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocketConnection.m; sourceTree = "<group>"; };
+		6A2BD5D31A306252002F7644 /* ContactDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactDetailViewController.h; sourceTree = "<group>"; };
+		6A2BD5D41A306252002F7644 /* ContactDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactDetailViewController.m; sourceTree = "<group>"; };
 		6A4F2DFF1A237FFF008C2D10 /* MyCardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyCardViewController.h; sourceTree = "<group>"; };
 		6A4F2E001A237FFF008C2D10 /* MyCardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyCardViewController.m; sourceTree = "<group>"; };
 		6A4FC15A1A2EFF4F0042497C /* MySelfBasicInfoEditTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MySelfBasicInfoEditTableViewController.h; sourceTree = "<group>"; };
@@ -928,6 +931,8 @@
 			children = (
 				6A73763B1A20CFAD006EF54F /* ContactViewController.h */,
 				6A73763C1A20CFAD006EF54F /* ContactViewController.m */,
+				6A2BD5D31A306252002F7644 /* ContactDetailViewController.h */,
+				6A2BD5D41A306252002F7644 /* ContactDetailViewController.m */,
 			);
 			path = Contact;
 			sourceTree = "<group>";
@@ -1383,6 +1388,7 @@
 				6A69A0121A2CBB2500D85777 /* DoctorAPI.m in Sources */,
 				6A73763A1A208972006EF54F /* MainViewController.m in Sources */,
 				6A4FC1621A2F51360042497C /* MainCoreData.xcdatamodeld in Sources */,
+				6A2BD5D51A306252002F7644 /* ContactDetailViewController.m in Sources */,
 				6A4FC15C1A2EFF4F0042497C /* MySelfBasicInfoEditTableViewController.m in Sources */,
 				6A4F2E011A237FFF008C2D10 /* MyCardViewController.m in Sources */,
 				6A78BE331A222C5B005457F3 /* SetNewPasswordTableViewController.m in Sources */,
