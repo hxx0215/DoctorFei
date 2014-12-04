@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="hjp-xA-J3Y">
     <dependencies>
-        <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
@@ -3864,7 +3863,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="487"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PEc-RO-KdE">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PEc-RO-KdE">
                                 <rect key="frame" x="86" y="288" width="428" height="109"/>
                                 <state key="normal" title="软件升级" backgroundImage="button_next_after.png">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -3923,11 +3922,11 @@
                             <mask key="constraints">
                                 <exclude reference="HiZ-ZH-x0v"/>
                                 <exclude reference="Mm9-CP-z0v"/>
+                                <exclude reference="LKI-F5-jLr"/>
+                                <exclude reference="OZ6-Kg-HzG"/>
                                 <exclude reference="9X8-Ky-dch"/>
                                 <exclude reference="ZMR-YC-F1y"/>
                                 <exclude reference="lf0-g5-Edn"/>
-                                <exclude reference="LKI-F5-jLr"/>
-                                <exclude reference="OZ6-Kg-HzG"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
@@ -3937,16 +3936,16 @@
                                 <exclude reference="XOh-UH-NZn"/>
                                 <exclude reference="iep-S3-cJH"/>
                                 <exclude reference="kSM-21-dtr"/>
-                                <include reference="9X8-Ky-dch"/>
-                                <exclude reference="Eem-Xn-F2r"/>
-                                <exclude reference="VqW-31-ytw"/>
-                                <include reference="ZMR-YC-F1y"/>
-                                <include reference="lf0-g5-Edn"/>
                                 <exclude reference="1iE-yg-gSZ"/>
                                 <exclude reference="70t-te-aDl"/>
                                 <exclude reference="Efx-NR-hhc"/>
                                 <include reference="LKI-F5-jLr"/>
                                 <include reference="OZ6-Kg-HzG"/>
+                                <include reference="9X8-Ky-dch"/>
+                                <exclude reference="Eem-Xn-F2r"/>
+                                <exclude reference="VqW-31-ytw"/>
+                                <include reference="ZMR-YC-F1y"/>
+                                <include reference="lf0-g5-Edn"/>
                             </mask>
                         </variation>
                     </view>
@@ -3958,6 +3957,10 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="statusLabel" destination="3nR-5a-xa1" id="fud-Kv-cYJ"/>
+                        <outlet property="updateButton" destination="PEc-RO-KdE" id="SdI-IK-Z6h"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="P70-aw-wnF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
