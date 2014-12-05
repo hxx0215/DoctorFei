@@ -9,6 +9,7 @@
 #import "MoreFeedbackViewController.h"
 
 @interface MoreFeedbackViewController ()
+@property (strong, nonatomic) IBOutlet UITextView *feedbackContent;
 
 @end
 
@@ -17,10 +18,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.feedbackContent.layer.borderWidth = 1.0;
+    self.feedbackContent.layer.borderColor = [UIColor colorWithWhite:213.0/255.0 alpha:1.0].CGColor;
+    self.feedbackContent.layer.cornerRadius = 7.0;
 }
 
 - (IBAction)backButtonClicked:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
+}
+- (IBAction)sendButtonClicked:(id)sender {
 }
 
 - (void)didReceiveMemoryWarning {

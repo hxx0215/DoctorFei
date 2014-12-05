@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="hjp-xA-J3Y">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="hjp-xA-J3Y">
     <dependencies>
-        <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
@@ -3896,7 +3895,7 @@
                                 </variation>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.93333333333333335" green="0.93333333333333335" blue="0.93333333333333335" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="PEc-RO-KdE" firstAttribute="top" secondItem="3nR-5a-xa1" secondAttribute="bottom" constant="15" id="1iE-yg-gSZ"/>
                             <constraint firstItem="PEc-RO-KdE" firstAttribute="leading" secondItem="Yya-Fb-7V9" secondAttribute="leadingMargin" constant="70" id="70t-te-aDl"/>
@@ -3981,7 +3980,44 @@
                     <view key="view" contentMode="scaleToFill" id="cA3-XB-fdl">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="487"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X9s-7U-P7Z">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="textColor" red="0.70196078431372544" green="0.70196078431372544" blue="0.70196078431372544" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.93333333330000001" green="0.93333333330000001" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="X9s-7U-P7Z" secondAttribute="trailing" constant="15" id="Ckc-QH-Wqu"/>
+                            <constraint firstItem="X9s-7U-P7Z" firstAttribute="leading" secondItem="cA3-XB-fdl" secondAttribute="leadingMargin" constant="15" id="LHf-pP-ZOg"/>
+                            <constraint firstItem="X9s-7U-P7Z" firstAttribute="top" secondItem="gzj-sj-RZg" secondAttribute="bottom" constant="10" id="NKS-hI-raW"/>
+                            <constraint firstItem="kKf-me-Yb3" firstAttribute="top" secondItem="X9s-7U-P7Z" secondAttribute="bottom" constant="60" id="q06-dI-XBP"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="X9s-7U-P7Z"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="Ckc-QH-Wqu"/>
+                                <exclude reference="LHf-pP-ZOg"/>
+                                <exclude reference="NKS-hI-raW"/>
+                                <exclude reference="q06-dI-XBP"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular-widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="X9s-7U-P7Z"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="Ckc-QH-Wqu"/>
+                                <include reference="LHf-pP-ZOg"/>
+                                <include reference="NKS-hI-raW"/>
+                                <include reference="q06-dI-XBP"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" title="在线反馈" id="kM7-mS-SLN" userLabel="在线反馈">
                         <barButtonItem key="leftBarButtonItem" image="return.png" id="iOG-w9-Dwe">
@@ -3990,11 +4026,20 @@
                                 <action selector="backButtonClicked:" destination="EqC-lm-89O" id="CgK-zI-CW0"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="发送" id="TVM-wJ-vuT">
+                            <color key="tintColor" red="0.93333333330000001" green="0.93333333330000001" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="sendButtonClicked:" destination="EqC-lm-89O" id="myI-3R-R6y"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="feedbackContent" destination="X9s-7U-P7Z" id="ane-Qs-Dvh"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jbI-ri-ATM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-5415" y="3365"/>
+            <point key="canvasLocation" x="-5415" y="3364.5"/>
         </scene>
         <!--修改介绍-->
         <scene sceneID="zTr-Bg-YYP">
