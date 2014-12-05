@@ -11,11 +11,17 @@
 		6A2BD5CF1A3008BF002F7644 /* SetOnlineStateUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A2BD5CE1A3008BF002F7644 /* SetOnlineStateUtil.m */; };
 		6A2BD5D21A3031F7002F7644 /* SocketConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A2BD5D11A3031F7002F7644 /* SocketConnection.m */; };
 		6A2BD5D51A306252002F7644 /* ContactDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A2BD5D41A306252002F7644 /* ContactDetailViewController.m */; };
+		6A2BD5E01A31B139002F7644 /* ContactFriendDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A2BD5DF1A31B139002F7644 /* ContactFriendDetailTableViewController.m */; };
+		6A2BD5E31A31E025002F7644 /* ContactFriendSetNoteTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A2BD5E21A31E025002F7644 /* ContactFriendSetNoteTableViewController.m */; };
+		6A2BD5FE1A31E6C9002F7644 /* Friends.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A2BD5FD1A31E6C9002F7644 /* Friends.m */; };
+		6A2BD6011A31E6C9002F7644 /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A2BD6001A31E6C9002F7644 /* Message.m */; };
+		6A2BD6041A31E6CA002F7644 /* Chat.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A2BD6031A31E6CA002F7644 /* Chat.m */; };
+		6A2BD6071A31EC44002F7644 /* ChatAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A2BD6061A31EC44002F7644 /* ChatAPI.m */; };
+		6A2BD60A1A31EDA7002F7644 /* FetchChatUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A2BD6091A31EDA7002F7644 /* FetchChatUtil.m */; };
 		6A4F2E011A237FFF008C2D10 /* MyCardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A4F2E001A237FFF008C2D10 /* MyCardViewController.m */; };
 		6A4FC15C1A2EFF4F0042497C /* MySelfBasicInfoEditTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A4FC15B1A2EFF4F0042497C /* MySelfBasicInfoEditTableViewController.m */; };
 		6A4FC15F1A2F063B0042497C /* MyselfIntroInfoEditTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A4FC15E1A2F063B0042497C /* MyselfIntroInfoEditTableViewController.m */; };
 		6A4FC1621A2F51360042497C /* MainCoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6A4FC1601A2F51360042497C /* MainCoreData.xcdatamodeld */; };
-		6A4FC1651A2F52EF0042497C /* Friends.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A4FC1641A2F52EF0042497C /* Friends.m */; };
 		6A4FC1691A2F67F10042497C /* ContactFriendTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A4FC1681A2F67F10042497C /* ContactFriendTableViewCell.m */; };
 		6A69A0121A2CBB2500D85777 /* DoctorAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A69A0111A2CBB2500D85777 /* DoctorAPI.m */; };
 		6A69A0171A2CC8EB00D85777 /* libPushSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A69A0161A2CC8EB00D85777 /* libPushSDK.a */; };
@@ -274,6 +280,20 @@
 		6A2BD5D11A3031F7002F7644 /* SocketConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocketConnection.m; sourceTree = "<group>"; };
 		6A2BD5D31A306252002F7644 /* ContactDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactDetailViewController.h; sourceTree = "<group>"; };
 		6A2BD5D41A306252002F7644 /* ContactDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactDetailViewController.m; sourceTree = "<group>"; };
+		6A2BD5DE1A31B139002F7644 /* ContactFriendDetailTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactFriendDetailTableViewController.h; sourceTree = "<group>"; };
+		6A2BD5DF1A31B139002F7644 /* ContactFriendDetailTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactFriendDetailTableViewController.m; sourceTree = "<group>"; };
+		6A2BD5E11A31E025002F7644 /* ContactFriendSetNoteTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactFriendSetNoteTableViewController.h; sourceTree = "<group>"; };
+		6A2BD5E21A31E025002F7644 /* ContactFriendSetNoteTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactFriendSetNoteTableViewController.m; sourceTree = "<group>"; };
+		6A2BD5FC1A31E6C9002F7644 /* Friends.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Friends.h; sourceTree = "<group>"; };
+		6A2BD5FD1A31E6C9002F7644 /* Friends.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Friends.m; sourceTree = "<group>"; };
+		6A2BD5FF1A31E6C9002F7644 /* Message.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Message.h; sourceTree = "<group>"; };
+		6A2BD6001A31E6C9002F7644 /* Message.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Message.m; sourceTree = "<group>"; };
+		6A2BD6021A31E6CA002F7644 /* Chat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Chat.h; sourceTree = "<group>"; };
+		6A2BD6031A31E6CA002F7644 /* Chat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Chat.m; sourceTree = "<group>"; };
+		6A2BD6051A31EC44002F7644 /* ChatAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatAPI.h; sourceTree = "<group>"; };
+		6A2BD6061A31EC44002F7644 /* ChatAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatAPI.m; sourceTree = "<group>"; };
+		6A2BD6081A31EDA7002F7644 /* FetchChatUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FetchChatUtil.h; sourceTree = "<group>"; };
+		6A2BD6091A31EDA7002F7644 /* FetchChatUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FetchChatUtil.m; sourceTree = "<group>"; };
 		6A4F2DFF1A237FFF008C2D10 /* MyCardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyCardViewController.h; sourceTree = "<group>"; };
 		6A4F2E001A237FFF008C2D10 /* MyCardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyCardViewController.m; sourceTree = "<group>"; };
 		6A4FC15A1A2EFF4F0042497C /* MySelfBasicInfoEditTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MySelfBasicInfoEditTableViewController.h; sourceTree = "<group>"; };
@@ -281,8 +301,6 @@
 		6A4FC15D1A2F063B0042497C /* MyselfIntroInfoEditTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyselfIntroInfoEditTableViewController.h; sourceTree = "<group>"; };
 		6A4FC15E1A2F063B0042497C /* MyselfIntroInfoEditTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyselfIntroInfoEditTableViewController.m; sourceTree = "<group>"; };
 		6A4FC1611A2F51360042497C /* MainCoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MainCoreData.xcdatamodel; sourceTree = "<group>"; };
-		6A4FC1631A2F52EF0042497C /* Friends.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Friends.h; sourceTree = "<group>"; };
-		6A4FC1641A2F52EF0042497C /* Friends.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Friends.m; sourceTree = "<group>"; };
 		6A4FC1661A2F61160042497C /* DoctorFei_iOS-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DoctorFei_iOS-Prefix.pch"; sourceTree = "<group>"; };
 		6A4FC1671A2F67F10042497C /* ContactFriendTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactFriendTableViewCell.h; sourceTree = "<group>"; };
 		6A4FC1681A2F67F10042497C /* ContactFriendTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactFriendTableViewCell.m; sourceTree = "<group>"; };
@@ -678,8 +696,12 @@
 			isa = PBXGroup;
 			children = (
 				6A4FC1601A2F51360042497C /* MainCoreData.xcdatamodeld */,
-				6A4FC1631A2F52EF0042497C /* Friends.h */,
-				6A4FC1641A2F52EF0042497C /* Friends.m */,
+				6A2BD6021A31E6CA002F7644 /* Chat.h */,
+				6A2BD6031A31E6CA002F7644 /* Chat.m */,
+				6A2BD5FF1A31E6C9002F7644 /* Message.h */,
+				6A2BD6001A31E6C9002F7644 /* Message.m */,
+				6A2BD5FC1A31E6C9002F7644 /* Friends.h */,
+				6A2BD5FD1A31E6C9002F7644 /* Friends.m */,
 			);
 			path = Modal;
 			sourceTree = "<group>";
@@ -936,6 +958,10 @@
 				6A73763C1A20CFAD006EF54F /* ContactViewController.m */,
 				6A2BD5D31A306252002F7644 /* ContactDetailViewController.h */,
 				6A2BD5D41A306252002F7644 /* ContactDetailViewController.m */,
+				6A2BD5DE1A31B139002F7644 /* ContactFriendDetailTableViewController.h */,
+				6A2BD5DF1A31B139002F7644 /* ContactFriendDetailTableViewController.m */,
+				6A2BD5E11A31E025002F7644 /* ContactFriendSetNoteTableViewController.h */,
+				6A2BD5E21A31E025002F7644 /* ContactFriendSetNoteTableViewController.m */,
 			);
 			path = Contact;
 			sourceTree = "<group>";
@@ -962,8 +988,12 @@
 				6A69A0111A2CBB2500D85777 /* DoctorAPI.m */,
 				6A2BD5CA1A300207002F7644 /* MobileAPI.h */,
 				6A2BD5CB1A300207002F7644 /* MobileAPI.m */,
+				6A2BD6051A31EC44002F7644 /* ChatAPI.h */,
+				6A2BD6061A31EC44002F7644 /* ChatAPI.m */,
 				6A2BD5D01A3031F7002F7644 /* SocketConnection.h */,
 				6A2BD5D11A3031F7002F7644 /* SocketConnection.m */,
+				6A2BD6081A31EDA7002F7644 /* FetchChatUtil.h */,
+				6A2BD6091A31EDA7002F7644 /* FetchChatUtil.m */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -1370,6 +1400,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6AC6EA071A28C4B5007689D8 /* NSString+Crypt.m in Sources */,
+				6A2BD5E01A31B139002F7644 /* ContactFriendDetailTableViewController.m in Sources */,
 				6A9177F61A2DE2E2000645A4 /* DataUtil.m in Sources */,
 				6AB359B11A2B5758008C48B4 /* BaseHTTPRequestOperationManager.m in Sources */,
 				6A7376531A20D84C006EF54F /* LoginViewController.m in Sources */,
@@ -1377,19 +1408,23 @@
 				6A4FC15F1A2F063B0042497C /* MyselfIntroInfoEditTableViewController.m in Sources */,
 				6AB359BA1A2B6C3B008C48B4 /* DeviceUtil.m in Sources */,
 				6A4FC1691A2F67F10042497C /* ContactFriendTableViewCell.m in Sources */,
+				6A2BD5FE1A31E6C9002F7644 /* Friends.m in Sources */,
 				6AB359B71A2B638C008C48B4 /* RegisterAPI.m in Sources */,
 				B92FA2F41A2F521C0029E6B8 /* MoreAboutUsViewController.m in Sources */,
+				6A2BD60A1A31EDA7002F7644 /* FetchChatUtil.m in Sources */,
 				6A7376571A20E4CC006EF54F /* RegisterTableViewController.m in Sources */,
+				6A2BD6011A31E6C9002F7644 /* Message.m in Sources */,
 				6A73764B1A20D05A006EF54F /* MoreTableViewController.m in Sources */,
 				6A2BD5D21A3031F7002F7644 /* SocketConnection.m in Sources */,
 				6A73763D1A20CFAD006EF54F /* ContactViewController.m in Sources */,
 				6A7372CC1A2034B4006EF54F /* AppDelegate.m in Sources */,
 				6A2BD5CF1A3008BF002F7644 /* SetOnlineStateUtil.m in Sources */,
 				6A7376481A20D052006EF54F /* MyselfTableViewController.m in Sources */,
+				6A2BD6041A31E6CA002F7644 /* Chat.m in Sources */,
 				6A73764F1A20D829006EF54F /* MainTabBarViewController.m in Sources */,
 				6A7372C91A2034B4006EF54F /* main.m in Sources */,
 				6A78BE2D1A222C13005457F3 /* ForgetPassVerifyCodeViewController.m in Sources */,
-				6A4FC1651A2F52EF0042497C /* Friends.m in Sources */,
+				6A2BD5E31A31E025002F7644 /* ContactFriendSetNoteTableViewController.m in Sources */,
 				6A69A0121A2CBB2500D85777 /* DoctorAPI.m in Sources */,
 				6A73763A1A208972006EF54F /* MainViewController.m in Sources */,
 				6A4FC1621A2F51360042497C /* MainCoreData.xcdatamodeld in Sources */,
@@ -1399,6 +1434,7 @@
 				6A78BE331A222C5B005457F3 /* SetNewPasswordTableViewController.m in Sources */,
 				6A78BE2A1A2229F8005457F3 /* ForgetPasswordViewController.m in Sources */,
 				B9DD58E11A30912200AA4CDC /* MoreUpdateViewController.m in Sources */,
+				6A2BD6071A31EC44002F7644 /* ChatAPI.m in Sources */,
 				6A78BE271A2215DD005457F3 /* RegisterMoreTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -35,7 +35,15 @@
     }
     [_nameLabel setText:[[NSUserDefaults standardUserDefaults]objectForKey:@"UserRealName"]];
     [_hospitalLabel setText:[[NSUserDefaults standardUserDefaults]objectForKey:@"UserHospital"]];
-    [_infoLabel setText:[NSString stringWithFormat:@"%@ %@", [[NSUserDefaults standardUserDefaults]objectForKey:@"UserDepartment"], [[NSUserDefaults standardUserDefaults]objectForKey:@"UserJobTitle"]]];
+    NSString *department = [[NSUserDefaults standardUserDefaults]objectForKey:@"UserDepartment"];
+    NSString *jobTitle = [[NSUserDefaults standardUserDefaults]objectForKey:@"UserJotTitle"];
+    if (department == nil) {
+        department = @"";
+    }
+    if (jobTitle == nil) {
+        jobTitle = @"";
+    }
+    [_infoLabel setText:[NSString stringWithFormat:@"%@ %@", department, jobTitle]];
      
 }
 
