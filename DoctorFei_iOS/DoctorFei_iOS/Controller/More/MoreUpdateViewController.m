@@ -42,7 +42,6 @@
 - (void)fetchMobileVersion{
     NSDictionary *params = @{@"mobiletype": @(2)};
     [MobileAPI getMobileVersionWithParameters:params succsess:^(AFHTTPRequestOperation *operation, id responseObject){
-        NSLog(@"%@",[responseObject JSONString]);
         if ([responseObject count]<1)
         {
             [self haveNewVersion:NO];
