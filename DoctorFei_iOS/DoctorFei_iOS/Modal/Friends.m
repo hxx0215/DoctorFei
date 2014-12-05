@@ -2,7 +2,7 @@
 //  Friends.m
 //  DoctorFei_iOS
 //
-//  Created by GuJunjia on 14/12/3.
+//  Created by GuJunjia on 14/12/5.
 //
 //
 
@@ -13,10 +13,10 @@
 
 @dynamic email;
 @dynamic gender;
+@dynamic icon;
 @dynamic mobile;
 @dynamic realname;
-@dynamic icon;
-@dynamic userid;
-@dynamic usertype;
+@dynamic userId;
+@dynamic userType;
 
 @end

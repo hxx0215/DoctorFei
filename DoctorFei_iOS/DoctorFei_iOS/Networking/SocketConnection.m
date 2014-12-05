@@ -11,6 +11,7 @@
 #import "SocketConnection.h"
 #import "DeviceUtil.h"
 #import <JSONKit.h>
+#import "FetchChatUtil.h"
 
 @interface SocketConnection ()
     <GCDAsyncSocketDelegate>
@@ -107,6 +108,20 @@
     NSLog(@"Socket Receive: %@", string);
     isAlive = YES;
     [sock readDataWithTimeout:-1 tag:0];
+    if (![string isEqualToString:@"1"]) {
+        NSDictionary *result = [string objectFromJSONString];
+        if ([result[@"verification"]boolValue] && [result[@"error"]isEqual:[NSNull null]]) {
+            NSArray *dataArray = result[@"data"];
+            NSLog(@"%@",dataArray);
+            for (NSDictionary *dict in dataArray) {
+                [FetchChatUtil fetchChatWithParmas:dict];
+            }
+        }
+        else{
+            NSLog(@"%@",result[@"error"]);
+        }
+
+    }
 }
 
 - (void)socketDidDisconnect:(GCDAsyncSocket *)sock withError:(NSError *)err{
