@@ -3692,6 +3692,9 @@
                                                 </mask>
                                             </variation>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="EqC-lm-89O" kind="show" id="Tbg-G7-Deg"/>
+                                        </connections>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -3847,6 +3850,32 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="P70-aw-wnF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-5415" y="2691"/>
+        </scene>
+        <!--在线反馈-->
+        <scene sceneID="jvV-lx-MMi">
+            <objects>
+                <viewController hidesBottomBarWhenPushed="YES" id="EqC-lm-89O" userLabel="在线反馈" customClass="MoreFeedbackViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="gzj-sj-RZg"/>
+                        <viewControllerLayoutGuide type="bottom" id="kKf-me-Yb3"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="cA3-XB-fdl">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="487"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="在线反馈" id="kM7-mS-SLN" userLabel="在线反馈">
+                        <barButtonItem key="leftBarButtonItem" image="return.png" id="iOG-w9-Dwe">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="backButtonClicked:" destination="EqC-lm-89O" id="CgK-zI-CW0"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jbI-ri-ATM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-5415" y="3365"/>
         </scene>
         <!--修改介绍-->
         <scene sceneID="zTr-Bg-YYP">
