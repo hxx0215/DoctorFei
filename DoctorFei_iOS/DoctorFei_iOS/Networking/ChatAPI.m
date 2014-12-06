@@ -7,7 +7,7 @@
 //
 
 #import "ChatAPI.h"
-#define kMethodGetChat @"get.doctor.chat"
+#define kMethodGetChat @"get.user.chatlog"
 #define kMethodSendMessage @"set.doctorchat.send"
 @implementation ChatAPI
 + (void)getChatWithParameters: (id)parameters success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure {

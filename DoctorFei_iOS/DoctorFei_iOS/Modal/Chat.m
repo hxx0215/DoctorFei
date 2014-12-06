@@ -2,19 +2,19 @@
 //  Chat.m
 //  DoctorFei_iOS
 //
-//  Created by GuJunjia on 14/12/5.
+//  Created by GuJunjia on 14/12/6.
 //
 //
 
 #import "Chat.h"
+#import "Friends.h"
 
 
 @implementation Chat
 
-@dynamic userId;
 @dynamic lastMessageContent;
 @dynamic lastMessageTime;
-@dynamic situation;
 @dynamic unreadMessageCount;
+@dynamic user;
 
 @end

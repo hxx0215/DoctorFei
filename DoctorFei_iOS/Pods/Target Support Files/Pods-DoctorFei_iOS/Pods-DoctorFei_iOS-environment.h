@@ -60,11 +60,23 @@
 #define COCOAPODS_VERSION_MINOR_DZNEmptyDataSet 4
 #define COCOAPODS_VERSION_PATCH_DZNEmptyDataSet 1
 
+// DateTools
+#define COCOAPODS_POD_AVAILABLE_DateTools
+#define COCOAPODS_VERSION_MAJOR_DateTools 1
+#define COCOAPODS_VERSION_MINOR_DateTools 4
+#define COCOAPODS_VERSION_PATCH_DateTools 3
+
 // IHKeyboardAvoiding
 #define COCOAPODS_POD_AVAILABLE_IHKeyboardAvoiding
 #define COCOAPODS_VERSION_MAJOR_IHKeyboardAvoiding 1
-#define COCOAPODS_VERSION_MINOR_IHKeyboardAvoiding 1
-#define COCOAPODS_VERSION_PATCH_IHKeyboardAvoiding 1
+#define COCOAPODS_VERSION_MINOR_IHKeyboardAvoiding 2
+#define COCOAPODS_VERSION_PATCH_IHKeyboardAvoiding 0
+
+// JSBadgeView
+#define COCOAPODS_POD_AVAILABLE_JSBadgeView
+#define COCOAPODS_VERSION_MAJOR_JSBadgeView 1
+#define COCOAPODS_VERSION_MINOR_JSBadgeView 3
+#define COCOAPODS_VERSION_PATCH_JSBadgeView 2
 
 // JSONKit-NoWarning
 #define COCOAPODS_POD_AVAILABLE_JSONKit_NoWarning

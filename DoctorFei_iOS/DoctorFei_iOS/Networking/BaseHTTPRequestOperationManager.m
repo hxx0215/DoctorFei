@@ -31,7 +31,7 @@
         NSString *retStr = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
         NSString *retJson =[NSString decodeFromPercentEscapeString:[retStr decryptWithDES]];
         NSDictionary *result = [retJson objectFromJSONString];
-        NSLog(@"%@",result);
+//        NSLog(@"%@",result);
         if ([result[@"verification"]boolValue] && [result[@"error"]isEqual:[NSNull null]]) {
             NSArray *dataArray = result[@"data"];
             success(operation, dataArray);

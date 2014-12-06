@@ -64,8 +64,8 @@
             friend.realname = dict[@"RealName"];
             friend.icon = dict[@"icon"];
             friend.userType = dict[@"usertype"];
-            [[NSManagedObjectContext MR_defaultContext]MR_saveToPersistentStoreAndWait];
         }
+        [[NSManagedObjectContext MR_defaultContext]MR_saveToPersistentStoreAndWait];
         [self reloadTableViewData];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view.window animated:YES];
@@ -85,7 +85,7 @@
     if ([segue.identifier isEqualToString:@"ContactDetailSegueIdentifier"]) {
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         ContactDetailViewController *vc = [segue destinationViewController];
-        [vc setFriendId:[friendArray[indexPath.row] userId]];
+        [vc setCurrentFriend:friendArray[indexPath.row]];
         [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
     }
 }

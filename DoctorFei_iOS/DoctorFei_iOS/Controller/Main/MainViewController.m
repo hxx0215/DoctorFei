@@ -9,6 +9,10 @@
 #import "MainViewController.h"
 #import <UIScrollView+EmptyDataSet.h>
 #import <UIImageView+WebCache.h>
+#import "Chat.h"
+#import "MainChatTableViewCell.h"
+#import "ContactDetailViewController.h"
+#import "Friends.h"
 @interface MainViewController ()
     <UITableViewDelegate, UITableViewDataSource, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
 
@@ -20,15 +24,20 @@
 @end
 
 @implementation MainViewController
-
+{
+    NSArray *chatArray;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [self.tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
     
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(reloadTableViewData) name:@"NewChatArrivedNotification" object:nil];
+    
     NSString *icon = [[NSUserDefaults standardUserDefaults]objectForKey:@"UserIcon"];
     if (icon && icon.length > 0) {
         [_avatarImageView sd_setImageWithURL:[NSURL URLWithString:icon] placeholderImage:[UIImage imageNamed:@"id_example_01"]];
@@ -44,7 +53,14 @@
         jobTitle = @"";
     }
     [_infoLabel setText:[NSString stringWithFormat:@"%@ %@", department, jobTitle]];
-     
+    
+    [self reloadTableViewData];
+}
+
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [[NSNotificationCenter defaultCenter]removeObserver:self];
+    [super viewWillDisappear:animated];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -52,26 +68,45 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
+- (void)reloadTableViewData {
+    chatArray = [Chat MR_findAll];
+    [self.tableView reloadData];
+}
+
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    if ([segue.identifier isEqualToString:@"MainChatDetailSegueIdentifier"]) {
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        ContactDetailViewController *vc = [segue destinationViewController];
+        Chat *chat = chatArray[indexPath.row];
+        [vc setCurrentFriend:chat.user];
+    }
 }
-*/
 
 #pragma mark - UITableView DataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 0;
+    return chatArray.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return nil;
+    static NSString *MainChatCellIdentifier = @"MainChatCellIdentifier";
+    MainChatTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:MainChatCellIdentifier forIndexPath:indexPath];
+    [cell setCurrentChat:chatArray[indexPath.row]];
+    return cell;
 }
 #pragma mark - UITableView Delegate
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 65.0f;
 }
+#pragma mark - DZNEmptyDataSetSource
 
+- (NSAttributedString *)titleForEmptyDataSet:(UIScrollView *)scrollView {
+    NSAttributedString *emptyTitle = [[NSAttributedString alloc]initWithString:@"暂无记录"];
+    return emptyTitle;
+}
+#pragma mark - DZNEmptySetDelegate
 @end

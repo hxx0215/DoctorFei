@@ -7,8 +7,10 @@
 //
 
 #import <JSQMessages.h>
+@class Friends;
+
 @interface ContactDetailViewController : JSQMessagesViewController
 
-@property (nonatomic, strong) NSNumber *friendId;
+@property (nonatomic, strong) Friends *currentFriend;
 
 @end

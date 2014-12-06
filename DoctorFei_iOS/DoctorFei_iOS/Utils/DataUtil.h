@@ -11,5 +11,4 @@
 @interface DataUtil : NSObject
 
 + (void)cleanUserDefault;
-
 @end

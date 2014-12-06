@@ -8,6 +8,7 @@
 
 #import "ContactDetailViewController.h"
 #import "Friends.h"
+#import "Chat.h"
 #import "DeviceUtil.h"
 #import "ContactFriendDetailTableViewController.h"
 @interface ContactDetailViewController ()
@@ -16,18 +17,13 @@
 @end
 
 @implementation ContactDetailViewController
-{
-    Friends *currentFriend;
-}
-@synthesize friendId = _friendId;
+@synthesize currentFriend = _currentFriend;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    currentFriend = [Friends MR_findFirstByAttribute:@"userId" withValue:_friendId];
-    if (currentFriend) {
-        self.title = currentFriend.realname;
-    }
+    
+    self.title = _currentFriend.realname;
     
     self.senderId = [DeviceUtil getUUID];
     self.senderDisplayName = @"我";
@@ -35,6 +31,15 @@
     
     self.inputToolbar.contentView.leftBarButtonItem = nil;
     
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    Chat *chat = [Chat MR_findFirstByAttribute:@"user" withValue:_currentFriend];
+    if (chat) {
+        chat.unreadMessageCount = @(0);
+        [[NSManagedObjectContext MR_defaultContext]MR_saveToPersistentStoreAndWait];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -51,7 +56,7 @@
     // Pass the selected object to the new view controller.
     if ([segue.identifier isEqualToString:@"FriendDetailSetNoteSegueIdentifier"]) {
         ContactFriendDetailTableViewController *vc = [segue destinationViewController];
-        [vc setCurrentFriend:currentFriend];
+        [vc setCurrentFriend:_currentFriend];
     }
 }
 

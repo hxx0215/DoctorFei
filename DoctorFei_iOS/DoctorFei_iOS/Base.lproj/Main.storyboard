@@ -59,6 +59,9 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
+                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                        <rect key="frame" x="70" y="22" width="230" height="20.5"/>
+                                                    </variation>
                                                 </label>
                                             </subviews>
                                             <constraints>
@@ -834,7 +837,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MainChatCellIdentifier" rowHeight="65" id="skQ-h3-GeQ">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MainChatCellIdentifier" rowHeight="65" id="skQ-h3-GeQ" customClass="MainChatTableViewCell">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="skQ-h3-GeQ" id="OtT-Ts-vSh">
@@ -861,7 +864,7 @@
                                                     <color key="textColor" red="0.64313725490196083" green="0.64313725490196083" blue="0.64313725490196083" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                     <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                                        <rect key="frame" x="77" y="36" width="179" height="17"/>
+                                                        <rect key="frame" x="77" y="36" width="212" height="17"/>
                                                     </variation>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="[感冒]" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wds-DW-PEX">
@@ -903,7 +906,12 @@
                                             </variation>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="QZS-KQ-MzU" kind="show" id="rqJ-cO-jCt"/>
+                                            <outlet property="avatarImageView" destination="lzg-iP-5OW" id="Gmd-9g-6fn"/>
+                                            <outlet property="durationLabel" destination="uzd-0L-qtW" id="7t5-IN-xBj"/>
+                                            <outlet property="lastMessageLabel" destination="lPd-cu-Qco" id="O8D-hM-GWf"/>
+                                            <outlet property="nameLabel" destination="fbn-1R-paY" id="LcN-Ab-Fxc"/>
+                                            <outlet property="situationLabel" destination="Wds-DW-PEX" id="Gck-og-jdn"/>
+                                            <segue destination="QZS-KQ-MzU" kind="show" identifier="MainChatDetailSegueIdentifier" id="rqJ-cO-jCt"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -3883,10 +3891,10 @@
                                 <exclude reference="X9s-7U-P7Z"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="q06-dI-XBP"/>
                                 <exclude reference="Ckc-QH-Wqu"/>
                                 <exclude reference="LHf-pP-ZOg"/>
                                 <exclude reference="NKS-hI-raW"/>
-                                <exclude reference="q06-dI-XBP"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
@@ -3894,10 +3902,10 @@
                                 <include reference="X9s-7U-P7Z"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="q06-dI-XBP"/>
                                 <include reference="Ckc-QH-Wqu"/>
                                 <include reference="LHf-pP-ZOg"/>
                                 <include reference="NKS-hI-raW"/>
-                                <include reference="q06-dI-XBP"/>
                             </mask>
                         </variation>
                     </view>
