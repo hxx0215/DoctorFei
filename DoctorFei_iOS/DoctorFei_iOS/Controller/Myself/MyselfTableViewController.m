@@ -11,8 +11,11 @@
 #import "MyselfTableViewController.h"
 #import "MySelfBasicInfoEditTableViewController.h"
 #import "MyselfIntroInfoEditTableViewController.h"
+#import <ReactiveCocoa.h>
+#import <MBProgressHUD.h>
+#import "DoctorAPI.h"
 
-@interface MyselfTableViewController ()
+@interface MyselfTableViewController ()<UINavigationControllerDelegate,UIImagePickerControllerDelegate,UIActionSheetDelegate>
 
 @property (weak, nonatomic) IBOutlet UIImageView *avatarImageView;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
@@ -82,6 +85,102 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - updateHeadimage
+
+- (void)updateInfo {
+    
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view.window animated:YES];
+    hud.dimBackground = YES;
+    [hud setLabelText:@"修改申请中..."];
+    NSNumber *currentUserId = [[NSUserDefaults standardUserDefaults]objectForKey:@"UserId"];
+    NSString *currentInfo = @"";
+    NSDictionary *params = @{
+                             @"doctorid": currentUserId,
+                             @"headimage": currentInfo
+                             };
+    [DoctorAPI updateInfomationWithParameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSDictionary *dataDict = [responseObject firstObject];
+        hud.mode = MBProgressHUDModeText;
+        if ([dataDict[@"state"]intValue] == 1) {
+            hud.labelText = @"修改成功";
+            [[NSUserDefaults standardUserDefaults]setObject:currentInfo forKey:@"headimage"];
+            [[NSUserDefaults standardUserDefaults]synchronize];
+            [self.navigationController popViewControllerAnimated:YES];
+        }
+        else{
+            hud.labelText = @"修改错误";
+            hud.detailsLabelText = dataDict[@"msg"];
+        }
+        [hud hide:YES afterDelay:1.5f];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"%@", error.localizedDescription);
+        hud.mode = MBProgressHUDModeText;
+        hud.labelText = @"错误";
+        hud.detailsLabelText = error.localizedDescription;
+        [hud hide:YES afterDelay:1.5f];
+    }];
+}
+
+- (void)uploadIcon{
+    
+    UIActionSheet *sheet;
+    if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
+    {
+        sheet  = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"拍照",@"从手机相册选择", nil];
+    }
+    else {
+        sheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"从手机相册选择", nil];
+    }
+    sheet.tag = 255;
+    [sheet showInView:self.view];
+}
+
+-(void) actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (actionSheet.tag == 255) {
+        NSUInteger sourceType = 0;
+        if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+            switch (buttonIndex) {
+                case 1:
+                    // 相机
+                    sourceType = UIImagePickerControllerSourceTypeCamera;
+                    break;
+                case 2:
+                    // 相册
+                    sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+                    break;
+                default:
+                    return;
+            }
+        }
+        else {
+            if (buttonIndex == 1) {
+                return;
+            } else {
+                sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+            }
+        }
+        UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
+        imagePickerController.delegate = self;
+        imagePickerController.allowsEditing = NO;
+        imagePickerController.sourceType = sourceType;
+        [self presentViewController:imagePickerController animated:YES completion:nil];
+    }
+}
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
+    UIImage *image=[info objectForKey:UIImagePickerControllerOriginalImage];
+    [picker dismissViewControllerAnimated:YES completion:^{
+        if(image)
+        {
+            [self updateInfo];
+        }
+    }];
+    
+    //MBProgressHUD *hud=[MBProgressHUD showHUDAddedTo:((UIViewController*)self.delegate).view animated:YES];
+    //hud.labelText = NSLocalizedString(@"正在上传", nil);
+}
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -105,7 +204,10 @@
 #pragma mark - UITableView Delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section == 0 && indexPath.row != 0) {
+    if (indexPath.section == 0 && indexPath.row == 0) {
+        [self uploadIcon];
+    }
+    else if (indexPath.section == 0 && indexPath.row != 0) {
         [self performSegueWithIdentifier:@"MyselfBasicInfoEditSegueIdentifier" sender:nil];
     }
     else if (indexPath.section == 1 && indexPath.row == 0) {
