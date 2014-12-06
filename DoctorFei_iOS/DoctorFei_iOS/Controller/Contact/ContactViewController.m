@@ -31,6 +31,12 @@
     [self.tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
     [self fetchFriend];
     [self reloadTableViewData];
+    
+    UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc]
+                 initWithTarget:self
+                 action:@selector(tableviewCellLongPressed:)];
+    longPress.minimumPressDuration = 1.0;
+    [self.tableView addGestureRecognizer:longPress];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -90,6 +96,27 @@
     }
 }
 
+#pragma mark - UITableViewCellLongPressed
+-(void)tableviewCellLongPressed:(UILongPressGestureRecognizer *)gestureRecognizer{
+    if (gestureRecognizer.state == UIGestureRecognizerStateBegan) {
+        NSLog(@"UIGestureRecognizerStateBegan");
+        CGPoint ponit=[gestureRecognizer locationInView:self.tableView];
+        NSIndexPath* path=[self.tableView indexPathForRowAtPoint:ponit];
+        NSLog(@"row:%ld",path.row);
+        UIActionSheet *sheet  = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"删除好友",@"清空聊天记录", nil];
+        sheet.tag = 123;
+        [sheet showInView:self.view];
+    }else if(gestureRecognizer.state == UIGestureRecognizerStateEnded)
+    {
+        //未用
+    }
+    else if(gestureRecognizer.state == UIGestureRecognizerStateChanged)
+    {
+        //未用
+    }
+    
+    
+}
 
 #pragma mark - UITableView DataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
