@@ -262,29 +262,60 @@
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="id_example_02.png" translatesAutoresizingMaskIntoConstraints="NO" id="nKW-Zq-MYt">
                                                     <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                                    <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                                        <rect key="frame" x="20" y="19" width="40" height="40"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="40" id="vrj-gh-ciQ"/>
+                                                    </constraints>
+                                                    <variation key="default">
+                                                        <mask key="constraints">
+                                                            <exclude reference="vrj-gh-ciQ"/>
+                                                        </mask>
+                                                    </variation>
+                                                    <variation key="heightClass=regular-widthClass=compact">
+                                                        <mask key="constraints">
+                                                            <include reference="vrj-gh-ciQ"/>
+                                                        </mask>
                                                     </variation>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="用户名" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hBH-ag-jhC">
                                                     <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="highlightedColor"/>
-                                                    <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                                        <rect key="frame" x="80" y="19" width="300" height="25"/>
-                                                    </variation>
                                                 </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="hBH-ag-jhC" firstAttribute="leading" secondItem="nKW-Zq-MYt" secondAttribute="trailing" constant="20" id="5kZ-V7-KQg"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="hBH-ag-jhC" secondAttribute="trailing" constant="12" id="BKz-eS-vEI"/>
+                                                <constraint firstItem="nKW-Zq-MYt" firstAttribute="top" secondItem="edX-Mn-HLG" secondAttribute="topMargin" constant="11" id="Peh-pV-o7f"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="hBH-ag-jhC" secondAttribute="bottom" constant="25.5" id="Q5Z-4G-ai6"/>
+                                                <constraint firstItem="hBH-ag-jhC" firstAttribute="top" secondItem="nKW-Zq-MYt" secondAttribute="top" id="ggQ-sB-ISp"/>
+                                                <constraint firstItem="nKW-Zq-MYt" firstAttribute="leading" secondItem="edX-Mn-HLG" secondAttribute="leadingMargin" constant="12" id="rUB-bi-RN3"/>
+                                            </constraints>
                                             <variation key="default">
                                                 <mask key="subviews">
                                                     <exclude reference="nKW-Zq-MYt"/>
                                                     <exclude reference="hBH-ag-jhC"/>
+                                                </mask>
+                                                <mask key="constraints">
+                                                    <exclude reference="Peh-pV-o7f"/>
+                                                    <exclude reference="rUB-bi-RN3"/>
+                                                    <exclude reference="5kZ-V7-KQg"/>
+                                                    <exclude reference="BKz-eS-vEI"/>
+                                                    <exclude reference="Q5Z-4G-ai6"/>
+                                                    <exclude reference="ggQ-sB-ISp"/>
                                                 </mask>
                                             </variation>
                                             <variation key="heightClass=regular-widthClass=compact">
                                                 <mask key="subviews">
                                                     <include reference="nKW-Zq-MYt"/>
                                                     <include reference="hBH-ag-jhC"/>
+                                                </mask>
+                                                <mask key="constraints">
+                                                    <include reference="Peh-pV-o7f"/>
+                                                    <include reference="rUB-bi-RN3"/>
+                                                    <include reference="5kZ-V7-KQg"/>
+                                                    <include reference="BKz-eS-vEI"/>
+                                                    <include reference="Q5Z-4G-ai6"/>
+                                                    <include reference="ggQ-sB-ISp"/>
                                                 </mask>
                                             </variation>
                                         </tableViewCellContentView>

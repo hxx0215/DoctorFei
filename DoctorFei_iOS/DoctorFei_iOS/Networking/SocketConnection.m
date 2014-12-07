@@ -112,7 +112,7 @@
         NSDictionary *result = [string objectFromJSONString];
         if ([result[@"verification"]boolValue] && [result[@"error"]isEqual:[NSNull null]]) {
             NSArray *dataArray = result[@"data"];
-            NSLog(@"%@",dataArray);
+//            NSLog(@"%@",dataArray);
             for (NSDictionary *dict in dataArray) {
                 [FetchChatUtil fetchChatWithParmas:dict];
             }

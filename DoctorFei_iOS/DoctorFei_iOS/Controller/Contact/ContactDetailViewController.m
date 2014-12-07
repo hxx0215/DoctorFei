@@ -7,30 +7,38 @@
 //
 
 #import "ContactDetailViewController.h"
+#import "Message.h"
 #import "Friends.h"
 #import "Chat.h"
 #import "DeviceUtil.h"
 #import "ContactFriendDetailTableViewController.h"
+#import "MessagesModalData.h"
+#import <SDWebImageManager.h>
+#import "ChatAPI.h"
 @interface ContactDetailViewController ()
 - (IBAction)backButtonClicked:(id)sender;
-
+@property (nonatomic, strong) MessagesModalData *modalData;
 @end
 
 @implementation ContactDetailViewController
-@synthesize currentFriend = _currentFriend;
+
+@synthesize currentFriend = _currentFriend, modalData = _modalData;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
     self.title = _currentFriend.realname;
+    self.collectionView.backgroundColor = UIColorFromRGB(0xEEEEEE);
     
-    self.senderId = [DeviceUtil getUUID];
+    self.senderId = [[DeviceUtil getUUID]copy];
     self.senderDisplayName = @"我";
     self.showLoadEarlierMessagesHeader = NO;
     
     self.inputToolbar.contentView.leftBarButtonItem = nil;
+//    self.collectionView.layoutMargins = UIEdgeInsetsMake(5, 5, 5, 5);
     
+    [self generateMessageModalData];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -45,6 +53,62 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)generateMessageModalData {
+    _modalData = [[MessagesModalData alloc]init];
+    NSString *myName = [[NSUserDefaults standardUserDefaults] objectForKey:@"UserRealName"];
+    NSString *myIcon = [[NSUserDefaults standardUserDefaults] objectForKey:@"UserIcon"];
+    NSString *userSenderId = [_currentFriend.userId stringValue];
+    NSString *mySenderId = self.senderId;
+    _modalData.users = @{
+                         userSenderId: _currentFriend.realname,
+                         mySenderId: myName
+                         };
+    JSQMessagesAvatarImage *userAvatarImage = [JSQMessagesAvatarImageFactory avatarImageWithPlaceholder:[UIImage imageNamed:@"id_example_02"] diameter:40];
+    JSQMessagesAvatarImage *myAvatarImage = [JSQMessagesAvatarImageFactory avatarImageWithPlaceholder:[UIImage imageNamed:@"id_example_02"] diameter:40];
+    if (_currentFriend.icon && _currentFriend.icon.length > 0) {
+        [[SDWebImageManager sharedManager]downloadImageWithURL:[NSURL URLWithString:_currentFriend.icon] options:0 progress:^(NSInteger receivedSize, NSInteger expectedSize) {
+        } completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
+            if (image && finished) {
+                [userAvatarImage setAvatarImage:image];
+            }
+        }];
+    }
+    if (myIcon && myIcon.length > 0) {
+        [[SDWebImageManager sharedManager]downloadImageWithURL:[NSURL URLWithString:myIcon] options:0 progress:^(NSInteger receivedSize, NSInteger expectedSize) {
+        } completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
+            if (image && finished) {
+                [myAvatarImage setAvatarImage:image];
+            }
+        }];
+    }
+    _modalData.avatars = @{
+                           userSenderId: userAvatarImage,
+                           mySenderId: myAvatarImage
+                           };
+    
+    JSQMessagesBubbleImageFactory *bubbleFactory = [[JSQMessagesBubbleImageFactory alloc]init];
+    _modalData.outgoingBubbleImageData = [bubbleFactory outgoingMessagesBubbleImageWithColor:UIColorFromRGB(0xADE85B)];
+    _modalData.incomingBubbleImageData = [bubbleFactory incomingMessagesBubbleImageWithColor:[UIColor whiteColor]];
+    
+    _modalData.messages = [NSMutableArray array];
+    //TODO Generate Message
+    NSArray *messageArray = [Message MR_findByAttribute:@"user" withValue:_currentFriend];
+    for (Message *message in messageArray) {
+        NSString *senderId, *senderName;
+        if ([message.flag intValue] == 0) {
+            senderId = userSenderId;
+            senderName = _currentFriend.realname;
+        }
+        else{
+            senderId = mySenderId;
+            senderName = myName;
+        }
+        JSQMessage *jsqMessage = [[JSQMessage alloc] initWithSenderId:senderId senderDisplayName:senderName date:message.createtime text:message.content];
+        [_modalData.messages addObject:jsqMessage];
+    }
+
 }
 
 
@@ -73,6 +137,141 @@
          senderDisplayName:(NSString *)senderDisplayName
                       date:(NSDate *)date
 {
-    
+    //TODO 发送消息
+    NSNumber *doctorId = [[NSUserDefaults standardUserDefaults]objectForKey:@"UserId"];
+    NSDictionary *params = @{
+                             @"doctorid": doctorId,
+                             @"userid": _currentFriend.userId,
+                             @"msgtype": @"text",
+                             @"content": text
+                             };
+    [ChatAPI sendMessageWithParameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"%@",responseObject);
+        NSDictionary *dataDict = [responseObject firstObject];
+        if ([dataDict[@"state"]intValue] == 1) {
+            JSQMessage *message = [[JSQMessage alloc]initWithSenderId:self.senderId senderDisplayName:self.senderDisplayName date:[NSDate date] text:text];
+            [self.modalData.messages addObject:message];
+            [self finishSendingMessage];
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"%@",error.localizedDescription);
+    }];
 }
+
+#pragma mark - JSQMessages CollectionView DataSource
+- (id<JSQMessageData>)collectionView:(JSQMessagesCollectionView *)collectionView messageDataForItemAtIndexPath:(NSIndexPath *)indexPath {
+    return self.modalData.messages[indexPath.item];
+}
+
+- (id<JSQMessageBubbleImageDataSource>)collectionView:(JSQMessagesCollectionView *)collectionView messageBubbleImageDataForItemAtIndexPath:(NSIndexPath *)indexPath {
+    JSQMessage *message = self.modalData.messages[indexPath.item];
+    if ([message.senderId isEqualToString:self.senderId]) {
+        return self.modalData.outgoingBubbleImageData;
+    }
+    return self.modalData.incomingBubbleImageData;
+}
+
+- (id<JSQMessageAvatarImageDataSource>)collectionView:(JSQMessagesCollectionView *)collectionView avatarImageDataForItemAtIndexPath:(NSIndexPath *)indexPath {
+    JSQMessage *message = self.modalData.messages[indexPath.item];
+    return self.modalData.avatars[message.senderId];
+}
+
+- (NSAttributedString *)collectionView:(JSQMessagesCollectionView *)collectionView attributedTextForCellTopLabelAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.item % 3 == 0) {
+        JSQMessage *message = self.modalData.messages[indexPath.item];
+        return [[JSQMessagesTimestampFormatter sharedFormatter] attributedTimestampForDate:message.date];
+    }
+    return nil;
+}
+
+- (NSAttributedString *)collectionView:(JSQMessagesCollectionView *)collectionView attributedTextForMessageBubbleTopLabelAtIndexPath:(NSIndexPath *)indexPath {
+    JSQMessage *message = self.modalData.messages[indexPath.item];
+    if ([message.senderId isEqualToString:self.senderId]) {
+        return nil;
+    }
+    if (indexPath.item - 1 > 0) {
+        JSQMessage *previousMessage = self.modalData.messages[indexPath.item - 1];
+        if ([[previousMessage senderId] isEqualToString:message.senderId]) {
+            return nil;
+        }
+    }
+    return [[NSAttributedString alloc] initWithString:message.senderDisplayName];
+}
+
+- (NSAttributedString *)collectionView:(JSQMessagesCollectionView *)collectionView attributedTextForCellBottomLabelAtIndexPath:(NSIndexPath *)indexPath {
+    return nil;
+}
+
+#pragma mark - UICollectionView DataSource
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
+    return [self.modalData.messages count];
+}
+
+- (UICollectionViewCell *)collectionView:(JSQMessagesCollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    JSQMessagesCollectionViewCell *cell = (JSQMessagesCollectionViewCell *)[super collectionView:collectionView cellForItemAtIndexPath:indexPath];
+    
+//    JSQMessage *message = self.modalData.messages[indexPath.item];
+    cell.textView.textColor = [UIColor blackColor];
+    cell.textView.linkTextAttributes = @{ NSForegroundColorAttributeName : cell.textView.textColor,
+                                          NSUnderlineStyleAttributeName : @(NSUnderlineStyleSingle | NSUnderlinePatternSolid) };
+    cell.backgroundColor =[UIColor clearColor];
+    return cell;
+}
+
+#pragma mark - JSQMessages collection view flow layout delegate
+
+#pragma mark - Adjusting cell label heights
+
+- (CGFloat)collectionView:(JSQMessagesCollectionView *)collectionView
+                   layout:(JSQMessagesCollectionViewFlowLayout *)collectionViewLayout heightForCellTopLabelAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.item % 3 == 0) {
+        return kJSQMessagesCollectionViewCellLabelHeightDefault;
+    }
+    return 0.0f;
+}
+
+- (CGFloat)collectionView:(JSQMessagesCollectionView *)collectionView
+                   layout:(JSQMessagesCollectionViewFlowLayout *)collectionViewLayout heightForMessageBubbleTopLabelAtIndexPath:(NSIndexPath *)indexPath {
+    JSQMessage *currentMessage = self.modalData.messages[indexPath.item];
+    if ([[currentMessage senderId]isEqualToString:self.senderId]) {
+        return 0.0f;
+    }
+    if (indexPath.item - 1 > 0) {
+        JSQMessage *previousMessage = self.modalData.messages[indexPath.item - 1];
+        if ([[previousMessage senderId]isEqualToString:[currentMessage senderId]]) {
+            return 0.0f;
+        }
+    }
+    return kJSQMessagesCollectionViewCellLabelHeightDefault;
+}
+
+- (CGFloat)collectionView:(JSQMessagesCollectionView *)collectionView
+                   layout:(JSQMessagesCollectionViewFlowLayout *)collectionViewLayout heightForCellBottomLabelAtIndexPath:(NSIndexPath *)indexPath {
+    return 0.0f;
+}
+
+#pragma mark - Responding to collection view tap events
+
+- (void)collectionView:(JSQMessagesCollectionView *)collectionView
+                header:(JSQMessagesLoadEarlierHeaderView *)headerView didTapLoadEarlierMessagesButton:(UIButton *)sender
+{
+    NSLog(@"Load earlier messages!");
+}
+
+- (void)collectionView:(JSQMessagesCollectionView *)collectionView didTapAvatarImageView:(UIImageView *)avatarImageView atIndexPath:(NSIndexPath *)indexPath
+{
+    NSLog(@"Tapped avatar!");
+}
+
+- (void)collectionView:(JSQMessagesCollectionView *)collectionView didTapMessageBubbleAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSLog(@"Tapped message bubble!");
+}
+
+- (void)collectionView:(JSQMessagesCollectionView *)collectionView didTapCellAtIndexPath:(NSIndexPath *)indexPath touchLocation:(CGPoint)touchLocation
+{
+    NSLog(@"Tapped cell at %@!", NSStringFromCGPoint(touchLocation));
+}
+
 @end
