@@ -80,8 +80,10 @@
                          userSenderId: _currentFriend.realname,
                          mySenderId: myName
                          };
-    JSQMessagesAvatarImage *userAvatarImage = [JSQMessagesAvatarImageFactory avatarImageWithPlaceholder:[UIImage imageNamed:@"list_user-big_example_pic"] diameter:40];
-    JSQMessagesAvatarImage *myAvatarImage = [JSQMessagesAvatarImageFactory avatarImageWithPlaceholder:[UIImage imageNamed:@"list_user-big_example_pic"] diameter:40];
+    JSQMessagesAvatarImage *userAvatarImage = [JSQMessagesAvatarImage avatarImageWithPlaceholder:[UIImage imageNamed:@"list_user-big_example_pic"]];
+    JSQMessagesAvatarImage *myAvatarImage = [JSQMessagesAvatarImage avatarImageWithPlaceholder:[UIImage imageNamed:@"list_user-big_example_pic"]];
+//    JSQMessagesAvatarImage *userAvatarImage = [JSQMessagesAvatarImageFactory avatarImageWithPlaceholder:[UIImage imageNamed:@"list_user-big_example_pic"] diameter:44];
+//    JSQMessagesAvatarImage *myAvatarImage = [JSQMessagesAvatarImageFactory avatarImageWithPlaceholder:[UIImage imageNamed:@"list_user-big_example_pic"] diameter:44];
     if (_currentFriend.icon && _currentFriend.icon.length > 0) {
         [[SDWebImageManager sharedManager]downloadImageWithURL:[NSURL URLWithString:_currentFriend.icon] options:0 progress:^(NSInteger receivedSize, NSInteger expectedSize) {
         } completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
@@ -324,6 +326,10 @@
 
 - (void)collectionView:(JSQMessagesCollectionView *)collectionView didTapAvatarImageView:(UIImageView *)avatarImageView atIndexPath:(NSIndexPath *)indexPath
 {
+    JSQMessage *currentMessage = self.modalData.messages[indexPath.item];
+    if (![[currentMessage senderId]isEqualToString:self.senderId]) {
+        [self performSegueWithIdentifier:@"FriendDetailSegueIdentifier" sender:nil];
+    }
     NSLog(@"Tapped avatar!");
 }
 

@@ -41,7 +41,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     if (_currentFriend.icon && _currentFriend.icon.length > 0) {
-        [self.avatarImageView sd_setImageWithURL:[NSURL URLWithString:_currentFriend.icon] placeholderImage:[UIImage imageNamed:@"list_user-big_example_pic"]];
+        [self.avatarImageView sd_setImageWithURL:[NSURL URLWithString:_currentFriend.icon] placeholderImage:[UIImage imageNamed:@"details_uers_example_pic"]];
     }
     [self.nameLabel setText:_currentFriend.realname];
     if (_currentFriend.mobile && _currentFriend.mobile.length > 0) {
@@ -49,6 +49,7 @@
         [self.phoneButton setHidden:NO];
     }
     else{
+        [self.phoneLabel setText:@""];
         [self.phoneButton setHidden:YES];
     }
     [self.noteLabel setText:_currentFriend.noteName];

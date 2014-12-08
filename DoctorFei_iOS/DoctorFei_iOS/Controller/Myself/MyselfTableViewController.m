@@ -14,6 +14,7 @@
 #import <ReactiveCocoa.h>
 #import <MBProgressHUD.h>
 #import "DoctorAPI.h"
+#import <UIImageView+WebCache.h>
 
 @interface MyselfTableViewController ()<UINavigationControllerDelegate,UIImagePickerControllerDelegate,UIActionSheetDelegate>
 
@@ -68,7 +69,9 @@
     introduction ? nil : (introduction = @"");
     basicInfoArray = @[icon, name, hospital, department, jobTitle, email];
     
-    //TODO 头像未处理
+    if (icon.length > 0) {
+        [self.avatarImageView sd_setImageWithURL:[NSURL URLWithString:icon] placeholderImage:[UIImage imageNamed:@"list_user-big_example_pic"]];
+    }
     [self.nameLabel setText:name];
     [self.hospitalNameLabel setText:hospital];
     [self.departmengLabel setText:department];
@@ -76,8 +79,6 @@
     [self.emailLabel setText:email];
     [self.introductionTextView setText:introduction];
 
-//    [self.introductionLabel setText:introduction];
-//    [self.introductionLabel sizeToFit];
 }
 
 - (void)didReceiveMemoryWarning {
