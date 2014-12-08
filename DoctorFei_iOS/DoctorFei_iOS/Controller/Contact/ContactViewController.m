@@ -109,7 +109,8 @@
         NSLog(@"row:%ld",(long)path.row);
         UIActionSheet *sheet  = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"删除好友",@"清空聊天记录", nil];
         sheet.tag = 123;
-        [sheet showInView:self.view];
+//        [sheet showInView:self.view];
+        [sheet showFromTabBar:self.tabBarController.tabBar];
     }else if(gestureRecognizer.state == UIGestureRecognizerStateEnded)
     {
         //未用

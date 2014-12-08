@@ -132,7 +132,8 @@
         sheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"从手机相册选择", nil];
     }
     sheet.tag = 255;
-    [sheet showInView:self.view];
+//    [sheet showInView:self.view];
+    [sheet showFromTabBar:self.tabBarController.tabBar];
 }
 
 -(void) actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
