@@ -11,7 +11,7 @@
         <attribute name="gender" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="icon" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="mobile" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="noteName" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="noteName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="realname" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="situation" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="userId" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
@@ -29,7 +29,7 @@
     </entity>
     <elements>
         <element name="Chat" positionX="61" positionY="189" width="128" height="103"/>
-        <element name="Friends" positionX="-63" positionY="-18" width="128" height="208"/>
+        <element name="Friends" positionX="-63" positionY="-18" width="128" height="210"/>
         <element name="Message" positionX="144" positionY="-21" width="128" height="133"/>
     </elements>
 </model>

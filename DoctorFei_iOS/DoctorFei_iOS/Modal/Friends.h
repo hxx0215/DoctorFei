@@ -2,7 +2,7 @@
 //  Friends.h
 //  DoctorFei_iOS
 //
-//  Created by GuJunjia on 14/12/6.
+//  Created by GuJunjia on 14/12/8.
 //
 //
 
@@ -17,13 +17,13 @@
 @property (nonatomic, retain) NSNumber * gender;
 @property (nonatomic, retain) NSString * icon;
 @property (nonatomic, retain) NSString * mobile;
-@property (nonatomic, retain) NSNumber * noteName;
+@property (nonatomic, retain) NSString * noteName;
 @property (nonatomic, retain) NSString * realname;
+@property (nonatomic, retain) NSString * situation;
 @property (nonatomic, retain) NSNumber * userId;
 @property (nonatomic, retain) NSNumber * userType;
-@property (nonatomic, retain) NSString * situation;
-@property (nonatomic, retain) NSSet *messages;
 @property (nonatomic, retain) Chat *chat;
+@property (nonatomic, retain) NSSet *messages;
 @end
 
 @interface Friends (CoreDataGeneratedAccessors)

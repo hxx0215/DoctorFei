@@ -14,7 +14,7 @@
 #import "ContactFriendTableViewCell.h"
 #import "ContactDetailViewController.h"
 @interface ContactViewController ()
-    <UITableViewDelegate, UITableViewDataSource, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
+    <UITableViewDelegate, UITableViewDataSource, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate, UIActionSheetDelegate, UIGestureRecognizerDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @end
 
@@ -26,6 +26,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    self.navigationController.interactivePopGestureRecognizer.delegate = self;
+    [self.navigationController.interactivePopGestureRecognizer setEnabled:YES];
+
     searchResultArray = [NSMutableArray array];
     
     [self.tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
@@ -102,7 +106,7 @@
         NSLog(@"UIGestureRecognizerStateBegan");
         CGPoint ponit=[gestureRecognizer locationInView:self.tableView];
         NSIndexPath* path=[self.tableView indexPathForRowAtPoint:ponit];
-        NSLog(@"row:%ld",path.row);
+        NSLog(@"row:%ld",(long)path.row);
         UIActionSheet *sheet  = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"删除好友",@"清空聊天记录", nil];
         sheet.tag = 123;
         [sheet showInView:self.view];

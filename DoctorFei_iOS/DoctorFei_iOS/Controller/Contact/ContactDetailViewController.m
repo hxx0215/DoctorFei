@@ -34,15 +34,28 @@
     self.senderId = [[DeviceUtil getUUID]copy];
     self.senderDisplayName = @"我";
     self.showLoadEarlierMessagesHeader = NO;
+    self.automaticallyScrollsToMostRecentMessage = YES;
     
     self.inputToolbar.contentView.leftBarButtonItem = nil;
-//    self.collectionView.layoutMargins = UIEdgeInsetsMake(5, 5, 5, 5);
+    self.collectionView.collectionViewLayout.sectionInset = UIEdgeInsetsMake(0, 15, 5, 15);
     
     [self generateMessageModalData];
+
+
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(reloadMessageData) name:@"NewChatArrivedNotification" object:nil];
+    [self cleanUnreadMessageCount];
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+- (void)cleanUnreadMessageCount {
     Chat *chat = [Chat MR_findFirstByAttribute:@"user" withValue:_currentFriend];
     if (chat) {
         chat.unreadMessageCount = @(0);
@@ -50,9 +63,11 @@
     }
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)reloadMessageData {
+    [self cleanUnreadMessageCount];
+    [self generateMessageModalData];
+    [self.collectionView reloadData];
+    [self scrollToBottomAnimated:YES];
 }
 
 - (void)generateMessageModalData {
@@ -65,8 +80,8 @@
                          userSenderId: _currentFriend.realname,
                          mySenderId: myName
                          };
-    JSQMessagesAvatarImage *userAvatarImage = [JSQMessagesAvatarImageFactory avatarImageWithPlaceholder:[UIImage imageNamed:@"id_example_02"] diameter:40];
-    JSQMessagesAvatarImage *myAvatarImage = [JSQMessagesAvatarImageFactory avatarImageWithPlaceholder:[UIImage imageNamed:@"id_example_02"] diameter:40];
+    JSQMessagesAvatarImage *userAvatarImage = [JSQMessagesAvatarImageFactory avatarImageWithPlaceholder:[UIImage imageNamed:@"list_user-big_example_pic"] diameter:40];
+    JSQMessagesAvatarImage *myAvatarImage = [JSQMessagesAvatarImageFactory avatarImageWithPlaceholder:[UIImage imageNamed:@"list_user-big_example_pic"] diameter:40];
     if (_currentFriend.icon && _currentFriend.icon.length > 0) {
         [[SDWebImageManager sharedManager]downloadImageWithURL:[NSURL URLWithString:_currentFriend.icon] options:0 progress:^(NSInteger receivedSize, NSInteger expectedSize) {
         } completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
@@ -94,7 +109,7 @@
     
     _modalData.messages = [NSMutableArray array];
     //TODO Generate Message
-    NSArray *messageArray = [Message MR_findByAttribute:@"user" withValue:_currentFriend];
+    NSArray *messageArray = [Message MR_findByAttribute:@"user" withValue:_currentFriend andOrderBy:@"messageId" ascending:YES];
     for (Message *message in messageArray) {
         NSString *senderId, *senderName;
         if ([message.flag intValue] == 0) {
@@ -111,6 +126,52 @@
 
 }
 
+- (void)loadNewMessage {
+    NSNumber *doctorId = [[NSUserDefaults standardUserDefaults]objectForKey:@"UserId"];
+    NSArray *messageArray = [Message MR_findByAttribute:@"user" withValue:_currentFriend andOrderBy:@"messageId" ascending:YES];
+    Message *message = [messageArray lastObject];
+//    if ([lastDate isEqual:[NSNull null]]){
+//        lastDate = [NSDate dateWithTimeIntervalSinceNow:-86400];
+//    }
+    NSDictionary *params = @{
+                             @"doctorid": doctorId,
+                             @"userid": _currentFriend.userId,
+                             @"times": @((int)message.createtime.timeIntervalSince1970)
+                             };
+    NSLog(@"%@",params);
+    [ChatAPI getChatWithParameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"%@",responseObject);
+        NSArray *messageArray = (NSArray *)responseObject;
+        for (NSDictionary *dict in messageArray) {
+            Message *message = [Message MR_findFirstByAttribute:@"messageId" withValue:dict[@"id"]];
+            if (message == nil) {
+                message = [Message MR_createEntity];
+                message.messageId = dict[@"id"];
+            }
+            message.content = dict[@"content"];
+            message.createtime = [NSDate dateWithTimeIntervalSince1970:[dict[@"createtime"]intValue]];
+            message.flag = @([dict[@"flag"]intValue]);
+            message.msgType = dict[@"msgtype"];
+            message.user = _currentFriend;
+        }
+        //        [[NSManagedObjectContext MR_defaultContext]MR_saveToPersistentStoreAndWait];
+        Chat *chat = [Chat MR_findFirstByAttribute:@"user" withValue:_currentFriend];
+        if (chat == nil) {
+            chat = [Chat MR_createEntity];
+            chat.user = _currentFriend;
+        }
+        chat.unreadMessageCount = @([params[@"total"]intValue]);
+        Message *message = [[Message MR_findByAttribute:@"user" withValue:_currentFriend andOrderBy:@"messageId" ascending:YES]lastObject];
+        chat.lastMessageTime = message.createtime;
+        chat.lastMessageContent = message.content;
+        [[NSManagedObjectContext MR_defaultContext]MR_saveToPersistentStoreAndWait];
+        //发送通知通知刷新MainVC
+        [[NSNotificationCenter defaultCenter]postNotificationName:@"NewChatArrivedNotification" object:nil];
+
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"%@",error.localizedDescription);
+    }];
+}
 
 #pragma mark - Navigation
 
@@ -118,7 +179,7 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
-    if ([segue.identifier isEqualToString:@"FriendDetailSetNoteSegueIdentifier"]) {
+    if ([segue.identifier isEqualToString:@"FriendDetailSegueIdentifier"]) {
         ContactFriendDetailTableViewController *vc = [segue destinationViewController];
         [vc setCurrentFriend:_currentFriend];
     }
@@ -148,9 +209,11 @@
     [ChatAPI sendMessageWithParameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"%@",responseObject);
         NSDictionary *dataDict = [responseObject firstObject];
-        if ([dataDict[@"state"]intValue] == 1) {
-            JSQMessage *message = [[JSQMessage alloc]initWithSenderId:self.senderId senderDisplayName:self.senderDisplayName date:[NSDate date] text:text];
-            [self.modalData.messages addObject:message];
+        if ([dataDict[@"state"]intValue] == -1) {
+//            JSQMessage *message = [[JSQMessage alloc]initWithSenderId:self.senderId senderDisplayName:self.senderDisplayName date:[NSDate date] text:text];
+//            [self.modalData.messages addObject:message];
+//            [self.collectionView reloadData];
+            [self loadNewMessage];
             [self finishSendingMessage];
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {

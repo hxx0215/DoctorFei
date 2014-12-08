@@ -77,6 +77,22 @@
 //    [self.socket writeData:data withTimeout:kSendKeepAliveDuration tag:0];
 }
 
+- (void)sendCheckMessages {
+    NSDictionary *dict = @{
+                           @"sn": [DeviceUtil getUUID],
+                           @"type": @(1)
+                           };
+    NSData *data = [dict JSONData];
+    if ([self.socket isDisconnected] || !isAlive) {
+        NSLog(@"Reconnect Socket!!!");
+        [self connectSocket];
+    }
+    [self.socket writeData:data withTimeout:kSendKeepAliveDuration tag:0];
+    //    [self.socket readDataWithTimeout:-1 tag:0];
+    isAlive = NO;
+    NSLog(@"SendCheckMessages");
+}
+
 - (void)beginListen {
     if ([self.socket isDisconnected]) {
         [self connectSocket];

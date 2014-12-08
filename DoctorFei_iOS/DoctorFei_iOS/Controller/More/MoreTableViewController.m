@@ -11,7 +11,7 @@
 #import "DataUtil.h"
 #import <MBProgressHUD.h>
 @interface MoreTableViewController ()
-    <UIAlertViewDelegate>
+    <UIAlertViewDelegate, UIGestureRecognizerDelegate>
 
 - (IBAction)logoutButtonClicked:(id)sender;
 
@@ -27,6 +27,10 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    self.navigationController.interactivePopGestureRecognizer.delegate = self;
+    [self.navigationController.interactivePopGestureRecognizer setEnabled:YES];
+
+    
     
     CGRect tableViewFooterRect = self.tableView.tableFooterView.frame;
     tableViewFooterRect.size.height = 78.0f;

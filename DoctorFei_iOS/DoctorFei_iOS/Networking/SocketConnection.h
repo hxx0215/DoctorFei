@@ -17,7 +17,7 @@
 + (SocketConnection *)sharedConnection;
 
 - (void)sendKeepAlive;
-
+- (void)sendCheckMessages;
 - (void)beginListen;
 - (void)stopListen;
 

@@ -13,14 +13,17 @@
 #import "MainChatTableViewCell.h"
 #import "ContactDetailViewController.h"
 #import "Friends.h"
+#import "SocketConnection.h"
 @interface MainViewController ()
-    <UITableViewDelegate, UITableViewDataSource, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
+    <UITableViewDelegate, UITableViewDataSource, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate, UIGestureRecognizerDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *hospitalLabel;
 @property (weak, nonatomic) IBOutlet UILabel *infoLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *avatarImageView;
+- (IBAction)refreshButtonClicked:(id)sender;
+- (IBAction)userInfoButtonClicked:(id)sender;
 @end
 
 @implementation MainViewController
@@ -30,6 +33,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.navigationController.interactivePopGestureRecognizer.delegate = self;
+    [self.navigationController.interactivePopGestureRecognizer setEnabled:YES];
+
+    
     [self.tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
     
 }
@@ -37,10 +44,14 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(reloadTableViewData) name:@"NewChatArrivedNotification" object:nil];
+    if ([[NSUserDefaults standardUserDefaults]objectForKey:@"UserId"]) {
+        [[SocketConnection sharedConnection]sendCheckMessages];
+    }
+
     
     NSString *icon = [[NSUserDefaults standardUserDefaults]objectForKey:@"UserIcon"];
     if (icon && icon.length > 0) {
-        [_avatarImageView sd_setImageWithURL:[NSURL URLWithString:icon] placeholderImage:[UIImage imageNamed:@"id_example_01"]];
+        [_avatarImageView sd_setImageWithURL:[NSURL URLWithString:icon] placeholderImage:[UIImage imageNamed:@"home_user_example_pic"]];
     }
     [_nameLabel setText:[[NSUserDefaults standardUserDefaults]objectForKey:@"UserRealName"]];
     [_hospitalLabel setText:[[NSUserDefaults standardUserDefaults]objectForKey:@"UserHospital"]];
@@ -73,7 +84,13 @@
     [self.tableView reloadData];
 }
 
+- (IBAction)refreshButtonClicked:(id)sender {
+    [[SocketConnection sharedConnection]sendCheckMessages];
+}
 
+- (IBAction)userInfoButtonClicked:(id)sender {
+    [self performSegueWithIdentifier:@"UserInfoSegueIdentifier" sender:nil];
+}
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -109,4 +126,5 @@
     return emptyTitle;
 }
 #pragma mark - DZNEmptySetDelegate
+
 @end

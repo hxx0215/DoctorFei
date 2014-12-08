@@ -12,6 +12,7 @@
 #define kMethodOnline @"set.doctor.online"
 #define kMethodQRCode @"set.doctor.qrscene"
 #define kMethodFriend @"get.doctor.friend"
+#define kMethodUserNote @"set.doctor.usernote"
 
 @implementation DoctorAPI
 + (void)updateInfomationWithParameters: (id)parameters success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
@@ -34,5 +35,10 @@
 + (void)getFriendsWithParameters: (id)parameters success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
 {
     [[self sharedManager]defaultPostWithMethod:kMethodFriend WithParameters:parameters success:success failure:failure];
+}
+
++ (void)setUserNoteWithParameters: (id)parameters success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
+{
+    [[self sharedManager]defaultPostWithMethod:kMethodUserNote WithParameters:parameters success:success failure:failure];
 }
 @end

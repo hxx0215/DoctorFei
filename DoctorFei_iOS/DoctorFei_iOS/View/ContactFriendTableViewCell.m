@@ -32,10 +32,10 @@
 - (void)setDataFriend:(Friends *)dataFriend {
     _dataFriend = dataFriend;
     if (_dataFriend.icon != nil && _dataFriend.icon.length > 0) {
-        [self.avatarImageView sd_setImageWithURL:[NSURL URLWithString:_dataFriend.icon] placeholderImage:[UIImage imageNamed:@"id_example_02"]];
+        [self.avatarImageView sd_setImageWithURL:[NSURL URLWithString:_dataFriend.icon] placeholderImage:[UIImage imageNamed:@"list_user-big_example_pic"]];
     }
     else{
-        [self.avatarImageView setImage:[UIImage imageNamed:@"id_example_02"]];
+        [self.avatarImageView setImage:[UIImage imageNamed:@"list_user-big_example_pic"]];
     }
     [self.nameLabel setText:_dataFriend.realname];
 }

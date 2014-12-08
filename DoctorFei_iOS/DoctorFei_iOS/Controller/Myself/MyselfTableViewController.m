@@ -141,11 +141,11 @@
         NSUInteger sourceType = 0;
         if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
             switch (buttonIndex) {
-                case 1:
+                case 0:
                     // 相机
                     sourceType = UIImagePickerControllerSourceTypeCamera;
                     break;
-                case 2:
+                case 1:
                     // 相册
                     sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
                     break;
@@ -206,6 +206,7 @@
 {
     if (indexPath.section == 0 && indexPath.row == 0) {
         [self uploadIcon];
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
     }
     else if (indexPath.section == 0 && indexPath.row != 0) {
         [self performSegueWithIdentifier:@"MyselfBasicInfoEditSegueIdentifier" sender:nil];

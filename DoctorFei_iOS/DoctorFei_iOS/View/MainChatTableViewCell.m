@@ -40,7 +40,7 @@
     _currentChat = currentChat;
     Friends *friend = _currentChat.user;
     if (friend.icon && friend.icon.length > 0) {
-        [self.avatarImageView sd_setImageWithURL:[NSURL URLWithString:friend.icon] placeholderImage:[UIImage imageNamed:@"id_example_02"]];
+        [self.avatarImageView sd_setImageWithURL:[NSURL URLWithString:friend.icon] placeholderImage:[UIImage imageNamed:@"list_user-big_example_pic"]];
     }
 //    JSBadgeView *badgeView = [[JSBadgeView alloc]initWithParentView:self.avatarImageView alignment:JSBadgeViewAlignmentTopRight];
     if ([_currentChat.unreadMessageCount intValue] > 0) {
