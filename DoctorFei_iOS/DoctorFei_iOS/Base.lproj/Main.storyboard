@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="hjp-xA-J3Y">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="hjp-xA-J3Y">
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+        <deployment defaultVersion="1792" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -1462,6 +1462,7 @@
                                     </constraint>
                                     <constraint firstItem="KMS-0S-vlm" firstAttribute="top" secondItem="BtX-YS-6zp" secondAttribute="bottom" constant="10" id="hYO-mc-gzi"/>
                                     <constraint firstItem="jCk-gH-GpZ" firstAttribute="centerX" secondItem="BtX-YS-6zp" secondAttribute="centerX" id="lFO-BP-wgl"/>
+                                    <constraint firstItem="THR-ig-Nsd" firstAttribute="top" secondItem="KMS-0S-vlm" secondAttribute="bottom" constant="60" id="osB-FU-v3N"/>
                                     <constraint firstItem="Bdh-dO-Ftr" firstAttribute="centerX" secondItem="KMS-0S-vlm" secondAttribute="centerX" id="sNp-5m-F3K"/>
                                     <constraint firstItem="1NE-y6-hVk" firstAttribute="trailing" secondItem="KMS-0S-vlm" secondAttribute="trailing" id="umm-61-29T"/>
                                     <constraint firstItem="1NE-y6-hVk" firstAttribute="top" secondItem="KMS-0S-vlm" secondAttribute="bottom" constant="8" symbolic="YES" id="urB-4n-JCa">
@@ -1481,6 +1482,12 @@
                                         <exclude reference="Bdh-dO-Ftr"/>
                                     </mask>
                                     <mask key="constraints">
+                                        <exclude reference="EDZ-L8-IfL"/>
+                                        <exclude reference="Fl0-fq-dWv"/>
+                                        <exclude reference="NUM-cY-D5n"/>
+                                        <exclude reference="T02-iC-pkB"/>
+                                        <exclude reference="Ql6-eW-DPe"/>
+                                        <exclude reference="lFO-BP-wgl"/>
                                         <exclude reference="0J8-xJ-BjI"/>
                                         <exclude reference="HnD-DN-bpj"/>
                                         <exclude reference="b3d-3z-cIR"/>
@@ -1488,19 +1495,14 @@
                                         <exclude reference="KRJ-h9-3VW"/>
                                         <exclude reference="hYO-mc-gzi"/>
                                         <exclude reference="yU4-mA-4QX"/>
+                                        <exclude reference="f4k-fX-CMI"/>
+                                        <exclude reference="sNp-5m-F3K"/>
                                         <exclude reference="umm-61-29T"/>
                                         <exclude reference="urB-4n-JCa"/>
                                         <exclude reference="0Gg-tu-39d"/>
                                         <exclude reference="QGM-zx-LJY"/>
                                         <exclude reference="82R-HT-v9f"/>
-                                        <exclude reference="f4k-fX-CMI"/>
-                                        <exclude reference="sNp-5m-F3K"/>
-                                        <exclude reference="EDZ-L8-IfL"/>
-                                        <exclude reference="Fl0-fq-dWv"/>
-                                        <exclude reference="NUM-cY-D5n"/>
-                                        <exclude reference="T02-iC-pkB"/>
-                                        <exclude reference="Ql6-eW-DPe"/>
-                                        <exclude reference="lFO-BP-wgl"/>
+                                        <exclude reference="osB-FU-v3N"/>
                                     </mask>
                                 </variation>
                                 <variation key="heightClass=regular-widthClass=compact">
@@ -1515,6 +1517,12 @@
                                         <include reference="Bdh-dO-Ftr"/>
                                     </mask>
                                     <mask key="constraints">
+                                        <include reference="EDZ-L8-IfL"/>
+                                        <include reference="Fl0-fq-dWv"/>
+                                        <include reference="NUM-cY-D5n"/>
+                                        <include reference="T02-iC-pkB"/>
+                                        <include reference="Ql6-eW-DPe"/>
+                                        <include reference="lFO-BP-wgl"/>
                                         <include reference="0J8-xJ-BjI"/>
                                         <include reference="HnD-DN-bpj"/>
                                         <include reference="b3d-3z-cIR"/>
@@ -1522,19 +1530,14 @@
                                         <include reference="KRJ-h9-3VW"/>
                                         <include reference="hYO-mc-gzi"/>
                                         <include reference="yU4-mA-4QX"/>
+                                        <include reference="f4k-fX-CMI"/>
+                                        <include reference="sNp-5m-F3K"/>
                                         <include reference="umm-61-29T"/>
                                         <include reference="urB-4n-JCa"/>
                                         <include reference="0Gg-tu-39d"/>
                                         <include reference="QGM-zx-LJY"/>
                                         <include reference="82R-HT-v9f"/>
-                                        <include reference="f4k-fX-CMI"/>
-                                        <include reference="sNp-5m-F3K"/>
-                                        <include reference="EDZ-L8-IfL"/>
-                                        <include reference="Fl0-fq-dWv"/>
-                                        <include reference="NUM-cY-D5n"/>
-                                        <include reference="T02-iC-pkB"/>
-                                        <include reference="Ql6-eW-DPe"/>
-                                        <include reference="lFO-BP-wgl"/>
+                                        <include reference="osB-FU-v3N"/>
                                     </mask>
                                 </variation>
                             </view>
@@ -3879,6 +3882,9 @@
                                 </state>
                                 <variation key="heightClass=compact-widthClass=compact" ambiguous="YES">
                                     <rect key="frame" x="86" y="179" width="228" height="18"/>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="86" y="288" width="227" height="38"/>
                                 </variation>
                                 <connections>
                                     <action selector="updateButtonClicked:" destination="uaT-mB-nYo" eventType="touchUpInside" id="9cb-u2-xol"/>
