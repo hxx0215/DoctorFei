@@ -13,6 +13,7 @@
 #define kMethodQRCode @"set.doctor.qrscene"
 #define kMethodFriend @"get.doctor.friend"
 #define kMethodUserNote @"set.doctor.usernote"
+#define kMethodUploadImage @"set.picture.add"
 
 @implementation DoctorAPI
 + (void)updateInfomationWithParameters: (id)parameters success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
@@ -41,4 +42,10 @@
 {
     [[self sharedManager]defaultPostWithMethod:kMethodUserNote WithParameters:parameters success:success failure:failure];
 }
+
++ (void)uploadImageWithParameters: (id)parameters success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
+{
+    [[self sharedManager]defaultPostWithMethod:kMethodUploadImage WithParameters:parameters success:success failure:failure];
+}
+
 @end

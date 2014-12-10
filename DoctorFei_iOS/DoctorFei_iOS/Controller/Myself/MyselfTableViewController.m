@@ -15,6 +15,7 @@
 #import <MBProgressHUD.h>
 #import "DoctorAPI.h"
 #import <UIImageView+WebCache.h>
+#import "ImageUtil.h"
 
 @interface MyselfTableViewController ()<UINavigationControllerDelegate,UIImagePickerControllerDelegate,UIActionSheetDelegate>
 
@@ -122,6 +123,10 @@
     }];
 }
 
+- (void)uploadImage: (UIImage *)image {
+    
+}
+
 - (void)uploadIcon{
     
     UIActionSheet *sheet;
@@ -175,6 +180,7 @@
     [picker dismissViewControllerAnimated:YES completion:^{
         if(image)
         {
+            UIImage *cropImage = [ImageUtil imageWithImage:image scaledToSize:CGSizeMake(72.0f, 72.0f)];
             [self updateInfo];
         }
     }];

@@ -3902,7 +3902,87 @@
                     <view key="view" contentMode="scaleToFill" id="28U-Rv-wKq">
                         <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="费医生1.0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xNT-y8-7Jr">
+                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="75" id="SiK-BZ-lQQ"/>
+                                    <constraint firstAttribute="height" constant="21" id="leh-W4-uAs"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="SiK-BZ-lQQ"/>
+                                        <exclude reference="leh-W4-uAs"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="SiK-BZ-lQQ"/>
+                                        <include reference="leh-W4-uAs"/>
+                                    </mask>
+                                </variation>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cUO-jp-Q2f">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="323" id="IZH-Yc-9dp"/>
+                                </constraints>
+                                <string key="text">    费医生是有关治疗呼吸疾病的专业性App。它发布我国医师行业组织的权威信息，为全国200万执业医师和助理执业医师提供准确、实用、及时的服务信息。
+    APP使用中文语言。涉及执业医师教育培训、考核考试、自律维权、执业精神、医学人文、医师宣言等内容，拥有医师微博、留言板、文章评论等交流平台。
+    近年来，费医生依托信息网络中心的技术支持，开展网络视频、网络直播形式参与重大活动报道，影响大，效果好，深受广大医师以及各界好评。</string>
+                                <color key="textColor" red="0.64313725489999995" green="0.64313725489999995" blue="0.64313725489999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="IZH-Yc-9dp"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="IZH-Yc-9dp"/>
+                                    </mask>
+                                </variation>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.93333333330000001" green="0.93333333330000001" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="xNT-y8-7Jr" firstAttribute="top" secondItem="1Vj-fI-0Fg" secondAttribute="bottom" constant="20" id="7Li-aO-xG8"/>
+                            <constraint firstItem="cUO-jp-Q2f" firstAttribute="top" secondItem="xNT-y8-7Jr" secondAttribute="bottom" constant="10" id="GWf-Mc-IMn"/>
+                            <constraint firstItem="xNT-y8-7Jr" firstAttribute="leading" secondItem="28U-Rv-wKq" secondAttribute="leading" constant="20" id="cAG-oW-7JU"/>
+                            <constraint firstAttribute="trailing" secondItem="cUO-jp-Q2f" secondAttribute="trailing" constant="16" id="cWR-rB-ZPK"/>
+                            <constraint firstItem="cUO-jp-Q2f" firstAttribute="leading" secondItem="28U-Rv-wKq" secondAttribute="leading" constant="16" id="deX-f1-Qmx"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="xNT-y8-7Jr"/>
+                                <exclude reference="cUO-jp-Q2f"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="7Li-aO-xG8"/>
+                                <exclude reference="cAG-oW-7JU"/>
+                                <exclude reference="GWf-Mc-IMn"/>
+                                <exclude reference="cWR-rB-ZPK"/>
+                                <exclude reference="deX-f1-Qmx"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular-widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="xNT-y8-7Jr"/>
+                                <include reference="cUO-jp-Q2f"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="7Li-aO-xG8"/>
+                                <include reference="cAG-oW-7JU"/>
+                                <include reference="GWf-Mc-IMn"/>
+                                <include reference="cWR-rB-ZPK"/>
+                                <include reference="deX-f1-Qmx"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" title="关于我们" id="e5y-eA-M2l">
                         <barButtonItem key="leftBarButtonItem" image="return.png" id="3Lp-Tw-3Lo">

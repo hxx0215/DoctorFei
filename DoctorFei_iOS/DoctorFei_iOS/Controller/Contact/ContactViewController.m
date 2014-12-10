@@ -15,6 +15,7 @@
 #import "ContactDetailViewController.h"
 #import "Friends+PinYinUtil.h"
 #import "Chat.h"
+#import "Message.h"
 @interface ContactViewController ()
     <UITableViewDelegate, UITableViewDataSource, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate, UIActionSheetDelegate, UIGestureRecognizerDelegate, UISearchDisplayDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -24,6 +25,7 @@
 {
     NSArray *friendArray, *tableViewDataArray;
     NSMutableArray *searchResultArray;
+    NSIndexPath *currentIndexPath;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -142,7 +144,8 @@
         NSLog(@"UIGestureRecognizerStateBegan");
         CGPoint ponit=[gestureRecognizer locationInView:self.tableView];
         NSIndexPath* path=[self.tableView indexPathForRowAtPoint:ponit];
-        NSLog(@"row:%ld",(long)path.row);
+        currentIndexPath = path;
+//        NSLog(@"row:%ld",(long)path.row);
         UIActionSheet *sheet  = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"删除好友",@"清空聊天记录", nil];
         sheet.tag = 123;
 //        [sheet showInView:self.view];
@@ -247,6 +250,20 @@
     }
     else if (buttonIndex == 1) {
         //TODO 清空聊天记录
+        Friends *friend = tableViewDataArray[currentIndexPath.section][currentIndexPath.row];
+        Chat *chat = [Chat MR_findFirstByAttribute:@"user" withValue:friend];
+        if (chat) {
+            [chat MR_deleteEntity];
+        }
+        NSArray *messageArray = [Message MR_findByAttribute:@"user" withValue:friend];
+        for (Message *message in messageArray) {
+            [message MR_deleteEntity];
+        }
+        [[NSManagedObjectContext MR_defaultContext]MR_saveToPersistentStoreAndWait];
+        MBProgressHUD *deleteHud = [MBProgressHUD showHUDAddedTo:self.view.window animated:YES];
+        deleteHud.mode = MBProgressHUDModeText;
+        deleteHud.labelText = @"聊天记录已清除";
+        [deleteHud hide:YES afterDelay:1.0f];
     }
 }
 
