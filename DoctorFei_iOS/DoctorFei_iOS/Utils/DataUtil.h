@@ -11,4 +11,5 @@
 @interface DataUtil : NSObject
 
 + (void)cleanUserDefault;
++ (NSDate *)dateaFromFormatedString : (NSString *)formatedString;
 @end

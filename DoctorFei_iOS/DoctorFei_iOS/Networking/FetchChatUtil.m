@@ -12,6 +12,7 @@
 #import "Chat.h"
 #import "Friends.h"
 #import "UserAPI.h"
+#import "DataUtil.h"
 @implementation FetchChatUtil
 
 + (void)fetchChatWithParmas: (NSDictionary *)params {
@@ -67,7 +68,8 @@
                 message.messageId = dict[@"id"];
             }
             message.content = dict[@"content"];
-            message.createtime = [NSDate dateWithTimeIntervalSince1970:[dict[@"createtime"]intValue]];
+//            message.createtime = [NSDate dateWithTimeIntervalSince1970:[dict[@"createtime"]intValue]];
+            message.createtime = [DataUtil dateaFromFormatedString:dict[@"createtime"]];
             message.flag = @([dict[@"flag"]intValue]);
             message.msgType = dict[@"msgtype"];
             message.user = messageFriend;

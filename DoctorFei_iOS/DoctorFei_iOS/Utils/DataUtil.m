@@ -29,4 +29,10 @@
     [[NSManagedObjectContext MR_defaultContext]MR_saveToPersistentStoreAndWait];
 }
 
++ (NSDate *)dateaFromFormatedString : (NSString *)formatedString {
+    NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+    formatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
+    return [formatter dateFromString:formatedString];
+}
+
 @end

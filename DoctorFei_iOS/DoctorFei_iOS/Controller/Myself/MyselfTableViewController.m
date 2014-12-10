@@ -35,6 +35,7 @@
 {
     NSArray *basicInfoArray;
     NSString *icon, *name, *hospital, *department, *jobTitle, *email, *introduction;
+    MBProgressHUD *hud;
 }
 
 - (void)viewDidLoad {
@@ -89,23 +90,23 @@
 
 #pragma mark - updateHeadimage
 
-- (void)updateInfo {
+- (void)updateInfoWithURLString: (NSString *)urlString {
     
-    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view.window animated:YES];
-    hud.dimBackground = YES;
+//    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view.window animated:YES];
+//    hud.dimBackground = YES;
     [hud setLabelText:@"修改申请中..."];
     NSNumber *currentUserId = [[NSUserDefaults standardUserDefaults]objectForKey:@"UserId"];
-    NSString *currentInfo = @"";
+//    NSString *currentInfo = @"";
     NSDictionary *params = @{
                              @"doctorid": currentUserId,
-                             @"headimage": currentInfo
+                             @"headimage": urlString
                              };
     [DoctorAPI updateInfomationWithParameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSDictionary *dataDict = [responseObject firstObject];
         hud.mode = MBProgressHUDModeText;
         if ([dataDict[@"state"]intValue] == 1) {
             hud.labelText = @"修改成功";
-            [[NSUserDefaults standardUserDefaults]setObject:currentInfo forKey:@"headimage"];
+            [[NSUserDefaults standardUserDefaults]setObject:urlString forKey:@"UserIcon"];
             [[NSUserDefaults standardUserDefaults]synchronize];
             [self.navigationController popViewControllerAnimated:YES];
         }
@@ -124,7 +125,30 @@
 }
 
 - (void)uploadImage: (UIImage *)image {
-    
+    hud = [MBProgressHUD showHUDAddedTo:self.view.window animated:YES];
+    hud.dimBackground = YES;
+    [hud setLabelText:@"图片上传中..."];
+    NSDictionary *params = @{
+                             @"picturename": [NSString stringWithFormat:@"%d.jpg", (int)[[NSDate date] timeIntervalSince1970]],
+                             @"img": [UIImageJPEGRepresentation(image, 0.5) base64EncodedStringWithOptions:0]
+                             };
+    [DoctorAPI uploadImageWithParameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSDictionary *dataDict = [responseObject firstObject];
+        NSString *urlString = dataDict[@"url"];
+        if (urlString && urlString.length > 0) {
+            [self updateInfoWithURLString:urlString];
+        }
+        else{
+            hud.mode = MBProgressHUDModeText;
+            hud.labelText = @"图片上传失败";
+            hud.detailsLabelText = dataDict[@"error"];
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        hud.mode = MBProgressHUDModeText;
+        hud.labelText = @"错误";
+        hud.detailsLabelText = error.localizedDescription;
+        [hud hide:YES afterDelay:1.5f];
+    }];
 }
 
 - (void)uploadIcon{
@@ -181,7 +205,8 @@
         if(image)
         {
             UIImage *cropImage = [ImageUtil imageWithImage:image scaledToSize:CGSizeMake(72.0f, 72.0f)];
-            [self updateInfo];
+//            [self updateInfo];
+            [self uploadImage:cropImage];
         }
     }];
     

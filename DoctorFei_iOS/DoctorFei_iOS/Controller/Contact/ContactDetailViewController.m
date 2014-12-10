@@ -15,6 +15,7 @@
 #import "MessagesModalData.h"
 #import <SDWebImageManager.h>
 #import "ChatAPI.h"
+#import "DataUtil.h"
 @interface ContactDetailViewController ()
 - (IBAction)backButtonClicked:(id)sender;
 @property (nonatomic, strong) MessagesModalData *modalData;
@@ -151,7 +152,8 @@
                 message.messageId = dict[@"id"];
             }
             message.content = dict[@"content"];
-            message.createtime = [NSDate dateWithTimeIntervalSince1970:[dict[@"createtime"]intValue]];
+//            message.createtime = [NSDate dateWithTimeIntervalSince1970:[dict[@"createtime"]intValue]];
+            message.createtime = [DataUtil dateaFromFormatedString:dict[@"createtime"]];
             message.flag = @([dict[@"flag"]intValue]);
             message.msgType = dict[@"msgtype"];
             message.user = _currentFriend;
