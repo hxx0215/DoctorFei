@@ -1474,6 +1474,23 @@
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="line.png" translatesAutoresizingMaskIntoConstraints="NO" id="Bdh-dO-Ftr">
                                         <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                     </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RWc-Ae-nKW">
+                                        <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <inset key="titleEdgeInsets" minX="7" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <inset key="imageEdgeInsets" minX="-3" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" title="记住密码" image="choice box.png">
+                                            <color key="titleColor" red="0.64313725489999995" green="0.64313725489999995" blue="0.64313725489999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="selected" image="choice box_after.png"/>
+                                        <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                            <rect key="frame" x="20" y="215" width="82" height="17"/>
+                                        </variation>
+                                        <connections>
+                                            <action selector="autoLoginButtonClicked:" destination="2fQ-5X-qoq" eventType="touchUpInside" id="TOx-g6-Usr"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -1515,6 +1532,7 @@
                                         <exclude reference="THR-ig-Nsd"/>
                                         <exclude reference="1NE-y6-hVk"/>
                                         <exclude reference="Bdh-dO-Ftr"/>
+                                        <exclude reference="RWc-Ae-nKW"/>
                                     </mask>
                                     <mask key="constraints">
                                         <exclude reference="0J8-xJ-BjI"/>
@@ -1550,6 +1568,7 @@
                                         <include reference="THR-ig-Nsd"/>
                                         <include reference="1NE-y6-hVk"/>
                                         <include reference="Bdh-dO-Ftr"/>
+                                        <include reference="RWc-Ae-nKW"/>
                                     </mask>
                                     <mask key="constraints">
                                         <include reference="0J8-xJ-BjI"/>
@@ -1617,6 +1636,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="yhn-OW-jpE"/>
                     <connections>
+                        <outlet property="autoLoginButton" destination="RWc-Ae-nKW" id="lDU-Sf-hCH"/>
                         <outlet property="loginBackgroundImageView" destination="IB6-FZ-Kho" id="5yL-fi-xBG"/>
                         <outlet property="loginButton" destination="FtN-zH-IqE" id="I71-7M-e8z"/>
                         <outlet property="passwordTextField" destination="KMS-0S-vlm" id="K8A-Ft-A0I"/>
@@ -4234,6 +4254,8 @@
         <image name="button_sign-in_after.png" width="88" height="30"/>
         <image name="button_verification-code.png" width="77" height="31"/>
         <image name="button_verification-code_after.png" width="77" height="31"/>
+        <image name="choice box.png" width="15" height="15"/>
+        <image name="choice box_after.png" width="15" height="15"/>
         <image name="details_uers_example_pic.png" width="44" height="44"/>
         <image name="home_bg.png" width="320" height="129"/>
         <image name="home_user_example_pic.png" width="72" height="72"/>

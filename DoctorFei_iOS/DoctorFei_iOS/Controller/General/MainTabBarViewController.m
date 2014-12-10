@@ -30,10 +30,21 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    [self checkLoginState];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(checkLoginState) name:UIApplicationWillEnterForegroundNotification object:nil];
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+    [[NSNotificationCenter defaultCenter]removeObserver:self];
+}
+
+- (void)checkLoginState {
     if ([[NSUserDefaults standardUserDefaults]objectForKey:@"UserId"] == nil) {
         [self performSegueWithIdentifier:@"LoginSegueIdentifier" sender:nil];
     }
 }
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

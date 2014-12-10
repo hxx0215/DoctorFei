@@ -14,6 +14,7 @@
 #import "SetOnlineStateUtil.h"
 #import "MobileAPI.h"
 #import "SocketConnection.h"
+#import "DataUtil.h"
 @interface AppDelegate ()
 
 @end
@@ -71,6 +72,9 @@
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
     [SetOnlineStateUtil offline];
     [[SocketConnection sharedConnection]stopListen];
+    if (![[[NSUserDefaults standardUserDefaults]objectForKey:@"IsAutoLogin"]boolValue]) {
+        [DataUtil cleanUserDefault];
+    }
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {

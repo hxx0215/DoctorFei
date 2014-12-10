@@ -20,6 +20,8 @@
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
 @property (weak, nonatomic) IBOutlet UIButton *loginButton;
 - (IBAction)loginButtonClicked:(id)sender;
+@property (weak, nonatomic) IBOutlet UIButton *autoLoginButton;
+- (IBAction)autoLoginButtonClicked:(id)sender;
 
 @end
 
@@ -90,6 +92,12 @@
         if ([dataDict[@"state"]intValue] == 1) {
 //            hud.labelText = dataDict[@"msg"];
             [hud hide:YES];
+            if ([self.autoLoginButton isSelected]) {
+                [[NSUserDefaults standardUserDefaults] setObject:@(YES) forKey:@"IsAutoLogin"];
+            }
+            else{
+                [[NSUserDefaults standardUserDefaults] setObject:@(NO) forKey:@"IsAutoLogin"];
+            }
             [[NSUserDefaults standardUserDefaults] setObject:dataDict[@"userId"] forKey:@"UserId"];
             [[NSUserDefaults standardUserDefaults] setObject:dataDict[@"icon"] forKey:@"UserIcon"];
             [[NSUserDefaults standardUserDefaults] setObject:dataDict[@"RealName"] forKey:@"UserRealName"];
@@ -116,5 +124,13 @@
     }];
     
 //    [self dismissViewControllerAnimated:YES completion:nil];
+}
+- (IBAction)autoLoginButtonClicked:(id)sender {
+    if ([self.autoLoginButton isSelected]) {
+        [self.autoLoginButton setSelected:NO];
+    }
+    else{
+        [self.autoLoginButton setSelected:YES];
+    }
 }
 @end
