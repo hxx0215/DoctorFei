@@ -122,10 +122,17 @@
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
     if ([segue.identifier isEqualToString:@"ContactDetailSegueIdentifier"]) {
-        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         ContactDetailViewController *vc = [segue destinationViewController];
-        [vc setCurrentFriend:friendArray[indexPath.row]];
-        [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+        NSIndexPath *indexPath = [self.searchDisplayController.searchResultsTableView indexPathForCell:(UITableViewCell *)sender];
+        if (indexPath != nil) {
+            [vc setCurrentFriend:searchResultArray[indexPath.row]];
+            [self.searchDisplayController setActive:NO];
+        }
+        else {
+            indexPath = [self.tableView indexPathForCell:(UITableViewCell *)sender];
+            [vc setCurrentFriend:tableViewDataArray[indexPath.section][indexPath.row]];
+        }
+//        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
     }
 }
 
@@ -219,6 +226,10 @@
 #pragma mark - UITableView Delegate
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 65.0f;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 #pragma mark - DZNEmptyDataSetSource
