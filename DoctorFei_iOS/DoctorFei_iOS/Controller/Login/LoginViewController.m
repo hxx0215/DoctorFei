@@ -39,6 +39,20 @@
 {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES animated:YES];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *autoLoginUserName = [defaults objectForKey:@"autoLoginUserName"] ? [defaults objectForKey:@"autoLoginUserName"]: @"";
+    NSString *autoLoginPassword = [defaults objectForKey:@"autoLoginPassword"] ? [defaults objectForKey:@"autoLoginPassword"]: @"";
+    self.autoLoginButton.selected = [[defaults objectForKey:@"IsAutoLogin"] boolValue];
+    if (!autoLoginPassword || !autoLoginUserName){
+        [defaults setObject:@"" forKey:@"autoLoginUserName"];
+        [defaults setObject:@"" forKey:@"autoLoginPassword"];
+        [defaults synchronize];
+    }else
+    {
+        self.loginButton.enabled = YES;
+    }
+    self.phoneTextField.text = self.autoLoginButton.selected ? autoLoginUserName :@"";
+    self.passwordTextField.text = self.autoLoginButton.selected ? autoLoginPassword :@"";
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -75,6 +89,14 @@
 - (IBAction)loginButtonClicked:(id)sender {
 
 //    NSLog(@"%@",[APService registrationID]);
+    if (self.autoLoginButton.selected)
+    {
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        [defaults setObject:self.phoneTextField.text forKey:@"autoLoginUserName"];
+        [defaults setObject:self.passwordTextField.text forKey:@"autoLoginPassword"];
+        [defaults synchronize];
+    }
+    
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view.window animated:YES];
     hud.dimBackground = YES;
     [hud setLabelText:@"登录中..."];
