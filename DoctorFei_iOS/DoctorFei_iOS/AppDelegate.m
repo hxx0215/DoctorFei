@@ -8,7 +8,7 @@
 
 #import "AppDelegate.h"
 #import "AFNetworkActivityIndicatorManager.h"
-//#import "APService.h"
+#import "APService.h"
 #import <CoreData+MagicalRecord.h>
 #import "DeviceUtil.h"
 #import "SetOnlineStateUtil.h"
@@ -32,7 +32,7 @@
     [MagicalRecord setupCoreDataStackWithStoreNamed:@"DoctorFei.sqlite"];
     
     [AFNetworkActivityIndicatorManager sharedManager].enabled = YES;
-/*
+    
     
     // Required
 #if __IPHONE_OS_VERSION_MAX_ALLOWED > __IPHONE_7_1
@@ -53,7 +53,7 @@
     // Required
     [APService setupWithOption:launchOptions];
 //    [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
-    */
+    
     [SetOnlineStateUtil online];
     [self setPushUser];
     [[SocketConnection sharedConnection]beginListen];
@@ -95,28 +95,22 @@
 }
 
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
-    /*
     [APService registerDeviceToken:deviceToken];
     //使用UUID设置别名
     [APService setAlias: [DeviceUtil getUUID] callbackSelector:@selector(tagsAliasCallback:tags:alias:) object:self];
-     */
 }
 
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
-    /*
     [APService handleRemoteNotification:userInfo];
-     */
 }
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
-    /*
     [APService handleRemoteNotification:userInfo];
     completionHandler(UIBackgroundFetchResultNewData);
-     */
 }
 
-/*
+
 - (void)tagsAliasCallback:(int)iResCode tags:(NSSet *)tags alias:(NSString *)alias {
     NSString *callbackString = [NSString stringWithFormat:@"%d, alias: %@\n", iResCode, alias];
     NSLog(@"TagsAlias回调:%@", callbackString);
@@ -124,7 +118,7 @@
         NSLog(@"注册别名失败");
     }
 }
-*/
+
 - (void)setPushUser {
     NSDictionary *params = @{
                              @"sn": [DeviceUtil getUUID],
