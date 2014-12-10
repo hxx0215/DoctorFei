@@ -183,7 +183,7 @@ static const NSTimeInterval kDuration = 60;
         hud.mode = MBProgressHUDModeText;
         if ([dataDict[@"state"]intValue] == 1) {
             hud.labelText = dataDict[@"msg"];
-            currentUserId = [dataDict[@"userId"]intValue];
+            currentUserId = [dataDict[@"userid"]intValue];
             [self performSegueWithIdentifier:@"RegisterNextSegueIdentifier" sender:nil];
         }
         else{

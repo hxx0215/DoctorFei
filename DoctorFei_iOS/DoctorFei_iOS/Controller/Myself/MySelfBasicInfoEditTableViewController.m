@@ -6,7 +6,7 @@
 //
 //
 
-#define kUserDefaultKeyDict @{@"headimage": @"UserIcon", @"realname": @"UserRealName", @"hospital": @"UserHospital", @"department": @"UserDepartment", @"jottitle": @"UserJobTitle", @"email": @"UserEmail"}
+#define kUserDefaultKeyDict @{@"headimage": @"UserIcon", @"realname": @"UserRealName", @"hospital": @"UserHospital", @"department": @"UserDepartment", @"jobtitle": @"UserJobTitle", @"email": @"UserEmail"}
 
 #import "MySelfBasicInfoEditTableViewController.h"
 #import <ReactiveCocoa.h>

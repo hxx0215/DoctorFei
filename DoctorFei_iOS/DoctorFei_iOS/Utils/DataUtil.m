@@ -7,7 +7,9 @@
 //
 
 #import "DataUtil.h"
-
+#import "Friends.h"
+#import "Chat.h"
+#import "Message.h"
 @implementation DataUtil
 
 + (void)cleanUserDefault
@@ -21,6 +23,10 @@
     [[NSUserDefaults standardUserDefaults]removeObjectForKey:@"UserEmail"];
     [[NSUserDefaults standardUserDefaults]removeObjectForKey:@"UserOtherContact"];
     [[NSUserDefaults standardUserDefaults]synchronize];
+    [Friends MR_truncateAll];
+    [Chat MR_truncateAll];
+    [Message MR_truncateAll];
+    [[NSManagedObjectContext MR_defaultContext]MR_saveToPersistentStoreAndWait];
 }
 
 @end

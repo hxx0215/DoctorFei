@@ -10,9 +10,11 @@
 #import <UIScrollView+EmptyDataSet.h>
 #import "DoctorAPI.h"
 #import <MBProgressHUD.h>
-#import "Friends.h"
+//#import "Friends.h"
 #import "ContactFriendTableViewCell.h"
 #import "ContactDetailViewController.h"
+#import "Friends+PinYinUtil.h"
+#import "Chat.h"
 @interface ContactViewController ()
     <UITableViewDelegate, UITableViewDataSource, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate, UIActionSheetDelegate, UIGestureRecognizerDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -20,7 +22,7 @@
 
 @implementation ContactViewController
 {
-    NSArray *friendArray;
+    NSArray *friendArray, *tableViewDataArray;
     NSMutableArray *searchResultArray;
 }
 - (void)viewDidLoad {
@@ -33,14 +35,19 @@
     searchResultArray = [NSMutableArray array];
     
     [self.tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
-    [self fetchFriend];
-    [self reloadTableViewData];
+    [self.tableView setSectionIndexColor:[UIColor blackColor]];
     
     UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc]
                  initWithTarget:self
                  action:@selector(tableviewCellLongPressed:)];
     longPress.minimumPressDuration = 1.0;
     [self.tableView addGestureRecognizer:longPress];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self fetchFriend];
+    [self reloadTableViewData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -50,6 +57,28 @@
 
 - (void)reloadTableViewData {
     friendArray = [Friends MR_findAll];
+    
+    NSInteger sectionTitlesCount = [[[UILocalizedIndexedCollation currentCollation] sectionTitles] count];
+    
+    NSMutableArray *mutableSections = [[NSMutableArray alloc]initWithCapacity:sectionTitlesCount];
+    for (int i = 0 ; i < sectionTitlesCount; i ++) {
+        [mutableSections addObject:[NSMutableArray array]];
+    }
+    for (Friends *friend in friendArray) {
+        NSInteger sectionNumber = [[UILocalizedIndexedCollation currentCollation]sectionForObject:friend collationStringSelector:@selector(getFirstCharPinYin)];
+        NSMutableArray *section = mutableSections[sectionNumber];
+        [section addObject:friend];
+    }
+    
+    for (int i = 0; i < sectionTitlesCount; i ++) {
+        NSArray *sortedArrayForSection = [[UILocalizedIndexedCollation currentCollation]sortedArrayFromArray:mutableSections[i] collationStringSelector:@selector(getFirstCharPinYin)];
+        mutableSections[i] = sortedArrayForSection;
+    }
+    
+    
+    
+    tableViewDataArray = mutableSections;
+    
     [self.tableView reloadData];
 }
 
@@ -124,11 +153,16 @@
 }
 
 #pragma mark - UITableView DataSource
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return tableViewDataArray.count;
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (tableView == self.searchDisplayController.searchResultsTableView) {
         return searchResultArray.count;
     }
-    return friendArray.count;
+    return [tableViewDataArray[section] count];
+//    return friendArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -137,9 +171,32 @@
     }
     static NSString *ContactFriendCellIdentifier = @"ContactFriendCellIdentifier";
     ContactFriendTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ContactFriendCellIdentifier forIndexPath:indexPath];
-    [cell setDataFriend:friendArray[indexPath.row]];
+    [cell setDataFriend:tableViewDataArray[indexPath.section][indexPath.row]];
+//    [cell setDataFriend:friendArray[indexPath.row]];
     return cell;
 
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    if ([tableViewDataArray[section] count] > 0) {
+        [[[UILocalizedIndexedCollation currentCollation]sectionTitles]objectAtIndex:section];
+    }
+    return nil;
+}
+
+- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView {
+    NSMutableArray *existTitles = [NSMutableArray array];
+    NSArray *allTitles = [[UILocalizedIndexedCollation currentCollation]sectionIndexTitles];
+    for (int i = 0 ; i < allTitles.count; i ++) {
+        if ([tableViewDataArray[i] count] > 0) {
+            [existTitles addObject:allTitles[i]];
+        }
+    }
+    return existTitles;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index {
+    return [[UILocalizedIndexedCollation currentCollation] sectionForSectionIndexTitle:title atIndex:index];
 }
 
 #pragma mark - UITableView Delegate
@@ -154,4 +211,14 @@
     return emptyTitle;
 }
 #pragma mark - DZNEmptySetDelegate
+
+#pragma mark - UIActionSheet Delegate
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == 0) {
+        //TODO  删除好友
+    }
+    else if (buttonIndex == 1) {
+        //TODO 清空聊天记录
+    }
+}
 @end

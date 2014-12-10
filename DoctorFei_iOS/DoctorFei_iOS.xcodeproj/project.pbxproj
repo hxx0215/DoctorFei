@@ -63,6 +63,8 @@
 		6AB359B11A2B5758008C48B4 /* BaseHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AB359B01A2B5758008C48B4 /* BaseHTTPRequestOperationManager.m */; };
 		6AB359B71A2B638C008C48B4 /* RegisterAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AB359B61A2B638C008C48B4 /* RegisterAPI.m */; };
 		6AB359BA1A2B6C3B008C48B4 /* DeviceUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AB359B91A2B6C3B008C48B4 /* DeviceUtil.m */; };
+		6AB8B0981A3742A200866281 /* pinyin.c in Sources */ = {isa = PBXBuildFile; fileRef = 6AB8B0961A3742A200866281 /* pinyin.c */; };
+		6AB8B09B1A3747EA00866281 /* Friends+PinYinUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AB8B09A1A3747EA00866281 /* Friends+PinYinUtil.m */; };
 		6AC341FA1A35E81200DFCD16 /* details_uers_example_pic.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AC341F71A35E81200DFCD16 /* details_uers_example_pic.png */; };
 		6AC341FB1A35E81200DFCD16 /* details_uers_example_pic@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AC341F81A35E81200DFCD16 /* details_uers_example_pic@2x.png */; };
 		6AC341FC1A35E81200DFCD16 /* details_uers_example_pic@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AC341F91A35E81200DFCD16 /* details_uers_example_pic@3x.png */; };
@@ -383,6 +385,10 @@
 		6AB359B81A2B6C3B008C48B4 /* DeviceUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceUtil.h; sourceTree = "<group>"; };
 		6AB359B91A2B6C3B008C48B4 /* DeviceUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceUtil.m; sourceTree = "<group>"; };
 		6AB359BB1A2B6C93008C48B4 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		6AB8B0961A3742A200866281 /* pinyin.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pinyin.c; sourceTree = "<group>"; };
+		6AB8B0971A3742A200866281 /* pinyin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pinyin.h; sourceTree = "<group>"; };
+		6AB8B0991A3747EA00866281 /* Friends+PinYinUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Friends+PinYinUtil.h"; sourceTree = "<group>"; };
+		6AB8B09A1A3747EA00866281 /* Friends+PinYinUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Friends+PinYinUtil.m"; sourceTree = "<group>"; };
 		6AC341F71A35E81200DFCD16 /* details_uers_example_pic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = details_uers_example_pic.png; sourceTree = "<group>"; };
 		6AC341F81A35E81200DFCD16 /* details_uers_example_pic@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "details_uers_example_pic@2x.png"; sourceTree = "<group>"; };
 		6AC341F91A35E81200DFCD16 /* details_uers_example_pic@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "details_uers_example_pic@3x.png"; sourceTree = "<group>"; };
@@ -740,6 +746,8 @@
 				6A5DC5F21A3317FE00961E53 /* Chat.m */,
 				6A5DC5FA1A332DF200961E53 /* MessagesModalData.h */,
 				6A5DC5FB1A332DF200961E53 /* MessagesModalData.m */,
+				6AB8B0991A3747EA00866281 /* Friends+PinYinUtil.h */,
+				6AB8B09A1A3747EA00866281 /* Friends+PinYinUtil.m */,
 			);
 			path = Modal;
 			sourceTree = "<group>";
@@ -990,6 +998,8 @@
 				6A2BD5CE1A3008BF002F7644 /* SetOnlineStateUtil.m */,
 				6A2BD6081A31EDA7002F7644 /* FetchChatUtil.h */,
 				6A2BD6091A31EDA7002F7644 /* FetchChatUtil.m */,
+				6AB8B0961A3742A200866281 /* pinyin.c */,
+				6AB8B0971A3742A200866281 /* pinyin.h */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -1467,6 +1477,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6AB8B0981A3742A200866281 /* pinyin.c in Sources */,
 				6AC6EA071A28C4B5007689D8 /* NSString+Crypt.m in Sources */,
 				6A1DEA681A3579D700FD637B /* Friends.m in Sources */,
 				6A2BD5E01A31B139002F7644 /* ContactFriendDetailTableViewController.m in Sources */,
@@ -1497,6 +1508,7 @@
 				6A2BD5E31A31E025002F7644 /* ContactFriendSetNoteTableViewController.m in Sources */,
 				6A69A0121A2CBB2500D85777 /* DoctorAPI.m in Sources */,
 				6A73763A1A208972006EF54F /* MainViewController.m in Sources */,
+				6AB8B09B1A3747EA00866281 /* Friends+PinYinUtil.m in Sources */,
 				6A4FC1621A2F51360042497C /* MainCoreData.xcdatamodeld in Sources */,
 				6A2BD5D51A306252002F7644 /* ContactDetailViewController.m in Sources */,
 				6A4FC15C1A2EFF4F0042497C /* MySelfBasicInfoEditTableViewController.m in Sources */,
@@ -1564,7 +1576,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "fddccbcf-953b-4673-8e1c-4ac5fdf59ad9";
+				PROVISIONING_PROFILE = "d8cea64d-d7c3-41ba-9f7b-b27193fd5b1c";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -1601,7 +1613,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "fddccbcf-953b-4673-8e1c-4ac5fdf59ad9";
+				PROVISIONING_PROFILE = "d8cea64d-d7c3-41ba-9f7b-b27193fd5b1c";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1613,8 +1625,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iOS Development: Deying Yu (EG87838K93)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iOS Development: Deying Yu (EG87838K93)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = DoctorFei_iOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1623,7 +1635,7 @@
 					"$(PROJECT_DIR)/DoctorFei_iOS/Dependence/JPush",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "fddccbcf-953b-4673-8e1c-4ac5fdf59ad9";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -1633,8 +1645,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iOS Development: Deying Yu (EG87838K93)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iOS Development: Deying Yu (EG87838K93)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = DoctorFei_iOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1643,7 +1655,7 @@
 					"$(PROJECT_DIR)/DoctorFei_iOS/Dependence/JPush",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "fddccbcf-953b-4673-8e1c-4ac5fdf59ad9";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

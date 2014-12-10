@@ -88,7 +88,8 @@
         NSDictionary *dataDict = [responseObject firstObject];
         hud.mode = MBProgressHUDModeText;
         if ([dataDict[@"state"]intValue] == 1) {
-            hud.labelText = dataDict[@"msg"];
+//            hud.labelText = dataDict[@"msg"];
+            [hud hide:YES];
             [[NSUserDefaults standardUserDefaults] setObject:dataDict[@"userId"] forKey:@"UserId"];
             [[NSUserDefaults standardUserDefaults] setObject:dataDict[@"icon"] forKey:@"UserIcon"];
             [[NSUserDefaults standardUserDefaults] setObject:dataDict[@"RealName"] forKey:@"UserRealName"];
@@ -103,8 +104,8 @@
         else{
             hud.labelText = @"登录错误";
             hud.detailsLabelText = dataDict[@"msg"];
+            [hud hide:YES afterDelay:1.5f];
         }
-        [hud hide:YES afterDelay:1.5f];
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"%@", error.localizedDescription);
