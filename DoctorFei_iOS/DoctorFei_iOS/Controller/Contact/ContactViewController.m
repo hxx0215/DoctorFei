@@ -16,7 +16,7 @@
 #import "Friends+PinYinUtil.h"
 #import "Chat.h"
 @interface ContactViewController ()
-    <UITableViewDelegate, UITableViewDataSource, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate, UIActionSheetDelegate, UIGestureRecognizerDelegate>
+    <UITableViewDelegate, UITableViewDataSource, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate, UIActionSheetDelegate, UIGestureRecognizerDelegate, UISearchDisplayDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @end
 
@@ -154,6 +154,9 @@
 
 #pragma mark - UITableView DataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    if (tableView == self.searchDisplayController.searchResultsTableView) {
+        return 1;
+    }
     return tableViewDataArray.count;
 }
 
@@ -166,25 +169,36 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (tableView == self.searchDisplayController.searchResultsTableView) {
-        return nil;
-    }
+
     static NSString *ContactFriendCellIdentifier = @"ContactFriendCellIdentifier";
-    ContactFriendTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ContactFriendCellIdentifier forIndexPath:indexPath];
-    [cell setDataFriend:tableViewDataArray[indexPath.section][indexPath.row]];
-//    [cell setDataFriend:friendArray[indexPath.row]];
-    return cell;
+    if (tableView == self.searchDisplayController.searchResultsTableView) {
+        ContactFriendTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:ContactFriendCellIdentifier];
+        [cell setDataFriend:searchResultArray[indexPath.row]];
+        return cell;
+    }
+    else{
+        ContactFriendTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:ContactFriendCellIdentifier forIndexPath:indexPath];
+        [cell setDataFriend:tableViewDataArray[indexPath.section][indexPath.row]];
+        return cell;
+    }
+    return nil;
 
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    if ([tableViewDataArray[section] count] > 0) {
-        [[[UILocalizedIndexedCollation currentCollation]sectionTitles]objectAtIndex:section];
+    if (tableView == self.searchDisplayController.searchResultsTableView) {
+        return nil;
+    }
+    else if ([tableViewDataArray[section] count] > 0) {
+            return [[[UILocalizedIndexedCollation currentCollation]sectionTitles]objectAtIndex:section];
     }
     return nil;
 }
 
 - (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView {
+    if (tableView == self.searchDisplayController.searchResultsTableView) {
+        return nil;
+    }
     NSMutableArray *existTitles = [NSMutableArray array];
     NSArray *allTitles = [[UILocalizedIndexedCollation currentCollation]sectionIndexTitles];
     for (int i = 0 ; i < allTitles.count; i ++) {
@@ -196,6 +210,9 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index {
+    if (tableView == self.searchDisplayController.searchResultsTableView) {
+        return 0;
+    }
     return [[UILocalizedIndexedCollation currentCollation] sectionForSectionIndexTitle:title atIndex:index];
 }
 
@@ -220,5 +237,17 @@
     else if (buttonIndex == 1) {
         //TODO 清空聊天记录
     }
+}
+
+#pragma mark - UISearchDisplayController Delegate
+- (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString {
+    [searchResultArray removeAllObjects];
+    for (Friends *friend in friendArray) {
+        NSRange foundRange = [friend.realname rangeOfString:searchString options:(NSCaseInsensitiveSearch | NSDiacriticInsensitiveSearch)];
+        if (foundRange.length > 0) {
+            [searchResultArray addObject:friend];
+        }
+    }
+    return YES;
 }
 @end
