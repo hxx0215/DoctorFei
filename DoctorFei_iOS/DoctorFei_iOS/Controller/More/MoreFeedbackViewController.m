@@ -10,6 +10,7 @@
 #import "IHKeyboardAvoiding.h"
 @interface MoreFeedbackViewController ()<UITextViewDelegate>
 @property (strong, nonatomic) IBOutlet UITextView *feedbackContent;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *textViewToBottom;
 @property (assign, nonatomic) CGRect feedbackOriginFrame;
 @end
 
@@ -39,13 +40,15 @@
     // Dispose of any resources that can be recreated.
 }
 - (BOOL)textViewShouldBeginEditing:(UITextView *)textView{
-    CGRect rect = textView.frame;
-    rect.size.height = self.feedbackOriginFrame.size.height - 156;
-    textView.frame = rect;
+//    CGRect rect = textView.frame;
+//    rect.size.height = self.feedbackOriginFrame.size.height - 156;
+//    textView.frame = rect;
+    self.textViewToBottom.constant = 60 + 170;
     return YES;
-} 
+}
+
 - (BOOL)textViewShouldEndEditing:(UITextView *)textView{
-    textView.frame = self.feedbackOriginFrame;
+    self.textViewToBottom.constant = 60;
     return YES;
 }
 /*
