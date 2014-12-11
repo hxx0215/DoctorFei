@@ -16,6 +16,7 @@
 #import "DoctorAPI.h"
 #import <UIImageView+WebCache.h>
 #import "ImageUtil.h"
+#import "NSString+Crypt.h"
 
 @interface MyselfTableViewController ()<UINavigationControllerDelegate,UIImagePickerControllerDelegate,UIActionSheetDelegate>
 
@@ -132,23 +133,45 @@
                              @"picturename": [NSString stringWithFormat:@"%d.jpg", (int)[[NSDate date] timeIntervalSince1970]],
                              @"img": [UIImageJPEGRepresentation(image, 0.5) base64EncodedStringWithOptions:0]
                              };
-    [DoctorAPI uploadImageWithParameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSDictionary *dataDict = [responseObject firstObject];
-        NSString *urlString = dataDict[@"url"];
-        if (urlString && urlString.length > 0) {
-            [self updateInfoWithURLString:urlString];
-        }
-        else{
-            hud.mode = MBProgressHUDModeText;
-            hud.labelText = @"图片上传失败";
-            hud.detailsLabelText = dataDict[@"error"];
-        }
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        hud.mode = MBProgressHUDModeText;
-        hud.labelText = @"错误";
-        hud.detailsLabelText = error.localizedDescription;
-        [hud hide:YES afterDelay:1.5f];
+    NSString *str = [UIImageJPEGRepresentation(image, 0.5) base64EncodedStringWithOptions:0];
+    str = [str stringByReplacingOccurrencesOfString:@"+" withString:@"|JH|"];
+    str = [str stringByReplacingOccurrencesOfString:@" " withString:@"|KG|"];
+    str = [str stringByReplacingOccurrencesOfString:@"\n" withString:@"|HC|"];
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    NSString *jsonStr = [NSString stringWithFormat:@"{\"picturename\":\"%@\"}",[NSString stringWithFormat:@"%d.jpg", (int)[[NSDate date] timeIntervalSince1970]]];
+    request.URL = [NSURL URLWithString:[NSString createResponseURLWithMethod:@"set.picture.add" Params:jsonStr]];
+    NSString *body = [NSString stringWithFormat:@"img=%@",str];
+    NSData *jsonBody = [body dataUsingEncoding:NSUTF8StringEncoding];
+    
+    NSString *contentType = @"application/x-www-form-urlencoded; charset=utf-8";
+    [request addValue:contentType forHTTPHeaderField:@"Content-Type"];
+    [request setHTTPMethod:@"POST"];
+    [request setHTTPBody:jsonBody];
+    NSString *postLength = [NSString stringWithFormat:@"%ld",[jsonBody length]];
+    [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
+    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError){
+        NSString *retStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+        NSString *retJson =[NSString decodeFromPercentEscapeString:[retStr decryptWithDES]];
+        NSLog(@"%@",retJson);
     }];
+
+//    [DoctorAPI uploadImageWithParameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+//        NSDictionary *dataDict = [responseObject firstObject];
+//        NSString *urlString = dataDict[@"url"];
+//        if (urlString && urlString.length > 0) {
+//            [self updateInfoWithURLString:urlString];
+//        }
+//        else{
+//            hud.mode = MBProgressHUDModeText;
+//            hud.labelText = @"图片上传失败";
+//            hud.detailsLabelText = dataDict[@"error"];
+//        }
+//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//        hud.mode = MBProgressHUDModeText;
+//        hud.labelText = @"错误";
+//        hud.detailsLabelText = error.localizedDescription;
+//        [hud hide:YES afterDelay:1.5f];
+//    }];
 }
 
 - (void)uploadIcon{
