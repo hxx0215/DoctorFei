@@ -38,6 +38,7 @@
     
     [self.tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
     [self.tableView setSectionIndexColor:[UIColor blackColor]];
+    [self.searchDisplayController.searchResultsTableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
     
     UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc]
                  initWithTarget:self
@@ -273,7 +274,14 @@
 - (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString {
     [searchResultArray removeAllObjects];
     for (Friends *friend in friendArray) {
-        NSRange foundRange = [friend.realname rangeOfString:searchString options:(NSCaseInsensitiveSearch | NSDiacriticInsensitiveSearch)];
+        NSString *actionName;
+        if (friend.noteName && friend.noteName.length > 0) {
+            actionName = friend.noteName;
+        }
+        else{
+            actionName = friend.realname;
+        }
+        NSRange foundRange = [actionName rangeOfString:searchString options:(NSCaseInsensitiveSearch | NSDiacriticInsensitiveSearch)];
         if (foundRange.length > 0) {
             [searchResultArray addObject:friend];
         }

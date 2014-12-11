@@ -11,6 +11,6 @@
 @implementation UserAPI
 
 + (void)getUserInfomationWithParameters: (id)parameters success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure {
-    [[self sharedManager]defaultPostWithMethod:kMethodUserInfomation WithParameters:parameters success:success failure:failure];
+    [[self sharedManager]defaultGetWithMethod:kMethodUserInfomation WithParameters:parameters success:success failure:failure];
 }
 @end

@@ -114,6 +114,9 @@ static const NSTimeInterval kDuration = 60;
     [self.navigationController popViewControllerAnimated:YES];
 }
 - (IBAction)confirmButtonClicked:(id)sender {
+    [self.capthaTextField resignFirstResponder];
+    [self.passwordTextField resignFirstResponder];
+    [self.passwordAgainTextField resignFirstResponder];
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view.window animated:YES];
     hud.dimBackground = YES;
     [hud setLabelText:@""];

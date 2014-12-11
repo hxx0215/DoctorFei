@@ -13,13 +13,13 @@
 @implementation MobileAPI
 + (void)setPushUserWithParameters: (id)parameters success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
 {
-    [[self sharedManager]defaultPostWithMethod:kMethodSetPushUser WithParameters:parameters success:success failure:failure];
+    [[self sharedManager]defaultGetWithMethod:kMethodSetPushUser WithParameters:parameters success:success failure:failure];
 }
 
 + (void)getMobileVersionWithParameters:(id)parameters
                               succsess:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
                                failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure{
-    [[self sharedManager] defaultPostWithMethod:kMethodGetVersion
+    [[self sharedManager] defaultGetWithMethod:kMethodGetVersion
                                  WithParameters:parameters
                                         success:success
                                         failure:failure];

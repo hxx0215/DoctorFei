@@ -11,11 +11,11 @@
 #define kMethodSendMessage @"set.doctorchat.send"
 @implementation ChatAPI
 + (void)getChatWithParameters: (id)parameters success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure {
-    [[self sharedManager]defaultPostWithMethod:kMethodGetChat WithParameters:parameters success:success failure:failure];
+    [[self sharedManager]defaultGetWithMethod:kMethodGetChat WithParameters:parameters success:success failure:failure];
 }
 
 + (void)sendMessageWithParameters: (id)parameters success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure {
-    [[self sharedManager]defaultPostWithMethod:kMethodSendMessage WithParameters:parameters success:success failure:failure];
+    [[self sharedManager]defaultGetWithMethod:kMethodSendMessage WithParameters:parameters success:success failure:failure];
 }
 
 @end

@@ -17,9 +17,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *noteLabel;
 @property (weak, nonatomic) IBOutlet UILabel *situationLabel;
-@property (weak, nonatomic) IBOutlet UILabel *phoneLabel;
-@property (weak, nonatomic) IBOutlet UIButton *phoneButton;
-- (IBAction)phoneButtonClicked:(id)sender;
+//@property (weak, nonatomic) IBOutlet UILabel *phoneLabel;
+//@property (weak, nonatomic) IBOutlet UIButton *phoneButton;
+//- (IBAction)phoneButtonClicked:(id)sender;
 - (IBAction)deleteFriendButtonClicked:(id)sender;
 
 @end
@@ -35,7 +35,9 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-
+    CGRect tableFooterRect = self.tableView.tableFooterView.frame;
+    tableFooterRect.size.height = 78.0f;
+    [self.tableView.tableFooterView setFrame:tableFooterRect];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -44,14 +46,14 @@
         [self.avatarImageView sd_setImageWithURL:[NSURL URLWithString:_currentFriend.icon] placeholderImage:[UIImage imageNamed:@"details_uers_example_pic"]];
     }
     [self.nameLabel setText:_currentFriend.realname];
-    if (_currentFriend.mobile && _currentFriend.mobile.length > 0) {
-        [self.phoneLabel setText:_currentFriend.mobile];
-        [self.phoneButton setHidden:NO];
-    }
-    else{
-        [self.phoneLabel setText:@""];
-        [self.phoneButton setHidden:YES];
-    }
+//    if (_currentFriend.mobile && _currentFriend.mobile.length > 0) {
+//        [self.phoneLabel setText:_currentFriend.mobile];
+//        [self.phoneButton setHidden:NO];
+//    }
+//    else{
+//        [self.phoneLabel setText:@""];
+//        [self.phoneButton setHidden:YES];
+//    }
     [self.noteLabel setText:_currentFriend.noteName];
     [self.situationLabel setText:_currentFriend.situation];
 }

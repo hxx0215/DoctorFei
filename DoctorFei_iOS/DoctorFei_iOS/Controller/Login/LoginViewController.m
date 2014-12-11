@@ -32,29 +32,40 @@
     // Do any additional setup after loading the view.
     [IHKeyboardAvoiding setAvoidingView:self.view withTarget:self.loginBackgroundImageView];
     RAC(self.loginButton, enabled) = [RACSignal combineLatest:@[self.phoneTextField.rac_textSignal, self.passwordTextField.rac_textSignal] reduce:^(NSString *phone, NSString *password){
+        NSLog(@"%@",phone);
         return @(phone.length == 11 && password.length > 0);
     }];
 }
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self.navigationController setNavigationBarHidden:YES animated:YES];
+    [self.navigationController setNavigationBarHidden:YES animated:NO];
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *autoLoginUserName = [defaults objectForKey:@"autoLoginUserName"] ? [defaults objectForKey:@"autoLoginUserName"]: @"";
     NSString *autoLoginPassword = [defaults objectForKey:@"autoLoginPassword"] ? [defaults objectForKey:@"autoLoginPassword"]: @"";
-    self.autoLoginButton.selected = [[defaults objectForKey:@"IsAutoLogin"] boolValue];
+    BOOL autoLogin = [[defaults objectForKey:@"IsAutoLogin"] boolValue];
+    self.autoLoginButton.selected = autoLogin;
+    self.loginButton.enabled = autoLogin;
     if (!autoLoginPassword || !autoLoginUserName){
         [defaults setObject:@"" forKey:@"autoLoginUserName"];
         [defaults setObject:@"" forKey:@"autoLoginPassword"];
         [defaults synchronize];
-    }else
-    {
-        self.loginButton.enabled = YES;
     }
+//    else
+//    {
+//        self.loginButton.enabled = YES;
+//    }
     self.phoneTextField.text = self.autoLoginButton.selected ? autoLoginUserName :@"";
     self.passwordTextField.text = self.autoLoginButton.selected ? autoLoginPassword :@"";
-}
 
+}
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [self.phoneTextField becomeFirstResponder];
+    [self.phoneTextField resignFirstResponder];
+    [self.passwordTextField becomeFirstResponder];
+    [self.passwordTextField resignFirstResponder];
+}
 - (void)viewWillDisappear:(BOOL)animated
 {
     [self.navigationController setNavigationBarHidden:NO animated:YES];

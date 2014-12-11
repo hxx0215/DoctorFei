@@ -23,7 +23,7 @@
     });
     return _sharedManager;
 }
-- (void)defaultPostWithMethod:(NSString *)method WithParameters:(id)parameters success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
+- (void)defaultGetWithMethod:(NSString *)method WithParameters:(id)parameters success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
 {
 //    NSLog(@"%@",[parameters JSONString]);
     NSString *urlString = [NSString createResponseURLWithMethod:method Params:[parameters JSONString]];
@@ -44,4 +44,27 @@
         failure(operation, error);
     }];
 }
+
+- (void)defaultPostWithMethod:(NSString *)method WithParameters:(id)parameters success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
+{
+    //    NSLog(@"%@",[parameters JSONString]);
+    NSString *urlString = [NSString createResponseURLWithMethod:method Params:[parameters JSONString]];
+    [[BaseHTTPRequestOperationManager sharedManager]POST:urlString parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSString *retStr = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+        NSString *retJson =[NSString decodeFromPercentEscapeString:[retStr decryptWithDES]];
+        NSDictionary *result = [retJson objectFromJSONString];
+        //        NSLog(@"%@",result);
+        if ([result[@"verification"]boolValue] && [result[@"error"]isEqual:[NSNull null]]) {
+            NSArray *dataArray = result[@"data"];
+            success(operation, dataArray);
+        }
+        else{
+            NSError *error = [NSError errorWithDomain:kErrorDomain code:0 userInfo:@{NSLocalizedDescriptionKey : result[@"error"]}];
+            failure(operation, error);
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        failure(operation, error);
+    }];
+}
+
 @end

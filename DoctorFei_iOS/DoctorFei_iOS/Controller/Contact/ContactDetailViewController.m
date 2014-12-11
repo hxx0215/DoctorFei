@@ -22,7 +22,9 @@
 @end
 
 @implementation ContactDetailViewController
-
+{
+    NSArray *messageArray;
+}
 @synthesize currentFriend = _currentFriend, modalData = _modalData;
 
 - (void)viewDidLoad {
@@ -39,6 +41,8 @@
     
     self.inputToolbar.contentView.leftBarButtonItem = nil;
     self.collectionView.collectionViewLayout.sectionInset = UIEdgeInsetsMake(0, 15, 5, 15);
+    self.collectionView.collectionViewLayout.incomingAvatarViewSize = CGSizeMake(44, 44);
+    self.collectionView.collectionViewLayout.outgoingAvatarViewSize = CGSizeMake(44, 44);
     
     [self generateMessageModalData];
 
@@ -48,7 +52,20 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(reloadMessageData) name:@"NewChatArrivedNotification" object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(deleteMessage:) name:@"DeleteMessageNotification" object:nil];
     [self cleanUnreadMessageCount];
+}
+
+- (void)deleteMessage:(NSNotification *)notification {
+    JSQMessagesCollectionViewCell *cell = notification.object;
+    NSIndexPath *indexPath = [self.collectionView indexPathForCell:cell];
+    NSLog(@"%@",indexPath);
+    Message *message = messageArray[indexPath.row];
+    [message MR_deleteEntity];
+    [[NSManagedObjectContext MR_defaultContext]MR_saveToPersistentStoreAndWait];
+    [self.modalData.messages removeObjectAtIndex:indexPath.row];
+//    [self.collectionView deleteItemsAtIndexPaths:@[indexPath]];
+    [self.collectionView reloadData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -81,10 +98,10 @@
                          userSenderId: _currentFriend.realname,
                          mySenderId: myName
                          };
-    JSQMessagesAvatarImage *userAvatarImage = [JSQMessagesAvatarImage avatarImageWithPlaceholder:[UIImage imageNamed:@"list_user-big_example_pic"]];
-    JSQMessagesAvatarImage *myAvatarImage = [JSQMessagesAvatarImage avatarImageWithPlaceholder:[UIImage imageNamed:@"list_user-big_example_pic"]];
-//    JSQMessagesAvatarImage *userAvatarImage = [JSQMessagesAvatarImageFactory avatarImageWithPlaceholder:[UIImage imageNamed:@"list_user-big_example_pic"] diameter:44];
-//    JSQMessagesAvatarImage *myAvatarImage = [JSQMessagesAvatarImageFactory avatarImageWithPlaceholder:[UIImage imageNamed:@"list_user-big_example_pic"] diameter:44];
+    JSQMessagesAvatarImage *userAvatarImage = [JSQMessagesAvatarImage avatarImageWithPlaceholder:[UIImage imageNamed:@"details_uers_example_pic"]];
+    JSQMessagesAvatarImage *myAvatarImage = [JSQMessagesAvatarImage avatarImageWithPlaceholder:[UIImage imageNamed:@"details_uers_example_pic"]];
+//    JSQMessagesAvatarImage *userAvatarImage = [JSQMessagesAvatarImageFactory avatarImageWithPlaceholder:[UIImage imageNamed:@"details_uers_example_pic"] diameter:44];
+//    JSQMessagesAvatarImage *myAvatarImage = [JSQMessagesAvatarImageFactory avatarImageWithPlaceholder:[UIImage imageNamed:@"details_uers_example_pic"] diameter:44];
     if (_currentFriend.icon && _currentFriend.icon.length > 0) {
         [[SDWebImageManager sharedManager]downloadImageWithURL:[NSURL URLWithString:_currentFriend.icon] options:0 progress:^(NSInteger receivedSize, NSInteger expectedSize) {
         } completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
@@ -111,8 +128,8 @@
     _modalData.incomingBubbleImageData = [bubbleFactory incomingMessagesBubbleImageWithColor:[UIColor whiteColor]];
     
     _modalData.messages = [NSMutableArray array];
-    //TODO Generate Message
-    NSArray *messageArray = [Message MR_findByAttribute:@"user" withValue:_currentFriend andOrderBy:@"messageId" ascending:YES];
+
+    messageArray = [Message MR_findByAttribute:@"user" withValue:_currentFriend andOrderBy:@"messageId" ascending:YES];
     for (Message *message in messageArray) {
         NSString *senderId, *senderName;
         if ([message.flag intValue] == 0) {
@@ -131,7 +148,7 @@
 
 - (void)loadNewMessage {
     NSNumber *doctorId = [[NSUserDefaults standardUserDefaults]objectForKey:@"UserId"];
-    NSArray *messageArray = [Message MR_findByAttribute:@"user" withValue:_currentFriend andOrderBy:@"messageId" ascending:YES];
+//    NSArray *messageArray = [Message MR_findByAttribute:@"user" withValue:_currentFriend andOrderBy:@"messageId" ascending:YES];
     Message *message = [messageArray lastObject];
 //    if ([lastDate isEqual:[NSNull null]]){
 //        lastDate = [NSDate dateWithTimeIntervalSinceNow:-86400];
@@ -144,8 +161,8 @@
     NSLog(@"%@",params);
     [ChatAPI getChatWithParameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"%@",responseObject);
-        NSArray *messageArray = (NSArray *)responseObject;
-        for (NSDictionary *dict in messageArray) {
+        NSArray *receiveMessageArray = (NSArray *)responseObject;
+        for (NSDictionary *dict in receiveMessageArray) {
             Message *message = [Message MR_findFirstByAttribute:@"messageId" withValue:dict[@"id"]];
             if (message == nil) {
                 message = [Message MR_createEntity];
@@ -177,6 +194,8 @@
     }];
 }
 
+
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -188,6 +207,7 @@
         [vc setCurrentFriend:_currentFriend];
     }
 }
+
 
 #pragma mark - Actions
 - (IBAction)backButtonClicked:(id)sender {
