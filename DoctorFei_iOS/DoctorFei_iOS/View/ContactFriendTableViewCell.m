@@ -37,6 +37,11 @@
     else{
         [self.avatarImageView setImage:[UIImage imageNamed:@"list_user-small_example_pic"]];
     }
-    [self.nameLabel setText:_dataFriend.realname];
+    if (_dataFriend.noteName && _dataFriend.noteName.length > 0) {
+        [self.nameLabel setText:_dataFriend.noteName];
+    }
+    else{
+        [self.nameLabel setText:_dataFriend.realname];
+    }
 }
 @end

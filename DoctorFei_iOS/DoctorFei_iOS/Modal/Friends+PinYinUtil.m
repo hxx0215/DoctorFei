@@ -11,14 +11,21 @@
 @implementation Friends (PinYinUtil)
 
 - (NSString *)getFirstCharPinYin {
-    if (self.realname == nil || [self.realname isEqualToString:@""]) {
+    NSString *actionName;
+    if (self.noteName && self.noteName.length > 0) {
+        actionName = self.noteName;
+    }
+    else{
+        actionName = self.realname;
+    }
+    if (actionName == nil || [actionName isEqualToString:@""]) {
         return @"#";
     }
-    if ([self.realname canBeConvertedToEncoding:NSASCIIStringEncoding]) {
-        return self.realname;
+    if ([actionName canBeConvertedToEncoding:NSASCIIStringEncoding]) {
+        return actionName;
     }
     else {
-        return [NSString stringWithFormat:@"%c",pinyinFirstLetter([self.realname characterAtIndex:0])];
+        return [NSString stringWithFormat:@"%c",pinyinFirstLetter([actionName characterAtIndex:0])];
     }
 }
 

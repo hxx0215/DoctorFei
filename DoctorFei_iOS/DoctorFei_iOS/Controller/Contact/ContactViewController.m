@@ -216,14 +216,15 @@
             [existTitles addObject:allTitles[i]];
         }
     }
-    return existTitles;
+//    return existTitles;
+    return allTitles;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index {
     if (tableView == self.searchDisplayController.searchResultsTableView) {
         return 0;
     }
-    return [[UILocalizedIndexedCollation currentCollation] sectionForSectionIndexTitle:title atIndex:index];
+    return [[UILocalizedIndexedCollation currentCollation] sectionForSectionIndexTitleAtIndex:index];
 }
 
 #pragma mark - UITableView Delegate
