@@ -69,7 +69,7 @@
                                                 <constraint firstItem="TYW-dN-VdT" firstAttribute="leading" secondItem="8nD-v5-t0r" secondAttribute="trailing" constant="14" id="DVA-sK-zBW"/>
                                                 <constraint firstItem="TYW-dN-VdT" firstAttribute="centerY" secondItem="Qu8-su-CUw" secondAttribute="centerY" id="Q97-Ka-rZQ"/>
                                                 <constraint firstItem="8nD-v5-t0r" firstAttribute="top" secondItem="Qu8-su-CUw" secondAttribute="topMargin" constant="7" id="WIM-Nc-PG0"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="TYW-dN-VdT" secondAttribute="trailing" constant="12" id="ded-hh-tld"/>
+                                                <constraint firstAttribute="trailing" secondItem="TYW-dN-VdT" secondAttribute="trailing" constant="20" id="ded-hh-tld"/>
                                                 <constraint firstItem="TYW-dN-VdT" firstAttribute="top" secondItem="Qu8-su-CUw" secondAttribute="topMargin" constant="14" id="oEd-NW-dvM"/>
                                             </constraints>
                                             <variation key="default">
@@ -172,7 +172,7 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="-7612.5" y="426"/>
+            <point key="canvasLocation" x="-7613" y="306"/>
         </scene>
         <!--Contact Detail View Controller-->
         <scene sceneID="OBo-zy-y2b">
@@ -1134,7 +1134,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lxO-Fa-a79" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-7612.5" y="-297.75"/>
+            <point key="canvasLocation" x="-7613" y="-574"/>
         </scene>
         <!--我的名片-->
         <scene sceneID="DnT-P5-P19">
@@ -1660,7 +1660,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qzi-1g-hyi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-9498" y="3311.25"/>
+            <point key="canvasLocation" x="-9498" y="4519"/>
         </scene>
         <!--注册-->
         <scene sceneID="iJN-4f-Ck2">
@@ -2040,7 +2040,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GbZ-LL-AVh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-8569.5" y="3311.25"/>
+            <point key="canvasLocation" x="-8586" y="3999"/>
         </scene>
         <!--找回密码-->
         <scene sceneID="vOv-Ur-EoU">
@@ -2121,7 +2121,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iRP-nb-DPM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-8580" y="4035.75"/>
+            <point key="canvasLocation" x="-8586" y="4939"/>
         </scene>
         <!--找回密码-->
         <scene sceneID="Dhd-j7-Uam">
@@ -2504,7 +2504,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pzC-Kq-eUV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-7575" y="4035.75"/>
+            <point key="canvasLocation" x="-7591" y="4939"/>
         </scene>
         <!--完善资料-->
         <scene sceneID="QI2-9T-dDj">
@@ -2990,7 +2990,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rGp-BS-ABC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-7575" y="3311.25"/>
+            <point key="canvasLocation" x="-7591" y="3999"/>
         </scene>
         <!--首页-->
         <scene sceneID="pkM-wl-HUV">
@@ -3016,7 +3016,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oPH-cT-HIG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-8464.5" y="-297.75"/>
+            <point key="canvasLocation" x="-8465" y="-574"/>
         </scene>
         <!--患者-->
         <scene sceneID="GHO-Dm-o5q">
@@ -3042,7 +3042,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mq1-VV-m7W" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-8464.5" y="426"/>
+            <point key="canvasLocation" x="-8465" y="306"/>
         </scene>
         <!--我-->
         <scene sceneID="8hj-hz-uUQ">
@@ -3243,14 +3243,14 @@
                                                     <exclude reference="RqW-Aq-TrF"/>
                                                 </mask>
                                                 <mask key="constraints">
-                                                    <exclude reference="S2l-hU-McT"/>
-                                                    <exclude reference="TjO-TG-mVI"/>
                                                     <exclude reference="9K0-2c-kNU"/>
                                                     <exclude reference="USW-pb-w71"/>
                                                     <exclude reference="WSJ-az-pgX"/>
                                                     <exclude reference="l8u-0S-fZ6"/>
                                                     <exclude reference="tJL-LX-HvC"/>
                                                     <exclude reference="yz4-27-5fU"/>
+                                                    <exclude reference="S2l-hU-McT"/>
+                                                    <exclude reference="TjO-TG-mVI"/>
                                                 </mask>
                                             </variation>
                                             <variation key="heightClass=regular-widthClass=compact">
@@ -3259,14 +3259,14 @@
                                                     <include reference="RqW-Aq-TrF"/>
                                                 </mask>
                                                 <mask key="constraints">
-                                                    <include reference="S2l-hU-McT"/>
-                                                    <include reference="TjO-TG-mVI"/>
                                                     <include reference="9K0-2c-kNU"/>
                                                     <include reference="USW-pb-w71"/>
                                                     <include reference="WSJ-az-pgX"/>
                                                     <include reference="l8u-0S-fZ6"/>
                                                     <include reference="tJL-LX-HvC"/>
                                                     <include reference="yz4-27-5fU"/>
+                                                    <include reference="S2l-hU-McT"/>
+                                                    <include reference="TjO-TG-mVI"/>
                                                 </mask>
                                             </variation>
                                         </tableViewCellContentView>
@@ -3318,14 +3318,14 @@
                                                     <exclude reference="4tT-b5-5fK"/>
                                                 </mask>
                                                 <mask key="constraints">
-                                                    <exclude reference="4p1-PF-LkS"/>
-                                                    <exclude reference="iVK-z6-bQX"/>
                                                     <exclude reference="2Uc-Nn-5M4"/>
                                                     <exclude reference="JI7-17-7QR"/>
                                                     <exclude reference="Jfc-zL-mNt"/>
                                                     <exclude reference="flg-By-7kP"/>
                                                     <exclude reference="nmo-6p-Ebx"/>
                                                     <exclude reference="s7i-pb-a0m"/>
+                                                    <exclude reference="4p1-PF-LkS"/>
+                                                    <exclude reference="iVK-z6-bQX"/>
                                                 </mask>
                                             </variation>
                                             <variation key="heightClass=regular-widthClass=compact">
@@ -3334,14 +3334,14 @@
                                                     <include reference="4tT-b5-5fK"/>
                                                 </mask>
                                                 <mask key="constraints">
-                                                    <include reference="4p1-PF-LkS"/>
-                                                    <include reference="iVK-z6-bQX"/>
                                                     <include reference="2Uc-Nn-5M4"/>
                                                     <include reference="JI7-17-7QR"/>
                                                     <include reference="Jfc-zL-mNt"/>
                                                     <include reference="flg-By-7kP"/>
                                                     <include reference="nmo-6p-Ebx"/>
                                                     <include reference="s7i-pb-a0m"/>
+                                                    <include reference="4p1-PF-LkS"/>
+                                                    <include reference="iVK-z6-bQX"/>
                                                 </mask>
                                             </variation>
                                         </tableViewCellContentView>
@@ -3468,14 +3468,14 @@
                                                     <exclude reference="J7a-9d-BSY"/>
                                                 </mask>
                                                 <mask key="constraints">
-                                                    <exclude reference="UBS-jw-T4c"/>
-                                                    <exclude reference="bQw-5S-eVj"/>
                                                     <exclude reference="1VQ-mO-9hB"/>
                                                     <exclude reference="Fww-BY-MKe"/>
                                                     <exclude reference="IvZ-fn-RKN"/>
                                                     <exclude reference="XM9-s3-v1I"/>
                                                     <exclude reference="diM-xs-qfb"/>
                                                     <exclude reference="hgb-aN-B7p"/>
+                                                    <exclude reference="UBS-jw-T4c"/>
+                                                    <exclude reference="bQw-5S-eVj"/>
                                                 </mask>
                                             </variation>
                                             <variation key="heightClass=regular-widthClass=compact">
@@ -3484,14 +3484,14 @@
                                                     <include reference="J7a-9d-BSY"/>
                                                 </mask>
                                                 <mask key="constraints">
-                                                    <include reference="UBS-jw-T4c"/>
-                                                    <include reference="bQw-5S-eVj"/>
                                                     <include reference="1VQ-mO-9hB"/>
                                                     <include reference="Fww-BY-MKe"/>
                                                     <include reference="IvZ-fn-RKN"/>
                                                     <include reference="XM9-s3-v1I"/>
                                                     <include reference="diM-xs-qfb"/>
                                                     <include reference="hgb-aN-B7p"/>
+                                                    <include reference="UBS-jw-T4c"/>
+                                                    <include reference="bQw-5S-eVj"/>
                                                 </mask>
                                             </variation>
                                         </tableViewCellContentView>
@@ -3584,7 +3584,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qyN-dP-2jw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-7612.5" y="1158.75"/>
+            <point key="canvasLocation" x="-7613" y="1202"/>
         </scene>
         <!--My Self Basic Info Edit Table View Controller-->
         <scene sceneID="LZg-N2-0CL">
@@ -3669,7 +3669,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="D3q-OV-vOU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-6526.5" y="933.75"/>
+            <point key="canvasLocation" x="-6527" y="745"/>
         </scene>
         <!--我-->
         <scene sceneID="Glk-z4-ETe">
@@ -3695,7 +3695,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="khf-JJ-JRf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-8476.5" y="1158.75"/>
+            <point key="canvasLocation" x="-8465" y="1202"/>
         </scene>
         <!--设置-->
         <scene sceneID="XwQ-L1-f9J">
@@ -3919,7 +3919,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jyj-CL-DVL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-7648.5" y="2394.75"/>
+            <point key="canvasLocation" x="-7613" y="2394"/>
         </scene>
         <!--关于我们-->
         <scene sceneID="dOz-Cp-uj0">
@@ -4025,7 +4025,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CSg-m1-T22" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-5403" y="2031"/>
+            <point key="canvasLocation" x="-5421" y="2034"/>
         </scene>
         <!--软件升级-->
         <scene sceneID="Qbu-dY-hFO">
@@ -4140,7 +4140,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="P70-aw-wnF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-5415" y="2691"/>
+            <point key="canvasLocation" x="-5421" y="2706.75"/>
         </scene>
         <!--在线反馈-->
         <scene sceneID="jvV-lx-MMi">
@@ -4212,7 +4212,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jbI-ri-ATM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-5415" y="3364.5"/>
+            <point key="canvasLocation" x="-5421" y="3403.5"/>
         </scene>
         <!--修改介绍-->
         <scene sceneID="zTr-Bg-YYP">
@@ -4298,7 +4298,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DPt-Ay-Obv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-6526.5" y="1617.75"/>
+            <point key="canvasLocation" x="-6527" y="1673"/>
         </scene>
         <!--设置-->
         <scene sceneID="C5Y-cE-ZBu">
@@ -4347,7 +4347,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Z4a-Gy-NXg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-10416" y="3311.25"/>
+            <point key="canvasLocation" x="-10416" y="4519"/>
         </scene>
     </scenes>
     <resources>

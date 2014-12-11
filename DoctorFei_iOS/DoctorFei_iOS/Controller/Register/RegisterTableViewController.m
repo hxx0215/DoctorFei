@@ -88,7 +88,7 @@ static const NSTimeInterval kDuration = 60;
         }
     }];
     RAC(self.nextButton, enabled) = [RACSignal combineLatest:@[self.phoneTextField.rac_textSignal, self.capthaTextField.rac_textSignal, self.passwordTextField.rac_textSignal, self.passwordAgainTextField.rac_textSignal] reduce:^(NSString *phone, NSString *captha, NSString *password, NSString *passwordAgain){
-        return @(phone.length == 11 && captha.length == 6 && password.length > 5 && [passwordAgain isEqualToString:password]);
+        return @(phone.length == 11 && captha.length == 6 && password.length > 0 && [passwordAgain isEqualToString:password]);
     }];
 }
 

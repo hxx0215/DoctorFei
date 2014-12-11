@@ -32,7 +32,7 @@
     // Do any additional setup after loading the view.
     [IHKeyboardAvoiding setAvoidingView:self.view withTarget:self.loginBackgroundImageView];
     RAC(self.loginButton, enabled) = [RACSignal combineLatest:@[self.phoneTextField.rac_textSignal, self.passwordTextField.rac_textSignal] reduce:^(NSString *phone, NSString *password){
-        return @(phone.length == 11 && password.length > 5);
+        return @(phone.length == 11 && password.length > 0);
     }];
 }
 - (void)viewWillAppear:(BOOL)animated

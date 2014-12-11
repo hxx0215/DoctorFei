@@ -89,7 +89,7 @@ static const NSTimeInterval kDuration = 60;
     [self.currentPhoneLabel setText:_currentPhone];
     
     RAC(self.confirmButton, enabled) = [RACSignal combineLatest:@[self.capthaTextField.rac_textSignal, self.passwordTextField.rac_textSignal, self.passwordAgainTextField.rac_textSignal] reduce:^(NSString *captha, NSString *password, NSString *passwordAgain){
-        return @(captha.length == 6 && password.length > 5 && [password isEqualToString:passwordAgain]);
+        return @(captha.length == 6 && password.length > 0 && [password isEqualToString:passwordAgain]);
     }];
     
     
