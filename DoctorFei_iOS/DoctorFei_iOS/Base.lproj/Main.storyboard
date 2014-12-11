@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="hjp-xA-J3Y">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="hjp-xA-J3Y">
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <deployment defaultVersion="1792" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -934,7 +934,7 @@
                                                     <color key="textColor" red="0.64313725490196083" green="0.64313725490196083" blue="0.64313725490196083" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                     <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                        <rect key="frame" x="72" y="36" width="137" height="16.5"/>
+                                                        <rect key="frame" x="72" y="36" width="137" height="16"/>
                                                     </variation>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="[感冒]" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wds-DW-PEX">
@@ -974,7 +974,7 @@
                                                         </mask>
                                                     </variation>
                                                     <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                        <rect key="frame" x="220" y="36" width="89" height="20.5"/>
+                                                        <rect key="frame" x="220" y="36" width="89" height="20"/>
                                                         <mask key="constraints">
                                                             <include reference="WLH-cn-N55"/>
                                                         </mask>
@@ -4048,6 +4048,9 @@
                                 <variation key="heightClass=compact-widthClass=compact" ambiguous="YES">
                                     <rect key="frame" x="86" y="179" width="228" height="18"/>
                                 </variation>
+                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="86" y="288" width="227" height="38"/>
+                                </variation>
                                 <connections>
                                     <action selector="updateButtonClicked:" destination="uaT-mB-nYo" eventType="touchUpInside" id="9cb-u2-xol"/>
                                 </connections>
@@ -4160,6 +4163,9 @@
                                 <color key="textColor" red="0.70196078431372544" green="0.70196078431372544" blue="0.70196078431372544" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <connections>
+                                    <outlet property="delegate" destination="EqC-lm-89O" id="Uof-zf-EDR"/>
+                                </connections>
                             </textView>
                         </subviews>
                         <color key="backgroundColor" red="0.93333333330000001" green="0.93333333330000001" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
