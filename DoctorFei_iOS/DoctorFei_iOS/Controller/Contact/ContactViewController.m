@@ -105,6 +105,7 @@
             friend.realname = dict[@"RealName"];
             friend.icon = dict[@"icon"];
             friend.userType = dict[@"usertype"];
+            friend.noteName = dict[@"notename"];
         }
         [[NSManagedObjectContext MR_defaultContext]MR_saveToPersistentStoreAndWait];
         [self reloadTableViewData];
