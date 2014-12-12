@@ -29,6 +29,8 @@
 @implementation MainViewController
 {
     NSArray *chatArray;
+    UIBarButtonItem *fetchButtonItem, *loadingButtonItem;
+    CABasicAnimation *rotation;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -39,15 +41,33 @@
     
     [self.tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
     
+    fetchButtonItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"refresh"] style:UIBarButtonItemStyleDone target:self action:@selector(refreshButtonClicked:)];
+    fetchButtonItem.tintColor = [UIColor whiteColor];
+    loadingButtonItem = [[UIBarButtonItem alloc]initWithCustomView:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"refresh_after"]]];
+//    loadingButtonItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"refresh_after"] style:UIBarButtonItemStyleDone target:self action:@selector(refreshButtonClicked:)];
+//    loadingButtonItem.tintColor = [UIColor whiteColor];
+    
+
+    
+
+    rotation = [CABasicAnimation animationWithKeyPath:@"transform.rotation"];
+    rotation.fromValue = [NSNumber numberWithFloat:0];
+    rotation.toValue = [NSNumber numberWithFloat:(2 * M_PI)];
+    rotation.duration = 0.7f; // Speed
+    rotation.repeatCount = HUGE_VALF; // Repeat forever. Can be a finite number.
+    
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(reloadTableViewData) name:@"NewChatArrivedNotification" object:nil];
-    if ([[NSUserDefaults standardUserDefaults]objectForKey:@"UserId"]) {
-        [[SocketConnection sharedConnection]sendCheckMessages];
-    }
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(fetchChatComplete) name:@"FetchChatCompleteNotification" object:nil];
+//    if ([[NSUserDefaults standardUserDefaults]objectForKey:@"UserId"]) {
+//        [[SocketConnection sharedConnection]sendCheckMessages];
+//    }
 
+    [self.navigationItem setLeftBarButtonItem:fetchButtonItem animated:YES];
     
     NSString *icon = [[NSUserDefaults standardUserDefaults]objectForKey:@"UserIcon"];
     if (icon && icon.length > 0) {
@@ -66,6 +86,8 @@
     [_infoLabel setText:[NSString stringWithFormat:@"%@ %@", department, jobTitle]];
     
     [self reloadTableViewData];
+    
+    
 }
 
 
@@ -79,12 +101,20 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)fetchChatComplete {
+    [loadingButtonItem.customView.layer removeAllAnimations];
+    [self.navigationItem setLeftBarButtonItem:fetchButtonItem animated:YES];
+}
+
 - (void)reloadTableViewData {
     chatArray = [Chat MR_findAll];
     [self.tableView reloadData];
 }
 
 - (IBAction)refreshButtonClicked:(id)sender {
+    [self.navigationItem setLeftBarButtonItem:loadingButtonItem animated:YES];
+    [loadingButtonItem.customView.layer removeAllAnimations];
+    [loadingButtonItem.customView.layer addAnimation:rotation forKey:@"Spin"];
     [[SocketConnection sharedConnection]sendCheckMessages];
 }
 

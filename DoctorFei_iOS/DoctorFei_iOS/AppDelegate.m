@@ -83,7 +83,7 @@
     [self setPushUser];
     [[SocketConnection sharedConnection]beginListen];
     [[SocketConnection sharedConnection]sendKeepAlive];
-
+    [[SocketConnection sharedConnection]sendCheckMessages];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {

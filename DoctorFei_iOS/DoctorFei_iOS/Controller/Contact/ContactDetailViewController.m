@@ -31,7 +31,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    self.title = _currentFriend.realname;
+
     self.collectionView.backgroundColor = UIColorFromRGB(0xEEEEEE);
     
     self.senderId = [[DeviceUtil getUUID]copy];
@@ -54,6 +54,12 @@
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(reloadMessageData) name:@"NewChatArrivedNotification" object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(deleteMessage:) name:@"DeleteMessageNotification" object:nil];
     [self cleanUnreadMessageCount];
+    if (_currentFriend.noteName && _currentFriend.noteName.length > 0) {
+        self.title = _currentFriend.noteName;
+    }
+    else {
+        self.title = _currentFriend.realname;
+    }
 }
 
 - (void)deleteMessage:(NSNotification *)notification {

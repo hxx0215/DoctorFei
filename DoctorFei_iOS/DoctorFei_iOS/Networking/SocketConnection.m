@@ -125,6 +125,7 @@
     isAlive = YES;
     [sock readDataWithTimeout:-1 tag:0];
     if (![string isEqualToString:@"1"]) {
+        [[NSNotificationCenter defaultCenter]postNotificationName:@"FetchChatCompleteNotification" object:nil];
         NSDictionary *result = [string objectFromJSONString];
         if ([result[@"verification"]boolValue] && [result[@"error"]isEqual:[NSNull null]]) {
             NSArray *dataArray = result[@"data"];

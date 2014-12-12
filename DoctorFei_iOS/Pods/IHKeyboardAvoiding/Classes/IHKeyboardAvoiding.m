@@ -29,29 +29,30 @@ static float _minimumAnimationDuration;
     
     // get the keyboard & window frames
     CGRect keyboardFrame = [[[notification userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
-    CGRect windowFrame = [UIApplication sharedApplication].keyWindow.frame;
+    // keyboardHeightDiff used when user is switching between different keyboards that have different heights
+    int keyboardHeightDiff = [[[notification userInfo] objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size.height - keyboardFrame.size.height;
+    
+    CGRect screenFrame = [UIScreen mainScreen].bounds;
     UIViewAnimationCurve animationCurve = [[[notification userInfo] objectForKey:UIKeyboardAnimationCurveUserInfoKey] integerValue];
     
     // if split keyboard is being dragged, then skip notification
     if (keyboardFrame.size.height == 0) {
         CGRect keyboardBeginFrame = [[[notification userInfo] objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue];
         
-        if (isPortrait) {
-            if (keyboardBeginFrame.origin.y + keyboardBeginFrame.size.height == windowFrame.size.height)
-                return;
-        } else {
-            if (keyboardBeginFrame.origin.x + keyboardBeginFrame.size.width == windowFrame.size.width)
-                return;
+        if (isPortrait && keyboardBeginFrame.origin.y + keyboardBeginFrame.size.height == screenFrame.size.height) {
+            return;
+        } else if (!isPortrait && keyboardBeginFrame.origin.x + keyboardBeginFrame.size.width == screenFrame.size.width) {
+            return;
         }
     }
     
     // calculate if we are to move up the avoiding view
     if (isPortrait) {
-        if (keyboardFrame.origin.y == 0 || (keyboardFrame.origin.y + keyboardFrame.size.height == windowFrame.size.height)) {
+        if (keyboardFrame.origin.y == 0 || (keyboardFrame.origin.y + keyboardFrame.size.height == screenFrame.size.height)) {
             isKeyBoardShowing = YES;
         }
     } else {
-        if (keyboardFrame.origin.x == 0 || (keyboardFrame.origin.x + keyboardFrame.size.width == windowFrame.size.width)) {
+        if (keyboardFrame.origin.x == 0 || (keyboardFrame.origin.x + keyboardFrame.size.width == screenFrame.size.width)) {
             isKeyBoardShowing = YES;
         }
     }
@@ -65,35 +66,36 @@ static float _minimumAnimationDuration;
             //showing and docked
             if (targetView) {
                 float diff = 0;
-                CGPoint originInWindow = [targetView.superview convertPoint:targetView.frame.origin toView:nil];
-                switch ([[UIApplication sharedApplication] statusBarOrientation]) {
-                    case UIInterfaceOrientationPortrait:
-                        diff = keyboardFrame.origin.y;
-                        diff -= (originInWindow.y + targetView.frame.size.height);
-                        break;
-                    case UIInterfaceOrientationPortraitUpsideDown:
-                        diff = windowFrame.size.height - keyboardFrame.size.height;
-                        originInWindow.y = windowFrame.size.height - originInWindow.y;
-                        diff -= (originInWindow.y + targetView.frame.size.height);
-                        break;
-                    case UIInterfaceOrientationLandscapeLeft:
-                        diff = keyboardFrame.origin.x;
-                        diff -= (originInWindow.x + targetView.frame.size.height);
-                        break;
-                    case UIInterfaceOrientationLandscapeRight:
-                        diff = windowFrame.size.width - keyboardFrame.size.width;
-                        originInWindow.x = windowFrame.size.width - originInWindow.x;
-                        diff -= (originInWindow.x + targetView.frame.size.height);
-                    default:
-                        break;
+                if (keyboardHeightDiff > 0) {
+                    diff = keyboardHeightDiff;
+                }
+                else {
+                    CGPoint originInWindow = [targetView.superview convertPoint:targetView.frame.origin toView:nil];
+                    switch ([[UIApplication sharedApplication] statusBarOrientation]) {
+                        case UIInterfaceOrientationPortrait:
+                            diff = keyboardFrame.origin.y;
+                            diff -= (originInWindow.y + targetView.frame.size.height);
+                            break;
+                        case UIInterfaceOrientationPortraitUpsideDown:
+                            diff = screenFrame.size.height - keyboardFrame.size.height;
+                            originInWindow.y = screenFrame.size.height - originInWindow.y;
+                            diff -= (originInWindow.y + targetView.frame.size.height);
+                            break;
+                        case UIInterfaceOrientationLandscapeLeft:
+                            diff = keyboardFrame.origin.x;
+                            diff -= (originInWindow.x + targetView.frame.size.height);
+                            break;
+                        case UIInterfaceOrientationLandscapeRight:
+                            diff = screenFrame.size.width - keyboardFrame.size.width;
+                            originInWindow.x = screenFrame.size.width - originInWindow.x;
+                            diff -= (originInWindow.x + targetView.frame.size.height);
+                        default:
+                            break;
+                    }
                 }
                 
-                
-                // Because a frame change from a keyboard with auto-completion to a one without that
-                // (e.g. From Japanese keyboard to English keyboard) leads to positive diff,
-                // we should take into account the case by using the absolute value.
-                if (fabsf(diff) > _buffer) {
-
+                if (diff < _buffer || keyboardHeightDiff != 0) {
+                    
                     float displacement = ( isPortrait ? -keyboardFrame.size.height : -keyboardFrame.size.width);
                     float delay = 0;
                     
@@ -116,12 +118,12 @@ static float _minimumAnimationDuration;
                         default:
                         {
                             float minimumDisplacement = fmaxf(displacement, diff);
-                            displacement = minimumDisplacement - _padding;
+                            displacement = minimumDisplacement - (keyboardHeightDiff <= 0 ? _padding : 0);
                             break;
                         }
                     }
                     
-                    if (_avoidingViewUsesAutoLayout) { // if view uses constrains
+                    if (_avoidingViewUsesAutoLayout) { // if view uses constraints
                         for (NSLayoutConstraint *constraint in _avoidingView.superview.constraints) {
                             if (constraint.secondItem == _avoidingView && (constraint.secondAttribute == NSLayoutAttributeCenterY || constraint.secondAttribute == NSLayoutAttributeTop || constraint.secondAttribute == NSLayoutAttributeBottom)) {
                                 if (![_updatedConstraints containsObject:constraint]) {
@@ -143,13 +145,7 @@ static float _minimumAnimationDuration;
                                              [_avoidingView.superview layoutIfNeeded]; // to animate constraint changes
                                          }
                                          else {
-                                             // There is possible case of a frame changing keyboard change
-                                             // (e.g. From Japanese Keyboard with auto-completion
-                                             // to English keyboard without that), so we should not make
-                                             // a translation, but translate the existing transform.
-                                             CGAffineTransform transform = _avoidingView.transform;
-                                             transform = CGAffineTransformTranslate(transform, 0, displacement);
-                                             _avoidingView.transform = transform;
+                                             _avoidingView.transform = CGAffineTransformMakeTranslation(0, displacement);
                                          }
                                      }
                                      completion:nil];
@@ -206,7 +202,7 @@ static float _minimumAnimationDuration;
                              [_updatedConstraintConstants removeAllObjects];
                          }];
     }
-    _isKeyboardVisible = CGRectContainsRect(windowFrame, keyboardFrame);
+    _isKeyboardVisible = CGRectContainsRect(screenFrame, keyboardFrame);
 }
 
 + (void)setAvoidingView:(UIView *)avoidingView withTarget:(UIView *)targetView;

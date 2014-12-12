@@ -38,7 +38,11 @@
         [self.avatarImageView setImage:[UIImage imageNamed:@"list_user-small_example_pic"]];
     }
     if (_dataFriend.noteName && _dataFriend.noteName.length > 0) {
-        [self.nameLabel setText:_dataFriend.noteName];
+        NSString *nameString = [NSString stringWithFormat:@"%@(%@)",_dataFriend.noteName, _dataFriend.realname];
+        NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc]initWithString:nameString];
+        [attributedString addAttribute:NSForegroundColorAttributeName value:UIColorFromRGB(0xAAAAAA) range:NSMakeRange(_dataFriend.noteName.length, _dataFriend.realname.length + 2)];
+        [self.nameLabel setAttributedText:attributedString];
+//        [self.nameLabel setText:_dataFriend.noteName];
     }
     else{
         [self.nameLabel setText:_dataFriend.realname];

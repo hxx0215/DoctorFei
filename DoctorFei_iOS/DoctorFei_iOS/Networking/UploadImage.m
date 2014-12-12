@@ -20,10 +20,10 @@
 //    hud = [MBProgressHUD showHUDAddedTo:self.view.window animated:YES];
 //    hud.dimBackground = YES;
 //    [hud setLabelText:@"图片上传中..."];
-    NSDictionary *params = @{
-                             @"picturename": [NSString stringWithFormat:@"%d.jpg", (int)[[NSDate date] timeIntervalSince1970]],
-                             @"img": [UIImageJPEGRepresentation(image, 0.5) base64EncodedStringWithOptions:0]
-                             };
+//    NSDictionary *params = @{
+//                             @"picturename": [NSString stringWithFormat:@"%d.jpg", (int)[[NSDate date] timeIntervalSince1970]],
+//                             @"img": [UIImageJPEGRepresentation(image, 0.5) base64EncodedStringWithOptions:0]
+//                             };
     NSString *str = [UIImageJPEGRepresentation(image, 0.5) base64EncodedStringWithOptions:0];
     str = [str stringByReplacingOccurrencesOfString:@"+" withString:@"|JH|"];
     str = [str stringByReplacingOccurrencesOfString:@" " withString:@"|KG|"];

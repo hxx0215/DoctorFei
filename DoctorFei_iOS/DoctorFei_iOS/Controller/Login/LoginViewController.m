@@ -114,10 +114,8 @@
     NSDictionary *params = @{
                              @"username": self.phoneTextField.text,
                              @"password": self.passwordTextField.text,
-//                             @"sn": [APService registrationID]
                              @"sn": [DeviceUtil getUUID]
                              };
-//    NSLog(@"%@",params);
     [DoctorAPI loginWithParameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"%@",responseObject);
         NSDictionary *dataDict = [responseObject firstObject];

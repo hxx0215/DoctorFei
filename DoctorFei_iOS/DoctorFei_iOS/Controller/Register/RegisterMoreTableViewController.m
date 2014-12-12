@@ -137,7 +137,10 @@
 */
 
 - (IBAction)backButtonClicked:(id)sender {
-    [self.navigationController popToRootViewControllerAnimated:YES];
+    [[NSUserDefaults standardUserDefaults]setObject:@(_userId) forKey:@"UserId"];
+    [[NSUserDefaults standardUserDefaults]synchronize];
+    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+//    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 - (IBAction)confirmButtonClicked:(id)sender {
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view.window animated:YES];
@@ -158,7 +161,17 @@
         if ([dataDict[@"state"]intValue] == 1) {
             hud.labelText = @"完善资料成功";
 //            hud.detailsLabelText = dataDict[@"msg"];
-            [self.navigationController popToRootViewControllerAnimated:YES];
+            [[NSUserDefaults standardUserDefaults] setObject:@(NO) forKey:@"IsAutoLogin"];
+            [[NSUserDefaults standardUserDefaults] setObject:@(_userId) forKey:@"UserId"];
+            [[NSUserDefaults standardUserDefaults] setObject:self.nameLabel.text forKey:@"UserRealName"];
+            [[NSUserDefaults standardUserDefaults] setObject:self.hospitalNameLabel.text forKey:@"UserHospital"];
+            [[NSUserDefaults standardUserDefaults] setObject:self.departmentLabel.text forKey:@"UserDepartment"];
+            [[NSUserDefaults standardUserDefaults] setObject:self.jobTitleLabel.text forKey:@"UserJobTitle"];
+            [[NSUserDefaults standardUserDefaults] setObject:self.emailLabel.text forKey:@"UserEmail"];
+            [[NSUserDefaults standardUserDefaults] setObject:self.introductionTextView.text forKey:@"UserOtherContact"];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+            [self dismissViewControllerAnimated:YES completion:nil];
+//            [self.navigationController popToRootViewControllerAnimated:YES];
         }
         else{
             hud.labelText = @"完善资料错误";
