@@ -17,6 +17,7 @@
 #import <UIImageView+WebCache.h>
 #import "ImageUtil.h"
 #import "NSString+Crypt.h"
+#import "UploadImage.h"
 
 @interface MyselfTableViewController ()<UINavigationControllerDelegate,UIImagePickerControllerDelegate,UIActionSheetDelegate>
 
@@ -130,10 +131,7 @@
     hud = [MBProgressHUD showHUDAddedTo:self.view.window animated:YES];
     hud.dimBackground = YES;
     [hud setLabelText:@"图片上传中..."];
-//    NSDictionary *params = @{
-//                             @"picturename": [NSString stringWithFormat:@"%d.jpg", (int)[[NSDate date] timeIntervalSince1970]],
-//                             @"img": [UIImageJPEGRepresentation(image, 0.5) base64EncodedStringWithOptions:0]
-//                             };
+
     NSString *str = [UIImageJPEGRepresentation(image, 0.8) base64EncodedStringWithOptions:0];
     str = [str stringByReplacingOccurrencesOfString:@"+" withString:@"|JH|"];
     str = [str stringByReplacingOccurrencesOfString:@" " withString:@"|KG|"];
