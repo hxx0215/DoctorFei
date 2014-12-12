@@ -109,7 +109,8 @@
             hud.labelText = @"修改成功";
             [[NSUserDefaults standardUserDefaults]setObject:urlString forKey:@"UserIcon"];
             [[NSUserDefaults standardUserDefaults]synchronize];
-            [self.navigationController popViewControllerAnimated:YES];
+            [self.avatarImageView sd_setImageWithURL:[NSURL URLWithString:urlString] placeholderImage:[UIImage imageNamed:@"list_user-big_example_pic"]];
+//            [self.navigationController popViewControllerAnimated:YES];
         }
         else{
             hud.labelText = @"修改错误";
@@ -129,49 +130,56 @@
     hud = [MBProgressHUD showHUDAddedTo:self.view.window animated:YES];
     hud.dimBackground = YES;
     [hud setLabelText:@"图片上传中..."];
-    NSDictionary *params = @{
-                             @"picturename": [NSString stringWithFormat:@"%d.jpg", (int)[[NSDate date] timeIntervalSince1970]],
-                             @"img": [UIImageJPEGRepresentation(image, 0.5) base64EncodedStringWithOptions:0]
-                             };
-    NSString *str = [UIImageJPEGRepresentation(image, 0.5) base64EncodedStringWithOptions:0];
+//    NSDictionary *params = @{
+//                             @"picturename": [NSString stringWithFormat:@"%d.jpg", (int)[[NSDate date] timeIntervalSince1970]],
+//                             @"img": [UIImageJPEGRepresentation(image, 0.5) base64EncodedStringWithOptions:0]
+//                             };
+    NSString *str = [UIImageJPEGRepresentation(image, 0.8) base64EncodedStringWithOptions:0];
     str = [str stringByReplacingOccurrencesOfString:@"+" withString:@"|JH|"];
     str = [str stringByReplacingOccurrencesOfString:@" " withString:@"|KG|"];
     str = [str stringByReplacingOccurrencesOfString:@"\n" withString:@"|HC|"];
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-    NSString *jsonStr = [NSString stringWithFormat:@"{\"picturename\":\"%@\"}",[NSString stringWithFormat:@"%d.jpg", (int)[[NSDate date] timeIntervalSince1970]]];
-    request.URL = [NSURL URLWithString:[NSString createResponseURLWithMethod:@"set.picture.add" Params:jsonStr]];
-    NSString *body = [NSString stringWithFormat:@"img=%@",str];
-    NSData *jsonBody = [body dataUsingEncoding:NSUTF8StringEncoding];
-    
-    NSString *contentType = @"application/x-www-form-urlencoded; charset=utf-8";
-    [request addValue:contentType forHTTPHeaderField:@"Content-Type"];
-    [request setHTTPMethod:@"POST"];
-    [request setHTTPBody:jsonBody];
-    NSString *postLength = [NSString stringWithFormat:@"%ld",[jsonBody length]];
-    [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
-    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError){
-        NSString *retStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-        NSString *retJson =[NSString decodeFromPercentEscapeString:[retStr decryptWithDES]];
-        NSLog(@"%@",retJson);
-    }];
 
-//    [DoctorAPI uploadImageWithParameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-//        NSDictionary *dataDict = [responseObject firstObject];
-//        NSString *urlString = dataDict[@"url"];
-//        if (urlString && urlString.length > 0) {
-//            [self updateInfoWithURLString:urlString];
-//        }
-//        else{
-//            hud.mode = MBProgressHUDModeText;
-//            hud.labelText = @"图片上传失败";
-//            hud.detailsLabelText = dataDict[@"error"];
-//        }
-//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-//        hud.mode = MBProgressHUDModeText;
-//        hud.labelText = @"错误";
-//        hud.detailsLabelText = error.localizedDescription;
-//        [hud hide:YES afterDelay:1.5f];
+    NSDictionary *params = @{
+                             @"picturename": [NSString stringWithFormat:@"%d.jpg", (int)[[NSDate date] timeIntervalSince1970]],
+                             @"img": str
+                             };
+    
+//    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+//    NSString *jsonStr = [NSString stringWithFormat:@"{\"picturename\":\"%@\"}",[NSString stringWithFormat:@"%d.jpg", (int)[[NSDate date] timeIntervalSince1970]]];
+//    request.URL = [NSURL URLWithString:[NSString createResponseURLWithMethod:@"set.picture.add" Params:jsonStr]];
+//    NSString *body = [NSString stringWithFormat:@"img=%@",str];
+//    NSData *jsonBody = [body dataUsingEncoding:NSUTF8StringEncoding];
+//    
+//    NSString *contentType = @"application/x-www-form-urlencoded; charset=utf-8";
+//    [request addValue:contentType forHTTPHeaderField:@"Content-Type"];
+//    [request setHTTPMethod:@"POST"];
+//    [request setHTTPBody:jsonBody];
+//    NSString *postLength = [NSString stringWithFormat:@"%d",[jsonBody length]];
+//    [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
+//    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError){
+//        NSString *retStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+//        NSString *retJson =[NSString decodeFromPercentEscapeString:[retStr decryptWithDES]];
+//        NSLog(@"%@",retJson);
 //    }];
+
+    [DoctorAPI uploadImageWithParameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSDictionary *dataDict = [responseObject firstObject];
+        NSString *urlString = dataDict[@"spath"];
+//        NSString *urlString = [responseObject firstObject];
+        if (urlString && urlString.length > 0) {
+            [self updateInfoWithURLString:urlString];
+        }
+        else{
+            hud.mode = MBProgressHUDModeText;
+            hud.labelText = @"图片上传失败";
+//            hud.detailsLabelText = dataDict[@"error"];
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        hud.mode = MBProgressHUDModeText;
+        hud.labelText = @"错误";
+        hud.detailsLabelText = error.localizedDescription;
+        [hud hide:YES afterDelay:1.5f];
+    }];
 }
 
 - (void)uploadIcon{
@@ -216,14 +224,14 @@
         }
         UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
         imagePickerController.delegate = self;
-        imagePickerController.allowsEditing = NO;
+        imagePickerController.allowsEditing = YES;
         imagePickerController.sourceType = sourceType;
         [self presentViewController:imagePickerController animated:YES completion:nil];
     }
 }
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
-    UIImage *image=[info objectForKey:UIImagePickerControllerOriginalImage];
+    UIImage *image=[info objectForKey:UIImagePickerControllerEditedImage];
     [picker dismissViewControllerAnimated:YES completion:^{
         if(image)
         {

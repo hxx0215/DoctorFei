@@ -637,15 +637,18 @@
                                         <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="72" id="GaE-MV-EFh"/>
+                                            <constraint firstAttribute="height" constant="72" id="sQe-0S-dfB"/>
                                         </constraints>
                                         <variation key="default">
                                             <mask key="constraints">
                                                 <exclude reference="GaE-MV-EFh"/>
+                                                <exclude reference="sQe-0S-dfB"/>
                                             </mask>
                                         </variation>
                                         <variation key="heightClass=regular-widthClass=compact">
                                             <mask key="constraints">
                                                 <include reference="GaE-MV-EFh"/>
+                                                <include reference="sQe-0S-dfB"/>
                                             </mask>
                                         </variation>
                                     </imageView>
