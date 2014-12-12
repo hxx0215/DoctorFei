@@ -19,7 +19,7 @@
 #import "NSString+Crypt.h"
 #import "UploadImage.h"
 
-@interface MyselfTableViewController ()<UINavigationControllerDelegate,UIImagePickerControllerDelegate,UIActionSheetDelegate>
+@interface MyselfTableViewController ()<UINavigationControllerDelegate,UIImagePickerControllerDelegate,UIActionSheetDelegate,UIGestureRecognizerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIImageView *avatarImageView;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
@@ -48,6 +48,11 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    self.navigationController.interactivePopGestureRecognizer.delegate = self;
+    [self.navigationController.interactivePopGestureRecognizer setEnabled:YES];
+
+    
+    
     [self.tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
     [self.introductionTextView setTextContainerInset:UIEdgeInsetsZero];
     
