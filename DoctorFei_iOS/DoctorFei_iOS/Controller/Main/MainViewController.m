@@ -102,8 +102,10 @@
 }
 
 - (void)fetchChatComplete {
-    [loadingButtonItem.customView.layer removeAllAnimations];
-    [self.navigationItem setLeftBarButtonItem:fetchButtonItem animated:YES];
+    dispatch_sync(dispatch_get_main_queue(), ^{
+        [loadingButtonItem.customView.layer removeAllAnimations];
+        [self.navigationItem setLeftBarButtonItem:fetchButtonItem animated:YES];
+    });
 }
 
 - (void)reloadTableViewData {

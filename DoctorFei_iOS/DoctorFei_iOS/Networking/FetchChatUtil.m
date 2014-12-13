@@ -29,12 +29,13 @@
             NSDictionary *dataDict = [responseObject firstObject];
             if ([dataDict[@"state"]intValue] == 1) {
                 Friends *friend = [Friends MR_findFirstByAttribute:@"userId" withValue:userId];
-                if (friend) {
+                if (friend == nil) {
                     friend = [Friends MR_createEntity];
                     friend.userId = userId;
                 }
+                friend.icon = dataDict[@"icon"];
                 friend.realname = dataDict[@"realname"];
-                friend.gender = dataDict[@"Gender"];
+                friend.gender = @([dataDict[@"Gender"]intValue]);
                 friend.mobile = dataDict[@"mobile"];
                 friend.noteName = dataDict[@"notename"];
             }

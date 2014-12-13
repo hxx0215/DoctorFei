@@ -52,7 +52,6 @@
 #endif
     // Required
     [APService setupWithOption:launchOptions];
-//    [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
     
     [SetOnlineStateUtil online];
     [self setPushUser];
@@ -79,6 +78,8 @@
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+    [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
+
     [SetOnlineStateUtil online];
     [self setPushUser];
     [[SocketConnection sharedConnection]beginListen];

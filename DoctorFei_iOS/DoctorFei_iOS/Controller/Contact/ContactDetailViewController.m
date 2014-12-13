@@ -236,6 +236,7 @@
                              @"msgtype": @"text",
                              @"content": text
                              };
+    NSLog(@"%@",params);
     [ChatAPI sendMessageWithParameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"%@",responseObject);
         NSDictionary *dataDict = [responseObject firstObject];
