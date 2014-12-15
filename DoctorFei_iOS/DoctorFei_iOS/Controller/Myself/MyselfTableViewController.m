@@ -17,7 +17,6 @@
 #import <UIImageView+WebCache.h>
 #import "ImageUtil.h"
 #import "NSString+Crypt.h"
-#import "UploadImage.h"
 
 @interface MyselfTableViewController ()<UINavigationControllerDelegate,UIImagePickerControllerDelegate,UIActionSheetDelegate,UIGestureRecognizerDelegate>
 

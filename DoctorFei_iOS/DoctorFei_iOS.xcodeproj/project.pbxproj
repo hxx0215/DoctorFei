@@ -284,7 +284,6 @@
 		6AC6EA071A28C4B5007689D8 /* NSString+Crypt.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AC6EA061A28C4B5007689D8 /* NSString+Crypt.m */; };
 		B92FA2F41A2F521C0029E6B8 /* MoreAboutUsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B92FA2F31A2F521C0029E6B8 /* MoreAboutUsViewController.m */; };
 		B9DD58E11A30912200AA4CDC /* MoreUpdateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9DD58E01A30912200AA4CDC /* MoreUpdateViewController.m */; };
-		B9E520871A3A825B00C502DB /* UploadImage.m in Sources */ = {isa = PBXBuildFile; fileRef = B9E520861A3A825B00C502DB /* UploadImage.m */; };
 		D3F448921A30BC6700B20E0A /* MoreFeedbackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F448911A30BC6700B20E0A /* MoreFeedbackViewController.m */; };
 		E5DC0A78865BEBA4AB7CC615 /* libPods-DoctorFei_iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 57A1FFA4D74E0A39C5ACB6D1 /* libPods-DoctorFei_iOS.a */; };
 /* End PBXBuildFile section */
@@ -615,8 +614,6 @@
 		B92FA2F31A2F521C0029E6B8 /* MoreAboutUsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoreAboutUsViewController.m; sourceTree = "<group>"; };
 		B9DD58DF1A30912200AA4CDC /* MoreUpdateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoreUpdateViewController.h; sourceTree = "<group>"; };
 		B9DD58E01A30912200AA4CDC /* MoreUpdateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoreUpdateViewController.m; sourceTree = "<group>"; };
-		B9E520851A3A825B00C502DB /* UploadImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UploadImage.h; sourceTree = "<group>"; };
-		B9E520861A3A825B00C502DB /* UploadImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UploadImage.m; sourceTree = "<group>"; };
 		CA31D965F02E0840CC32B219 /* Pods-DoctorFei_iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DoctorFei_iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DoctorFei_iOS/Pods-DoctorFei_iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		D3F448901A30BC6700B20E0A /* MoreFeedbackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoreFeedbackViewController.h; sourceTree = "<group>"; };
 		D3F448911A30BC6700B20E0A /* MoreFeedbackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoreFeedbackViewController.m; sourceTree = "<group>"; };
@@ -1052,8 +1049,6 @@
 		6A7376371A207EFD006EF54F /* Networking */ = {
 			isa = PBXGroup;
 			children = (
-				B9E520851A3A825B00C502DB /* UploadImage.h */,
-				B9E520861A3A825B00C502DB /* UploadImage.m */,
 				6AB359AF1A2B5758008C48B4 /* BaseHTTPRequestOperationManager.h */,
 				6AB359B01A2B5758008C48B4 /* BaseHTTPRequestOperationManager.m */,
 				6AB359B51A2B638C008C48B4 /* RegisterAPI.h */,
@@ -1514,7 +1509,6 @@
 				6A2BD5CF1A3008BF002F7644 /* SetOnlineStateUtil.m in Sources */,
 				6A7376481A20D052006EF54F /* MyselfTableViewController.m in Sources */,
 				6A73764F1A20D829006EF54F /* MainTabBarViewController.m in Sources */,
-				B9E520871A3A825B00C502DB /* UploadImage.m in Sources */,
 				6A7372C91A2034B4006EF54F /* main.m in Sources */,
 				6A78BE2D1A222C13005457F3 /* ForgetPassVerifyCodeViewController.m in Sources */,
 				6A2BD5E31A31E025002F7644 /* ContactFriendSetNoteTableViewController.m in Sources */,

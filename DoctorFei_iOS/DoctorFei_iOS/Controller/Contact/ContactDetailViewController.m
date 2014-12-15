@@ -15,6 +15,7 @@
 #import "MessagesModalData.h"
 #import <SDWebImageManager.h>
 #import "ChatAPI.h"
+#import <MBProgressHUD.h>
 //#import "DataUtil.h"
 @interface ContactDetailViewController ()
 - (IBAction)backButtonClicked:(id)sender;
@@ -240,12 +241,26 @@
     [ChatAPI sendMessageWithParameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"%@",responseObject);
         NSDictionary *dataDict = [responseObject firstObject];
-        if ([dataDict[@"state"]intValue] == -1) {
-//            JSQMessage *message = [[JSQMessage alloc]initWithSenderId:self.senderId senderDisplayName:self.senderDisplayName date:[NSDate date] text:text];
-//            [self.modalData.messages addObject:message];
-//            [self.collectionView reloadData];
-            [self loadNewMessage];
+        if ([dataDict[@"state"]intValue] != -1) {
+            JSQMessage *message = [[JSQMessage alloc]initWithSenderId:self.senderId senderDisplayName:self.senderDisplayName date:[NSDate date] text:text];
+            [self.modalData.messages addObject:message];
+            Message *newMessage = [Message MR_createEntity];
+            newMessage.messageId = @([dataDict[@"state"]intValue]);
+            newMessage.content = text;
+            newMessage.createtime = [NSDate date];
+            newMessage.flag = @(1);
+            newMessage.msgType = @"text";
+            newMessage.user = _currentFriend;
+            [[NSManagedObjectContext MR_defaultContext]MR_saveToPersistentStoreAndWait];
+            [self.collectionView reloadData];
+//            [self loadNewMessage];
             [self finishSendingMessage];
+        }
+        else {
+            MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view.window animated:YES];
+            hud.mode = MBProgressHUDModeText;
+            hud.labelText = @"发送失败";
+            [hud hide:YES afterDelay:1.0f];
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"%@",error.localizedDescription);

@@ -40,19 +40,16 @@
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="list_user-small_example_pic.png" translatesAutoresizingMaskIntoConstraints="NO" id="8nD-v5-t0r">
                                                     <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="36" id="T4Y-zN-Pkk"/>
-                                                        <constraint firstAttribute="height" constant="36" id="zZS-FE-arB"/>
+                                                        <constraint firstAttribute="width" constant="36" id="u9C-ld-Lp7"/>
                                                     </constraints>
                                                     <variation key="default">
                                                         <mask key="constraints">
-                                                            <exclude reference="T4Y-zN-Pkk"/>
-                                                            <exclude reference="zZS-FE-arB"/>
+                                                            <exclude reference="u9C-ld-Lp7"/>
                                                         </mask>
                                                     </variation>
                                                     <variation key="heightClass=regular-widthClass=compact">
                                                         <mask key="constraints">
-                                                            <include reference="T4Y-zN-Pkk"/>
-                                                            <include reference="zZS-FE-arB"/>
+                                                            <include reference="u9C-ld-Lp7"/>
                                                         </mask>
                                                     </variation>
                                                 </imageView>
@@ -64,13 +61,13 @@
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="bottomMargin" secondItem="8nD-v5-t0r" secondAttribute="bottom" constant="5.5" id="2mZ-Hr-FqO"/>
-                                                <constraint firstItem="8nD-v5-t0r" firstAttribute="leading" secondItem="Qu8-su-CUw" secondAttribute="leading" constant="20" id="51u-vn-JjB"/>
-                                                <constraint firstItem="TYW-dN-VdT" firstAttribute="leading" secondItem="8nD-v5-t0r" secondAttribute="trailing" constant="14" id="DVA-sK-zBW"/>
-                                                <constraint firstItem="TYW-dN-VdT" firstAttribute="centerY" secondItem="Qu8-su-CUw" secondAttribute="centerY" id="Q97-Ka-rZQ"/>
-                                                <constraint firstItem="8nD-v5-t0r" firstAttribute="top" secondItem="Qu8-su-CUw" secondAttribute="top" constant="15" id="WIM-Nc-PG0"/>
-                                                <constraint firstAttribute="trailing" secondItem="TYW-dN-VdT" secondAttribute="trailing" constant="20" id="ded-hh-tld"/>
-                                                <constraint firstItem="TYW-dN-VdT" firstAttribute="top" secondItem="Qu8-su-CUw" secondAttribute="topMargin" constant="14" id="oEd-NW-dvM"/>
+                                                <constraint firstItem="8nD-v5-t0r" firstAttribute="leading" secondItem="Qu8-su-CUw" secondAttribute="leading" constant="20" id="99f-zW-f6V"/>
+                                                <constraint firstItem="TYW-dN-VdT" firstAttribute="top" secondItem="Qu8-su-CUw" secondAttribute="top" constant="22" id="UNn-X8-a93"/>
+                                                <constraint firstAttribute="bottom" secondItem="8nD-v5-t0r" secondAttribute="bottom" constant="14" id="ZsQ-aR-0T2"/>
+                                                <constraint firstItem="TYW-dN-VdT" firstAttribute="centerY" secondItem="Qu8-su-CUw" secondAttribute="centerY" id="dKw-vn-VEo"/>
+                                                <constraint firstItem="8nD-v5-t0r" firstAttribute="top" secondItem="Qu8-su-CUw" secondAttribute="top" constant="15" id="dm0-Hp-StY"/>
+                                                <constraint firstItem="TYW-dN-VdT" firstAttribute="leading" secondItem="8nD-v5-t0r" secondAttribute="trailing" constant="14" id="enl-vN-yTR"/>
+                                                <constraint firstAttribute="trailing" secondItem="TYW-dN-VdT" secondAttribute="trailing" constant="20" id="rc7-Gl-USO"/>
                                             </constraints>
                                             <variation key="default">
                                                 <mask key="subviews">
@@ -78,13 +75,13 @@
                                                     <exclude reference="TYW-dN-VdT"/>
                                                 </mask>
                                                 <mask key="constraints">
-                                                    <exclude reference="DVA-sK-zBW"/>
-                                                    <exclude reference="Q97-Ka-rZQ"/>
-                                                    <exclude reference="ded-hh-tld"/>
-                                                    <exclude reference="oEd-NW-dvM"/>
-                                                    <exclude reference="2mZ-Hr-FqO"/>
-                                                    <exclude reference="51u-vn-JjB"/>
-                                                    <exclude reference="WIM-Nc-PG0"/>
+                                                    <exclude reference="99f-zW-f6V"/>
+                                                    <exclude reference="ZsQ-aR-0T2"/>
+                                                    <exclude reference="dm0-Hp-StY"/>
+                                                    <exclude reference="UNn-X8-a93"/>
+                                                    <exclude reference="dKw-vn-VEo"/>
+                                                    <exclude reference="enl-vN-yTR"/>
+                                                    <exclude reference="rc7-Gl-USO"/>
                                                 </mask>
                                             </variation>
                                             <variation key="heightClass=regular-widthClass=compact">
@@ -93,13 +90,13 @@
                                                     <include reference="TYW-dN-VdT"/>
                                                 </mask>
                                                 <mask key="constraints">
-                                                    <include reference="DVA-sK-zBW"/>
-                                                    <include reference="Q97-Ka-rZQ"/>
-                                                    <include reference="ded-hh-tld"/>
-                                                    <include reference="oEd-NW-dvM"/>
-                                                    <include reference="2mZ-Hr-FqO"/>
-                                                    <include reference="51u-vn-JjB"/>
-                                                    <include reference="WIM-Nc-PG0"/>
+                                                    <include reference="99f-zW-f6V"/>
+                                                    <include reference="ZsQ-aR-0T2"/>
+                                                    <include reference="dm0-Hp-StY"/>
+                                                    <include reference="UNn-X8-a93"/>
+                                                    <include reference="dKw-vn-VEo"/>
+                                                    <include reference="enl-vN-yTR"/>
+                                                    <include reference="rc7-Gl-USO"/>
                                                 </mask>
                                             </variation>
                                         </tableViewCellContentView>
@@ -172,7 +169,7 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="-7613" y="306"/>
+            <point key="canvasLocation" x="-7614" y="306"/>
         </scene>
         <!--Contact Detail View Controller-->
         <scene sceneID="OBo-zy-y2b">
