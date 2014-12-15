@@ -9,6 +9,7 @@
 #import "ContactFriendTableViewCell.h"
 #import "Friends.h"
 #import <UIImageView+WebCache.h>
+#import "DataUtil.h"
 @interface ContactFriendTableViewCell ()
 
 @property (weak, nonatomic) IBOutlet UIImageView *avatarImageView;
@@ -37,15 +38,16 @@
     else{
         [self.avatarImageView setImage:[UIImage imageNamed:@"list_user-small_example_pic"]];
     }
-    if (_dataFriend.noteName && _dataFriend.noteName.length > 0) {
-        NSString *nameString = [NSString stringWithFormat:@"%@(%@)",_dataFriend.noteName, _dataFriend.realname];
-        NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc]initWithString:nameString];
-        [attributedString addAttribute:NSForegroundColorAttributeName value:UIColorFromRGB(0xAAAAAA) range:NSMakeRange(_dataFriend.noteName.length, _dataFriend.realname.length + 2)];
-        [self.nameLabel setAttributedText:attributedString];
-//        [self.nameLabel setText:_dataFriend.noteName];
-    }
-    else{
-        [self.nameLabel setText:_dataFriend.realname];
-    }
+    [self.nameLabel setAttributedText:[DataUtil nameStringForFriend:_dataFriend]];
+//    if (_dataFriend.noteName && _dataFriend.noteName.length > 0) {
+//        NSString *nameString = [NSString stringWithFormat:@"%@(%@)",_dataFriend.noteName, _dataFriend.realname];
+//        NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc]initWithString:nameString];
+//        [attributedString addAttribute:NSForegroundColorAttributeName value:UIColorFromRGB(0xAAAAAA) range:NSMakeRange(_dataFriend.noteName.length, _dataFriend.realname.length + 2)];
+//        [self.nameLabel setAttributedText:attributedString];
+////        [self.nameLabel setText:_dataFriend.noteName];
+//    }
+//    else{
+//        [self.nameLabel setText:_dataFriend.realname];
+//    }
 }
 @end

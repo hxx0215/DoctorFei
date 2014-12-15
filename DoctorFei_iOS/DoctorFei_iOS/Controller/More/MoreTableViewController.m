@@ -55,7 +55,8 @@
         NSLog(@"%@",dataDict);
         hud.mode = MBProgressHUDModeText;
         if ([dataDict[@"state"]intValue] == 1) {
-            hud.labelText = @"退出登录成功";
+            [hud hide:YES];
+//            hud.labelText = @"退出登录成功";
             [DataUtil cleanUserDefault];
             [self.tabBarController setSelectedIndex:0];
             [self.tabBarController performSegueWithIdentifier:@"LoginSegueIdentifier" sender:nil];

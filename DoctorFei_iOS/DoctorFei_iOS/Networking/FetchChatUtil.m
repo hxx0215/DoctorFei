@@ -80,8 +80,12 @@
         if (chat == nil) {
             chat = [Chat MR_createEntity];
             chat.user = messageFriend;
+            chat.unreadMessageCount = @([params[@"total"]intValue]);
         }
-        chat.unreadMessageCount = @([params[@"total"]intValue]);
+        else{
+            chat.unreadMessageCount = @([params[@"total"]intValue] + chat.unreadMessageCount.intValue);
+        }
+//        chat.unreadMessageCount = @([params[@"total"]intValue]);
         Message *message = [[Message MR_findByAttribute:@"user" withValue:messageFriend andOrderBy:@"messageId" ascending:YES]lastObject];
         chat.lastMessageTime = message.createtime;
         chat.lastMessageContent = message.content;

@@ -7,9 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
-
+@class Friends;
 @interface DataUtil : NSObject
 
 + (void)cleanUserDefault;
 + (NSDate *)dateaFromFormatedString : (NSString *)formatedString;
++ (NSAttributedString *)nameStringForFriend : (Friends *)currentFriend;
 @end

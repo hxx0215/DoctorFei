@@ -12,6 +12,7 @@
 #import <UIImageView+WebCache.h>
 #import <JSBadgeView.h>
 #import <NSDate+DateTools.h>
+//#import "DataUtil.h"
 @interface MainChatTableViewCell ()
 
 @property (weak, nonatomic) IBOutlet UIImageView *avatarImageView;
@@ -49,7 +50,13 @@
     else {
         self.badgeView.badgeText = @"";
     }
-    [self.nameLabel setText: friend.realname];
+//    [self.nameLabel setAttributedText:[DataUtil nameStringForFriend:friend]];
+    if (friend.noteName && friend.noteName.length > 0) {
+        [self.nameLabel setText: friend.noteName];
+    }
+    else {
+        [self.nameLabel setText: friend.realname];
+    }
     [self.lastMessageLabel setText:_currentChat.lastMessageContent];
     [self.durationLabel setText:_currentChat.lastMessageTime.timeAgoSinceNow];
     [self.situationLabel setText:friend.situation];

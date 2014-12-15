@@ -7,8 +7,12 @@
 //
 
 #import "MoreFeedbackViewController.h"
-#import "IHKeyboardAvoiding.h"
+#import <ReactiveCocoa.h>
+//#import <IHKeyboardAvoiding.h>
+#import "UserAPI.h"
+#import <MBProgressHUD.h>
 @interface MoreFeedbackViewController ()<UITextViewDelegate>
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *confirmButton;
 @property (strong, nonatomic) IBOutlet UITextView *feedbackContent;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *textViewToBottom;
 @property (assign, nonatomic) CGRect feedbackOriginFrame;
@@ -22,7 +26,12 @@
     self.feedbackContent.layer.borderWidth = 1.0;
     self.feedbackContent.layer.borderColor = [UIColor colorWithWhite:213.0/255.0 alpha:1.0].CGColor;
     self.feedbackContent.layer.cornerRadius = 7.0;
+    RAC(self.confirmButton, enabled) = [RACSignal combineLatest:@[self.feedbackContent.rac_textSignal] reduce:^(NSString *string){
+        return @(string.length > 0);
+    }];
     
+//    [IHKeyboardAvoiding setAvoidingView:self.feedbackContent withTarget:self.feedbackContent];
+//    
 }
 
 - (IBAction)backButtonClicked:(id)sender {
@@ -30,6 +39,33 @@
 }
 - (IBAction)sendButtonClicked:(id)sender {
     [self.feedbackContent resignFirstResponder];
+    NSNumber *doctorId = [[NSUserDefaults standardUserDefaults]objectForKey:@"UserId"];
+    NSDictionary *param = @{
+                            @"doctorid": doctorId,
+                            @"type": @(0),
+                            @"feedback" : self.feedbackContent.text
+                            };
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view.window animated:YES];
+    hud.labelText = @"提交反馈中...";
+    [UserAPI setFeedBackWithParameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        hud.mode = MBProgressHUDModeText;
+        NSDictionary *dict = [responseObject firstObject];
+        if ([dict[@"state"]intValue] == 1) {
+            hud.labelText = dict[@"msg"];
+            [self.navigationController popViewControllerAnimated:YES];
+        }
+        else{
+            hud.labelText = @"提交错误";
+            hud.detailsLabelText = dict[@"msg"];
+        }
+        [hud hide:YES afterDelay:1.5f];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view.window animated:YES];
+        hud.mode = MBProgressHUDModeText;
+        hud.labelText = @"错误";
+        hud.detailsLabelText = error.localizedDescription;
+        [hud hide:YES afterDelay:1.5f];
+    }];
 }
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
@@ -43,7 +79,7 @@
 //    CGRect rect = textView.frame;
 //    rect.size.height = self.feedbackOriginFrame.size.height - 156;
 //    textView.frame = rect;
-    self.textViewToBottom.constant = 60 + 170;
+    self.textViewToBottom.constant = 60 + 200;
     return YES;
 }
 

@@ -251,6 +251,9 @@
             newMessage.flag = @(1);
             newMessage.msgType = @"text";
             newMessage.user = _currentFriend;
+            Chat *chat = [Chat MR_findFirstByAttribute:@"user" withValue:_currentFriend];
+            chat.lastMessageTime = newMessage.createtime;
+            chat.lastMessageContent = newMessage.content;
             [[NSManagedObjectContext MR_defaultContext]MR_saveToPersistentStoreAndWait];
             [self.collectionView reloadData];
 //            [self loadNewMessage];
