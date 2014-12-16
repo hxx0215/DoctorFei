@@ -52,7 +52,7 @@
                              };
     [DoctorAPI onlineWithParameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSDictionary *dataDict = [responseObject firstObject];
-        NSLog(@"%@",dataDict);
+//        NSLog(@"%@",dataDict);
         hud.mode = MBProgressHUDModeText;
         if ([dataDict[@"state"]intValue] == 1) {
             [hud hide:YES];

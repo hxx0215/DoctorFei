@@ -25,7 +25,7 @@
     NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
     NSString *app_Version = [infoDictionary objectForKey:@"CFBundleShortVersionString"];
     self.versions = [app_Version componentsSeparatedByString:@"."];
-    NSLog(@"%@",app_Version);
+//    NSLog(@"%@",app_Version);
     [self fetchMobileVersion];
 }
 

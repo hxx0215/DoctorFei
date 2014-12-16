@@ -32,7 +32,7 @@
     // Do any additional setup after loading the view.
     [IHKeyboardAvoiding setAvoidingView:self.view withTarget:self.loginBackgroundImageView];
     RAC(self.loginButton, enabled) = [RACSignal combineLatest:@[self.phoneTextField.rac_textSignal, self.passwordTextField.rac_textSignal] reduce:^(NSString *phone, NSString *password){
-        NSLog(@"%@",phone);
+//        NSLog(@"%@",phone);
         return @(phone.length == 11 && password.length > 0);
     }];
 }
@@ -117,7 +117,7 @@
                              @"sn": [DeviceUtil getUUID]
                              };
     [DoctorAPI loginWithParameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"%@",responseObject);
+//        NSLog(@"%@",responseObject);
         NSDictionary *dataDict = [responseObject firstObject];
         hud.mode = MBProgressHUDModeText;
         if ([dataDict[@"state"]intValue] == 1) {

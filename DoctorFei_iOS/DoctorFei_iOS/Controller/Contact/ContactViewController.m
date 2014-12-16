@@ -92,7 +92,7 @@
                              @"doctorid": [userId stringValue]
                              };
     [DoctorAPI getFriendsWithParameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"%@",responseObject);
+//        NSLog(@"%@",responseObject);
         NSArray *dataArray = (NSArray *)responseObject;
         for (NSDictionary *dict in dataArray) {
             Friends *friend = [Friends MR_findFirstByAttribute:@"userId" withValue:dict[@"userId"]];

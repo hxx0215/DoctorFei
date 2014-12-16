@@ -25,7 +25,7 @@
                                       @"userid": userId
                                       };
         [UserAPI getUserInfomationWithParameters:friendParam success:^(AFHTTPRequestOperation *operation, id responseObject) {
-            NSLog(@"%@",responseObject);
+//            NSLog(@"%@",responseObject);
             NSDictionary *dataDict = [responseObject firstObject];
             if ([dataDict[@"state"]intValue] == 1) {
                 Friends *friend = [Friends MR_findFirstByAttribute:@"userId" withValue:userId];
