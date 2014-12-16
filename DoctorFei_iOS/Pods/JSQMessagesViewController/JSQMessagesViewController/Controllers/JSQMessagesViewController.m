@@ -634,6 +634,7 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
                         senderId:self.senderId
                senderDisplayName:self.senderDisplayName
                             date:[NSDate date]];
+        self.inputToolbar.contentView.textView.text = [self.inputToolbar.contentView.textView.text jsq_stringByTrimingWhitespace];
     }
     else {
         [self didPressAccessoryButton:sender];

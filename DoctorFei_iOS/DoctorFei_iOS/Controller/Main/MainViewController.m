@@ -73,6 +73,9 @@
     if (icon && icon.length > 0) {
         [_avatarImageView sd_setImageWithURL:[NSURL URLWithString:icon] placeholderImage:[UIImage imageNamed:@"home_user_example_pic"]];
     }
+    else {
+        [_avatarImageView setImage:[UIImage imageNamed:@"home_user_example_pic"]];
+    }
     [_nameLabel setText:[[NSUserDefaults standardUserDefaults]objectForKey:@"UserRealName"]];
     [_hospitalLabel setText:[[NSUserDefaults standardUserDefaults]objectForKey:@"UserHospital"]];
     NSString *department = [[NSUserDefaults standardUserDefaults]objectForKey:@"UserDepartment"];

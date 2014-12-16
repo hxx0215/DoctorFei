@@ -80,6 +80,9 @@
     if (icon.length > 0) {
         [self.avatarImageView sd_setImageWithURL:[NSURL URLWithString:icon] placeholderImage:[UIImage imageNamed:@"list_user-big_example_pic"]];
     }
+    else{
+        [self.avatarImageView setImage:[UIImage imageNamed:@"list_user-big_example_pic"]];
+    }
     [self.nameLabel setText:name];
     [self.hospitalNameLabel setText:hospital];
     [self.departmengLabel setText:department];

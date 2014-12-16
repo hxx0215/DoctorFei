@@ -24,8 +24,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.feedbackContent.layer.borderWidth = 1.0;
-    self.feedbackContent.layer.borderColor = [UIColor colorWithWhite:213.0/255.0 alpha:1.0].CGColor;
-    self.feedbackContent.layer.cornerRadius = 7.0;
+    self.feedbackContent.layer.borderColor = UIColorFromRGB(0xA6A6A6).CGColor;
+    self.feedbackContent.layer.cornerRadius = 10.0;
     RAC(self.confirmButton, enabled) = [RACSignal combineLatest:@[self.feedbackContent.rac_textSignal] reduce:^(NSString *string){
         return @(string.length > 0);
     }];
@@ -70,6 +70,7 @@
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     self.feedbackOriginFrame = self.feedbackContent.frame;
+    [self.feedbackContent becomeFirstResponder];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
