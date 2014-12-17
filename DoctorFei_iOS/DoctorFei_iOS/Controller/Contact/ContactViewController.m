@@ -249,12 +249,44 @@
 
 #pragma mark - UIActionSheet Delegate
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    Friends *friend = tableViewDataArray[currentIndexPath.section][currentIndexPath.row];
     if (buttonIndex == 0) {
-        //TODO  删除好友
+        NSNumber *doctorId = [[NSUserDefaults standardUserDefaults]objectForKey:@"UserId"];
+        NSDictionary *params = @{
+                                 @"doctorid": doctorId,
+                                 @"userid": friend.userId
+                                 };
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view.window animated:YES];
+        hud.dimBackground = YES;
+        hud.labelText = @"删除中...";
+        [DoctorAPI delFriendWithParameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            NSDictionary *dict = [responseObject firstObject];
+            hud.mode = MBProgressHUDModeText;
+            if ([dict[@"state"]intValue] == 1) {
+                hud.labelText = @"删除成功";
+                Chat *chat = [Chat MR_findFirstByAttribute:@"user" withValue:friend];
+                if (chat) {
+                    [chat MR_deleteEntity];
+                }
+                [friend MR_deleteEntity];
+                [[NSManagedObjectContext MR_defaultContext]MR_saveToPersistentStoreAndWait];
+                [self.navigationController popToRootViewControllerAnimated:YES];
+            }
+            else {
+                hud.labelText = @"删除失败";
+                hud.detailsLabelText = dict[@"msg"];
+            }
+            [hud hide:YES afterDelay:1.0f];
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            NSLog(@"%@", error.localizedDescription);
+            hud.mode = MBProgressHUDModeText;
+            hud.labelText = @"错误";
+            hud.detailsLabelText = error.localizedDescription;
+            [hud hide:YES afterDelay:1.0f];
+        }];
+
     }
     else if (buttonIndex == 1) {
-        //TODO 清空聊天记录
-        Friends *friend = tableViewDataArray[currentIndexPath.section][currentIndexPath.row];
         Chat *chat = [Chat MR_findFirstByAttribute:@"user" withValue:friend];
         if (chat) {
             [chat MR_deleteEntity];
