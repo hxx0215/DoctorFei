@@ -11,6 +11,7 @@
 @interface DataUtil : NSObject
 
 + (void)cleanUserDefault;
++ (void)cleanCoreData;
 + (NSDate *)dateaFromFormatedString : (NSString *)formatedString;
 + (NSAttributedString *)nameStringForFriend : (Friends *)currentFriend;
 @end

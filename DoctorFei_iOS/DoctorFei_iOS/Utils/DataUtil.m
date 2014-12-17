@@ -23,10 +23,13 @@
     [[NSUserDefaults standardUserDefaults]removeObjectForKey:@"UserEmail"];
     [[NSUserDefaults standardUserDefaults]removeObjectForKey:@"UserOtherContact"];
     [[NSUserDefaults standardUserDefaults]synchronize];
-//    [Friends MR_truncateAll];
-//    [Chat MR_truncateAll];
-//    [Message MR_truncateAll];
-//    [[NSManagedObjectContext MR_defaultContext]MR_saveToPersistentStoreAndWait];
+}
+
++ (void)cleanCoreData {
+    [Friends MR_truncateAll];
+    [Chat MR_truncateAll];
+    [Message MR_truncateAll];
+    [[NSManagedObjectContext MR_defaultContext]MR_saveToPersistentStoreAndWait];
 }
 
 + (NSDate *)dateaFromFormatedString : (NSString *)formatedString {

@@ -13,7 +13,7 @@
 #import "DeviceUtil.h"
 #import "DoctorAPI.h"
 #import "APService.h"
-
+#import "DataUtil.h"
 @interface LoginViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *loginBackgroundImageView;
 @property (weak, nonatomic) IBOutlet UITextField *phoneTextField;
@@ -116,13 +116,18 @@
                              @"password": self.passwordTextField.text,
                              @"sn": [DeviceUtil getUUID]
                              };
+//    NSLog(@"%@",params);
     [DoctorAPI loginWithParameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-//        NSLog(@"%@",responseObject);
+        NSLog(@"%@",responseObject);
         NSDictionary *dataDict = [responseObject firstObject];
         hud.mode = MBProgressHUDModeText;
         if ([dataDict[@"state"]intValue] == 1) {
 //            hud.labelText = dataDict[@"msg"];
             [hud hide:YES];
+            NSNumber *lastLoginUserId = [[NSUserDefaults standardUserDefaults] objectForKey:@"LastLoginUserId"];
+            if ([lastLoginUserId intValue] == [dataDict[@"userId"]intValue]) {
+                [DataUtil cleanCoreData];
+            }
             if ([self.autoLoginButton isSelected]) {
                 [[NSUserDefaults standardUserDefaults] setObject:@(YES) forKey:@"IsAutoLogin"];
             }
@@ -130,6 +135,7 @@
                 [[NSUserDefaults standardUserDefaults] setObject:@(NO) forKey:@"IsAutoLogin"];
             }
             [[NSUserDefaults standardUserDefaults] setObject:dataDict[@"userId"] forKey:@"UserId"];
+            [[NSUserDefaults standardUserDefaults] setObject:dataDict[@"userId"] forKey:@"LastLoginUserId"];
             [[NSUserDefaults standardUserDefaults] setObject:dataDict[@"icon"] forKey:@"UserIcon"];
             [[NSUserDefaults standardUserDefaults] setObject:dataDict[@"RealName"] forKey:@"UserRealName"];
             [[NSUserDefaults standardUserDefaults] setObject:dataDict[@"hospital"] forKey:@"UserHospital"];
