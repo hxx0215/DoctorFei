@@ -92,7 +92,7 @@
                              @"doctorid": [userId stringValue]
                              };
     [DoctorAPI getFriendsWithParameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-//        NSLog(@"%@",responseObject);
+        NSLog(@"%@",responseObject);
         NSArray *dataArray = (NSArray *)responseObject;
         for (NSDictionary *dict in dataArray) {
             Friends *friend = [Friends MR_findFirstByAttribute:@"userId" withValue:dict[@"userId"]];
@@ -107,6 +107,7 @@
             friend.icon = dict[@"icon"];
             friend.userType = dict[@"usertype"];
             friend.noteName = dict[@"notename"];
+            friend.situation = dict[@"describe"];
         }
         [[NSManagedObjectContext MR_defaultContext]MR_saveToPersistentStoreAndWait];
         [self reloadTableViewData];

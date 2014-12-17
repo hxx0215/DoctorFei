@@ -38,6 +38,7 @@
                 friend.gender = @([dataDict[@"Gender"]intValue]);
                 friend.mobile = dataDict[@"mobile"];
                 friend.noteName = dataDict[@"notename"];
+                friend.situation = dataDict[@"describe"];
             }
             [[NSManagedObjectContext MR_defaultContext]MR_saveToPersistentStoreAndWait];
             [self fetchHasUserIdChatWithParam:params];

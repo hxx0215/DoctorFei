@@ -406,7 +406,7 @@
                                             <segue destination="gjd-jH-L0S" kind="show" identifier="FriendDetailSetNoteSegueIdentifier" id="bt5-nc-8Eg"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="45" id="EN2-8T-eEe">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" rowHeight="45" id="EN2-8T-eEe">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="EN2-8T-eEe" id="Uxe-RZ-dke">
                                             <autoresizingMask key="autoresizingMask"/>
@@ -439,7 +439,7 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="trailingMargin" secondItem="kpM-pJ-d5S" secondAttribute="trailing" constant="-1" id="5Cs-ro-2gU">
-                                                    <variation key="heightClass=regular-widthClass=compact" constant="32"/>
+                                                    <variation key="heightClass=regular-widthClass=compact" constant="-8"/>
                                                 </constraint>
                                                 <constraint firstItem="kpM-pJ-d5S" firstAttribute="baseline" secondItem="JjI-gI-FN3" secondAttribute="baseline" id="OfQ-UQ-OIn"/>
                                                 <constraint firstItem="JjI-gI-FN3" firstAttribute="centerY" secondItem="Uxe-RZ-dke" secondAttribute="centerY" id="RHr-4S-aLq"/>
@@ -476,6 +476,9 @@
                                                 </mask>
                                             </variation>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="7vi-g4-sXh" kind="show" identifier="FriendDetailSetDescribeSegueIdentifier" id="bhy-2P-Wn5"/>
+                                        </connections>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -588,7 +591,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="T09-pZ-K0g" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-4233" y="114"/>
+            <point key="canvasLocation" x="-4093.5" y="22.5"/>
         </scene>
         <!--费医生-->
         <scene sceneID="JCo-kc-EOa">
@@ -4259,6 +4262,92 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Z4a-Gy-NXg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-10416" y="4519"/>
+        </scene>
+        <!--病情描述-->
+        <scene sceneID="rNa-dC-F48">
+            <objects>
+                <tableViewController id="7vi-g4-sXh" customClass="ContactFriendSetDescribeTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Efp-pk-9BO">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="487"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.93333333330000001" green="0.93333333330000001" blue="0.93333333330000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <sections>
+                            <tableViewSection headerTitle=" " id="Gu0-V3-MTG">
+                                <cells>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="45" id="Lj9-JK-8Fz">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Lj9-JK-8Fz" id="ahd-Uy-bXE">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入病情描述" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gtC-eP-LS5">
+                                                    <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="7vi-g4-sXh" id="gJX-np-deJ"/>
+                                                    </connections>
+                                                </textField>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="gtC-eP-LS5" firstAttribute="leading" secondItem="ahd-Uy-bXE" secondAttribute="leadingMargin" constant="12" id="GjY-na-x2Z"/>
+                                                <constraint firstItem="gtC-eP-LS5" firstAttribute="top" secondItem="ahd-Uy-bXE" secondAttribute="topMargin" id="OrT-pM-I52"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="gtC-eP-LS5" secondAttribute="bottom" constant="-1" id="dgx-e0-7dj"/>
+                                                <constraint firstItem="gtC-eP-LS5" firstAttribute="centerX" secondItem="ahd-Uy-bXE" secondAttribute="centerX" id="wAH-bL-ft2"/>
+                                            </constraints>
+                                            <variation key="default">
+                                                <mask key="subviews">
+                                                    <exclude reference="gtC-eP-LS5"/>
+                                                </mask>
+                                                <mask key="constraints">
+                                                    <exclude reference="wAH-bL-ft2"/>
+                                                    <exclude reference="OrT-pM-I52"/>
+                                                    <exclude reference="dgx-e0-7dj"/>
+                                                    <exclude reference="GjY-na-x2Z"/>
+                                                </mask>
+                                            </variation>
+                                            <variation key="heightClass=regular-widthClass=compact">
+                                                <mask key="subviews">
+                                                    <include reference="gtC-eP-LS5"/>
+                                                </mask>
+                                                <mask key="constraints">
+                                                    <include reference="wAH-bL-ft2"/>
+                                                    <include reference="OrT-pM-I52"/>
+                                                    <include reference="dgx-e0-7dj"/>
+                                                    <include reference="GjY-na-x2Z"/>
+                                                </mask>
+                                            </variation>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="7vi-g4-sXh" id="r9d-xZ-ux1"/>
+                            <outlet property="delegate" destination="7vi-g4-sXh" id="1R4-Y3-2Ms"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="病情描述" id="VO1-M0-pu5">
+                        <barButtonItem key="leftBarButtonItem" title="取消" id="Eh9-wW-UZ3">
+                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="backButtonClicked:" destination="7vi-g4-sXh" id="9jF-Gd-chb"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="保存" style="done" id="CKX-8D-XGF">
+                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="confrimButtonClicked:" destination="7vi-g4-sXh" id="zoH-1w-iAj"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="confirmButton" destination="CKX-8D-XGF" id="zkh-St-qZ6"/>
+                        <outlet property="describeTextField" destination="gtC-eP-LS5" id="qnE-6n-1Un"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UaK-0c-dSI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-4093.5" y="684.75"/>
         </scene>
     </scenes>
     <resources>

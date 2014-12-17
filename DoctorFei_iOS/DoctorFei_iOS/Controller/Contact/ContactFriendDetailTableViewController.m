@@ -10,6 +10,10 @@
 #import "Friends.h"
 #import <UIImageView+WebCache.h>
 #import "ContactFriendSetNoteTableViewController.h"
+#import "ContactFriendSetDescribeTableViewController.h"
+#import "DoctorAPI.h"
+#import <MBProgressHUD.h>
+#import "Chat.h"
 @interface ContactFriendDetailTableViewController ()
 
 - (IBAction)backButtonClicked:(id)sender;
@@ -75,12 +79,49 @@
         ContactFriendSetNoteTableViewController *vc = [segue destinationViewController];
         [vc setCurrentFriend:_currentFriend];
     }
+    else if ([segue.identifier isEqualToString:@"FriendDetailSetDescribeSegueIdentifier"]) {
+        ContactFriendSetDescribeTableViewController *vc = [segue destinationViewController];
+        [vc setCurrentFriend:_currentFriend];
+    }
 }
 
 - (IBAction)phoneButtonClicked:(id)sender {
 }
 
 - (IBAction)deleteFriendButtonClicked:(id)sender {
+    NSNumber *doctorId = [[NSUserDefaults standardUserDefaults]objectForKey:@"UserId"];
+    NSDictionary *params = @{
+                             @"doctorid": doctorId,
+                             @"userid": _currentFriend.userId
+                             };
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view.window animated:YES];
+    hud.dimBackground = YES;
+    hud.labelText = @"删除中...";
+    [DoctorAPI delFriendWithParameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSDictionary *dict = [responseObject firstObject];
+        hud.mode = MBProgressHUDModeText;
+        if ([dict[@"state"]intValue] == 1) {
+            hud.labelText = @"删除成功";
+            Chat *chat = [Chat MR_findFirstByAttribute:@"user" withValue:_currentFriend];
+            if (chat) {
+                [chat MR_deleteEntity];
+            }
+            [_currentFriend MR_deleteEntity];
+            [[NSManagedObjectContext MR_defaultContext]MR_saveToPersistentStoreAndWait];
+            [self.navigationController popToRootViewControllerAnimated:YES];
+        }
+        else {
+            hud.labelText = @"删除失败";
+            hud.detailsLabelText = dict[@"msg"];
+        }
+        [hud hide:YES afterDelay:1.0f];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"%@", error.localizedDescription);
+        hud.mode = MBProgressHUDModeText;
+        hud.labelText = @"错误";
+        hud.detailsLabelText = error.localizedDescription;
+        [hud hide:YES afterDelay:1.0f];
+    }];
 }
 - (IBAction)backButtonClicked:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
