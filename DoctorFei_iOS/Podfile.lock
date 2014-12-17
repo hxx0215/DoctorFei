@@ -22,8 +22,8 @@ PODS:
     - AFNetworking/NSURLSession
   - CocoaAsyncSocket (7.3.5)
   - DateTools (1.4.3)
-  - DZNEmptyDataSet (1.4.1)
-  - IHKeyboardAvoiding (1.4)
+  - DZNEmptyDataSet (1.5)
+  - IHKeyboardAvoiding (2.0)
   - JSBadgeView (1.3.2)
   - JSONKit-NoWarning (1.2)
   - JSQMessagesViewController (6.1.0):
@@ -33,12 +33,13 @@ PODS:
     - MagicalRecord/Core (= 2.2)
   - MagicalRecord/Core (2.2)
   - MBProgressHUD (0.9)
-  - ReactiveCocoa (2.3.1):
-    - ReactiveCocoa/UI (= 2.3.1)
-  - ReactiveCocoa/Core (2.3.1):
+  - Reachability (3.2)
+  - ReactiveCocoa (2.4.2):
+    - ReactiveCocoa/UI (= 2.4.2)
+  - ReactiveCocoa/Core (2.4.2):
     - ReactiveCocoa/no-arc
-  - ReactiveCocoa/no-arc (2.3.1)
-  - ReactiveCocoa/UI (2.3.1):
+  - ReactiveCocoa/no-arc (2.4.2)
+  - ReactiveCocoa/UI (2.4.2):
     - ReactiveCocoa/Core
   - SDWebImage (3.7.1):
     - SDWebImage/Core (= 3.7.1)
@@ -55,6 +56,7 @@ DEPENDENCIES:
   - JSQMessagesViewController
   - MagicalRecord
   - MBProgressHUD
+  - Reachability
   - ReactiveCocoa
   - SDWebImage
 
@@ -62,15 +64,16 @@ SPEC CHECKSUMS:
   AFNetworking: 0f54cb5d16ce38c1b76948faffb8d5fb705021c7
   CocoaAsyncSocket: 45bdbbc1c0a5ed0640ff4c42af325ba43a2f099a
   DateTools: 7c2d233ea2d4bda3a717d0cd5f58da926a5998d0
-  DZNEmptyDataSet: 381e880cb3bb2d33885cb0325218443df265bc98
-  IHKeyboardAvoiding: b759f3fb1c995be6de74c977a6d425723fcc62bd
+  DZNEmptyDataSet: 15b1425ebba29e5a04d2fac9623a7384e3eaf775
+  IHKeyboardAvoiding: d2c7cd9ce5ca7bf566877dc527706b0a7d6cdcf0
   JSBadgeView: 75bec79d76e0eb01d57c9ce75b7c5ea8d6707955
   JSONKit-NoWarning: fc8d6dd8ec65e303867d1bd274632fc60a4a8ab9
   JSQMessagesViewController: 8998c086bf6db5d6190376041903d5be2961f03f
   JSQSystemSoundPlayer: c98443b1cbb3b45db09d0d3d6c2355cf78294981
   MagicalRecord: 2b471584fc9e3137f3d0a56967917baa4979e224
   MBProgressHUD: 2038dbcf3dce73215abed6001657043d53aa79a8
-  ReactiveCocoa: dca75777b9d18990c8714a3a6f2149f29b4d1462
+  Reachability: 1ef8adf5c4e3d362f96515d4278f68dad3c26930
+  ReactiveCocoa: 8418a82b67af2f1b7587baf29c329040a23c2063
   SDWebImage: 116e88633b5b416ea0ca4b334a4ac59cf72dd38d
 
 COCOAPODS: 0.35.0

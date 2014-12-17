@@ -1314,11 +1314,17 @@
                                         <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                         <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="2fQ-5X-qoq" id="onp-7d-rYK"/>
+                                        </connections>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="登录密码" minimumFontSize="12" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="KMS-0S-vlm">
                                         <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                         <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="2fQ-5X-qoq" id="xsV-3m-aIe"/>
+                                        </connections>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FtN-zH-IqE">
                                         <rect key="frame" x="-23" y="-15" width="46" height="30"/>
@@ -1540,7 +1546,7 @@
                     <navigationItem key="navigationItem" id="yhn-OW-jpE"/>
                     <connections>
                         <outlet property="autoLoginButton" destination="RWc-Ae-nKW" id="lDU-Sf-hCH"/>
-                        <outlet property="loginBackgroundImageView" destination="IB6-FZ-Kho" id="5yL-fi-xBG"/>
+                        <outlet property="loginBackgroundView" destination="pT3-A5-ueq" id="n3T-Hg-wd5"/>
                         <outlet property="loginButton" destination="FtN-zH-IqE" id="I71-7M-e8z"/>
                         <outlet property="passwordTextField" destination="KMS-0S-vlm" id="K8A-Ft-A0I"/>
                         <outlet property="phoneTextField" destination="BtX-YS-6zp" id="VxS-OC-Koy"/>

@@ -509,7 +509,7 @@ To add RAC to your application:
 
 If you would prefer to use [CocoaPods](http://cocoapods.org), there are some
 [ReactiveCocoa
-podspecs](https://github.com/CocoaPods/Specs/tree/master/ReactiveCocoa) that
+podspecs](https://github.com/CocoaPods/Specs/tree/master/Specs/ReactiveCocoa) that
 have been generously contributed by third parties.
 
 To see a project already set up with RAC, check out [C-41][] or [GroceryList][],
@@ -541,6 +541,11 @@ are some resources related to FRP:
 * [Specification for a Functional Reactive Language - Stack Overflow](http://stackoverflow.com/questions/5875929/specification-for-a-functional-reactive-programming-language#5878525)
 * [Escape from Callback Hell](http://elm-lang.org/learn/Escape-from-Callback-Hell.elm)
 * [Principles of Reactive Programming on Coursera](https://www.coursera.org/course/reactive)
+
+ReactiveCocoa also has a chat room on [Slack](https://slack.com/). If you'd like
+to join, just [provide your email
+address](https://github.com/ReactiveCocoa/ReactiveCocoa/issues/871#issuecomment-44237545) and we'll
+happily send you an invite!
 
 [Basic Operators]: Documentation/BasicOperators.md
 [Documentation]: Documentation

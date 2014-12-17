@@ -40,8 +40,6 @@
  @discussion The data source must adopt the DZNEmptyDataSetSource protocol. The data source is not retained. All data source methods are optional.
  */
 @protocol DZNEmptyDataSetSource <NSObject>
-@required
-
 @optional
 
 /**
@@ -110,7 +108,6 @@
 
 /**
  Asks the data source for a offset for vertical and horizontal alignment of the content. Default is CGPointZero.
- @discussion If called when using a tableView, a value sum between the header and footer view's height will be added to any value you assign to vertical offset.
  
  @param scrollView A scrollView subclass object informing the delegate.
  @return The offset for vertical and horizontal alignment.
@@ -135,7 +132,6 @@
  @discussion All delegate methods are optional. Use this delegate for receiving action callbacks.
  */
 @protocol DZNEmptyDataSetDelegate <NSObject>
-@required
 @optional
 
 /**

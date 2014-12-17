@@ -12,6 +12,7 @@
 #import "DeviceUtil.h"
 #import <JSONKit.h>
 #import "FetchChatUtil.h"
+#import <Reachability.h>
 
 @interface SocketConnection ()
     <GCDAsyncSocketDelegate>

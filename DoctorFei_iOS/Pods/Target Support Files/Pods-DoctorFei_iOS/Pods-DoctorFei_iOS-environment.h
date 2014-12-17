@@ -57,8 +57,8 @@
 // DZNEmptyDataSet
 #define COCOAPODS_POD_AVAILABLE_DZNEmptyDataSet
 #define COCOAPODS_VERSION_MAJOR_DZNEmptyDataSet 1
-#define COCOAPODS_VERSION_MINOR_DZNEmptyDataSet 4
-#define COCOAPODS_VERSION_PATCH_DZNEmptyDataSet 1
+#define COCOAPODS_VERSION_MINOR_DZNEmptyDataSet 5
+#define COCOAPODS_VERSION_PATCH_DZNEmptyDataSet 0
 
 // DateTools
 #define COCOAPODS_POD_AVAILABLE_DateTools
@@ -68,8 +68,8 @@
 
 // IHKeyboardAvoiding
 #define COCOAPODS_POD_AVAILABLE_IHKeyboardAvoiding
-#define COCOAPODS_VERSION_MAJOR_IHKeyboardAvoiding 1
-#define COCOAPODS_VERSION_MINOR_IHKeyboardAvoiding 4
+#define COCOAPODS_VERSION_MAJOR_IHKeyboardAvoiding 2
+#define COCOAPODS_VERSION_MINOR_IHKeyboardAvoiding 0
 #define COCOAPODS_VERSION_PATCH_IHKeyboardAvoiding 0
 
 // JSBadgeView
@@ -114,29 +114,35 @@
 #define COCOAPODS_VERSION_MINOR_MagicalRecord_Core 2
 #define COCOAPODS_VERSION_PATCH_MagicalRecord_Core 0
 
+// Reachability
+#define COCOAPODS_POD_AVAILABLE_Reachability
+#define COCOAPODS_VERSION_MAJOR_Reachability 3
+#define COCOAPODS_VERSION_MINOR_Reachability 2
+#define COCOAPODS_VERSION_PATCH_Reachability 0
+
 // ReactiveCocoa
 #define COCOAPODS_POD_AVAILABLE_ReactiveCocoa
 #define COCOAPODS_VERSION_MAJOR_ReactiveCocoa 2
-#define COCOAPODS_VERSION_MINOR_ReactiveCocoa 3
-#define COCOAPODS_VERSION_PATCH_ReactiveCocoa 1
+#define COCOAPODS_VERSION_MINOR_ReactiveCocoa 4
+#define COCOAPODS_VERSION_PATCH_ReactiveCocoa 2
 
 // ReactiveCocoa/Core
 #define COCOAPODS_POD_AVAILABLE_ReactiveCocoa_Core
 #define COCOAPODS_VERSION_MAJOR_ReactiveCocoa_Core 2
-#define COCOAPODS_VERSION_MINOR_ReactiveCocoa_Core 3
-#define COCOAPODS_VERSION_PATCH_ReactiveCocoa_Core 1
+#define COCOAPODS_VERSION_MINOR_ReactiveCocoa_Core 4
+#define COCOAPODS_VERSION_PATCH_ReactiveCocoa_Core 2
 
 // ReactiveCocoa/UI
 #define COCOAPODS_POD_AVAILABLE_ReactiveCocoa_UI
 #define COCOAPODS_VERSION_MAJOR_ReactiveCocoa_UI 2
-#define COCOAPODS_VERSION_MINOR_ReactiveCocoa_UI 3
-#define COCOAPODS_VERSION_PATCH_ReactiveCocoa_UI 1
+#define COCOAPODS_VERSION_MINOR_ReactiveCocoa_UI 4
+#define COCOAPODS_VERSION_PATCH_ReactiveCocoa_UI 2
 
 // ReactiveCocoa/no-arc
 #define COCOAPODS_POD_AVAILABLE_ReactiveCocoa_no_arc
 #define COCOAPODS_VERSION_MAJOR_ReactiveCocoa_no_arc 2
-#define COCOAPODS_VERSION_MINOR_ReactiveCocoa_no_arc 3
-#define COCOAPODS_VERSION_PATCH_ReactiveCocoa_no_arc 1
+#define COCOAPODS_VERSION_MINOR_ReactiveCocoa_no_arc 4
+#define COCOAPODS_VERSION_PATCH_ReactiveCocoa_no_arc 2
 
 // SDWebImage
 #define COCOAPODS_POD_AVAILABLE_SDWebImage

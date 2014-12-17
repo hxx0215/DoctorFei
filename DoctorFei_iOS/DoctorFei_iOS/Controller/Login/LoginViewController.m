@@ -15,7 +15,8 @@
 #import "APService.h"
 #import "DataUtil.h"
 @interface LoginViewController ()
-@property (weak, nonatomic) IBOutlet UIImageView *loginBackgroundImageView;
+    <UITextFieldDelegate>
+@property (weak, nonatomic) IBOutlet UIView *loginBackgroundView;
 @property (weak, nonatomic) IBOutlet UITextField *phoneTextField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
 @property (weak, nonatomic) IBOutlet UIButton *loginButton;
@@ -30,9 +31,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    [IHKeyboardAvoiding setAvoidingView:self.view withTarget:self.loginBackgroundImageView];
+    [IHKeyboardAvoiding setAvoidingView:self.loginBackgroundView];
     RAC(self.loginButton, enabled) = [RACSignal combineLatest:@[self.phoneTextField.rac_textSignal, self.passwordTextField.rac_textSignal] reduce:^(NSString *phone, NSString *password){
-//        NSLog(@"%@",phone);
         return @(phone.length == 11 && password.length > 0);
     }];
 }
@@ -116,7 +116,7 @@
                              @"password": self.passwordTextField.text,
                              @"sn": [DeviceUtil getUUID]
                              };
-//    NSLog(@"%@",params);
+    NSLog(@"%@",params);
     [DoctorAPI loginWithParameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"%@",responseObject);
         NSDictionary *dataDict = [responseObject firstObject];
@@ -125,7 +125,7 @@
 //            hud.labelText = dataDict[@"msg"];
             [hud hide:YES];
             NSNumber *lastLoginUserId = [[NSUserDefaults standardUserDefaults] objectForKey:@"LastLoginUserId"];
-            if ([lastLoginUserId intValue] == [dataDict[@"userId"]intValue]) {
+            if ([lastLoginUserId intValue] != [dataDict[@"userId"]intValue]) {
                 [DataUtil cleanCoreData];
             }
             if ([self.autoLoginButton isSelected]) {
@@ -169,5 +169,12 @@
     else{
         [self.autoLoginButton setSelected:YES];
     }
+}
+
+#pragma mark - UITextField Delegate
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [self.phoneTextField resignFirstResponder];
+    [self.passwordTextField resignFirstResponder];
+    return YES;
 }
 @end
