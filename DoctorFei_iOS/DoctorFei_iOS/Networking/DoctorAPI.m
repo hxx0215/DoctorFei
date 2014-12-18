@@ -14,7 +14,7 @@
 #define kMethodFriend @"get.doctor.friend"
 #define kMethodUserNote @"set.doctor.usernote"
 #define kMethodUploadImage @"set.picture.add"
-#define kMethodUserDescribe @"set.doctor.userdescribe"
+#define kMethodUserDescribe @"set.doctor.userdesribe"
 #define kMethodDelFriend @"set.doctor.delfriend"
 
 @implementation DoctorAPI

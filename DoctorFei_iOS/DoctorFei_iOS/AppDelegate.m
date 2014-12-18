@@ -15,6 +15,7 @@
 #import "MobileAPI.h"
 #import "SocketConnection.h"
 #import "DataUtil.h"
+#import <MobClick.h>
 @interface AppDelegate ()
 
 @end
@@ -28,6 +29,8 @@
 #if TARGET_IPHONE_SIMULATOR
     NSLog(@"Documents Directory: %@", [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject]);
 #endif
+    
+    [MobClick startWithAppkey:@"54928fcbfd98c58aaa00136c" reportPolicy:BATCH channelId:@""];
     
     [MagicalRecord setupCoreDataStackWithStoreNamed:@"DoctorFei.sqlite"];
     

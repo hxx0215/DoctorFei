@@ -82,7 +82,7 @@
         hud.mode = MBProgressHUDModeText;
         if ([dataDict[@"state"]intValue] == 1) {
             hud.labelText = @"设置成功";
-            _currentFriend.noteName = self.describeTextField.text;
+            _currentFriend.situation = self.describeTextField.text;
             [[NSManagedObjectContext MR_defaultContext]MR_saveToPersistentStoreAndWait];
             [self.navigationController popViewControllerAnimated:YES];
         }
