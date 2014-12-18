@@ -13,7 +13,7 @@
 #import <MBProgressHUD.h>
 #import "DoctorAPI.h"
 @interface MySelfBasicInfoEditTableViewController ()
-    <UITextFieldDelegate>
+    <UITextFieldDelegate, UITableViewDelegate>
 - (IBAction)backButtonClicked:(id)sender;
 - (IBAction)confirmButtonClicked:(id)sender;
 @property (weak, nonatomic) IBOutlet UITextField *infoTextField;
@@ -109,4 +109,9 @@
     return YES;
 }
 
+
+#pragma mark - UITableView Delegate
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return 20.0f;
+}
 @end

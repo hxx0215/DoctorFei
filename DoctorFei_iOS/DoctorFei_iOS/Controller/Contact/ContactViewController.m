@@ -38,6 +38,7 @@
     
     [self.tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
     [self.tableView setSectionIndexColor:[UIColor blackColor]];
+    [self.tableView setSectionIndexBackgroundColor:[UIColor clearColor]];
     [self.searchDisplayController.searchResultsTableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
     
     UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc]
@@ -270,7 +271,7 @@
                 }
                 [friend MR_deleteEntity];
                 [[NSManagedObjectContext MR_defaultContext]MR_saveToPersistentStoreAndWait];
-                [self.navigationController popToRootViewControllerAnimated:YES];
+                [self reloadTableViewData];
             }
             else {
                 hud.labelText = @"删除失败";

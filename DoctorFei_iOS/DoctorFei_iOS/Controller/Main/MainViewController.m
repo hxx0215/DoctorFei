@@ -124,7 +124,8 @@
 }
 
 - (IBAction)userInfoButtonClicked:(id)sender {
-    [self performSegueWithIdentifier:@"UserInfoSegueIdentifier" sender:nil];
+//    [self performSegueWithIdentifier:@"UserInfoSegueIdentifier" sender:nil];
+    [self.tabBarController setSelectedIndex:2];
 }
 #pragma mark - Navigation
 
@@ -153,6 +154,13 @@
 #pragma mark - UITableView Delegate
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 65.0f;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    if (section == 0) {
+        return 20.0f;
+    }
+    return 0;
 }
 #pragma mark - DZNEmptyDataSetSource
 

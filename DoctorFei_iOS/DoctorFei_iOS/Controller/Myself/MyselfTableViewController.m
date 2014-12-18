@@ -284,4 +284,12 @@
         [self performSegueWithIdentifier:@"MyselfIntroInfoEditSegueIdentifier" sender:nil];
     }
 }
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return 20.0f;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    return 0.1f;
+}
 @end

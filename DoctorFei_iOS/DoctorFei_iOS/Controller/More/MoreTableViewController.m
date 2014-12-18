@@ -31,6 +31,10 @@
     [self.navigationController.interactivePopGestureRecognizer setEnabled:YES];
 
     
+    CGRect tableViewHeaderRect = self.tableView.tableHeaderView.frame;
+    tableViewHeaderRect.size.height = 134.0f;
+    [self.tableView.tableHeaderView setFrame:tableViewHeaderRect];
+    
     
     CGRect tableViewFooterRect = self.tableView.tableFooterView.frame;
     tableViewFooterRect.size.height = 78.0f;
