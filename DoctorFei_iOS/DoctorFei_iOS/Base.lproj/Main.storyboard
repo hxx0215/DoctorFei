@@ -59,6 +59,9 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
+                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                        <rect key="frame" x="70" y="22" width="230" height="20.5"/>
+                                                    </variation>
                                                 </label>
                                             </subviews>
                                             <constraints>
@@ -214,7 +217,7 @@
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <color key="sectionIndexBackgroundColor" red="0.93333333330000001" green="0.93333333330000001" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="FGW-RU-y7L">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                            <rect key="frame" x="0.0" y="0.0" width="600" height="568"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="details_uers_example_pic.png" translatesAutoresizingMaskIntoConstraints="NO" id="nKW-Zq-MYt">
@@ -273,11 +276,11 @@
                                     <exclude reference="hBH-ag-jhC"/>
                                 </mask>
                                 <mask key="constraints">
-                                    <exclude reference="TDJ-Rl-L9c"/>
-                                    <exclude reference="Yv6-bJ-e57"/>
                                     <exclude reference="HFk-ed-KCQ"/>
                                     <exclude reference="b9L-kB-YQG"/>
                                     <exclude reference="bTB-Ry-9Eq"/>
+                                    <exclude reference="TDJ-Rl-L9c"/>
+                                    <exclude reference="Yv6-bJ-e57"/>
                                 </mask>
                             </variation>
                             <variation key="heightClass=regular-widthClass=compact">
@@ -286,11 +289,11 @@
                                     <include reference="hBH-ag-jhC"/>
                                 </mask>
                                 <mask key="constraints">
-                                    <include reference="TDJ-Rl-L9c"/>
-                                    <include reference="Yv6-bJ-e57"/>
                                     <include reference="HFk-ed-KCQ"/>
                                     <include reference="b9L-kB-YQG"/>
                                     <include reference="bTB-Ry-9Eq"/>
+                                    <include reference="TDJ-Rl-L9c"/>
+                                    <include reference="Yv6-bJ-e57"/>
                                 </mask>
                             </variation>
                         </view>
@@ -3874,25 +3877,9 @@
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cUO-jp-Q2f">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="323" id="IZH-Yc-9dp"/>
-                                </constraints>
-                                <string key="text">    费医生是有关治疗呼吸疾病的专业性App。它发布我国医师行业组织的权威信息，为全国200万执业医师和助理执业医师提供准确、实用、及时的服务信息。
-    APP使用中文语言。涉及执业医师教育培训、考核考试、自律维权、执业精神、医学人文、医师宣言等内容，拥有医师微博、留言板、文章评论等交流平台。
-    近年来，费医生依托信息网络中心的技术支持，开展网络视频、网络直播形式参与重大活动报道，影响大，效果好，深受广大医师以及各界好评。</string>
                                 <color key="textColor" red="0.64313725489999995" green="0.64313725489999995" blue="0.64313725489999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="IZH-Yc-9dp"/>
-                                    </mask>
-                                </variation>
-                                <variation key="heightClass=regular-widthClass=compact">
-                                    <mask key="constraints">
-                                        <include reference="IZH-Yc-9dp"/>
-                                    </mask>
-                                </variation>
                             </textView>
                         </subviews>
                         <color key="backgroundColor" red="0.93333333330000001" green="0.93333333330000001" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -3902,6 +3889,7 @@
                             <constraint firstItem="xNT-y8-7Jr" firstAttribute="leading" secondItem="28U-Rv-wKq" secondAttribute="leading" constant="20" id="cAG-oW-7JU"/>
                             <constraint firstAttribute="trailing" secondItem="cUO-jp-Q2f" secondAttribute="trailing" constant="16" id="cWR-rB-ZPK"/>
                             <constraint firstItem="cUO-jp-Q2f" firstAttribute="leading" secondItem="28U-Rv-wKq" secondAttribute="leading" constant="16" id="deX-f1-Qmx"/>
+                            <constraint firstItem="vgl-WG-vBN" firstAttribute="top" secondItem="cUO-jp-Q2f" secondAttribute="bottom" constant="20" id="e0w-PB-6fI"/>
                         </constraints>
                         <variation key="default">
                             <mask key="subviews">
@@ -3911,6 +3899,7 @@
                             <mask key="constraints">
                                 <exclude reference="7Li-aO-xG8"/>
                                 <exclude reference="cAG-oW-7JU"/>
+                                <exclude reference="e0w-PB-6fI"/>
                                 <exclude reference="GWf-Mc-IMn"/>
                                 <exclude reference="cWR-rB-ZPK"/>
                                 <exclude reference="deX-f1-Qmx"/>
@@ -3924,6 +3913,7 @@
                             <mask key="constraints">
                                 <include reference="7Li-aO-xG8"/>
                                 <include reference="cAG-oW-7JU"/>
+                                <include reference="e0w-PB-6fI"/>
                                 <include reference="GWf-Mc-IMn"/>
                                 <include reference="cWR-rB-ZPK"/>
                                 <include reference="deX-f1-Qmx"/>
@@ -3940,6 +3930,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="aboutInfoTextView" destination="cUO-jp-Q2f" id="RAy-Sz-psV"/>
+                        <outlet property="aboutTitleLabel" destination="xNT-y8-7Jr" id="MVu-5j-oIs"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CSg-m1-T22" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -4402,7 +4393,7 @@
         <image name="tab_04.png" width="18" height="18"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="rqJ-cO-jCt"/>
-        <segue reference="4rs-8Z-AB2"/>
+        <segue reference="7jm-F7-ce5"/>
+        <segue reference="44M-ii-bSZ"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -12,6 +12,7 @@
 @interface MoreAboutUsViewController ()
 
 @property (weak, nonatomic) IBOutlet UITextView *aboutInfoTextView;
+@property (weak, nonatomic) IBOutlet UILabel *aboutTitleLabel;
 @end
 
 @implementation MoreAboutUsViewController
@@ -19,6 +20,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [self.aboutTitleLabel setText:[NSString stringWithFormat:@"费医生%@",[[NSBundle mainBundle] objectForInfoDictionaryKey: @"CFBundleShortVersionString"]]];
 }
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
