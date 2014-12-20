@@ -30,7 +30,10 @@
         NSDictionary *dict = [responseObject firstObject];
         if ([dict[@"state"]intValue] == 1) {
             [hud hide:YES];
-            [self.aboutInfoTextView setText:dict[@"info"]];
+//            [self.aboutInfoTextView setText:dict[@"info"]];
+            NSString *htmlString = dict[@"info"];
+            NSAttributedString *attributedString = [[NSAttributedString alloc] initWithData:[htmlString dataUsingEncoding:NSUnicodeStringEncoding] options:@{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType } documentAttributes:nil error:nil];
+            self.aboutInfoTextView.attributedText = attributedString;
         }
         else{
             hud.mode = MBProgressHUDModeText;
