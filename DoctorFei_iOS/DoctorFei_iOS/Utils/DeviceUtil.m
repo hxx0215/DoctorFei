@@ -71,7 +71,7 @@
     if ([hardware isEqualToString:@"i386"]) return @"Simulator";
     if ([hardware isEqualToString:@"x86_64"]) return @"Simulator";
     
-    return nil;
+    return @"UnDefined";
     
 }
 
