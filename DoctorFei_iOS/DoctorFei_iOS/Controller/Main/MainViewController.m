@@ -79,14 +79,15 @@
     [_nameLabel setText:[[NSUserDefaults standardUserDefaults]objectForKey:@"UserRealName"]];
     [_hospitalLabel setText:[[NSUserDefaults standardUserDefaults]objectForKey:@"UserHospital"]];
     NSString *department = [[NSUserDefaults standardUserDefaults]objectForKey:@"UserDepartment"];
-    NSString *jobTitle = [[NSUserDefaults standardUserDefaults]objectForKey:@"UserJotTitle"];
+    NSString *jobTitle = [[NSUserDefaults standardUserDefaults]objectForKey:@"UserJobTitle"];
     if (department == nil) {
         department = @"";
     }
     if (jobTitle == nil) {
         jobTitle = @"";
     }
-    [_infoLabel setText:[NSString stringWithFormat:@"%@ %@", department, jobTitle]];
+    NSString *infoString = [NSString stringWithFormat:@"%@ %@", department, jobTitle];
+    [_infoLabel setText:infoString];
     
     [self reloadTableViewData];
     
