@@ -54,6 +54,9 @@
 + (void)fetchHasUserIdChatWithParam: (NSDictionary *)params {
     NSNumber *doctorId = [[NSUserDefaults standardUserDefaults]objectForKey:@"UserId"];
     NSNumber *userId = @([params[@"userId"] intValue]);
+    if (doctorId == nil || userId == nil) {
+        return;
+    }
     NSDictionary *dict = @{
                            @"doctorid": doctorId,
                            @"userid": userId,

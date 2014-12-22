@@ -101,6 +101,9 @@
     NSString *myIcon = [[NSUserDefaults standardUserDefaults] objectForKey:@"UserIcon"];
     NSString *userSenderId = [_currentFriend.userId stringValue];
     NSString *mySenderId = self.senderId;
+    if (myName == nil || [myName isEqualToString:@""]) {
+        myName = @"无姓名";
+    }
     _modalData.users = @{
                          userSenderId: _currentFriend.realname,
                          mySenderId: myName
