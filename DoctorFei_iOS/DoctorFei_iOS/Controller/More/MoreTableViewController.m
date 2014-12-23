@@ -10,6 +10,7 @@
 #import "DoctorAPI.h"
 #import "DataUtil.h"
 #import <MBProgressHUD.h>
+#import "SocketConnection.h"
 @interface MoreTableViewController ()
     <UIAlertViewDelegate, UIGestureRecognizerDelegate>
 
@@ -62,6 +63,7 @@
             [hud hide:YES];
 //            hud.labelText = @"退出登录成功";
             [DataUtil cleanUserDefault];
+            [[SocketConnection sharedConnection]stopListen];
             [self.tabBarController setSelectedIndex:0];
             [self.tabBarController performSegueWithIdentifier:@"LoginSegueIdentifier" sender:nil];
         }

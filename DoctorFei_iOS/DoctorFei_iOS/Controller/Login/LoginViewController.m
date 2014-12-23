@@ -14,6 +14,7 @@
 #import "DoctorAPI.h"
 #import "APService.h"
 #import "DataUtil.h"
+#import "SocketConnection.h"
 @interface LoginViewController ()
     <UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UIView *loginBackgroundView;
@@ -144,6 +145,8 @@
             [[NSUserDefaults standardUserDefaults] setObject:dataDict[@"Email"] forKey:@"UserEmail"];
             [[NSUserDefaults standardUserDefaults] setObject:dataDict[@"OtherContact"] forKey:@"UserOtherContact"];
             [[NSUserDefaults standardUserDefaults] synchronize];
+            [[SocketConnection sharedConnection]beginListen];
+            [[SocketConnection sharedConnection]sendCheckMessages];
             [self dismissViewControllerAnimated:YES completion:nil];
         }
         else{
