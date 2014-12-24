@@ -1957,10 +1957,24 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请输入手机号码" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jfI-2p-Mcu">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入手机号码" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jfI-2p-Mcu">
                                 <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="c8U-CH-RtT"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="c8U-CH-RtT"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="c8U-CH-RtT"/>
+                                    </mask>
+                                </variation>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="94C-OD-uGG">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
@@ -1977,7 +1991,9 @@
                         <constraints>
                             <constraint firstItem="jfI-2p-Mcu" firstAttribute="centerX" secondItem="94C-OD-uGG" secondAttribute="centerX" id="97K-Ae-l9H"/>
                             <constraint firstItem="jfI-2p-Mcu" firstAttribute="top" secondItem="ojm-oX-hRF" secondAttribute="top" constant="20" symbolic="YES" id="BHC-aW-KkH"/>
-                            <constraint firstItem="94C-OD-uGG" firstAttribute="top" secondItem="jfI-2p-Mcu" secondAttribute="bottom" constant="20" id="H8O-sJ-f26"/>
+                            <constraint firstItem="94C-OD-uGG" firstAttribute="top" secondItem="jfI-2p-Mcu" secondAttribute="bottom" constant="20" id="H8O-sJ-f26">
+                                <variation key="heightClass=regular-widthClass=compact" constant="20"/>
+                            </constraint>
                             <constraint firstItem="jfI-2p-Mcu" firstAttribute="leading" secondItem="ojm-oX-hRF" secondAttribute="leadingMargin" id="Hxe-LH-OPL"/>
                             <constraint firstItem="jfI-2p-Mcu" firstAttribute="trailing" secondItem="ojm-oX-hRF" secondAttribute="trailingMargin" id="oy7-o1-Z2K"/>
                         </constraints>
