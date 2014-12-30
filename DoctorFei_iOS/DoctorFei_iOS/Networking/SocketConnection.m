@@ -5,7 +5,7 @@
 //  Created by GuJunjia on 14/12/4.
 //
 //
-#define kSocketAddress @"113.105.159.115"
+#define kSocketAddress @"115.159.0.61"
 #define kSocketPort 20013
 #define kSendKeepAliveDuration 30
 #import "SocketConnection.h"

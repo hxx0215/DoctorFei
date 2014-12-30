@@ -242,9 +242,9 @@
                              };
 //    NSLog(@"%@",params);
     [ChatAPI sendMessageWithParameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-//        NSLog(@"%@",responseObject);
+        NSLog(@"%@",responseObject);
         NSDictionary *dataDict = [responseObject firstObject];
-        if ([dataDict[@"state"]intValue] != -1) {
+        if ([dataDict[@"state"]intValue] > -1) {
             JSQMessage *message = [[JSQMessage alloc]initWithSenderId:self.senderId senderDisplayName:self.senderDisplayName date:[NSDate date] text:text];
             [self.modalData.messages addObject:message];
             Message *newMessage = [Message MR_createEntity];
@@ -271,6 +271,7 @@
             MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view.window animated:YES];
             hud.mode = MBProgressHUDModeText;
             hud.labelText = @"发送失败";
+            hud.detailsLabelText = dataDict[@"msg"];
             [hud hide:YES afterDelay:1.0f];
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
