@@ -3519,7 +3519,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qyN-dP-2jw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-7257" y="1207.5"/>
+            <point key="canvasLocation" x="-7225.5" y="955.5"/>
         </scene>
         <!--My Self Basic Info Edit Table View Controller-->
         <scene sceneID="LZg-N2-0CL">
@@ -3755,7 +3755,7 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="已认证" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3XI-x0-RGO">
                                                     <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.64313725490196072" green="0.64313725490196072" blue="0.64313725490196072" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -3790,6 +3790,9 @@
                                                 </mask>
                                             </variation>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="mO6-rs-re6" kind="show" id="hr1-Ja-hld"/>
+                                        </connections>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -4461,6 +4464,132 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jbI-ri-ATM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-5421" y="3403.5"/>
+        </scene>
+        <!--医生认证-->
+        <scene sceneID="uAk-vC-DDq">
+            <objects>
+                <viewController title="医生认证" hidesBottomBarWhenPushed="YES" id="mO6-rs-re6" customClass="DoctorApproveViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="gUI-db-aPI"/>
+                        <viewControllerLayoutGuide type="bottom" id="kVg-0M-byd"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="P1N-er-AOy">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="请上传您的胸牌或职业证书等资质证明，上传资料仅用于认证，患者及其他第三方不可见" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xuz-uF-7tX">
+                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="52" id="bar-ep-ClC"/>
+                                    <constraint firstAttribute="width" constant="162" id="cmV-3t-ywr"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                <color key="textColor" red="0.64313725489999995" green="0.64313725489999995" blue="0.64313725489999995" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="bar-ep-ClC"/>
+                                        <exclude reference="cmV-3t-ywr"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="bar-ep-ClC"/>
+                                        <include reference="cmV-3t-ywr"/>
+                                    </mask>
+                                </variation>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xQd-Lo-2Tl">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="160" id="Tbm-xP-gh0"/>
+                                    <constraint firstAttribute="width" constant="160" id="dbY-9o-S3j"/>
+                                </constraints>
+                                <state key="normal" backgroundImage="business-card_bg.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="Tbm-xP-gh0"/>
+                                        <exclude reference="dbY-9o-S3j"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="Tbm-xP-gh0"/>
+                                        <include reference="dbY-9o-S3j"/>
+                                    </mask>
+                                </variation>
+                                <connections>
+                                    <action selector="chooseApproveImage:" destination="mO6-rs-re6" eventType="touchUpInside" id="XZ4-FR-ChX"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="请上传个人资质证明" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k7F-J9-mMe">
+                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <color key="textColor" red="0.24705882352941178" green="0.64313725490196072" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.93333333333333335" green="0.93333333333333335" blue="0.93333333333333335" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="k7F-J9-mMe" firstAttribute="centerX" secondItem="P1N-er-AOy" secondAttribute="centerX" id="4JR-T9-LbZ"/>
+                            <constraint firstAttribute="centerX" secondItem="xQd-Lo-2Tl" secondAttribute="centerX" id="CG6-rN-nWU"/>
+                            <constraint firstItem="xQd-Lo-2Tl" firstAttribute="top" secondItem="xuz-uF-7tX" secondAttribute="bottom" constant="22" id="F9Z-RQ-SVF">
+                                <variation key="heightClass=regular-widthClass=compact" constant="40"/>
+                            </constraint>
+                            <constraint firstItem="k7F-J9-mMe" firstAttribute="top" secondItem="gUI-db-aPI" secondAttribute="bottom" constant="40" id="GQS-4O-Kzv"/>
+                            <constraint firstAttribute="centerX" secondItem="xuz-uF-7tX" secondAttribute="centerX" id="iDf-wh-lms"/>
+                            <constraint firstItem="xuz-uF-7tX" firstAttribute="top" secondItem="k7F-J9-mMe" secondAttribute="bottom" constant="8" symbolic="YES" id="p6j-1d-16C"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="xuz-uF-7tX"/>
+                                <exclude reference="xQd-Lo-2Tl"/>
+                                <exclude reference="k7F-J9-mMe"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="4JR-T9-LbZ"/>
+                                <exclude reference="GQS-4O-Kzv"/>
+                                <exclude reference="iDf-wh-lms"/>
+                                <exclude reference="p6j-1d-16C"/>
+                                <exclude reference="CG6-rN-nWU"/>
+                                <exclude reference="F9Z-RQ-SVF"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular-widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="xuz-uF-7tX"/>
+                                <include reference="xQd-Lo-2Tl"/>
+                                <include reference="k7F-J9-mMe"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="4JR-T9-LbZ"/>
+                                <include reference="GQS-4O-Kzv"/>
+                                <include reference="iDf-wh-lms"/>
+                                <include reference="p6j-1d-16C"/>
+                                <include reference="CG6-rN-nWU"/>
+                                <include reference="F9Z-RQ-SVF"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <navigationItem key="navigationItem" title="医生认证" id="JcC-Zn-eTh">
+                        <barButtonItem key="leftBarButtonItem" image="return.png" id="f6o-cK-33D">
+                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="backButtonClicked:" destination="mO6-rs-re6" id="IhR-JT-NEd"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="提交" id="YBh-C5-NXf">
+                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="approveImage" destination="xQd-Lo-2Tl" id="t7B-Lj-ksX"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vmH-5G-lNN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-7239" y="1646.25"/>
         </scene>
         <!--修改介绍-->
         <scene sceneID="zTr-Bg-YYP">

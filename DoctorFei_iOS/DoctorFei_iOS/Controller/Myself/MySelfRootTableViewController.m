@@ -20,7 +20,7 @@
 
 @implementation MySelfRootTableViewController
 {
-    NSString *_icon;
+    NSString *_icon,*_name;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -39,13 +39,17 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     _icon = [[[NSUserDefaults standardUserDefaults]objectForKey:@"UserIcon"] copy];
+    _name = [[[NSUserDefaults standardUserDefaults]objectForKey:@"UserRealName"] copy];
     _icon ? nil : (_icon = @"");
+    _name ? nil : (_name = @"");
     if (_icon.length > 0) {
         [self.avatarImage sd_setImageWithURL:[NSURL URLWithString:_icon] placeholderImage:[UIImage imageNamed:@"list_user-big_example_pic.png"]];
     }
     else{
         [self.avatarImage setImage:[UIImage imageNamed:@"list_user-big_example_pic.png"]];
     }
+    
+    self.nameLabel.text = _name;
 }
 #pragma mark - Table view data source
 
