@@ -283,6 +283,8 @@
 		6AC6EA031A28C015007689D8 /* text_talk@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AC6E9321A28C015007689D8 /* text_talk@2x.png */; };
 		6AC6EA041A28C015007689D8 /* text_talk@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AC6E9331A28C015007689D8 /* text_talk@3x.png */; };
 		6AC6EA071A28C4B5007689D8 /* NSString+Crypt.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AC6EA061A28C4B5007689D8 /* NSString+Crypt.m */; };
+		B90320B71A5AC074001FA485 /* social_vimeo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B90320B61A5AC074001FA485 /* social_vimeo@2x.png */; };
+		B90320BA1A5AC57E001FA485 /* MySelfRootTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B90320B91A5AC57E001FA485 /* MySelfRootTableViewController.m */; };
 		B92FA2F41A2F521C0029E6B8 /* MoreAboutUsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B92FA2F31A2F521C0029E6B8 /* MoreAboutUsViewController.m */; };
 		B9DD58E11A30912200AA4CDC /* MoreUpdateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9DD58E01A30912200AA4CDC /* MoreUpdateViewController.m */; };
 		D3F448921A30BC6700B20E0A /* MoreFeedbackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F448911A30BC6700B20E0A /* MoreFeedbackViewController.m */; };
@@ -613,6 +615,9 @@
 		6AC6EA051A28C4B5007689D8 /* NSString+Crypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Crypt.h"; sourceTree = "<group>"; };
 		6AC6EA061A28C4B5007689D8 /* NSString+Crypt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Crypt.m"; sourceTree = "<group>"; };
 		6AEA74501A260DD900EEF37C /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		B90320B61A5AC074001FA485 /* social_vimeo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "social_vimeo@2x.png"; sourceTree = "<group>"; };
+		B90320B81A5AC57E001FA485 /* MySelfRootTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MySelfRootTableViewController.h; sourceTree = "<group>"; };
+		B90320B91A5AC57E001FA485 /* MySelfRootTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MySelfRootTableViewController.m; sourceTree = "<group>"; };
 		B92FA2F21A2F521C0029E6B8 /* MoreAboutUsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoreAboutUsViewController.h; sourceTree = "<group>"; };
 		B92FA2F31A2F521C0029E6B8 /* MoreAboutUsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoreAboutUsViewController.m; sourceTree = "<group>"; };
 		B9DD58DF1A30912200AA4CDC /* MoreUpdateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoreUpdateViewController.h; sourceTree = "<group>"; };
@@ -761,6 +766,7 @@
 		6A73748F1A207E88006EF54F /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				B90320B51A5AC06B001FA485 /* tempImage */,
 				6A7374901A207E88006EF54F /* Image */,
 			);
 			path = Resource;
@@ -1096,6 +1102,8 @@
 				6A4FC15B1A2EFF4F0042497C /* MySelfBasicInfoEditTableViewController.m */,
 				6A4FC15D1A2F063B0042497C /* MyselfIntroInfoEditTableViewController.h */,
 				6A4FC15E1A2F063B0042497C /* MyselfIntroInfoEditTableViewController.m */,
+				B90320B81A5AC57E001FA485 /* MySelfRootTableViewController.h */,
+				B90320B91A5AC57E001FA485 /* MySelfRootTableViewController.m */,
 			);
 			path = Myself;
 			sourceTree = "<group>";
@@ -1145,6 +1153,14 @@
 				6AC6E8D91A28C015007689D8 /* welcome05.png */,
 			);
 			path = "ios 欢迎页";
+			sourceTree = "<group>";
+		};
+		B90320B51A5AC06B001FA485 /* tempImage */ = {
+			isa = PBXGroup;
+			children = (
+				B90320B61A5AC074001FA485 /* social_vimeo@2x.png */,
+			);
+			name = tempImage;
 			sourceTree = "<group>";
 		};
 		E9702F7C5EE5E17D0B5B9F80 /* Pods */ = {
@@ -1344,6 +1360,7 @@
 				6AC6E9451A28C015007689D8 /* button_login@3x.png in Resources */,
 				6AC6E9541A28C015007689D8 /* button_open_01@3x.png in Resources */,
 				6AC6E9C21A28C015007689D8 /* new@3x.png in Resources */,
+				B90320B71A5AC074001FA485 /* social_vimeo@2x.png in Resources */,
 				6AC6E9DB1A28C015007689D8 /* tab_01_after.png in Resources */,
 				6AC6E98A1A28C015007689D8 /* gray background@3x.png in Resources */,
 				6AC6E9711A28C015007689D8 /* button_sign-in@2x.png in Resources */,
@@ -1526,6 +1543,7 @@
 				6A4FC15C1A2EFF4F0042497C /* MySelfBasicInfoEditTableViewController.m in Sources */,
 				6A4F2E011A237FFF008C2D10 /* MyCardViewController.m in Sources */,
 				6A5DC5F01A33135E00961E53 /* MainChatTableViewCell.m in Sources */,
+				B90320BA1A5AC57E001FA485 /* MySelfRootTableViewController.m in Sources */,
 				6A78BE331A222C5B005457F3 /* SetNewPasswordTableViewController.m in Sources */,
 				6A78BE2A1A2229F8005457F3 /* ForgetPasswordViewController.m in Sources */,
 				B9DD58E11A30912200AA4CDC /* MoreUpdateViewController.m in Sources */,
