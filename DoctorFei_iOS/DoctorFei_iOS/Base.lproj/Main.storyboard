@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="hjp-xA-J3Y">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="hjp-xA-J3Y">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -3637,6 +3637,7 @@
             <objects>
                 <tableViewController title="我" id="fod-tb-SQW" customClass="MySelfRootTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="siK-bG-Xxb">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="487"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <sections>
@@ -3707,13 +3708,13 @@
                                                     <exclude reference="5xL-NA-Tpu"/>
                                                 </mask>
                                                 <mask key="constraints">
-                                                    <exclude reference="Srh-4y-mmr"/>
-                                                    <exclude reference="ZCx-YZ-vLx"/>
-                                                    <exclude reference="v2D-DV-wra"/>
                                                     <exclude reference="7mO-hZ-2jQ"/>
                                                     <exclude reference="sFO-ji-8KS"/>
                                                     <exclude reference="PZk-Ud-QJD"/>
                                                     <exclude reference="WTu-Sw-6Xi"/>
+                                                    <exclude reference="Srh-4y-mmr"/>
+                                                    <exclude reference="ZCx-YZ-vLx"/>
+                                                    <exclude reference="v2D-DV-wra"/>
                                                 </mask>
                                             </variation>
                                             <variation key="heightClass=regular-widthClass=compact">
@@ -3723,13 +3724,13 @@
                                                     <include reference="5xL-NA-Tpu"/>
                                                 </mask>
                                                 <mask key="constraints">
-                                                    <include reference="Srh-4y-mmr"/>
-                                                    <include reference="ZCx-YZ-vLx"/>
-                                                    <include reference="v2D-DV-wra"/>
                                                     <include reference="7mO-hZ-2jQ"/>
                                                     <include reference="sFO-ji-8KS"/>
                                                     <include reference="PZk-Ud-QJD"/>
                                                     <include reference="WTu-Sw-6Xi"/>
+                                                    <include reference="Srh-4y-mmr"/>
+                                                    <include reference="ZCx-YZ-vLx"/>
+                                                    <include reference="v2D-DV-wra"/>
                                                 </mask>
                                             </variation>
                                         </tableViewCellContentView>
@@ -3771,10 +3772,10 @@
                                                     <exclude reference="3XI-x0-RGO"/>
                                                 </mask>
                                                 <mask key="constraints">
-                                                    <exclude reference="Emt-Nr-s9l"/>
-                                                    <exclude reference="gZ5-0K-FdR"/>
                                                     <exclude reference="MoK-4b-jte"/>
                                                     <exclude reference="bqU-1N-w5D"/>
+                                                    <exclude reference="Emt-Nr-s9l"/>
+                                                    <exclude reference="gZ5-0K-FdR"/>
                                                 </mask>
                                             </variation>
                                             <variation key="heightClass=regular-widthClass=compact">
@@ -3783,10 +3784,10 @@
                                                     <include reference="3XI-x0-RGO"/>
                                                 </mask>
                                                 <mask key="constraints">
-                                                    <include reference="Emt-Nr-s9l"/>
-                                                    <include reference="gZ5-0K-FdR"/>
                                                     <include reference="MoK-4b-jte"/>
                                                     <include reference="bqU-1N-w5D"/>
+                                                    <include reference="Emt-Nr-s9l"/>
+                                                    <include reference="gZ5-0K-FdR"/>
                                                 </mask>
                                             </variation>
                                         </tableViewCellContentView>
@@ -4282,9 +4283,6 @@
                                 <variation key="heightClass=compact-widthClass=compact" ambiguous="YES">
                                     <rect key="frame" x="86" y="179" width="228" height="18"/>
                                 </variation>
-                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="86" y="288" width="227" height="38"/>
-                                </variation>
                                 <connections>
                                     <action selector="updateButtonClicked:" destination="uaT-mB-nYo" eventType="touchUpInside" id="9cb-u2-xol"/>
                                 </connections>
@@ -4474,6 +4472,7 @@
                         <viewControllerLayoutGuide type="bottom" id="kVg-0M-byd"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="P1N-er-AOy">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="487"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="请上传您的胸牌或职业证书等资质证明，上传资料仅用于认证，患者及其他第三方不可见" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xuz-uF-7tX">

@@ -41,10 +41,13 @@ PODS:
   - ReactiveCocoa/no-arc (2.4.2)
   - ReactiveCocoa/UI (2.4.2):
     - ReactiveCocoa/Core
+  - RHAddressBook (1.1.1)
   - SDWebImage (3.7.1):
     - SDWebImage/Core (= 3.7.1)
   - SDWebImage/Core (3.7.1)
+  - THContactPicker (1.0)
   - UMengAnalytics-NO-IDFA (3.1.11)
+  - WYPopoverController (0.3.5)
 
 DEPENDENCIES:
   - AFNetworking
@@ -59,8 +62,20 @@ DEPENDENCIES:
   - MBProgressHUD
   - Reachability
   - ReactiveCocoa
+  - RHAddressBook
   - SDWebImage
+  - THContactPicker (from `https://github.com/MiracleJ/THContactPicker`)
   - UMengAnalytics-NO-IDFA
+  - WYPopoverController
+
+EXTERNAL SOURCES:
+  THContactPicker:
+    :git: https://github.com/MiracleJ/THContactPicker
+
+CHECKOUT OPTIONS:
+  THContactPicker:
+    :commit: dcca47b19e03672555c740155ba78811c1363012
+    :git: https://github.com/MiracleJ/THContactPicker
 
 SPEC CHECKSUMS:
   AFNetworking: 0f54cb5d16ce38c1b76948faffb8d5fb705021c7
@@ -76,7 +91,10 @@ SPEC CHECKSUMS:
   MBProgressHUD: 2038dbcf3dce73215abed6001657043d53aa79a8
   Reachability: 1ef8adf5c4e3d362f96515d4278f68dad3c26930
   ReactiveCocoa: 8418a82b67af2f1b7587baf29c329040a23c2063
+  RHAddressBook: 0cad9d33b9494d1e28323b62e5c7afc109cc4294
   SDWebImage: 116e88633b5b416ea0ca4b334a4ac59cf72dd38d
+  THContactPicker: 371d609b11c127e251934c9c1237f1178189ea40
   UMengAnalytics-NO-IDFA: 9072529f7ac9d9b063eede39ad58661cbcd7c643
+  WYPopoverController: d5350da9e8aa98d607bbc9a2e299b5982938e77b
 
 COCOAPODS: 0.35.0

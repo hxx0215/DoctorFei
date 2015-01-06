@@ -114,6 +114,12 @@
 #define COCOAPODS_VERSION_MINOR_MagicalRecord_Core 2
 #define COCOAPODS_VERSION_PATCH_MagicalRecord_Core 0
 
+// RHAddressBook
+#define COCOAPODS_POD_AVAILABLE_RHAddressBook
+#define COCOAPODS_VERSION_MAJOR_RHAddressBook 1
+#define COCOAPODS_VERSION_MINOR_RHAddressBook 1
+#define COCOAPODS_VERSION_PATCH_RHAddressBook 1
+
 // Reachability
 #define COCOAPODS_POD_AVAILABLE_Reachability
 #define COCOAPODS_VERSION_MAJOR_Reachability 3
@@ -156,9 +162,21 @@
 #define COCOAPODS_VERSION_MINOR_SDWebImage_Core 7
 #define COCOAPODS_VERSION_PATCH_SDWebImage_Core 1
 
+// THContactPicker
+#define COCOAPODS_POD_AVAILABLE_THContactPicker
+#define COCOAPODS_VERSION_MAJOR_THContactPicker 1
+#define COCOAPODS_VERSION_MINOR_THContactPicker 0
+#define COCOAPODS_VERSION_PATCH_THContactPicker 0
+
 // UMengAnalytics-NO-IDFA
 #define COCOAPODS_POD_AVAILABLE_UMengAnalytics_NO_IDFA
 #define COCOAPODS_VERSION_MAJOR_UMengAnalytics_NO_IDFA 3
 #define COCOAPODS_VERSION_MINOR_UMengAnalytics_NO_IDFA 1
 #define COCOAPODS_VERSION_PATCH_UMengAnalytics_NO_IDFA 11
+
+// WYPopoverController
+#define COCOAPODS_POD_AVAILABLE_WYPopoverController
+#define COCOAPODS_VERSION_MAJOR_WYPopoverController 0
+#define COCOAPODS_VERSION_MINOR_WYPopoverController 3
+#define COCOAPODS_VERSION_PATCH_WYPopoverController 5
 
