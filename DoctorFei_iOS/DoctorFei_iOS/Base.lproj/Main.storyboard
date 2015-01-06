@@ -3630,13 +3630,13 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="khf-JJ-JRf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-8826" y="1207.5"/>
+            <point key="canvasLocation" x="-9006" y="1560"/>
         </scene>
         <!--我-->
         <scene sceneID="S1L-1l-gLA">
             <objects>
                 <tableViewController title="我" id="fod-tb-SQW" customClass="MySelfRootTableViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="12" sectionFooterHeight="10" id="siK-bG-Xxb">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="12" sectionFooterHeight="10" id="siK-bG-Xxb">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="487"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
@@ -3849,6 +3849,9 @@
                                                 </mask>
                                             </variation>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="ZN4-tc-yLo" kind="show" id="wJ9-yR-Tov"/>
+                                        </connections>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -3867,6 +3870,9 @@
                                                 </label>
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SHU-Qq-8aC">
                                                     <rect key="frame" x="-25" y="-15" width="51" height="31"/>
+                                                    <connections>
+                                                        <action selector="visibleNearbyClicked:" destination="fod-tb-SQW" eventType="valueChanged" id="CJ7-Rx-TYC"/>
+                                                    </connections>
                                                 </switch>
                                             </subviews>
                                             <constraints>
@@ -3921,7 +3927,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XCm-AO-Ppl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-8022" y="1206.75"/>
+            <point key="canvasLocation" x="-8271" y="1560"/>
         </scene>
         <!--设置-->
         <scene sceneID="XwQ-L1-f9J">
@@ -4163,7 +4169,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jyj-CL-DVL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-7613" y="2394"/>
+            <point key="canvasLocation" x="-8271" y="2898.75"/>
         </scene>
         <!--关于我们-->
         <scene sceneID="dOz-Cp-uj0">
@@ -4593,6 +4599,59 @@
             </objects>
             <point key="canvasLocation" x="-7239" y="1646.25"/>
         </scene>
+        <!--我的预约-->
+        <scene sceneID="Db9-AW-Ag3">
+            <objects>
+                <tableViewController title="我的预约" hidesBottomBarWhenPushed="YES" id="ZN4-tc-yLo" customClass="MyAppointmentTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="KFX-lH-fcK">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MyAppointmentIdenty" id="RyZ-32-8ut">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="RyZ-32-8ut" id="6Zz-uJ-7Dd">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="ygk-a3-bMm" kind="show" id="6rm-5I-TGx"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="ZN4-tc-yLo" id="9IR-rv-UQl"/>
+                            <outlet property="delegate" destination="ZN4-tc-yLo" id="0bh-Ly-qjS"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="我的预约" id="3aP-s1-jUI">
+                        <barButtonItem key="leftBarButtonItem" image="return.png" id="NVX-rj-GyL">
+                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="backButtonClicked:" destination="ZN4-tc-yLo" id="DfZ-8V-E2w"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="p9Z-Z6-X3M" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-7225.5" y="2315.25"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="Ko3-l1-CFu">
+            <objects>
+                <viewController id="ygk-a3-bMm" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Xyz-kn-XjZ"/>
+                        <viewControllerLayoutGuide type="bottom" id="zNw-WP-MTW"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="LTH-BL-pa9">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GGO-nv-ZcI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-6526.5" y="2315.25"/>
+        </scene>
         <!--修改介绍-->
         <scene sceneID="zTr-Bg-YYP">
             <objects>
@@ -4703,7 +4762,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="y5r-Vy-rQm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-8500.5" y="2394.75"/>
+            <point key="canvasLocation" x="-9460.5" y="2898.75"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="XRz-Ub-Q8p">
@@ -4849,7 +4908,7 @@
         <image name="tab_04.png" width="18" height="18"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="rqJ-cO-jCt"/>
-        <segue reference="4rs-8Z-AB2"/>
+        <segue reference="44M-ii-bSZ"/>
+        <segue reference="7jm-F7-ce5"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -1,28 +1,19 @@
 //
-//  MySelfRootTableViewController.m
+//  MyAppointmentTableViewController.m
 //  DoctorFei_iOS
 //
-//  Created by hxx on 1/5/15.
+//  Created by hxx on 1/6/15.
 //
 //
 
-#import "MySelfRootTableViewController.h"
-#import <UIImageView+WebCache.h>
-#import "MBProgressHUD.h"
-@interface MySelfRootTableViewController ()
-@property (weak, nonatomic) IBOutlet UIImageView *avatarImage;
-@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
-@property (weak, nonatomic) IBOutlet UIImageView *approveImage;
-@property (weak, nonatomic) IBOutlet UILabel *approveLabel;
-@property (weak, nonatomic) IBOutlet UILabel *appointmentNums;
-@property (weak, nonatomic) IBOutlet UISwitch *isVisibleNearby;
+#import "MyAppointmentTableViewController.h"
+
+@interface MyAppointmentTableViewController ()
 
 @end
 
-@implementation MySelfRootTableViewController
-{
-    NSString *_icon,*_name;
-}
+@implementation MyAppointmentTableViewController
+static NSString * const kMyAppointmentIdenty = @"MyAppointmentIdenty";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -31,62 +22,43 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    self.appointmentNums.layer.cornerRadius = 7.0;
-    self.appointmentNums.layer.masksToBounds = YES;
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-- (void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-    _icon = [[[NSUserDefaults standardUserDefaults]objectForKey:@"UserIcon"] copy];
-    _name = [[[NSUserDefaults standardUserDefaults]objectForKey:@"UserRealName"] copy];
-    _icon ? nil : (_icon = @"");
-    _name ? nil : (_name = @"");
-    if (_icon.length > 0) {
-        [self.avatarImage sd_setImageWithURL:[NSURL URLWithString:_icon] placeholderImage:[UIImage imageNamed:@"list_user-big_example_pic.png"]];
-    }
-    else{
-        [self.avatarImage setImage:[UIImage imageNamed:@"list_user-big_example_pic.png"]];
-    }
-    
-    self.nameLabel.text = _name;
+- (IBAction)backButtonClicked:(id)sender {
+    [self.navigationController popViewControllerAnimated:YES];
 }
-- (IBAction)visibleNearbyClicked:(UISwitch *)sender {
-    if (!sender.on)
-    {
-        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view.window animated:YES];
-        hud.mode = MBProgressHUDModeText;
-        hud.dimBackground = YES;
-        hud.labelText = NSLocalizedString(@"附近的人将不能搜索到您", nil);
-        [hud hide:YES afterDelay:1.5];
-    }
-}
+
 #pragma mark - Table view data source
 
-//- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-//#warning Potentially incomplete method implementation.
-//    // Return the number of sections.
-//    return 0;
-//}
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 
-//- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-//#warning Incomplete method implementation.
-//    // Return the number of rows in the section.
-//    return 0;
-//}
+    // Return the number of sections.
+    return 1;
+}
 
-/*
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+
+    // Return the number of rows in the section.
+    return 1;
+}
+
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kMyAppointmentIdenty forIndexPath:indexPath];
+//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kMyAppointmentIdenty];
+    if (!cell){
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kMyAppointmentIdenty];
+    }
     
     // Configure the cell...
-    
+    cell.textLabel.text = @"1234预约";
     return cell;
 }
-*/
+
 
 /*
 // Override to support conditional editing of the table view.
