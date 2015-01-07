@@ -306,6 +306,7 @@
 		B94F6C681A5D70AF004E1B93 /* QRCodeScanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B94F6C671A5D70AF004E1B93 /* QRCodeScanViewController.m */; };
 		B94F6C6B1A5D7113004E1B93 /* DoctorRankTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B94F6C6A1A5D7113004E1B93 /* DoctorRankTableViewController.m */; };
 		B94F6C6E1A5D72D6004E1B93 /* ContactAddByTelTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B94F6C6D1A5D72D6004E1B93 /* ContactAddByTelTableViewController.m */; };
+		B94F6C701A5D752F004E1B93 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B94F6C6F1A5D752F004E1B93 /* AVFoundation.framework */; };
 		B9D4EA121A5C173900DB2A8D /* MyAppointmentDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9D4EA111A5C173900DB2A8D /* MyAppointmentDetailViewController.m */; };
 		B9DD58E11A30912200AA4CDC /* MoreUpdateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9DD58E01A30912200AA4CDC /* MoreUpdateViewController.m */; };
 		B9EA119B1A5C0C06008B562C /* MyAppointmentTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9EA119A1A5C0C06008B562C /* MyAppointmentTableViewController.m */; };
@@ -667,6 +668,7 @@
 		B94F6C6A1A5D7113004E1B93 /* DoctorRankTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DoctorRankTableViewController.m; sourceTree = "<group>"; };
 		B94F6C6C1A5D72D6004E1B93 /* ContactAddByTelTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactAddByTelTableViewController.h; sourceTree = "<group>"; };
 		B94F6C6D1A5D72D6004E1B93 /* ContactAddByTelTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactAddByTelTableViewController.m; sourceTree = "<group>"; };
+		B94F6C6F1A5D752F004E1B93 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		B9D4EA101A5C173900DB2A8D /* MyAppointmentDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyAppointmentDetailViewController.h; sourceTree = "<group>"; };
 		B9D4EA111A5C173900DB2A8D /* MyAppointmentDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyAppointmentDetailViewController.m; sourceTree = "<group>"; };
 		B9DD58DF1A30912200AA4CDC /* MoreUpdateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoreUpdateViewController.h; sourceTree = "<group>"; };
@@ -683,6 +685,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B94F6C701A5D752F004E1B93 /* AVFoundation.framework in Frameworks */,
 				6A69A0281A2CC94C00D85777 /* libz.dylib in Frameworks */,
 				6A69A0261A2CC94500D85777 /* Security.framework in Frameworks */,
 				6A69A0241A2CC93E00D85777 /* UIKit.framework in Frameworks */,
@@ -703,6 +706,7 @@
 		137C0372ACB57CB9BA345D67 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B94F6C6F1A5D752F004E1B93 /* AVFoundation.framework */,
 				6A69A0271A2CC94C00D85777 /* libz.dylib */,
 				6A69A0251A2CC94500D85777 /* Security.framework */,
 				6A69A0231A2CC93E00D85777 /* UIKit.framework */,
