@@ -179,7 +179,7 @@
         <!--添加朋友-->
         <scene sceneID="7wM-Fz-Sjj">
             <objects>
-                <tableViewController title="添加朋友" hidesBottomBarWhenPushed="YES" id="jZ6-ie-YNC" sceneMemberID="viewController">
+                <tableViewController title="添加朋友" hidesBottomBarWhenPushed="YES" id="jZ6-ie-YNC" customClass="ContactAddFriendViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="static" style="grouped" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="QLE-vz-SAH">
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
@@ -299,6 +299,9 @@
                                                 </mask>
                                             </variation>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="9Lg-GF-JY7" kind="show" id="u8p-WY-pN0"/>
+                                        </connections>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -311,6 +314,9 @@
                     <navigationItem key="navigationItem" title="添加朋友" id="I1E-wH-rnN">
                         <barButtonItem key="leftBarButtonItem" image="return.png" id="tXV-zy-lHm">
                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="backButtonClicked:" destination="jZ6-ie-YNC" id="jRW-Gd-JCc"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                 </tableViewController>
@@ -739,7 +745,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="T09-pZ-K0g" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-4093.5" y="22.5"/>
+            <point key="canvasLocation" x="-4126.5" y="62.25"/>
         </scene>
         <!--费医生-->
         <scene sceneID="JCo-kc-EOa">
@@ -1424,7 +1430,7 @@
         <!--扫一扫-->
         <scene sceneID="6aW-oq-Ujr">
             <objects>
-                <viewController id="adm-r3-B07" sceneMemberID="viewController">
+                <viewController title="扫一扫" id="adm-r3-B07" customClass="QRCodeScanViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="eIh-P1-kyw"/>
                         <viewControllerLayoutGuide type="bottom" id="XTR-b0-WGc"/>
@@ -1468,6 +1474,9 @@
                     <navigationItem key="navigationItem" title="扫一扫" id="aqP-mD-b5y">
                         <barButtonItem key="leftBarButtonItem" image="return.png" id="bkv-50-5wU">
                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="backButtonClicked:" destination="adm-r3-B07" id="vPO-dT-4On"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                 </viewController>
@@ -1478,7 +1487,7 @@
         <!--医生排名-->
         <scene sceneID="9BQ-3P-624">
             <objects>
-                <tableViewController title="医生排名" id="Mwk-mJ-Oud" sceneMemberID="viewController">
+                <tableViewController title="医生排名" id="Mwk-mJ-Oud" customClass="DoctorRankTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="ecO-6E-D0H">
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1488,10 +1497,23 @@
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hOW-32-Yxt" id="5H6-4f-Dc9">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8oG-ZK-GhD">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="doctor-ranking_preinstall_pic.png" translatesAutoresizingMaskIntoConstraints="NO" id="8oG-ZK-GhD">
                                             <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                            <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                                <rect key="frame" x="21" y="15" width="50" height="50"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="50" id="8mj-jo-xwV"/>
+                                                <constraint firstAttribute="width" constant="50" id="bpE-qK-KM6"/>
+                                            </constraints>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="8mj-jo-xwV"/>
+                                                    <exclude reference="bpE-qK-KM6"/>
+                                                </mask>
+                                            </variation>
+                                            <variation key="heightClass=regular-widthClass=compact">
+                                                <mask key="constraints">
+                                                    <include reference="8mj-jo-xwV"/>
+                                                    <include reference="bpE-qK-KM6"/>
+                                                </mask>
                                             </variation>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="李晓峰" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="phL-Nf-fvV">
@@ -1499,56 +1521,95 @@
                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
-                                            <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                                <rect key="frame" x="79" y="15" width="48" height="21"/>
-                                            </variation>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="河南省人民医院" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ncj-sS-yM5">
                                             <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
-                                            <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                                <rect key="frame" x="79" y="34" width="84" height="21"/>
-                                            </variation>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="医师" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pTk-sm-m8W">
                                             <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
-                                            <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                                <rect key="frame" x="171" y="34" width="94" height="21"/>
-                                            </variation>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="擅长:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W2i-Tl-LYq">
                                             <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
-                                            <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                                <rect key="frame" x="79" y="50" width="42" height="21"/>
-                                            </variation>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="呼吸科" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VSC-3K-MQa">
                                             <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
-                                            <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                                <rect key="frame" x="114" y="50" width="42" height="21"/>
-                                            </variation>
                                         </label>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vdl-Lx-Gsn">
                                             <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                            <state key="normal" title="添加">
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="20" id="6zg-4E-mN6"/>
+                                                <constraint firstAttribute="width" constant="40" id="agk-Ka-Nwv"/>
+                                            </constraints>
+                                            <state key="normal" title="添加" backgroundImage="add-user_btn.png">
+                                                <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
-                                            <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                                <rect key="frame" x="321" y="6" width="40" height="20"/>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="6zg-4E-mN6"/>
+                                                    <exclude reference="agk-Ka-Nwv"/>
+                                                </mask>
+                                            </variation>
+                                            <variation key="heightClass=regular-widthClass=compact">
+                                                <mask key="constraints">
+                                                    <include reference="6zg-4E-mN6"/>
+                                                    <include reference="agk-Ka-Nwv"/>
+                                                </mask>
                                             </variation>
                                         </button>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1000" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hCj-2w-9lV">
+                                            <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <color key="textColor" red="0.4549019608" green="0.7843137255" blue="0.1960784314" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="赞" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FTN-ef-5Bj">
+                                            <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <color key="textColor" red="0.45490196078431372" green="0.78431372549019607" blue="0.19607843137254902" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstItem="phL-Nf-fvV" firstAttribute="top" secondItem="8oG-ZK-GhD" secondAttribute="top" id="1gv-AY-vrg"/>
+                                        <constraint firstAttribute="centerY" secondItem="8oG-ZK-GhD" secondAttribute="centerY" id="5aR-KO-iWp"/>
+                                        <constraint firstItem="phL-Nf-fvV" firstAttribute="leading" secondItem="W2i-Tl-LYq" secondAttribute="leading" id="Crd-K4-Ccc"/>
+                                        <constraint firstItem="W2i-Tl-LYq" firstAttribute="centerY" secondItem="VSC-3K-MQa" secondAttribute="centerY" id="EMF-j1-iAn"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="vdl-Lx-Gsn" secondAttribute="trailing" constant="25" id="HD2-O1-nTd"/>
+                                        <constraint firstItem="8oG-ZK-GhD" firstAttribute="leading" secondItem="5H6-4f-Dc9" secondAttribute="leadingMargin" constant="13" id="KEY-bS-Z5d"/>
+                                        <constraint firstItem="FTN-ef-5Bj" firstAttribute="leading" secondItem="vdl-Lx-Gsn" secondAttribute="leading" id="OLu-YS-t10">
+                                            <variation key="heightClass=regular-widthClass=compact" constant="4"/>
+                                        </constraint>
+                                        <constraint firstItem="phL-Nf-fvV" firstAttribute="leading" secondItem="8oG-ZK-GhD" secondAttribute="trailing" constant="8" id="RCr-eC-Uqs"/>
+                                        <constraint firstItem="Ncj-sS-yM5" firstAttribute="top" secondItem="phL-Nf-fvV" secondAttribute="bottom" constant="8" id="Vck-bh-8Lh">
+                                            <variation key="heightClass=regular-widthClass=compact" constant="2"/>
+                                        </constraint>
+                                        <constraint firstItem="FTN-ef-5Bj" firstAttribute="centerY" secondItem="VSC-3K-MQa" secondAttribute="centerY" id="a5c-Wg-ZYt"/>
+                                        <constraint firstItem="VSC-3K-MQa" firstAttribute="leading" secondItem="W2i-Tl-LYq" secondAttribute="trailing" constant="8" id="cBO-13-et0"/>
+                                        <constraint firstItem="vdl-Lx-Gsn" firstAttribute="top" secondItem="5H6-4f-Dc9" secondAttribute="topMargin" constant="15" id="fHp-sE-O5V"/>
+                                        <constraint firstItem="pTk-sm-m8W" firstAttribute="leading" secondItem="Ncj-sS-yM5" secondAttribute="trailing" constant="8" id="izG-ph-zXa"/>
+                                        <constraint firstItem="Ncj-sS-yM5" firstAttribute="top" secondItem="pTk-sm-m8W" secondAttribute="top" id="jWq-wo-kCY"/>
+                                        <constraint firstItem="W2i-Tl-LYq" firstAttribute="top" secondItem="Ncj-sS-yM5" secondAttribute="bottom" constant="9" id="kbz-TV-VUs">
+                                            <variation key="heightClass=regular-widthClass=compact" constant="2"/>
+                                        </constraint>
+                                        <constraint firstItem="hCj-2w-9lV" firstAttribute="leading" secondItem="FTN-ef-5Bj" secondAttribute="trailing" constant="24" id="obI-Lp-nvR">
+                                            <variation key="heightClass=regular-widthClass=compact" constant="3"/>
+                                        </constraint>
+                                        <constraint firstItem="FTN-ef-5Bj" firstAttribute="centerY" secondItem="hCj-2w-9lV" secondAttribute="centerY" id="uIC-xe-0KR"/>
+                                        <constraint firstItem="phL-Nf-fvV" firstAttribute="leading" secondItem="Ncj-sS-yM5" secondAttribute="leading" id="wWw-Ah-yTI"/>
+                                    </constraints>
                                     <variation key="default">
                                         <mask key="subviews">
                                             <exclude reference="8oG-ZK-GhD"/>
@@ -1558,6 +1619,28 @@
                                             <exclude reference="W2i-Tl-LYq"/>
                                             <exclude reference="VSC-3K-MQa"/>
                                             <exclude reference="vdl-Lx-Gsn"/>
+                                            <exclude reference="hCj-2w-9lV"/>
+                                            <exclude reference="FTN-ef-5Bj"/>
+                                        </mask>
+                                        <mask key="constraints">
+                                            <exclude reference="5aR-KO-iWp"/>
+                                            <exclude reference="KEY-bS-Z5d"/>
+                                            <exclude reference="1gv-AY-vrg"/>
+                                            <exclude reference="Crd-K4-Ccc"/>
+                                            <exclude reference="RCr-eC-Uqs"/>
+                                            <exclude reference="wWw-Ah-yTI"/>
+                                            <exclude reference="Vck-bh-8Lh"/>
+                                            <exclude reference="jWq-wo-kCY"/>
+                                            <exclude reference="EMF-j1-iAn"/>
+                                            <exclude reference="kbz-TV-VUs"/>
+                                            <exclude reference="cBO-13-et0"/>
+                                            <exclude reference="izG-ph-zXa"/>
+                                            <exclude reference="OLu-YS-t10"/>
+                                            <exclude reference="a5c-Wg-ZYt"/>
+                                            <exclude reference="uIC-xe-0KR"/>
+                                            <exclude reference="HD2-O1-nTd"/>
+                                            <exclude reference="fHp-sE-O5V"/>
+                                            <exclude reference="obI-Lp-nvR"/>
                                         </mask>
                                     </variation>
                                     <variation key="heightClass=regular-widthClass=compact">
@@ -1569,6 +1652,28 @@
                                             <include reference="W2i-Tl-LYq"/>
                                             <include reference="VSC-3K-MQa"/>
                                             <include reference="vdl-Lx-Gsn"/>
+                                            <include reference="hCj-2w-9lV"/>
+                                            <include reference="FTN-ef-5Bj"/>
+                                        </mask>
+                                        <mask key="constraints">
+                                            <include reference="5aR-KO-iWp"/>
+                                            <include reference="KEY-bS-Z5d"/>
+                                            <include reference="1gv-AY-vrg"/>
+                                            <include reference="Crd-K4-Ccc"/>
+                                            <include reference="RCr-eC-Uqs"/>
+                                            <include reference="wWw-Ah-yTI"/>
+                                            <include reference="Vck-bh-8Lh"/>
+                                            <include reference="jWq-wo-kCY"/>
+                                            <include reference="EMF-j1-iAn"/>
+                                            <include reference="kbz-TV-VUs"/>
+                                            <include reference="cBO-13-et0"/>
+                                            <include reference="izG-ph-zXa"/>
+                                            <include reference="OLu-YS-t10"/>
+                                            <include reference="a5c-Wg-ZYt"/>
+                                            <include reference="uIC-xe-0KR"/>
+                                            <include reference="HD2-O1-nTd"/>
+                                            <include reference="fHp-sE-O5V"/>
+                                            <include reference="obI-Lp-nvR"/>
                                         </mask>
                                     </variation>
                                 </tableViewCellContentView>
@@ -1579,10 +1684,93 @@
                             <outlet property="delegate" destination="Mwk-mJ-Oud" id="G4p-KZ-N9e"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" title="医生排名" id="PMf-m6-TJ8">
+                        <barButtonItem key="leftBarButtonItem" image="return.png" id="wsq-lV-iNH">
+                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="backButtonClicked:" destination="Mwk-mJ-Oud" id="ZLk-Cm-sEH"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Zn-fY-XBC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-4953" y="-576"/>
+            <point key="canvasLocation" x="-4953" y="-576.75"/>
+        </scene>
+        <!--电话添加-->
+        <scene sceneID="0B6-NV-ciB">
+            <objects>
+                <tableViewController id="9Lg-GF-JY7" customClass="ContactAddByTelTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="tNb-FD-cnb">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <sections>
+                            <tableViewSection id="Mec-K2-zNE">
+                                <cells>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="ie7-TZ-pPf">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ie7-TZ-pPf" id="tDx-7S-oGE">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="bHL-av-udt">
+                                                    <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
+                                                </textField>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="bHL-av-udt" firstAttribute="leading" secondItem="tDx-7S-oGE" secondAttribute="leading" constant="8" id="3cb-Pn-qbj"/>
+                                                <constraint firstItem="bHL-av-udt" firstAttribute="top" secondItem="tDx-7S-oGE" secondAttribute="topMargin" id="49q-Vq-aOA"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="bHL-av-udt" secondAttribute="bottom" constant="-3" id="gta-Y1-ccj"/>
+                                                <constraint firstAttribute="trailing" secondItem="bHL-av-udt" secondAttribute="trailing" constant="8" id="zA4-iS-lZa"/>
+                                            </constraints>
+                                            <variation key="default">
+                                                <mask key="subviews">
+                                                    <exclude reference="bHL-av-udt"/>
+                                                </mask>
+                                                <mask key="constraints">
+                                                    <exclude reference="3cb-Pn-qbj"/>
+                                                    <exclude reference="49q-Vq-aOA"/>
+                                                    <exclude reference="gta-Y1-ccj"/>
+                                                    <exclude reference="zA4-iS-lZa"/>
+                                                </mask>
+                                            </variation>
+                                            <variation key="heightClass=regular-widthClass=compact">
+                                                <mask key="subviews">
+                                                    <include reference="bHL-av-udt"/>
+                                                </mask>
+                                                <mask key="constraints">
+                                                    <include reference="3cb-Pn-qbj"/>
+                                                    <include reference="49q-Vq-aOA"/>
+                                                    <include reference="gta-Y1-ccj"/>
+                                                    <include reference="zA4-iS-lZa"/>
+                                                </mask>
+                                            </variation>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="9Lg-GF-JY7" id="OeT-OJ-c2s"/>
+                            <outlet property="delegate" destination="9Lg-GF-JY7" id="PFu-oo-9Pn"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="电话添加" id="bCE-QV-pvO">
+                        <barButtonItem key="leftBarButtonItem" image="return.png" id="KfJ-D1-2Y1">
+                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="backButtonClicked:" destination="9Lg-GF-JY7" id="HOl-Ez-fc5"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="确定" id="yzk-i6-0ks">
+                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        </barButtonItem>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lQ5-CB-uUx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-4195.5" y="-575.25"/>
         </scene>
         <!--Main Tab Bar View Controller-->
         <scene sceneID="OUX-wP-1Fr">
@@ -5291,10 +5479,10 @@
             </objects>
             <point key="canvasLocation" x="-10416" y="4519"/>
         </scene>
-        <!--病情描述-->
+        <!--电话添加-->
         <scene sceneID="rNa-dC-F48">
             <objects>
-                <tableViewController id="7vi-g4-sXh" customClass="ContactFriendSetDescribeTableViewController" sceneMemberID="viewController">
+                <tableViewController title="电话添加" id="7vi-g4-sXh" customClass="ContactFriendSetDescribeTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Efp-pk-9BO">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="487"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -5375,11 +5563,12 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UaK-0c-dSI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-4093.5" y="684.75"/>
+            <point key="canvasLocation" x="-4126.5" y="703.5"/>
         </scene>
     </scenes>
     <resources>
         <image name="Upload_btn.png" width="160" height="160"/>
+        <image name="add-user_btn.png" width="40" height="20"/>
         <image name="business-card_bg.png" width="280" height="380"/>
         <image name="button_details.png" width="23" height="24"/>
         <image name="button_login.png" width="88" height="30"/>
@@ -5396,6 +5585,7 @@
         <image name="choice box.png" width="15" height="15"/>
         <image name="choice box_after.png" width="15" height="15"/>
         <image name="details_uers_example_pic.png" width="44" height="44"/>
+        <image name="doctor-ranking_preinstall_pic.png" width="50" height="50"/>
         <image name="home_bg.png" width="320" height="129"/>
         <image name="home_user_example_pic.png" width="72" height="72"/>
         <image name="line.png" width="220" height="2"/>
