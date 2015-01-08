@@ -181,6 +181,7 @@
             <objects>
                 <tableViewController title="添加朋友" hidesBottomBarWhenPushed="YES" id="jZ6-ie-YNC" customClass="ContactAddFriendViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="static" style="grouped" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="QLE-vz-SAH">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="487"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <sections>
@@ -1436,6 +1437,7 @@
                         <viewControllerLayoutGuide type="bottom" id="XTR-b0-WGc"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Nsg-FV-Ter">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="487"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="请将二维码置于框内" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cmX-wF-H2L">
@@ -1457,8 +1459,8 @@
                                 <exclude reference="cmX-wF-H2L"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="nAo-4H-xqB"/>
                                 <exclude reference="3NA-3c-WNr"/>
+                                <exclude reference="nAo-4H-xqB"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
@@ -1466,8 +1468,8 @@
                                 <include reference="cmX-wF-H2L"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="nAo-4H-xqB"/>
                                 <include reference="3NA-3c-WNr"/>
+                                <include reference="nAo-4H-xqB"/>
                             </mask>
                         </variation>
                     </view>
@@ -1489,10 +1491,11 @@
             <objects>
                 <tableViewController title="医生排名" id="Mwk-mJ-Oud" customClass="DoctorRankTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="ecO-6E-D0H">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="487"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="80" id="hOW-32-Yxt">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="DoctorRankIdentifier" rowHeight="80" id="hOW-32-Yxt" customClass="DoctorRankTableViewCell">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hOW-32-Yxt" id="5H6-4f-Dc9">
                                     <autoresizingMask key="autoresizingMask"/>
@@ -1568,6 +1571,9 @@
                                                     <include reference="agk-Ka-Nwv"/>
                                                 </mask>
                                             </variation>
+                                            <connections>
+                                                <action selector="addFriendClicked:" destination="hOW-32-Yxt" eventType="touchUpInside" id="zMy-kY-R0F"/>
+                                            </connections>
                                         </button>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1000" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hCj-2w-9lV">
                                             <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
@@ -1623,24 +1629,24 @@
                                             <exclude reference="FTN-ef-5Bj"/>
                                         </mask>
                                         <mask key="constraints">
-                                            <exclude reference="5aR-KO-iWp"/>
-                                            <exclude reference="KEY-bS-Z5d"/>
+                                            <exclude reference="OLu-YS-t10"/>
+                                            <exclude reference="a5c-Wg-ZYt"/>
+                                            <exclude reference="uIC-xe-0KR"/>
+                                            <exclude reference="Vck-bh-8Lh"/>
+                                            <exclude reference="jWq-wo-kCY"/>
+                                            <exclude reference="cBO-13-et0"/>
+                                            <exclude reference="EMF-j1-iAn"/>
+                                            <exclude reference="kbz-TV-VUs"/>
+                                            <exclude reference="obI-Lp-nvR"/>
+                                            <exclude reference="izG-ph-zXa"/>
                                             <exclude reference="1gv-AY-vrg"/>
                                             <exclude reference="Crd-K4-Ccc"/>
                                             <exclude reference="RCr-eC-Uqs"/>
                                             <exclude reference="wWw-Ah-yTI"/>
-                                            <exclude reference="Vck-bh-8Lh"/>
-                                            <exclude reference="jWq-wo-kCY"/>
-                                            <exclude reference="EMF-j1-iAn"/>
-                                            <exclude reference="kbz-TV-VUs"/>
-                                            <exclude reference="cBO-13-et0"/>
-                                            <exclude reference="izG-ph-zXa"/>
-                                            <exclude reference="OLu-YS-t10"/>
-                                            <exclude reference="a5c-Wg-ZYt"/>
-                                            <exclude reference="uIC-xe-0KR"/>
                                             <exclude reference="HD2-O1-nTd"/>
                                             <exclude reference="fHp-sE-O5V"/>
-                                            <exclude reference="obI-Lp-nvR"/>
+                                            <exclude reference="5aR-KO-iWp"/>
+                                            <exclude reference="KEY-bS-Z5d"/>
                                         </mask>
                                     </variation>
                                     <variation key="heightClass=regular-widthClass=compact">
@@ -1656,24 +1662,24 @@
                                             <include reference="FTN-ef-5Bj"/>
                                         </mask>
                                         <mask key="constraints">
-                                            <include reference="5aR-KO-iWp"/>
-                                            <include reference="KEY-bS-Z5d"/>
+                                            <include reference="OLu-YS-t10"/>
+                                            <include reference="a5c-Wg-ZYt"/>
+                                            <include reference="uIC-xe-0KR"/>
+                                            <include reference="Vck-bh-8Lh"/>
+                                            <include reference="jWq-wo-kCY"/>
+                                            <include reference="cBO-13-et0"/>
+                                            <include reference="EMF-j1-iAn"/>
+                                            <include reference="kbz-TV-VUs"/>
+                                            <include reference="obI-Lp-nvR"/>
+                                            <include reference="izG-ph-zXa"/>
                                             <include reference="1gv-AY-vrg"/>
                                             <include reference="Crd-K4-Ccc"/>
                                             <include reference="RCr-eC-Uqs"/>
                                             <include reference="wWw-Ah-yTI"/>
-                                            <include reference="Vck-bh-8Lh"/>
-                                            <include reference="jWq-wo-kCY"/>
-                                            <include reference="EMF-j1-iAn"/>
-                                            <include reference="kbz-TV-VUs"/>
-                                            <include reference="cBO-13-et0"/>
-                                            <include reference="izG-ph-zXa"/>
-                                            <include reference="OLu-YS-t10"/>
-                                            <include reference="a5c-Wg-ZYt"/>
-                                            <include reference="uIC-xe-0KR"/>
                                             <include reference="HD2-O1-nTd"/>
                                             <include reference="fHp-sE-O5V"/>
-                                            <include reference="obI-Lp-nvR"/>
+                                            <include reference="5aR-KO-iWp"/>
+                                            <include reference="KEY-bS-Z5d"/>
                                         </mask>
                                     </variation>
                                 </tableViewCellContentView>
@@ -1702,6 +1708,7 @@
             <objects>
                 <tableViewController id="9Lg-GF-JY7" customClass="ContactAddByTelTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="tNb-FD-cnb">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="487"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <sections>
@@ -1765,8 +1772,15 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="确定" id="yzk-i6-0ks">
                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="addFriend:" destination="9Lg-GF-JY7" id="OMD-SJ-CZt"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="submitButton" destination="yzk-i6-0ks" id="byU-MI-Oh0"/>
+                        <outlet property="telTextField" destination="bHL-av-udt" id="Hi8-CU-jq5"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lQ5-CB-uUx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
