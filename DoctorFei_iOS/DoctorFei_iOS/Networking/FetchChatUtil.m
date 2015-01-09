@@ -59,11 +59,18 @@
     }
     Friends *friend = [Friends MR_findFirstByAttribute:@"userId" withValue:userId];
     Message *lastMessage = [[Message MR_findByAttribute:@"user" withValue:friend andOrderBy:@"messageId" ascending:YES]lastObject];
-    NSDictionary *dict = @{
-                           @"doctorid": doctorId,
-                           @"userid": userId,
-                           @"lastmsgid": lastMessage.messageId
-                           };
+    NSDictionary *dict;
+    if (lastMessage) {
+        dict = @{
+                 @"doctorid": doctorId,
+                 @"userid": userId,
+                 @"lastmsgid": lastMessage.messageId
+                 };
+    }
+    else{
+        dict = @{@"doctorid": doctorId, @"userid": userId};
+    }
+
     [ChatAPI getChatWithParameters:dict success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"GetChat: %@", responseObject);
         NSArray *messageArray = (NSArray *)responseObject;
