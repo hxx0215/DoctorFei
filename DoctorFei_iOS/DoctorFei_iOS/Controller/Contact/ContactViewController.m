@@ -19,6 +19,7 @@
 @interface ContactViewController ()
     <UITableViewDelegate, UITableViewDataSource, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate, UIActionSheetDelegate, UIGestureRecognizerDelegate, UISearchDisplayDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (copy, nonatomic) NSArray *stableTableData;
 @end
 
 @implementation ContactViewController
@@ -46,8 +47,16 @@
                  action:@selector(tableviewCellLongPressed:)];
     longPress.minimumPressDuration = 1.0;
     [self.tableView addGestureRecognizer:longPress];
+    [self initStableTableData];
 }
 
+- (void)initStableTableData{
+    self.stableTableData = @[
+    @{@"RealName": NSLocalizedString(@"新朋友", nil),@"icon":@"address-list_01.png"},
+    @{@"RealName": NSLocalizedString(@"群聊", nil),@"icon":@"address-list_02.png"},
+    @{@"RealName": NSLocalizedString(@"群发信息", nil),@"icon":@"address-list_03.png"},
+    @{@"RealName": NSLocalizedString(@"附近的人", nil),@"icon":@"address-list_04.png"}];
+}
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self fetchFriend];
@@ -171,14 +180,16 @@
     if (tableView == self.searchDisplayController.searchResultsTableView) {
         return 1;
     }
-    return tableViewDataArray.count;
+    return tableViewDataArray.count + 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (tableView == self.searchDisplayController.searchResultsTableView) {
         return searchResultArray.count;
     }
-    return [tableViewDataArray[section] count];
+    if (section == 0)
+        return [self.stableTableData count];
+    return [tableViewDataArray[section - 1] count];
 //    return friendArray.count;
 }
 
@@ -191,9 +202,17 @@
         return cell;
     }
     else{
-        ContactFriendTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:ContactFriendCellIdentifier forIndexPath:indexPath];
-        [cell setDataFriend:tableViewDataArray[indexPath.section][indexPath.row]];
-        return cell;
+        if (indexPath.section == 0)
+        {
+            ContactFriendTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:ContactFriendCellIdentifier forIndexPath:indexPath];
+            [cell setStableData:self.stableTableData[indexPath.row]];
+            return cell;
+        }
+        else{
+            ContactFriendTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:ContactFriendCellIdentifier forIndexPath:indexPath];
+            [cell setDataFriend:tableViewDataArray[indexPath.section - 1][indexPath.row]];
+            return cell;
+        }
     }
     return nil;
 
@@ -203,8 +222,14 @@
     if (tableView == self.searchDisplayController.searchResultsTableView) {
         return nil;
     }
-    else if ([tableViewDataArray[section] count] > 0) {
-            return [[[UILocalizedIndexedCollation currentCollation]sectionTitles]objectAtIndex:section];
+    else
+        if (section == 0){
+            return @" ";
+        }
+        else{
+            if ([tableViewDataArray[section - 1] count] > 0) {
+                return [[[UILocalizedIndexedCollation currentCollation]sectionTitles]objectAtIndex:section];
+        }
     }
     return nil;
 }

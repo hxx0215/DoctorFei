@@ -11,5 +11,5 @@
 @interface ContactFriendTableViewCell : UITableViewCell
 
 @property (nonatomic, strong) Friends *dataFriend;
-
+@property (nonatomic, strong) NSDictionary *stableData;
 @end

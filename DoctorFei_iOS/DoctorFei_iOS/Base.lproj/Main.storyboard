@@ -60,9 +60,6 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
-                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                        <rect key="frame" x="70" y="22" width="230" height="20.5"/>
-                                                    </variation>
                                                 </label>
                                             </subviews>
                                             <constraints>
@@ -119,20 +116,53 @@
                                     <outlet property="emptyDataSetSource" destination="cVJ-je-ZKu" id="nZm-za-aXS"/>
                                 </connections>
                             </tableView>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="MPU-zP-p2H">
+                                <rect key="frame" x="-61" y="-14" width="123" height="29"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="u5P-PR-zhc"/>
+                                </constraints>
+                                <segments>
+                                    <segment title="医生"/>
+                                    <segment title="患者"/>
+                                    <segment title="患者家属"/>
+                                </segments>
+                                <color key="tintColor" red="0.40000000000000002" green="0.72156862745098038" blue="0.11764705882352941" alpha="1" colorSpace="calibratedRGB"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="u5P-PR-zhc"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="u5P-PR-zhc"/>
+                                    </mask>
+                                </variation>
+                            </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="0nR-px-MK6" firstAttribute="top" secondItem="I9I-NC-ugS" secondAttribute="bottom" id="4mV-Y0-pwf"/>
+                            <constraint firstItem="MPU-zP-p2H" firstAttribute="top" secondItem="I9I-NC-ugS" secondAttribute="bottom" id="9QL-7H-hlh">
+                                <variation key="heightClass=regular-widthClass=compact" constant="8"/>
+                            </constraint>
+                            <constraint firstItem="0nR-px-MK6" firstAttribute="top" secondItem="MPU-zP-p2H" secondAttribute="bottom" constant="18" id="CEH-88-TQA">
+                                <variation key="heightClass=regular-widthClass=compact" constant="8"/>
+                            </constraint>
                             <constraint firstItem="0nR-px-MK6" firstAttribute="leading" secondItem="zNT-fJ-FqE" secondAttribute="leading" id="LgE-sz-FBL"/>
                             <constraint firstItem="0nR-px-MK6" firstAttribute="bottom" secondItem="M1m-gi-n0P" secondAttribute="top" id="fwD-CF-Twh"/>
+                            <constraint firstAttribute="trailing" secondItem="MPU-zP-p2H" secondAttribute="trailing" id="jeY-IH-Vb5"/>
+                            <constraint firstItem="MPU-zP-p2H" firstAttribute="leading" secondItem="zNT-fJ-FqE" secondAttribute="leading" id="rEN-2i-0SU"/>
                             <constraint firstAttribute="trailing" secondItem="0nR-px-MK6" secondAttribute="trailing" id="w0s-mI-IRj"/>
                         </constraints>
                         <variation key="default">
                             <mask key="subviews">
                                 <exclude reference="0nR-px-MK6"/>
+                                <exclude reference="MPU-zP-p2H"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="4mV-Y0-pwf"/>
+                                <exclude reference="9QL-7H-hlh"/>
+                                <exclude reference="jeY-IH-Vb5"/>
+                                <exclude reference="rEN-2i-0SU"/>
+                                <exclude reference="CEH-88-TQA"/>
                                 <exclude reference="LgE-sz-FBL"/>
                                 <exclude reference="fwD-CF-Twh"/>
                                 <exclude reference="w0s-mI-IRj"/>
@@ -141,9 +171,13 @@
                         <variation key="heightClass=regular-widthClass=compact">
                             <mask key="subviews">
                                 <include reference="0nR-px-MK6"/>
+                                <include reference="MPU-zP-p2H"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="4mV-Y0-pwf"/>
+                                <include reference="9QL-7H-hlh"/>
+                                <include reference="jeY-IH-Vb5"/>
+                                <include reference="rEN-2i-0SU"/>
+                                <include reference="CEH-88-TQA"/>
                                 <include reference="LgE-sz-FBL"/>
                                 <include reference="fwD-CF-Twh"/>
                                 <include reference="w0s-mI-IRj"/>

@@ -29,7 +29,10 @@
 
     // Configure the view for the selected state
 }
-
+- (void)setStableData:(NSDictionary *)stableData{
+    self.avatarImageView.image = [UIImage imageNamed:stableData[@"icon"]];
+    self.nameLabel.text = stableData[@"RealName"];
+}
 - (void)setDataFriend:(Friends *)dataFriend {
     _dataFriend = dataFriend;
     if (_dataFriend.icon != nil && _dataFriend.icon.length > 0) {
