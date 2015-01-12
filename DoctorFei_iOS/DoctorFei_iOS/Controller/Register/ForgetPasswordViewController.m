@@ -72,7 +72,12 @@ static const NSTimeInterval kDuration = 60;
     self.phoneTextField.layer.borderWidth = 1.0f;
     self.phoneTextField.layer.borderColor = UIColorFromRGB(0xA6A6A6).CGColor;
     self.phoneTextField.layer.cornerRadius = 8.0f;
-    self.phoneTextField.layer.sublayerTransform = CATransform3DMakeTranslation(10, 0, 0);
+//    self.phoneTextField.layer.sublayerTransform = CATransform3DMakeTranslation(10, 0, 0);
+    UIView *leftView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, self.phoneTextField.frame.size.height)];
+    leftView.backgroundColor = self.phoneTextField.backgroundColor;
+    self.phoneTextField.leftView = leftView;
+    self.phoneTextField.leftViewMode = UITextFieldViewModeAlways;
+
     RAC(self.getCapthaButton, enabled) = [RACSignal combineLatest:@[self.phoneTextField.rac_textSignal] reduce:^(NSString *phone){
         return @(phone.length == 11 && timeCount == 0);
     }];

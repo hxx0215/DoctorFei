@@ -33,6 +33,14 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [IHKeyboardAvoiding setAvoidingView:self.loginBackgroundView];
+    UIView *leftView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, self.phoneTextField.frame.size.height)];
+    leftView.backgroundColor = self.phoneTextField.backgroundColor;
+    self.phoneTextField.leftView = leftView;
+    self.phoneTextField.leftViewMode = UITextFieldViewModeAlways;
+    UIView *leftView1 = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, self.passwordTextField.frame.size.height)];
+    leftView1.backgroundColor = self.passwordTextField.backgroundColor;
+    self.passwordTextField.leftView = leftView1;
+    self.passwordTextField.leftViewMode = UITextFieldViewModeAlways;
     RAC(self.loginButton, enabled) = [RACSignal combineLatest:@[self.phoneTextField.rac_textSignal, self.passwordTextField.rac_textSignal] reduce:^(NSString *phone, NSString *password){
         return @(phone.length == 11 && password.length > 0);
     }];
