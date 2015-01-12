@@ -145,7 +145,7 @@
         }
         else {
             indexPath = [self.tableView indexPathForCell:(UITableViewCell *)sender];
-            [vc setCurrentFriend:tableViewDataArray[indexPath.section][indexPath.row]];
+            [vc setCurrentFriend:tableViewDataArray[indexPath.section - 1][indexPath.row]];
         }
 //        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
     }
@@ -262,6 +262,11 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.section == 0)
+        [self performSegueWithIdentifier:@"ContactNewFriendSegueIdentifier" sender:[tableView cellForRowAtIndexPath:indexPath]];
+    else
+        [self performSegueWithIdentifier:@"ContactDetailSegueIdentifier" sender:[tableView cellForRowAtIndexPath:indexPath]];
+    
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
