@@ -263,7 +263,19 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0)
-        [self performSegueWithIdentifier:@"ContactNewFriendSegueIdentifier" sender:[tableView cellForRowAtIndexPath:indexPath]];
+    {
+        switch (indexPath.row){
+            case 0:{
+                [self performSegueWithIdentifier:@"ContactNewFriendSegueIdentifier" sender:[tableView cellForRowAtIndexPath:indexPath]];
+            }
+                break;
+            case 3:{
+                [self performSegueWithIdentifier:@"ContactNearSegueIdentifier" sender:[tableView cellForRowAtIndexPath:indexPath]];
+            }
+            default:
+                break;
+        }
+    }
     else
         [self performSegueWithIdentifier:@"ContactDetailSegueIdentifier" sender:[tableView cellForRowAtIndexPath:indexPath]];
     

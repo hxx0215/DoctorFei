@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="hjp-xA-J3Y">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="hjp-xA-J3Y">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -199,6 +199,7 @@
                         <outlet property="tableView" destination="0nR-px-MK6" id="haH-Z4-XAG"/>
                         <segue destination="431-Df-Pyj" kind="show" identifier="ContactNewFriendSegueIdentifier" id="Om8-xz-GWh"/>
                         <segue destination="QZS-KQ-MzU" kind="show" identifier="ContactDetailSegueIdentifier" id="QWB-UP-Nry"/>
+                        <segue destination="5KA-85-o9m" kind="show" identifier="ContactNearSegueIdentifier" id="93d-oa-GWY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nd3-BB-qhP" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -361,7 +362,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HD8-yP-FqN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-5826" y="84"/>
+            <point key="canvasLocation" x="-5781" y="-219"/>
         </scene>
         <!--Contact Detail View Controller-->
         <scene sceneID="OBo-zy-y2b">
@@ -1635,7 +1636,8 @@
                                                             <exclude reference="BW4-Pq-00c"/>
                                                         </mask>
                                                     </variation>
-                                                    <variation key="heightClass=regular-widthClass=compact">
+                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                        <rect key="frame" x="231" y="10" width="69" height="20"/>
                                                         <mask key="constraints">
                                                             <include reference="BW4-Pq-00c"/>
                                                         </mask>
@@ -1654,7 +1656,8 @@
                                                             <exclude reference="2R6-NA-Eoa"/>
                                                         </mask>
                                                     </variation>
-                                                    <variation key="heightClass=regular-widthClass=compact">
+                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                        <rect key="frame" x="96" y="10" width="128" height="20"/>
                                                         <mask key="constraints">
                                                             <include reference="2R6-NA-Eoa"/>
                                                         </mask>
@@ -4117,6 +4120,172 @@
             </objects>
             <point key="canvasLocation" x="-8465" y="306"/>
         </scene>
+        <!--附近的人-->
+        <scene sceneID="LdL-BA-OQZ">
+            <objects>
+                <tableViewController title="附近的人" hidesBottomBarWhenPushed="YES" id="5KA-85-o9m" customClass="ContactNearbyTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="81" sectionHeaderHeight="22" sectionFooterHeight="22" id="qYc-Vm-HoJ">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ContactNearbyCellIdentifier" id="Yqe-RC-6aG" customClass="ContactNearbyTableViewCell">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Yqe-RC-6aG" id="zmg-yZ-eSg">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="near-man_pic.png" translatesAutoresizingMaskIntoConstraints="NO" id="BFk-FU-rj0">
+                                            <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="60" id="W1d-3T-GCj"/>
+                                                <constraint firstAttribute="height" constant="60" id="X0K-nE-ZPq"/>
+                                            </constraints>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="W1d-3T-GCj"/>
+                                                    <exclude reference="X0K-nE-ZPq"/>
+                                                </mask>
+                                            </variation>
+                                            <variation key="heightClass=regular-widthClass=compact">
+                                                <mask key="constraints">
+                                                    <include reference="W1d-3T-GCj"/>
+                                                    <include reference="X0K-nE-ZPq"/>
+                                                </mask>
+                                            </variation>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="李天晓" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rgo-sc-cmf">
+                                            <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dector_tag.png" translatesAutoresizingMaskIntoConstraints="NO" id="wXw-dC-ehh">
+                                            <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="28" id="N6q-0R-IqI"/>
+                                                <constraint firstAttribute="height" constant="14" id="oev-vQ-HZ5"/>
+                                            </constraints>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="N6q-0R-IqI"/>
+                                                    <exclude reference="oev-vQ-HZ5"/>
+                                                </mask>
+                                            </variation>
+                                            <variation key="heightClass=regular-widthClass=compact">
+                                                <mask key="constraints">
+                                                    <include reference="N6q-0R-IqI"/>
+                                                    <include reference="oev-vQ-HZ5"/>
+                                                </mask>
+                                            </variation>
+                                        </imageView>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ecG-9H-5cT">
+                                            <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="22" id="WCY-ZL-ehf"/>
+                                                <constraint firstAttribute="width" constant="60" id="bxa-Uv-Gvf"/>
+                                            </constraints>
+                                            <state key="normal" image="Add-as-a-friend_btn.png">
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="WCY-ZL-ehf"/>
+                                                    <exclude reference="bxa-Uv-Gvf"/>
+                                                </mask>
+                                            </variation>
+                                            <variation key="heightClass=regular-widthClass=compact">
+                                                <mask key="constraints">
+                                                    <include reference="WCY-ZL-ehf"/>
+                                                    <include reference="bxa-Uv-Gvf"/>
+                                                </mask>
+                                            </variation>
+                                        </button>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10m" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GlO-qX-Bw0">
+                                            <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <color key="textColor" red="0.76078431372549016" green="0.76078431372549016" blue="0.76078431372549016" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                            <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                <rect key="frame" x="94" y="49" width="42" height="21"/>
+                                            </variation>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="centerY" secondItem="wXw-dC-ehh" secondAttribute="centerY" id="491-Mg-TgR"/>
+                                        <constraint firstAttribute="centerY" secondItem="BFk-FU-rj0" secondAttribute="centerY" id="JTK-cm-xIa"/>
+                                        <constraint firstAttribute="centerY" secondItem="ecG-9H-5cT" secondAttribute="centerY" id="Vn1-ug-SLC"/>
+                                        <constraint firstItem="GlO-qX-Bw0" firstAttribute="bottom" secondItem="BFk-FU-rj0" secondAttribute="bottom" id="ZKC-ok-STg"/>
+                                        <constraint firstAttribute="trailing" secondItem="ecG-9H-5cT" secondAttribute="trailing" constant="27" id="i2m-v5-Vab"/>
+                                        <constraint firstItem="Rgo-sc-cmf" firstAttribute="leading" secondItem="BFk-FU-rj0" secondAttribute="trailing" constant="8" id="j06-uo-AfN">
+                                            <variation key="heightClass=regular-widthClass=compact" constant="20"/>
+                                        </constraint>
+                                        <constraint firstItem="wXw-dC-ehh" firstAttribute="leading" secondItem="Rgo-sc-cmf" secondAttribute="leading" id="pK3-Fx-KDM"/>
+                                        <constraint firstItem="GlO-qX-Bw0" firstAttribute="leading" secondItem="wXw-dC-ehh" secondAttribute="leading" id="qy7-aH-YnD"/>
+                                        <constraint firstItem="BFk-FU-rj0" firstAttribute="leading" secondItem="zmg-yZ-eSg" secondAttribute="leading" constant="14" id="rdV-1n-2KG"/>
+                                        <constraint firstItem="Rgo-sc-cmf" firstAttribute="top" secondItem="zmg-yZ-eSg" secondAttribute="top" constant="10" id="tIC-84-3tq"/>
+                                    </constraints>
+                                    <variation key="default">
+                                        <mask key="subviews">
+                                            <exclude reference="BFk-FU-rj0"/>
+                                            <exclude reference="Rgo-sc-cmf"/>
+                                            <exclude reference="wXw-dC-ehh"/>
+                                            <exclude reference="ecG-9H-5cT"/>
+                                            <exclude reference="GlO-qX-Bw0"/>
+                                        </mask>
+                                        <mask key="constraints">
+                                            <exclude reference="JTK-cm-xIa"/>
+                                            <exclude reference="rdV-1n-2KG"/>
+                                            <exclude reference="j06-uo-AfN"/>
+                                            <exclude reference="tIC-84-3tq"/>
+                                            <exclude reference="491-Mg-TgR"/>
+                                            <exclude reference="pK3-Fx-KDM"/>
+                                            <exclude reference="ZKC-ok-STg"/>
+                                            <exclude reference="qy7-aH-YnD"/>
+                                            <exclude reference="Vn1-ug-SLC"/>
+                                            <exclude reference="i2m-v5-Vab"/>
+                                        </mask>
+                                    </variation>
+                                    <variation key="heightClass=regular-widthClass=compact">
+                                        <mask key="subviews">
+                                            <include reference="BFk-FU-rj0"/>
+                                            <include reference="Rgo-sc-cmf"/>
+                                            <include reference="wXw-dC-ehh"/>
+                                            <include reference="ecG-9H-5cT"/>
+                                            <include reference="GlO-qX-Bw0"/>
+                                        </mask>
+                                        <mask key="constraints">
+                                            <include reference="JTK-cm-xIa"/>
+                                            <include reference="rdV-1n-2KG"/>
+                                            <include reference="j06-uo-AfN"/>
+                                            <include reference="tIC-84-3tq"/>
+                                            <include reference="491-Mg-TgR"/>
+                                            <include reference="pK3-Fx-KDM"/>
+                                            <include reference="ZKC-ok-STg"/>
+                                            <include reference="qy7-aH-YnD"/>
+                                            <include reference="Vn1-ug-SLC"/>
+                                            <include reference="i2m-v5-Vab"/>
+                                        </mask>
+                                    </variation>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="5KA-85-o9m" id="lcR-aV-GHN"/>
+                            <outlet property="delegate" destination="5KA-85-o9m" id="NtR-b4-6WR"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="附近的人" id="sbc-KH-2C4">
+                        <barButtonItem key="leftBarButtonItem" image="return.png" id="8Aj-dA-DyS">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="backButtonClicked:" destination="5KA-85-o9m" id="0JZ-Qq-zLw"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iTv-LV-bwu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-5781" y="1165.5"/>
+        </scene>
         <!--个人信息-->
         <scene sceneID="8hj-hz-uUQ">
             <objects>
@@ -4885,7 +5054,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="74v-pG-Hg8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-5773.5" y="757.5"/>
+            <point key="canvasLocation" x="-5781" y="513"/>
         </scene>
         <!--我-->
         <scene sceneID="Glk-z4-ETe">
@@ -5570,6 +5739,9 @@
                                 <variation key="heightClass=compact-widthClass=compact" ambiguous="YES">
                                     <rect key="frame" x="86" y="179" width="228" height="18"/>
                                 </variation>
+                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="86" y="288" width="227" height="38"/>
+                                </variation>
                                 <connections>
                                     <action selector="updateButtonClicked:" destination="uaT-mB-nYo" eventType="touchUpInside" id="9cb-u2-xol"/>
                                 </connections>
@@ -5875,7 +6047,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vmH-5G-lNN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-6423" y="1130.25"/>
+            <point key="canvasLocation" x="-6639" y="1140.75"/>
         </scene>
         <!--我的预约-->
         <scene sceneID="Db9-AW-Ag3">
@@ -6352,6 +6524,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Add-as-a-friend_btn.png" width="60" height="20"/>
         <image name="GO_login_btn.png" width="36" height="36"/>
         <image name="Upload_btn.png" width="160" height="160"/>
         <image name="add-user_btn.png" width="40" height="20"/>
@@ -6369,6 +6542,7 @@
         <image name="button_verification-code_after.png" width="77" height="31"/>
         <image name="choice box.png" width="15" height="15"/>
         <image name="choice box_after.png" width="15" height="15"/>
+        <image name="dector_tag.png" width="28" height="14"/>
         <image name="details_uers_example_pic.png" width="44" height="44"/>
         <image name="doctor-ranking_preinstall_pic.png" width="50" height="50"/>
         <image name="home_bg.png" width="320" height="129"/>
@@ -6387,6 +6561,7 @@
         <image name="login_bg.png" width="320" height="480"/>
         <image name="logo_login.png" width="52" height="86"/>
         <image name="logo_set.png" width="58" height="94"/>
+        <image name="near-man_pic.png" width="60" height="60"/>
         <image name="not_certifie_pic.png" width="38" height="14"/>
         <image name="off_line.png" width="40" height="15"/>
         <image name="on_line_pic.png" width="40" height="15"/>
