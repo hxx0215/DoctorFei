@@ -158,10 +158,10 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    if (section == 0) {
-        return 20.0f;
-    }
-    return 0;
+//    if (section == 0) {
+//        return 20.0f;
+//    }
+    return 0.1f;
 }
 #pragma mark - DZNEmptyDataSetSource
 
