@@ -269,6 +269,10 @@
                 [self performSegueWithIdentifier:@"ContactNewFriendSegueIdentifier" sender:[tableView cellForRowAtIndexPath:indexPath]];
             }
                 break;
+            case 1:{
+                [self performSegueWithIdentifier:@"ContactGroupListSegueIdentifier" sender:[tableView cellForRowAtIndexPath:indexPath]];
+            }
+                break;
             case 3:{
                 [self performSegueWithIdentifier:@"ContactNearSegueIdentifier" sender:[tableView cellForRowAtIndexPath:indexPath]];
             }
