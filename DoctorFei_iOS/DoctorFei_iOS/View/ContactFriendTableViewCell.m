@@ -14,7 +14,7 @@
 
 @property (weak, nonatomic) IBOutlet UIImageView *avatarImageView;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
-
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *avatarLeftConstraint;
 @end
 
 @implementation ContactFriendTableViewCell
@@ -52,5 +52,11 @@
 //    else{
 //        [self.nameLabel setText:_dataFriend.realname];
 //    }
+}
+- (void)setContactMode:(ContactViewControllerMode)contactMode{
+    self.selectedButton.hidden = ContactViewControllerModeNormal==contactMode;
+    if (ContactViewControllerModeNormal==contactMode){
+        self.avatarLeftConstraint.constant = 20;
+    }
 }
 @end
