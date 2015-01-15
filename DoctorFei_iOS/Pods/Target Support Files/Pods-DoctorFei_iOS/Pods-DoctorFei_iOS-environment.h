@@ -48,6 +48,12 @@
 #define COCOAPODS_VERSION_MINOR_AFNetworking_UIKit 5
 #define COCOAPODS_VERSION_PATCH_AFNetworking_UIKit 0
 
+// ActionSheetPicker-3.0
+#define COCOAPODS_POD_AVAILABLE_ActionSheetPicker_3_0
+#define COCOAPODS_VERSION_MAJOR_ActionSheetPicker_3_0 1
+#define COCOAPODS_VERSION_MINOR_ActionSheetPicker_3_0 3
+#define COCOAPODS_VERSION_PATCH_ActionSheetPicker_3_0 10
+
 // CocoaAsyncSocket
 #define COCOAPODS_POD_AVAILABLE_CocoaAsyncSocket
 #define COCOAPODS_VERSION_MAJOR_CocoaAsyncSocket 7

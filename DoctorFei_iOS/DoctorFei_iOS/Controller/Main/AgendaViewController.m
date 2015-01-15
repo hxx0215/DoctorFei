@@ -9,6 +9,7 @@
 #import "AgendaViewController.h"
 
 @interface AgendaViewController ()
+- (IBAction)backButtonClicked:(id)sender;
 
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentControl;
 @property (weak, nonatomic) IBOutlet UIView *contentView;
@@ -56,6 +57,8 @@
             aViewController.view.frame = CGRectMake(0, 0, blockSelf.view.frame.size.width, blockSelf.view.frame.size.height);
             switchViewController();
         }
+        
+        [blockSelf.navigationItem setRightBarButtonItems:aViewController.navigationItem.rightBarButtonItems animated:animated];
     }
 }
 - (void)showViewControllerWithSlideInAnimation: (UIViewController *)aViewController {
@@ -104,5 +107,8 @@
 - (IBAction)segmentValueChanged:(id)sender {
     UISegmentedControl *segmentControl = (UISegmentedControl *)sender;
     [self showViewController:_viewControllers[segmentControl.selectedSegmentIndex] animated:YES];
+}
+- (IBAction)backButtonClicked:(id)sender {
+    [self.navigationController popViewControllerAnimated:YES];
 }
 @end
