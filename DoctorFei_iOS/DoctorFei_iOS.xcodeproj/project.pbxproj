@@ -20,6 +20,7 @@
 		6A1DEA721A35931B00FD637B /* list_user-big_example_pic.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A1DEA6C1A35931B00FD637B /* list_user-big_example_pic.png */; };
 		6A1DEA731A35931B00FD637B /* list_user-big_example_pic@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A1DEA6D1A35931B00FD637B /* list_user-big_example_pic@2x.png */; };
 		6A1DEA741A35931B00FD637B /* list_user-big_example_pic@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A1DEA6E1A35931B00FD637B /* list_user-big_example_pic@3x.png */; };
+		6A21F5621A680F6D00504C65 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6A21F5601A680F6D00504C65 /* Main.storyboard */; };
 		6A2BD5CC1A300207002F7644 /* MobileAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A2BD5CB1A300207002F7644 /* MobileAPI.m */; };
 		6A2BD5CF1A3008BF002F7644 /* SetOnlineStateUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A2BD5CE1A3008BF002F7644 /* SetOnlineStateUtil.m */; };
 		6A2BD5D21A3031F7002F7644 /* SocketConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A2BD5D11A3031F7002F7644 /* SocketConnection.m */; };
@@ -52,7 +53,6 @@
 		6A69A02A1A2D4DC500D85777 /* PushConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6A69A0291A2D4DC500D85777 /* PushConfig.plist */; };
 		6A7372C91A2034B4006EF54F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A7372C81A2034B4006EF54F /* main.m */; };
 		6A7372CC1A2034B4006EF54F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A7372CB1A2034B4006EF54F /* AppDelegate.m */; };
-		6A7372D21A2034B4006EF54F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6A7372D01A2034B4006EF54F /* Main.storyboard */; };
 		6A7372D41A2034B4006EF54F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6A7372D31A2034B4006EF54F /* Images.xcassets */; };
 		6A73763A1A208972006EF54F /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A7376391A208972006EF54F /* MainViewController.m */; };
 		6A73763D1A20CFAD006EF54F /* ContactViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A73763C1A20CFAD006EF54F /* ContactViewController.m */; };
@@ -451,6 +451,7 @@
 		6A1DEA6C1A35931B00FD637B /* list_user-big_example_pic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "list_user-big_example_pic.png"; sourceTree = "<group>"; };
 		6A1DEA6D1A35931B00FD637B /* list_user-big_example_pic@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "list_user-big_example_pic@2x.png"; sourceTree = "<group>"; };
 		6A1DEA6E1A35931B00FD637B /* list_user-big_example_pic@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "list_user-big_example_pic@3x.png"; sourceTree = "<group>"; };
+		6A21F5611A680F6D00504C65 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		6A2BD5CA1A300207002F7644 /* MobileAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobileAPI.h; sourceTree = "<group>"; };
 		6A2BD5CB1A300207002F7644 /* MobileAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MobileAPI.m; sourceTree = "<group>"; };
 		6A2BD5CD1A3008BF002F7644 /* SetOnlineStateUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetOnlineStateUtil.h; sourceTree = "<group>"; };
@@ -505,7 +506,6 @@
 		6A7372C81A2034B4006EF54F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		6A7372CA1A2034B4006EF54F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		6A7372CB1A2034B4006EF54F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		6A7372D11A2034B4006EF54F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		6A7372D31A2034B4006EF54F /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		6A7376381A208972006EF54F /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		6A7376391A208972006EF54F /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
@@ -1011,7 +1011,7 @@
 				6A7372CA1A2034B4006EF54F /* AppDelegate.h */,
 				6A7372CB1A2034B4006EF54F /* AppDelegate.m */,
 				6A7372D31A2034B4006EF54F /* Images.xcassets */,
-				6A7372D01A2034B4006EF54F /* Main.storyboard */,
+				6A21F5601A680F6D00504C65 /* Main.storyboard */,
 				6A7375611A207E89006EF54F /* View */,
 				6A73748D1A207E88006EF54F /* Controller */,
 				6A73748E1A207E88006EF54F /* Modal */,
@@ -1748,7 +1748,6 @@
 				6AC6E9E11A28C015007689D8 /* tab_02_after.png in Resources */,
 				6AC6E9B01A28C015007689D8 /* login_bg@3x.png in Resources */,
 				B95EEFA01A655684006F7FEF /* patient_tag@3x.png in Resources */,
-				6A7372D21A2034B4006EF54F /* Main.storyboard in Resources */,
 				6AC6E94F1A28C015007689D8 /* button_next.png in Resources */,
 				6AC6E9FF1A28C015007689D8 /* text_search_02.png in Resources */,
 				6AD089DA1A66C98D007D0988 /* arrow.png in Resources */,
@@ -2047,6 +2046,7 @@
 				6AC6E94E1A28C015007689D8 /* button_next_after@3x.png in Resources */,
 				6AC6EA001A28C015007689D8 /* text_search_02@2x.png in Resources */,
 				6AC6E9351A28C015007689D8 /* business-card_bg@2x.png in Resources */,
+				6A21F5621A680F6D00504C65 /* Main.storyboard in Resources */,
 				B93969D21A6417250073DEF4 /* list_user_preinstall_pic@3x.png in Resources */,
 				6AC6E94B1A28C015007689D8 /* button_make-sure@3x.png in Resources */,
 				6AD089591A64204A007D0988 /* not_certifie_pic.png in Resources */,
@@ -2184,10 +2184,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		6A7372D01A2034B4006EF54F /* Main.storyboard */ = {
+		6A21F5601A680F6D00504C65 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				6A7372D11A2034B4006EF54F /* Base */,
+				6A21F5611A680F6D00504C65 /* Base */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
