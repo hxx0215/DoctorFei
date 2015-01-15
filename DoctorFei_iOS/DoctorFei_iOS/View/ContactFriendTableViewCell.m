@@ -54,8 +54,8 @@
 //    }
 }
 - (void)setContactMode:(ContactViewControllerMode)contactMode{
-    self.selectedButton.hidden = ContactViewControllerModeNormal==contactMode;
-    if (ContactViewControllerModeNormal==contactMode){
+
+    if ((self.selectedButton.hidden = ContactViewControllerModeNormal==contactMode)){
         self.avatarLeftConstraint.constant = 20;
     }
 }

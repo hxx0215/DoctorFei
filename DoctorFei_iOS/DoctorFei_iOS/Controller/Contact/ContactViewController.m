@@ -21,7 +21,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *backButton;
 @property (copy, nonatomic) NSArray *stableTableData;
-@property (assign, nonatomic) BOOL *cellSelected;
+@property (strong, nonatomic) NSMutableArray *cellSelected;
 @end
 
 @implementation ContactViewController
@@ -59,6 +59,7 @@
             self.navigationItem.rightBarButtonItem.title =NSLocalizedString(@"确定", nil);
         }
     }
+    self.cellSelected = [NSMutableArray new];
 }
 
 - (void)initStableTableData{
@@ -72,10 +73,8 @@
     [super viewWillAppear:animated];
     [self fetchFriend];
     [self reloadTableViewData];
-    self.cellSelected = calloc(tableViewDataArray.count, sizeof(BOOL));
 }
 - (void)viewWillDisappear:(BOOL)animated{
-    free(_cellSelected);
     [super viewWillDisappear:animated];
 }
 - (void)didReceiveMemoryWarning {
@@ -172,6 +171,17 @@
     if (self.contactMode == ContactViewControllerModeNormal){
         [self performSegueWithIdentifier:@"ContactAddFriendSegueIdentifier" sender:sender];
     }
+    else{
+        NSMutableArray *didSelect = [NSMutableArray new];
+//        for (int i=0;i<tableViewDataArray.count;i++){
+//            if (self.cellSelected[i])
+//                [didSelect addObject:tableViewDataArray[i]];
+//        }
+        for (NSIndexPath *indexPath in self.cellSelected){
+            [didSelect addObject:tableViewDataArray[indexPath.section][indexPath.row]];
+        }
+        self.didSelectFriends(didSelect);
+    }
 }
 
 #pragma mark - UITableViewCellLongPressed
@@ -247,7 +257,7 @@
         else
         {
             [cell setDataFriend:tableViewDataArray[indexPath.section][indexPath.row]];
-            cell.selectedButton.selected = self.cellSelected[indexPath.row];
+            cell.selectedButton.selected = [self.cellSelected containsObject:indexPath];
         }
         cell.contactMode = self.contactMode;
         return cell;
@@ -338,7 +348,10 @@
     else{
         ContactFriendTableViewCell *cell = (ContactFriendTableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
         cell.selectedButton.selected = !cell.selectedButton.selected;
-        self.cellSelected[indexPath.row] = cell.selectedButton.selected;
+        if (cell.selectedButton.selected)
+            [self.cellSelected addObject:indexPath];
+        else
+            [self.cellSelected removeObject:indexPath];
     }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
