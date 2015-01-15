@@ -11,7 +11,8 @@ typedef enum ContactMode{
     ContactViewControllerModeCreateGroup
 } ContactViewControllerMode;
 #import <UIKit/UIKit.h>
-
+typedef void (^ editCallback)(NSArray *friendSelected);
 @interface ContactViewController : UIViewController
 @property (nonatomic, assign) ContactViewControllerMode contactMode;
+@property (nonatomic, copy) editCallback didSelectFriends;
 @end

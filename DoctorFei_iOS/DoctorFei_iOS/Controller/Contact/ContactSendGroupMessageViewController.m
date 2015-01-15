@@ -36,6 +36,9 @@
     // Pass the selected object to the new view controller.
     ContactViewController *contact = [segue destinationViewController];
     contact.contactMode = ContactViewControllerModeGMAddFriend;
+    contact.didSelectFriends = ^(NSArray *friendArr){
+        NSLog(@"%@",friendArr);
+    };
 }
 
 
