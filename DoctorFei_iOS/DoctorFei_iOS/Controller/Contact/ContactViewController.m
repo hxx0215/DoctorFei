@@ -58,6 +58,9 @@
         if (self.contactMode == ContactViewControllerModeGMAddFriend){
             self.navigationItem.rightBarButtonItem.title =NSLocalizedString(@"确定", nil);
         }
+        else{
+            self.navigationItem.rightBarButtonItem.title = NSLocalizedString(@"确定", nil);
+        }
     }
     self.cellSelected = [NSMutableArray new];
 }

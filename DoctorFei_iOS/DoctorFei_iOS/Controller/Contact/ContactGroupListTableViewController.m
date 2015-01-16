@@ -7,7 +7,7 @@
 //
 
 #import "ContactGroupListTableViewController.h"
-
+#import "ContactViewController.h"
 @interface ContactGroupListTableViewController ()
 
 @end
@@ -59,7 +59,12 @@
     return cell;
 }
 
-
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if (indexPath.row == 0){
+        [self performSegueWithIdentifier:@"ContactCreateGroupSequeIdentifier" sender:[tableView cellForRowAtIndexPath:indexPath]];
+    }
+}
 /*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -94,14 +99,19 @@
 }
 */
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    ContactViewController *contact = [segue destinationViewController];
+    contact.contactMode = ContactViewControllerModeCreateGroup;
+    contact.didSelectFriends = ^(NSArray *friends){
+        NSLog(@"%@",friends);
+    };
 }
-*/
+
 
 @end
