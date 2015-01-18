@@ -10,14 +10,23 @@
 #import <WYPopoverController.h>
 #import <WYStoryboardPopoverSegue.h>
 #import "MyPageActionPopoverViewController.h"
+#import <UIScrollView+EmptyDataSet.h>
 @interface MyPageViewController ()
-    <MyPageActionPopoverVCDelegate, WYPopoverControllerDelegate>
+    <MyPageActionPopoverVCDelegate, WYPopoverControllerDelegate, UITableViewDelegate, UITableViewDataSource, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
+- (IBAction)backButtonClicked:(id)sender;
+
+@property (weak, nonatomic) IBOutlet UIImageView *avatarImageView;
+@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *hospitalLabel;
+@property (weak, nonatomic) IBOutlet UILabel *departAndJobLabel;
+@property (weak, nonatomic) IBOutlet UITableView *contentTableView;
 @end
 
 @implementation MyPageViewController
 {
     WYPopoverController *popoverController;
 }
+#pragma mark - LifeCycles
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"MyPageActionSegueIdentifier"]) {
         MyPageActionPopoverViewController *vc = [segue destinationViewController];
@@ -36,13 +45,32 @@
         
     }
 }
-
+#pragma mark - Actions
+- (IBAction)backButtonClicked:(id)sender {
+    [self.navigationController popViewControllerAnimated:YES];
+}
 #pragma mark - MyPageActionPopoverVC Delegate
 - (void)newTalkButtonClickedWithMyPageActionPopoverViewController: (MyPageActionPopoverViewController *)vc {
     
 }
 - (void)newLogButtonClickedWithMyPageActionPopoverViewController: (MyPageActionPopoverViewController *)vc {
     
+}
+
+#pragma mark - UITableView Delegate
+
+#pragma mark - UITableView DataSource
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return 2;
+}
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return nil;
+}
+
+
+#pragma mark - DZNEmptyDataSrouce
+- (NSAttributedString *)titleForEmptyDataSet:(UIScrollView *)scrollView {
+    return [[NSAttributedString alloc]initWithString:@"暂无内容"];
 }
 
 @end
