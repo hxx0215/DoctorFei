@@ -14,8 +14,11 @@
 #import "ContactDetailViewController.h"
 #import "Friends.h"
 #import "SocketConnection.h"
+#import <WYPopoverController.h>
+#import "MainGroupPopoverViewController.h"
+#import <WYStoryboardPopoverSegue.h>
 @interface MainViewController ()
-    <UITableViewDelegate, UITableViewDataSource, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate, UIGestureRecognizerDelegate>
+    <UITableViewDelegate, UITableViewDataSource, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate, UIGestureRecognizerDelegate, MainGroupPopoverVCDelegate, WYPopoverControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
@@ -24,6 +27,10 @@
 @property (weak, nonatomic) IBOutlet UIImageView *avatarImageView;
 - (IBAction)refreshButtonClicked:(id)sender;
 - (IBAction)userInfoButtonClicked:(id)sender;
+
+@property (weak, nonatomic) IBOutlet UIButton *titleButton;
+- (IBAction)titleButtonClicked:(id)sender;
+
 @end
 
 @implementation MainViewController
@@ -31,6 +38,7 @@
     NSArray *chatArray;
     UIBarButtonItem *fetchButtonItem, *loadingButtonItem;
     CABasicAnimation *rotation;
+    WYPopoverController *popoverController;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -116,6 +124,7 @@
     chatArray = [Chat MR_findAll];
     [self.tableView reloadData];
 }
+#pragma mark - Actions
 
 - (IBAction)refreshButtonClicked:(id)sender {
     [self.navigationItem setLeftBarButtonItem:loadingButtonItem animated:YES];
@@ -128,6 +137,9 @@
 //    [self performSegueWithIdentifier:@"UserInfoSegueIdentifier" sender:nil];
     [self.tabBarController setSelectedIndex:2];
 }
+- (IBAction)titleButtonClicked:(id)sender {
+    
+}
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -139,6 +151,24 @@
         ContactDetailViewController *vc = [segue destinationViewController];
         Chat *chat = chatArray[indexPath.row];
         [vc setCurrentFriend:chat.user];
+    } else if ([segue.identifier isEqualToString:@"MainGroupPopoverSegueIdentifier"]) {
+        [_titleButton setBackgroundImage:[UIImage imageNamed:@"top_arrow_up"] forState:UIControlStateNormal];
+        MainGroupPopoverViewController *vc = [segue destinationViewController];
+        vc.preferredContentSize = CGSizeMake(180.0f, 81.0f);
+        vc.delegate = self;
+        WYStoryboardPopoverSegue *popoverSegue = (WYStoryboardPopoverSegue *)segue;
+        popoverController = [popoverSegue popoverControllerWithSender:sender permittedArrowDirections:WYPopoverArrowDirectionAny animated:YES];
+        popoverController.delegate = self;
+        popoverController.dismissOnTap = YES;
+        popoverController.theme.outerCornerRadius = 0;
+        popoverController.theme.innerCornerRadius = 0;
+        popoverController.theme.glossShadowColor = [UIColor clearColor];
+        popoverController.theme.fillTopColor = [UIColor clearColor];
+        popoverController.theme.fillBottomColor = [UIColor clearColor];
+        popoverController.theme.arrowHeight = 8.0f;
+        popoverController.popoverLayoutMargins = UIEdgeInsetsZero;
+
+        
     }
 }
 
@@ -171,4 +201,13 @@
 }
 #pragma mark - DZNEmptySetDelegate
 
+#pragma mark - WYPopover Delegate
+- (void)popoverControllerDidDismissPopover:(WYPopoverController *)popoverController{
+    [_titleButton setBackgroundImage:[UIImage imageNamed:@"top_arrow_down"] forState:UIControlStateNormal];
+}
+
+#pragma mark - Popover Delegate
+- (void)editButtonClickedForPopoverVC:(MainGroupPopoverViewController *)vc {
+    
+}
 @end
