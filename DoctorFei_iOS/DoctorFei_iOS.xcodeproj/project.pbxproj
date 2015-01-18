@@ -87,6 +87,8 @@
 		6AB8B0A21A387D7D00866281 /* ImageUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AB8B0A11A387D7D00866281 /* ImageUtil.m */; };
 		6ABFDBD91A6B8D8E00DB8E74 /* MyPageContentTalkTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ABFDBD81A6B8D8E00DB8E74 /* MyPageContentTalkTableViewCell.m */; };
 		6ABFDBDC1A6B8DA100DB8E74 /* MyPageContentArticleTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ABFDBDB1A6B8DA100DB8E74 /* MyPageContentArticleTableViewCell.m */; };
+		6ABFDBDF1A6B944C00DB8E74 /* MyPageContentTalkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ABFDBDE1A6B944C00DB8E74 /* MyPageContentTalkViewController.m */; };
+		6ABFDBE21A6B946100DB8E74 /* MyPageContentArticleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ABFDBE11A6B946100DB8E74 /* MyPageContentArticleViewController.m */; };
 		6AC341FA1A35E81200DFCD16 /* details_uers_example_pic.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AC341F71A35E81200DFCD16 /* details_uers_example_pic.png */; };
 		6AC341FB1A35E81200DFCD16 /* details_uers_example_pic@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AC341F81A35E81200DFCD16 /* details_uers_example_pic@2x.png */; };
 		6AC341FC1A35E81200DFCD16 /* details_uers_example_pic@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AC341F91A35E81200DFCD16 /* details_uers_example_pic@3x.png */; };
@@ -576,6 +578,10 @@
 		6ABFDBD81A6B8D8E00DB8E74 /* MyPageContentTalkTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyPageContentTalkTableViewCell.m; sourceTree = "<group>"; };
 		6ABFDBDA1A6B8DA100DB8E74 /* MyPageContentArticleTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyPageContentArticleTableViewCell.h; sourceTree = "<group>"; };
 		6ABFDBDB1A6B8DA100DB8E74 /* MyPageContentArticleTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyPageContentArticleTableViewCell.m; sourceTree = "<group>"; };
+		6ABFDBDD1A6B944C00DB8E74 /* MyPageContentTalkViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyPageContentTalkViewController.h; sourceTree = "<group>"; };
+		6ABFDBDE1A6B944C00DB8E74 /* MyPageContentTalkViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyPageContentTalkViewController.m; sourceTree = "<group>"; };
+		6ABFDBE01A6B946100DB8E74 /* MyPageContentArticleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyPageContentArticleViewController.h; sourceTree = "<group>"; };
+		6ABFDBE11A6B946100DB8E74 /* MyPageContentArticleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyPageContentArticleViewController.m; sourceTree = "<group>"; };
 		6AC341F71A35E81200DFCD16 /* details_uers_example_pic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = details_uers_example_pic.png; sourceTree = "<group>"; };
 		6AC341F81A35E81200DFCD16 /* details_uers_example_pic@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "details_uers_example_pic@2x.png"; sourceTree = "<group>"; };
 		6AC341F91A35E81200DFCD16 /* details_uers_example_pic@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "details_uers_example_pic@3x.png"; sourceTree = "<group>"; };
@@ -1432,6 +1438,10 @@
 				6A1D42CB1A67EC10002B0F7C /* MyPageViewController.m */,
 				6A1D42CD1A67F5C8002B0F7C /* MyPageActionPopoverViewController.h */,
 				6A1D42CE1A67F5C8002B0F7C /* MyPageActionPopoverViewController.m */,
+				6ABFDBDD1A6B944C00DB8E74 /* MyPageContentTalkViewController.h */,
+				6ABFDBDE1A6B944C00DB8E74 /* MyPageContentTalkViewController.m */,
+				6ABFDBE01A6B946100DB8E74 /* MyPageContentArticleViewController.h */,
+				6ABFDBE11A6B946100DB8E74 /* MyPageContentArticleViewController.m */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -2176,6 +2186,7 @@
 				6A2BD5E01A31B139002F7644 /* ContactFriendDetailTableViewController.m in Sources */,
 				6A9177F61A2DE2E2000645A4 /* DataUtil.m in Sources */,
 				6AB359B11A2B5758008C48B4 /* BaseHTTPRequestOperationManager.m in Sources */,
+				6ABFDBE21A6B946100DB8E74 /* MyPageContentArticleViewController.m in Sources */,
 				6AD089BB1A654CB5007D0988 /* AgendaArrangementTableViewController.m in Sources */,
 				6A5DC5FC1A332DF200961E53 /* MessagesModalData.m in Sources */,
 				6AD089D01A66C276007D0988 /* TimeScheduleTableViewCell.m in Sources */,
@@ -2222,6 +2233,7 @@
 				6A69A0121A2CBB2500D85777 /* DoctorAPI.m in Sources */,
 				6A73763A1A208972006EF54F /* MainViewController.m in Sources */,
 				B90320BF1A5ADAA3001FA485 /* DoctorApproveViewController.m in Sources */,
+				6ABFDBDF1A6B944C00DB8E74 /* MyPageContentTalkViewController.m in Sources */,
 				B93969C81A6406590073DEF4 /* ContactNewFriendTableViewController.m in Sources */,
 				6AB8B09B1A3747EA00866281 /* Friends+PinYinUtil.m in Sources */,
 				6A4FC1621A2F51360042497C /* MainCoreData.xcdatamodeld in Sources */,

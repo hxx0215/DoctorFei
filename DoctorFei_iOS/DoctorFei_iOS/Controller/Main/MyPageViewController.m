@@ -36,6 +36,7 @@
         
         popoverController = [popoverSegue popoverControllerWithSender:sender permittedArrowDirections:WYPopoverArrowDirectionAny animated:YES];
         popoverController.delegate = self;
+        popoverController.dismissOnTap = YES;
         popoverController.theme.outerCornerRadius = 0;
         popoverController.theme.innerCornerRadius = 0;
         popoverController.theme.fillTopColor = [UIColor darkGrayColor];
@@ -51,17 +52,17 @@
 }
 #pragma mark - MyPageActionPopoverVC Delegate
 - (void)newTalkButtonClickedWithMyPageActionPopoverViewController: (MyPageActionPopoverViewController *)vc {
-    
+    [self performSegueWithIdentifier:@"MyPageContentTalkSegueIdentifier" sender:nil];
 }
 - (void)newLogButtonClickedWithMyPageActionPopoverViewController: (MyPageActionPopoverViewController *)vc {
-    
+    [self performSegueWithIdentifier:@"MyPageContentArticleSegueIdentifier" sender:nil];
 }
 
 #pragma mark - UITableView Delegate
 
 #pragma mark - UITableView DataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 2;
+    return 0;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     return nil;
