@@ -1091,6 +1091,7 @@
                                             <outlet property="contentLabel" destination="nTd-O7-XUZ" id="J4k-cV-oA2"/>
                                             <outlet property="timeLabel" destination="5Wi-tL-O3w" id="AYo-iI-8Zo"/>
                                             <outlet property="titleLabel" destination="k43-a9-1cn" id="VHT-TI-R63"/>
+                                            <segue destination="7Ne-8z-syj" kind="show" identifier="MyPageContentArticleDetailSegueIdentifier" id="4k3-vc-2S4"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -1464,7 +1465,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cPj-tc-VRj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2568" y="-1866.75"/>
+            <point key="canvasLocation" x="-864" y="-1881.75"/>
         </scene>
         <!--日程安排-->
         <scene sceneID="h5g-Hx-L8L">
@@ -8953,6 +8954,135 @@
             </objects>
             <point key="canvasLocation" x="-3486" y="-2532.75"/>
         </scene>
+        <!--详情-->
+        <scene sceneID="U6M-AE-PqO">
+            <objects>
+                <viewController id="7Ne-8z-syj" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="tb1-yp-ggf"/>
+                        <viewControllerLayoutGuide type="bottom" id="XrS-b7-0Is"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="tiv-nR-0qa">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="阿萨德烦恼is的净资产阿萨德烦恼is的净资产阿is的净资产" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WhS-yP-ofT">
+                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="kOt-eW-KMF"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <color key="textColor" red="0.51372549020000002" green="0.72549019609999998" blue="0.15686274510000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="kOt-eW-KMF"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="kOt-eW-KMF"/>
+                                    </mask>
+                                </variation>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qmx-Z1-Ukd">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal" image="detete-big_btn.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2015年01月18日16:18:16" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fgo-wn-Xg9">
+                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                <color key="textColor" red="0.64313725490196083" green="0.64313725490196083" blue="0.64313725490196083" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hXk-pi-AIO">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="WhS-yP-ofT" firstAttribute="centerY" secondItem="qmx-Z1-Ukd" secondAttribute="centerY" id="42S-eD-cpA"/>
+                            <constraint firstItem="WhS-yP-ofT" firstAttribute="leading" secondItem="tiv-nR-0qa" secondAttribute="leading" constant="20" id="8GV-Hl-Lch"/>
+                            <constraint firstAttribute="bottom" secondItem="hXk-pi-AIO" secondAttribute="bottom" constant="20" symbolic="YES" id="B3w-um-oQc"/>
+                            <constraint firstItem="qmx-Z1-Ukd" firstAttribute="leading" secondItem="fgo-wn-Xg9" secondAttribute="trailing" constant="8" symbolic="YES" id="Hgb-pT-pzC"/>
+                            <constraint firstItem="qmx-Z1-Ukd" firstAttribute="trailing" secondItem="hXk-pi-AIO" secondAttribute="trailing" constant="-4" id="Iq6-MV-V7n"/>
+                            <constraint firstItem="qmx-Z1-Ukd" firstAttribute="top" secondItem="tb1-yp-ggf" secondAttribute="bottom" constant="8" symbolic="YES" id="Kqe-M5-NJf"/>
+                            <constraint firstItem="fgo-wn-Xg9" firstAttribute="leading" secondItem="WhS-yP-ofT" secondAttribute="leading" id="M2D-mQ-nbs"/>
+                            <constraint firstAttribute="trailing" secondItem="qmx-Z1-Ukd" secondAttribute="trailing" constant="20" id="QDp-BH-EPe"/>
+                            <constraint firstItem="qmx-Z1-Ukd" firstAttribute="leading" secondItem="WhS-yP-ofT" secondAttribute="trailing" constant="8" symbolic="YES" id="S5V-eY-z9n"/>
+                            <constraint firstItem="hXk-pi-AIO" firstAttribute="leading" secondItem="tiv-nR-0qa" secondAttribute="leading" constant="16" id="bNE-WN-QqF"/>
+                            <constraint firstItem="fgo-wn-Xg9" firstAttribute="top" secondItem="WhS-yP-ofT" secondAttribute="bottom" constant="8" symbolic="YES" id="fFG-rC-vVd"/>
+                            <constraint firstItem="WhS-yP-ofT" firstAttribute="top" secondItem="tiv-nR-0qa" secondAttribute="top" constant="20" symbolic="YES" id="nvt-8E-rDc"/>
+                            <constraint firstItem="hXk-pi-AIO" firstAttribute="top" secondItem="fgo-wn-Xg9" secondAttribute="bottom" constant="8" symbolic="YES" id="ucd-SV-t9l"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="WhS-yP-ofT"/>
+                                <exclude reference="qmx-Z1-Ukd"/>
+                                <exclude reference="fgo-wn-Xg9"/>
+                                <exclude reference="hXk-pi-AIO"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="42S-eD-cpA"/>
+                                <exclude reference="8GV-Hl-Lch"/>
+                                <exclude reference="nvt-8E-rDc"/>
+                                <exclude reference="M2D-mQ-nbs"/>
+                                <exclude reference="fFG-rC-vVd"/>
+                                <exclude reference="B3w-um-oQc"/>
+                                <exclude reference="bNE-WN-QqF"/>
+                                <exclude reference="ucd-SV-t9l"/>
+                                <exclude reference="Hgb-pT-pzC"/>
+                                <exclude reference="Iq6-MV-V7n"/>
+                                <exclude reference="Kqe-M5-NJf"/>
+                                <exclude reference="QDp-BH-EPe"/>
+                                <exclude reference="S5V-eY-z9n"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular-widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="WhS-yP-ofT"/>
+                                <include reference="qmx-Z1-Ukd"/>
+                                <include reference="fgo-wn-Xg9"/>
+                                <include reference="hXk-pi-AIO"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="42S-eD-cpA"/>
+                                <include reference="8GV-Hl-Lch"/>
+                                <include reference="nvt-8E-rDc"/>
+                                <include reference="M2D-mQ-nbs"/>
+                                <include reference="fFG-rC-vVd"/>
+                                <include reference="B3w-um-oQc"/>
+                                <include reference="bNE-WN-QqF"/>
+                                <include reference="ucd-SV-t9l"/>
+                                <include reference="Hgb-pT-pzC"/>
+                                <include reference="Iq6-MV-V7n"/>
+                                <include reference="Kqe-M5-NJf"/>
+                                <include reference="QDp-BH-EPe"/>
+                                <include reference="S5V-eY-z9n"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <navigationItem key="navigationItem" title="详情" id="RX9-rJ-Jpr">
+                        <barButtonItem key="leftBarButtonItem" image="return.png" id="aRx-Pm-Fbf">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="编辑" id="tTu-c4-jeE">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <segue destination="IpH-WT-ktT" kind="presentation" id="PPz-pu-GWN"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JIE-bb-F56" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-3498" y="-1881.75"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="TKs-Ra-clA">
             <objects>
@@ -8970,7 +9100,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fo1-Uc-4Wj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3486" y="-1866.75"/>
+            <point key="canvasLocation" x="-1782" y="-1881.75"/>
         </scene>
     </scenes>
     <resources>
@@ -9000,6 +9130,7 @@
         <image name="dector_tag.png" width="28" height="14"/>
         <image name="delete_btn.png" width="40" height="16"/>
         <image name="details_uers_example_pic.png" width="44" height="44"/>
+        <image name="detete-big_btn.png" width="44" height="18"/>
         <image name="doctor-ranking_preinstall_pic.png" width="50" height="50"/>
         <image name="edit_btn.png" width="40" height="16"/>
         <image name="edit_pic.png" width="21" height="20"/>
@@ -9039,6 +9170,7 @@
         <segue reference="Hb8-Q6-QO7"/>
         <segue reference="iEM-sC-kWf"/>
         <segue reference="rqJ-cO-jCt"/>
+        <segue reference="PPz-pu-GWN"/>
         <segue reference="Mwl-tT-Jc7"/>
     </inferredMetricsTieBreakers>
 </document>
