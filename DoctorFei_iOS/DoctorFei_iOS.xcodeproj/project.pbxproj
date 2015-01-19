@@ -51,6 +51,10 @@
 		6A5DC5F31A3317FE00961E53 /* Chat.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A5DC5F21A3317FE00961E53 /* Chat.m */; };
 		6A5DC5F61A3317FE00961E53 /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A5DC5F51A3317FE00961E53 /* Message.m */; };
 		6A5DC5FC1A332DF200961E53 /* MessagesModalData.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A5DC5FB1A332DF200961E53 /* MessagesModalData.m */; };
+		6A6454211A6D488C00070D5E /* MainGroupTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A6454201A6D488C00070D5E /* MainGroupTableViewCell.m */; };
+		6A6454241A6D4BB700070D5E /* MainGroupDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A6454231A6D4BB700070D5E /* MainGroupDetailViewController.m */; };
+		6A6454271A6D4C0F00070D5E /* MainGroupDetailActionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A6454261A6D4C0F00070D5E /* MainGroupDetailActionViewController.m */; };
+		6A64542A1A6D615F00070D5E /* MainGroupSelectTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A6454291A6D615F00070D5E /* MainGroupSelectTableViewCell.m */; };
 		6A69A0121A2CBB2500D85777 /* DoctorAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A69A0111A2CBB2500D85777 /* DoctorAPI.m */; };
 		6A69A0171A2CC8EB00D85777 /* libPushSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A69A0161A2CC8EB00D85777 /* libPushSDK.a */; };
 		6A69A0191A2CC8FE00D85777 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A69A0181A2CC8FE00D85777 /* CFNetwork.framework */; };
@@ -531,6 +535,14 @@
 		6A5DC5F51A3317FE00961E53 /* Message.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Message.m; sourceTree = "<group>"; };
 		6A5DC5FA1A332DF200961E53 /* MessagesModalData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessagesModalData.h; sourceTree = "<group>"; };
 		6A5DC5FB1A332DF200961E53 /* MessagesModalData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessagesModalData.m; sourceTree = "<group>"; };
+		6A64541F1A6D488C00070D5E /* MainGroupTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainGroupTableViewCell.h; sourceTree = "<group>"; };
+		6A6454201A6D488C00070D5E /* MainGroupTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainGroupTableViewCell.m; sourceTree = "<group>"; };
+		6A6454221A6D4BB700070D5E /* MainGroupDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainGroupDetailViewController.h; sourceTree = "<group>"; };
+		6A6454231A6D4BB700070D5E /* MainGroupDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainGroupDetailViewController.m; sourceTree = "<group>"; };
+		6A6454251A6D4C0F00070D5E /* MainGroupDetailActionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainGroupDetailActionViewController.h; sourceTree = "<group>"; };
+		6A6454261A6D4C0F00070D5E /* MainGroupDetailActionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainGroupDetailActionViewController.m; sourceTree = "<group>"; };
+		6A6454281A6D615F00070D5E /* MainGroupSelectTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainGroupSelectTableViewCell.h; sourceTree = "<group>"; };
+		6A6454291A6D615F00070D5E /* MainGroupSelectTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainGroupSelectTableViewCell.m; sourceTree = "<group>"; };
 		6A69A0101A2CBB2500D85777 /* DoctorAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoctorAPI.h; sourceTree = "<group>"; };
 		6A69A0111A2CBB2500D85777 /* DoctorAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DoctorAPI.m; sourceTree = "<group>"; };
 		6A69A0151A2CC8EB00D85777 /* APService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APService.h; sourceTree = "<group>"; };
@@ -1415,6 +1427,10 @@
 				6ABFDBDB1A6B8DA100DB8E74 /* MyPageContentArticleTableViewCell.m */,
 				6ABFDC011A6C043700DB8E74 /* MainGroupPopoverTableViewCell.h */,
 				6ABFDC021A6C043700DB8E74 /* MainGroupPopoverTableViewCell.m */,
+				6A64541F1A6D488C00070D5E /* MainGroupTableViewCell.h */,
+				6A6454201A6D488C00070D5E /* MainGroupTableViewCell.m */,
+				6A6454281A6D615F00070D5E /* MainGroupSelectTableViewCell.h */,
+				6A6454291A6D615F00070D5E /* MainGroupSelectTableViewCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1481,6 +1497,10 @@
 				6ABFDBE11A6B946100DB8E74 /* MyPageContentArticleViewController.m */,
 				6ABFDBEF1A6BA52900DB8E74 /* MyPageContentArticleDetailViewController.h */,
 				6ABFDBF01A6BA52900DB8E74 /* MyPageContentArticleDetailViewController.m */,
+				6A6454221A6D4BB700070D5E /* MainGroupDetailViewController.h */,
+				6A6454231A6D4BB700070D5E /* MainGroupDetailViewController.m */,
+				6A6454251A6D4C0F00070D5E /* MainGroupDetailActionViewController.h */,
+				6A6454261A6D4C0F00070D5E /* MainGroupDetailActionViewController.m */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -2243,6 +2263,7 @@
 			files = (
 				6AB8B0981A3742A200866281 /* pinyin.c in Sources */,
 				6AC6EA071A28C4B5007689D8 /* NSString+Crypt.m in Sources */,
+				6A6454271A6D4C0F00070D5E /* MainGroupDetailActionViewController.m in Sources */,
 				B94F6C681A5D70AF004E1B93 /* QRCodeScanViewController.m in Sources */,
 				6A1DEA681A3579D700FD637B /* Friends.m in Sources */,
 				B94F6C6B1A5D7113004E1B93 /* DoctorRankTableViewController.m in Sources */,
@@ -2257,6 +2278,7 @@
 				6A7376531A20D84C006EF54F /* LoginViewController.m in Sources */,
 				6ABFDBD91A6B8D8E00DB8E74 /* MyPageContentTalkTableViewCell.m in Sources */,
 				6A5DC5F31A3317FE00961E53 /* Chat.m in Sources */,
+				6A6454211A6D488C00070D5E /* MainGroupTableViewCell.m in Sources */,
 				6A2BD5CC1A300207002F7644 /* MobileAPI.m in Sources */,
 				B94F6C6E1A5D72D6004E1B93 /* ContactAddByTelTableViewController.m in Sources */,
 				6AD089AC1A64FE80007D0988 /* QuickReplyTableViewController.m in Sources */,
@@ -2278,6 +2300,7 @@
 				6A2BD60A1A31EDA7002F7644 /* FetchChatUtil.m in Sources */,
 				6ABFDBDC1A6B8DA100DB8E74 /* MyPageContentArticleTableViewCell.m in Sources */,
 				6A7376571A20E4CC006EF54F /* RegisterTableViewController.m in Sources */,
+				6A6454241A6D4BB700070D5E /* MainGroupDetailViewController.m in Sources */,
 				6A73764B1A20D05A006EF54F /* MoreTableViewController.m in Sources */,
 				6AD089B81A654C6D007D0988 /* AgendaTimeScheduleViewController.m in Sources */,
 				6A2BD5D21A3031F7002F7644 /* SocketConnection.m in Sources */,
@@ -2288,6 +2311,7 @@
 				6A2BD5CF1A3008BF002F7644 /* SetOnlineStateUtil.m in Sources */,
 				6A7376481A20D052006EF54F /* MyselfTableViewController.m in Sources */,
 				6A73764F1A20D829006EF54F /* MainTabBarViewController.m in Sources */,
+				6A64542A1A6D615F00070D5E /* MainGroupSelectTableViewCell.m in Sources */,
 				6A7372C91A2034B4006EF54F /* main.m in Sources */,
 				6ABFDBF11A6BA52900DB8E74 /* MyPageContentArticleDetailViewController.m in Sources */,
 				B9F0C6E31A66A89A00AAD860 /* ContactSendGroupMessageViewController.m in Sources */,
