@@ -184,6 +184,7 @@
             [didSelect addObject:tableViewDataArray[indexPath.section][indexPath.row]];
         }
         self.didSelectFriends(didSelect);
+        [self.navigationController popViewControllerAnimated:YES];
     }
 }
 

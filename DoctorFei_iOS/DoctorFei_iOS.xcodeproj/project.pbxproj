@@ -454,6 +454,7 @@
 		B9A6F9FA1A5EB81600B01686 /* logo_prompt-01_pic@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = B9A6F9F71A5EB81600B01686 /* logo_prompt-01_pic@3x.png */; };
 		B9D4EA121A5C173900DB2A8D /* MyAppointmentDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9D4EA111A5C173900DB2A8D /* MyAppointmentDetailViewController.m */; };
 		B9DD58E11A30912200AA4CDC /* MoreUpdateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9DD58E01A30912200AA4CDC /* MoreUpdateViewController.m */; };
+		B9E2E0E31A6D2D02009401F1 /* TITokenField.m in Sources */ = {isa = PBXBuildFile; fileRef = B9E2E0E21A6D2D02009401F1 /* TITokenField.m */; };
 		B9EA119B1A5C0C06008B562C /* MyAppointmentTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9EA119A1A5C0C06008B562C /* MyAppointmentTableViewController.m */; };
 		B9F0C6D81A66A4BC00AAD860 /* add_zdy_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = B9F0C6D51A66A4BC00AAD860 /* add_zdy_btn.png */; };
 		B9F0C6D91A66A4BC00AAD860 /* add_zdy_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B9F0C6D61A66A4BC00AAD860 /* add_zdy_btn@2x.png */; };
@@ -995,6 +996,8 @@
 		B9D4EA111A5C173900DB2A8D /* MyAppointmentDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyAppointmentDetailViewController.m; sourceTree = "<group>"; };
 		B9DD58DF1A30912200AA4CDC /* MoreUpdateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoreUpdateViewController.h; sourceTree = "<group>"; };
 		B9DD58E01A30912200AA4CDC /* MoreUpdateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoreUpdateViewController.m; sourceTree = "<group>"; };
+		B9E2E0E11A6D2D02009401F1 /* TITokenField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TITokenField.h; path = ../Controller/Contact/TITokenField.h; sourceTree = "<group>"; };
+		B9E2E0E21A6D2D02009401F1 /* TITokenField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TITokenField.m; path = ../Controller/Contact/TITokenField.m; sourceTree = "<group>"; };
 		B9EA11991A5C0C06008B562C /* MyAppointmentTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyAppointmentTableViewController.h; sourceTree = "<group>"; };
 		B9EA119A1A5C0C06008B562C /* MyAppointmentTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyAppointmentTableViewController.m; sourceTree = "<group>"; };
 		B9F0C6D51A66A4BC00AAD860 /* add_zdy_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = add_zdy_btn.png; sourceTree = "<group>"; };
@@ -1409,6 +1412,8 @@
 		6A7375611A207E89006EF54F /* View */ = {
 			isa = PBXGroup;
 			children = (
+				B9E2E0E11A6D2D02009401F1 /* TITokenField.h */,
+				B9E2E0E21A6D2D02009401F1 /* TITokenField.m */,
 				6A4FC1671A2F67F10042497C /* ContactFriendTableViewCell.h */,
 				6A4FC1681A2F67F10042497C /* ContactFriendTableViewCell.m */,
 				6A5DC5EE1A33135E00961E53 /* MainChatTableViewCell.h */,
@@ -2269,6 +2274,7 @@
 				B94F6C6B1A5D7113004E1B93 /* DoctorRankTableViewController.m in Sources */,
 				6A2BD5E01A31B139002F7644 /* ContactFriendDetailTableViewController.m in Sources */,
 				6ABFDC031A6C043700DB8E74 /* MainGroupPopoverTableViewCell.m in Sources */,
+				B9E2E0E31A6D2D02009401F1 /* TITokenField.m in Sources */,
 				6A9177F61A2DE2E2000645A4 /* DataUtil.m in Sources */,
 				6AB359B11A2B5758008C48B4 /* BaseHTTPRequestOperationManager.m in Sources */,
 				6ABFDBE21A6B946100DB8E74 /* MyPageContentArticleViewController.m in Sources */,
