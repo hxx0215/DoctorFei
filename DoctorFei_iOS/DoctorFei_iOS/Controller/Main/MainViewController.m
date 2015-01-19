@@ -17,6 +17,7 @@
 #import <WYPopoverController.h>
 #import "MainGroupPopoverViewController.h"
 #import <WYStoryboardPopoverSegue.h>
+#import "MainGroupDetailActionViewController.h"
 @interface MainViewController ()
     <UITableViewDelegate, UITableViewDataSource, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate, UIGestureRecognizerDelegate, MainGroupPopoverVCDelegate, WYPopoverControllerDelegate>
 
@@ -167,8 +168,9 @@
         popoverController.theme.fillBottomColor = [UIColor clearColor];
         popoverController.theme.arrowHeight = 8.0f;
         popoverController.popoverLayoutMargins = UIEdgeInsetsZero;
-
-        
+    } else if ([segue.identifier isEqualToString:@"MainEditGroupSegueIdentifier"]) {
+        MainGroupDetailActionViewController *vc = [segue destinationViewController];
+        [vc setVcMode:MainGroupDetailActionViewControllerModeEdit];
     }
 }
 
@@ -208,6 +210,6 @@
 
 #pragma mark - Popover Delegate
 - (void)editButtonClickedForPopoverVC:(MainGroupPopoverViewController *)vc {
-    
+    [self performSegueWithIdentifier:@"MainEditGroupSegueIdentifier" sender:nil];
 }
 @end

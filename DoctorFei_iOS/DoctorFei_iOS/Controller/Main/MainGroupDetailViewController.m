@@ -17,6 +17,10 @@
 
 @implementation MainGroupDetailViewController
 
+- (void)viewDidLoad {
+    [self.tableView setTableFooterView:[UIView new]];
+}
+
 
 #pragma mark - Actions
 - (IBAction)backButtonClicked:(id)sender {

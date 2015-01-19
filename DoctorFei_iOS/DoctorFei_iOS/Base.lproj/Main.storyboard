@@ -36,7 +36,8 @@
                                         <exclude reference="u5P-PR-zhc"/>
                                     </mask>
                                 </variation>
-                                <variation key="heightClass=regular-widthClass=compact">
+                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="0.0" y="28" width="600" height="31"/>
                                     <mask key="constraints">
                                         <include reference="u5P-PR-zhc"/>
                                     </mask>
@@ -154,6 +155,9 @@
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="0.0" y="66" width="600" height="534"/>
+                                </variation>
                                 <connections>
                                     <outlet property="dataSource" destination="cVJ-je-ZKu" id="gvi-8t-1ah"/>
                                     <outlet property="delegate" destination="cVJ-je-ZKu" id="5Wb-hB-0fl"/>
@@ -267,6 +271,9 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
+                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                        <rect key="frame" x="232" y="11.5" width="136" height="20.5"/>
+                                                    </variation>
                                                 </label>
                                             </subviews>
                                             <constraints>
@@ -306,6 +313,9 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
+                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                        <rect key="frame" x="232" y="11.5" width="136" height="20.5"/>
+                                                    </variation>
                                                 </label>
                                             </subviews>
                                             <constraints>
@@ -345,6 +355,9 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
+                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                        <rect key="frame" x="232" y="11.5" width="136" height="20.5"/>
+                                                    </variation>
                                                 </label>
                                             </subviews>
                                             <constraints>
@@ -3881,6 +3894,9 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
+                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                        <rect key="frame" x="8" y="9" width="304" height="21"/>
+                                                    </variation>
                                                 </label>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -3980,7 +3996,7 @@
         <!--Main Group Detail Action View Controller-->
         <scene sceneID="Dpc-ZL-Cgq">
             <objects>
-                <viewController id="riy-Vm-Dmq" customClass="MainGroupDetailActionViewController" sceneMemberID="viewController">
+                <viewController hidesBottomBarWhenPushed="YES" id="riy-Vm-Dmq" customClass="MainGroupDetailActionViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="DcW-Xa-hSp"/>
                         <viewControllerLayoutGuide type="bottom" id="qqR-SC-cOM"/>
@@ -4323,7 +4339,7 @@
         <!--Main Group Detail View Controller-->
         <scene sceneID="JbQ-1c-Edq">
             <objects>
-                <viewController id="V3H-i9-eD6" customClass="MainGroupDetailViewController" sceneMemberID="viewController">
+                <viewController hidesBottomBarWhenPushed="YES" id="V3H-i9-eD6" customClass="MainGroupDetailViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="AIz-bb-zZ6"/>
                         <viewControllerLayoutGuide type="bottom" id="MQR-yr-0Iv"/>
@@ -5126,6 +5142,9 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.87843137250000003" green="0.87843137250000003" blue="0.87843137250000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="223.5" y="489.5" width="153" height="20.5"/>
+                                </variation>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -5246,7 +5265,8 @@
                                                     <exclude reference="agk-Ka-Nwv"/>
                                                 </mask>
                                             </variation>
-                                            <variation key="heightClass=regular-widthClass=compact">
+                                            <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                <rect key="frame" x="527" y="23" width="40" height="20"/>
                                                 <mask key="constraints">
                                                     <include reference="6zg-4E-mN6"/>
                                                     <include reference="agk-Ka-Nwv"/>
@@ -5261,12 +5281,18 @@
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <color key="textColor" red="0.4549019608" green="0.7843137255" blue="0.1960784314" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
+                                            <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                <rect key="frame" x="546" y="53" width="28" height="14.5"/>
+                                            </variation>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="赞" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FTN-ef-5Bj">
                                             <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <color key="textColor" red="0.45490196078431372" green="0.78431372549019607" blue="0.19607843137254902" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
+                                            <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                <rect key="frame" x="531" y="53" width="12" height="14.5"/>
+                                            </variation>
                                         </label>
                                     </subviews>
                                     <constraints>
@@ -5404,6 +5430,9 @@
                                                     <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
+                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                        <rect key="frame" x="8" y="8" width="584" height="30.5"/>
+                                                    </variation>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -7269,7 +7298,8 @@
                                                     <exclude reference="bxa-Uv-Gvf"/>
                                                 </mask>
                                             </variation>
-                                            <variation key="heightClass=regular-widthClass=compact">
+                                            <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                <rect key="frame" x="513" y="29.5" width="60" height="22"/>
                                                 <mask key="constraints">
                                                     <include reference="WCY-ZL-ehf"/>
                                                     <include reference="bxa-Uv-Gvf"/>
@@ -9823,10 +9853,10 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="rqJ-cO-jCt"/>
-        <segue reference="abg-fB-9ID"/>
+        <segue reference="O2X-kl-Jk8"/>
         <segue reference="PPz-pu-GWN"/>
-        <segue reference="pVr-DH-hJQ"/>
         <segue reference="NQb-zQ-qFC"/>
+        <segue reference="pVr-DH-hJQ"/>
         <segue reference="Mwl-tT-Jc7"/>
     </inferredMetricsTieBreakers>
 </document>

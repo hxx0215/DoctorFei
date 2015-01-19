@@ -24,14 +24,15 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self.tableView setTableFooterView:[UIView new]];
     CGRect tableViewHeaderFrame = self.tableView.tableHeaderView.frame;
     if (_vcMode == MainGroupDetailActionViewControllerModeEdit) {
-        _title = @"编辑分组";
+        self.title = @"编辑分组";
         tableViewHeaderFrame.size.height = 41.0f;
         self.navigationItem.rightBarButtonItems = nil;
     }
     else{
-        _title = @"选择分组";
+        self.title = @"选择分组";
         tableViewHeaderFrame.size.height = 0.0f;
         self.navigationItem.leftBarButtonItems = nil;
     }
