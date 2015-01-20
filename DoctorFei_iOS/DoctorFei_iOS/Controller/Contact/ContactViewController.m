@@ -16,6 +16,7 @@
 #import "Friends+PinYinUtil.h"
 #import "Chat.h"
 #import "Message.h"
+#import "DataUtil.h"
 @interface ContactViewController ()
     <UITableViewDelegate, UITableViewDataSource, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate, UIActionSheetDelegate, UIGestureRecognizerDelegate, UISearchDisplayDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -108,7 +109,19 @@
     
     
     tableViewDataArray = mutableSections;
-    
+    for (int i=0;i< [tableViewDataArray count];i++){
+        for (int j=0;j<[tableViewDataArray[i] count];j++){
+            NSString *title = [DataUtil nameStringForFriend:tableViewDataArray[i][j]].string;
+            [self.selectedArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop){
+                NSString *friendName = (NSString *)obj;
+                if ([friendName isEqualToString:title]){
+                    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:j inSection:i];
+                    [self.cellSelected addObject:indexPath];
+                    [self.selectedArray removeObject:friendName];
+                }
+            }];
+        }
+    }
     [self.tableView reloadData];
 }
 
@@ -181,9 +194,15 @@
 //                [didSelect addObject:tableViewDataArray[i]];
 //        }
         for (NSIndexPath *indexPath in self.cellSelected){
-            [didSelect addObject:tableViewDataArray[indexPath.section][indexPath.row]];
+            NSString *title = [DataUtil nameStringForFriend:tableViewDataArray[indexPath.section][indexPath.row]].string;
+            [didSelect addObject:title];
         }
-        self.didSelectFriends(didSelect);
+        if (self.selectedArray){
+            [self.selectedArray addObjectsFromArray:didSelect];
+        }
+        else
+            self.selectedArray = didSelect;
+        self.didSelectFriends(self.selectedArray);
         [self.navigationController popViewControllerAnimated:YES];
     }
 }

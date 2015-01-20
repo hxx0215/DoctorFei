@@ -77,12 +77,18 @@
     contact.contactMode = ContactViewControllerModeGMAddFriend;
     contact.didSelectFriends = ^(NSArray *friendArr){
 //        NSLog(@"%@",friendArr);
-        for (Friends *fr in friendArr){
-            TIToken * token = [_tokenFieldView.tokenField addTokenWithTitle:[DataUtil nameStringForFriend:fr].string];
+        [_tokenFieldView.tokenField removeAllTokens];
+        for (NSString *fr in friendArr){
+            TIToken * token = [_tokenFieldView.tokenField addTokenWithTitle:fr];
             [_tokenFieldView.tokenField layoutTokensAnimated:YES];
             [token setTintColor:[TIToken blueTintColor]];
         }
     };
+    NSMutableArray *ma = [NSMutableArray new];
+    for (TIToken *token in _tokenFieldView.tokenField.tokens){
+        [ma addObject:token.title];
+    }
+    contact.selectedArray = [ma mutableCopy];
 }
 - (void)keyboardWillShow:(NSNotification *)notification {
     
