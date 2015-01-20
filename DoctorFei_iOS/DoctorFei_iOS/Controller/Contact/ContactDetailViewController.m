@@ -17,9 +17,13 @@
 #import "ChatAPI.h"
 #import <MBProgressHUD.h>
 //#import "DataUtil.h"
-@interface ContactDetailViewController ()
+#import <WYPopoverController.h>
+#import <WYStoryboardPopoverSegue.h>
+#import "ContactDetailPopoverViewController.h"
+@interface ContactDetailViewController ()<WYPopoverControllerDelegate>
 - (IBAction)backButtonClicked:(id)sender;
 @property (nonatomic, strong) MessagesModalData *modalData;
+@property (nonatomic, strong) WYPopoverController *popover;
 @end
 
 @implementation ContactDetailViewController
@@ -215,6 +219,33 @@
     if ([segue.identifier isEqualToString:@"FriendDetailSegueIdentifier"]) {
         ContactFriendDetailTableViewController *vc = [segue destinationViewController];
         [vc setCurrentFriend:_currentFriend];
+    }
+    if ([segue.identifier isEqualToString:@"ContactDetailActionSegueIdentifier"]){
+        ContactDetailPopoverViewController *vc = [segue destinationViewController];
+        vc.showRecord = ^{
+            NSLog(@"showRecord");
+        };
+        vc.launchConsultation = ^{
+            NSLog(@"Launch");
+        };
+        vc.transfer = ^{
+            NSLog(@"trans");
+        };
+        vc.sendOutpatientTime = ^{
+            NSLog(@"send");
+        };
+        vc.preferredContentSize = CGSizeMake(120, 163);
+        WYStoryboardPopoverSegue *popoverSegue = (WYStoryboardPopoverSegue *)segue;
+        
+        self.popover = [popoverSegue popoverControllerWithSender:sender permittedArrowDirections:WYPopoverArrowDirectionAny animated:YES];
+        self.popover.delegate = self;
+        self.popover.dismissOnTap = YES;
+        self.popover.theme.outerCornerRadius = 0;
+        self.popover.theme.innerCornerRadius = 0;
+        self.popover.theme.fillTopColor = [UIColor darkGrayColor];
+        self.popover.theme.fillBottomColor = [UIColor darkGrayColor];
+        self.popover.theme.arrowHeight = 8.0f;
+        self.popover.popoverLayoutMargins = UIEdgeInsetsZero;
     }
 }
 
