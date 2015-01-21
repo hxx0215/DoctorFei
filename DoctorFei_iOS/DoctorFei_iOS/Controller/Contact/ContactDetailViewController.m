@@ -223,7 +223,7 @@
     if ([segue.identifier isEqualToString:@"ContactDetailActionSegueIdentifier"]){
         ContactDetailPopoverViewController *vc = [segue destinationViewController];
         vc.showRecord = ^{
-            NSLog(@"showRecord");
+            [self performSegueWithIdentifier:@"ContactShowRecordSegueIdentifier" sender:nil];
         };
         vc.launchConsultation = ^{
             NSLog(@"Launch");
