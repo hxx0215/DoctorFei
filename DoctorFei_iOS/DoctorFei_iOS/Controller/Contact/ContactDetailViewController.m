@@ -20,6 +20,12 @@
 #import <WYPopoverController.h>
 #import <WYStoryboardPopoverSegue.h>
 #import "ContactDetailPopoverViewController.h"
+
+typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
+    SMSToolbarSendMethodVoice,
+    SMSToolbarSendMethodText
+};
+
 @interface ContactDetailViewController ()<WYPopoverControllerDelegate>
 - (IBAction)backButtonClicked:(id)sender;
 @property (nonatomic, strong) MessagesModalData *modalData;
@@ -29,14 +35,17 @@
 @implementation ContactDetailViewController
 {
     NSArray *messageArray;
+    UIButton *voiceButton, *keyboardButton, *faceButton, *pictureButton, *sendVoiceButton;
 }
 @synthesize currentFriend = _currentFriend, modalData = _modalData;
 
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    [self setupToolbarButtons];
     
-
+    self.inputToolbar.contentView.leftBarButtonItem = voiceButton;
+    
     self.collectionView.backgroundColor = UIColorFromRGB(0xEEEEEE);
     
     self.senderId = [[DeviceUtil getUUID]copy];
@@ -44,7 +53,7 @@
     self.showLoadEarlierMessagesHeader = NO;
     self.automaticallyScrollsToMostRecentMessage = YES;
     
-    self.inputToolbar.contentView.leftBarButtonItem = nil;
+//    self.inputToolbar.contentView.leftBarButtonItem = nil;
     self.collectionView.collectionViewLayout.sectionInset = UIEdgeInsetsMake(0, 15, 5, 15);
     self.collectionView.collectionViewLayout.incomingAvatarViewSize = CGSizeMake(44, 44);
     self.collectionView.collectionViewLayout.outgoingAvatarViewSize = CGSizeMake(44, 44);
@@ -67,22 +76,88 @@
     }
 }
 
-- (void)deleteMessage:(NSNotification *)notification {
-    JSQMessagesCollectionViewCell *cell = notification.object;
-    NSIndexPath *indexPath = [self.collectionView indexPathForCell:cell];
-//    NSLog(@"%@",indexPath);
-    Message *message = messageArray[indexPath.row];
-    [message MR_deleteEntity];
-    [[NSManagedObjectContext MR_defaultContext]MR_saveToPersistentStoreAndWait];
-    [self.modalData.messages removeObjectAtIndex:indexPath.row];
-//    [self.collectionView deleteItemsAtIndexPaths:@[indexPath]];
-    [self.collectionView reloadData];
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    sendVoiceButton.frame = self.inputToolbar.contentView.textView.frame;
+    [sendVoiceButton addConstraints:self.inputToolbar.contentView.textView.constraints];
+    [self.inputToolbar.contentView addSubview:sendVoiceButton];
+
+    [self setToolbarSendMethod:SMSToolbarSendMethodText];
+    
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+- (void)setupToolbarButtons {
+    voiceButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [voiceButton setImage:[UIImage imageNamed:@"voice_btn"] forState:UIControlStateNormal];
+    [voiceButton setImage:[UIImage imageNamed:@"voice_btn_after"] forState:UIControlStateHighlighted];
+    [voiceButton addTarget:self action:@selector(voiceButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+    
+    keyboardButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [keyboardButton setImage:[UIImage imageNamed:@"keyboard_btn"] forState:UIControlStateNormal];
+    [keyboardButton addTarget:self action:@selector(keyboardButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+    
+    faceButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [faceButton setImage:[UIImage imageNamed:@"face_btn"] forState:UIControlStateNormal];
+    [faceButton setImage:[UIImage imageNamed:@"face_btn_after"] forState:UIControlStateHighlighted];
+    
+    pictureButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [pictureButton setImage:[UIImage imageNamed:@"pic_btn"] forState:UIControlStateNormal];
+    [pictureButton setImage:[UIImage imageNamed:@"pic_btn_after"] forState:UIControlStateHighlighted];
+    
+    
+    sendVoiceButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [sendVoiceButton.titleLabel setFont:[UIFont systemFontOfSize:16.0f]];
+    [sendVoiceButton setBackgroundImage:[[UIImage imageNamed:@"talk_box_btn"] resizableImageWithCapInsets:UIEdgeInsetsMake(4, 8, 4, 8)] forState:UIControlStateNormal];
+    [sendVoiceButton setTitle:@"按住说话" forState:UIControlStateNormal];
+    [sendVoiceButton setTitleColor:UIColorFromRGB(0x474747) forState:UIControlStateNormal];
+    [sendVoiceButton setBackgroundImage:[[UIImage imageNamed:@"talk_box_btn_after"] resizableImageWithCapInsets:UIEdgeInsetsMake(4, 8, 4, 8)] forState:UIControlStateHighlighted];
+    [sendVoiceButton setTitleColor:UIColorFromRGB(0x969696) forState:UIControlStateHighlighted];
+    [sendVoiceButton setTitle:@"松开结束" forState:UIControlStateHighlighted];
+}
+
+- (void)setToolbarSendMethod:(SMSToolbarSendMethod)method {
+    if (method == SMSToolbarSendMethodText) {
+        self.inputToolbar.contentView.leftBarButtonItem = voiceButton;
+        [sendVoiceButton setHidden:YES];
+        [self.inputToolbar.contentView.textView setHidden:NO];
+        [self.inputToolbar.contentView.textView becomeFirstResponder];
+    } else if (method == SMSToolbarSendMethodVoice){
+        self.inputToolbar.contentView.leftBarButtonItem = keyboardButton;
+        [self.inputToolbar.contentView.textView resignFirstResponder];
+        [self.inputToolbar.contentView.textView setHidden:YES];
+        [sendVoiceButton setHidden:NO];
+    }
+}
+
+#pragma mark - Button Actions
+- (void)voiceButtonClicked:(UIButton *)sender {
+    [self setToolbarSendMethod:SMSToolbarSendMethodVoice];
+}
+
+- (void)keyboardButtonClicked:(UIButton *)sender {
+    [self setToolbarSendMethod:SMSToolbarSendMethodText];
+}
+
+#pragma mark - Private Actions
+
+- (void)deleteMessage:(NSNotification *)notification {
+    JSQMessagesCollectionViewCell *cell = notification.object;
+    NSIndexPath *indexPath = [self.collectionView indexPathForCell:cell];
+    //    NSLog(@"%@",indexPath);
+    Message *message = messageArray[indexPath.row];
+    [message MR_deleteEntity];
+    [[NSManagedObjectContext MR_defaultContext]MR_saveToPersistentStoreAndWait];
+    [self.modalData.messages removeObjectAtIndex:indexPath.row];
+    //    [self.collectionView deleteItemsAtIndexPaths:@[indexPath]];
+    [self.collectionView reloadData];
+}
+
 
 - (void)cleanUnreadMessageCount {
     Chat *chat = [Chat MR_findFirstByAttribute:@"user" withValue:_currentFriend];
