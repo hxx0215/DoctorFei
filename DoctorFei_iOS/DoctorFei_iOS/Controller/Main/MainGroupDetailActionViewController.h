@@ -14,6 +14,6 @@ typedef NS_ENUM(NSUInteger, MainGroupDetailActionViewControllerMode) {
 
 @interface MainGroupDetailActionViewController : UIViewController
 
-@property (nonatomic, assign) MainGroupDetailActionViewControllerMode *vcMode;
+@property (nonatomic, assign) MainGroupDetailActionViewControllerMode vcMode;
 
 @end
