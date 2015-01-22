@@ -1,0 +1,1 @@
+../../../THContactPicker/Classes/THContactViewStyle.h

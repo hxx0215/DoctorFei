@@ -1,428 +1,953 @@
-// !$*UTF8*$!
-{
-	archiveVersion = 1;
-	classes = {
-	};
-	objectVersion = 46;
-	objects = {
-
-/* Begin PBXBuildFile section */
-		6AFD40481A5D5EF4009C0080 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AFD40471A5D5EF4009C0080 /* main.m */; };
-		6AFD404B1A5D5EF4009C0080 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AFD404A1A5D5EF4009C0080 /* AppDelegate.m */; };
-		6AFD404E1A5D5EF4009C0080 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AFD404D1A5D5EF4009C0080 /* ViewController.m */; };
-		6AFD40511A5D5EF4009C0080 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6AFD404F1A5D5EF4009C0080 /* Main.storyboard */; };
-		6AFD40531A5D5EF4009C0080 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6AFD40521A5D5EF4009C0080 /* Images.xcassets */; };
-		6AFD40561A5D5EF4009C0080 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6AFD40541A5D5EF4009C0080 /* LaunchScreen.xib */; };
-		6AFD40621A5D5EF4009C0080 /* DoctorFei_Patient_iOSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AFD40611A5D5EF4009C0080 /* DoctorFei_Patient_iOSTests.m */; };
-/* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		6AFD405C1A5D5EF4009C0080 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 6AFD403A1A5D5EF4009C0080 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 6AFD40411A5D5EF4009C0080;
-			remoteInfo = DoctorFei_Patient_iOS;
-		};
-/* End PBXContainerItemProxy section */
-
-/* Begin PBXFileReference section */
-		6AFD40421A5D5EF4009C0080 /* DoctorFei_Patient_iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DoctorFei_Patient_iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		6AFD40461A5D5EF4009C0080 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		6AFD40471A5D5EF4009C0080 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		6AFD40491A5D5EF4009C0080 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		6AFD404A1A5D5EF4009C0080 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		6AFD404C1A5D5EF4009C0080 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		6AFD404D1A5D5EF4009C0080 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		6AFD40501A5D5EF4009C0080 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		6AFD40521A5D5EF4009C0080 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		6AFD40551A5D5EF4009C0080 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		6AFD405B1A5D5EF4009C0080 /* DoctorFei_Patient_iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DoctorFei_Patient_iOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		6AFD40601A5D5EF4009C0080 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		6AFD40611A5D5EF4009C0080 /* DoctorFei_Patient_iOSTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DoctorFei_Patient_iOSTests.m; sourceTree = "<group>"; };
-/* End PBXFileReference section */
-
-/* Begin PBXFrameworksBuildPhase section */
-		6AFD403F1A5D5EF4009C0080 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		6AFD40581A5D5EF4009C0080 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXFrameworksBuildPhase section */
-
-/* Begin PBXGroup section */
-		6AFD40391A5D5EF4009C0080 = {
-			isa = PBXGroup;
-			children = (
-				6AFD40441A5D5EF4009C0080 /* DoctorFei_Patient_iOS */,
-				6AFD405E1A5D5EF4009C0080 /* DoctorFei_Patient_iOSTests */,
-				6AFD40431A5D5EF4009C0080 /* Products */,
-			);
-			sourceTree = "<group>";
-		};
-		6AFD40431A5D5EF4009C0080 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				6AFD40421A5D5EF4009C0080 /* DoctorFei_Patient_iOS.app */,
-				6AFD405B1A5D5EF4009C0080 /* DoctorFei_Patient_iOSTests.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		6AFD40441A5D5EF4009C0080 /* DoctorFei_Patient_iOS */ = {
-			isa = PBXGroup;
-			children = (
-				6AFD40491A5D5EF4009C0080 /* AppDelegate.h */,
-				6AFD404A1A5D5EF4009C0080 /* AppDelegate.m */,
-				6AFD404C1A5D5EF4009C0080 /* ViewController.h */,
-				6AFD404D1A5D5EF4009C0080 /* ViewController.m */,
-				6AFD404F1A5D5EF4009C0080 /* Main.storyboard */,
-				6AFD40521A5D5EF4009C0080 /* Images.xcassets */,
-				6AFD40541A5D5EF4009C0080 /* LaunchScreen.xib */,
-				6AFD40451A5D5EF4009C0080 /* Supporting Files */,
-			);
-			path = DoctorFei_Patient_iOS;
-			sourceTree = "<group>";
-		};
-		6AFD40451A5D5EF4009C0080 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				6AFD40461A5D5EF4009C0080 /* Info.plist */,
-				6AFD40471A5D5EF4009C0080 /* main.m */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		6AFD405E1A5D5EF4009C0080 /* DoctorFei_Patient_iOSTests */ = {
-			isa = PBXGroup;
-			children = (
-				6AFD40611A5D5EF4009C0080 /* DoctorFei_Patient_iOSTests.m */,
-				6AFD405F1A5D5EF4009C0080 /* Supporting Files */,
-			);
-			path = DoctorFei_Patient_iOSTests;
-			sourceTree = "<group>";
-		};
-		6AFD405F1A5D5EF4009C0080 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				6AFD40601A5D5EF4009C0080 /* Info.plist */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-/* End PBXGroup section */
-
-/* Begin PBXNativeTarget section */
-		6AFD40411A5D5EF4009C0080 /* DoctorFei_Patient_iOS */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 6AFD40651A5D5EF4009C0080 /* Build configuration list for PBXNativeTarget "DoctorFei_Patient_iOS" */;
-			buildPhases = (
-				6AFD403E1A5D5EF4009C0080 /* Sources */,
-				6AFD403F1A5D5EF4009C0080 /* Frameworks */,
-				6AFD40401A5D5EF4009C0080 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = DoctorFei_Patient_iOS;
-			productName = DoctorFei_Patient_iOS;
-			productReference = 6AFD40421A5D5EF4009C0080 /* DoctorFei_Patient_iOS.app */;
-			productType = "com.apple.product-type.application";
-		};
-		6AFD405A1A5D5EF4009C0080 /* DoctorFei_Patient_iOSTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 6AFD40681A5D5EF4009C0080 /* Build configuration list for PBXNativeTarget "DoctorFei_Patient_iOSTests" */;
-			buildPhases = (
-				6AFD40571A5D5EF4009C0080 /* Sources */,
-				6AFD40581A5D5EF4009C0080 /* Frameworks */,
-				6AFD40591A5D5EF4009C0080 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				6AFD405D1A5D5EF4009C0080 /* PBXTargetDependency */,
-			);
-			name = DoctorFei_Patient_iOSTests;
-			productName = DoctorFei_Patient_iOSTests;
-			productReference = 6AFD405B1A5D5EF4009C0080 /* DoctorFei_Patient_iOSTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-/* End PBXNativeTarget section */
-
-/* Begin PBXProject section */
-		6AFD403A1A5D5EF4009C0080 /* Project object */ = {
-			isa = PBXProject;
-			attributes = {
-				LastUpgradeCheck = 0610;
-				TargetAttributes = {
-					6AFD40411A5D5EF4009C0080 = {
-						CreatedOnToolsVersion = 6.1.1;
-					};
-					6AFD405A1A5D5EF4009C0080 = {
-						CreatedOnToolsVersion = 6.1.1;
-						TestTargetID = 6AFD40411A5D5EF4009C0080;
-					};
-				};
-			};
-			buildConfigurationList = 6AFD403D1A5D5EF4009C0080 /* Build configuration list for PBXProject "DoctorFei_Patient_iOS" */;
-			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
-			hasScannedForEncodings = 0;
-			knownRegions = (
-				en,
-				Base,
-			);
-			mainGroup = 6AFD40391A5D5EF4009C0080;
-			productRefGroup = 6AFD40431A5D5EF4009C0080 /* Products */;
-			projectDirPath = "";
-			projectRoot = "";
-			targets = (
-				6AFD40411A5D5EF4009C0080 /* DoctorFei_Patient_iOS */,
-				6AFD405A1A5D5EF4009C0080 /* DoctorFei_Patient_iOSTests */,
-			);
-		};
-/* End PBXProject section */
-
-/* Begin PBXResourcesBuildPhase section */
-		6AFD40401A5D5EF4009C0080 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				6AFD40511A5D5EF4009C0080 /* Main.storyboard in Resources */,
-				6AFD40561A5D5EF4009C0080 /* LaunchScreen.xib in Resources */,
-				6AFD40531A5D5EF4009C0080 /* Images.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		6AFD40591A5D5EF4009C0080 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXResourcesBuildPhase section */
-
-/* Begin PBXSourcesBuildPhase section */
-		6AFD403E1A5D5EF4009C0080 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				6AFD404E1A5D5EF4009C0080 /* ViewController.m in Sources */,
-				6AFD404B1A5D5EF4009C0080 /* AppDelegate.m in Sources */,
-				6AFD40481A5D5EF4009C0080 /* main.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		6AFD40571A5D5EF4009C0080 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				6AFD40621A5D5EF4009C0080 /* DoctorFei_Patient_iOSTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		6AFD405D1A5D5EF4009C0080 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 6AFD40411A5D5EF4009C0080 /* DoctorFei_Patient_iOS */;
-			targetProxy = 6AFD405C1A5D5EF4009C0080 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		6AFD404F1A5D5EF4009C0080 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				6AFD40501A5D5EF4009C0080 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		6AFD40541A5D5EF4009C0080 /* LaunchScreen.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				6AFD40551A5D5EF4009C0080 /* Base */,
-			);
-			name = LaunchScreen.xib;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
-
-/* Begin XCBuildConfiguration section */
-		6AFD40631A5D5EF4009C0080 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				COPY_PHASE_STRIP = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
-				MTL_ENABLE_DEBUG_INFO = YES;
-				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = iphoneos;
-			};
-			name = Debug;
-		};
-		6AFD40641A5D5EF4009C0080 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				COPY_PHASE_STRIP = YES;
-				ENABLE_NS_ASSERTIONS = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
-				MTL_ENABLE_DEBUG_INFO = NO;
-				SDKROOT = iphoneos;
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
-		6AFD40661A5D5EF4009C0080 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				INFOPLIST_FILE = DoctorFei_Patient_iOS/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Debug;
-		};
-		6AFD40671A5D5EF4009C0080 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				INFOPLIST_FILE = DoctorFei_Patient_iOS/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Release;
-		};
-		6AFD40691A5D5EF4009C0080 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = DoctorFei_Patient_iOSTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DoctorFei_Patient_iOS.app/DoctorFei_Patient_iOS";
-			};
-			name = Debug;
-		};
-		6AFD406A1A5D5EF4009C0080 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = DoctorFei_Patient_iOSTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DoctorFei_Patient_iOS.app/DoctorFei_Patient_iOS";
-			};
-			name = Release;
-		};
-/* End XCBuildConfiguration section */
-
-/* Begin XCConfigurationList section */
-		6AFD403D1A5D5EF4009C0080 /* Build configuration list for PBXProject "DoctorFei_Patient_iOS" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				6AFD40631A5D5EF4009C0080 /* Debug */,
-				6AFD40641A5D5EF4009C0080 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		6AFD40651A5D5EF4009C0080 /* Build configuration list for PBXNativeTarget "DoctorFei_Patient_iOS" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				6AFD40661A5D5EF4009C0080 /* Debug */,
-				6AFD40671A5D5EF4009C0080 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-		};
-		6AFD40681A5D5EF4009C0080 /* Build configuration list for PBXNativeTarget "DoctorFei_Patient_iOSTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				6AFD40691A5D5EF4009C0080 /* Debug */,
-				6AFD406A1A5D5EF4009C0080 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-		};
-/* End XCConfigurationList section */
-	};
-	rootObject = 6AFD403A1A5D5EF4009C0080 /* Project object */;
-}
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>archiveVersion</key>
+	<string>1</string>
+	<key>classes</key>
+	<dict/>
+	<key>objectVersion</key>
+	<string>46</string>
+	<key>objects</key>
+	<dict>
+		<key>066252435D862D351860BC4E</key>
+		<dict>
+			<key>fileRef</key>
+			<string>9BCC976E6369EF3B95E69806</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>1471656F9D3497909FA779D1</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array/>
+			<key>inputPaths</key>
+			<array/>
+			<key>isa</key>
+			<string>PBXShellScriptBuildPhase</string>
+			<key>name</key>
+			<string>Copy Pods Resources</string>
+			<key>outputPaths</key>
+			<array/>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+			<key>shellPath</key>
+			<string>/bin/sh</string>
+			<key>shellScript</key>
+			<string>"${SRCROOT}/Pods/Target Support Files/Pods-DoctorFei_Patient_iOS/Pods-DoctorFei_Patient_iOS-resources.sh"
+</string>
+			<key>showEnvVarsInLog</key>
+			<string>0</string>
+		</dict>
+		<key>30AFFF2139DB1EDC1DF447AA</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.xcconfig</string>
+			<key>name</key>
+			<string>Pods-DoctorFei_Patient_iOS.debug.xcconfig</string>
+			<key>path</key>
+			<string>Pods/Target Support Files/Pods-DoctorFei_Patient_iOS/Pods-DoctorFei_Patient_iOS.debug.xcconfig</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>68E6BE58C33F18C0B038BAFC</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.xcconfig</string>
+			<key>name</key>
+			<string>Pods-DoctorFei_Patient_iOS.release.xcconfig</string>
+			<key>path</key>
+			<string>Pods/Target Support Files/Pods-DoctorFei_Patient_iOS/Pods-DoctorFei_Patient_iOS.release.xcconfig</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>6AFD40391A5D5EF4009C0080</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>6AFD40441A5D5EF4009C0080</string>
+				<string>6AFD405E1A5D5EF4009C0080</string>
+				<string>6AFD40431A5D5EF4009C0080</string>
+				<string>9F597D808CC5D09103699785</string>
+				<string>74E4C272B9C255B82FB39232</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>6AFD403A1A5D5EF4009C0080</key>
+		<dict>
+			<key>attributes</key>
+			<dict>
+				<key>LastUpgradeCheck</key>
+				<string>0610</string>
+				<key>TargetAttributes</key>
+				<dict>
+					<key>6AFD40411A5D5EF4009C0080</key>
+					<dict>
+						<key>CreatedOnToolsVersion</key>
+						<string>6.1.1</string>
+					</dict>
+					<key>6AFD405A1A5D5EF4009C0080</key>
+					<dict>
+						<key>CreatedOnToolsVersion</key>
+						<string>6.1.1</string>
+						<key>TestTargetID</key>
+						<string>6AFD40411A5D5EF4009C0080</string>
+					</dict>
+				</dict>
+			</dict>
+			<key>buildConfigurationList</key>
+			<string>6AFD403D1A5D5EF4009C0080</string>
+			<key>compatibilityVersion</key>
+			<string>Xcode 3.2</string>
+			<key>developmentRegion</key>
+			<string>English</string>
+			<key>hasScannedForEncodings</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>PBXProject</string>
+			<key>knownRegions</key>
+			<array>
+				<string>en</string>
+				<string>Base</string>
+			</array>
+			<key>mainGroup</key>
+			<string>6AFD40391A5D5EF4009C0080</string>
+			<key>productRefGroup</key>
+			<string>6AFD40431A5D5EF4009C0080</string>
+			<key>projectDirPath</key>
+			<string></string>
+			<key>projectReferences</key>
+			<array/>
+			<key>projectRoot</key>
+			<string></string>
+			<key>targets</key>
+			<array>
+				<string>6AFD40411A5D5EF4009C0080</string>
+				<string>6AFD405A1A5D5EF4009C0080</string>
+			</array>
+		</dict>
+		<key>6AFD403D1A5D5EF4009C0080</key>
+		<dict>
+			<key>buildConfigurations</key>
+			<array>
+				<string>6AFD40631A5D5EF4009C0080</string>
+				<string>6AFD40641A5D5EF4009C0080</string>
+			</array>
+			<key>defaultConfigurationIsVisible</key>
+			<string>0</string>
+			<key>defaultConfigurationName</key>
+			<string>Release</string>
+			<key>isa</key>
+			<string>XCConfigurationList</string>
+		</dict>
+		<key>6AFD403E1A5D5EF4009C0080</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>6AFD404E1A5D5EF4009C0080</string>
+				<string>6AFD404B1A5D5EF4009C0080</string>
+				<string>6AFD40481A5D5EF4009C0080</string>
+			</array>
+			<key>isa</key>
+			<string>PBXSourcesBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>6AFD403F1A5D5EF4009C0080</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>066252435D862D351860BC4E</string>
+			</array>
+			<key>isa</key>
+			<string>PBXFrameworksBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>6AFD40401A5D5EF4009C0080</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>6AFD40511A5D5EF4009C0080</string>
+				<string>6AFD40561A5D5EF4009C0080</string>
+				<string>6AFD40531A5D5EF4009C0080</string>
+			</array>
+			<key>isa</key>
+			<string>PBXResourcesBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>6AFD40411A5D5EF4009C0080</key>
+		<dict>
+			<key>buildConfigurationList</key>
+			<string>6AFD40651A5D5EF4009C0080</string>
+			<key>buildPhases</key>
+			<array>
+				<string>F11AFF59AEFFF39955A6EA0E</string>
+				<string>6AFD403E1A5D5EF4009C0080</string>
+				<string>6AFD403F1A5D5EF4009C0080</string>
+				<string>6AFD40401A5D5EF4009C0080</string>
+				<string>1471656F9D3497909FA779D1</string>
+			</array>
+			<key>buildRules</key>
+			<array/>
+			<key>dependencies</key>
+			<array/>
+			<key>isa</key>
+			<string>PBXNativeTarget</string>
+			<key>name</key>
+			<string>DoctorFei_Patient_iOS</string>
+			<key>productName</key>
+			<string>DoctorFei_Patient_iOS</string>
+			<key>productReference</key>
+			<string>6AFD40421A5D5EF4009C0080</string>
+			<key>productType</key>
+			<string>com.apple.product-type.application</string>
+		</dict>
+		<key>6AFD40421A5D5EF4009C0080</key>
+		<dict>
+			<key>explicitFileType</key>
+			<string>wrapper.application</string>
+			<key>includeInIndex</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>path</key>
+			<string>DoctorFei_Patient_iOS.app</string>
+			<key>sourceTree</key>
+			<string>BUILT_PRODUCTS_DIR</string>
+		</dict>
+		<key>6AFD40431A5D5EF4009C0080</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>6AFD40421A5D5EF4009C0080</string>
+				<string>6AFD405B1A5D5EF4009C0080</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Products</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>6AFD40441A5D5EF4009C0080</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>6AFD40491A5D5EF4009C0080</string>
+				<string>6AFD404A1A5D5EF4009C0080</string>
+				<string>6AFD404C1A5D5EF4009C0080</string>
+				<string>6AFD404D1A5D5EF4009C0080</string>
+				<string>6AFD404F1A5D5EF4009C0080</string>
+				<string>6AFD40521A5D5EF4009C0080</string>
+				<string>6AFD40541A5D5EF4009C0080</string>
+				<string>6AFD40451A5D5EF4009C0080</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>path</key>
+			<string>DoctorFei_Patient_iOS</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>6AFD40451A5D5EF4009C0080</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>6AFD40461A5D5EF4009C0080</string>
+				<string>6AFD40471A5D5EF4009C0080</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Supporting Files</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>6AFD40461A5D5EF4009C0080</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.plist.xml</string>
+			<key>path</key>
+			<string>Info.plist</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>6AFD40471A5D5EF4009C0080</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>main.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>6AFD40481A5D5EF4009C0080</key>
+		<dict>
+			<key>fileRef</key>
+			<string>6AFD40471A5D5EF4009C0080</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>6AFD40491A5D5EF4009C0080</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>AppDelegate.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>6AFD404A1A5D5EF4009C0080</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>AppDelegate.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>6AFD404B1A5D5EF4009C0080</key>
+		<dict>
+			<key>fileRef</key>
+			<string>6AFD404A1A5D5EF4009C0080</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>6AFD404C1A5D5EF4009C0080</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>ViewController.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>6AFD404D1A5D5EF4009C0080</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>ViewController.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>6AFD404E1A5D5EF4009C0080</key>
+		<dict>
+			<key>fileRef</key>
+			<string>6AFD404D1A5D5EF4009C0080</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>6AFD404F1A5D5EF4009C0080</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>6AFD40501A5D5EF4009C0080</string>
+			</array>
+			<key>isa</key>
+			<string>PBXVariantGroup</string>
+			<key>name</key>
+			<string>Main.storyboard</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>6AFD40501A5D5EF4009C0080</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>file.storyboard</string>
+			<key>name</key>
+			<string>Base</string>
+			<key>path</key>
+			<string>Base.lproj/Main.storyboard</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>6AFD40511A5D5EF4009C0080</key>
+		<dict>
+			<key>fileRef</key>
+			<string>6AFD404F1A5D5EF4009C0080</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>6AFD40521A5D5EF4009C0080</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>folder.assetcatalog</string>
+			<key>path</key>
+			<string>Images.xcassets</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>6AFD40531A5D5EF4009C0080</key>
+		<dict>
+			<key>fileRef</key>
+			<string>6AFD40521A5D5EF4009C0080</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>6AFD40541A5D5EF4009C0080</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>6AFD40551A5D5EF4009C0080</string>
+			</array>
+			<key>isa</key>
+			<string>PBXVariantGroup</string>
+			<key>name</key>
+			<string>LaunchScreen.xib</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>6AFD40551A5D5EF4009C0080</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>file.xib</string>
+			<key>name</key>
+			<string>Base</string>
+			<key>path</key>
+			<string>Base.lproj/LaunchScreen.xib</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>6AFD40561A5D5EF4009C0080</key>
+		<dict>
+			<key>fileRef</key>
+			<string>6AFD40541A5D5EF4009C0080</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>6AFD40571A5D5EF4009C0080</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>6AFD40621A5D5EF4009C0080</string>
+			</array>
+			<key>isa</key>
+			<string>PBXSourcesBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>6AFD40581A5D5EF4009C0080</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array/>
+			<key>isa</key>
+			<string>PBXFrameworksBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>6AFD40591A5D5EF4009C0080</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array/>
+			<key>isa</key>
+			<string>PBXResourcesBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>6AFD405A1A5D5EF4009C0080</key>
+		<dict>
+			<key>buildConfigurationList</key>
+			<string>6AFD40681A5D5EF4009C0080</string>
+			<key>buildPhases</key>
+			<array>
+				<string>6AFD40571A5D5EF4009C0080</string>
+				<string>6AFD40581A5D5EF4009C0080</string>
+				<string>6AFD40591A5D5EF4009C0080</string>
+			</array>
+			<key>buildRules</key>
+			<array/>
+			<key>dependencies</key>
+			<array>
+				<string>6AFD405D1A5D5EF4009C0080</string>
+			</array>
+			<key>isa</key>
+			<string>PBXNativeTarget</string>
+			<key>name</key>
+			<string>DoctorFei_Patient_iOSTests</string>
+			<key>productName</key>
+			<string>DoctorFei_Patient_iOSTests</string>
+			<key>productReference</key>
+			<string>6AFD405B1A5D5EF4009C0080</string>
+			<key>productType</key>
+			<string>com.apple.product-type.bundle.unit-test</string>
+		</dict>
+		<key>6AFD405B1A5D5EF4009C0080</key>
+		<dict>
+			<key>explicitFileType</key>
+			<string>wrapper.cfbundle</string>
+			<key>includeInIndex</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>path</key>
+			<string>DoctorFei_Patient_iOSTests.xctest</string>
+			<key>sourceTree</key>
+			<string>BUILT_PRODUCTS_DIR</string>
+		</dict>
+		<key>6AFD405C1A5D5EF4009C0080</key>
+		<dict>
+			<key>containerPortal</key>
+			<string>6AFD403A1A5D5EF4009C0080</string>
+			<key>isa</key>
+			<string>PBXContainerItemProxy</string>
+			<key>proxyType</key>
+			<string>1</string>
+			<key>remoteGlobalIDString</key>
+			<string>6AFD40411A5D5EF4009C0080</string>
+			<key>remoteInfo</key>
+			<string>DoctorFei_Patient_iOS</string>
+		</dict>
+		<key>6AFD405D1A5D5EF4009C0080</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXTargetDependency</string>
+			<key>target</key>
+			<string>6AFD40411A5D5EF4009C0080</string>
+			<key>targetProxy</key>
+			<string>6AFD405C1A5D5EF4009C0080</string>
+		</dict>
+		<key>6AFD405E1A5D5EF4009C0080</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>6AFD40611A5D5EF4009C0080</string>
+				<string>6AFD405F1A5D5EF4009C0080</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>path</key>
+			<string>DoctorFei_Patient_iOSTests</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>6AFD405F1A5D5EF4009C0080</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>6AFD40601A5D5EF4009C0080</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Supporting Files</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>6AFD40601A5D5EF4009C0080</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.plist.xml</string>
+			<key>path</key>
+			<string>Info.plist</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>6AFD40611A5D5EF4009C0080</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>DoctorFei_Patient_iOSTests.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>6AFD40621A5D5EF4009C0080</key>
+		<dict>
+			<key>fileRef</key>
+			<string>6AFD40611A5D5EF4009C0080</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>6AFD40631A5D5EF4009C0080</key>
+		<dict>
+			<key>buildSettings</key>
+			<dict>
+				<key>ALWAYS_SEARCH_USER_PATHS</key>
+				<string>NO</string>
+				<key>CLANG_CXX_LANGUAGE_STANDARD</key>
+				<string>gnu++0x</string>
+				<key>CLANG_CXX_LIBRARY</key>
+				<string>libc++</string>
+				<key>CLANG_ENABLE_MODULES</key>
+				<string>YES</string>
+				<key>CLANG_ENABLE_OBJC_ARC</key>
+				<string>YES</string>
+				<key>CLANG_WARN_BOOL_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_CONSTANT_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_DIRECT_OBJC_ISA_USAGE</key>
+				<string>YES_ERROR</string>
+				<key>CLANG_WARN_EMPTY_BODY</key>
+				<string>YES</string>
+				<key>CLANG_WARN_ENUM_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_INT_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_OBJC_ROOT_CLASS</key>
+				<string>YES_ERROR</string>
+				<key>CLANG_WARN_UNREACHABLE_CODE</key>
+				<string>YES</string>
+				<key>CLANG_WARN__DUPLICATE_METHOD_MATCH</key>
+				<string>YES</string>
+				<key>CODE_SIGN_IDENTITY[sdk=iphoneos*]</key>
+				<string>iPhone Developer</string>
+				<key>COPY_PHASE_STRIP</key>
+				<string>NO</string>
+				<key>ENABLE_STRICT_OBJC_MSGSEND</key>
+				<string>YES</string>
+				<key>GCC_C_LANGUAGE_STANDARD</key>
+				<string>gnu99</string>
+				<key>GCC_DYNAMIC_NO_PIC</key>
+				<string>NO</string>
+				<key>GCC_OPTIMIZATION_LEVEL</key>
+				<string>0</string>
+				<key>GCC_PREPROCESSOR_DEFINITIONS</key>
+				<array>
+					<string>DEBUG=1</string>
+					<string>$(inherited)</string>
+				</array>
+				<key>GCC_SYMBOLS_PRIVATE_EXTERN</key>
+				<string>NO</string>
+				<key>GCC_WARN_64_TO_32_BIT_CONVERSION</key>
+				<string>YES</string>
+				<key>GCC_WARN_ABOUT_RETURN_TYPE</key>
+				<string>YES_ERROR</string>
+				<key>GCC_WARN_UNDECLARED_SELECTOR</key>
+				<string>YES</string>
+				<key>GCC_WARN_UNINITIALIZED_AUTOS</key>
+				<string>YES_AGGRESSIVE</string>
+				<key>GCC_WARN_UNUSED_FUNCTION</key>
+				<string>YES</string>
+				<key>GCC_WARN_UNUSED_VARIABLE</key>
+				<string>YES</string>
+				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
+				<string>7.0</string>
+				<key>MTL_ENABLE_DEBUG_INFO</key>
+				<string>YES</string>
+				<key>ONLY_ACTIVE_ARCH</key>
+				<string>YES</string>
+				<key>SDKROOT</key>
+				<string>iphoneos</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Debug</string>
+		</dict>
+		<key>6AFD40641A5D5EF4009C0080</key>
+		<dict>
+			<key>buildSettings</key>
+			<dict>
+				<key>ALWAYS_SEARCH_USER_PATHS</key>
+				<string>NO</string>
+				<key>CLANG_CXX_LANGUAGE_STANDARD</key>
+				<string>gnu++0x</string>
+				<key>CLANG_CXX_LIBRARY</key>
+				<string>libc++</string>
+				<key>CLANG_ENABLE_MODULES</key>
+				<string>YES</string>
+				<key>CLANG_ENABLE_OBJC_ARC</key>
+				<string>YES</string>
+				<key>CLANG_WARN_BOOL_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_CONSTANT_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_DIRECT_OBJC_ISA_USAGE</key>
+				<string>YES_ERROR</string>
+				<key>CLANG_WARN_EMPTY_BODY</key>
+				<string>YES</string>
+				<key>CLANG_WARN_ENUM_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_INT_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_OBJC_ROOT_CLASS</key>
+				<string>YES_ERROR</string>
+				<key>CLANG_WARN_UNREACHABLE_CODE</key>
+				<string>YES</string>
+				<key>CLANG_WARN__DUPLICATE_METHOD_MATCH</key>
+				<string>YES</string>
+				<key>CODE_SIGN_IDENTITY[sdk=iphoneos*]</key>
+				<string>iPhone Developer</string>
+				<key>COPY_PHASE_STRIP</key>
+				<string>YES</string>
+				<key>ENABLE_NS_ASSERTIONS</key>
+				<string>NO</string>
+				<key>ENABLE_STRICT_OBJC_MSGSEND</key>
+				<string>YES</string>
+				<key>GCC_C_LANGUAGE_STANDARD</key>
+				<string>gnu99</string>
+				<key>GCC_WARN_64_TO_32_BIT_CONVERSION</key>
+				<string>YES</string>
+				<key>GCC_WARN_ABOUT_RETURN_TYPE</key>
+				<string>YES_ERROR</string>
+				<key>GCC_WARN_UNDECLARED_SELECTOR</key>
+				<string>YES</string>
+				<key>GCC_WARN_UNINITIALIZED_AUTOS</key>
+				<string>YES_AGGRESSIVE</string>
+				<key>GCC_WARN_UNUSED_FUNCTION</key>
+				<string>YES</string>
+				<key>GCC_WARN_UNUSED_VARIABLE</key>
+				<string>YES</string>
+				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
+				<string>7.0</string>
+				<key>MTL_ENABLE_DEBUG_INFO</key>
+				<string>NO</string>
+				<key>SDKROOT</key>
+				<string>iphoneos</string>
+				<key>VALIDATE_PRODUCT</key>
+				<string>YES</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Release</string>
+		</dict>
+		<key>6AFD40651A5D5EF4009C0080</key>
+		<dict>
+			<key>buildConfigurations</key>
+			<array>
+				<string>6AFD40661A5D5EF4009C0080</string>
+				<string>6AFD40671A5D5EF4009C0080</string>
+			</array>
+			<key>defaultConfigurationIsVisible</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>XCConfigurationList</string>
+		</dict>
+		<key>6AFD40661A5D5EF4009C0080</key>
+		<dict>
+			<key>baseConfigurationReference</key>
+			<string>30AFFF2139DB1EDC1DF447AA</string>
+			<key>buildSettings</key>
+			<dict>
+				<key>ASSETCATALOG_COMPILER_APPICON_NAME</key>
+				<string>AppIcon</string>
+				<key>INFOPLIST_FILE</key>
+				<string>DoctorFei_Patient_iOS/Info.plist</string>
+				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
+				<string>7.0</string>
+				<key>LD_RUNPATH_SEARCH_PATHS</key>
+				<string>$(inherited) @executable_path/Frameworks</string>
+				<key>PRODUCT_NAME</key>
+				<string>$(TARGET_NAME)</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Debug</string>
+		</dict>
+		<key>6AFD40671A5D5EF4009C0080</key>
+		<dict>
+			<key>baseConfigurationReference</key>
+			<string>68E6BE58C33F18C0B038BAFC</string>
+			<key>buildSettings</key>
+			<dict>
+				<key>ASSETCATALOG_COMPILER_APPICON_NAME</key>
+				<string>AppIcon</string>
+				<key>INFOPLIST_FILE</key>
+				<string>DoctorFei_Patient_iOS/Info.plist</string>
+				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
+				<string>7.0</string>
+				<key>LD_RUNPATH_SEARCH_PATHS</key>
+				<string>$(inherited) @executable_path/Frameworks</string>
+				<key>PRODUCT_NAME</key>
+				<string>$(TARGET_NAME)</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Release</string>
+		</dict>
+		<key>6AFD40681A5D5EF4009C0080</key>
+		<dict>
+			<key>buildConfigurations</key>
+			<array>
+				<string>6AFD40691A5D5EF4009C0080</string>
+				<string>6AFD406A1A5D5EF4009C0080</string>
+			</array>
+			<key>defaultConfigurationIsVisible</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>XCConfigurationList</string>
+		</dict>
+		<key>6AFD40691A5D5EF4009C0080</key>
+		<dict>
+			<key>buildSettings</key>
+			<dict>
+				<key>BUNDLE_LOADER</key>
+				<string>$(TEST_HOST)</string>
+				<key>FRAMEWORK_SEARCH_PATHS</key>
+				<array>
+					<string>$(SDKROOT)/Developer/Library/Frameworks</string>
+					<string>$(inherited)</string>
+				</array>
+				<key>GCC_PREPROCESSOR_DEFINITIONS</key>
+				<array>
+					<string>DEBUG=1</string>
+					<string>$(inherited)</string>
+				</array>
+				<key>INFOPLIST_FILE</key>
+				<string>DoctorFei_Patient_iOSTests/Info.plist</string>
+				<key>LD_RUNPATH_SEARCH_PATHS</key>
+				<string>$(inherited) @executable_path/Frameworks @loader_path/Frameworks</string>
+				<key>PRODUCT_NAME</key>
+				<string>$(TARGET_NAME)</string>
+				<key>TEST_HOST</key>
+				<string>$(BUILT_PRODUCTS_DIR)/DoctorFei_Patient_iOS.app/DoctorFei_Patient_iOS</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Debug</string>
+		</dict>
+		<key>6AFD406A1A5D5EF4009C0080</key>
+		<dict>
+			<key>buildSettings</key>
+			<dict>
+				<key>BUNDLE_LOADER</key>
+				<string>$(TEST_HOST)</string>
+				<key>FRAMEWORK_SEARCH_PATHS</key>
+				<array>
+					<string>$(SDKROOT)/Developer/Library/Frameworks</string>
+					<string>$(inherited)</string>
+				</array>
+				<key>INFOPLIST_FILE</key>
+				<string>DoctorFei_Patient_iOSTests/Info.plist</string>
+				<key>LD_RUNPATH_SEARCH_PATHS</key>
+				<string>$(inherited) @executable_path/Frameworks @loader_path/Frameworks</string>
+				<key>PRODUCT_NAME</key>
+				<string>$(TARGET_NAME)</string>
+				<key>TEST_HOST</key>
+				<string>$(BUILT_PRODUCTS_DIR)/DoctorFei_Patient_iOS.app/DoctorFei_Patient_iOS</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Release</string>
+		</dict>
+		<key>74E4C272B9C255B82FB39232</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>9BCC976E6369EF3B95E69806</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Frameworks</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>9BCC976E6369EF3B95E69806</key>
+		<dict>
+			<key>explicitFileType</key>
+			<string>archive.ar</string>
+			<key>includeInIndex</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>path</key>
+			<string>libPods-DoctorFei_Patient_iOS.a</string>
+			<key>sourceTree</key>
+			<string>BUILT_PRODUCTS_DIR</string>
+		</dict>
+		<key>9F597D808CC5D09103699785</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>30AFFF2139DB1EDC1DF447AA</string>
+				<string>68E6BE58C33F18C0B038BAFC</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Pods</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>F11AFF59AEFFF39955A6EA0E</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array/>
+			<key>inputPaths</key>
+			<array/>
+			<key>isa</key>
+			<string>PBXShellScriptBuildPhase</string>
+			<key>name</key>
+			<string>Check Pods Manifest.lock</string>
+			<key>outputPaths</key>
+			<array/>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+			<key>shellPath</key>
+			<string>/bin/sh</string>
+			<key>shellScript</key>
+			<string>diff "${PODS_ROOT}/../Podfile.lock" "${PODS_ROOT}/Manifest.lock" &gt; /dev/null
+if [[ $? != 0 ]] ; then
+    cat &lt;&lt; EOM
+error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.
+EOM
+    exit 1
+fi
+</string>
+			<key>showEnvVarsInLog</key>
+			<string>0</string>
+		</dict>
+	</dict>
+	<key>rootObject</key>
+	<string>6AFD403A1A5D5EF4009C0080</string>
+</dict>
+</plist>
