@@ -232,7 +232,8 @@
             NSLog(@"trans");
         };
         vc.sendOutpatientTime = ^{
-            NSLog(@"send");
+//            NSLog(@"send");
+            [self didPressSendButton:nil withMessageText:@"星期一休息星期二休息星期三休息星期四休息星期五休息" senderId:self.senderId senderDisplayName:self.senderDisplayName date:[NSDate date]];
         };
         vc.preferredContentSize = CGSizeMake(120, 163);
         WYStoryboardPopoverSegue *popoverSegue = (WYStoryboardPopoverSegue *)segue;
