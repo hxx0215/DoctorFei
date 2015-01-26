@@ -20,6 +20,7 @@
 #import <WYPopoverController.h>
 #import <WYStoryboardPopoverSegue.h>
 #import "ContactDetailPopoverViewController.h"
+#import "ContactViewController.h"
 
 typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
     SMSToolbarSendMethodVoice,
@@ -291,20 +292,22 @@ typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    //资料
     if ([segue.identifier isEqualToString:@"FriendDetailSegueIdentifier"]) {
         ContactFriendDetailTableViewController *vc = [segue destinationViewController];
         [vc setCurrentFriend:_currentFriend];
     }
+    //弹出框
     if ([segue.identifier isEqualToString:@"ContactDetailActionSegueIdentifier"]){
         ContactDetailPopoverViewController *vc = [segue destinationViewController];
         vc.showRecord = ^{
             [self performSegueWithIdentifier:@"ContactShowRecordSegueIdentifier" sender:nil];
         };
         vc.launchConsultation = ^{
-            NSLog(@"Launch");
+            [self performSegueWithIdentifier:@"ContactConsultationTransferSegueIdentifier" sender:[NSNumber numberWithInteger:3]];//3代表ContactViewControllerModeConsultation
         };
         vc.transfer = ^{
-            NSLog(@"trans");
+            [self performSegueWithIdentifier:@"ContactConsultationTransferSegueIdentifier" sender:[NSNumber numberWithInteger:4]];//4代表ContactViewControllerModeTransfer
         };
         vc.sendOutpatientTime = ^{
 //            NSLog(@"send");
@@ -322,6 +325,12 @@ typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
         self.popover.theme.fillBottomColor = [UIColor darkGrayColor];
         self.popover.theme.arrowHeight = 8.0f;
         self.popover.popoverLayoutMargins = UIEdgeInsetsZero;
+    }
+    //会诊或转诊
+    if ([segue.identifier isEqualToString:@"ContactConsultationTransferSegueIdentifier"]){
+        NSInteger mode = [sender integerValue];
+        ContactViewController *vc = [segue destinationViewController];
+        vc.contactMode = mode;
     }
 }
 
