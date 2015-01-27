@@ -28,7 +28,7 @@ typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
     SMSToolbarSendMethodText
 };
 
-@interface ContactDetailViewController ()<WYPopoverControllerDelegate>
+@interface ContactDetailViewController ()<WYPopoverControllerDelegate, UITextViewDelegate>
 - (IBAction)backButtonClicked:(id)sender;
 @property (nonatomic, strong) MessagesModalData *modalData;
 @property (nonatomic, strong) WYPopoverController *popover;
@@ -80,6 +80,9 @@ typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
     self.collectionView.collectionViewLayout.outgoingAvatarViewSize = CGSizeMake(44, 44);
     
     [self generateMessageModalData];
+    
+    self.inputToolbar.contentView.textView.returnKeyType = UIReturnKeySend;
+    self.inputToolbar.contentView.textView.delegate = self;
 
 
 }
@@ -167,6 +170,53 @@ typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
 }
 
 #pragma mark - Private Actions
+
+- (void)sendMessageWithText:(NSString *)text{
+    //发送消息
+    NSNumber *doctorId = [[NSUserDefaults standardUserDefaults]objectForKey:@"UserId"];
+    NSDictionary *params = @{
+                             @"doctorid": doctorId,
+                             @"userid": _currentFriend.userId,
+                             @"msgtype": @"text",
+                             @"content": text
+                             };
+    [ChatAPI sendMessageWithParameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        //        NSLog(@"%@",responseObject);
+        NSDictionary *dataDict = [responseObject firstObject];
+        if ([dataDict[@"state"]intValue] > -1) {
+            JSQMessage *message = [[JSQMessage alloc]initWithSenderId:self.senderId senderDisplayName:self.senderDisplayName date:[NSDate date] text:text];
+            [self.modalData.messages addObject:message];
+            Message *newMessage = [Message MR_createEntity];
+            newMessage.messageId = @([dataDict[@"state"]intValue]);
+            newMessage.content = text;
+            newMessage.createtime = [NSDate date];
+            newMessage.flag = @(1);
+            newMessage.msgType = @"text";
+            newMessage.user = _currentFriend;
+            Chat *chat = [Chat MR_findFirstByAttribute:@"user" withValue:_currentFriend];
+            if (chat == nil) {
+                chat = [Chat MR_createEntity];
+                chat.user = _currentFriend;
+                chat.unreadMessageCount = @(0);
+            }
+            chat.lastMessageTime = newMessage.createtime;
+            chat.lastMessageContent = newMessage.content;
+            [[NSManagedObjectContext MR_defaultContext]MR_saveToPersistentStoreAndWait];
+            [self.collectionView reloadData];
+            //            [self loadNewMessage];
+            [self finishSendingMessage];
+        }
+        else {
+            MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view.window animated:YES];
+            hud.mode = MBProgressHUDModeText;
+            hud.labelText = @"发送失败";
+            hud.detailsLabelText = dataDict[@"msg"];
+            [hud hide:YES afterDelay:1.0f];
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"%@",error.localizedDescription);
+    }];
+}
 
 - (void)deleteMessage:(NSNotification *)notification {
     JSQMessagesCollectionViewCell *cell = notification.object;
@@ -378,51 +428,7 @@ typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
          senderDisplayName:(NSString *)senderDisplayName
                       date:(NSDate *)date
 {
-    //发送消息
-    NSNumber *doctorId = [[NSUserDefaults standardUserDefaults]objectForKey:@"UserId"];
-    NSDictionary *params = @{
-                             @"doctorid": doctorId,
-                             @"userid": _currentFriend.userId,
-                             @"msgtype": @"text",
-                             @"content": text
-                             };
-//    NSLog(@"%@",params);
-    [ChatAPI sendMessageWithParameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"%@",responseObject);
-        NSDictionary *dataDict = [responseObject firstObject];
-        if ([dataDict[@"state"]intValue] > -1) {
-            JSQMessage *message = [[JSQMessage alloc]initWithSenderId:self.senderId senderDisplayName:self.senderDisplayName date:[NSDate date] text:text];
-            [self.modalData.messages addObject:message];
-            Message *newMessage = [Message MR_createEntity];
-            newMessage.messageId = @([dataDict[@"state"]intValue]);
-            newMessage.content = text;
-            newMessage.createtime = [NSDate date];
-            newMessage.flag = @(1);
-            newMessage.msgType = @"text";
-            newMessage.user = _currentFriend;
-            Chat *chat = [Chat MR_findFirstByAttribute:@"user" withValue:_currentFriend];
-            if (chat == nil) {
-                chat = [Chat MR_createEntity];
-                chat.user = _currentFriend;
-                chat.unreadMessageCount = @(0);
-            }
-            chat.lastMessageTime = newMessage.createtime;
-            chat.lastMessageContent = newMessage.content;
-            [[NSManagedObjectContext MR_defaultContext]MR_saveToPersistentStoreAndWait];
-            [self.collectionView reloadData];
-//            [self loadNewMessage];
-            [self finishSendingMessage];
-        }
-        else {
-            MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view.window animated:YES];
-            hud.mode = MBProgressHUDModeText;
-            hud.labelText = @"发送失败";
-            hud.detailsLabelText = dataDict[@"msg"];
-            [hud hide:YES afterDelay:1.0f];
-        }
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"%@",error.localizedDescription);
-    }];
+    [self sendMessageWithText:text];
 }
 
 #pragma mark - JSQMessages CollectionView DataSource
@@ -543,6 +549,19 @@ typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
 - (void)collectionView:(JSQMessagesCollectionView *)collectionView didTapCellAtIndexPath:(NSIndexPath *)indexPath touchLocation:(CGPoint)touchLocation
 {
     NSLog(@"Tapped cell at %@!", NSStringFromCGPoint(touchLocation));
+}
+
+#pragma mark - UITextView Delegate
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
+    NSRange resultRange = [text rangeOfCharacterFromSet:[NSCharacterSet newlineCharacterSet] options:NSBackwardsSearch];
+    if ([text length] == 1 && resultRange.location != NSNotFound) {
+        if (textView.text.length > 0) {
+            [textView resignFirstResponder];
+            [self sendMessageWithText:textView.text];
+        }
+        return NO;
+    }
+    return YES;
 }
 
 @end
