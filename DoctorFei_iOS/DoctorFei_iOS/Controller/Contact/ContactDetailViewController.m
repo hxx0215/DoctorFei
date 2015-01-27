@@ -16,6 +16,7 @@
 #import <SDWebImageManager.h>
 #import "ChatAPI.h"
 #import <MBProgressHUD.h>
+#import <Masonry.h>
 //#import "DataUtil.h"
 #import <WYPopoverController.h>
 #import <WYStoryboardPopoverSegue.h>
@@ -45,8 +46,27 @@ typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
     [super viewDidLoad];
     [self setupToolbarButtons];
     
+    //设置ToolBar按钮
     self.inputToolbar.contentView.leftBarButtonItem = voiceButton;
-    
+    self.inputToolbar.contentView.rightBarButtonItem = nil;
+    UIView *rightView = self.inputToolbar.contentView.rightBarButtonContainerView;
+    rightView.hidden = NO;
+    [rightView addSubview:faceButton];
+    [rightView addSubview:pictureButton];
+
+    [faceButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(rightView).with.offset(0);
+        make.bottom.equalTo(rightView).with.offset(0);
+        make.left.equalTo(rightView).with.offset(0);
+    }];
+    [pictureButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(rightView).with.offset(0);
+        make.bottom.equalTo(rightView).with.offset(0);
+        make.right.equalTo(rightView).with.offset(-6);
+    }];
+    self.inputToolbar.contentView.rightBarButtonItemWidth = 76;
+
+//    [self.inputToolbar.contentView.rightBarButtonContainerView addSubview:faceButton];
     self.collectionView.backgroundColor = UIColorFromRGB(0xEEEEEE);
     
     self.senderId = [[DeviceUtil getUUID]copy];
@@ -85,6 +105,7 @@ typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
     [self.inputToolbar.contentView addSubview:sendVoiceButton];
 
     [self setToolbarSendMethod:SMSToolbarSendMethodText];
+    
     
 }
 
