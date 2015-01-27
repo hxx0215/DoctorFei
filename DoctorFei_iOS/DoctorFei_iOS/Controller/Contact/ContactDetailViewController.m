@@ -16,10 +16,12 @@
 #import <SDWebImageManager.h>
 #import "ChatAPI.h"
 #import <MBProgressHUD.h>
+#import <Masonry.h>
 //#import "DataUtil.h"
 #import <WYPopoverController.h>
 #import <WYStoryboardPopoverSegue.h>
 #import "ContactDetailPopoverViewController.h"
+#import "ContactViewController.h"
 
 typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
     SMSToolbarSendMethodVoice,
@@ -44,8 +46,27 @@ typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
     [super viewDidLoad];
     [self setupToolbarButtons];
     
+    //设置ToolBar按钮
     self.inputToolbar.contentView.leftBarButtonItem = voiceButton;
-    
+    self.inputToolbar.contentView.rightBarButtonItem = nil;
+    UIView *rightView = self.inputToolbar.contentView.rightBarButtonContainerView;
+    rightView.hidden = NO;
+    [rightView addSubview:faceButton];
+    [rightView addSubview:pictureButton];
+
+    [faceButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(rightView).with.offset(0);
+        make.bottom.equalTo(rightView).with.offset(0);
+        make.left.equalTo(rightView).with.offset(0);
+    }];
+    [pictureButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(rightView).with.offset(0);
+        make.bottom.equalTo(rightView).with.offset(0);
+        make.right.equalTo(rightView).with.offset(-6);
+    }];
+    self.inputToolbar.contentView.rightBarButtonItemWidth = 76;
+
+//    [self.inputToolbar.contentView.rightBarButtonContainerView addSubview:faceButton];
     self.collectionView.backgroundColor = UIColorFromRGB(0xEEEEEE);
     
     self.senderId = [[DeviceUtil getUUID]copy];
@@ -84,6 +105,7 @@ typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
     [self.inputToolbar.contentView addSubview:sendVoiceButton];
 
     [self setToolbarSendMethod:SMSToolbarSendMethodText];
+    
     
 }
 
@@ -291,23 +313,26 @@ typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    //资料
     if ([segue.identifier isEqualToString:@"FriendDetailSegueIdentifier"]) {
         ContactFriendDetailTableViewController *vc = [segue destinationViewController];
         [vc setCurrentFriend:_currentFriend];
     }
+    //弹出框
     if ([segue.identifier isEqualToString:@"ContactDetailActionSegueIdentifier"]){
         ContactDetailPopoverViewController *vc = [segue destinationViewController];
         vc.showRecord = ^{
             [self performSegueWithIdentifier:@"ContactShowRecordSegueIdentifier" sender:nil];
         };
         vc.launchConsultation = ^{
-            NSLog(@"Launch");
+            [self performSegueWithIdentifier:@"ContactConsultationTransferSegueIdentifier" sender:[NSNumber numberWithInteger:3]];//3代表ContactViewControllerModeConsultation
         };
         vc.transfer = ^{
-            NSLog(@"trans");
+            [self performSegueWithIdentifier:@"ContactConsultationTransferSegueIdentifier" sender:[NSNumber numberWithInteger:4]];//4代表ContactViewControllerModeTransfer
         };
         vc.sendOutpatientTime = ^{
-            NSLog(@"send");
+//            NSLog(@"send");
+            [self didPressSendButton:nil withMessageText:@"星期一休息星期二休息星期三休息星期四休息星期五休息" senderId:self.senderId senderDisplayName:self.senderDisplayName date:[NSDate date]];
         };
         vc.preferredContentSize = CGSizeMake(120, 163);
         WYStoryboardPopoverSegue *popoverSegue = (WYStoryboardPopoverSegue *)segue;
@@ -321,6 +346,12 @@ typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
         self.popover.theme.fillBottomColor = [UIColor darkGrayColor];
         self.popover.theme.arrowHeight = 8.0f;
         self.popover.popoverLayoutMargins = UIEdgeInsetsZero;
+    }
+    //会诊或转诊
+    if ([segue.identifier isEqualToString:@"ContactConsultationTransferSegueIdentifier"]){
+        NSInteger mode = [sender integerValue];
+        ContactViewController *vc = [segue destinationViewController];
+        vc.contactMode = mode;
     }
 }
 
