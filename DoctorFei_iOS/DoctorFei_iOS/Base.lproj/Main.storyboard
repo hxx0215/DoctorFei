@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="hjp-xA-J3Y">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="hjp-xA-J3Y">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -5657,12 +5657,25 @@
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="THR-ig-Nsd">
                                         <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="0Z4-nd-orh"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                         <state key="normal" title="注册" backgroundImage="button_login.png">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <state key="highlighted" backgroundImage="button_login_after.png"/>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="0Z4-nd-orh"/>
+                                            </mask>
+                                        </variation>
+                                        <variation key="heightClass=regular-widthClass=compact">
+                                            <mask key="constraints">
+                                                <include reference="0Z4-nd-orh"/>
+                                            </mask>
+                                        </variation>
                                         <connections>
                                             <segue destination="kKj-km-Y5u" kind="show" identifier="LoginRegisterSegueIdentifier" id="Zoh-i6-jz6"/>
                                         </connections>
@@ -5891,11 +5904,11 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="centerX" secondItem="pT3-A5-ueq" secondAttribute="centerX" id="FDa-hn-ZU5"/>
-                            <constraint firstItem="JzS-go-A67" firstAttribute="bottom" secondItem="m1Q-u6-niZ" secondAttribute="top" id="GmD-5C-Xrr"/>
+                            <constraint firstItem="JzS-go-A67" firstAttribute="leading" secondItem="SQe-gy-hlA" secondAttribute="leading" id="OCz-TE-3Oi"/>
                             <constraint firstAttribute="centerY" secondItem="pT3-A5-ueq" secondAttribute="centerY" id="XrO-yF-ApX"/>
-                            <constraint firstItem="JzS-go-A67" firstAttribute="leading" secondItem="SQe-gy-hlA" secondAttribute="leading" id="ooP-bD-Jgd"/>
-                            <constraint firstItem="JzS-go-A67" firstAttribute="centerY" secondItem="pT3-A5-ueq" secondAttribute="centerY" id="rNG-We-I2A"/>
-                            <constraint firstItem="JzS-go-A67" firstAttribute="centerX" secondItem="pT3-A5-ueq" secondAttribute="centerX" id="ysE-wE-XDE"/>
+                            <constraint firstItem="JzS-go-A67" firstAttribute="top" secondItem="Rci-wT-hZy" secondAttribute="bottom" constant="-20" id="Xsy-ll-4A6"/>
+                            <constraint firstItem="m1Q-u6-niZ" firstAttribute="top" secondItem="JzS-go-A67" secondAttribute="bottom" id="dVS-Jp-VYs"/>
+                            <constraint firstAttribute="trailing" secondItem="JzS-go-A67" secondAttribute="trailing" id="v84-cB-vGg"/>
                         </constraints>
                         <variation key="default">
                             <mask key="subviews">
@@ -5903,12 +5916,12 @@
                                 <exclude reference="pT3-A5-ueq"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="GmD-5C-Xrr"/>
-                                <exclude reference="ooP-bD-Jgd"/>
-                                <exclude reference="rNG-We-I2A"/>
-                                <exclude reference="ysE-wE-XDE"/>
+                                <exclude reference="OCz-TE-3Oi"/>
+                                <exclude reference="Xsy-ll-4A6"/>
+                                <exclude reference="v84-cB-vGg"/>
                                 <exclude reference="FDa-hn-ZU5"/>
                                 <exclude reference="XrO-yF-ApX"/>
+                                <exclude reference="dVS-Jp-VYs"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
@@ -5917,12 +5930,12 @@
                                 <include reference="pT3-A5-ueq"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="GmD-5C-Xrr"/>
-                                <include reference="ooP-bD-Jgd"/>
-                                <include reference="rNG-We-I2A"/>
-                                <include reference="ysE-wE-XDE"/>
+                                <include reference="OCz-TE-3Oi"/>
+                                <include reference="Xsy-ll-4A6"/>
+                                <include reference="v84-cB-vGg"/>
                                 <include reference="FDa-hn-ZU5"/>
                                 <include reference="XrO-yF-ApX"/>
+                                <include reference="dVS-Jp-VYs"/>
                             </mask>
                         </variation>
                     </view>
@@ -8954,9 +8967,6 @@
                                 </state>
                                 <variation key="heightClass=compact-widthClass=compact" ambiguous="YES">
                                     <rect key="frame" x="86" y="179" width="228" height="18"/>
-                                </variation>
-                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="86" y="288" width="227" height="38"/>
                                 </variation>
                                 <connections>
                                     <action selector="updateButtonClicked:" destination="uaT-mB-nYo" eventType="touchUpInside" id="9cb-u2-xol"/>
