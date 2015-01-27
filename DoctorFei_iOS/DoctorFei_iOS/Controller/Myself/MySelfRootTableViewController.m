@@ -9,6 +9,8 @@
 #import "MySelfRootTableViewController.h"
 #import <UIImageView+WebCache.h>
 #import "MBProgressHUD.h"
+#import "DoctorAPI.h"
+
 @interface MySelfRootTableViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *avatarImage;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
@@ -43,6 +45,26 @@
     [super viewWillAppear:animated];
     _icon = [[[NSUserDefaults standardUserDefaults]objectForKey:@"UserIcon"] copy];
     _name = [[[NSUserDefaults standardUserDefaults]objectForKey:@"UserRealName"] copy];
+    
+    //认证状态
+    NSInteger state = [[[NSUserDefaults standardUserDefaults]objectForKey:@"auditState"]integerValue];
+    if (state == -1)
+    {
+        self.approveLabel.text = @"未认证";
+    }
+    else if(state == -2)
+    {
+        self.approveLabel.text = @"审核中";
+    }
+    else if(state > 0)
+    {
+        self.approveLabel.text = @"已认证";
+    }
+    else
+    {
+        self.approveLabel.text = @"审核未通过";
+    }
+    
     _icon ? nil : (_icon = @"");
     _name ? nil : (_name = @"");
     if (_icon.length > 0) {

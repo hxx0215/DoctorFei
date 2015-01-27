@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="hjp-xA-J3Y">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="hjp-xA-J3Y">
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -3953,6 +3952,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="auditButton" destination="jIX-Kr-WxM" id="1h8-nT-rrF"/>
                         <outlet property="avatarImageView" destination="d3W-Uf-Ks3" id="suC-2V-9Un"/>
                         <outlet property="hospitalLabel" destination="lbM-ps-CdZ" id="h5Z-L2-lRt"/>
                         <outlet property="infoLabel" destination="UEa-JO-s6E" id="dBe-3G-pgr"/>
@@ -5916,12 +5916,12 @@
                                 <exclude reference="pT3-A5-ueq"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="dVS-Jp-VYs"/>
                                 <exclude reference="OCz-TE-3Oi"/>
                                 <exclude reference="Xsy-ll-4A6"/>
                                 <exclude reference="v84-cB-vGg"/>
                                 <exclude reference="FDa-hn-ZU5"/>
                                 <exclude reference="XrO-yF-ApX"/>
-                                <exclude reference="dVS-Jp-VYs"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
@@ -5930,12 +5930,12 @@
                                 <include reference="pT3-A5-ueq"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="dVS-Jp-VYs"/>
                                 <include reference="OCz-TE-3Oi"/>
                                 <include reference="Xsy-ll-4A6"/>
                                 <include reference="v84-cB-vGg"/>
                                 <include reference="FDa-hn-ZU5"/>
                                 <include reference="XrO-yF-ApX"/>
-                                <include reference="dVS-Jp-VYs"/>
                             </mask>
                         </variation>
                     </view>
@@ -8968,6 +8968,9 @@
                                 <variation key="heightClass=compact-widthClass=compact" ambiguous="YES">
                                     <rect key="frame" x="86" y="179" width="228" height="18"/>
                                 </variation>
+                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="86" y="288" width="227" height="38"/>
+                                </variation>
                                 <connections>
                                     <action selector="updateButtonClicked:" destination="uaT-mB-nYo" eventType="touchUpInside" id="9cb-u2-xol"/>
                                 </connections>
@@ -9261,6 +9264,9 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="提交" id="YBh-C5-NXf">
                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="commitButtonClicked:" destination="mO6-rs-re6" id="aR5-pp-Pec"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
@@ -10014,10 +10020,10 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="Hb8-Q6-QO7"/>
-        <segue reference="O2X-kl-Jk8"/>
-        <segue reference="7qh-2R-9ti"/>
         <segue reference="pVr-DH-hJQ"/>
-        <segue reference="QWB-UP-Nry"/>
+        <segue reference="abg-fB-9ID"/>
+        <segue reference="rqJ-cO-jCt"/>
+        <segue reference="7qh-2R-9ti"/>
         <segue reference="Mwl-tT-Jc7"/>
     </inferredMetricsTieBreakers>
 </document>

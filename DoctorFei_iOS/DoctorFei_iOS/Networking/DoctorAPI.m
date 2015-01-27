@@ -16,6 +16,8 @@
 #define kMethodUploadImage @"set.picture.add"
 #define kMethodUserDescribe @"set.doctor.userdesribe"
 #define kMethodDelFriend @"set.doctor.delfriend"
+#define kMethodSetAudit @"set.doctor.audit"
+#define kMethodGetAudit @"get.doctor.audit"
 
 @implementation DoctorAPI
 + (void)updateInfomationWithParameters: (id)parameters success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
@@ -60,4 +62,13 @@
     [[self sharedManager]defaultGetWithMethod:kMethodDelFriend WithParameters:parameters success:success failure:failure];
 }
 
++ (void)getAuditWithParameters: (id)parameters success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
+{
+    [[self sharedManager]defaultGetWithMethod:kMethodGetAudit WithParameters:parameters success:success failure:failure];
+}
+
++ (void)setAuditWithParameters: (id)parameters success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
+{
+    [[self sharedManager]defaultGetWithMethod:kMethodSetAudit WithParameters:parameters success:success failure:failure];
+}
 @end
