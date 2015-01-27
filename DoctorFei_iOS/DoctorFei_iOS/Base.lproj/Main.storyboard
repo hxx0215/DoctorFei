@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="hjp-xA-J3Y">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="hjp-xA-J3Y">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -2418,12 +2418,191 @@
                     <connections>
                         <segue destination="mZ8-1i-3x3" kind="show" identifier="FriendDetailSegueIdentifier" id="1zF-jl-fGY"/>
                         <segue destination="R3e-aB-uT1" kind="show" identifier="ContactShowRecordSegueIdentifier" id="vCe-tG-Nxd"/>
-                        <segue destination="cVJ-je-ZKu" kind="show" identifier="ContactConsultationTransferSegueIdentifier" id="1ge-qc-qUn"/>
+                        <segue destination="PfZ-BT-0Ww" kind="presentation" identifier="ContactConsultationTransferSegueIdentifier" id="SfG-iR-NoF"/>
+                        <segue destination="puv-QD-qks" kind="presentation" identifier="ContactTransferSegueIdentifier" id="EcT-ZI-mcf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="I3J-1j-di7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-4405.5" y="-1158"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="ee4-c8-rhz">
+            <objects>
+                <navigationController id="puv-QD-qks" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" translucent="NO" id="qG3-OL-PrD">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.43137254901960786" green="0.6588235294117647" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="VLD-eh-www" kind="relationship" relationship="rootViewController" id="l88-Uc-F3v"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FAD-58-q6N" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-5373" y="-1859.25"/>
+        </scene>
+        <!--转诊中-->
+        <scene sceneID="VXn-zl-3JS">
+            <objects>
+                <viewController id="VLD-eh-www" customClass="ContactTransferViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="CiH-NG-fwM"/>
+                        <viewControllerLayoutGuide type="bottom" id="Bvg-mT-xco"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="FrZ-KF-Mwp">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="list_user-big_example_pic.png" translatesAutoresizingMaskIntoConstraints="NO" id="Y8u-lV-scZ">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="EeU-Ie-JOk"/>
+                                    <constraint firstAttribute="width" constant="50" id="S6K-hn-4e1"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="EeU-Ie-JOk"/>
+                                        <exclude reference="S6K-hn-4e1"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="EeU-Ie-JOk"/>
+                                        <include reference="S6K-hn-4e1"/>
+                                    </mask>
+                                </variation>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="button_login.png" translatesAutoresizingMaskIntoConstraints="NO" id="lif-z1-WWe">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="170" y="224" width="60" height="20"/>
+                                </variation>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XeZ-rN-lfm">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal" title="转诊终止" backgroundImage="button_narrow-01_btn.png">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yxp-Qd-BVP">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="128" id="8g1-lf-scc"/>
+                                    <constraint firstAttribute="width" constant="240" id="eG1-Eg-4tE"/>
+                                </constraints>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="8g1-lf-scc"/>
+                                        <exclude reference="eG1-Eg-4tE"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="8g1-lf-scc"/>
+                                        <include reference="eG1-Eg-4tE"/>
+                                    </mask>
+                                </variation>
+                            </textView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="list_user-big_example_pic.png" translatesAutoresizingMaskIntoConstraints="NO" id="naQ-7w-BoD">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="1Be-sR-Zg3"/>
+                                    <constraint firstAttribute="height" constant="50" id="PY9-km-3T8"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="1Be-sR-Zg3"/>
+                                        <exclude reference="PY9-km-3T8"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="1Be-sR-Zg3"/>
+                                        <include reference="PY9-km-3T8"/>
+                                    </mask>
+                                </variation>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="XeZ-rN-lfm" secondAttribute="trailing" constant="10" id="2nz-Xo-fa7"/>
+                            <constraint firstAttribute="centerX" secondItem="lif-z1-WWe" secondAttribute="centerX" id="4p0-Ri-h3C"/>
+                            <constraint firstItem="XeZ-rN-lfm" firstAttribute="top" secondItem="yxp-Qd-BVP" secondAttribute="bottom" constant="75" id="CHk-VR-WfT"/>
+                            <constraint firstItem="Y8u-lV-scZ" firstAttribute="leading" secondItem="lif-z1-WWe" secondAttribute="trailing" constant="50" id="Fzp-fZ-wcP"/>
+                            <constraint firstItem="lif-z1-WWe" firstAttribute="leading" secondItem="naQ-7w-BoD" secondAttribute="trailing" constant="50" id="Hbx-zS-KMe"/>
+                            <constraint firstItem="yxp-Qd-BVP" firstAttribute="top" secondItem="lif-z1-WWe" secondAttribute="bottom" constant="60" id="Kzr-Tw-zeI"/>
+                            <constraint firstItem="XeZ-rN-lfm" firstAttribute="leading" secondItem="FrZ-KF-Mwp" secondAttribute="leadingMargin" constant="10" id="Yux-xM-bgm"/>
+                            <constraint firstAttribute="centerX" secondItem="yxp-Qd-BVP" secondAttribute="centerX" id="eK0-7d-85j"/>
+                            <constraint firstAttribute="centerY" secondItem="yxp-Qd-BVP" secondAttribute="centerY" id="kbI-X8-GvN"/>
+                            <constraint firstItem="Y8u-lV-scZ" firstAttribute="centerY" secondItem="lif-z1-WWe" secondAttribute="centerY" id="l4x-6C-HoW"/>
+                            <constraint firstItem="naQ-7w-BoD" firstAttribute="centerY" secondItem="lif-z1-WWe" secondAttribute="centerY" id="nj1-D4-ED8"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="Y8u-lV-scZ"/>
+                                <exclude reference="lif-z1-WWe"/>
+                                <exclude reference="XeZ-rN-lfm"/>
+                                <exclude reference="yxp-Qd-BVP"/>
+                                <exclude reference="naQ-7w-BoD"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="nj1-D4-ED8"/>
+                                <exclude reference="4p0-Ri-h3C"/>
+                                <exclude reference="Hbx-zS-KMe"/>
+                                <exclude reference="Kzr-Tw-zeI"/>
+                                <exclude reference="eK0-7d-85j"/>
+                                <exclude reference="kbI-X8-GvN"/>
+                                <exclude reference="Fzp-fZ-wcP"/>
+                                <exclude reference="l4x-6C-HoW"/>
+                                <exclude reference="2nz-Xo-fa7"/>
+                                <exclude reference="CHk-VR-WfT"/>
+                                <exclude reference="Yux-xM-bgm"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular-widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="Y8u-lV-scZ"/>
+                                <include reference="lif-z1-WWe"/>
+                                <include reference="XeZ-rN-lfm"/>
+                                <include reference="yxp-Qd-BVP"/>
+                                <include reference="naQ-7w-BoD"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="nj1-D4-ED8"/>
+                                <include reference="4p0-Ri-h3C"/>
+                                <include reference="Hbx-zS-KMe"/>
+                                <include reference="Kzr-Tw-zeI"/>
+                                <include reference="eK0-7d-85j"/>
+                                <include reference="kbI-X8-GvN"/>
+                                <include reference="Fzp-fZ-wcP"/>
+                                <include reference="l4x-6C-HoW"/>
+                                <include reference="2nz-Xo-fa7"/>
+                                <include reference="CHk-VR-WfT"/>
+                                <include reference="Yux-xM-bgm"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <navigationItem key="navigationItem" title="转诊中" id="iNP-4W-mda">
+                        <barButtonItem key="leftBarButtonItem" image="return.png" id="URE-BH-09Z">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="backButtonClicked:" destination="VLD-eh-www" id="dsL-ta-3oE"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JGI-38-ekA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-4560" y="-1859.25"/>
         </scene>
         <!--Contact Detail Popover View Controller-->
         <scene sceneID="HvZ-cO-989">
@@ -2517,7 +2696,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vMn-dL-J1E" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-4048.5" y="-1665.375"/>
+            <point key="canvasLocation" x="-3936" y="-1514.625"/>
         </scene>
         <!--病历本-->
         <scene sceneID="DAO-VE-zxJ">
@@ -5916,12 +6095,12 @@
                                 <exclude reference="pT3-A5-ueq"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="dVS-Jp-VYs"/>
                                 <exclude reference="OCz-TE-3Oi"/>
                                 <exclude reference="Xsy-ll-4A6"/>
                                 <exclude reference="v84-cB-vGg"/>
                                 <exclude reference="FDa-hn-ZU5"/>
                                 <exclude reference="XrO-yF-ApX"/>
-                                <exclude reference="dVS-Jp-VYs"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
@@ -5930,12 +6109,12 @@
                                 <include reference="pT3-A5-ueq"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="dVS-Jp-VYs"/>
                                 <include reference="OCz-TE-3Oi"/>
                                 <include reference="Xsy-ll-4A6"/>
                                 <include reference="v84-cB-vGg"/>
                                 <include reference="FDa-hn-ZU5"/>
                                 <include reference="XrO-yF-ApX"/>
-                                <include reference="dVS-Jp-VYs"/>
                             </mask>
                         </variation>
                     </view>
@@ -8968,6 +9147,9 @@
                                 <variation key="heightClass=compact-widthClass=compact" ambiguous="YES">
                                     <rect key="frame" x="86" y="179" width="228" height="18"/>
                                 </variation>
+                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="86" y="288" width="227" height="38"/>
+                                </variation>
                                 <connections>
                                     <action selector="updateButtonClicked:" destination="uaT-mB-nYo" eventType="touchUpInside" id="9cb-u2-xol"/>
                                 </connections>
@@ -10014,10 +10196,11 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="Hb8-Q6-QO7"/>
-        <segue reference="O2X-kl-Jk8"/>
+        <segue reference="SfG-iR-NoF"/>
+        <segue reference="rqJ-cO-jCt"/>
         <segue reference="7qh-2R-9ti"/>
+        <segue reference="O2X-kl-Jk8"/>
         <segue reference="pVr-DH-hJQ"/>
-        <segue reference="QWB-UP-Nry"/>
-        <segue reference="Mwl-tT-Jc7"/>
+        <segue reference="I02-mG-QSP"/>
     </inferredMetricsTieBreakers>
 </document>
