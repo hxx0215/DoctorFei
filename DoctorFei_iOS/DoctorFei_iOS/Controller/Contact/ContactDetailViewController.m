@@ -350,8 +350,17 @@ typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
     //会诊或转诊
     if ([segue.identifier isEqualToString:@"ContactConsultationTransferSegueIdentifier"]){
         NSInteger mode = [sender integerValue];
-        ContactViewController *vc = [segue destinationViewController];
+        UINavigationController *nav = [segue destinationViewController];
+        ContactViewController *vc = (ContactViewController *)nav.viewControllers[0];
         vc.contactMode = mode;
+        if (mode == 3){
+            
+        }
+        else{
+            vc.didSelectFriends = ^(NSArray *friend){
+                [self performSegueWithIdentifier:@"ContactTransferSegueIdentifier" sender:friend];
+            };
+        }
     }
 }
 

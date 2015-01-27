@@ -62,6 +62,7 @@
         else{
             self.navigationItem.rightBarButtonItem.title = NSLocalizedString(@"确定", nil);
         }
+        self.navigationItem.rightBarButtonItem.enabled = NO;
     }
     self.cellSelected = [NSMutableArray new];
 }
@@ -118,6 +119,7 @@
                     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:j inSection:i];
                     [self.cellSelected addObject:indexPath];
                     [self.selectedArray removeObject:friendName];
+                    self.navigationItem.rightBarButtonItem.enabled = YES;//self.cellSelected肯定不为空
                 }
             }];
         }
@@ -181,7 +183,12 @@
     }
 }
 - (IBAction)backButtonClicked:(id)sender {
-    [self.navigationController popViewControllerAnimated:YES];
+    if (self.contactMode <3)
+        [self.navigationController popViewControllerAnimated:YES];
+    else
+        [self.navigationController dismissViewControllerAnimated:YES completion:^{
+            
+        }];
 }
 - (IBAction)rightButtonClicked:(id)sender {
     if (self.contactMode == ContactViewControllerModeNormal){
@@ -202,8 +209,24 @@
         }
         else
             self.selectedArray = didSelect;
-        self.didSelectFriends(self.selectedArray);
-        [self.navigationController popViewControllerAnimated:YES];
+        switch (self.contactMode) {
+            case ContactViewControllerModeCreateGroup:{
+                [self.navigationController popToRootViewControllerAnimated:NO];
+                self.didSelectFriends(self.selectedArray);
+            }
+                break;
+            case ContactViewControllerModeTransfer:{
+                [self.navigationController dismissViewControllerAnimated:NO completion:^{
+                    self.didSelectFriends(self.selectedArray);
+                }];
+            }
+                break;
+            default:{
+                self.didSelectFriends(self.selectedArray);
+                [self.navigationController popViewControllerAnimated:YES];
+            }
+                break;
+        }
     }
 }
 
@@ -371,10 +394,23 @@
     else{
         ContactFriendTableViewCell *cell = (ContactFriendTableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
         cell.selectedButton.selected = !cell.selectedButton.selected;
+        if (self.contactMode == ContactViewControllerModeTransfer){
+            for (NSIndexPath *ip in self.cellSelected){
+                ContactFriendTableViewCell *tCell = (ContactFriendTableViewCell *)[tableView cellForRowAtIndexPath:ip];
+                if (tCell){
+                    tCell.selectedButton.selected = NO;
+                }
+            }
+            [self.cellSelected removeAllObjects];
+        }
         if (cell.selectedButton.selected)
             [self.cellSelected addObject:indexPath];
         else
             [self.cellSelected removeObject:indexPath];
+        if ([self.cellSelected count]<1)
+            self.navigationItem.rightBarButtonItem.enabled = NO;
+        else
+            self.navigationItem.rightBarButtonItem.enabled = YES;
     }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
