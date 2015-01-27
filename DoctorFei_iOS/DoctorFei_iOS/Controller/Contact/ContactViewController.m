@@ -62,6 +62,7 @@
         else{
             self.navigationItem.rightBarButtonItem.title = NSLocalizedString(@"确定", nil);
         }
+        self.navigationItem.rightBarButtonItem.enabled = NO;
     }
     self.cellSelected = [NSMutableArray new];
 }
@@ -118,6 +119,7 @@
                     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:j inSection:i];
                     [self.cellSelected addObject:indexPath];
                     [self.selectedArray removeObject:friendName];
+                    self.navigationItem.rightBarButtonItem.enabled = YES;//self.cellSelected肯定不为空
                 }
             }];
         }
@@ -405,6 +407,10 @@
             [self.cellSelected addObject:indexPath];
         else
             [self.cellSelected removeObject:indexPath];
+        if ([self.cellSelected count]<1)
+            self.navigationItem.rightBarButtonItem.enabled = NO;
+        else
+            self.navigationItem.rightBarButtonItem.enabled = YES;
     }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
