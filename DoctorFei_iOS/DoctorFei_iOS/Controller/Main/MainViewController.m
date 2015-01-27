@@ -18,6 +18,7 @@
 #import "MainGroupPopoverViewController.h"
 #import <WYStoryboardPopoverSegue.h>
 #import "MainGroupDetailActionViewController.h"
+#import "DoctorAPI.h"
 @interface MainViewController ()
     <UITableViewDelegate, UITableViewDataSource, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate, UIGestureRecognizerDelegate, MainGroupPopoverVCDelegate, WYPopoverControllerDelegate>
 
@@ -32,6 +33,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *titleButton;
 - (IBAction)titleButtonClicked:(id)sender;
 
+@property (weak, nonatomic) IBOutlet UIButton *auditButton;
 @end
 
 @implementation MainViewController
@@ -100,7 +102,39 @@
     
     [self reloadTableViewData];
     
-    
+    //医生认证接口
+    NSNumber *doctorId = [[NSUserDefaults standardUserDefaults]objectForKey:@"UserId"];
+    if (!doctorId) {
+        return;
+    }
+    NSDictionary *params = @{
+                             @"doctorid": doctorId
+                             };
+    //    NSLog(@"%@",params);
+    [DoctorAPI getAuditWithParameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"%@",responseObject);
+        NSDictionary *dataDict = [responseObject firstObject];
+        NSInteger state = [dataDict[@"state"]intValue];
+        [[NSUserDefaults standardUserDefaults] setObject:dataDict[@"state"] forKey:@"auditState"];
+        if (state == -1)
+        {
+            [self.auditButton setTitle:@"" forState:UIControlStateNormal];
+        }
+        else if(state == -2)
+        {
+            [self.auditButton setTitle:@"审核中" forState:UIControlStateNormal];
+        }
+        else if(state > 0)
+        {
+            [self.auditButton setTitle:@"已认证" forState:UIControlStateNormal];
+        }
+        else
+        {
+            [self.auditButton setTitle:@"审核未通过" forState:UIControlStateNormal];
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        ;
+    }];
 }
 
 
