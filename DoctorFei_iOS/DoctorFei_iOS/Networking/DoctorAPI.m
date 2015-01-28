@@ -24,6 +24,10 @@
 #define kMethodDoctorShuoshuo @"get.doctor.shuoshuo"
 #define kMethodSetDoctorShuoshuo @"set.doctor.shuoshuo"
 #define kMethodUpdateDoctorShuoshuo @"update.doctor.shuoshuo"
+#define kMethodGetDoctorSchedule @"get.doctor.schedule"
+#define kMethodUpdateDoctorSchedule @"update.doctor.schedule"
+#define kMethodGetDoctorDayarrange @"get.doctor.dayarrange"
+#define kMethodSetDoctorDayarrange @"set.doctor.dayarrange"
 
 @implementation DoctorAPI
 + (void)updateInfomationWithParameters: (id)parameters success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
@@ -121,4 +125,25 @@
 {
     [[self sharedManager]defaultPostWithMethod:kMethodUpdateDoctorShuoshuo WithParameters:parameters WithBodyParameters:bodyParameters success:success failure:failure];
 }
+
++ (void)getDoctorScheduleWithParameters: (id)parameters success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
+{
+    [[self sharedManager]defaultGetWithMethod:kMethodGetDoctorSchedule WithParameters:parameters success:success failure:failure];
+}
+
++ (void)updateDoctorScheduleWithParameters: (id)parameters success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
+{
+    [[self sharedManager]defaultGetWithMethod:kMethodUpdateDoctorSchedule WithParameters:parameters success:success failure:failure];
+}
+
++ (void)getDoctorDayarrangeWithParameters: (id)parameters success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
+{
+    [[self sharedManager]defaultGetWithMethod:kMethodGetDoctorDayarrange WithParameters:parameters success:success failure:failure];
+}
+
++ (void)setDoctorDayarrangeWithParameters: (id)parameters success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
+{
+    [[self sharedManager]defaultGetWithMethod:kMethodSetDoctorDayarrange WithParameters:parameters success:success failure:failure];
+}
+
 @end

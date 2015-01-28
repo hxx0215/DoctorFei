@@ -8,6 +8,7 @@
 
 #import "AgendaArrangementDetailViewController.h"
 #import <ActionSheetPicker.h>
+#import "DoctorAPI.h"
 #define kRemindTimeArray @[@"提前1小时", @"提前2小时", @"提前3小时", @"提前6小时", @"提前一天"]
 @interface AgendaArrangementDetailViewController ()
 
@@ -26,10 +27,14 @@
 @end
 
 @implementation AgendaArrangementDetailViewController
+{
+    NSDate *date;
+}
 
 - (IBAction)dateButtonClicked:(id)sender {
     ActionSheetDatePicker *actionSheetDatePicker = [[ActionSheetDatePicker alloc] initWithTitle:@"" datePickerMode:UIDatePickerModeDate selectedDate:[NSDate date] doneBlock:^(ActionSheetDatePicker *picker, id selectedDate, id origin) {
         [_dataLabel setText:[selectedDate description]];
+        date = [selectedDate copy];
     } cancelBlock:nil origin:sender];
     [actionSheetDatePicker showActionSheetPicker];
 }
@@ -52,5 +57,31 @@
 
 - (IBAction)backButtonClicked:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (IBAction)OKButtonClicked:(id)sender {
+    [self addDayarrange];
+}
+
+-(void)addDayarrange
+{
+    NSNumber *doctorId = [[NSUserDefaults standardUserDefaults]objectForKey:@"UserId"];
+    NSNumber *tiptype = [NSNumber numberWithInteger:[kRemindTimeArray indexOfObject:_remindTimeLabel.text]];
+    NSNumber *daytime = [NSNumber numberWithInteger:date.timeIntervalSince1970];
+    NSDictionary *params = @{
+                             @"doctorid": doctorId,
+                             @"title": _nameLabel.text,
+                             @"note": _nameLabel.text,
+                             @"memberid": @1,
+                             @"membername": _nameLabel.text,
+                             @"daytime": daytime,
+                             @"allowtip": [NSNumber numberWithBool:_remindSwitch.on],
+                             @"tiptype": tiptype
+                             };
+    [DoctorAPI getDoctorDayarrangeWithParameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"%@",responseObject);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"%@", error.localizedDescription);
+    }];
 }
 @end
