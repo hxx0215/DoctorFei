@@ -118,19 +118,23 @@
         [[NSUserDefaults standardUserDefaults] setObject:dataDict[@"state"] forKey:@"auditState"];
         if (state == -1)
         {
-            [self.auditButton setTitle:@"" forState:UIControlStateNormal];
+            [self.auditButton setSelected:NO];
+//            [self.auditButton setTitle:@"" forState:UIControlStateNormal];
         }
         else if(state == -2)
         {
-            [self.auditButton setTitle:@"审核中" forState:UIControlStateNormal];
+            [self.auditButton setSelected:NO];
+//            [self.auditButton setTitle:@"审核中" forState:UIControlStateNormal];
         }
         else if(state > 0)
         {
-            [self.auditButton setTitle:@"已认证" forState:UIControlStateNormal];
+            [self.auditButton setSelected:YES];
+//            [self.auditButton setTitle:@"已认证" forState:UIControlStateNormal];
         }
         else
         {
-            [self.auditButton setTitle:@"审核未通过" forState:UIControlStateNormal];
+            [self.auditButton setSelected:NO];
+//            [self.auditButton setTitle:@"审核未通过" forState:UIControlStateNormal];
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         ;
