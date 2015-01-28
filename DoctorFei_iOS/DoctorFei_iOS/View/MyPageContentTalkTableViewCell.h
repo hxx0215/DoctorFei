@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface MyPageContentTalkTableViewCell : UITableViewCell
-
+@property (nonatomic, strong) NSDictionary *currentDic;
 @end

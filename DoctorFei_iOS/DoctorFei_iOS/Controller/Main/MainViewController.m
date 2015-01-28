@@ -112,7 +112,6 @@
                              };
     //    NSLog(@"%@",params);
     [DoctorAPI getAuditWithParameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"%@",responseObject);
         NSDictionary *dataDict = [responseObject firstObject];
         NSInteger state = [dataDict[@"state"]intValue];
         [[NSUserDefaults standardUserDefaults] setObject:dataDict[@"state"] forKey:@"auditState"];
