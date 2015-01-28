@@ -28,6 +28,8 @@
 #define kMethodUpdateDoctorSchedule @"update.doctor.schedule"
 #define kMethodGetDoctorDayarrange @"get.doctor.dayarrange"
 #define kMethodSetDoctorDayarrange @"set.doctor.dayarrange"
+#define kMethodGetDoctorFastreply @"get.doctor.fastreply"
+#define kMethodSetDoctorFastreply @"set.doctor.fastreply"
 
 @implementation DoctorAPI
 + (void)updateInfomationWithParameters: (id)parameters success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
@@ -144,6 +146,16 @@
 + (void)setDoctorDayarrangeWithParameters: (id)parameters success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
 {
     [[self sharedManager]defaultGetWithMethod:kMethodSetDoctorDayarrange WithParameters:parameters success:success failure:failure];
+}
+
++ (void)getDoctorFastreplyWithParameters: (id)parameters success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
+{
+    [[self sharedManager]defaultGetWithMethod:kMethodGetDoctorFastreply WithParameters:parameters success:success failure:failure];
+}
+
++ (void)setDoctorFastreplyWithParameters: (id)parameters success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
+{
+    [[self sharedManager]defaultGetWithMethod:kMethodSetDoctorFastreply WithParameters:parameters success:success failure:failure];
 }
 
 @end
