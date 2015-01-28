@@ -8,10 +8,31 @@
 
 #import "AgendaArrangementTableViewController.h"
 #import "TimeScheduleTableViewCell.h"
+#import "DoctorAPI.h"
 @implementation AgendaArrangementTableViewController
 
 - (void)viewDidLoad {
-    
+    [super viewDidLoad];
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self loadDayarrange];
+}
+
+-(void)loadDayarrange
+{
+    NSNumber *doctorId = [[NSUserDefaults standardUserDefaults]objectForKey:@"UserId"];
+    NSDictionary *params = @{
+                             @"doctorid": doctorId,
+                             @"topnum": @0
+                             };
+    [DoctorAPI getDoctorDayarrangeWithParameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"%@",responseObject);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"%@", error.localizedDescription);
+    }];
 }
 
 #pragma mark - UITableView DataSource

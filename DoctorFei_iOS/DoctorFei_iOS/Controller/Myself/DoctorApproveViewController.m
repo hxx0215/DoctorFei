@@ -57,18 +57,7 @@
     hud = [MBProgressHUD showHUDAddedTo:self.view.window animated:YES];
     hud.dimBackground = YES;
     [hud setLabelText:@"图片上传中..."];
-    
-    NSString *str = [UIImageJPEGRepresentation(image, 0.8) base64EncodedStringWithOptions:0];
-    str = [str stringByReplacingOccurrencesOfString:@"+" withString:@"|JH|"];
-    str = [str stringByReplacingOccurrencesOfString:@" " withString:@"|KG|"];
-    str = [str stringByReplacingOccurrencesOfString:@"\n" withString:@"|HC|"];
-    
-    NSDictionary *params = @{
-                             @"picturename": [NSString stringWithFormat:@"%d.jpg", (int)[[NSDate date] timeIntervalSince1970]],
-                             @"img": str
-                             };
-    
-    [DoctorAPI uploadImageWithParameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [DoctorAPI uploadImage:image success:^(AFHTTPRequestOperation *operation, id responseObject){
         NSDictionary *dataDict = [responseObject firstObject];
         NSString *urlString = dataDict[@"spath"];
         //        NSString *urlString = [responseObject firstObject];
