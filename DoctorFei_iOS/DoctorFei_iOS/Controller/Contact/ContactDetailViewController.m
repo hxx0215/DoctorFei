@@ -38,6 +38,7 @@ typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
 {
     NSArray *messageArray;
     UIButton *voiceButton, *keyboardButton, *faceButton, *pictureButton, *sendVoiceButton;
+    MBProgressHUD *voiceHUD;
 }
 @synthesize currentFriend = _currentFriend, modalData = _modalData;
 
@@ -144,6 +145,10 @@ typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
     [sendVoiceButton setBackgroundImage:[[UIImage imageNamed:@"talk_box_btn_after"] resizableImageWithCapInsets:UIEdgeInsetsMake(4, 8, 4, 8)] forState:UIControlStateHighlighted];
     [sendVoiceButton setTitleColor:UIColorFromRGB(0x969696) forState:UIControlStateHighlighted];
     [sendVoiceButton setTitle:@"松开结束" forState:UIControlStateHighlighted];
+    
+    [sendVoiceButton addTarget:self action:@selector(sendVoiceButtonTouchDown:) forControlEvents:UIControlEventTouchDown];
+    [sendVoiceButton addTarget:self action:@selector(sendVoiceButtonTouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
+    [sendVoiceButton addTarget:self action:@selector(sendVoiceButtonTouchUpOutside:) forControlEvents:UIControlEventTouchUpOutside];
 }
 
 - (void)setToolbarSendMethod:(SMSToolbarSendMethod)method {
@@ -174,6 +179,23 @@ typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
     }
 }
 #pragma mark - Button Actions
+     
+- (void)sendVoiceButtonTouchDown: (UIButton *)sender {
+    voiceHUD = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    voiceHUD.mode = MBProgressHUDModeCustomView;
+    voiceHUD.customView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"talk_pic"]];
+    voiceHUD.labelText = @"手指上滑, 取消发送";
+    voiceHUD.labelFont = [UIFont systemFontOfSize:14.0f];
+    voiceHUD.labelColor = UIColorFromRGB(0xAAAAAA);
+}
+
+- (void)sendVoiceButtonTouchUpInside: (UIButton *)sender {
+    [voiceHUD hide:YES];
+}
+
+- (void)sendVoiceButtonTouchUpOutside: (UIButton *)sender {
+    [voiceHUD hide:YES];
+}
 - (void)voiceButtonClicked:(UIButton *)sender {
     [self setToolbarSendMethod:SMSToolbarSendMethodVoice];
 }
@@ -185,9 +207,7 @@ typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
     [self.navigationController popViewControllerAnimated:YES];
 }
 - (void)dismissButtonClicked:(id)sender{
-    [self.navigationController dismissViewControllerAnimated:YES completion:^{
-        
-    }];
+    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
 }
 - (void)showRecordButtonClicked:(id)sender{
     [self performSegueWithIdentifier:@"ContactShowRecordSegueIdentifier" sender:sender];
