@@ -9,6 +9,7 @@
 #import "AgendaArrangementDetailViewController.h"
 #import <ActionSheetPicker.h>
 #import "DoctorAPI.h"
+#import <MBProgressHUD.h>
 #define kRemindTimeArray @[@"提前1小时", @"提前2小时", @"提前3小时", @"提前6小时", @"提前一天"]
 @interface AgendaArrangementDetailViewController ()
 
@@ -65,6 +66,9 @@
 
 -(void)addDayarrange
 {
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view.window animated:YES];
+    hud.dimBackground = YES;
+    hud.labelText = @"添加中";
     NSNumber *doctorId = [[NSUserDefaults standardUserDefaults]objectForKey:@"UserId"];
     NSNumber *tiptype = [NSNumber numberWithInteger:[kRemindTimeArray indexOfObject:_remindTimeLabel.text]];
     NSNumber *daytime = [NSNumber numberWithInteger:date.timeIntervalSince1970];
@@ -72,16 +76,27 @@
                              @"doctorid": doctorId,
                              @"title": _nameLabel.text,
                              @"note": _nameLabel.text,
-                             @"memberid": @1,
+                             @"memberid": @4,
                              @"membername": _nameLabel.text,
                              @"daytime": daytime,
                              @"allowtip": [NSNumber numberWithBool:_remindSwitch.on],
-                             @"tiptype": tiptype
+                             @"tiptype": @0
                              };
-    [DoctorAPI getDoctorDayarrangeWithParameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"%@",responseObject);
+    NSLog(@"%@",params);
+    [DoctorAPI setDoctorDayarrangeWithParameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSDictionary *dic = [responseObject firstObject];
+        hud.mode = MBProgressHUDModeText;
+        hud.labelText = dic[@"msg"];
+        if(dic[@"state"]>0)
+        {
+            [self.navigationController popViewControllerAnimated:YES];
+        }
+        [hud hide:YES afterDelay:1.5];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"%@", error.localizedDescription);
+        hud.mode = MBProgressHUDModeText;
+        hud.labelText = error.localizedDescription;
+        [hud hide:YES afterDelay:1.5];
     }];
 }
 @end

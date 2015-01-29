@@ -10,6 +10,9 @@
 #import "TimeScheduleTableViewCell.h"
 #import "DoctorAPI.h"
 @implementation AgendaArrangementTableViewController
+{
+    NSArray *dayarrangeDicArray;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -30,6 +33,7 @@
                              };
     [DoctorAPI getDoctorDayarrangeWithParameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"%@",responseObject);
+        dayarrangeDicArray = [responseObject copy];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"%@", error.localizedDescription);
     }];
@@ -41,11 +45,14 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 3;
+    return [dayarrangeDicArray count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return [[TimeScheduleTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"123"];
+    TimeScheduleTableViewCell *cell = [[TimeScheduleTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"123"];
+    NSDictionary *dic = [dayarrangeDicArray objectAtIndex:indexPath.row];
+    cell.textLabel.text = dic[@"membername"];
+    return cell;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {

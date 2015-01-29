@@ -84,7 +84,7 @@ typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
     self.inputToolbar.contentView.textView.returnKeyType = UIReturnKeySend;
     self.inputToolbar.contentView.textView.delegate = self;
 
-
+    [self initNavigationBar];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -159,7 +159,20 @@ typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
         [sendVoiceButton setHidden:NO];
     }
 }
-
+- (void)initNavigationBar{
+    switch (self.detailMode){
+        case ContactDetailModeConsultation:{
+            self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"return.png"] style:UIBarButtonItemStylePlain target:self action:@selector(dismissButtonClicked:)];
+            self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"病历", nil) style:UIBarButtonItemStylePlain target:self action:@selector(showRecordButtonClicked:)];
+            self.navigationItem.leftBarButtonItem.tintColor = [UIColor whiteColor];
+            self.navigationItem.rightBarButtonItem.tintColor = [UIColor whiteColor];
+            self.title = NSLocalizedString(@"会诊中", nil);
+        }
+            break;
+        default:
+            break;
+    }
+}
 #pragma mark - Button Actions
 - (void)voiceButtonClicked:(UIButton *)sender {
     [self setToolbarSendMethod:SMSToolbarSendMethodVoice];
@@ -168,7 +181,17 @@ typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
 - (void)keyboardButtonClicked:(UIButton *)sender {
     [self setToolbarSendMethod:SMSToolbarSendMethodText];
 }
-
+- (IBAction)backButtonClicked:(id)sender {
+    [self.navigationController popViewControllerAnimated:YES];
+}
+- (void)dismissButtonClicked:(id)sender{
+    [self.navigationController dismissViewControllerAnimated:YES completion:^{
+        
+    }];
+}
+- (void)showRecordButtonClicked:(id)sender{
+    [self performSegueWithIdentifier:@"ContactShowRecordSegueIdentifier" sender:sender];
+}
 #pragma mark - Private Actions
 
 - (void)sendMessageWithText:(NSString *)text{
@@ -404,7 +427,19 @@ typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
         ContactViewController *vc = (ContactViewController *)nav.viewControllers[0];
         vc.contactMode = mode;
         if (mode == 3){
-            
+            vc.didSelectFriends = ^(NSArray *friend){
+                ContactDetailViewController *contact = [self.storyboard instantiateViewControllerWithIdentifier:@"ContactDetailStoryboardID"];//[[ContactDetailViewController alloc] init];
+                contact.currentFriend = self.currentFriend;
+                contact.detailMode = ContactDetailModeConsultation;
+                UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:contact];
+                nav.navigationBar.barTintColor = self.navigationController.navigationBar.barTintColor;
+                nav.navigationBar.translucent = self.navigationController.navigationBar.translucent;
+                nav.navigationBar.barStyle = self.navigationController.navigationBar.barStyle;
+                nav.navigationBar.titleTextAttributes = self.navigationController.navigationBar.titleTextAttributes;
+                [self.navigationController presentViewController:nav animated:YES completion:^{
+                    
+                }];
+            };
         }
         else{
             vc.didSelectFriends = ^(NSArray *friend){
@@ -412,12 +447,6 @@ typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
             };
         }
     }
-}
-
-
-#pragma mark - Actions
-- (IBAction)backButtonClicked:(id)sender {
-    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark - Messages view controller

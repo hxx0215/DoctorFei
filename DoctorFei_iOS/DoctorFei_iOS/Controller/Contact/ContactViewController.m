@@ -215,6 +215,11 @@
                 self.didSelectFriends(self.selectedArray);
             }
                 break;
+            case ContactViewControllerModeConsultation:{
+                [self.navigationController dismissViewControllerAnimated:NO completion:^{
+                    self.didSelectFriends(self.selectedArray);
+                }];
+            }
             case ContactViewControllerModeTransfer:{
                 [self.navigationController dismissViewControllerAnimated:NO completion:^{
                     self.didSelectFriends(self.selectedArray);
