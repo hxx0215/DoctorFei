@@ -9,6 +9,9 @@
 #import "QuickReplyTableViewController.h"
 #import "DoctorAPI.h"
 #import <MBProgressHUD.h>
+#import "QuickReplyCustomActionTableViewCell.h"
+#import "QuickReplyTableViewCell.h"
+#import "QuickReplyAddCustomViewController.h"
 @interface QuickReplyTableViewController ()
 
 - (IBAction)backButtonClicked:(id)sender;
@@ -20,19 +23,28 @@
     NSArray *replyDicArry;
 }
 
--(void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    [self.tableView setTableFooterView:[UIView new]];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
     [self loadFastReply];
 }
 
--(void)loadFastReply
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+}
+
+- (void)loadFastReply
 {
     NSNumber *doctorId = [[NSUserDefaults standardUserDefaults]objectForKey:@"UserId"];
     NSDictionary *params = @{
                              @"doctorid": doctorId
                              };
-    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view.window animated:YES];
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [DoctorAPI getDoctorFastreplyWithParameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"%@",responseObject);
         replyDicArry = [responseObject copy];
@@ -54,14 +66,20 @@
 #pragma mark - UITableView DataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [replyDicArry count];
+    return [replyDicArry count] + 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"123"];
-    NSDictionary *dic = [replyDicArry objectAtIndex:indexPath.row];
-    cell.textLabel.text = dic[@"content"];
-    return cell;
+    static NSString *QuickReplyCellIdentifier = @"QuickReplyCellIdentifier";
+    static NSString *QuickReplyCustomCellIdentifier = @"QuickReplyCustomCellIdentifier";
+    if (indexPath.row < replyDicArry.count) {
+        QuickReplyTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:QuickReplyCellIdentifier forIndexPath:indexPath];
+        [cell setReplyContent:replyDicArry[indexPath.row][@"content"]];
+        return cell;
+    } else{
+        QuickReplyCustomActionTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:QuickReplyCustomCellIdentifier forIndexPath:indexPath];
+        return cell;
+    }
 }
 
 

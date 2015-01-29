@@ -494,7 +494,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wiX-RQ-jPr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2238" y="-5141.25"/>
+            <point key="canvasLocation" x="-1320" y="-5141.25"/>
         </scene>
         <!--我的主页-->
         <scene sceneID="byh-kx-8fj">
@@ -5162,7 +5162,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="45" id="1UV-SH-SpA">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="QuickReplyCellIdentifier" rowHeight="45" id="1UV-SH-SpA" customClass="QuickReplyTableViewCell">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1UV-SH-SpA" id="k9f-ew-bi9">
                                     <autoresizingMask key="autoresizingMask"/>
@@ -5231,8 +5231,12 @@
                                         </mask>
                                     </variation>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="contentLabel" destination="VgM-5F-W5R" id="bA9-cg-qP2"/>
+                                    <outlet property="selectButton" destination="ixF-bT-rjr" id="8kP-SP-dAo"/>
+                                </connections>
                             </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="45" id="dgQ-Aw-FLH">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="QuickReplyCustomCellIdentifier" rowHeight="45" id="dgQ-Aw-FLH" customClass="QuickReplyCustomActionTableViewCell">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dgQ-Aw-FLH" id="0t4-2o-F3a">
@@ -5259,6 +5263,9 @@
                                         </mask>
                                     </variation>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="nGc-fZ-GBx" kind="presentation" id="172-Tf-RHl"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -5278,6 +5285,88 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WR1-a9-Ukm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-5298" y="-4606.5"/>
+        </scene>
+        <!--自定义添加-->
+        <scene sceneID="L4b-eD-YBZ">
+            <objects>
+                <viewController id="TcN-1s-6pZ" customClass="QuickReplyAddCustomViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="1pD-UG-bNG"/>
+                        <viewControllerLayoutGuide type="bottom" id="z7a-tl-Fo9"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Kdj-RZ-lat">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="MVk-lx-akW">
+                                <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="Nl5-wU-C8f"/>
+                                </constraints>
+                                <color key="textColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="Nl5-wU-C8f"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="Nl5-wU-C8f"/>
+                                    </mask>
+                                </variation>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" red="0.93333333330000001" green="0.93333333330000001" blue="0.93333333330000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="MVk-lx-akW" firstAttribute="leading" secondItem="Kdj-RZ-lat" secondAttribute="leading" id="YDj-9y-OfV"/>
+                            <constraint firstItem="MVk-lx-akW" firstAttribute="top" secondItem="1pD-UG-bNG" secondAttribute="bottom" id="irT-aI-wbz"/>
+                            <constraint firstAttribute="trailing" secondItem="MVk-lx-akW" secondAttribute="trailing" id="tz4-Ep-X4b"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="MVk-lx-akW"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="YDj-9y-OfV"/>
+                                <exclude reference="irT-aI-wbz"/>
+                                <exclude reference="tz4-Ep-X4b"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular-widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="MVk-lx-akW"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="YDj-9y-OfV"/>
+                                <include reference="irT-aI-wbz"/>
+                                <include reference="tz4-Ep-X4b"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <navigationItem key="navigationItem" title="自定义添加" id="4ZM-2q-Bth">
+                        <barButtonItem key="leftBarButtonItem" image="return.png" id="wr7-VI-zuN">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="backButtonClicked:" destination="TcN-1s-6pZ" id="7RJ-36-ccZ"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="确定" id="xag-bA-TBh">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="confirmButtonClicked:" destination="TcN-1s-6pZ" id="B2Q-vJ-Ahh"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="confirmButton" destination="xag-bA-TBh" id="mhI-nF-2Nv"/>
+                        <outlet property="contentTextField" destination="MVk-lx-akW" id="mcn-hS-G4t"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5pG-7M-EWA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-3438" y="-5270.25"/>
         </scene>
         <!--我的日程-->
         <scene sceneID="omP-Yb-WDc">
@@ -10126,7 +10215,26 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xwv-J1-eVy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3156" y="-5141.25"/>
+            <point key="canvasLocation" x="-2238" y="-5141.25"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="GXm-2b-zbd">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="nGc-fZ-GBx" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" translucent="NO" id="tGn-1D-EgF">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.51372549020000002" green="0.72549019609999998" blue="0.15686274510000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="TcN-1s-6pZ" kind="relationship" relationship="rootViewController" id="1us-ji-5T9"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mvn-zq-Qg0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-4356" y="-5270.25"/>
         </scene>
     </scenes>
     <resources>
