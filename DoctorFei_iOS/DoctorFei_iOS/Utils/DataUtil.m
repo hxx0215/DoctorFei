@@ -46,7 +46,7 @@
         return attributedString;
     }
     else{
-        return [[NSAttributedString alloc]initWithString:currentFriend.realname];
+        return [[NSAttributedString alloc]initWithString:currentFriend.realname?currentFriend.realname:@""];
     }
 }
 
