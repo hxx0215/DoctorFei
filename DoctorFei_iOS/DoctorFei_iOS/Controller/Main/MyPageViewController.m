@@ -57,6 +57,20 @@
         hud.detailsLabelText = error.localizedDescription;
         [hud hide:YES afterDelay:1.5f];
     }];
+    
+    //删除说说和日志，接口未实现
+    NSDictionary *delparams = @{
+                             @"doctorid": doctorId,
+                             @"id" : @7,
+                             @"type" : @2 //1为说说 2为日志
+                             };
+    [DoctorAPI delDoctorShuoshuoOrDaylogWithParameters:delparams success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSDictionary *dic = [responseObject firstObject];
+        NSLog(@"%@",dic[@"state"]);
+        NSLog(@"%@",dic[@"msg"]);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"%@",error.localizedDescription);
+    }];
 }
 
 #pragma mark - LifeCycles
