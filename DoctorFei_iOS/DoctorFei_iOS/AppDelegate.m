@@ -32,7 +32,8 @@
     
     [MobClick startWithAppkey:@"54928fcbfd98c58aaa00136c" reportPolicy:BATCH channelId:@""];
     
-    [MagicalRecord setupCoreDataStackWithStoreNamed:@"DoctorFei.sqlite"];
+//    [MagicalRecord setupCoreDataStackWithStoreNamed:@"DoctorFei.sqlite"];
+    [MagicalRecord setupCoreDataStackWithAutoMigratingSqliteStoreNamed:@"DoctorFei.sqlite"];
     
     [AFNetworkActivityIndicatorManager sharedManager].enabled = YES;
     

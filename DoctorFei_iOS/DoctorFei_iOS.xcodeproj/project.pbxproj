@@ -41,10 +41,10 @@
 		6A2BD5E31A31E025002F7644 /* ContactFriendSetNoteTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A2BD5E21A31E025002F7644 /* ContactFriendSetNoteTableViewController.m */; };
 		6A2BD6071A31EC44002F7644 /* ChatAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A2BD6061A31EC44002F7644 /* ChatAPI.m */; };
 		6A2BD60A1A31EDA7002F7644 /* FetchChatUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A2BD6091A31EDA7002F7644 /* FetchChatUtil.m */; };
+		6A3DA1031A7E7BF200BE721B /* MainCoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6A3DA1011A7E7BF200BE721B /* MainCoreData.xcdatamodeld */; };
 		6A4F2E011A237FFF008C2D10 /* MyCardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A4F2E001A237FFF008C2D10 /* MyCardViewController.m */; };
 		6A4FC15C1A2EFF4F0042497C /* MySelfBasicInfoEditTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A4FC15B1A2EFF4F0042497C /* MySelfBasicInfoEditTableViewController.m */; };
 		6A4FC15F1A2F063B0042497C /* MyselfIntroInfoEditTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A4FC15E1A2F063B0042497C /* MyselfIntroInfoEditTableViewController.m */; };
-		6A4FC1621A2F51360042497C /* MainCoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6A4FC1601A2F51360042497C /* MainCoreData.xcdatamodeld */; };
 		6A4FC1691A2F67F10042497C /* ContactFriendTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A4FC1681A2F67F10042497C /* ContactFriendTableViewCell.m */; };
 		6A5DC5D81A32DF3800961E53 /* UserAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A5DC5D71A32DF3800961E53 /* UserAPI.m */; };
 		6A5DC5F01A33135E00961E53 /* MainChatTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A5DC5EF1A33135E00961E53 /* MainChatTableViewCell.m */; };
@@ -558,13 +558,13 @@
 		6A2BD6061A31EC44002F7644 /* ChatAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatAPI.m; sourceTree = "<group>"; };
 		6A2BD6081A31EDA7002F7644 /* FetchChatUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FetchChatUtil.h; path = ../Networking/FetchChatUtil.h; sourceTree = "<group>"; };
 		6A2BD6091A31EDA7002F7644 /* FetchChatUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FetchChatUtil.m; path = ../Networking/FetchChatUtil.m; sourceTree = "<group>"; };
+		6A3DA1021A7E7BF200BE721B /* MainCoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MainCoreData.xcdatamodel; sourceTree = "<group>"; };
 		6A4F2DFF1A237FFF008C2D10 /* MyCardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyCardViewController.h; sourceTree = "<group>"; };
 		6A4F2E001A237FFF008C2D10 /* MyCardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyCardViewController.m; sourceTree = "<group>"; };
 		6A4FC15A1A2EFF4F0042497C /* MySelfBasicInfoEditTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MySelfBasicInfoEditTableViewController.h; sourceTree = "<group>"; };
 		6A4FC15B1A2EFF4F0042497C /* MySelfBasicInfoEditTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MySelfBasicInfoEditTableViewController.m; sourceTree = "<group>"; };
 		6A4FC15D1A2F063B0042497C /* MyselfIntroInfoEditTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyselfIntroInfoEditTableViewController.h; sourceTree = "<group>"; };
 		6A4FC15E1A2F063B0042497C /* MyselfIntroInfoEditTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyselfIntroInfoEditTableViewController.m; sourceTree = "<group>"; };
-		6A4FC1611A2F51360042497C /* MainCoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MainCoreData.xcdatamodel; sourceTree = "<group>"; };
 		6A4FC1661A2F61160042497C /* DoctorFei_iOS-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DoctorFei_iOS-Prefix.pch"; sourceTree = "<group>"; };
 		6A4FC1671A2F67F10042497C /* ContactFriendTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactFriendTableViewCell.h; sourceTree = "<group>"; };
 		6A4FC1681A2F67F10042497C /* ContactFriendTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactFriendTableViewCell.m; sourceTree = "<group>"; };
@@ -1226,7 +1226,7 @@
 		6A73748E1A207E88006EF54F /* Modal */ = {
 			isa = PBXGroup;
 			children = (
-				6A4FC1601A2F51360042497C /* MainCoreData.xcdatamodeld */,
+				6A3DA1011A7E7BF200BE721B /* MainCoreData.xcdatamodeld */,
 				6A1DEA661A3579D700FD637B /* Friends.h */,
 				6A1DEA671A3579D700FD637B /* Friends.m */,
 				6A5DC5F41A3317FE00961E53 /* Message.h */,
@@ -2497,6 +2497,7 @@
 				6A2BD5D21A3031F7002F7644 /* SocketConnection.m in Sources */,
 				B93969CC1A6415EB0073DEF4 /* ContactNewFriendTableViewCell.m in Sources */,
 				6A73763D1A20CFAD006EF54F /* ContactViewController.m in Sources */,
+				6A3DA1031A7E7BF200BE721B /* MainCoreData.xcdatamodeld in Sources */,
 				D3F448921A30BC6700B20E0A /* MoreFeedbackViewController.m in Sources */,
 				6A7372CC1A2034B4006EF54F /* AppDelegate.m in Sources */,
 				6A2BD5CF1A3008BF002F7644 /* SetOnlineStateUtil.m in Sources */,
@@ -2519,7 +2520,6 @@
 				B93969C81A6406590073DEF4 /* ContactNewFriendTableViewController.m in Sources */,
 				6A5DE81A1A792621000F24DA /* QuickReplyCustomActionTableViewCell.m in Sources */,
 				6AB8B09B1A3747EA00866281 /* Friends+PinYinUtil.m in Sources */,
-				6A4FC1621A2F51360042497C /* MainCoreData.xcdatamodeld in Sources */,
 				6A2BD5D51A306252002F7644 /* ContactDetailViewController.m in Sources */,
 				6A4FC15C1A2EFF4F0042497C /* MySelfBasicInfoEditTableViewController.m in Sources */,
 				6A4F2E011A237FFF008C2D10 /* MyCardViewController.m in Sources */,
@@ -2697,12 +2697,12 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		6A4FC1601A2F51360042497C /* MainCoreData.xcdatamodeld */ = {
+		6A3DA1011A7E7BF200BE721B /* MainCoreData.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				6A4FC1611A2F51360042497C /* MainCoreData.xcdatamodel */,
+				6A3DA1021A7E7BF200BE721B /* MainCoreData.xcdatamodel */,
 			);
-			currentVersion = 6A4FC1611A2F51360042497C /* MainCoreData.xcdatamodel */;
+			currentVersion = 6A3DA1021A7E7BF200BE721B /* MainCoreData.xcdatamodel */;
 			path = MainCoreData.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

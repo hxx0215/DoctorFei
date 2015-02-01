@@ -31,6 +31,13 @@
 #define kMethodGetDoctorFastreply @"get.doctor.fastreply"
 #define kMethodSetDoctorFastreply @"set.doctor.fastreply"
 
+#define kMethodGetFriendGroup @"get.doctor.friendgroup"
+#define kMethodSetFriendGroup @"set.doctor.friendgroup"
+#define kMethodUpdateFriendGroup @"update.doctor.friendgroup"
+#define kMethodDelFriendGroup @"update.doctor.delfriendgroup"
+#define kMethodMoveFriendGroup @"set.doctor.movefriend"
+
+
 @implementation DoctorAPI
 + (void)updateInfomationWithParameters: (id)parameters success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
 {
@@ -156,6 +163,27 @@
 + (void)setDoctorFastreplyWithParameters: (id)parameters success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
 {
     [[self sharedManager]defaultGetWithMethod:kMethodSetDoctorFastreply WithParameters:parameters success:success failure:failure];
+}
+
+//获取好友分组
++ (void)getDoctorFriendGroupWithParameters: (id)parameters success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure {
+    [[self sharedManager]defaultGetWithMethod:kMethodGetFriendGroup WithParameters:parameters success:success failure:failure];
+}
+//添加好友分组
++ (void)setDoctorFriendGroupWithParameters: (id)parameters success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure {
+    [[self sharedManager]defaultGetWithMethod:kMethodSetFriendGroup WithParameters:parameters success:success failure:failure];
+}
+//修改好友分组
++ (void)updateDoctorFriendGroupWithParameters: (id)parameters success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure {
+    [[self sharedManager]defaultGetWithMethod:kMethodUpdateFriendGroup WithParameters:parameters success:success failure:failure];
+}
+//删除好友分组
++ (void)delDoctorFriendGroupWithParameters: (id)parameters success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure {
+    [[self sharedManager]defaultGetWithMethod:kMethodDelFriendGroup WithParameters:parameters success:success failure:failure];
+}
+//移动好友到分组
++ (void)moveDoctorFriendGroupWithParameters: (id)parameters success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure {
+    [[self sharedManager]defaultGetWithMethod:kMethodMoveFriendGroup WithParameters:parameters success:success failure:failure];
 }
 
 @end
