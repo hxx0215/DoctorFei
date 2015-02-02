@@ -14,6 +14,7 @@
 #import "DoctorAPI.h"
 #import <MBProgressHUD.h>
 #import "Chat.h"
+#import "ContactFriendDetailTableViewCell.h"
 @interface ContactFriendDetailTableViewController ()
 
 - (IBAction)backButtonClicked:(id)sender;
@@ -23,6 +24,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *situationLabel;
 //@property (weak, nonatomic) IBOutlet UILabel *phoneLabel;
 //@property (weak, nonatomic) IBOutlet UIButton *phoneButton;
+@property (assign, nonatomic) BOOL showTel;
 //- (IBAction)phoneButtonClicked:(id)sender;
 - (IBAction)deleteFriendButtonClicked:(id)sender;
 
@@ -48,6 +50,8 @@
     CGRect tableFooterRect = self.tableView.tableFooterView.frame;
     tableFooterRect.size.height = 78.0f;
     [self.tableView.tableFooterView setFrame:tableFooterRect];
+    
+    self.showTel = YES;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -131,5 +135,47 @@
 }
 - (IBAction)backButtonClicked:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
+}
+#pragma mark - TableViewDelegate & DataSource
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    if (self.showTel)
+        return 3;
+    else
+        return 2;
+}
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    ContactFriendDetailTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ContactFriendDetailIdentifier"];
+    NSInteger index = indexPath.row;
+    switch (index) {
+        case 0:
+            cell.titleLabel.text = NSLocalizedString(@"性别", nil);
+            cell.contentLabel.text = NSLocalizedString(@"男", nil);
+            break;
+        case 1:
+            if (self.showTel){
+                cell.titleLabel.text = NSLocalizedString(@"电话", nil);
+                cell.contentLabel.text = @"13025064069";
+                break;
+            }
+        case 2:
+            cell.titleLabel.text = NSLocalizedString(@"备注及描述", nil);
+            cell.contentLabel.text = @"感冒";
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+            break;
+        default:
+            break;
+    }
+    return cell;
+}
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    ContactFriendDetailTableViewCell *cell = (ContactFriendDetailTableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
+    if (self.showTel && indexPath.row == 1)
+    {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel://%@",cell.contentLabel.text]]];
+    }
+    if (cell.accessoryType == UITableViewCellAccessoryDisclosureIndicator){
+        [self performSegueWithIdentifier:@"FriendDetailSetNoteSegueIdentifier" sender:nil];
+    }
 }
 @end

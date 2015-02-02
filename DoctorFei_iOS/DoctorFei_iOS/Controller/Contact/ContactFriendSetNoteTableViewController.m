@@ -12,11 +12,12 @@
 #import <MBProgressHUD.h>
 #import "DoctorAPI.h"
 @interface ContactFriendSetNoteTableViewController ()
-    <UITextFieldDelegate>
+    <UITextFieldDelegate,UITextViewDelegate>
 - (IBAction)backButtonClicked:(id)sender;
 - (IBAction)confirmButtonClicked:(id)sender;
 @property (weak, nonatomic) IBOutlet UITextField *noteLabel;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *confrimButton;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *textViewBottomConstraint;
 
 @end
 
@@ -42,7 +43,7 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    [self.noteLabel becomeFirstResponder];
+//    [self.noteLabel becomeFirstResponder];
 }
 - (void)viewWillAppear:(BOOL)animated {
     [self.noteLabel resignFirstResponder];
@@ -106,5 +107,13 @@
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     return YES;
 }
-
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
+    self.textViewBottomConstraint.constant = 250;
+    return YES;
+}
+#pragma mark - UITextViewDelegate
+- (BOOL)textViewShouldBeginEditing:(UITextView *)textView{
+    self.textViewBottomConstraint.constant = 250;
+    return YES;
+}
 @end
