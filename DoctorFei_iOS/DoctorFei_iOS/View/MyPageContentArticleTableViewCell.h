@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
+@class DayLog;
 @interface MyPageContentArticleTableViewCell : UITableViewCell
-@property (nonatomic, strong) NSDictionary *currentDic;
+
+@property (nonatomic, strong) DayLog *dayLog;
+
 @end

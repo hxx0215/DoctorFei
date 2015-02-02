@@ -19,6 +19,7 @@
 #import <WYStoryboardPopoverSegue.h>
 #import "MainGroupDetailActionViewController.h"
 #import "DoctorAPI.h"
+#import "MyPageViewController.h"
 @interface MainViewController ()
     <UITableViewDelegate, UITableViewDataSource, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate, UIGestureRecognizerDelegate, MainGroupPopoverVCDelegate, WYPopoverControllerDelegate>
 
@@ -102,42 +103,42 @@
     
     [self reloadTableViewData];
     
-    //医生认证接口
-    NSNumber *doctorId = [[NSUserDefaults standardUserDefaults]objectForKey:@"UserId"];
-    if (!doctorId) {
-        return;
-    }
-    NSDictionary *params = @{
-                             @"doctorid": doctorId
-                             };
-    //    NSLog(@"%@",params);
-    [DoctorAPI getAuditWithParameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSDictionary *dataDict = [responseObject firstObject];
-        NSInteger state = [dataDict[@"state"]intValue];
-        [[NSUserDefaults standardUserDefaults] setObject:dataDict[@"state"] forKey:@"auditState"];
-        if (state == -1)
-        {
-            [self.auditButton setSelected:NO];
-//            [self.auditButton setTitle:@"" forState:UIControlStateNormal];
-        }
-        else if(state == -2)
-        {
-            [self.auditButton setSelected:NO];
-//            [self.auditButton setTitle:@"审核中" forState:UIControlStateNormal];
-        }
-        else if(state > 0)
-        {
-            [self.auditButton setSelected:YES];
-//            [self.auditButton setTitle:@"已认证" forState:UIControlStateNormal];
-        }
-        else
-        {
-            [self.auditButton setSelected:NO];
-//            [self.auditButton setTitle:@"审核未通过" forState:UIControlStateNormal];
-        }
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        ;
-    }];
+//    //医生认证接口
+//    NSNumber *doctorId = [[NSUserDefaults standardUserDefaults]objectForKey:@"UserId"];
+//    if (!doctorId) {
+//        return;
+//    }
+//    NSDictionary *params = @{
+//                             @"doctorid": doctorId
+//                             };
+//    //    NSLog(@"%@",params);
+//    [DoctorAPI getAuditWithParameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+//        NSDictionary *dataDict = [responseObject firstObject];
+//        NSInteger state = [dataDict[@"state"]intValue];
+//        [[NSUserDefaults standardUserDefaults] setObject:dataDict[@"state"] forKey:@"auditState"];
+//        if (state == -1)
+//        {
+//            [self.auditButton setSelected:NO];
+////            [self.auditButton setTitle:@"" forState:UIControlStateNormal];
+//        }
+//        else if(state == -2)
+//        {
+//            [self.auditButton setSelected:NO];
+////            [self.auditButton setTitle:@"审核中" forState:UIControlStateNormal];
+//        }
+//        else if(state > 0)
+//        {
+//            [self.auditButton setSelected:YES];
+////            [self.auditButton setTitle:@"已认证" forState:UIControlStateNormal];
+//        }
+//        else
+//        {
+//            [self.auditButton setSelected:NO];
+////            [self.auditButton setTitle:@"审核未通过" forState:UIControlStateNormal];
+//        }
+//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//        ;
+//    }];
 }
 
 
@@ -208,6 +209,12 @@
     } else if ([segue.identifier isEqualToString:@"MainEditGroupSegueIdentifier"]) {
         MainGroupDetailActionViewController *vc = [segue destinationViewController];
         [vc setVcMode:MainGroupDetailActionViewControllerModeEdit];
+    } else if ([segue.identifier isEqualToString:@"MyPageSegueIdentifier"]) {
+        MyPageViewController *vc = [segue destinationViewController];
+        NSNumber *doctorId = [[NSUserDefaults standardUserDefaults]objectForKey:@"UserId"];
+        if (doctorId) {
+            [vc setCurrentDoctorId:doctorId];
+        }
     }
 }
 

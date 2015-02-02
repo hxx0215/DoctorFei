@@ -111,7 +111,7 @@
             }
             else
             {
-                error = [NSError errorWithDomain:kErrorDomain code:0 userInfo:@{NSLocalizedDescriptionKey : @"哈哈，文章内容不合法"}];
+                error = [NSError errorWithDomain:kErrorDomain code:0 userInfo:@{NSLocalizedDescriptionKey : @"其他错误"}];
             }
             failure(operation, error);
         }

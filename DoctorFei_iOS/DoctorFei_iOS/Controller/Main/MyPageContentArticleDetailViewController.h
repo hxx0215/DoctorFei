@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+@class DayLog;
 
 @interface MyPageContentArticleDetailViewController : UIViewController
+
+@property (nonatomic, strong) DayLog *currentDayLog;
 
 @end

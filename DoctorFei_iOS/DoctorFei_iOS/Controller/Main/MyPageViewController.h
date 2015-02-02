@@ -10,4 +10,6 @@
 
 @interface MyPageViewController : UIViewController
 
+@property (nonatomic, strong) NSNumber *currentDoctorId;
+
 @end

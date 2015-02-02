@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+@class ShuoShuo;
 
 @interface MyPageContentTalkViewController : UIViewController
+
+@property (nonatomic, strong) ShuoShuo *currentShuoShuo;
 
 @end
