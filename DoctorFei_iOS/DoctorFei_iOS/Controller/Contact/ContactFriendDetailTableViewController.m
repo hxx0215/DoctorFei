@@ -154,7 +154,7 @@
         case 1:
             if (self.showTel){
                 cell.titleLabel.text = NSLocalizedString(@"电话", nil);
-                cell.contentLabel.text = @"13313131333";
+                cell.contentLabel.text = @"13025064069";
                 break;
             }
         case 2:
@@ -169,7 +169,11 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    ContactFriendDetailTableViewCell *cell = (ContactFriendDetailTableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
+    if (self.showTel && indexPath.row == 1)
+    {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel://%@",cell.contentLabel.text]]];
+    }
     if (cell.accessoryType == UITableViewCellAccessoryDisclosureIndicator){
         [self performSegueWithIdentifier:@"FriendDetailSetNoteSegueIdentifier" sender:nil];
     }

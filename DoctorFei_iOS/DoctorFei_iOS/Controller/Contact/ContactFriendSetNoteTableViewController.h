@@ -10,7 +10,7 @@
 
 @class Friends;
 
-@interface ContactFriendSetNoteTableViewController : UITableViewController
+@interface ContactFriendSetNoteTableViewController : UIViewController
 
 @property (nonatomic, strong) Friends *currentFriend;
 
