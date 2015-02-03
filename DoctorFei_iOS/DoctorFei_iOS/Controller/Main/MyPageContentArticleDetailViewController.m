@@ -60,6 +60,7 @@
         if (responseObject) {
             NSDictionary *dict = ((NSArray *)responseObject).firstObject;
             dispatch_async(dispatch_get_main_queue(), ^{
+                NSLog(@"%@",dict[@"title"]);
                 if ([dict[@"title"]isKindOfClass:[NSString class]]) {
                     [_titleLabel setText:dict[@"title"]];
                 }
@@ -84,11 +85,29 @@
     }
 }
 
+- (void)deleteDaylogByDaylog:(DayLog *)daylog {
+    NSDictionary *delparams = @{
+                                @"doctorid": daylog.doctorId,
+                                @"id" : daylog.dayLogId,
+                                @"type" : @2 //1为说说 2为日志
+                                };
+    [DoctorAPI delDoctorShuoshuoOrDaylogWithParameters:delparams success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"%@",responseObject);
+        NSDictionary *dic = [responseObject firstObject];
+        NSLog(@"%@",dic[@"state"]);
+        NSLog(@"%@",dic[@"msg"]);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"%@",error.localizedDescription);
+    }];
+    
+}
+
 - (IBAction)backButtonClicked:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
 }
 - (IBAction)deleteButtonClicked:(id)sender {
     //TODO
+    [self deleteDaylogByDaylog:_currentDayLog];
 }
 
 - (IBAction)repostButtonClicked:(id)sender {

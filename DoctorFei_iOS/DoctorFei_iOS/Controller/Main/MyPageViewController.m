@@ -105,7 +105,7 @@
     [MBProgressHUD hideHUDForView:self.view animated:NO];
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [DoctorAPI DoctorShuoshuoWithParameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-//        NSLog(@"%@",responseObject);
+        //NSLog(@"%@",responseObject);
         for (NSDictionary *dict in responseObject) {
             if (!dict) {
                 continue;
