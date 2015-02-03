@@ -9,7 +9,10 @@
 #import "AgendaTimeScheduleViewController.h"
 #import "DoctorAPI.h"
 #import <MBProgressHUD.h>
+@interface AgendaTimeScheduleViewController()
+@property (weak, nonatomic) IBOutlet UIImageView *scheduleTableBackImage;
 
+@end
 @implementation AgendaTimeScheduleViewController
 {
     MBProgressHUD *hud;
@@ -18,6 +21,8 @@
 -(void)viewDidLoad
 {
     [super viewDidLoad];
+    self.scheduleTableBackImage.layer.cornerRadius = 5.0;
+    self.scheduleTableBackImage.layer.masksToBounds = YES;
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -73,5 +78,8 @@
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"%@", error.localizedDescription);
     }];
+}
+-(IBAction)scheduleSelected:(UIButton *)sender{
+    sender.selected = !sender.selected;
 }
 @end
