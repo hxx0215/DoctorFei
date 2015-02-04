@@ -141,18 +141,23 @@
 }
 
 - (void)deleteShuoShuoByShuoShuo:(ShuoShuo *)shuoshuo {
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view.window animated:YES];
+    hud.labelText = @"删除说说中...";
     NSDictionary *delparams = @{
                                 @"doctorid": _currentDoctorId,
                                 @"id" : shuoshuo.shuoshuoId,
                                 @"type" : @1 //1为说说 2为日志
                                 };
     [DoctorAPI delDoctorShuoshuoOrDaylogWithParameters:delparams success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"%@",responseObject);
         NSDictionary *dic = [responseObject firstObject];
-        NSLog(@"%@",dic[@"state"]);
-        NSLog(@"%@",dic[@"msg"]);
+        hud.mode = MBProgressHUDModeText;
+        hud.labelText = dic[@"msg"];
+        [hud hide:YES afterDelay:1.0f];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"%@",error.localizedDescription);
+        hud.mode = MBProgressHUDModeText;
+        hud.labelText = error.localizedDescription;
+        [hud hide:YES afterDelay:1.0f];
     }];
 
 }

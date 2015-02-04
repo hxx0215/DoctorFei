@@ -14,6 +14,7 @@
 #import <MBProgressHUD.h>
 
 @interface MyPageContentArticleDetailViewController ()
+    <UIAlertViewDelegate>
 - (IBAction)backButtonClicked:(id)sender;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *createTimeLabel;
@@ -86,6 +87,8 @@
 }
 
 - (void)deleteDaylogByDaylog:(DayLog *)daylog {
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view.window animated:YES];
+    hud.labelText = @"删除日志中...";
     NSDictionary *delparams = @{
                                 @"doctorid": daylog.doctorId,
                                 @"id" : daylog.dayLogId,
@@ -94,22 +97,33 @@
     [DoctorAPI delDoctorShuoshuoOrDaylogWithParameters:delparams success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"%@",responseObject);
         NSDictionary *dic = [responseObject firstObject];
-        NSLog(@"%@",dic[@"state"]);
-        NSLog(@"%@",dic[@"msg"]);
+        hud.mode = MBProgressHUDModeText;
+        hud.labelText = dic[@"msg"];
+        [hud hide:YES afterDelay:1.0f];
+        [self.navigationController popViewControllerAnimated:YES];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"%@",error.localizedDescription);
+        hud.mode = MBProgressHUDModeText;
+        hud.labelText = error.localizedDescription;
+        [hud hide:YES afterDelay:1.0f];
     }];
-    
 }
 
 - (IBAction)backButtonClicked:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
 }
 - (IBAction)deleteButtonClicked:(id)sender {
-    //TODO
-    [self deleteDaylogByDaylog:_currentDayLog];
+    UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"提示" message:@"确认删除这篇日志吗?" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+    [alertView show];
 }
 
 - (IBAction)repostButtonClicked:(id)sender {
+}
+
+#pragma mark - UIAlertView Delegate
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == 1) {
+        [self deleteDaylogByDaylog:_currentDayLog];
+    }
 }
 @end
