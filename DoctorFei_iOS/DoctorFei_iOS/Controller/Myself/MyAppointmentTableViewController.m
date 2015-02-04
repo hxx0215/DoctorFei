@@ -9,6 +9,7 @@
 #import "MyAppointmentTableViewController.h"
 
 @interface MyAppointmentTableViewController ()
+@property (weak, nonatomic) IBOutlet UISegmentedControl *appointSegment;
 
 @end
 
@@ -22,6 +23,9 @@ static NSString * const kMyAppointmentIdenty = @"MyAppointmentIdenty";
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    CGRect headFrame = self.tableView.tableHeaderView.frame;
+    headFrame.size.height = 28;
+    self.tableView.tableHeaderView.frame = headFrame;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -30,6 +34,9 @@ static NSString * const kMyAppointmentIdenty = @"MyAppointmentIdenty";
 }
 - (IBAction)backButtonClicked:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
+}
+- (IBAction)segmentChanged:(UISegmentedControl *)sender {
+    [self.tableView reloadData];
 }
 
 #pragma mark - Table view data source
@@ -55,11 +62,17 @@ static NSString * const kMyAppointmentIdenty = @"MyAppointmentIdenty";
     }
     
     // Configure the cell...
-    cell.textLabel.text = @"1234预约";
+    if (self.appointSegment.selectedSegmentIndex ==0)
+        cell.textLabel.text = @"1234预约";
+    else
+        cell.textLabel.text = @"1234转诊";
     return cell;
 }
 
-
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    [self performSegueWithIdentifier:@"MyAppointmentSegueIdentifier" sender:nil];
+}
 /*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
