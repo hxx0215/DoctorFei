@@ -12,11 +12,12 @@
 - (IBAction)backButtonClicked:(id)sender;
 
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentControl;
-@property (weak, nonatomic) IBOutlet UIView *contentView;
+//@property (weak, nonatomic) IBOutlet UIView *contentView;
 - (IBAction)segmentValueChanged:(id)sender;
 
 @property (nonatomic, strong) NSArray *viewControllers;
 @property (nonatomic, strong) UIViewController *currentViewController;
+@property (nonatomic, strong) UIView *contentView;
 @end
 
 @implementation AgendaViewController
@@ -27,6 +28,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.contentView = [[UIView alloc] initWithFrame:CGRectZero];
+    _contentView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    _contentView.backgroundColor = [UIColor whiteColor];
+    self.contentView.frame = CGRectMake(0, 46, CGRectGetWidth(self.view.frame), CGRectGetHeight(self.view.frame) - 46);
+    [self.view addSubview:self.contentView];
     
     _viewControllers = @[
                          [self.storyboard instantiateViewControllerWithIdentifier:@"AgendaTimeScheduleViewController"],
@@ -46,7 +52,11 @@
         aViewController.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         __weak AgendaViewController *blockSelf = self;
         void(^switchViewController)(void) = ^() {
-            [blockSelf showViewControllerWithSlideInAnimation: aViewController];
+            if (animated) {
+                [blockSelf showViewControllerWithSlideInAnimation: aViewController];
+            } else{
+                [blockSelf showViewControllerWithoutAnimation:aViewController];
+            }
             blockSelf.currentViewController = aViewController;
             blockSelf.segmentControl.selectedSegmentIndex = [blockSelf.viewControllers indexOfObject:aViewController];
         };
@@ -61,6 +71,24 @@
         [blockSelf.navigationItem setRightBarButtonItems:aViewController.navigationItem.rightBarButtonItems animated:animated];
     }
 }
+- (void)showViewControllerWithoutAnimation:(UIViewController *)aViewController {
+    if(self.currentViewController) {
+        [self.currentViewController willMoveToParentViewController:nil];
+        
+        [self.currentViewController removeFromParentViewController];
+        [self.currentViewController.view removeFromSuperview];
+        
+        [self.currentViewController didMoveToParentViewController:nil];
+    }
+    
+    aViewController.view.frame = _contentView.bounds;
+    
+    [aViewController willMoveToParentViewController:self];
+    [_contentView addSubview:aViewController.view];
+    [self addChildViewController:aViewController];
+    [aViewController didMoveToParentViewController:self];
+}
+
 - (void)showViewControllerWithSlideInAnimation: (UIViewController *)aViewController {
     NSInteger oldIndex = _currentViewController ? [_viewControllers indexOfObject:_currentViewController] : NSNotFound;
     NSInteger newIndex = [_viewControllers indexOfObject:aViewController];
@@ -69,9 +97,9 @@
     
     [_currentViewController willMoveToParentViewController:nil];
     [aViewController willMoveToParentViewController:self];
-    [_contentView addSubview:aViewController.view];
     [self addChildViewController:aViewController];
-    
+    [_contentView addSubview:aViewController.view];
+
     [aViewController didMoveToParentViewController:self];
     
     __block CGRect aViewControllerRect = _contentView.bounds;
@@ -103,6 +131,7 @@
         [oldViewController didMoveToParentViewController:nil];
     }];
 }
+
 
 - (IBAction)segmentValueChanged:(id)sender {
     UISegmentedControl *segmentControl = (UISegmentedControl *)sender;

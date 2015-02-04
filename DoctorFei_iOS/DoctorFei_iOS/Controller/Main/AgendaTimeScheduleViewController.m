@@ -38,15 +38,14 @@
                          @"Saturday_PM":@22,
                          @"Sunday_AM":@23,
                          @"Sunday_PM":@24};
+    
 }
-
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
 //    [self updateSchedule];
     [self loadSchedule];
 }
-
 -(void)loadSchedule
 {
     NSNumber *doctorId = [[NSUserDefaults standardUserDefaults]objectForKey:@"UserId"];
@@ -54,7 +53,7 @@
                              @"doctorid": doctorId
                              };
     [DoctorAPI getDoctorScheduleWithParameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-//        NSLog(@"%@",responseObject);
+        NSLog(@"%@",responseObject);
         for (id str in [responseObject[0] allKeys]){
             NSNumber *tag = nil;
             if ((tag =[self.scheduleMap objectForKey:str])){
