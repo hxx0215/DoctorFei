@@ -226,6 +226,14 @@
                 }];
             }
                 break;
+            case ContactViewControllerModeScheduleSelectFriend:{
+                NSIndexPath *indexPath = self.cellSelected.firstObject;
+                Friends *selectedFriend = tableViewDataArray[indexPath.section][indexPath.row];
+                [self.navigationController dismissViewControllerAnimated:YES completion:^{
+                    self.didSelectFriends(@[selectedFriend]);
+                }];
+            }
+                break;
             default:{
                 self.didSelectFriends(self.selectedArray);
                 [self.navigationController popViewControllerAnimated:YES];
@@ -399,7 +407,7 @@
     else{
         ContactFriendTableViewCell *cell = (ContactFriendTableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
         cell.selectedButton.selected = !cell.selectedButton.selected;
-        if (self.contactMode == ContactViewControllerModeTransfer){
+        if (self.contactMode == ContactViewControllerModeTransfer || self.contactMode == ContactViewControllerModeScheduleSelectFriend){
             for (NSIndexPath *ip in self.cellSelected){
                 ContactFriendTableViewCell *tCell = (ContactFriendTableViewCell *)[tableView cellForRowAtIndexPath:ip];
                 if (tCell){
