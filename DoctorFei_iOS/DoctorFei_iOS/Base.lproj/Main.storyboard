@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="hjp-xA-J3Y">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="hjp-xA-J3Y">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -6010,31 +6010,18 @@
                                     </mask>
                                 </variation>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AxA-nD-jqZ">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.93333333330000001" green="0.93333333330000001" blue="0.93333333330000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="AxA-nD-jqZ" secondAttribute="trailing" id="0Wg-8m-0iJ"/>
-                            <constraint firstItem="vhl-Bk-qZl" firstAttribute="top" secondItem="AxA-nD-jqZ" secondAttribute="bottom" id="6NN-yN-A0l"/>
                             <constraint firstAttribute="trailing" secondItem="yJA-oG-qdI" secondAttribute="trailing" id="NR6-Q7-5Se"/>
                             <constraint firstItem="yJA-oG-qdI" firstAttribute="top" secondItem="Fgh-Ko-Vro" secondAttribute="bottom" id="mkI-se-LKg"/>
-                            <constraint firstItem="AxA-nD-jqZ" firstAttribute="top" secondItem="yJA-oG-qdI" secondAttribute="bottom" id="nyg-6z-LQL"/>
                             <constraint firstItem="yJA-oG-qdI" firstAttribute="leading" secondItem="xgH-3l-hvG" secondAttribute="leading" id="qXQ-Ps-OcE"/>
-                            <constraint firstItem="AxA-nD-jqZ" firstAttribute="leading" secondItem="xgH-3l-hvG" secondAttribute="leading" id="uYd-As-mwM"/>
                         </constraints>
                         <variation key="default">
                             <mask key="subviews">
                                 <exclude reference="yJA-oG-qdI"/>
-                                <exclude reference="AxA-nD-jqZ"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="6NN-yN-A0l"/>
-                                <exclude reference="0Wg-8m-0iJ"/>
-                                <exclude reference="nyg-6z-LQL"/>
-                                <exclude reference="uYd-As-mwM"/>
                                 <exclude reference="NR6-Q7-5Se"/>
                                 <exclude reference="mkI-se-LKg"/>
                                 <exclude reference="qXQ-Ps-OcE"/>
@@ -6043,13 +6030,8 @@
                         <variation key="heightClass=regular-widthClass=compact">
                             <mask key="subviews">
                                 <include reference="yJA-oG-qdI"/>
-                                <include reference="AxA-nD-jqZ"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="6NN-yN-A0l"/>
-                                <include reference="0Wg-8m-0iJ"/>
-                                <include reference="nyg-6z-LQL"/>
-                                <include reference="uYd-As-mwM"/>
                                 <include reference="NR6-Q7-5Se"/>
                                 <include reference="mkI-se-LKg"/>
                                 <include reference="qXQ-Ps-OcE"/>
@@ -6066,7 +6048,6 @@
                     </navigationItem>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="contentView" destination="AxA-nD-jqZ" id="QvG-c0-3CF"/>
                         <outlet property="segmentControl" destination="Lhg-dB-e9o" id="9OA-1T-TLs"/>
                     </connections>
                 </viewController>
@@ -9774,9 +9755,6 @@
                                 </state>
                                 <variation key="heightClass=compact-widthClass=compact" ambiguous="YES">
                                     <rect key="frame" x="86" y="179" width="228" height="18"/>
-                                </variation>
-                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="86" y="288" width="227" height="38"/>
                                 </variation>
                                 <connections>
                                     <action selector="updateButtonClicked:" destination="uaT-mB-nYo" eventType="touchUpInside" id="9cb-u2-xol"/>
