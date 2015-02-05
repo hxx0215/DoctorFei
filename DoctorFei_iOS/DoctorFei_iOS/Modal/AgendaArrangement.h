@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface AgendaSchedule : NSObject
+@interface AgendaArrangement : NSObject
 
 @property (nonatomic, strong) NSString *memberName;
 @property (nonatomic, strong) NSString *title;

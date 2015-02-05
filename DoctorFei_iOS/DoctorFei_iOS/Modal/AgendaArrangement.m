@@ -6,8 +6,8 @@
 //
 //
 
-#import "AgendaSchedule.h"
+#import "AgendaArrangement.h"
 
-@implementation AgendaSchedule
+@implementation AgendaArrangement
 
 @end
