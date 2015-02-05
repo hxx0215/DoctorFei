@@ -20,6 +20,10 @@
 #import "MainGroupDetailActionViewController.h"
 #import "DoctorAPI.h"
 #import "MyPageViewController.h"
+#import "AgendaArrangement.h"
+#import "AgendaArrangementTableViewCell.h"
+#import "MainArrangementNewTableViewCell.h"
+#import <JSBadgeView.h>
 @interface MainViewController ()
     <UITableViewDelegate, UITableViewDataSource, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate, UIGestureRecognizerDelegate, MainGroupPopoverVCDelegate, WYPopoverControllerDelegate>
 
@@ -32,14 +36,18 @@
 - (IBAction)userInfoButtonClicked:(id)sender;
 
 @property (weak, nonatomic) IBOutlet UIButton *titleButton;
-- (IBAction)titleButtonClicked:(id)sender;
-
 @property (weak, nonatomic) IBOutlet UIButton *auditButton;
+
+- (IBAction)titleButtonClicked:(id)sender;
+- (IBAction)jumpToChatButtonClicked:(id)sender;
+
+@property (weak, nonatomic) IBOutlet UIButton *arrangementButton;
+@property (nonatomic, strong) JSBadgeView *arrangementBadgeView;
 @end
 
 @implementation MainViewController
 {
-    NSArray *chatArray;
+    NSArray *chatArray, *arrangementArray;
     UIBarButtonItem *fetchButtonItem, *loadingButtonItem;
     CABasicAnimation *rotation;
     WYPopoverController *popoverController;
@@ -50,6 +58,8 @@
     self.navigationController.interactivePopGestureRecognizer.delegate = self;
     [self.navigationController.interactivePopGestureRecognizer setEnabled:YES];
 
+    self.arrangementBadgeView = [[JSBadgeView alloc]initWithParentView:self.arrangementButton alignment:JSBadgeViewAlignmentTopRight];
+    [self.arrangementBadgeView setBadgePositionAdjustment:CGPointMake(-8, 8)];
     
     [self.tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
     
@@ -100,9 +110,10 @@
     }
     NSString *infoString = [NSString stringWithFormat:@"%@ %@", department, jobTitle];
     [_infoLabel setText:infoString];
-    
+    [self fetchArrangement];
     [self reloadTableViewData];
     
+
 //    //医生认证接口
 //    NSNumber *doctorId = [[NSUserDefaults standardUserDefaults]objectForKey:@"UserId"];
 //    if (!doctorId) {
@@ -141,6 +152,34 @@
 //    }];
 }
 
+- (void)fetchArrangement {
+    NSMutableArray *array = [NSMutableArray array];
+    NSNumber *doctorId = [[NSUserDefaults standardUserDefaults]objectForKey:@"UserId"];
+    if (!doctorId) {
+        return;
+    }
+    NSDictionary *param = @{
+                            @"doctorid":doctorId,
+                            @"topnum":@0
+                            };
+    [DoctorAPI getDoctorDayarrangeWithParameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        for (NSDictionary *dict in responseObject) {
+            AgendaArrangement *arrangement = [[AgendaArrangement alloc]init];
+            arrangement.title = dict[@"title"];
+            NSDate *date = [NSDate dateWithTimeIntervalSince1970:[dict[@"daytime"] intValue]];
+            arrangement.dayTime = date;
+            arrangement.memberName = dict[@"membername"];
+            [array addObject:arrangement];
+        }
+        self.arrangementBadgeView.badgeText = [NSString stringWithFormat:@"%lu", (unsigned long)((NSArray *)responseObject).count];
+        arrangementArray = [array copy];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.tableView reloadData];
+        });
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"%@",error.localizedDescription);
+    }];
+}
 
 - (void)viewWillDisappear:(BOOL)animated {
     [[NSNotificationCenter defaultCenter]removeObserver:self];
@@ -178,6 +217,14 @@
 }
 - (IBAction)titleButtonClicked:(id)sender {
     
+}
+- (IBAction)jumpToChatButtonClicked:(id)sender {
+    CGRect sectionRect = [self.tableView rectForSection:1];
+    if (sectionRect.size.height < self.tableView.frame.size.height) {
+        [self.tableView setContentInset:UIEdgeInsetsMake(0, 0, self.tableView.frame.size.height - sectionRect.size.height, 0)];
+    }
+//    sectionRect.size.height = self.tableView.frame.size.height;
+    [self.tableView scrollRectToVisible:sectionRect animated:YES];
 }
 #pragma mark - Navigation
 
@@ -219,25 +266,64 @@
 }
 
 #pragma mark - UITableView DataSource
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 2;
+}
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return chatArray.count;
+    if (section) {
+        return chatArray.count;
+    } else{
+        if (arrangementArray && arrangementArray.count) {
+            if (arrangementArray.count > 3) {
+                return 3;
+            }else{
+                return arrangementArray.count;
+            }
+        }else{
+            return 1;
+        }
+    }
+//    return chatArray.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *MainChatCellIdentifier = @"MainChatCellIdentifier";
-    MainChatTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:MainChatCellIdentifier forIndexPath:indexPath];
-    [cell setCurrentChat:chatArray[indexPath.row]];
-    return cell;
+    static NSString *MainArrangementNewCellIdentifier = @"MainArrangementNewCellIdentifier";
+    static NSString *MainArrangementCellIdentifier = @"MainArrangementCellIdentifier";
+    if (indexPath.section) {
+        MainChatTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:MainChatCellIdentifier forIndexPath:indexPath];
+        [cell setCurrentChat:chatArray[indexPath.row]];
+        return cell;
+    }else{
+        if (arrangementArray && arrangementArray.count) {
+            AgendaArrangementTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:MainArrangementCellIdentifier forIndexPath:indexPath];
+            [cell setArrangement:arrangementArray[indexPath.row]];
+            cell.separatorInset = UIEdgeInsetsMake(0, cell.bounds.size.width, 0, 0);
+            return cell;
+        } else{
+            MainArrangementNewTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:MainArrangementNewCellIdentifier forIndexPath:indexPath];
+
+            return cell;
+        }
+    }
 }
 #pragma mark - UITableView Delegate
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 65.0f;
+    if (indexPath.section) {
+        return 65.0f;
+    }else{
+        return 40.0f;
+    }
+
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
 //    if (section == 0) {
 //        return 20.0f;
 //    }
-    return 0.1f;
+    return .1f;
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    return .1f;
 }
 #pragma mark - DZNEmptyDataSetSource
 
@@ -256,4 +342,5 @@
 - (void)editButtonClickedForPopoverVC:(MainGroupPopoverViewController *)vc {
     [self performSegueWithIdentifier:@"MainEditGroupSegueIdentifier" sender:nil];
 }
+
 @end

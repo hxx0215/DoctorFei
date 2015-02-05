@@ -43,6 +43,7 @@
 		6A2BD60A1A31EDA7002F7644 /* FetchChatUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A2BD6091A31EDA7002F7644 /* FetchChatUtil.m */; };
 		6A32523C1A827A5C00B5E31F /* AgendaArrangementDetailEventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A32523B1A827A5C00B5E31F /* AgendaArrangementDetailEventViewController.m */; };
 		6A32523F1A82835300B5E31F /* AgendaArrangement.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A32523E1A82835300B5E31F /* AgendaArrangement.m */; };
+		6A3252421A83697800B5E31F /* MainArrangementNewTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A3252411A83697800B5E31F /* MainArrangementNewTableViewCell.m */; };
 		6A3DA1031A7E7BF200BE721B /* MainCoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6A3DA1011A7E7BF200BE721B /* MainCoreData.xcdatamodeld */; };
 		6A3DA1091A7F5DF100BE721B /* ShuoShuo.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A3DA1081A7F5DF100BE721B /* ShuoShuo.m */; };
 		6A3DA10C1A7F5E5C00BE721B /* DayLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A3DA10B1A7F5E5C00BE721B /* DayLog.m */; };
@@ -582,6 +583,8 @@
 		6A32523B1A827A5C00B5E31F /* AgendaArrangementDetailEventViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AgendaArrangementDetailEventViewController.m; sourceTree = "<group>"; };
 		6A32523D1A82835300B5E31F /* AgendaArrangement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AgendaArrangement.h; sourceTree = "<group>"; };
 		6A32523E1A82835300B5E31F /* AgendaArrangement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AgendaArrangement.m; sourceTree = "<group>"; };
+		6A3252401A83697800B5E31F /* MainArrangementNewTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainArrangementNewTableViewCell.h; sourceTree = "<group>"; };
+		6A3252411A83697800B5E31F /* MainArrangementNewTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainArrangementNewTableViewCell.m; sourceTree = "<group>"; };
 		6A3DA1021A7E7BF200BE721B /* MainCoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MainCoreData.xcdatamodel; sourceTree = "<group>"; };
 		6A3DA1071A7F5DF100BE721B /* ShuoShuo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShuoShuo.h; sourceTree = "<group>"; };
 		6A3DA1081A7F5DF100BE721B /* ShuoShuo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShuoShuo.m; sourceTree = "<group>"; };
@@ -1558,6 +1561,8 @@
 				B9E2E0E21A6D2D02009401F1 /* TITokenField.m */,
 				6A4FC1671A2F67F10042497C /* ContactFriendTableViewCell.h */,
 				6A4FC1681A2F67F10042497C /* ContactFriendTableViewCell.m */,
+				B927B23D1A7F9E0600BC2C1C /* ContactFriendDetailTableViewCell.h */,
+				B927B23E1A7F9E0600BC2C1C /* ContactFriendDetailTableViewCell.m */,
 				6A5DC5EE1A33135E00961E53 /* MainChatTableViewCell.h */,
 				6A5DC5EF1A33135E00961E53 /* MainChatTableViewCell.m */,
 				B9A6F9D41A5EA71800B01686 /* DoctorRankTableViewCell.h */,
@@ -1582,8 +1587,8 @@
 				6A5DE8161A791A3C000F24DA /* QuickReplyTableViewCell.m */,
 				6A5DE8181A792621000F24DA /* QuickReplyCustomActionTableViewCell.h */,
 				6A5DE8191A792621000F24DA /* QuickReplyCustomActionTableViewCell.m */,
-				B927B23D1A7F9E0600BC2C1C /* ContactFriendDetailTableViewCell.h */,
-				B927B23E1A7F9E0600BC2C1C /* ContactFriendDetailTableViewCell.m */,
+				6A3252401A83697800B5E31F /* MainArrangementNewTableViewCell.h */,
+				6A3252411A83697800B5E31F /* MainArrangementNewTableViewCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2571,6 +2576,7 @@
 				6A1D42CC1A67EC10002B0F7C /* MyPageViewController.m in Sources */,
 				6AB359B71A2B638C008C48B4 /* RegisterAPI.m in Sources */,
 				B95EEFC71A669887006F7FEF /* ContactGroupListTableViewController.m in Sources */,
+				6A3252421A83697800B5E31F /* MainArrangementNewTableViewCell.m in Sources */,
 				B92FA2F41A2F521C0029E6B8 /* MoreAboutUsViewController.m in Sources */,
 				B95EEFAF1A6559AB006F7FEF /* ContactNearbyTableViewController.m in Sources */,
 				B9D4EA121A5C173900DB2A8D /* MyAppointmentDetailViewController.m in Sources */,

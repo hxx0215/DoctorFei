@@ -4062,6 +4062,9 @@
                                                                 <include reference="ydP-GF-Sxl"/>
                                                             </mask>
                                                         </variation>
+                                                        <connections>
+                                                            <action selector="jumpToChatButtonClicked:" destination="lNP-pK-kqe" eventType="touchUpInside" id="ZNz-PN-wCO"/>
+                                                        </connections>
                                                     </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="在线咨询" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h24-Od-ten">
                                                         <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
@@ -4556,7 +4559,7 @@
                                             <segue destination="QZS-KQ-MzU" kind="show" identifier="MainChatDetailSegueIdentifier" id="rqJ-cO-jCt"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="40" id="nSx-LG-3TW">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MainArrangementNewCellIdentifier" rowHeight="40" id="nSx-LG-3TW" customClass="MainArrangementNewTableViewCell">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="nSx-LG-3TW" id="cwt-oV-E3C">
@@ -4608,7 +4611,7 @@
                                             </variation>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="40" id="U2d-v7-a7i">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="MainArrangementCellIdentifier" rowHeight="40" id="U2d-v7-a7i" customClass="AgendaArrangementTableViewCell">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="U2d-v7-a7i" id="b30-EU-73M">
@@ -4646,8 +4649,7 @@
                                                             <exclude reference="BW4-Pq-00c"/>
                                                         </mask>
                                                     </variation>
-                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                        <rect key="frame" x="231" y="10" width="69" height="19.5"/>
+                                                    <variation key="heightClass=regular-widthClass=compact">
                                                         <mask key="constraints">
                                                             <include reference="BW4-Pq-00c"/>
                                                         </mask>
@@ -4666,8 +4668,7 @@
                                                             <exclude reference="2R6-NA-Eoa"/>
                                                         </mask>
                                                     </variation>
-                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                        <rect key="frame" x="96" y="10" width="128" height="19.5"/>
+                                                    <variation key="heightClass=regular-widthClass=compact">
                                                         <mask key="constraints">
                                                             <include reference="2R6-NA-Eoa"/>
                                                         </mask>
@@ -4719,6 +4720,11 @@
                                                 </mask>
                                             </variation>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="dateLabel" destination="UKZ-GG-1rq" id="RaO-KH-tB1"/>
+                                            <outlet property="memberNameLabel" destination="qDv-oB-1Qu" id="9do-ZQ-riL"/>
+                                            <outlet property="titleLabel" destination="cdo-ae-Zjf" id="oDp-qd-NPJ"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -4793,6 +4799,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="arrangementButton" destination="T4f-Sn-dBx" id="VwQ-mZ-F17"/>
                         <outlet property="auditButton" destination="jIX-Kr-WxM" id="PZu-gt-o1X"/>
                         <outlet property="avatarImageView" destination="d3W-Uf-Ks3" id="suC-2V-9Un"/>
                         <outlet property="hospitalLabel" destination="lbM-ps-CdZ" id="h5Z-L2-lRt"/>
@@ -11064,13 +11071,13 @@
         <image name="vip_pic.png" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="rqJ-cO-jCt"/>
+        <segue reference="abg-fB-9ID"/>
+        <segue reference="7qh-2R-9ti"/>
+        <segue reference="G9W-g1-ayd"/>
+        <segue reference="pVr-DH-hJQ"/>
         <segue reference="Hb8-Q6-QO7"/>
         <segue reference="6jn-ZK-h5N"/>
         <segue reference="I02-mG-QSP"/>
-        <segue reference="pVr-DH-hJQ"/>
-        <segue reference="QWB-UP-Nry"/>
-        <segue reference="abg-fB-9ID"/>
-        <segue reference="G9W-g1-ayd"/>
-        <segue reference="7qh-2R-9ti"/>
     </inferredMetricsTieBreakers>
 </document>

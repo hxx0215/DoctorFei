@@ -153,6 +153,10 @@
         hud.mode = MBProgressHUDModeText;
         hud.labelText = dic[@"msg"];
         [hud hide:YES afterDelay:1.0f];
+        [myContentArray removeObject:shuoshuo];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.contentTableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:currentIndexPathRow inSection:0]] withRowAnimation:UITableViewRowAnimationFade];
+        });
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"%@",error.localizedDescription);
         hud.mode = MBProgressHUDModeText;
