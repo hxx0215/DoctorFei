@@ -42,7 +42,9 @@
 - (IBAction)jumpToChatButtonClicked:(id)sender;
 
 @property (weak, nonatomic) IBOutlet UIButton *arrangementButton;
+@property (weak, nonatomic) IBOutlet UIButton *jumpToChatButton;
 @property (nonatomic, strong) JSBadgeView *arrangementBadgeView;
+@property (nonatomic, strong) JSBadgeView *chatUnreadCountBadgeView;
 @end
 
 @implementation MainViewController
@@ -51,6 +53,7 @@
     UIBarButtonItem *fetchButtonItem, *loadingButtonItem;
     CABasicAnimation *rotation;
     WYPopoverController *popoverController;
+    NSInteger currentUnreadCount;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -60,6 +63,8 @@
 
     self.arrangementBadgeView = [[JSBadgeView alloc]initWithParentView:self.arrangementButton alignment:JSBadgeViewAlignmentTopRight];
     [self.arrangementBadgeView setBadgePositionAdjustment:CGPointMake(-8, 8)];
+    self.chatUnreadCountBadgeView = [[JSBadgeView alloc]initWithParentView:self.jumpToChatButton alignment:JSBadgeViewAlignmentTopRight];
+    [self.chatUnreadCountBadgeView setBadgePositionAdjustment:CGPointMake(-8, 8)];
     
     [self.tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
     
@@ -83,6 +88,9 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    
+    
+    
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(reloadTableViewData) name:@"NewChatArrivedNotification" object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(fetchChatComplete) name:@"FetchChatCompleteNotification" object:nil];
 //    if ([[NSUserDefaults standardUserDefaults]objectForKey:@"UserId"]) {
@@ -171,7 +179,8 @@
             arrangement.memberName = dict[@"membername"];
             [array addObject:arrangement];
         }
-        self.arrangementBadgeView.badgeText = [NSString stringWithFormat:@"%lu", (unsigned long)((NSArray *)responseObject).count];
+        NSUInteger count = ((NSArray *)responseObject).count;
+        self.arrangementBadgeView.badgeText = count ? [NSString stringWithFormat:@"%lu", (unsigned long)count]: @"";
         arrangementArray = [array copy];
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.tableView reloadData];
@@ -201,6 +210,11 @@
 - (void)reloadTableViewData {
     chatArray = [Chat MR_findAll];
     [self.tableView reloadData];
+    currentUnreadCount = 0;
+    for (Chat *chat in chatArray) {
+        currentUnreadCount += chat.unreadMessageCount.integerValue;
+    }
+    self.chatUnreadCountBadgeView.badgeText = currentUnreadCount ? [NSString stringWithFormat:@"%ld", (long)currentUnreadCount] : @"";
 }
 #pragma mark - Actions
 
