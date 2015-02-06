@@ -2,14 +2,14 @@
 //  Friends.h
 //  DoctorFei_iOS
 //
-//  Created by GuJunjia on 14/12/8.
+//  Created by GuJunjia on 15/2/7.
 //
 //
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class Chat, Message;
+@class Chat, Groups, Message;
 
 @interface Friends : NSManagedObject
 
@@ -22,8 +22,10 @@
 @property (nonatomic, retain) NSString * situation;
 @property (nonatomic, retain) NSNumber * userId;
 @property (nonatomic, retain) NSNumber * userType;
+@property (nonatomic, retain) NSDate * lastLoginTime;
 @property (nonatomic, retain) Chat *chat;
 @property (nonatomic, retain) NSSet *messages;
+@property (nonatomic, retain) Groups *group;
 @end
 
 @interface Friends (CoreDataGeneratedAccessors)

@@ -2,12 +2,13 @@
 //  Friends.m
 //  DoctorFei_iOS
 //
-//  Created by GuJunjia on 14/12/8.
+//  Created by GuJunjia on 15/2/7.
 //
 //
 
 #import "Friends.h"
 #import "Chat.h"
+#import "Groups.h"
 #import "Message.h"
 
 
@@ -22,7 +23,9 @@
 @dynamic situation;
 @dynamic userId;
 @dynamic userType;
+@dynamic lastLoginTime;
 @dynamic chat;
 @dynamic messages;
+@dynamic group;
 
 @end

@@ -10,6 +10,7 @@
         <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="gender" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="icon" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="lastLoginTime" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="mobile" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="noteName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="realname" optional="YES" attributeType="String" syncable="YES"/>
@@ -17,7 +18,14 @@
         <attribute name="userId" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="userType" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <relationship name="chat" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Chat" inverseName="user" inverseEntity="Chat" syncable="YES"/>
+        <relationship name="group" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Groups" inverseName="member" inverseEntity="Groups" syncable="YES"/>
         <relationship name="messages" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Message" inverseName="user" inverseEntity="Message" syncable="YES"/>
+    </entity>
+    <entity name="Groups" representedClassName="Groups" syncable="YES">
+        <attribute name="groupId" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="total" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <relationship name="member" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Friends" inverseName="group" inverseEntity="Friends" syncable="YES"/>
     </entity>
     <entity name="Message" representedClassName="Message" syncable="YES">
         <attribute name="content" optional="YES" attributeType="String" syncable="YES"/>
@@ -28,8 +36,9 @@
         <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Friends" inverseName="messages" inverseEntity="Friends" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Chat" positionX="61" positionY="189" width="128" height="103"/>
-        <element name="Friends" positionX="-63" positionY="-18" width="128" height="210"/>
-        <element name="Message" positionX="144" positionY="-21" width="128" height="133"/>
+        <element name="Chat" positionX="18" positionY="284" width="128" height="103"/>
+        <element name="Friends" positionX="-63" positionY="-18" width="128" height="238"/>
+        <element name="Message" positionX="162" positionY="-9" width="128" height="133"/>
+        <element name="Groups" positionX="187" positionY="144" width="128" height="103"/>
     </elements>
 </model>
