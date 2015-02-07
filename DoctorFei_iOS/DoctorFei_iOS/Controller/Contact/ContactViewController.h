@@ -11,7 +11,8 @@ typedef enum ContactMode{
     ContactViewControllerModeCreateGroup,
     ContactViewControllerModeConsultation,
     ContactViewControllerModeTransfer,
-    ContactViewControllerModeScheduleSelectFriend
+    ContactViewControllerModeScheduleSelectFriend,
+    ContactViewControllerModeMainGroupAddFriend
 } ContactViewControllerMode;
 #import <UIKit/UIKit.h>
 typedef void (^ editCallback)(NSArray *friendSelected);

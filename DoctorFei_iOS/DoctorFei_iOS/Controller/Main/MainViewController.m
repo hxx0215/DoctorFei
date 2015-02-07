@@ -24,6 +24,7 @@
 #import "AgendaArrangementTableViewCell.h"
 #import "MainArrangementNewTableViewCell.h"
 #import <JSBadgeView.h>
+#import "Groups.h"
 @interface MainViewController ()
     <UITableViewDelegate, UITableViewDataSource, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate, UIGestureRecognizerDelegate, MainGroupPopoverVCDelegate, WYPopoverControllerDelegate>
 
@@ -49,7 +50,7 @@
 
 @implementation MainViewController
 {
-    NSArray *chatArray, *arrangementArray;
+    NSArray *chatArray, *arrangementArray, *groupArray;
     UIBarButtonItem *fetchButtonItem, *loadingButtonItem;
     CABasicAnimation *rotation;
     WYPopoverController *popoverController;
@@ -71,10 +72,6 @@
     fetchButtonItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"refresh"] style:UIBarButtonItemStyleDone target:self action:@selector(refreshButtonClicked:)];
     fetchButtonItem.tintColor = [UIColor whiteColor];
     loadingButtonItem = [[UIBarButtonItem alloc]initWithCustomView:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"refresh_after"]]];
-//    loadingButtonItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"refresh_after"] style:UIBarButtonItemStyleDone target:self action:@selector(refreshButtonClicked:)];
-//    loadingButtonItem.tintColor = [UIColor whiteColor];
-    
-
     
 
     rotation = [CABasicAnimation animationWithKeyPath:@"transform.rotation"];
@@ -93,9 +90,6 @@
     
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(reloadTableViewData) name:@"NewChatArrivedNotification" object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(fetchChatComplete) name:@"FetchChatCompleteNotification" object:nil];
-//    if ([[NSUserDefaults standardUserDefaults]objectForKey:@"UserId"]) {
-//        [[SocketConnection sharedConnection]sendCheckMessages];
-//    }
 
     [self.navigationItem setLeftBarButtonItem:fetchButtonItem animated:YES];
     
@@ -190,6 +184,33 @@
     }];
 }
 
+- (void)fetchGroupArray {
+    groupArray = [NSArray array];
+    NSNumber *doctorId = [[NSUserDefaults standardUserDefaults] objectForKey:@"UserId"];
+    NSDictionary *param = @{
+                            @"doctorid": doctorId,
+                            @"sortype": @0
+                            };
+    [DoctorAPI getDoctorFriendGroupWithParameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"%@",responseObject);
+        for (NSDictionary *dict in responseObject) {
+            Groups *group = [Groups MR_findFirstByAttribute:@"groupId" withValue:dict[@"id"]];
+            if (group == nil) {
+                group = [Groups MR_createEntity];
+                group.groupId = dict[@"id"];
+            }
+            group.title = dict[@"title"];
+            group.total = dict[@"total"];
+        }
+        [[NSManagedObjectContext MR_defaultContext]MR_saveToPersistentStoreAndWait];
+        groupArray = [Groups MR_findAll];
+        [self fetchGroupComplete];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"%@",error.localizedDescription);
+    }];
+
+}
+
 - (void)viewWillDisappear:(BOOL)animated {
     [[NSNotificationCenter defaultCenter]removeObserver:self];
     [super viewWillDisappear:animated];
@@ -198,6 +219,12 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)fetchGroupComplete {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self performSegueWithIdentifier:@"MainGroupPopoverSegueIdentifier" sender:nil];
+    });
 }
 
 - (void)fetchChatComplete {
@@ -230,14 +257,13 @@
     [self.tabBarController setSelectedIndex:2];
 }
 - (IBAction)titleButtonClicked:(id)sender {
-    
+    [self fetchGroupArray];
 }
 - (IBAction)jumpToChatButtonClicked:(id)sender {
     CGRect sectionRect = [self.tableView rectForSection:1];
     if (sectionRect.size.height < self.tableView.frame.size.height) {
         [self.tableView setContentInset:UIEdgeInsetsMake(0, 0, self.tableView.frame.size.height - sectionRect.size.height, 0)];
     }
-//    sectionRect.size.height = self.tableView.frame.size.height;
     [self.tableView scrollRectToVisible:sectionRect animated:YES];
 }
 #pragma mark - Navigation
@@ -254,10 +280,11 @@
     } else if ([segue.identifier isEqualToString:@"MainGroupPopoverSegueIdentifier"]) {
         [_titleButton setBackgroundImage:[UIImage imageNamed:@"top_arrow_up"] forState:UIControlStateNormal];
         MainGroupPopoverViewController *vc = [segue destinationViewController];
-        vc.preferredContentSize = CGSizeMake(180.0f, 81.0f);
+        CGFloat height = 41.0f + 40.0f * (groupArray.count + 1);
+        vc.preferredContentSize = CGSizeMake(180.0f, height);
         vc.delegate = self;
         WYStoryboardPopoverSegue *popoverSegue = (WYStoryboardPopoverSegue *)segue;
-        popoverController = [popoverSegue popoverControllerWithSender:sender permittedArrowDirections:WYPopoverArrowDirectionAny animated:YES];
+        popoverController = [popoverSegue popoverControllerWithSender:self.titleButton permittedArrowDirections:WYPopoverArrowDirectionAny animated:YES];
         popoverController.delegate = self;
         popoverController.dismissOnTap = YES;
         popoverController.theme.outerCornerRadius = 0;
@@ -354,7 +381,11 @@
 
 #pragma mark - Popover Delegate
 - (void)editButtonClickedForPopoverVC:(MainGroupPopoverViewController *)vc {
-    [self performSegueWithIdentifier:@"MainEditGroupSegueIdentifier" sender:nil];
+    [self performSegueWithIdentifier:@"MainEditGroupSegueIdentifier" sender:self.titleButton];
+}
+
+- (void)groupCellSelectedForPopoverVC:(MainGroupPopoverViewController *)vc withGroup:(Groups *)group {
+    
 }
 
 @end

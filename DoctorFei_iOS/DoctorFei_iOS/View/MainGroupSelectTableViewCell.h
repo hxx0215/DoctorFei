@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+@class Groups;
+
 @interface MainGroupSelectTableViewCell : UITableViewCell
+
+@property (nonatomic, strong) Groups *currentGroup;
 
 @end

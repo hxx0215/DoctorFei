@@ -9,11 +9,11 @@
 #import <UIKit/UIKit.h>
 
 @class MainGroupPopoverViewController;
-
+@class Groups;
 @protocol MainGroupPopoverVCDelegate <NSObject>
 
 - (void)editButtonClickedForPopoverVC:(MainGroupPopoverViewController *)vc;
-
+- (void)groupCellSelectedForPopoverVC:(MainGroupPopoverViewController *)vc withGroup:(Groups *)group;
 @end
 
 @interface MainGroupPopoverViewController : UIViewController

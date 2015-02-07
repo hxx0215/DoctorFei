@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
+@class Groups;
 @interface MainGroupTableViewCell : UITableViewCell
+
+@property (nonatomic, strong) Groups *currentGroup;
 
 @end
