@@ -74,7 +74,6 @@
         hud.labelText = dict[@"msg"];
         [hud hide:YES afterDelay:1.0f];
         if ([dict[@"state"]intValue] == 1) {
-            //TODO跳转人员选择
             [self performSegueWithIdentifier:@"MainGroupAddFriendSegueIdentifier" sender:nil];
         }
         

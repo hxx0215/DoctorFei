@@ -82,9 +82,6 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
-                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                        <rect key="frame" x="105" y="22" width="195" height="20"/>
-                                                    </variation>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FkY-V8-lgK">
                                                     <rect key="frame" x="-23" y="-15" width="46" height="30"/>
@@ -154,9 +151,6 @@
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
-                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="0.0" y="46" width="400" height="641"/>
-                                </variation>
                                 <connections>
                                     <outlet property="dataSource" destination="cVJ-je-ZKu" id="gvi-8t-1ah"/>
                                     <outlet property="delegate" destination="cVJ-je-ZKu" id="5Wb-hB-0fl"/>
@@ -4998,7 +4992,7 @@
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <segue destination="Lud-fV-1Dj" kind="presentation" id="IWH-Sh-sqD"/>
+                                            <segue destination="Lud-fV-1Dj" kind="presentation" identifier="MainGroupNewGroupSegueIdentifier" id="IWH-Sh-sqD"/>
                                         </connections>
                                     </button>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrow.png" translatesAutoresizingMaskIntoConstraints="NO" id="DDa-A6-i7p">
@@ -5094,6 +5088,7 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="nameLabel" destination="8kA-fp-Tf5" id="dv7-Ob-KNF"/>
+                                            <segue destination="Lud-fV-1Dj" kind="presentation" identifier="MainGroupEditGroupSegueIdentifier" id="wpO-fm-KSL"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MainGroupSelectCellIdentifier" id="lV5-9c-4uF" customClass="MainGroupSelectTableViewCell">
@@ -5126,6 +5121,9 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
+                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                        <rect key="frame" x="55" y="9" width="240" height="24.5"/>
+                                                    </variation>
                                                 </label>
                                             </subviews>
                                             <constraints>
@@ -5198,13 +5196,13 @@
                                 <exclude reference="fc5-VW-pGv"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="yra-XV-wcF"/>
                                 <exclude reference="7z0-uK-yjE"/>
                                 <exclude reference="9Y6-S9-a3A"/>
                                 <exclude reference="Xpo-1L-Vn4"/>
                                 <exclude reference="ELM-Xg-bMb"/>
                                 <exclude reference="NFR-HF-rfc"/>
                                 <exclude reference="coY-qJ-jJE"/>
-                                <exclude reference="yra-XV-wcF"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
@@ -5213,13 +5211,13 @@
                                 <include reference="fc5-VW-pGv"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="yra-XV-wcF"/>
                                 <include reference="7z0-uK-yjE"/>
                                 <include reference="9Y6-S9-a3A"/>
                                 <include reference="Xpo-1L-Vn4"/>
                                 <include reference="ELM-Xg-bMb"/>
                                 <include reference="NFR-HF-rfc"/>
                                 <include reference="coY-qJ-jJE"/>
-                                <include reference="yra-XV-wcF"/>
                             </mask>
                         </variation>
                     </view>
@@ -6206,9 +6204,6 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.87843137250000003" green="0.87843137250000003" blue="0.87843137250000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
-                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="123" y="576" width="153" height="20.5"/>
-                                </variation>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -11116,9 +11111,10 @@
         <image name="vip_pic.png" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Tpb-k1-2hl"/>
         <segue reference="rqJ-cO-jCt"/>
+        <segue reference="Tpb-k1-2hl"/>
         <segue reference="zKw-Eq-Pwx"/>
+        <segue reference="wpO-fm-KSL"/>
         <segue reference="xAo-Kx-7vt"/>
         <segue reference="pVr-DH-hJQ"/>
         <segue reference="7qh-2R-9ti"/>

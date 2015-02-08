@@ -12,6 +12,8 @@
 #import "MainGroupSelectTableViewCell.h"
 #import "Groups.h"
 #import "DoctorAPI.h"
+#import "MainGroupGroupActionViewController.h"
+#import <MBProgressHUD.h>
 @interface MainGroupDetailActionViewController ()
     <UITableViewDataSource, UITableViewDelegate, DZNEmptyDataSetDelegate, DZNEmptyDataSetSource>
 
@@ -24,7 +26,7 @@
 
 @implementation MainGroupDetailActionViewController
 {
-    NSArray *groupArray;
+    NSMutableArray *groupArray;
 }
 @synthesize vcMode = _vcMode;
 
@@ -47,8 +49,17 @@
     [self fetchGroupArray];
 }
 
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"MainGroupEditGroupSegueIdentifier"]) {
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        UINavigationController *nav = [segue destinationViewController];
+        MainGroupGroupActionViewController *vc = nav.viewControllers[0];
+        [vc setCurrentGroup:groupArray[indexPath.row]];
+    }
+}
+
 - (void)fetchGroupArray {
-    groupArray = [NSArray array];
+    groupArray = [NSMutableArray array];
     NSNumber *doctorId = [[NSUserDefaults standardUserDefaults] objectForKey:@"UserId"];
     NSDictionary *param = @{
                             @"doctorid": doctorId,
@@ -66,7 +77,7 @@
             group.total = dict[@"total"];
         }
         [[NSManagedObjectContext MR_defaultContext]MR_saveToPersistentStoreAndWait];
-        groupArray = [Groups MR_findAll];
+        groupArray = [[Groups MR_findAll]mutableCopy];
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.tableView reloadData];
         });
@@ -74,6 +85,35 @@
         NSLog(@"%@",error.localizedDescription);
     }];
     
+}
+
+- (void)deleteGroupWithIndexPath:(NSIndexPath *)indexPath {
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view.window animated:YES];
+    hud.labelText = @"删除中...";
+    NSNumber *doctorId = [[NSUserDefaults standardUserDefaults] objectForKey:@"UserId"];
+    Groups *group = groupArray[indexPath.row];
+    NSDictionary *param = @{
+                            @"doctorid": doctorId,
+                            @"groupid": group.groupId
+                            };
+    [DoctorAPI delDoctorFriendGroupWithParameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSDictionary *dict = [responseObject firstObject];
+        hud.mode = MBProgressHUDModeText;
+        hud.labelText = dict[@"msg"];
+        if ([dict[@"state"]intValue] == 1) {
+            [group MR_deleteEntity];
+            [[NSManagedObjectContext MR_defaultContext]MR_saveToPersistentStoreAndWait];
+            [groupArray removeObject:group];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+            });
+        }
+        [hud hide:YES afterDelay:1.0f];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        hud.mode = MBProgressHUDModeText;
+        hud.labelText = error.localizedDescription;
+        [hud hide:YES afterDelay:1.5f];
+    }];
 }
 
 #pragma mark - Actions
@@ -102,6 +142,12 @@
     }
     return nil;
 }
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        [self deleteGroupWithIndexPath:indexPath];
+    }
+}
+
 #pragma mark - UITableView Delegate
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 41.0f;
@@ -109,6 +155,9 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     return 0.1f;
 }
+//- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
+//    return UITableViewCellEditingStyleDelete;
+//}
 #pragma mark - DZNEmptyDataSource
 
 - (NSAttributedString *)titleForEmptyDataSet:(UIScrollView *)scrollView{
