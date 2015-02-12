@@ -147,7 +147,7 @@
             friend.mobile = dict[@"Mobile"];
             friend.realname = dict[@"RealName"];
             friend.icon = dict[@"icon"];
-            friend.userType = dict[@"usertype"];
+            friend.userType = @([dict[@"usertype"]intValue]);
             friend.noteName = dict[@"notename"];
             friend.situation = dict[@"describe"];
         }

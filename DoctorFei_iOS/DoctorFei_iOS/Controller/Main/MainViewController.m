@@ -25,6 +25,7 @@
 #import "MainArrangementNewTableViewCell.h"
 #import <JSBadgeView.h>
 #import "Groups.h"
+#import "MainGroupDetailViewController.h"
 @interface MainViewController ()
     <UITableViewDelegate, UITableViewDataSource, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate, UIGestureRecognizerDelegate, MainGroupPopoverVCDelegate, WYPopoverControllerDelegate>
 
@@ -58,6 +59,7 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
+//    [Groups MR_truncateAll];
     // Do any additional setup after loading the view.
     self.navigationController.interactivePopGestureRecognizer.delegate = self;
     [self.navigationController.interactivePopGestureRecognizer setEnabled:YES];
@@ -191,9 +193,14 @@
                             @"doctorid": doctorId,
                             @"sortype": @0
                             };
+//    [Groups MR_truncateAll];
     [DoctorAPI getDoctorFriendGroupWithParameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"%@",responseObject);
         for (NSDictionary *dict in responseObject) {
+            if (dict[@"state"] && [dict[@"state"]intValue] == 0) {
+                NSLog(@"%@",dict[@"msg"]);
+                break;
+            }
             Groups *group = [Groups MR_findFirstByAttribute:@"groupId" withValue:dict[@"id"]];
             if (group == nil) {
                 group = [Groups MR_createEntity];
@@ -303,6 +310,10 @@
         if (doctorId) {
             [vc setCurrentDoctorId:doctorId];
         }
+    } else if ([segue.identifier isEqualToString:@"MainGroupDetailSegueIdentifier"]) {
+        Groups *group = (Groups *)sender;
+        MainGroupDetailViewController *vc = [segue destinationViewController];
+        [vc setCurrentGroup:group];
     }
 }
 
@@ -385,7 +396,7 @@
 }
 
 - (void)groupCellSelectedForPopoverVC:(MainGroupPopoverViewController *)vc withGroup:(Groups *)group {
-    
+    [self performSegueWithIdentifier:@"MainGroupDetailSegueIdentifier" sender:group];
 }
 
 @end

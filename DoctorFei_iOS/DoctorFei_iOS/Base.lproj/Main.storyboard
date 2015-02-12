@@ -169,9 +169,9 @@
                             </constraint>
                             <constraint firstItem="0nR-px-MK6" firstAttribute="leading" secondItem="zNT-fJ-FqE" secondAttribute="leading" id="LgE-sz-FBL"/>
                             <constraint firstItem="0nR-px-MK6" firstAttribute="bottom" secondItem="M1m-gi-n0P" secondAttribute="top" id="fwD-CF-Twh"/>
-                            <constraint firstAttribute="trailing" secondItem="MPU-zP-p2H" secondAttribute="trailing" id="jeY-IH-Vb5"/>
-                            <constraint firstItem="MPU-zP-p2H" firstAttribute="leading" secondItem="zNT-fJ-FqE" secondAttribute="leading" id="rEN-2i-0SU"/>
-                            <constraint firstAttribute="trailing" secondItem="0nR-px-MK6" secondAttribute="trailing" id="w0s-mI-IRj"/>
+                            <constraint firstAttribute="trailing" secondItem="0nR-px-MK6" secondAttribute="trailing" id="gh8-8S-PR9"/>
+                            <constraint firstAttribute="trailing" secondItem="MPU-zP-p2H" secondAttribute="trailing" constant="20" id="jeY-IH-Vb5"/>
+                            <constraint firstItem="MPU-zP-p2H" firstAttribute="leading" secondItem="zNT-fJ-FqE" secondAttribute="leading" constant="20" id="sLH-ld-7sC"/>
                         </constraints>
                         <variation key="default">
                             <mask key="subviews">
@@ -181,11 +181,11 @@
                             <mask key="constraints">
                                 <exclude reference="9QL-7H-hlh"/>
                                 <exclude reference="jeY-IH-Vb5"/>
-                                <exclude reference="rEN-2i-0SU"/>
+                                <exclude reference="sLH-ld-7sC"/>
                                 <exclude reference="CEH-88-TQA"/>
                                 <exclude reference="LgE-sz-FBL"/>
                                 <exclude reference="fwD-CF-Twh"/>
-                                <exclude reference="w0s-mI-IRj"/>
+                                <exclude reference="gh8-8S-PR9"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
@@ -196,11 +196,11 @@
                             <mask key="constraints">
                                 <include reference="9QL-7H-hlh"/>
                                 <include reference="jeY-IH-Vb5"/>
-                                <include reference="rEN-2i-0SU"/>
+                                <include reference="sLH-ld-7sC"/>
                                 <include reference="CEH-88-TQA"/>
                                 <include reference="LgE-sz-FBL"/>
                                 <include reference="fwD-CF-Twh"/>
-                                <include reference="w0s-mI-IRj"/>
+                                <include reference="gh8-8S-PR9"/>
                             </mask>
                         </variation>
                     </view>
@@ -2887,7 +2887,7 @@
                         <viewControllerLayoutGuide type="bottom" id="6xZ-Vt-ozy"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="EfW-kW-Y1v">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="487"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -3191,7 +3191,7 @@
             <objects>
                 <tableViewController id="R3e-aB-uT1" customClass="ContactRecordTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="F0s-b3-cy4">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="487"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -3225,7 +3225,7 @@
             <objects>
                 <tableViewController id="mZ8-1i-3x3" customClass="ContactFriendDetailTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="cjm-fp-VJT">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="487"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <color key="sectionIndexBackgroundColor" red="0.93333333330000001" green="0.93333333330000001" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -3645,7 +3645,7 @@
                         <viewControllerLayoutGuide type="bottom" id="vpu-gS-NsJ"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Pjy-qZ-SQ8">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="487"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入备注信息" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dpv-4e-IP9">
@@ -3689,7 +3689,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="75" y="45" width="325" height="641.5"/>
+                                    <rect key="frame" x="75" y="45" width="325" height="646.5"/>
                                 </variation>
                                 <connections>
                                     <outlet property="delegate" destination="aCp-DA-FmH" id="gPk-Nq-KhL"/>
@@ -4814,7 +4814,7 @@
                         <outlet property="tableView" destination="HYt-RQ-Uua" id="DCE-xD-JXK"/>
                         <outlet property="titleButton" destination="i55-fY-GlY" id="Z3i-sR-8XY"/>
                         <segue destination="riy-Vm-Dmq" kind="show" identifier="MainEditGroupSegueIdentifier" id="8FK-Id-c2E"/>
-                        <segue destination="V3H-i9-eD6" kind="show" id="ePr-tn-7Mj"/>
+                        <segue destination="V3H-i9-eD6" kind="show" identifier="MainGroupDetailSegueIdentifier" id="ePr-tn-7Mj"/>
                         <segue destination="27A-BS-m2q" kind="custom" identifier="MainGroupPopoverSegueIdentifier" customClass="WYStoryboardPopoverSegue" id="zKw-Eq-Pwx"/>
                     </connections>
                 </viewController>
@@ -5346,7 +5346,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ContactFriendCellIdentifier" rowHeight="65" id="sPe-kr-fsY" customClass="ContactFriendTableViewCell">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MainGroupDetailFriendCellIdentifier" rowHeight="65" id="sPe-kr-fsY" customClass="ContactFriendTableViewCell">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="sPe-kr-fsY" id="Ycf-zc-iSM">
@@ -5404,15 +5404,15 @@
                                                     <exclude reference="aiv-vT-PAJ"/>
                                                 </mask>
                                                 <mask key="constraints">
-                                                    <exclude reference="XkO-SI-0ws"/>
                                                     <exclude reference="8MY-8e-CK5"/>
+                                                    <exclude reference="XkO-SI-0ws"/>
                                                     <exclude reference="dcE-Ph-otY"/>
                                                     <exclude reference="hJB-fW-Ede"/>
                                                     <exclude reference="kuh-LL-Q5g"/>
                                                     <exclude reference="wgy-WT-PHf"/>
-                                                    <exclude reference="tbG-LP-RBf"/>
-                                                    <exclude reference="QpS-jo-keM"/>
                                                     <exclude reference="5kQ-e7-hZa"/>
+                                                    <exclude reference="QpS-jo-keM"/>
+                                                    <exclude reference="tbG-LP-RBf"/>
                                                 </mask>
                                             </variation>
                                             <variation key="heightClass=regular-widthClass=compact">
@@ -5422,15 +5422,15 @@
                                                     <include reference="aiv-vT-PAJ"/>
                                                 </mask>
                                                 <mask key="constraints">
-                                                    <include reference="XkO-SI-0ws"/>
                                                     <include reference="8MY-8e-CK5"/>
+                                                    <include reference="XkO-SI-0ws"/>
                                                     <include reference="dcE-Ph-otY"/>
                                                     <include reference="hJB-fW-Ede"/>
                                                     <include reference="kuh-LL-Q5g"/>
                                                     <include reference="wgy-WT-PHf"/>
-                                                    <include reference="tbG-LP-RBf"/>
-                                                    <include reference="QpS-jo-keM"/>
                                                     <include reference="5kQ-e7-hZa"/>
+                                                    <include reference="QpS-jo-keM"/>
+                                                    <include reference="tbG-LP-RBf"/>
                                                 </mask>
                                             </variation>
                                         </tableViewCellContentView>
@@ -5492,13 +5492,12 @@
                             <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
-                            <inset key="titleEdgeInsets" minX="-20" minY="0.0" maxX="0.0" maxY="0.0"/>
-                            <state key="normal" title="分组名" backgroundImage="top_arrow_down.png">
+                            <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="20" maxY="0.0"/>
+                            <state key="normal" title="全部 " backgroundImage="top_arrow_down.png">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
-                                <action selector="titleButtonClicked:" destination="lNP-pK-kqe" eventType="touchUpInside" id="B97-8O-pSC"/>
-                                <segue destination="27A-BS-m2q" kind="custom" customClass="WYStoryboardPopoverSegue" id="O2X-kl-Jk8"/>
+                                <action selector="titleButtonClciked:" destination="V3H-i9-eD6" eventType="touchUpInside" id="gYa-wj-pQK"/>
                             </connections>
                         </button>
                         <barButtonItem key="rightBarButtonItem" title="添加患者" id="Yfh-O0-i3h">
@@ -5507,6 +5506,9 @@
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="kUa-OX-e88" id="ofu-h0-nJd"/>
+                        <outlet property="titleButton" destination="lNB-iA-lT4" id="xUe-SF-uur"/>
+                        <segue destination="27A-BS-m2q" kind="custom" identifier="MainGroupDetailPopoverSegueIdentifier" customClass="WYStoryboardPopoverSegue" id="XRC-P1-gD5"/>
+                        <segue destination="riy-Vm-Dmq" kind="show" identifier="MainGroupDetailEditSegueIdentifier" id="g9C-yb-yuY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kbf-s5-jRF" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -10558,7 +10560,7 @@
             <objects>
                 <tableViewController title="电话添加" id="7vi-g4-sXh" customClass="ContactFriendSetDescribeTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Efp-pk-9BO">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="487"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93333333330000001" green="0.93333333330000001" blue="0.93333333330000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <sections>
@@ -11036,14 +11038,15 @@
         <image name="vip_pic.png" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="QWB-UP-Nry"/>
-        <segue reference="xAo-Kx-7vt"/>
-        <segue reference="wpO-fm-KSL"/>
         <segue reference="Tpb-k1-2hl"/>
-        <segue reference="O2X-kl-Jk8"/>
-        <segue reference="7qh-2R-9ti"/>
-        <segue reference="G9W-g1-ayd"/>
+        <segue reference="rqJ-cO-jCt"/>
+        <segue reference="g9C-yb-yuY"/>
+        <segue reference="XRC-P1-gD5"/>
+        <segue reference="wpO-fm-KSL"/>
+        <segue reference="xAo-Kx-7vt"/>
         <segue reference="pVr-DH-hJQ"/>
+        <segue reference="G9W-g1-ayd"/>
+        <segue reference="7qh-2R-9ti"/>
         <segue reference="I02-mG-QSP"/>
     </inferredMetricsTieBreakers>
 </document>

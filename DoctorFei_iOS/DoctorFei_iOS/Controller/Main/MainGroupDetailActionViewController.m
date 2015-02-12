@@ -68,6 +68,10 @@
     [DoctorAPI getDoctorFriendGroupWithParameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"%@",responseObject);
         for (NSDictionary *dict in responseObject) {
+            if (dict[@"state"] && [dict[@"state"]intValue] == 0) {
+                NSLog(@"%@",dict[@"msg"]);
+                break;
+            }
             Groups *group = [Groups MR_findFirstByAttribute:@"groupId" withValue:dict[@"id"]];
             if (group == nil) {
                 group = [Groups MR_createEntity];
