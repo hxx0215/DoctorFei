@@ -38,6 +38,8 @@
 #define kMethodDelFriendGroup @"update.doctor.delfriendgroup"
 #define kMethodMoveFriendGroup @"set.doctor.movefriend"
 
+#define kMethodGetMemberHistory @"get.member.history"
+
 
 @implementation DoctorAPI
 + (void)updateInfomationWithParameters: (id)parameters success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
@@ -190,6 +192,12 @@
 //移动好友到分组
 + (void)moveDoctorFriendGroupWithParameters: (id)parameters success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure {
     [[self sharedManager]defaultGetWithMethod:kMethodMoveFriendGroup WithParameters:parameters success:success failure:failure];
+}
+
+//获取患者病历本
++ (void)getMemberHistoryWithParameters: (id)parameters success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
+{
+    [[self sharedManager]defaultGetWithMethod:kMethodGetMemberHistory WithParameters:parameters success:success failure:failure];
 }
 
 @end
