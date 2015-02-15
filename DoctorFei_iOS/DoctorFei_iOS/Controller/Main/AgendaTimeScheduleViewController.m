@@ -54,7 +54,7 @@
                              };
     [DoctorAPI getDoctorScheduleWithParameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"%@",responseObject);
-        for (id str in [responseObject[0] allKeys]){
+        for (id str in [[responseObject firstObject] allKeys]){
             NSNumber *tag = nil;
             if ((tag =[self.scheduleMap objectForKey:str])){
                 UIButton *btn = (UIButton *)[self.view viewWithTag:[tag integerValue]];

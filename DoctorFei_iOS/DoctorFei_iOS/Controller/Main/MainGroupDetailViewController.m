@@ -30,13 +30,15 @@
 {
     NSArray *friendArray;
     WYPopoverController *popoverController;
+    NSIndexPath *currentIndexPath;
 }
 @synthesize currentGroup = _currentGroup;
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([segue.identifier isEqualToString:@"MainGroupChangeSegueIdentifier"]) {
+    if ([segue.identifier isEqualToString:@"MainGroupDetailChangeSegueIdentifier"]) {
         MainGroupDetailActionViewController *vc = [segue destinationViewController];
         [vc setVcMode:MainGroupDetailActionViewControllerModeSelect];
+        [vc setSelectedFriend:friendArray[currentIndexPath.row]];
         //TODO
     } else if ([segue.identifier isEqualToString:@"MainGroupDetailPopoverSegueIdentifier"]) {
         UIImage *image = [[UIImage imageNamed:@"top_arrow_up"] stretchableImageWithLeftCapWidth:1 topCapHeight:1];
@@ -59,6 +61,15 @@
     } else if ([segue.identifier isEqualToString:@"MainGroupDetailEditSegueIdentifier"]) {
         MainGroupDetailActionViewController *vc = [segue destinationViewController];
         [vc setVcMode:MainGroupDetailActionViewControllerModeEdit];
+    } else if ([segue.identifier isEqualToString:@"MainGroupDetailAddFriendSegueIdentifier"]) {
+        UINavigationController *nav = [segue destinationViewController];
+        ContactViewController *vc = nav.viewControllers.firstObject;
+        [vc setContactMode:ContactViewControllerModeMainGroupAddFriend];
+        [vc setSelectedArray:[friendArray mutableCopy]];
+        vc.didSelectFriends = ^(NSArray *selectArray) {
+            NSLog(@"%@",selectArray);
+            [self setGroupFriendsWithFriendArray:selectArray];
+        };
     }
 }
 
@@ -79,17 +90,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    NSString *titleString;
-    if (_currentGroup.title) {
-        titleString = [NSString stringWithFormat:@"%@", _currentGroup.title];
-    }else{
-        titleString = [NSString stringWithFormat:@"全部"];
-        _currentGroup = nil;
-    }
-    [self.titleButton setTitle:titleString forState:UIControlStateNormal];
-    
-    [self fetchFriendWithGroup:_currentGroup];
-
+    [self reloadView];
 }
 
 - (void)viewWillLayoutSubviews {
@@ -100,9 +101,26 @@
     [self.titleButton setFrame:rect];
 
 }
+
+- (void)reloadView {
+    NSString *titleString;
+    if (_currentGroup.title) {
+        titleString = [NSString stringWithFormat:@"%@", _currentGroup.title];
+        [self.navigationItem.rightBarButtonItem setEnabled:YES];
+    }else{
+        titleString = [NSString stringWithFormat:@"全部"];
+        _currentGroup = nil;
+        [self.navigationItem.rightBarButtonItem setEnabled:NO];
+    }
+    [self.titleButton setTitle:titleString forState:UIControlStateNormal];
+    
+    [self fetchFriendWithGroup:_currentGroup];
+
+}
+
 - (void)reloadTableViewData {
     if (_currentGroup) {
-        friendArray = [Friends MR_findFirstByAttribute:@"group" withValue:_currentGroup];
+        friendArray = [Friends MR_findByAttribute:@"group" withValue:_currentGroup];
     }else {
         friendArray = [Friends MR_findAll];
     }
@@ -151,9 +169,13 @@
         [hud hide:NO];
         NSLog(@"%@",responseObject);
         for (NSDictionary *dict in responseObject) {
-            Friends *friend = [Friends MR_findFirstByAttribute:@"userId" withValue:dict[@"userId"]];
+            if (dict[@"state"] && [dict[@"state"]intValue] == 0) {
+                break;
+            }
+            Friends *friend = [Friends MR_findFirstByAttribute:@"userId" withValue:dict[@"userid"]];
             if (friend == nil) {
-                friend.userId = dict[@"userId"];
+                friend = [Friends MR_createEntity];
+                friend.userId = dict[@"userid"];
             }
             friend.userType = usertype;
             friend.email = dict[@"Email"];
@@ -164,6 +186,7 @@
             friend.userType = @([dict[@"usertype"]intValue]);
             friend.noteName = dict[@"notename"];
             friend.situation = dict[@"describe"];
+            friend.group = _currentGroup;
         }
         [[NSManagedObjectContext MR_defaultContext]MR_saveToPersistentStoreAndWait];
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -172,6 +195,39 @@
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"%@",error.localizedDescription);
         
+    }];
+}
+
+- (void)setGroupFriendsWithFriendArray:(NSArray *)array {
+    NSNumber *doctorid = [[NSUserDefaults standardUserDefaults] objectForKey:@"UserId"];
+    NSMutableArray *idArray = [NSMutableArray array];
+    for (Friends *friend in array) {
+        [idArray addObject:friend.userId];
+    }
+    NSString *idString = [idArray componentsJoinedByString:@","];
+    NSLog(@"%@",idString);
+    
+    
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view.window animated:YES];
+    NSDictionary *param = @{
+                            @"doctorid" : doctorid,
+                            @"groupid": _currentGroup.groupId,
+                            @"userids": idString
+                            };
+    [DoctorAPI moveDoctorFriendGroupWithParameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSDictionary *dict = [responseObject firstObject];
+        hud.mode = MBProgressHUDModeText;
+        hud.labelText = dict[@"msg"];
+        [hud hide:YES afterDelay:1.0f];
+        if ([dict[@"state"]intValue] == 1) {
+            [self dismissViewControllerAnimated:YES completion:nil];
+        }
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"%@",error.localizedDescription);
+        hud.mode = MBProgressHUDModeText;
+        hud.labelText = error.localizedDescription;
+        [hud hide:YES afterDelay:1.5f];
     }];
 }
 
@@ -186,6 +242,10 @@
 //        NSIndexPath *path=[self.tableView indexPathForRowAtPoint:point];
         UIActionSheet *sheet  = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"转移到其他组",@"从该组删除", nil];
         [sheet showFromTabBar:self.tabBarController.tabBar];
+        CGPoint point=[gestureRecognizer locationInView:self.tableView];
+        NSIndexPath* path=[self.tableView indexPathForRowAtPoint:point];
+        currentIndexPath = path;
+
     } else if(gestureRecognizer.state == UIGestureRecognizerStateEnded) {
     } else if(gestureRecognizer.state == UIGestureRecognizerStateChanged) {
     }
@@ -221,7 +281,7 @@
 #pragma mark - UIActionSheet Delegate
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (buttonIndex == 0) {
-        [self performSegueWithIdentifier:@"MainGroupChangeSegueIdentifier" sender:nil];
+        [self performSegueWithIdentifier:@"MainGroupDetailChangeSegueIdentifier" sender:nil];
     }
 }
 - (IBAction)titleButtonClciked:(id)sender {
@@ -239,6 +299,7 @@
     [self performSegueWithIdentifier:@"MainGroupDetailEditSegueIdentifier" sender:nil];
 }
 - (void)groupCellSelectedForPopoverVC:(MainGroupPopoverViewController *)vc withGroup:(Groups *)group {
-    
+    _currentGroup = group;
+    [self reloadView];
 }
 @end

@@ -74,7 +74,10 @@
         hud.labelText = dict[@"msg"];
         [hud hide:YES afterDelay:1.0f];
         if ([dict[@"state"]intValue] == 1) {
-            [self performSegueWithIdentifier:@"MainGroupAddFriendSegueIdentifier" sender:nil];
+//            [self performSegueWithIdentifier:@"MainGroupAddFriendSegueIdentifier" sender:nil];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self dismissViewControllerAnimated:YES completion:nil];
+            });
         }
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {

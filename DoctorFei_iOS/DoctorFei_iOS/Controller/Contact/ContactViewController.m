@@ -114,12 +114,22 @@
         for (int j=0;j<[tableViewDataArray[i] count];j++){
             NSString *title = [DataUtil nameStringForFriend:tableViewDataArray[i][j]].string;
             [self.selectedArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop){
-                NSString *friendName = (NSString *)obj;
-                if ([friendName isEqualToString:title]){
-                    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:j inSection:i];
-                    [self.cellSelected addObject:indexPath];
-                    [self.selectedArray removeObject:friendName];
-                    self.navigationItem.rightBarButtonItem.enabled = YES;//self.cellSelected肯定不为空
+                if (_contactMode == ContactViewControllerModeMainGroupAddFriend) {
+                    Friends *selectFriend = (Friends *)obj;
+                    if ([selectFriend isEqual:tableViewDataArray[i][j]]) {
+                        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:j inSection:i];
+                        [self.cellSelected addObject:indexPath];
+                        [self.selectedArray removeObject:selectFriend];
+                        self.navigationItem.rightBarButtonItem.enabled = YES;
+                    }
+                } else{
+                    NSString *friendName = (NSString *)obj;
+                    if ([friendName isEqualToString:title]){
+                        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:j inSection:i];
+                        [self.cellSelected addObject:indexPath];
+                        [self.selectedArray removeObject:friendName];
+                        self.navigationItem.rightBarButtonItem.enabled = YES;//self.cellSelected肯定不为空
+                    }
                 }
             }];
         }
@@ -137,10 +147,10 @@
         NSLog(@"%@",responseObject);
         NSArray *dataArray = (NSArray *)responseObject;
         for (NSDictionary *dict in dataArray) {
-            Friends *friend = [Friends MR_findFirstByAttribute:@"userId" withValue:dict[@"userId"]];
+            Friends *friend = [Friends MR_findFirstByAttribute:@"userId" withValue:dict[@"userid"]];
             if (friend == nil) {
                 friend = [Friends MR_createEntity];
-                friend.userId = dict[@"userId"];
+                friend.userId = @([dict[@"userid"]intValue]);
             }
             friend.email = dict[@"Email"];
             friend.gender = dict[@"Gender"];

@@ -12,8 +12,10 @@ typedef NS_ENUM(NSUInteger, MainGroupDetailActionViewControllerMode) {
 };
 #import <UIKit/UIKit.h>
 
+@class Groups;
+@class Friends;
 @interface MainGroupDetailActionViewController : UIViewController
 
 @property (nonatomic, assign) MainGroupDetailActionViewControllerMode vcMode;
-
+@property (nonatomic, strong) Friends *selectedFriend;
 @end

@@ -14,10 +14,12 @@
 #import "DoctorAPI.h"
 #import "MainGroupGroupActionViewController.h"
 #import <MBProgressHUD.h>
+#import "Friends.h"
 @interface MainGroupDetailActionViewController ()
     <UITableViewDataSource, UITableViewDelegate, DZNEmptyDataSetDelegate, DZNEmptyDataSetSource>
 
 - (IBAction)backButtonClicked:(id)sender;
+- (IBAction)confirmButtonClicked:(id)sender;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIView *headerView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *headViewHeight;
@@ -29,7 +31,7 @@
     NSMutableArray *groupArray;
 }
 @synthesize vcMode = _vcMode;
-
+@synthesize selectedFriend = _selectedFriend;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -37,13 +39,14 @@
     if (_vcMode == MainGroupDetailActionViewControllerModeEdit) {
         self.title = @"编辑分组";
         self.navigationItem.rightBarButtonItems = nil;
-    }
-    else{
+    } else{
         self.title = @"选择分组";
-        self.navigationItem.leftBarButtonItems = nil;
+//        self.navigationItem.leftBarButtonItems = nil;
         self.headViewHeight.constant = 0;
     }
 }
+
+
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self fetchGroupArray];
@@ -56,6 +59,44 @@
         MainGroupGroupActionViewController *vc = nav.viewControllers[0];
         [vc setCurrentGroup:groupArray[indexPath.row]];
     }
+}
+
+- (void)reloadTableViewData {
+    [self.tableView reloadData];
+    if (_selectedFriend.group) {
+        NSUInteger row = [groupArray indexOfObject:_selectedFriend.group];
+        NSIndexPath *selectedIndexPath = [NSIndexPath indexPathForRow:row inSection:0];
+        [self.tableView selectRowAtIndexPath:selectedIndexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
+    }
+}
+
+- (void)moveFriend:(Friends *)friend toGroup:(Groups *)group {
+    NSNumber *doctorId = [[NSUserDefaults standardUserDefaults] objectForKey:@"UserId"];
+    NSDictionary *param = @{
+                            @"doctorid": doctorId,
+                            @"groupid": group.groupId,
+                            @"userids": [friend.userId stringValue]
+                            };
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view.window animated:YES];
+    hud.labelText = @"移动中...";
+    [DoctorAPI moveDoctorFriendGroupWithParameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSDictionary *dict = [responseObject firstObject];
+        hud.mode = MBProgressHUDModeText;
+        hud.labelText = dict[@"msg"];
+        [hud hide:YES afterDelay:1.0f];
+        if ([dict[@"state"]intValue] == 1) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.navigationController popViewControllerAnimated:YES];
+                friend.group = group;
+                [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
+            });
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"%@",error.localizedDescription);
+        hud.mode = MBProgressHUDModeText;
+        hud.labelText = error.localizedDescription;
+        [hud hide:YES afterDelay:1.5f];
+    }];
 }
 
 - (void)fetchGroupArray {
@@ -83,7 +124,7 @@
         [[NSManagedObjectContext MR_defaultContext]MR_saveToPersistentStoreAndWait];
         groupArray = [[Groups MR_findAll]mutableCopy];
         dispatch_async(dispatch_get_main_queue(), ^{
-            [self.tableView reloadData];
+            [self reloadTableViewData];
         });
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"%@",error.localizedDescription);
@@ -126,6 +167,11 @@
      ];
 }
 
+- (IBAction)confirmButtonClicked:(id)sender {
+    Groups *selectGroup = groupArray[[self.tableView indexPathForSelectedRow].row];
+    [self moveFriend:_selectedFriend toGroup:selectGroup];
+}
+
 
 #pragma mark - UITableView DataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -159,6 +205,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     return 0.1f;
 }
+
 //- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
 //    return UITableViewCellEditingStyleDelete;
 //}

@@ -10,6 +10,7 @@
 #import "Friends.h"
 #import "Chat.h"
 #import "Message.h"
+#import "Groups.h"
 @implementation DataUtil
 
 + (void)cleanUserDefault
@@ -29,6 +30,7 @@
     [Friends MR_truncateAll];
     [Chat MR_truncateAll];
     [Message MR_truncateAll];
+    [Groups MR_truncateAll];
     [[NSManagedObjectContext MR_defaultContext]MR_saveToPersistentStoreAndWait];
 }
 
