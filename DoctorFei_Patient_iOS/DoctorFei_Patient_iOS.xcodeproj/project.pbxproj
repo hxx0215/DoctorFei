@@ -8,6 +8,27 @@
 
 /* Begin PBXBuildFile section */
 		066252435D862D351860BC4E /* libPods-DoctorFei_Patient_iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BCC976E6369EF3B95E69806 /* libPods-DoctorFei_Patient_iOS.a */; };
+		6A28DDB31A9E07C700B50F8E /* MainTabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A28DD841A9E07C700B50F8E /* MainTabBarViewController.m */; };
+		6A28DDB41A9E07C700B50F8E /* LoginFirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A28DD871A9E07C700B50F8E /* LoginFirstViewController.m */; };
+		6A28DDB51A9E07C700B50F8E /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A28DD891A9E07C700B50F8E /* LoginViewController.m */; };
+		6A28DDB61A9E07C700B50F8E /* ForgetPassVerifyCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A28DD8C1A9E07C700B50F8E /* ForgetPassVerifyCodeViewController.m */; };
+		6A28DDB71A9E07C700B50F8E /* ForgetPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A28DD8E1A9E07C700B50F8E /* ForgetPasswordViewController.m */; };
+		6A28DDB81A9E07C700B50F8E /* RegisterMoreTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A28DD901A9E07C700B50F8E /* RegisterMoreTableViewController.m */; };
+		6A28DDB91A9E07C700B50F8E /* RegisterTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A28DD921A9E07C700B50F8E /* RegisterTableViewController.m */; };
+		6A28DDBA1A9E07C700B50F8E /* SetNewPasswordTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A28DD941A9E07C700B50F8E /* SetNewPasswordTableViewController.m */; };
+		6A28DDBC1A9E07C700B50F8E /* Chat.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A28DD9B1A9E07C700B50F8E /* Chat.m */; };
+		6A28DDBD1A9E07C700B50F8E /* Friends+PinYinUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A28DD9D1A9E07C700B50F8E /* Friends+PinYinUtil.m */; };
+		6A28DDBE1A9E07C700B50F8E /* Friends.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A28DD9F1A9E07C700B50F8E /* Friends.m */; };
+		6A28DDBF1A9E07C700B50F8E /* MainCoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6A28DDA01A9E07C700B50F8E /* MainCoreData.xcdatamodeld */; };
+		6A28DDC01A9E07C700B50F8E /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A28DDA31A9E07C700B50F8E /* Message.m */; };
+		6A28DDC11A9E07C700B50F8E /* MessagesModalData.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A28DDA51A9E07C700B50F8E /* MessagesModalData.m */; };
+		6A28DDC21A9E07C700B50F8E /* BaseHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A28DDA81A9E07C700B50F8E /* BaseHTTPRequestOperationManager.m */; };
+		6A28DDC31A9E07C700B50F8E /* ChatAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A28DDAA1A9E07C700B50F8E /* ChatAPI.m */; };
+		6A28DDC41A9E07C700B50F8E /* DoctorAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A28DDAC1A9E07C700B50F8E /* DoctorAPI.m */; };
+		6A28DDC51A9E07C700B50F8E /* MobileAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A28DDAE1A9E07C700B50F8E /* MobileAPI.m */; };
+		6A28DDC61A9E07C700B50F8E /* RegisterAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A28DDB01A9E07C700B50F8E /* RegisterAPI.m */; };
+		6A28DDC71A9E07C700B50F8E /* UserAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A28DDB21A9E07C700B50F8E /* UserAPI.m */; };
+		6A28DDC91A9E0DB200B50F8E /* libPushSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A28DDC81A9E0DB200B50F8E /* libPushSDK.a */; };
 		6AFD40481A5D5EF4009C0080 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AFD40471A5D5EF4009C0080 /* main.m */; };
 		6AFD404B1A5D5EF4009C0080 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AFD404A1A5D5EF4009C0080 /* AppDelegate.m */; };
 		6AFD404E1A5D5EF4009C0080 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AFD404D1A5D5EF4009C0080 /* ViewController.m */; };
@@ -491,35 +512,13 @@
 		D3B9FB9B1A712D150024F1DF /* weixin_logo_after.png in Resources */ = {isa = PBXBuildFile; fileRef = D3B9F9BE1A712D150024F1DF /* weixin_logo_after.png */; };
 		D3B9FB9C1A712D150024F1DF /* weixin_logo_after@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3B9F9BF1A712D150024F1DF /* weixin_logo_after@2x.png */; };
 		D3B9FB9D1A712D150024F1DF /* weixin_logo_after@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3B9F9C01A712D150024F1DF /* weixin_logo_after@3x.png */; };
-		D3B9FBAF1A712DBB0024F1DF /* BaseHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D3B9FBA01A712DBB0024F1DF /* BaseHTTPRequestOperationManager.m */; };
-		D3B9FBB31A712DBB0024F1DF /* MobileAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = D3B9FBA81A712DBB0024F1DF /* MobileAPI.m */; };
-		D3B9FBB41A712DBB0024F1DF /* RegisterAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = D3B9FBAA1A712DBB0024F1DF /* RegisterAPI.m */; };
 		D3B9FBC61A712DE80024F1DF /* DeviceUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = D3B9FBBC1A712DE80024F1DF /* DeviceUtil.m */; };
 		D3B9FBC81A712DE80024F1DF /* NSString+Crypt.m in Sources */ = {isa = PBXBuildFile; fileRef = D3B9FBC01A712DE80024F1DF /* NSString+Crypt.m */; };
 		D3B9FBC91A712DE80024F1DF /* pinyin.c in Sources */ = {isa = PBXBuildFile; fileRef = D3B9FBC11A712DE80024F1DF /* pinyin.c */; };
-		D3B9FBE71A7138BF0024F1DF /* MainTabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3B9FBD81A7138BF0024F1DF /* MainTabBarViewController.m */; };
-		D3B9FBE91A7138BF0024F1DF /* ForgetPassVerifyCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3B9FBDE1A7138BF0024F1DF /* ForgetPassVerifyCodeViewController.m */; };
-		D3B9FBEA1A7138BF0024F1DF /* ForgetPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3B9FBE01A7138BF0024F1DF /* ForgetPasswordViewController.m */; };
-		D3B9FBEB1A7138BF0024F1DF /* RegisterMoreTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3B9FBE21A7138BF0024F1DF /* RegisterMoreTableViewController.m */; };
-		D3B9FBEC1A7138BF0024F1DF /* RegisterTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3B9FBE41A7138BF0024F1DF /* RegisterTableViewController.m */; };
-		D3B9FBED1A7138C00024F1DF /* SetNewPasswordTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3B9FBE61A7138BF0024F1DF /* SetNewPasswordTableViewController.m */; };
-		D3B9FBF31A7139140024F1DF /* DoctorAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = D3B9FBF11A7139140024F1DF /* DoctorAPI.m */; };
-		D3B9FBF61A7140BA0024F1DF /* LoginFirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3B9FBF51A7140BA0024F1DF /* LoginFirstViewController.m */; };
-		D3B9FBF91A7145250024F1DF /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3B9FBF81A7145250024F1DF /* LoginViewController.m */; };
-		D3B9FBFE1A7145500024F1DF /* libPushSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D3B9FBFD1A7145500024F1DF /* libPushSDK.a */; };
 		D3B9FC011A7145850024F1DF /* DataUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = D3B9FC001A7145850024F1DF /* DataUtil.m */; };
 		D3B9FC041A7145A70024F1DF /* SetOnlineStateUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = D3B9FC031A7145A70024F1DF /* SetOnlineStateUtil.m */; };
 		D3B9FC071A7145B70024F1DF /* FetchChatUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = D3B9FC061A7145B70024F1DF /* FetchChatUtil.m */; };
 		D3B9FC0A1A7145C60024F1DF /* ImageUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = D3B9FC091A7145C60024F1DF /* ImageUtil.m */; };
-		D3B9FC0D1A7145D90024F1DF /* SocketConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = D3B9FC0C1A7145D90024F1DF /* SocketConnection.m */; };
-		D3B9FC1B1A7146070024F1DF /* Chat.m in Sources */ = {isa = PBXBuildFile; fileRef = D3B9FC101A7146070024F1DF /* Chat.m */; };
-		D3B9FC1C1A7146070024F1DF /* Friends+PinYinUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = D3B9FC121A7146070024F1DF /* Friends+PinYinUtil.m */; };
-		D3B9FC1D1A7146070024F1DF /* Friends.m in Sources */ = {isa = PBXBuildFile; fileRef = D3B9FC141A7146070024F1DF /* Friends.m */; };
-		D3B9FC1E1A7146070024F1DF /* MainCoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D3B9FC151A7146070024F1DF /* MainCoreData.xcdatamodeld */; };
-		D3B9FC1F1A7146070024F1DF /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = D3B9FC181A7146070024F1DF /* Message.m */; };
-		D3B9FC201A7146070024F1DF /* MessagesModalData.m in Sources */ = {isa = PBXBuildFile; fileRef = D3B9FC1A1A7146070024F1DF /* MessagesModalData.m */; };
-		D3B9FC251A7146350024F1DF /* ChatAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = D3B9FC221A7146350024F1DF /* ChatAPI.m */; };
-		D3B9FC261A7146350024F1DF /* UserAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = D3B9FC241A7146350024F1DF /* UserAPI.m */; };
 		D3B9FC281A71470B0024F1DF /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3B9FC271A71470B0024F1DF /* AVFoundation.framework */; };
 		D3B9FC2A1A7147190024F1DF /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D3B9FC291A7147190024F1DF /* libz.dylib */; };
 		D3B9FC2C1A7147210024F1DF /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3B9FC2B1A7147210024F1DF /* Security.framework */; };
@@ -546,6 +545,47 @@
 /* Begin PBXFileReference section */
 		30AFFF2139DB1EDC1DF447AA /* Pods-DoctorFei_Patient_iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DoctorFei_Patient_iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DoctorFei_Patient_iOS/Pods-DoctorFei_Patient_iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		68E6BE58C33F18C0B038BAFC /* Pods-DoctorFei_Patient_iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DoctorFei_Patient_iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-DoctorFei_Patient_iOS/Pods-DoctorFei_Patient_iOS.release.xcconfig"; sourceTree = "<group>"; };
+		6A28DD831A9E07C700B50F8E /* MainTabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainTabBarViewController.h; sourceTree = "<group>"; };
+		6A28DD841A9E07C700B50F8E /* MainTabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainTabBarViewController.m; sourceTree = "<group>"; };
+		6A28DD861A9E07C700B50F8E /* LoginFirstViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginFirstViewController.h; sourceTree = "<group>"; };
+		6A28DD871A9E07C700B50F8E /* LoginFirstViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginFirstViewController.m; sourceTree = "<group>"; };
+		6A28DD881A9E07C700B50F8E /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		6A28DD891A9E07C700B50F8E /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		6A28DD8B1A9E07C700B50F8E /* ForgetPassVerifyCodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForgetPassVerifyCodeViewController.h; sourceTree = "<group>"; };
+		6A28DD8C1A9E07C700B50F8E /* ForgetPassVerifyCodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgetPassVerifyCodeViewController.m; sourceTree = "<group>"; };
+		6A28DD8D1A9E07C700B50F8E /* ForgetPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForgetPasswordViewController.h; sourceTree = "<group>"; };
+		6A28DD8E1A9E07C700B50F8E /* ForgetPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgetPasswordViewController.m; sourceTree = "<group>"; };
+		6A28DD8F1A9E07C700B50F8E /* RegisterMoreTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterMoreTableViewController.h; sourceTree = "<group>"; };
+		6A28DD901A9E07C700B50F8E /* RegisterMoreTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterMoreTableViewController.m; sourceTree = "<group>"; };
+		6A28DD911A9E07C700B50F8E /* RegisterTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterTableViewController.h; sourceTree = "<group>"; };
+		6A28DD921A9E07C700B50F8E /* RegisterTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterTableViewController.m; sourceTree = "<group>"; };
+		6A28DD931A9E07C700B50F8E /* SetNewPasswordTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetNewPasswordTableViewController.h; sourceTree = "<group>"; };
+		6A28DD941A9E07C700B50F8E /* SetNewPasswordTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetNewPasswordTableViewController.m; sourceTree = "<group>"; };
+		6A28DD971A9E07C700B50F8E /* APService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APService.h; sourceTree = "<group>"; };
+		6A28DD9A1A9E07C700B50F8E /* Chat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Chat.h; sourceTree = "<group>"; };
+		6A28DD9B1A9E07C700B50F8E /* Chat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Chat.m; sourceTree = "<group>"; };
+		6A28DD9C1A9E07C700B50F8E /* Friends+PinYinUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Friends+PinYinUtil.h"; sourceTree = "<group>"; };
+		6A28DD9D1A9E07C700B50F8E /* Friends+PinYinUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Friends+PinYinUtil.m"; sourceTree = "<group>"; };
+		6A28DD9E1A9E07C700B50F8E /* Friends.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Friends.h; sourceTree = "<group>"; };
+		6A28DD9F1A9E07C700B50F8E /* Friends.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Friends.m; sourceTree = "<group>"; };
+		6A28DDA11A9E07C700B50F8E /* MainCoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MainCoreData.xcdatamodel; sourceTree = "<group>"; };
+		6A28DDA21A9E07C700B50F8E /* Message.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Message.h; sourceTree = "<group>"; };
+		6A28DDA31A9E07C700B50F8E /* Message.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Message.m; sourceTree = "<group>"; };
+		6A28DDA41A9E07C700B50F8E /* MessagesModalData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessagesModalData.h; sourceTree = "<group>"; };
+		6A28DDA51A9E07C700B50F8E /* MessagesModalData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessagesModalData.m; sourceTree = "<group>"; };
+		6A28DDA71A9E07C700B50F8E /* BaseHTTPRequestOperationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseHTTPRequestOperationManager.h; sourceTree = "<group>"; };
+		6A28DDA81A9E07C700B50F8E /* BaseHTTPRequestOperationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseHTTPRequestOperationManager.m; sourceTree = "<group>"; };
+		6A28DDA91A9E07C700B50F8E /* ChatAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatAPI.h; sourceTree = "<group>"; };
+		6A28DDAA1A9E07C700B50F8E /* ChatAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatAPI.m; sourceTree = "<group>"; };
+		6A28DDAB1A9E07C700B50F8E /* DoctorAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoctorAPI.h; sourceTree = "<group>"; };
+		6A28DDAC1A9E07C700B50F8E /* DoctorAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DoctorAPI.m; sourceTree = "<group>"; };
+		6A28DDAD1A9E07C700B50F8E /* MobileAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobileAPI.h; sourceTree = "<group>"; };
+		6A28DDAE1A9E07C700B50F8E /* MobileAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MobileAPI.m; sourceTree = "<group>"; };
+		6A28DDAF1A9E07C700B50F8E /* RegisterAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterAPI.h; sourceTree = "<group>"; };
+		6A28DDB01A9E07C700B50F8E /* RegisterAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterAPI.m; sourceTree = "<group>"; };
+		6A28DDB11A9E07C700B50F8E /* UserAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserAPI.h; sourceTree = "<group>"; };
+		6A28DDB21A9E07C700B50F8E /* UserAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserAPI.m; sourceTree = "<group>"; };
+		6A28DDC81A9E0DB200B50F8E /* libPushSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libPushSDK.a; sourceTree = "<group>"; };
 		6AFD40421A5D5EF4009C0080 /* DoctorFei_Patient_iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DoctorFei_Patient_iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6AFD40461A5D5EF4009C0080 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6AFD40471A5D5EF4009C0080 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -1036,12 +1076,6 @@
 		D3B9F9BE1A712D150024F1DF /* weixin_logo_after.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = weixin_logo_after.png; sourceTree = "<group>"; };
 		D3B9F9BF1A712D150024F1DF /* weixin_logo_after@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "weixin_logo_after@2x.png"; sourceTree = "<group>"; };
 		D3B9F9C01A712D150024F1DF /* weixin_logo_after@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "weixin_logo_after@3x.png"; sourceTree = "<group>"; };
-		D3B9FB9F1A712DBB0024F1DF /* BaseHTTPRequestOperationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseHTTPRequestOperationManager.h; sourceTree = "<group>"; };
-		D3B9FBA01A712DBB0024F1DF /* BaseHTTPRequestOperationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseHTTPRequestOperationManager.m; sourceTree = "<group>"; };
-		D3B9FBA71A712DBB0024F1DF /* MobileAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobileAPI.h; sourceTree = "<group>"; };
-		D3B9FBA81A712DBB0024F1DF /* MobileAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MobileAPI.m; sourceTree = "<group>"; };
-		D3B9FBA91A712DBB0024F1DF /* RegisterAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterAPI.h; sourceTree = "<group>"; };
-		D3B9FBAA1A712DBB0024F1DF /* RegisterAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterAPI.m; sourceTree = "<group>"; };
 		D3B9FBB81A712DE80024F1DF /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		D3B9FBBB1A712DE80024F1DF /* DeviceUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceUtil.h; sourceTree = "<group>"; };
 		D3B9FBBC1A712DE80024F1DF /* DeviceUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceUtil.m; sourceTree = "<group>"; };
@@ -1050,26 +1084,6 @@
 		D3B9FBC11A712DE80024F1DF /* pinyin.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pinyin.c; sourceTree = "<group>"; };
 		D3B9FBC21A712DE80024F1DF /* pinyin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pinyin.h; sourceTree = "<group>"; };
 		D3B9FBD01A7131860024F1DF /* DoctorFei_iOS-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DoctorFei_iOS-Prefix.pch"; sourceTree = "<group>"; };
-		D3B9FBD71A7138BF0024F1DF /* MainTabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainTabBarViewController.h; sourceTree = "<group>"; };
-		D3B9FBD81A7138BF0024F1DF /* MainTabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainTabBarViewController.m; sourceTree = "<group>"; };
-		D3B9FBDD1A7138BF0024F1DF /* ForgetPassVerifyCodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForgetPassVerifyCodeViewController.h; sourceTree = "<group>"; };
-		D3B9FBDE1A7138BF0024F1DF /* ForgetPassVerifyCodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgetPassVerifyCodeViewController.m; sourceTree = "<group>"; };
-		D3B9FBDF1A7138BF0024F1DF /* ForgetPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForgetPasswordViewController.h; sourceTree = "<group>"; };
-		D3B9FBE01A7138BF0024F1DF /* ForgetPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgetPasswordViewController.m; sourceTree = "<group>"; };
-		D3B9FBE11A7138BF0024F1DF /* RegisterMoreTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterMoreTableViewController.h; sourceTree = "<group>"; };
-		D3B9FBE21A7138BF0024F1DF /* RegisterMoreTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterMoreTableViewController.m; sourceTree = "<group>"; };
-		D3B9FBE31A7138BF0024F1DF /* RegisterTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterTableViewController.h; sourceTree = "<group>"; };
-		D3B9FBE41A7138BF0024F1DF /* RegisterTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterTableViewController.m; sourceTree = "<group>"; };
-		D3B9FBE51A7138BF0024F1DF /* SetNewPasswordTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetNewPasswordTableViewController.h; sourceTree = "<group>"; };
-		D3B9FBE61A7138BF0024F1DF /* SetNewPasswordTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetNewPasswordTableViewController.m; sourceTree = "<group>"; };
-		D3B9FBF01A7139140024F1DF /* DoctorAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DoctorAPI.h; path = ../../Controller/Register/DoctorAPI.h; sourceTree = "<group>"; };
-		D3B9FBF11A7139140024F1DF /* DoctorAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DoctorAPI.m; path = ../../Controller/Register/DoctorAPI.m; sourceTree = "<group>"; };
-		D3B9FBF41A7140BA0024F1DF /* LoginFirstViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginFirstViewController.h; sourceTree = "<group>"; };
-		D3B9FBF51A7140BA0024F1DF /* LoginFirstViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginFirstViewController.m; sourceTree = "<group>"; };
-		D3B9FBF71A7145250024F1DF /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
-		D3B9FBF81A7145250024F1DF /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
-		D3B9FBFC1A7145500024F1DF /* APService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APService.h; sourceTree = "<group>"; };
-		D3B9FBFD1A7145500024F1DF /* libPushSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libPushSDK.a; sourceTree = "<group>"; };
 		D3B9FBFF1A7145850024F1DF /* DataUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataUtil.h; sourceTree = "<group>"; };
 		D3B9FC001A7145850024F1DF /* DataUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataUtil.m; sourceTree = "<group>"; };
 		D3B9FC021A7145A70024F1DF /* SetOnlineStateUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetOnlineStateUtil.h; sourceTree = "<group>"; };
@@ -1078,23 +1092,6 @@
 		D3B9FC061A7145B70024F1DF /* FetchChatUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FetchChatUtil.m; sourceTree = "<group>"; };
 		D3B9FC081A7145C60024F1DF /* ImageUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageUtil.h; sourceTree = "<group>"; };
 		D3B9FC091A7145C60024F1DF /* ImageUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageUtil.m; sourceTree = "<group>"; };
-		D3B9FC0B1A7145D90024F1DF /* SocketConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SocketConnection.h; path = ../Utils/SocketConnection.h; sourceTree = "<group>"; };
-		D3B9FC0C1A7145D90024F1DF /* SocketConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SocketConnection.m; path = ../Utils/SocketConnection.m; sourceTree = "<group>"; };
-		D3B9FC0F1A7146070024F1DF /* Chat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Chat.h; sourceTree = "<group>"; };
-		D3B9FC101A7146070024F1DF /* Chat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Chat.m; sourceTree = "<group>"; };
-		D3B9FC111A7146070024F1DF /* Friends+PinYinUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Friends+PinYinUtil.h"; sourceTree = "<group>"; };
-		D3B9FC121A7146070024F1DF /* Friends+PinYinUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Friends+PinYinUtil.m"; sourceTree = "<group>"; };
-		D3B9FC131A7146070024F1DF /* Friends.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Friends.h; sourceTree = "<group>"; };
-		D3B9FC141A7146070024F1DF /* Friends.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Friends.m; sourceTree = "<group>"; };
-		D3B9FC161A7146070024F1DF /* MainCoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MainCoreData.xcdatamodel; sourceTree = "<group>"; };
-		D3B9FC171A7146070024F1DF /* Message.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Message.h; sourceTree = "<group>"; };
-		D3B9FC181A7146070024F1DF /* Message.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Message.m; sourceTree = "<group>"; };
-		D3B9FC191A7146070024F1DF /* MessagesModalData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessagesModalData.h; sourceTree = "<group>"; };
-		D3B9FC1A1A7146070024F1DF /* MessagesModalData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessagesModalData.m; sourceTree = "<group>"; };
-		D3B9FC211A7146350024F1DF /* ChatAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatAPI.h; sourceTree = "<group>"; };
-		D3B9FC221A7146350024F1DF /* ChatAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatAPI.m; sourceTree = "<group>"; };
-		D3B9FC231A7146350024F1DF /* UserAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserAPI.h; sourceTree = "<group>"; };
-		D3B9FC241A7146350024F1DF /* UserAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserAPI.m; sourceTree = "<group>"; };
 		D3B9FC271A71470B0024F1DF /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		D3B9FC291A7147190024F1DF /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		D3B9FC2B1A7147210024F1DF /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
@@ -1117,13 +1114,13 @@
 				D3B9FC381A7147600024F1DF /* CFNetwork.framework in Frameworks */,
 				D3B9FC361A7147580024F1DF /* CoreTelephony.framework in Frameworks */,
 				D3B9FC341A71474E0024F1DF /* SystemConfiguration.framework in Frameworks */,
+				6A28DDC91A9E0DB200B50F8E /* libPushSDK.a in Frameworks */,
 				D3B9FC321A7147410024F1DF /* CoreGraphics.framework in Frameworks */,
 				D3B9FC301A7147350024F1DF /* Foundation.framework in Frameworks */,
 				D3B9FC2E1A71472A0024F1DF /* UIKit.framework in Frameworks */,
 				D3B9FC2C1A7147210024F1DF /* Security.framework in Frameworks */,
 				D3B9FC2A1A7147190024F1DF /* libz.dylib in Frameworks */,
 				D3B9FC281A71470B0024F1DF /* AVFoundation.framework in Frameworks */,
-				D3B9FBFE1A7145500024F1DF /* libPushSDK.a in Frameworks */,
 				066252435D862D351860BC4E /* libPods-DoctorFei_Patient_iOS.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1138,16 +1135,110 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6A28DD811A9E07C700B50F8E /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				6A28DD821A9E07C700B50F8E /* General */,
+				6A28DD851A9E07C700B50F8E /* Login */,
+				6A28DD8A1A9E07C700B50F8E /* Register */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		6A28DD821A9E07C700B50F8E /* General */ = {
+			isa = PBXGroup;
+			children = (
+				6A28DD831A9E07C700B50F8E /* MainTabBarViewController.h */,
+				6A28DD841A9E07C700B50F8E /* MainTabBarViewController.m */,
+			);
+			path = General;
+			sourceTree = "<group>";
+		};
+		6A28DD851A9E07C700B50F8E /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				6A28DD861A9E07C700B50F8E /* LoginFirstViewController.h */,
+				6A28DD871A9E07C700B50F8E /* LoginFirstViewController.m */,
+				6A28DD881A9E07C700B50F8E /* LoginViewController.h */,
+				6A28DD891A9E07C700B50F8E /* LoginViewController.m */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		6A28DD8A1A9E07C700B50F8E /* Register */ = {
+			isa = PBXGroup;
+			children = (
+				6A28DD8B1A9E07C700B50F8E /* ForgetPassVerifyCodeViewController.h */,
+				6A28DD8C1A9E07C700B50F8E /* ForgetPassVerifyCodeViewController.m */,
+				6A28DD8D1A9E07C700B50F8E /* ForgetPasswordViewController.h */,
+				6A28DD8E1A9E07C700B50F8E /* ForgetPasswordViewController.m */,
+				6A28DD8F1A9E07C700B50F8E /* RegisterMoreTableViewController.h */,
+				6A28DD901A9E07C700B50F8E /* RegisterMoreTableViewController.m */,
+				6A28DD911A9E07C700B50F8E /* RegisterTableViewController.h */,
+				6A28DD921A9E07C700B50F8E /* RegisterTableViewController.m */,
+				6A28DD931A9E07C700B50F8E /* SetNewPasswordTableViewController.h */,
+				6A28DD941A9E07C700B50F8E /* SetNewPasswordTableViewController.m */,
+			);
+			path = Register;
+			sourceTree = "<group>";
+		};
+		6A28DD951A9E07C700B50F8E /* Dependence */ = {
+			isa = PBXGroup;
+			children = (
+				6A28DD961A9E07C700B50F8E /* JPush */,
+			);
+			path = Dependence;
+			sourceTree = "<group>";
+		};
+		6A28DD961A9E07C700B50F8E /* JPush */ = {
+			isa = PBXGroup;
+			children = (
+				6A28DDC81A9E0DB200B50F8E /* libPushSDK.a */,
+				6A28DD971A9E07C700B50F8E /* APService.h */,
+			);
+			path = JPush;
+			sourceTree = "<group>";
+		};
+		6A28DD991A9E07C700B50F8E /* Modal */ = {
+			isa = PBXGroup;
+			children = (
+				6A28DD9A1A9E07C700B50F8E /* Chat.h */,
+				6A28DD9B1A9E07C700B50F8E /* Chat.m */,
+				6A28DD9C1A9E07C700B50F8E /* Friends+PinYinUtil.h */,
+				6A28DD9D1A9E07C700B50F8E /* Friends+PinYinUtil.m */,
+				6A28DD9E1A9E07C700B50F8E /* Friends.h */,
+				6A28DD9F1A9E07C700B50F8E /* Friends.m */,
+				6A28DDA01A9E07C700B50F8E /* MainCoreData.xcdatamodeld */,
+				6A28DDA21A9E07C700B50F8E /* Message.h */,
+				6A28DDA31A9E07C700B50F8E /* Message.m */,
+				6A28DDA41A9E07C700B50F8E /* MessagesModalData.h */,
+				6A28DDA51A9E07C700B50F8E /* MessagesModalData.m */,
+			);
+			path = Modal;
+			sourceTree = "<group>";
+		};
+		6A28DDA61A9E07C700B50F8E /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				6A28DDA71A9E07C700B50F8E /* BaseHTTPRequestOperationManager.h */,
+				6A28DDA81A9E07C700B50F8E /* BaseHTTPRequestOperationManager.m */,
+				6A28DDA91A9E07C700B50F8E /* ChatAPI.h */,
+				6A28DDAA1A9E07C700B50F8E /* ChatAPI.m */,
+				6A28DDAB1A9E07C700B50F8E /* DoctorAPI.h */,
+				6A28DDAC1A9E07C700B50F8E /* DoctorAPI.m */,
+				6A28DDAD1A9E07C700B50F8E /* MobileAPI.h */,
+				6A28DDAE1A9E07C700B50F8E /* MobileAPI.m */,
+				6A28DDAF1A9E07C700B50F8E /* RegisterAPI.h */,
+				6A28DDB01A9E07C700B50F8E /* RegisterAPI.m */,
+				6A28DDB11A9E07C700B50F8E /* UserAPI.h */,
+				6A28DDB21A9E07C700B50F8E /* UserAPI.m */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
 		6AFD40391A5D5EF4009C0080 = {
 			isa = PBXGroup;
 			children = (
-				6AFD404F1A5D5EF4009C0080 /* Main.storyboard */,
-				D3B9FC0E1A7146070024F1DF /* Modal */,
-				D3B9FBFA1A7145500024F1DF /* Dependence */,
-				D3B9FBD51A7138BF0024F1DF /* Controller */,
-				D3B9FBB71A712DE80024F1DF /* Utils */,
-				D3B9FB9E1A712DBB0024F1DF /* Networking */,
-				D3B9F7E21A712D120024F1DF /* Resource */,
 				6AFD40441A5D5EF4009C0080 /* DoctorFei_Patient_iOS */,
 				6AFD405E1A5D5EF4009C0080 /* DoctorFei_Patient_iOSTests */,
 				6AFD40431A5D5EF4009C0080 /* Products */,
@@ -1168,6 +1259,13 @@
 		6AFD40441A5D5EF4009C0080 /* DoctorFei_Patient_iOS */ = {
 			isa = PBXGroup;
 			children = (
+				6AFD404F1A5D5EF4009C0080 /* Main.storyboard */,
+				6A28DD811A9E07C700B50F8E /* Controller */,
+				6A28DD951A9E07C700B50F8E /* Dependence */,
+				6A28DD991A9E07C700B50F8E /* Modal */,
+				6A28DDA61A9E07C700B50F8E /* Networking */,
+				D3B9FBB71A712DE80024F1DF /* Utils */,
+				D3B9F7E21A712D120024F1DF /* Resource */,
 				6AFD40491A5D5EF4009C0080 /* AppDelegate.h */,
 				6AFD404A1A5D5EF4009C0080 /* AppDelegate.m */,
 				D3B9FC3B1A7148630024F1DF /* PushConfig.plist */,
@@ -1238,8 +1336,7 @@
 			children = (
 				D3B9F7E31A712D120024F1DF /* Image */,
 			);
-			name = Resource;
-			path = DoctorFei_Patient_iOS/Resource;
+			path = Resource;
 			sourceTree = "<group>";
 		};
 		D3B9F7E31A712D120024F1DF /* Image */ = {
@@ -1726,28 +1823,6 @@
 			path = Image;
 			sourceTree = "<group>";
 		};
-		D3B9FB9E1A712DBB0024F1DF /* Networking */ = {
-			isa = PBXGroup;
-			children = (
-				D3B9FBF01A7139140024F1DF /* DoctorAPI.h */,
-				D3B9FBF11A7139140024F1DF /* DoctorAPI.m */,
-				D3B9FB9F1A712DBB0024F1DF /* BaseHTTPRequestOperationManager.h */,
-				D3B9FBA01A712DBB0024F1DF /* BaseHTTPRequestOperationManager.m */,
-				D3B9FBA71A712DBB0024F1DF /* MobileAPI.h */,
-				D3B9FBA81A712DBB0024F1DF /* MobileAPI.m */,
-				D3B9FBA91A712DBB0024F1DF /* RegisterAPI.h */,
-				D3B9FBAA1A712DBB0024F1DF /* RegisterAPI.m */,
-				D3B9FC0B1A7145D90024F1DF /* SocketConnection.h */,
-				D3B9FC0C1A7145D90024F1DF /* SocketConnection.m */,
-				D3B9FC211A7146350024F1DF /* ChatAPI.h */,
-				D3B9FC221A7146350024F1DF /* ChatAPI.m */,
-				D3B9FC231A7146350024F1DF /* UserAPI.h */,
-				D3B9FC241A7146350024F1DF /* UserAPI.m */,
-			);
-			name = Networking;
-			path = DoctorFei_Patient_iOS/Networking;
-			sourceTree = "<group>";
-		};
 		D3B9FBB71A712DE80024F1DF /* Utils */ = {
 			isa = PBXGroup;
 			children = (
@@ -1767,91 +1842,7 @@
 				D3B9FBC11A712DE80024F1DF /* pinyin.c */,
 				D3B9FBC21A712DE80024F1DF /* pinyin.h */,
 			);
-			name = Utils;
-			path = DoctorFei_Patient_iOS/Utils;
-			sourceTree = "<group>";
-		};
-		D3B9FBD51A7138BF0024F1DF /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				D3B9FBD61A7138BF0024F1DF /* General */,
-				D3B9FBD91A7138BF0024F1DF /* Login */,
-				D3B9FBDC1A7138BF0024F1DF /* Register */,
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
-		D3B9FBD61A7138BF0024F1DF /* General */ = {
-			isa = PBXGroup;
-			children = (
-				D3B9FBD71A7138BF0024F1DF /* MainTabBarViewController.h */,
-				D3B9FBD81A7138BF0024F1DF /* MainTabBarViewController.m */,
-			);
-			path = General;
-			sourceTree = "<group>";
-		};
-		D3B9FBD91A7138BF0024F1DF /* Login */ = {
-			isa = PBXGroup;
-			children = (
-				D3B9FBF41A7140BA0024F1DF /* LoginFirstViewController.h */,
-				D3B9FBF51A7140BA0024F1DF /* LoginFirstViewController.m */,
-				D3B9FBF71A7145250024F1DF /* LoginViewController.h */,
-				D3B9FBF81A7145250024F1DF /* LoginViewController.m */,
-			);
-			path = Login;
-			sourceTree = "<group>";
-		};
-		D3B9FBDC1A7138BF0024F1DF /* Register */ = {
-			isa = PBXGroup;
-			children = (
-				D3B9FBDD1A7138BF0024F1DF /* ForgetPassVerifyCodeViewController.h */,
-				D3B9FBDE1A7138BF0024F1DF /* ForgetPassVerifyCodeViewController.m */,
-				D3B9FBDF1A7138BF0024F1DF /* ForgetPasswordViewController.h */,
-				D3B9FBE01A7138BF0024F1DF /* ForgetPasswordViewController.m */,
-				D3B9FBE11A7138BF0024F1DF /* RegisterMoreTableViewController.h */,
-				D3B9FBE21A7138BF0024F1DF /* RegisterMoreTableViewController.m */,
-				D3B9FBE31A7138BF0024F1DF /* RegisterTableViewController.h */,
-				D3B9FBE41A7138BF0024F1DF /* RegisterTableViewController.m */,
-				D3B9FBE51A7138BF0024F1DF /* SetNewPasswordTableViewController.h */,
-				D3B9FBE61A7138BF0024F1DF /* SetNewPasswordTableViewController.m */,
-			);
-			path = Register;
-			sourceTree = "<group>";
-		};
-		D3B9FBFA1A7145500024F1DF /* Dependence */ = {
-			isa = PBXGroup;
-			children = (
-				D3B9FBFB1A7145500024F1DF /* JPush */,
-			);
-			path = Dependence;
-			sourceTree = "<group>";
-		};
-		D3B9FBFB1A7145500024F1DF /* JPush */ = {
-			isa = PBXGroup;
-			children = (
-				D3B9FBFC1A7145500024F1DF /* APService.h */,
-				D3B9FBFD1A7145500024F1DF /* libPushSDK.a */,
-			);
-			path = JPush;
-			sourceTree = "<group>";
-		};
-		D3B9FC0E1A7146070024F1DF /* Modal */ = {
-			isa = PBXGroup;
-			children = (
-				D3B9FC0F1A7146070024F1DF /* Chat.h */,
-				D3B9FC101A7146070024F1DF /* Chat.m */,
-				D3B9FC111A7146070024F1DF /* Friends+PinYinUtil.h */,
-				D3B9FC121A7146070024F1DF /* Friends+PinYinUtil.m */,
-				D3B9FC131A7146070024F1DF /* Friends.h */,
-				D3B9FC141A7146070024F1DF /* Friends.m */,
-				D3B9FC151A7146070024F1DF /* MainCoreData.xcdatamodeld */,
-				D3B9FC171A7146070024F1DF /* Message.h */,
-				D3B9FC181A7146070024F1DF /* Message.m */,
-				D3B9FC191A7146070024F1DF /* MessagesModalData.h */,
-				D3B9FC1A1A7146070024F1DF /* MessagesModalData.m */,
-			);
-			name = Modal;
-			path = Dependence/Modal;
+			path = Utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -2465,37 +2456,36 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6A28DDBE1A9E07C700B50F8E /* Friends.m in Sources */,
 				D3B9FBC91A712DE80024F1DF /* pinyin.c in Sources */,
-				D3B9FC1E1A7146070024F1DF /* MainCoreData.xcdatamodeld in Sources */,
-				D3B9FC1B1A7146070024F1DF /* Chat.m in Sources */,
-				D3B9FBEB1A7138BF0024F1DF /* RegisterMoreTableViewController.m in Sources */,
-				D3B9FC251A7146350024F1DF /* ChatAPI.m in Sources */,
-				D3B9FBB31A712DBB0024F1DF /* MobileAPI.m in Sources */,
+				6A28DDB81A9E07C700B50F8E /* RegisterMoreTableViewController.m in Sources */,
+				6A28DDB41A9E07C700B50F8E /* LoginFirstViewController.m in Sources */,
+				6A28DDB71A9E07C700B50F8E /* ForgetPasswordViewController.m in Sources */,
+				6A28DDB51A9E07C700B50F8E /* LoginViewController.m in Sources */,
+				6A28DDC41A9E07C700B50F8E /* DoctorAPI.m in Sources */,
+				6A28DDC71A9E07C700B50F8E /* UserAPI.m in Sources */,
+				6A28DDC01A9E07C700B50F8E /* Message.m in Sources */,
+				6A28DDBC1A9E07C700B50F8E /* Chat.m in Sources */,
+				6A28DDB31A9E07C700B50F8E /* MainTabBarViewController.m in Sources */,
 				D3B9FC041A7145A70024F1DF /* SetOnlineStateUtil.m in Sources */,
-				D3B9FC1D1A7146070024F1DF /* Friends.m in Sources */,
-				D3B9FC261A7146350024F1DF /* UserAPI.m in Sources */,
-				D3B9FBEA1A7138BF0024F1DF /* ForgetPasswordViewController.m in Sources */,
-				D3B9FC0D1A7145D90024F1DF /* SocketConnection.m in Sources */,
-				D3B9FBAF1A712DBB0024F1DF /* BaseHTTPRequestOperationManager.m in Sources */,
 				D3B9FC011A7145850024F1DF /* DataUtil.m in Sources */,
 				D3B9FBC61A712DE80024F1DF /* DeviceUtil.m in Sources */,
 				6AFD404E1A5D5EF4009C0080 /* ViewController.m in Sources */,
+				6A28DDC11A9E07C700B50F8E /* MessagesModalData.m in Sources */,
+				6A28DDBA1A9E07C700B50F8E /* SetNewPasswordTableViewController.m in Sources */,
 				D3B9FBC81A712DE80024F1DF /* NSString+Crypt.m in Sources */,
-				D3B9FBB41A712DBB0024F1DF /* RegisterAPI.m in Sources */,
-				D3B9FC1C1A7146070024F1DF /* Friends+PinYinUtil.m in Sources */,
+				6A28DDB91A9E07C700B50F8E /* RegisterTableViewController.m in Sources */,
 				D3B9FC0A1A7145C60024F1DF /* ImageUtil.m in Sources */,
-				D3B9FC201A7146070024F1DF /* MessagesModalData.m in Sources */,
-				D3B9FC1F1A7146070024F1DF /* Message.m in Sources */,
-				D3B9FBED1A7138C00024F1DF /* SetNewPasswordTableViewController.m in Sources */,
-				D3B9FBEC1A7138BF0024F1DF /* RegisterTableViewController.m in Sources */,
+				6A28DDB61A9E07C700B50F8E /* ForgetPassVerifyCodeViewController.m in Sources */,
+				6A28DDC51A9E07C700B50F8E /* MobileAPI.m in Sources */,
 				6AFD404B1A5D5EF4009C0080 /* AppDelegate.m in Sources */,
-				D3B9FBF61A7140BA0024F1DF /* LoginFirstViewController.m in Sources */,
-				D3B9FBE91A7138BF0024F1DF /* ForgetPassVerifyCodeViewController.m in Sources */,
-				D3B9FBF91A7145250024F1DF /* LoginViewController.m in Sources */,
-				D3B9FBF31A7139140024F1DF /* DoctorAPI.m in Sources */,
+				6A28DDC21A9E07C700B50F8E /* BaseHTTPRequestOperationManager.m in Sources */,
 				D3B9FC071A7145B70024F1DF /* FetchChatUtil.m in Sources */,
-				D3B9FBE71A7138BF0024F1DF /* MainTabBarViewController.m in Sources */,
+				6A28DDBD1A9E07C700B50F8E /* Friends+PinYinUtil.m in Sources */,
+				6A28DDC61A9E07C700B50F8E /* RegisterAPI.m in Sources */,
 				6AFD40481A5D5EF4009C0080 /* main.m in Sources */,
+				6A28DDC31A9E07C700B50F8E /* ChatAPI.m in Sources */,
+				6A28DDBF1A9E07C700B50F8E /* MainCoreData.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2524,7 +2514,6 @@
 				6AFD40501A5D5EF4009C0080 /* Base */,
 			);
 			name = Main.storyboard;
-			path = DoctorFei_Patient_iOS;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -2618,7 +2607,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/Dependence/JPush",
+					"$(PROJECT_DIR)/DoctorFei_Patient_iOS/Dependence/JPush",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -2636,7 +2625,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/Dependence/JPush",
+					"$(PROJECT_DIR)/DoctorFei_Patient_iOS/Dependence/JPush",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -2709,12 +2698,12 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		D3B9FC151A7146070024F1DF /* MainCoreData.xcdatamodeld */ = {
+		6A28DDA01A9E07C700B50F8E /* MainCoreData.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				D3B9FC161A7146070024F1DF /* MainCoreData.xcdatamodel */,
+				6A28DDA11A9E07C700B50F8E /* MainCoreData.xcdatamodel */,
 			);
-			currentVersion = D3B9FC161A7146070024F1DF /* MainCoreData.xcdatamodel */;
+			currentVersion = 6A28DDA11A9E07C700B50F8E /* MainCoreData.xcdatamodel */;
 			path = MainCoreData.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

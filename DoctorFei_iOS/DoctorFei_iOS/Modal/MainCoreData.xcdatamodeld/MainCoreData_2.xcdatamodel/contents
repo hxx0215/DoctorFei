@@ -3,6 +3,7 @@
     <entity name="Chat" representedClassName="Chat" syncable="YES">
         <attribute name="lastMessageContent" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="lastMessageTime" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="unreadMessageCount" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Friends" inverseName="chat" inverseEntity="Friends" syncable="YES"/>
     </entity>
@@ -36,9 +37,9 @@
         <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Friends" inverseName="messages" inverseEntity="Friends" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Chat" positionX="18" positionY="284" width="128" height="103"/>
+        <element name="Chat" positionX="18" positionY="284" width="128" height="118"/>
         <element name="Friends" positionX="-63" positionY="-18" width="128" height="238"/>
-        <element name="Message" positionX="162" positionY="-9" width="128" height="133"/>
         <element name="Groups" positionX="187" positionY="144" width="128" height="103"/>
+        <element name="Message" positionX="162" positionY="-9" width="128" height="133"/>
     </elements>
 </model>
