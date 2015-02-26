@@ -82,6 +82,9 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
+                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                        <rect key="frame" x="105" y="22" width="195" height="20.5"/>
+                                                    </variation>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FkY-V8-lgK">
                                                     <rect key="frame" x="-23" y="-15" width="46" height="30"/>
@@ -2030,7 +2033,7 @@
                         <viewControllerLayoutGuide type="bottom" id="MfM-g0-IyN"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="yGp-zR-7UF">
-                        <rect key="frame" x="0.0" y="0.0" width="400" height="800"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="487"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6va-Xm-NKj">
@@ -2717,7 +2720,7 @@
                         <viewControllerLayoutGuide type="bottom" id="Igm-lg-ea7"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="2Hc-w3-t9q">
-                        <rect key="frame" x="0.0" y="0.0" width="400" height="800"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="487"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入事件" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="oqc-vt-K3Q">
@@ -4582,7 +4585,8 @@
                                                             <exclude reference="0zV-E4-Bfp"/>
                                                         </mask>
                                                     </variation>
-                                                    <variation key="heightClass=regular-widthClass=compact">
+                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                        <rect key="frame" x="108" y="8" width="104" height="24"/>
                                                         <mask key="constraints">
                                                             <include reference="0zV-E4-Bfp"/>
                                                         </mask>
@@ -5060,6 +5064,9 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
+                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                        <rect key="frame" x="25" y="10" width="270" height="21"/>
+                                                    </variation>
                                                 </label>
                                             </subviews>
                                             <constraints>
@@ -11056,15 +11063,15 @@
         <image name="vip_pic.png" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="G9W-g1-ayd"/>
+        <segue reference="zKw-Eq-Pwx"/>
+        <segue reference="JeB-AN-IOM"/>
         <segue reference="rqJ-cO-jCt"/>
         <segue reference="8FK-Id-c2E"/>
-        <segue reference="zKw-Eq-Pwx"/>
+        <segue reference="7qh-2R-9ti"/>
+        <segue reference="G9W-g1-ayd"/>
+        <segue reference="6jn-ZK-h5N"/>
         <segue reference="wpO-fm-KSL"/>
         <segue reference="xAo-Kx-7vt"/>
         <segue reference="pVr-DH-hJQ"/>
-        <segue reference="7qh-2R-9ti"/>
-        <segue reference="I02-mG-QSP"/>
-        <segue reference="6jn-ZK-h5N"/>
     </inferredMetricsTieBreakers>
 </document>
