@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface DoctorApproveViewController : UIViewController
-
+@property (nonatomic, copy)NSString *auditImageURL;
+@property (nonatomic, assign)NSInteger auditState;
 @end

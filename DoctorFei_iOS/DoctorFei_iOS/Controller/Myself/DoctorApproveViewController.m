@@ -14,17 +14,31 @@
 @interface DoctorApproveViewController ()<UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 @property (weak, nonatomic) IBOutlet UIButton *approveImage;
 @property (nonatomic ,strong) UIImage *auditImage;
+@property (weak, nonatomic) IBOutlet UILabel *auditTitile;
+@property (weak, nonatomic) IBOutlet UILabel *auditContent;
 @end
 
 @implementation DoctorApproveViewController
 {
     MBProgressHUD *hud;
     UIImage *imageUrlString;
+    NSArray *titles;
+    NSArray *contents;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    titles = @[@"请上传个人资质证明",@"认证中...",@"认证未通过",@"认证已通过"];
+    contents = @[@"请上传您的胸牌或职业证书等资质证明，上传资料仅用于认证，患者及其他第三方不可见",@"正在帮您认证,请耐心等待",@"请确认资料或重新拍照后重新重新上传",@"恭喜您,已通过资质认证"];
+    self.auditTitile.text = titles[self.auditState];
+    self.auditContent.text = contents[self.auditState];
+    UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:self.auditImageURL]]];
+    if ((self.auditState == 0) || (self.auditState == 2))
+        image = nil;
+    if (image){
+        [self.approveImage setImage:image forState:UIControlStateNormal];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -63,6 +77,8 @@
         //        NSString *urlString = [responseObject firstObject];
         if (urlString && urlString.length > 0) {
             [self updateAuditWithURLString:urlString];
+            [[NSUserDefaults standardUserDefaults] setObject:urlString forKey:@"auditImageURL"];
+            [[NSUserDefaults standardUserDefaults] synchronize];
         }
         else{
             hud.mode = MBProgressHUDModeText;
@@ -92,6 +108,9 @@
         hud.mode = MBProgressHUDModeText;
         if ([dataDict[@"state"]intValue] == 1) {
             hud.labelText = @"修改成功";
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.navigationController popViewControllerAnimated:YES];
+            });
         }
         else{
             hud.labelText = @"修改错误";

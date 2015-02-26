@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="hjp-xA-J3Y">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="hjp-xA-J3Y">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -4437,9 +4437,6 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" red="0.64313725490196083" green="0.64313725490196083" blue="0.64313725490196083" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
-                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                        <rect key="frame" x="72" y="36" width="137" height="16.5"/>
-                                                    </variation>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="[感冒]" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wds-DW-PEX">
                                                     <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
@@ -4477,8 +4474,7 @@
                                                             <exclude reference="WLH-cn-N55"/>
                                                         </mask>
                                                     </variation>
-                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                        <rect key="frame" x="220" y="36" width="89" height="20.5"/>
+                                                    <variation key="heightClass=regular-widthClass=compact">
                                                         <mask key="constraints">
                                                             <include reference="WLH-cn-N55"/>
                                                         </mask>
@@ -4658,7 +4654,8 @@
                                                             <exclude reference="BW4-Pq-00c"/>
                                                         </mask>
                                                     </variation>
-                                                    <variation key="heightClass=regular-widthClass=compact">
+                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                        <rect key="frame" x="231" y="10" width="69" height="20"/>
                                                         <mask key="constraints">
                                                             <include reference="BW4-Pq-00c"/>
                                                         </mask>
@@ -4677,7 +4674,8 @@
                                                             <exclude reference="2R6-NA-Eoa"/>
                                                         </mask>
                                                     </variation>
-                                                    <variation key="heightClass=regular-widthClass=compact">
+                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                        <rect key="frame" x="96" y="10" width="128" height="20"/>
                                                         <mask key="constraints">
                                                             <include reference="2R6-NA-Eoa"/>
                                                         </mask>
@@ -5135,7 +5133,7 @@
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                     <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                        <rect key="frame" x="55" y="9" width="240" height="24.5"/>
+                                                        <rect key="frame" x="55" y="9" width="240" height="24"/>
                                                     </variation>
                                                 </label>
                                             </subviews>
@@ -9354,7 +9352,7 @@
                                             </variation>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="mO6-rs-re6" kind="show" id="hr1-Ja-hld"/>
+                                            <segue destination="mO6-rs-re6" kind="show" identifier="AuditImageUploadSegueIdentifier" id="hr1-Ja-hld"/>
                                         </connections>
                                     </tableViewCell>
                                 </cells>
@@ -9835,6 +9833,9 @@
                                 <variation key="heightClass=compact-widthClass=compact" ambiguous="YES">
                                     <rect key="frame" x="86" y="179" width="228" height="18"/>
                                 </variation>
+                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="86" y="288" width="227" height="38"/>
+                                </variation>
                                 <connections>
                                     <action selector="updateButtonClicked:" destination="uaT-mB-nYo" eventType="touchUpInside" id="9cb-u2-xol"/>
                                 </connections>
@@ -10135,6 +10136,8 @@
                     </navigationItem>
                     <connections>
                         <outlet property="approveImage" destination="xQd-Lo-2Tl" id="t7B-Lj-ksX"/>
+                        <outlet property="auditContent" destination="xuz-uF-7tX" id="eBf-wu-ylC"/>
+                        <outlet property="auditTitile" destination="k7F-J9-mMe" id="Zu3-ai-eD7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vmH-5G-lNN" userLabel="First Responder" sceneMemberID="firstResponder"/>
