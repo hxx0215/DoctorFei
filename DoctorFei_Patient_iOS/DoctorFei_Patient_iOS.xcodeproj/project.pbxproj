@@ -37,6 +37,10 @@
 		6A28DDD51A9E2A5C00B50F8E /* on_line_pic@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A28DDCF1A9E2A5C00B50F8E /* on_line_pic@3x.png */; };
 		6A28DDD91A9EF95900B50F8E /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A28DDD81A9EF95900B50F8E /* MainViewController.m */; };
 		6A28DDDD1A9EFA2F00B50F8E /* MainChatTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A28DDDC1A9EFA2F00B50F8E /* MainChatTableViewCell.m */; };
+		6A28DDE51AA0BD9800B50F8E /* OrganDisplayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A28DDE41AA0BD9800B50F8E /* OrganDisplayViewController.m */; };
+		6A28DDE91AA0C89A00B50F8E /* DOPDropDownMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A28DDE81AA0C89A00B50F8E /* DOPDropDownMenu.m */; };
+		6A28DDEC1AA0C95000B50F8E /* OrganDisplayTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A28DDEB1AA0C95000B50F8E /* OrganDisplayTableViewCell.m */; };
+		6A28DDEF1AA0CB3400B50F8E /* OrganDisplayDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A28DDEE1AA0CB3400B50F8E /* OrganDisplayDetailViewController.m */; };
 		6AFD40481A5D5EF4009C0080 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AFD40471A5D5EF4009C0080 /* main.m */; };
 		6AFD404B1A5D5EF4009C0080 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AFD404A1A5D5EF4009C0080 /* AppDelegate.m */; };
 		6AFD404E1A5D5EF4009C0080 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AFD404D1A5D5EF4009C0080 /* ViewController.m */; };
@@ -604,6 +608,14 @@
 		6A28DDD81A9EF95900B50F8E /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		6A28DDDB1A9EFA2F00B50F8E /* MainChatTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainChatTableViewCell.h; sourceTree = "<group>"; };
 		6A28DDDC1A9EFA2F00B50F8E /* MainChatTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainChatTableViewCell.m; sourceTree = "<group>"; };
+		6A28DDE31AA0BD9800B50F8E /* OrganDisplayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrganDisplayViewController.h; sourceTree = "<group>"; };
+		6A28DDE41AA0BD9800B50F8E /* OrganDisplayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrganDisplayViewController.m; sourceTree = "<group>"; };
+		6A28DDE71AA0C89A00B50F8E /* DOPDropDownMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOPDropDownMenu.h; sourceTree = "<group>"; };
+		6A28DDE81AA0C89A00B50F8E /* DOPDropDownMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DOPDropDownMenu.m; sourceTree = "<group>"; };
+		6A28DDEA1AA0C95000B50F8E /* OrganDisplayTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrganDisplayTableViewCell.h; sourceTree = "<group>"; };
+		6A28DDEB1AA0C95000B50F8E /* OrganDisplayTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrganDisplayTableViewCell.m; sourceTree = "<group>"; };
+		6A28DDED1AA0CB3400B50F8E /* OrganDisplayDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrganDisplayDetailViewController.h; sourceTree = "<group>"; };
+		6A28DDEE1AA0CB3400B50F8E /* OrganDisplayDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrganDisplayDetailViewController.m; sourceTree = "<group>"; };
 		6AFD40421A5D5EF4009C0080 /* DoctorFei_Patient_iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DoctorFei_Patient_iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6AFD40461A5D5EF4009C0080 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6AFD40471A5D5EF4009C0080 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -1204,6 +1216,7 @@
 		6A28DD951A9E07C700B50F8E /* Dependence */ = {
 			isa = PBXGroup;
 			children = (
+				6A28DDE61AA0C89A00B50F8E /* DOPDropDownMenu */,
 				6A28DD961A9E07C700B50F8E /* JPush */,
 			);
 			path = Dependence;
@@ -1260,6 +1273,10 @@
 			children = (
 				6A28DDD71A9EF95900B50F8E /* MainViewController.h */,
 				6A28DDD81A9EF95900B50F8E /* MainViewController.m */,
+				6A28DDE31AA0BD9800B50F8E /* OrganDisplayViewController.h */,
+				6A28DDE41AA0BD9800B50F8E /* OrganDisplayViewController.m */,
+				6A28DDED1AA0CB3400B50F8E /* OrganDisplayDetailViewController.h */,
+				6A28DDEE1AA0CB3400B50F8E /* OrganDisplayDetailViewController.m */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -1269,8 +1286,19 @@
 			children = (
 				6A28DDDB1A9EFA2F00B50F8E /* MainChatTableViewCell.h */,
 				6A28DDDC1A9EFA2F00B50F8E /* MainChatTableViewCell.m */,
+				6A28DDEA1AA0C95000B50F8E /* OrganDisplayTableViewCell.h */,
+				6A28DDEB1AA0C95000B50F8E /* OrganDisplayTableViewCell.m */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		6A28DDE61AA0C89A00B50F8E /* DOPDropDownMenu */ = {
+			isa = PBXGroup;
+			children = (
+				6A28DDE71AA0C89A00B50F8E /* DOPDropDownMenu.h */,
+				6A28DDE81AA0C89A00B50F8E /* DOPDropDownMenu.m */,
+			);
+			path = DOPDropDownMenu;
 			sourceTree = "<group>";
 		};
 		6AFD40391A5D5EF4009C0080 = {
@@ -1939,6 +1967,7 @@
 				TargetAttributes = {
 					6AFD40411A5D5EF4009C0080 = {
 						CreatedOnToolsVersion = 6.1.1;
+						DevelopmentTeam = 6LJK287Y2H;
 					};
 					6AFD405A1A5D5EF4009C0080 = {
 						CreatedOnToolsVersion = 6.1.1;
@@ -2511,6 +2540,7 @@
 				6A28DDB81A9E07C700B50F8E /* RegisterMoreTableViewController.m in Sources */,
 				6A28DDB41A9E07C700B50F8E /* LoginFirstViewController.m in Sources */,
 				6A28DDB71A9E07C700B50F8E /* ForgetPasswordViewController.m in Sources */,
+				6A28DDE91AA0C89A00B50F8E /* DOPDropDownMenu.m in Sources */,
 				6A28DDB51A9E07C700B50F8E /* LoginViewController.m in Sources */,
 				6A28DDC41A9E07C700B50F8E /* DoctorAPI.m in Sources */,
 				6A28DDC71A9E07C700B50F8E /* UserAPI.m in Sources */,
@@ -2523,7 +2553,9 @@
 				6AFD404E1A5D5EF4009C0080 /* ViewController.m in Sources */,
 				6A28DDC11A9E07C700B50F8E /* MessagesModalData.m in Sources */,
 				6A28DDBA1A9E07C700B50F8E /* SetNewPasswordTableViewController.m in Sources */,
+				6A28DDE51AA0BD9800B50F8E /* OrganDisplayViewController.m in Sources */,
 				D3B9FBC81A712DE80024F1DF /* NSString+Crypt.m in Sources */,
+				6A28DDEF1AA0CB3400B50F8E /* OrganDisplayDetailViewController.m in Sources */,
 				6A28DDB91A9E07C700B50F8E /* RegisterTableViewController.m in Sources */,
 				D3B9FC0A1A7145C60024F1DF /* ImageUtil.m in Sources */,
 				6A28DDB61A9E07C700B50F8E /* ForgetPassVerifyCodeViewController.m in Sources */,
@@ -2532,6 +2564,7 @@
 				6A28DDD91A9EF95900B50F8E /* MainViewController.m in Sources */,
 				6A28DDC21A9E07C700B50F8E /* BaseHTTPRequestOperationManager.m in Sources */,
 				D3B9FC071A7145B70024F1DF /* FetchChatUtil.m in Sources */,
+				6A28DDEC1AA0C95000B50F8E /* OrganDisplayTableViewCell.m in Sources */,
 				6A28DDDD1A9EFA2F00B50F8E /* MainChatTableViewCell.m in Sources */,
 				6A28DDBD1A9E07C700B50F8E /* Friends+PinYinUtil.m in Sources */,
 				6A28DDC61A9E07C700B50F8E /* RegisterAPI.m in Sources */,
@@ -2588,6 +2621,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -2629,6 +2663,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
@@ -2653,6 +2688,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Keke Li (59VBND372M)";
 				GCC_PREFIX_HEADER = "DoctorFei_Patient_iOS/DoctorFei_iOS-Prefix.pch";
 				INFOPLIST_FILE = DoctorFei_Patient_iOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
@@ -2662,6 +2698,7 @@
 					"$(PROJECT_DIR)/DoctorFei_Patient_iOS/Dependence/JPush",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -2671,6 +2708,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Keke Li (59VBND372M)";
 				GCC_PREFIX_HEADER = "DoctorFei_Patient_iOS/DoctorFei_iOS-Prefix.pch";
 				INFOPLIST_FILE = DoctorFei_Patient_iOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
@@ -2680,6 +2718,7 @@
 					"$(PROJECT_DIR)/DoctorFei_Patient_iOS/Dependence/JPush",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
