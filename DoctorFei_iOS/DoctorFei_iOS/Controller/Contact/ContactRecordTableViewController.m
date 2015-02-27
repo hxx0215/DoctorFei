@@ -7,13 +7,29 @@
 //
 
 #import "ContactRecordTableViewController.h"
+#import "ContactRecordTableViewCell.h"
 
+@implementation NSString(size)
+- (CGSize)calculateSize:(CGSize)size font:(UIFont *)font {
+    CGSize expectedLabelSize = CGSizeZero;
+    
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7) {
+        NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+        paragraphStyle.lineBreakMode = NSLineBreakByWordWrapping;
+        NSDictionary *attributes = @{NSFontAttributeName:font, NSParagraphStyleAttributeName:paragraphStyle.copy};
+        
+        expectedLabelSize = [self boundingRectWithSize:size options:NSStringDrawingUsesLineFragmentOrigin attributes:attributes context:nil].size;
+    }
+    
+    return CGSizeMake(ceil(expectedLabelSize.width), ceil(expectedLabelSize.height));
+}
+@end
 @interface ContactRecordTableViewController ()
-
+@property (nonatomic, strong)NSMutableArray *tableData;
 @end
 
 @implementation ContactRecordTableViewController
-
+static NSString * const contactRecordIdentifier = @"ContactRecordIdentifier";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -22,6 +38,9 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    UINib *nib = [UINib nibWithNibName:NSStringFromClass([ContactRecordTableViewCell class]) bundle:nil];
+    [self.tableView registerNib:nib forCellReuseIdentifier:contactRecordIdentifier];
+    self.tableData = [@[@"12321312312312312",@"a\nb\nc\nd\n",@"112321321111111111231213123123123212312312312312112321321111111111231213123123123212312312312312",@"2",@"3",@"55213"] mutableCopy];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -35,26 +54,41 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Potentially incomplete method implementation.
+
     // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete method implementation.
+
     // Return the number of rows in the section.
-    return 0;
+    return self.tableData.count;
+}
+- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 176;
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    ContactRecordTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:contactRecordIdentifier];
+    cell.translatesAutoresizingMaskIntoConstraints = NO;
+    cell.contentLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    cell.contentLabel.text = self.tableData[indexPath.row];
+    NSString *str = self.tableData[indexPath.row];
+    CGSize size = [str calculateSize:CGSizeMake(cell.contentLabel.frame.size.width, FLT_MAX) font:cell.contentLabel.font];
+    return size.height + 61 + indexPath.row * 134;
 }
 
-/*
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
-    
+    ContactRecordTableViewCell *cell = (ContactRecordTableViewCell*)[tableView dequeueReusableCellWithIdentifier:contactRecordIdentifier forIndexPath:indexPath];
+    cell.contentLabel.text = self.tableData[indexPath.row];
     // Configure the cell...
-    
+    NSString *url = @"http://my.csdn.net/uploads/201206/23/1340437873_8307.png";
+    NSMutableArray *ma = [NSMutableArray new];
+    for (int i=0;i<indexPath.row;i++)
+        [ma addObject:[url copy]];
+    cell.imageUrl = ma;
     return cell;
 }
-*/
+
 
 /*
 // Override to support conditional editing of the table view.
