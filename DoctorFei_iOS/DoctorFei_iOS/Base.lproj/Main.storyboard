@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="hjp-xA-J3Y">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="hjp-xA-J3Y">
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -2978,6 +2977,9 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="terminalReferral:" destination="VLD-eh-www" eventType="touchUpInside" id="gd4-Mi-KmF"/>
+                                </connections>
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yxp-Qd-BVP">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
@@ -3089,6 +3091,11 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="doctorAvatar" destination="naQ-7w-BoD" id="Tsw-mn-ddu"/>
+                        <outlet property="receiverAvatar" destination="Y8u-lV-scZ" id="900-NM-RQr"/>
+                        <outlet property="referralMessage" destination="yxp-Qd-BVP" id="xsF-CI-FmP"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JGI-38-ekA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -6391,6 +6398,10 @@
                                         </mask>
                                     </variation>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="iconImage" destination="8oG-ZK-GhD" id="6zv-CF-n32"/>
+                                    <outlet property="nameLabel" destination="phL-Nf-fvV" id="XGd-6e-qgR"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -9837,6 +9848,9 @@
                                 <variation key="heightClass=compact-widthClass=compact" ambiguous="YES">
                                     <rect key="frame" x="86" y="179" width="228" height="18"/>
                                 </variation>
+                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="86" y="288" width="227" height="38"/>
+                                </variation>
                                 <connections>
                                     <action selector="updateButtonClicked:" destination="uaT-mB-nYo" eventType="touchUpInside" id="9cb-u2-xol"/>
                                 </connections>
@@ -10827,15 +10841,15 @@
                                 <exclude reference="PD7-q6-VKH"/>
                                 <exclude reference="ZIh-bi-BFt"/>
                                 <exclude reference="kOg-if-yXi"/>
-                                <exclude reference="EDF-Mm-ubL"/>
-                                <exclude reference="Oyg-hx-wEO"/>
-                                <exclude reference="e2v-gM-YAX"/>
-                                <exclude reference="jMv-Tn-BRl"/>
                                 <exclude reference="bjy-gQ-PbZ"/>
                                 <exclude reference="2su-SE-27Q"/>
                                 <exclude reference="AFd-7q-BTU"/>
                                 <exclude reference="IDS-70-msQ"/>
                                 <exclude reference="eJk-sP-qeA"/>
+                                <exclude reference="EDF-Mm-ubL"/>
+                                <exclude reference="Oyg-hx-wEO"/>
+                                <exclude reference="e2v-gM-YAX"/>
+                                <exclude reference="jMv-Tn-BRl"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
@@ -10853,15 +10867,15 @@
                                 <include reference="PD7-q6-VKH"/>
                                 <include reference="ZIh-bi-BFt"/>
                                 <include reference="kOg-if-yXi"/>
-                                <include reference="EDF-Mm-ubL"/>
-                                <include reference="Oyg-hx-wEO"/>
-                                <include reference="e2v-gM-YAX"/>
-                                <include reference="jMv-Tn-BRl"/>
                                 <include reference="bjy-gQ-PbZ"/>
                                 <include reference="2su-SE-27Q"/>
                                 <include reference="AFd-7q-BTU"/>
                                 <include reference="IDS-70-msQ"/>
                                 <include reference="eJk-sP-qeA"/>
+                                <include reference="EDF-Mm-ubL"/>
+                                <include reference="Oyg-hx-wEO"/>
+                                <include reference="e2v-gM-YAX"/>
+                                <include reference="jMv-Tn-BRl"/>
                             </mask>
                         </variation>
                     </view>

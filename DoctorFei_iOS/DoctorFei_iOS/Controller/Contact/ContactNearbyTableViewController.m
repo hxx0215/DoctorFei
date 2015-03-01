@@ -8,11 +8,17 @@
 
 #import "ContactNearbyTableViewController.h"
 #import "ContactNearbyTableViewCell.h"
+#import "DoctorAPI.h"
+#import <MBProgressHUD.h>
+
 @interface ContactNearbyTableViewController ()
 
 @end
 
 @implementation ContactNearbyTableViewController
+{
+    MBProgressHUD *hud;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -24,6 +30,40 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     self.tableView.tableFooterView = [UIView new];
 }
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self searchFrind];
+}
+
+-(void)searchFrind
+{
+    hud = [MBProgressHUD showHUDAddedTo:self.view.window animated:YES];
+    NSNumber *userId = [[NSUserDefaults standardUserDefaults]objectForKey:@"UserId"];
+    NSDictionary *params = @{
+                             @"type": @0,
+                             @"userid": [userId stringValue],
+                             //@"usertype": @1,
+                             @"lng": @0,
+                             @"lat": @0,
+                             @"pageSize": @1,
+                             @"pageIndex": @8,
+                             };
+    [DoctorAPI searchFriendWithParameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"%@",responseObject);
+        NSArray *dataArray = (NSArray *)responseObject;
+        for (NSDictionary *dict in dataArray) {
+        }
+        [hud hide:YES];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        hud.mode = MBProgressHUDModeText;
+        hud.labelText = @"错误";
+        hud.detailsLabelText = error.localizedDescription;
+        [hud hide:YES afterDelay:1.5f];
+    }];
+}
+
 - (IBAction)backButtonClicked:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
 }

@@ -8,6 +8,9 @@
 
 #import "ContactAddByTelTableViewController.h"
 #import <ReactiveCocoa.h>
+#import "DoctorAPI.h"
+#import <MBProgressHUD.h>
+
 @interface ContactAddByTelTableViewController ()
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *submitButton;
 @property (weak, nonatomic) IBOutlet UITextField *telTextField;
@@ -15,6 +18,9 @@
 @end
 
 @implementation ContactAddByTelTableViewController
+{
+    MBProgressHUD *hud;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -36,7 +42,29 @@
     // Dispose of any resources that can be recreated.
 }
 - (IBAction)addFriend:(id)sender {
+    hud = [MBProgressHUD showHUDAddedTo:self.view.window animated:YES];
+    NSNumber *userId = [[NSUserDefaults standardUserDefaults]objectForKey:@"UserId"];
+    NSDictionary *params = @{
+                             @"type": @1,
+                             @"userid": [userId stringValue],
+                             //@"usertype": @1,
+                             @"mobile": self.telTextField.text
+                             };
+    [DoctorAPI searchFriendWithParameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"%@",responseObject);
+        NSArray *dataArray = (NSArray *)responseObject;
+        for (NSDictionary *dict in dataArray) {
+        }
+        [[NSManagedObjectContext MR_defaultContext]MR_saveToPersistentStoreAndWait];
+        [hud hide:YES];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        hud.mode = MBProgressHUDModeText;
+        hud.labelText = @"错误";
+        hud.detailsLabelText = error.localizedDescription;
+        [hud hide:YES afterDelay:1.5f];
+    }];
 }
+
 - (IBAction)backButtonClicked:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
 }

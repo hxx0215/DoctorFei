@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface ContactRecordTableViewController : UITableViewController
-
+@property (nonatomic, copy)NSNumber *patientID;
 @end
