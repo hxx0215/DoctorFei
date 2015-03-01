@@ -22,6 +22,7 @@
 #import <WYStoryboardPopoverSegue.h>
 #import "ContactDetailPopoverViewController.h"
 #import "ContactViewController.h"
+#import "ContactRecordTableViewController.h"
 
 typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
     SMSToolbarSendMethodVoice,
@@ -466,6 +467,11 @@ typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
                 [self performSegueWithIdentifier:@"ContactTransferSegueIdentifier" sender:friend];
             };
         }
+    }
+    //病历本
+    if ([[segue identifier] isEqualToString:@"ContactShowRecordSegueIdentifier"]){
+        ContactRecordTableViewController *vc = [segue destinationViewController];
+        vc.patientID = _currentFriend.userId;
     }
 }
 

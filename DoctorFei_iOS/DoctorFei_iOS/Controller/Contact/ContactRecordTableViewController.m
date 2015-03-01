@@ -8,7 +8,7 @@
 
 #import "ContactRecordTableViewController.h"
 #import "ContactRecordTableViewCell.h"
-
+#import "DoctorAPI.h"
 @implementation NSString(size)
 - (CGSize)calculateSize:(CGSize)size font:(UIFont *)font {
     CGSize expectedLabelSize = CGSizeZero;
@@ -40,9 +40,22 @@ static NSString * const contactRecordIdentifier = @"ContactRecordIdentifier";
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     UINib *nib = [UINib nibWithNibName:NSStringFromClass([ContactRecordTableViewCell class]) bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:contactRecordIdentifier];
-    self.tableData = [@[@"12321312312312312",@"a\nb\nc\nd\n",@"112321321111111111231213123123123212312312312312112321321111111111231213123123123212312312312312",@"2",@"3",@"55213"] mutableCopy];
+    self.tableData = [NSMutableArray new];
+}
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self getRecord];
 }
 
+- (void)getRecord{
+    NSDictionary *param= @{@"uid": self.patientID};
+    [DoctorAPI getMemberHistoryWithParameters:param success:^(AFHTTPRequestOperation *operation, id responseObject){
+        self.tableData = responseObject;
+        [self.tableView reloadData];
+    }failure:^(AFHTTPRequestOperation *operation,NSError *error){
+        
+    }];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -71,21 +84,24 @@ static NSString * const contactRecordIdentifier = @"ContactRecordIdentifier";
     ContactRecordTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:contactRecordIdentifier];
     cell.translatesAutoresizingMaskIntoConstraints = NO;
     cell.contentLabel.translatesAutoresizingMaskIntoConstraints = NO;
-    cell.contentLabel.text = self.tableData[indexPath.row];
-    NSString *str = self.tableData[indexPath.row];
+    cell.contentLabel.text = self.tableData[indexPath.row][@"notes"];
+    NSString *str = self.tableData[indexPath.row][@"notes"];
     CGSize size = [str calculateSize:CGSizeMake(cell.contentLabel.frame.size.width, FLT_MAX) font:cell.contentLabel.font];
-    return size.height + 61 + indexPath.row * 134;
+    NSArray *imgs = self.tableData[indexPath.row][@"imgs"];
+    return size.height + 61 + imgs.count * 134;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     ContactRecordTableViewCell *cell = (ContactRecordTableViewCell*)[tableView dequeueReusableCellWithIdentifier:contactRecordIdentifier forIndexPath:indexPath];
-    cell.contentLabel.text = self.tableData[indexPath.row];
+    cell.contentLabel.text = self.tableData[indexPath.row][@"notes"];
     // Configure the cell...
-    NSString *url = @"http://my.csdn.net/uploads/201206/23/1340437873_8307.png";
-    NSMutableArray *ma = [NSMutableArray new];
-    for (int i=0;i<indexPath.row;i++)
-        [ma addObject:[url copy]];
-    cell.imageUrl = ma;
+//    NSString *url = @"http://my.csdn.net/uploads/201206/23/1340437873_8307.png";//测试url
+//    NSMutableArray *ma = [NSMutableArray new];
+//    for (int i=0;i<indexPath.row + 1;i++)
+//        [ma addObject:[url copy]];
+    
+    cell.imageUrl = self.tableData[indexPath.row][@"imgs"];
+    cell.recordDate.text = self.tableData[indexPath.row][@"addtime"];
     return cell;
 }
 

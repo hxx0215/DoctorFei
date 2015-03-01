@@ -12,7 +12,7 @@
 
 
 @property (weak, nonatomic) IBOutlet UIView *imageViews;
-@property (weak, nonatomic) IBOutlet UILabel *recordDate;
+
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *imageHeightConstraint;
 
 @end
@@ -36,7 +36,7 @@
     self.imageHeightConstraint.constant = _imageUrl.count * 134;
     for (int i = 0;i<_imageUrl.count;i++){
         UIImageView *image = [[UIImageView alloc] init];
-        [image sd_setImageWithURL:_imageUrl[i]];
+        [image sd_setImageWithURL:_imageUrl[i][@"img"]];
         [self.imageViews addSubview:image];
         image.frame = CGRectMake(0,i*134,100,134);
     }
