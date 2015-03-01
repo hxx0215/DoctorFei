@@ -11,4 +11,5 @@
 @interface ContactRecordTableViewCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *contentLabel;
 @property (nonatomic, copy) NSArray *imageUrl;
+@property (weak, nonatomic) IBOutlet UILabel *recordDate;
 @end

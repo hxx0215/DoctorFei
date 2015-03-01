@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface ContactTransferViewController : UIViewController
-
+@property (nonatomic, copy)NSNumber *patientID;
+@property (nonatomic, copy)NSNumber *targetID;
 @end
