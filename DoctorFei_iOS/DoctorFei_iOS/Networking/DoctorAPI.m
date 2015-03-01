@@ -15,6 +15,7 @@
 #define kMethodUserNote @"set.doctor.usernote"
 #define kMethodUploadImage @"set.picture.add"
 #define kMethodUserDescribe @"set.doctor.userdesribe"
+#define kMethodAddFriend @"set.doctor.friend"
 #define kMethodDelFriend @"set.doctor.delfriend"
 #define kMethodSetAudit @"set.doctor.audit"
 #define kMethodGetAudit @"get.doctor.audit"
@@ -91,6 +92,11 @@
 + (void)setUserDescribeWithParameters: (id)parameters success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
 {
     [[self sharedManager]defaultGetWithMethod:kMethodUserDescribe WithParameters:parameters success:success failure:failure];
+}
+
++ (void)addFriendWithParameters: (id)parameters success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
+{
+    [[self sharedManager]defaultGetWithMethod:kMethodAddFriend WithParameters:parameters success:success failure:failure];
 }
 
 + (void)delFriendWithParameters: (id)parameters success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
