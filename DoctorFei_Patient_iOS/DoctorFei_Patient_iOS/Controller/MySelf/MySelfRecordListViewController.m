@@ -1,19 +1,19 @@
 //
-//  ContactDetailViewController.m
+//  MySelfRecordListViewController.m
 //  DoctorFei_Patient_iOS
 //
-//  Created by GuJunjia on 15/2/28.
+//  Created by GuJunjia on 15/3/1.
 //
 //
 
-#import "ContactDetailViewController.h"
+#import "MySelfRecordListViewController.h"
 
-@interface ContactDetailViewController ()
+@interface MySelfRecordListViewController ()
+
 - (IBAction)backButtonClicked:(id)sender;
-
 @end
 
-@implementation ContactDetailViewController
+@implementation MySelfRecordListViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

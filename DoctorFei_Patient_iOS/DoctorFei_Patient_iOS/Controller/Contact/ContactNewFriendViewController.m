@@ -1,19 +1,18 @@
 //
-//  ContactDetailViewController.m
+//  ContactNewFriendViewController.m
 //  DoctorFei_Patient_iOS
 //
-//  Created by GuJunjia on 15/2/28.
+//  Created by GuJunjia on 15/3/1.
 //
 //
 
-#import "ContactDetailViewController.h"
+#import "ContactNewFriendViewController.h"
 
-@interface ContactDetailViewController ()
-- (IBAction)backButtonClicked:(id)sender;
+@interface ContactNewFriendViewController ()
 
 @end
 
-@implementation ContactDetailViewController
+@implementation ContactNewFriendViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -35,7 +34,4 @@
 }
 */
 
-- (IBAction)backButtonClicked:(id)sender {
-    [self.navigationController popViewControllerAnimated:YES];
-}
 @end

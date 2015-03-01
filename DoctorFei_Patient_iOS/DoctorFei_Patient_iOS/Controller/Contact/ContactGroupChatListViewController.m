@@ -1,19 +1,18 @@
 //
-//  ContactDetailViewController.m
+//  ContactGroupChatListViewController.m
 //  DoctorFei_Patient_iOS
 //
-//  Created by GuJunjia on 15/2/28.
+//  Created by GuJunjia on 15/3/1.
 //
 //
 
-#import "ContactDetailViewController.h"
+#import "ContactGroupChatListViewController.h"
 
-@interface ContactDetailViewController ()
-- (IBAction)backButtonClicked:(id)sender;
+@interface ContactGroupChatListViewController ()
 
 @end
 
-@implementation ContactDetailViewController
+@implementation ContactGroupChatListViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -35,7 +34,4 @@
 }
 */
 
-- (IBAction)backButtonClicked:(id)sender {
-    [self.navigationController popViewControllerAnimated:YES];
-}
 @end

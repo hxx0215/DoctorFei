@@ -1,23 +1,27 @@
 //
-//  ContactDetailViewController.m
+//  MySelfMainTableViewController.m
 //  DoctorFei_Patient_iOS
 //
-//  Created by GuJunjia on 15/2/28.
+//  Created by GuJunjia on 15/3/1.
 //
 //
 
-#import "ContactDetailViewController.h"
+#import "MySelfMainTableViewController.h"
 
-@interface ContactDetailViewController ()
-- (IBAction)backButtonClicked:(id)sender;
+@interface MySelfMainTableViewController ()
 
 @end
 
-@implementation ContactDetailViewController
+@implementation MySelfMainTableViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    // Uncomment the following line to preserve selection between presentations.
+    // self.clearsSelectionOnViewWillAppear = NO;
+    
+    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -35,7 +39,4 @@
 }
 */
 
-- (IBAction)backButtonClicked:(id)sender {
-    [self.navigationController popViewControllerAnimated:YES];
-}
 @end

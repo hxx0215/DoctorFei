@@ -1,30 +1,34 @@
 //
-//  ContactDetailViewController.m
+//  MySelfChangePasswordTableViewController.m
 //  DoctorFei_Patient_iOS
 //
-//  Created by GuJunjia on 15/2/28.
+//  Created by GuJunjia on 15/3/1.
 //
 //
 
-#import "ContactDetailViewController.h"
+#import "MySelfChangePasswordTableViewController.h"
 
-@interface ContactDetailViewController ()
+@interface MySelfChangePasswordTableViewController ()
+
 - (IBAction)backButtonClicked:(id)sender;
-
 @end
 
-@implementation ContactDetailViewController
+@implementation MySelfChangePasswordTableViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    // Uncomment the following line to preserve selection between presentations.
+    // self.clearsSelectionOnViewWillAppear = NO;
+    
+    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
 /*
 #pragma mark - Navigation
 

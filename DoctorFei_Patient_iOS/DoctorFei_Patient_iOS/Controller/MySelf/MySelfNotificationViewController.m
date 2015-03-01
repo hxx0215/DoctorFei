@@ -1,19 +1,19 @@
 //
-//  ContactDetailViewController.m
+//  MySelfNotificationViewController.m
 //  DoctorFei_Patient_iOS
 //
-//  Created by GuJunjia on 15/2/28.
+//  Created by GuJunjia on 15/3/1.
 //
 //
 
-#import "ContactDetailViewController.h"
+#import "MySelfNotificationViewController.h"
 
-@interface ContactDetailViewController ()
+@interface MySelfNotificationViewController ()
 - (IBAction)backButtonClicked:(id)sender;
 
 @end
 
-@implementation ContactDetailViewController
+@implementation MySelfNotificationViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
