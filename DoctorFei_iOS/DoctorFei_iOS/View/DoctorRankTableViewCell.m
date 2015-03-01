@@ -8,7 +8,11 @@
 
 #import "DoctorRankTableViewCell.h"
 #import "MBProgressHUD.h"
+#import <UIImageView+WebCache.h>
 @implementation DoctorRankTableViewCell
+{
+    NSDictionary *dict;
+}
 
 - (void)awakeFromNib {
     // Initialization code
@@ -30,4 +34,10 @@
     sender.enabled = NO;
 }
 
+-(void)setDataDic:(NSDictionary *)dic
+{
+    dict = [dic copy];
+    self.nameLabel.text = dict[@"realname"];
+    [self.iconImage sd_setImageWithURL:dict[@"icon"] placeholderImage:[UIImage imageNamed:@"doctor-ranking_preinstall_pic.png"]];
+}
 @end
