@@ -9,6 +9,7 @@
 #import "DoctorRankTableViewCell.h"
 #import "MBProgressHUD.h"
 #import <UIImageView+WebCache.h>
+#import "DoctorAPI.h"
 @implementation DoctorRankTableViewCell
 {
     NSDictionary *dict;
@@ -24,14 +25,33 @@
     // Configure the view for the selected state
 }
 - (IBAction)addFriendClicked:(UIButton *)sender {
-    UIImageView *completeImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logo_prompt-01_pic.png"]];
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.window animated:YES];
-    hud.mode = MBProgressHUDModeCustomView;
-    hud.dimBackground = YES;
-    hud.customView = completeImage;
-    hud.labelText = NSLocalizedString(@"好友添加成功", nil);
-    [hud hide:YES afterDelay:2.0];
-    sender.enabled = NO;
+    NSNumber *userId = [[NSUserDefaults standardUserDefaults]objectForKey:@"UserId"];
+    NSDictionary *params = @{
+                             @"usertype": dict[@"usertype"],
+                             @"doctorid": [userId stringValue],
+                             @"friendid": dict[@"userid"]
+                             };
+    [DoctorAPI addFriendWithParameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"addFriend: %@",responseObject);
+        NSDictionary *dic = [responseObject firstObject];
+        if ([dic[@"state"] integerValue]==1) {
+            UIImageView *completeImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logo_prompt-01_pic.png"]];
+            hud.mode = MBProgressHUDModeCustomView;
+            hud.dimBackground = YES;
+            hud.customView = completeImage;
+        }
+        hud.labelText = dic[@"msg"];//NSLocalizedString(@"好友添加成功", nil);
+        [hud hide:YES afterDelay:2.0];
+        sender.enabled = NO;
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        hud.mode = MBProgressHUDModeText;
+        hud.labelText = @"错误";
+        hud.detailsLabelText = error.localizedDescription;
+        [hud hide:YES afterDelay:1.5f];
+    }];
+    
+    
 }
 
 -(void)setDataDic:(NSDictionary *)dic
