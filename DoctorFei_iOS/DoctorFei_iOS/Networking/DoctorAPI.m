@@ -42,6 +42,8 @@
 
 #define kMethodGetMemberHistory @"get.member.history"
 
+#define kMethodGetMemberAppointment @"get.member.appointment"
+
 #define kMethodSetDoctorReferral @"set.doctor.referral"
 #define kMethodUpdateDoctorReferral @"update.doctor.referral"//终止转诊
 
@@ -213,6 +215,11 @@
 + (void)getMemberHistoryWithParameters: (id)parameters success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
 {
     [[self sharedManager]defaultGetWithMethod:kMethodGetMemberHistory WithParameters:parameters success:success failure:failure];
+}
+
+//获取患者预约信息
++ (void)getAppointmentWithParameters:(id)parameters success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure{
+    [[self sharedManager] defaultGetWithMethod:kMethodGetMemberAppointment WithParameters:parameters success:success failure:failure];
 }
 
 //发起转诊
