@@ -59,5 +59,6 @@
     dict = [dic copy];
     self.nameLabel.text = dict[@"realname"];
     [self.iconImage sd_setImageWithURL:dict[@"icon"] placeholderImage:[UIImage imageNamed:@"doctor-ranking_preinstall_pic.png"]];
+    self.addButton.enabled = ![dic[@"myfirend"] integerValue];
 }
 @end

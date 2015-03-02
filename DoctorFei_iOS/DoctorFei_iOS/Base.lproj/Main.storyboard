@@ -256,45 +256,6 @@
                         <sections>
                             <tableViewSection id="ol0-Vi-o9i">
                                 <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="7AG-LZ-XYn">
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7AG-LZ-XYn" id="ah8-a9-GuG">
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="通过扫一扫提添加" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JqH-zN-MJr">
-                                                    <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="JqH-zN-MJr" firstAttribute="centerX" secondItem="ah8-a9-GuG" secondAttribute="centerX" id="CIO-k1-N7h"/>
-                                                <constraint firstAttribute="centerY" secondItem="JqH-zN-MJr" secondAttribute="centerY" id="z9E-SH-Mkx"/>
-                                            </constraints>
-                                            <variation key="default">
-                                                <mask key="subviews">
-                                                    <exclude reference="JqH-zN-MJr"/>
-                                                </mask>
-                                                <mask key="constraints">
-                                                    <exclude reference="CIO-k1-N7h"/>
-                                                    <exclude reference="z9E-SH-Mkx"/>
-                                                </mask>
-                                            </variation>
-                                            <variation key="heightClass=regular-widthClass=compact">
-                                                <mask key="subviews">
-                                                    <include reference="JqH-zN-MJr"/>
-                                                </mask>
-                                                <mask key="constraints">
-                                                    <include reference="CIO-k1-N7h"/>
-                                                    <include reference="z9E-SH-Mkx"/>
-                                                </mask>
-                                            </variation>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <segue destination="adm-r3-B07" kind="show" id="LsH-nD-gaK"/>
-                                        </connections>
-                                    </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="a4C-b3-b1O">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="a4C-b3-b1O" id="hqk-JU-GzM">
@@ -6160,6 +6121,9 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.87843137250000003" green="0.87843137250000003" blue="0.87843137250000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="124" y="581" width="153" height="21"/>
+                                </variation>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -6399,6 +6363,7 @@
                                     </variation>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="addButton" destination="vdl-Lx-Gsn" id="I83-yC-9wC"/>
                                     <outlet property="iconImage" destination="8oG-ZK-GhD" id="6zv-CF-n32"/>
                                     <outlet property="nameLabel" destination="phL-Nf-fvV" id="XGd-6e-qgR"/>
                                 </connections>
