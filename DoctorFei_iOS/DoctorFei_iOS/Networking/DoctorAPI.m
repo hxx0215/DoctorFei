@@ -43,6 +43,7 @@
 #define kMethodGetMemberHistory @"get.member.history"
 
 #define kMethodSetDoctorReferral @"set.doctor.referral"
+#define kMethodUpdateDoctorReferral @"update.doctor.referral"//终止转诊
 
 @implementation DoctorAPI
 + (void)updateInfomationWithParameters: (id)parameters success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
@@ -217,5 +218,10 @@
 //发起转诊
 + (void)initiateReferralWithParameters:(id)parameters success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure{
     [[self sharedManager] defaultGetWithMethod:kMethodSetDoctorReferral WithParameters:parameters success:success failure:failure];
+}
+
+//终止转诊
++ (void)terminalReferralWithParameters:(id)parameters success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure{
+    [[self sharedManager] defaultGetWithMethod:kMethodUpdateDoctorReferral WithParameters:parameters success:success failure:failure];
 }
 @end

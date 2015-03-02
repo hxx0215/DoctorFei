@@ -9,7 +9,7 @@
 #import "ContactTransferViewController.h"
 #import "DoctorAPI.h"
 
-@interface ContactTransferViewController ()
+@interface ContactTransferViewController ()<UIAlertViewDelegate>
 @property (weak, nonatomic) IBOutlet UITextView *referralMessage;
 @property (weak, nonatomic) IBOutlet UIImageView *doctorAvatar;
 @property (weak, nonatomic) IBOutlet UIImageView *receiverAvatar;
@@ -50,8 +50,22 @@
     }];
 }
 - (IBAction)terminalReferral:(id)sender {
+    NSDictionary *params = @{
+                             @"doctorid": [[NSUserDefaults standardUserDefaults] objectForKey:@"UserId"],
+                             @"userid":@(17)
+                             };
+    [DoctorAPI terminalReferralWithParameters:params success:^(AFHTTPRequestOperation *operation, id responseObject){
+        NSLog(@"%@",responseObject);
+        NSString *message = [responseObject firstObject][@"msg"];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:message delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        [alert show];
+    }failure:^(AFHTTPRequestOperation *operation, NSError *error){
+        NSLog(@"%@",error);
+    }];
 }
-
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex{
+    [self backButtonClicked:alertView];
+}
 /*
 #pragma mark - Navigation
 
