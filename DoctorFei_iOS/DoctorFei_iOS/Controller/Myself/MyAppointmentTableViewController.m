@@ -7,10 +7,12 @@
 //
 
 #import "MyAppointmentTableViewController.h"
+#import "DoctorAPI.h"
 
 @interface MyAppointmentTableViewController ()
 @property (weak, nonatomic) IBOutlet UISegmentedControl *appointSegment;
-
+@property (nonatomic, strong) NSMutableArray *appointmentData;
+@property (nonatomic, strong) NSMutableArray *referralData;
 @end
 
 @implementation MyAppointmentTableViewController
@@ -31,6 +33,19 @@ static NSString * const kMyAppointmentIdenty = @"MyAppointmentIdenty";
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self refreshData];
+}
+
+- (void)refreshData{
+    NSDictionary *params = @{@"doctorid": [[NSUserDefaults standardUserDefaults] objectForKey:@"UserId"]};
+    [DoctorAPI getAppointmentWithParameters:params success:^(AFHTTPRequestOperation *operation, id responseObject){
+        NSLog(@"%@",responseObject);
+    }failure:^(AFHTTPRequestOperation *operation, NSError *error){
+        NSLog(@"%@",error);
+    }];
 }
 - (IBAction)backButtonClicked:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
