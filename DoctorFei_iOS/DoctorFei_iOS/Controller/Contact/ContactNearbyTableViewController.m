@@ -11,6 +11,7 @@
 #import "DoctorAPI.h"
 #import <MBProgressHUD.h>
 
+#define Contact_PageSize 10
 @interface ContactNearbyTableViewController ()
 
 @end
@@ -18,7 +19,8 @@
 @implementation ContactNearbyTableViewController
 {
     MBProgressHUD *hud;
-    NSArray *tableViewDicArray;
+    NSMutableArray *tableViewDicArray;
+    NSInteger pageIndex;
 }
 
 - (void)viewDidLoad {
@@ -30,6 +32,9 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     self.tableView.tableFooterView = [UIView new];
+    
+    tableViewDicArray = [[NSMutableArray alloc]init];
+    pageIndex = 1;
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -48,16 +53,16 @@
                              //@"usertype": @1,
                              @"lng": @0,
                              @"lat": @0,
-                             @"pageSize": @10,
-                             @"pageIndex": @1,
+                             @"pageSize": @Contact_PageSize,
+                             @"pageIndex": [NSNumber numberWithInteger:pageIndex]
                              };
     [DoctorAPI searchFriendWithParameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"%@",responseObject);
         NSArray *dataArray = (NSArray *)responseObject;
         for (NSDictionary *dict in dataArray) {
-            NSLog(@"%@",dict[@"realname"]);
+            NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:dict];
+            [tableViewDicArray addObject:dic];
         }
-        tableViewDicArray = [dataArray copy];
         [self.tableView reloadData];
         [hud hide:YES];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {

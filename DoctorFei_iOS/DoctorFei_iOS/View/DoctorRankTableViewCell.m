@@ -12,7 +12,7 @@
 #import "DoctorAPI.h"
 @implementation DoctorRankTableViewCell
 {
-    NSDictionary *dict;
+    NSMutableDictionary *dict;
 }
 
 - (void)awakeFromNib {
@@ -40,6 +40,7 @@
             hud.mode = MBProgressHUDModeCustomView;
             hud.dimBackground = YES;
             hud.customView = completeImage;
+            [dict setValue:@1 forKey:@"myfirend"];
         }
         hud.labelText = dic[@"msg"];//NSLocalizedString(@"好友添加成功", nil);
         [hud hide:YES afterDelay:2.0];
@@ -54,9 +55,9 @@
     
 }
 
--(void)setDataDic:(NSDictionary *)dic
+-(void)setDataDic:(NSMutableDictionary *)dic
 {
-    dict = [dic copy];
+    dict = dic;
     self.nameLabel.text = dict[@"realname"];
     [self.iconImage sd_setImageWithURL:dict[@"icon"] placeholderImage:[UIImage imageNamed:@"doctor-ranking_preinstall_pic.png"]];
     self.addButton.enabled = ![dic[@"myfirend"] integerValue];
