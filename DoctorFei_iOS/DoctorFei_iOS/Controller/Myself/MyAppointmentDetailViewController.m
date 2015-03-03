@@ -9,6 +9,10 @@
 #import "MyAppointmentDetailViewController.h"
 
 @interface MyAppointmentDetailViewController ()
+@property (weak, nonatomic) IBOutlet UILabel *dateLabel;
+@property (weak, nonatomic) IBOutlet UITextView *contentText;
+@property (weak, nonatomic) IBOutlet UIButton *agreeButton;
+@property (weak, nonatomic) IBOutlet UIButton *disagreeButton;
 
 @end
 
@@ -18,13 +22,42 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
 }
-
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    self.dateLabel.text = self.date;
+    self.contentText.text =self.content;
+    switch (self.flag) {
+        case AppointDetailTypeNoButton:
+            self.agreeButton.hidden = YES;
+            self.disagreeButton.hidden = YES;
+            break;
+        case AppointDetailTypeAgreeAndDisagree:
+        {
+            [self.agreeButton setTitle:@"同意并添加到通讯录" forState:UIControlStateNormal];
+            break;
+        }
+        case AppointDetailTypeDisagreed:{
+            self.agreeButton.hidden = YES;
+            break;
+        }
+        case AppointDetailTypeAgreed:
+            self.disagreeButton.hidden = YES;
+            break;
+        case AppointDetailTypeAgreeAndAdd:
+        default:
+            break;
+    }
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 - (IBAction)backButtonClicked:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
+}
+- (IBAction)agree:(id)sender {
+}
+- (IBAction)disagree:(id)sender {
 }
 
 /*

@@ -8,11 +8,13 @@
 
 #import "MyAppointmentTableViewController.h"
 #import "DoctorAPI.h"
+#import "MyAppointmentDetailViewController.h"
 
 @interface MyAppointmentTableViewController ()
 @property (weak, nonatomic) IBOutlet UISegmentedControl *appointSegment;
 @property (nonatomic, strong) NSMutableArray *appointmentData;
 @property (nonatomic, strong) NSMutableArray *referralData;
+@property (nonatomic, strong) NSMutableArray *tableData;//0为预约信息1为转诊信息
 @end
 
 @implementation MyAppointmentTableViewController
@@ -28,6 +30,7 @@ static NSString * const kMyAppointmentIdenty = @"MyAppointmentIdenty";
     CGRect headFrame = self.tableView.tableHeaderView.frame;
     headFrame.size.height = 28;
     self.tableView.tableHeaderView.frame = headFrame;
+    self.tableData = [[NSMutableArray alloc] initWithCapacity:2];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -42,7 +45,15 @@ static NSString * const kMyAppointmentIdenty = @"MyAppointmentIdenty";
 - (void)refreshData{
     NSDictionary *params = @{@"doctorid": [[NSUserDefaults standardUserDefaults] objectForKey:@"UserId"]};
     [DoctorAPI getAppointmentWithParameters:params success:^(AFHTTPRequestOperation *operation, id responseObject){
-        NSLog(@"%@",responseObject);
+        NSLog(@"appointment:%@",responseObject);
+        self.tableData[0] = responseObject;
+        [self.tableView reloadData];
+    }failure:^(AFHTTPRequestOperation *operation, NSError *error){
+        NSLog(@"%@",error);
+    }];
+    [DoctorAPI getReferralInfoWithParameters:params success:^(AFHTTPRequestOperation *operation, id responseObject){
+        NSLog(@"referral:%@",responseObject);
+        self.tableData[1] = responseObject;
     }failure:^(AFHTTPRequestOperation *operation, NSError *error){
         NSLog(@"%@",error);
     }];
@@ -65,7 +76,10 @@ static NSString * const kMyAppointmentIdenty = @"MyAppointmentIdenty";
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 
     // Return the number of rows in the section.
-    return 1;
+    if ([self.tableData count]>0)
+        return [self.tableData[self.appointSegment.selectedSegmentIndex] count];
+    else
+        return 0;
 }
 
 
@@ -78,15 +92,15 @@ static NSString * const kMyAppointmentIdenty = @"MyAppointmentIdenty";
     
     // Configure the cell...
     if (self.appointSegment.selectedSegmentIndex ==0)
-        cell.textLabel.text = @"1234预约";
+        cell.textLabel.text = [self.tableData[self.appointSegment.selectedSegmentIndex][indexPath.row] objectForKey:@"uname"];
     else
-        cell.textLabel.text = @"1234转诊";
+        cell.textLabel.text = [self.tableData[self.appointSegment.selectedSegmentIndex][indexPath.row] objectForKey:@"title"];
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    [self performSegueWithIdentifier:@"MyAppointmentSegueIdentifier" sender:nil];
+    [self performSegueWithIdentifier:@"MyAppointmentSegueIdentifier" sender:indexPath];
 }
 /*
 // Override to support conditional editing of the table view.
@@ -122,14 +136,64 @@ static NSString * const kMyAppointmentIdenty = @"MyAppointmentIdenty";
 }
 */
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    MyAppointmentDetailViewController *vc = [segue destinationViewController];
+    NSIndexPath *indexPath = sender;
+    NSInteger segmentIndex = self.appointSegment.selectedSegmentIndex;
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateStyle:NSDateFormatterMediumStyle];
+    [formatter setTimeStyle:NSDateFormatterShortStyle];
+    [formatter setDateFormat:@"YYYY年MM月dd日"];
+    if (0==segmentIndex){
+        vc.date = [self.tableData[segmentIndex][indexPath.row] objectForKey:@"times"];
+        vc.content = [self.tableData[segmentIndex][indexPath.row] objectForKey:@"notes"];
+        NSInteger isaudit = [[self.tableData[segmentIndex][indexPath.row] objectForKey:@"isaudit"] integerValue];
+        switch (isaudit) {
+            case 0:
+                vc.flag = AppointDetailTypeAgreeAndDisagree;
+                break;
+            case 1:
+                vc.flag = AppointDetailTypeAgreed;
+                break;
+            case 2:
+                vc.flag = AppointDetailTypeDisagreed;
+                break;
+            default:
+                break;
+        }
+    }
+    else{
+        NSTimeInterval timestamp = [[self.tableData[segmentIndex][indexPath.row] objectForKey:@"createtime"] doubleValue];
+        NSDate *date = [NSDate dateWithTimeIntervalSince1970:timestamp];
+        vc.date = [formatter stringFromDate:date];
+        vc.content = [self.tableData[segmentIndex][indexPath.row] objectForKey:@"content"];
+        NSInteger flag = [[self.tableData[segmentIndex][indexPath.row] objectForKey:@"flag"] integerValue];
+        if (flag == 0)
+        {
+            NSInteger isaudit = [[self.tableData[segmentIndex][indexPath.row] objectForKey:@"isaudit"] integerValue];
+            switch (isaudit){
+                case 0:
+                    vc.flag = AppointDetailTypeAgreeAndAdd;
+                    break;
+                case 1:
+                    vc.flag = AppointDetailTypeAgreed;
+                    break;
+                case 2:
+                    vc.flag = AppointDetailTypeDisagreed;
+                    break;
+            }
+        }
+        else{
+            vc.flag = AppointDetailTypeNoButton;
+        }
+    }
 }
-*/
+
 
 @end
