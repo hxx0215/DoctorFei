@@ -18,6 +18,7 @@
 @implementation ContactNearbyTableViewController
 {
     MBProgressHUD *hud;
+    NSArray *tableViewDicArray;
 }
 
 - (void)viewDidLoad {
@@ -47,14 +48,17 @@
                              //@"usertype": @1,
                              @"lng": @0,
                              @"lat": @0,
-                             @"pageSize": @1,
-                             @"pageIndex": @8,
+                             @"pageSize": @10,
+                             @"pageIndex": @1,
                              };
     [DoctorAPI searchFriendWithParameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"%@",responseObject);
         NSArray *dataArray = (NSArray *)responseObject;
         for (NSDictionary *dict in dataArray) {
+            NSLog(@"%@",dict[@"realname"]);
         }
+        tableViewDicArray = [dataArray copy];
+        [self.tableView reloadData];
         [hud hide:YES];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         hud.mode = MBProgressHUDModeText;
@@ -84,13 +88,13 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 
     // Return the number of rows in the section.
-    return 1;
+    return [tableViewDicArray count];
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     ContactNearbyTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ContactNearbyCellIdentifier" forIndexPath:indexPath];
-    
+    [cell setDataDic:[tableViewDicArray objectAtIndex:indexPath.row]];
     // Configure the cell...
     
     return cell;

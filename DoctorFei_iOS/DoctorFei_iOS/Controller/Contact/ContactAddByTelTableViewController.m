@@ -53,10 +53,43 @@
     [DoctorAPI searchFriendWithParameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"%@",responseObject);
         NSArray *dataArray = (NSArray *)responseObject;
-        for (NSDictionary *dict in dataArray) {
+        NSDictionary *dic = [dataArray firstObject];
+        if (dic) {
+            [self addFriendByDic:dic];
         }
-        [[NSManagedObjectContext MR_defaultContext]MR_saveToPersistentStoreAndWait];
-        [hud hide:YES];
+        else
+        {
+            hud.mode = MBProgressHUDModeText;
+            hud.labelText = @"没有该用户！";
+            [hud hide:YES afterDelay:1.5f];
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        hud.mode = MBProgressHUDModeText;
+        hud.labelText = @"错误";
+        hud.detailsLabelText = error.localizedDescription;
+        [hud hide:YES afterDelay:1.5f];
+    }];
+}
+
+
+- (void)addFriendByDic:(NSDictionary *)dic {
+    NSNumber *userId = [[NSUserDefaults standardUserDefaults]objectForKey:@"UserId"];
+    NSDictionary *params = @{
+                             @"usertype": dic[@"usertype"],
+                             @"doctorid": [userId stringValue],
+                             @"friendid": dic[@"userid"]
+                             };
+    [DoctorAPI addFriendWithParameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"addFriend: %@",responseObject);
+        NSDictionary *dic = [responseObject firstObject];
+        if ([dic[@"state"] integerValue]==1) {
+            UIImageView *completeImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logo_prompt-01_pic.png"]];
+            hud.mode = MBProgressHUDModeCustomView;
+            hud.dimBackground = YES;
+            hud.customView = completeImage;
+        }
+        hud.labelText = dic[@"msg"];//NSLocalizedString(@"好友添加成功", nil);
+        [hud hide:YES afterDelay:2.0];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         hud.mode = MBProgressHUDModeText;
         hud.labelText = @"错误";
