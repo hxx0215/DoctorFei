@@ -11,7 +11,7 @@
 #import <IHKeyboardAvoiding.h>
 #import <ReactiveCocoa.h>
 #import <MBProgressHUD.h>
-#import "DoctorAPI.h"
+#import "MemberAPI.h"
 @interface RegisterMoreTableViewController ()
     <UITextFieldDelegate>
 - (IBAction)backButtonClicked:(id)sender;
@@ -154,7 +154,7 @@
                              @"jobtitle": self.jobTitleLabel.text,
                              @"othercontact": self.introductionTextView.text
                              };
-    [DoctorAPI updateInfomationWithParameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [MemberAPI updateInfomationWithParameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSDictionary *dataDict = [responseObject firstObject];
         hud.mode = MBProgressHUDModeText;
         if ([dataDict[@"state"]intValue] == 1) {

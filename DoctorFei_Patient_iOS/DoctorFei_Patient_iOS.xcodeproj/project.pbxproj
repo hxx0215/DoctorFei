@@ -16,15 +16,12 @@
 		6A28DDB81A9E07C700B50F8E /* RegisterMoreTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A28DD901A9E07C700B50F8E /* RegisterMoreTableViewController.m */; };
 		6A28DDB91A9E07C700B50F8E /* RegisterTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A28DD921A9E07C700B50F8E /* RegisterTableViewController.m */; };
 		6A28DDBA1A9E07C700B50F8E /* SetNewPasswordTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A28DD941A9E07C700B50F8E /* SetNewPasswordTableViewController.m */; };
-		6A28DDBC1A9E07C700B50F8E /* Chat.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A28DD9B1A9E07C700B50F8E /* Chat.m */; };
 		6A28DDBD1A9E07C700B50F8E /* Friends+PinYinUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A28DD9D1A9E07C700B50F8E /* Friends+PinYinUtil.m */; };
-		6A28DDBE1A9E07C700B50F8E /* Friends.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A28DD9F1A9E07C700B50F8E /* Friends.m */; };
 		6A28DDBF1A9E07C700B50F8E /* MainCoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6A28DDA01A9E07C700B50F8E /* MainCoreData.xcdatamodeld */; };
-		6A28DDC01A9E07C700B50F8E /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A28DDA31A9E07C700B50F8E /* Message.m */; };
 		6A28DDC11A9E07C700B50F8E /* MessagesModalData.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A28DDA51A9E07C700B50F8E /* MessagesModalData.m */; };
 		6A28DDC21A9E07C700B50F8E /* BaseHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A28DDA81A9E07C700B50F8E /* BaseHTTPRequestOperationManager.m */; };
 		6A28DDC31A9E07C700B50F8E /* ChatAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A28DDAA1A9E07C700B50F8E /* ChatAPI.m */; };
-		6A28DDC41A9E07C700B50F8E /* DoctorAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A28DDAC1A9E07C700B50F8E /* DoctorAPI.m */; };
+		6A28DDC41A9E07C700B50F8E /* MemberAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A28DDAC1A9E07C700B50F8E /* MemberAPI.m */; };
 		6A28DDC51A9E07C700B50F8E /* MobileAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A28DDAE1A9E07C700B50F8E /* MobileAPI.m */; };
 		6A28DDC61A9E07C700B50F8E /* RegisterAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A28DDB01A9E07C700B50F8E /* RegisterAPI.m */; };
 		6A28DDC71A9E07C700B50F8E /* UserAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A28DDB21A9E07C700B50F8E /* UserAPI.m */; };
@@ -74,6 +71,10 @@
 		6A28DE4E1AA3340400B50F8E /* MoreFeedbackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A28DE481AA3340400B50F8E /* MoreFeedbackViewController.m */; };
 		6A28DE4F1AA3340400B50F8E /* MoreTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A28DE4A1AA3340400B50F8E /* MoreTableViewController.m */; };
 		6A28DE501AA3340400B50F8E /* MoreUpdateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A28DE4C1AA3340400B50F8E /* MoreUpdateViewController.m */; };
+		6A86B3651AA60F2700D280AF /* Chat.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A86B3641AA60F2700D280AF /* Chat.m */; };
+		6A86B3681AA60F2800D280AF /* Friends.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A86B3671AA60F2800D280AF /* Friends.m */; };
+		6A86B36B1AA60F2800D280AF /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A86B36A1AA60F2800D280AF /* Message.m */; };
+		6A86B36E1AA60F2900D280AF /* Groups.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A86B36D1AA60F2900D280AF /* Groups.m */; };
 		6AFD40481A5D5EF4009C0080 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AFD40471A5D5EF4009C0080 /* main.m */; };
 		6AFD404B1A5D5EF4009C0080 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AFD404A1A5D5EF4009C0080 /* AppDelegate.m */; };
 		6AFD404E1A5D5EF4009C0080 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AFD404D1A5D5EF4009C0080 /* ViewController.m */; };
@@ -607,23 +608,17 @@
 		6A28DD931A9E07C700B50F8E /* SetNewPasswordTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetNewPasswordTableViewController.h; sourceTree = "<group>"; };
 		6A28DD941A9E07C700B50F8E /* SetNewPasswordTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetNewPasswordTableViewController.m; sourceTree = "<group>"; };
 		6A28DD971A9E07C700B50F8E /* APService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APService.h; sourceTree = "<group>"; };
-		6A28DD9A1A9E07C700B50F8E /* Chat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Chat.h; sourceTree = "<group>"; };
-		6A28DD9B1A9E07C700B50F8E /* Chat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Chat.m; sourceTree = "<group>"; };
 		6A28DD9C1A9E07C700B50F8E /* Friends+PinYinUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Friends+PinYinUtil.h"; sourceTree = "<group>"; };
 		6A28DD9D1A9E07C700B50F8E /* Friends+PinYinUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Friends+PinYinUtil.m"; sourceTree = "<group>"; };
-		6A28DD9E1A9E07C700B50F8E /* Friends.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Friends.h; sourceTree = "<group>"; };
-		6A28DD9F1A9E07C700B50F8E /* Friends.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Friends.m; sourceTree = "<group>"; };
 		6A28DDA11A9E07C700B50F8E /* MainCoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MainCoreData.xcdatamodel; sourceTree = "<group>"; };
-		6A28DDA21A9E07C700B50F8E /* Message.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Message.h; sourceTree = "<group>"; };
-		6A28DDA31A9E07C700B50F8E /* Message.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Message.m; sourceTree = "<group>"; };
 		6A28DDA41A9E07C700B50F8E /* MessagesModalData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessagesModalData.h; sourceTree = "<group>"; };
 		6A28DDA51A9E07C700B50F8E /* MessagesModalData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessagesModalData.m; sourceTree = "<group>"; };
 		6A28DDA71A9E07C700B50F8E /* BaseHTTPRequestOperationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseHTTPRequestOperationManager.h; sourceTree = "<group>"; };
 		6A28DDA81A9E07C700B50F8E /* BaseHTTPRequestOperationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseHTTPRequestOperationManager.m; sourceTree = "<group>"; };
 		6A28DDA91A9E07C700B50F8E /* ChatAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatAPI.h; sourceTree = "<group>"; };
 		6A28DDAA1A9E07C700B50F8E /* ChatAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatAPI.m; sourceTree = "<group>"; };
-		6A28DDAB1A9E07C700B50F8E /* DoctorAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoctorAPI.h; sourceTree = "<group>"; };
-		6A28DDAC1A9E07C700B50F8E /* DoctorAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DoctorAPI.m; sourceTree = "<group>"; };
+		6A28DDAB1A9E07C700B50F8E /* MemberAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MemberAPI.h; sourceTree = "<group>"; };
+		6A28DDAC1A9E07C700B50F8E /* MemberAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MemberAPI.m; sourceTree = "<group>"; };
 		6A28DDAD1A9E07C700B50F8E /* MobileAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobileAPI.h; sourceTree = "<group>"; };
 		6A28DDAE1A9E07C700B50F8E /* MobileAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MobileAPI.m; sourceTree = "<group>"; };
 		6A28DDAF1A9E07C700B50F8E /* RegisterAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterAPI.h; sourceTree = "<group>"; };
@@ -700,6 +695,14 @@
 		6A28DE4A1AA3340400B50F8E /* MoreTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoreTableViewController.m; sourceTree = "<group>"; };
 		6A28DE4B1AA3340400B50F8E /* MoreUpdateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoreUpdateViewController.h; sourceTree = "<group>"; };
 		6A28DE4C1AA3340400B50F8E /* MoreUpdateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoreUpdateViewController.m; sourceTree = "<group>"; };
+		6A86B3631AA60F2700D280AF /* Chat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Chat.h; sourceTree = "<group>"; };
+		6A86B3641AA60F2700D280AF /* Chat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Chat.m; sourceTree = "<group>"; };
+		6A86B3661AA60F2800D280AF /* Friends.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Friends.h; sourceTree = "<group>"; };
+		6A86B3671AA60F2800D280AF /* Friends.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Friends.m; sourceTree = "<group>"; };
+		6A86B3691AA60F2800D280AF /* Message.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Message.h; sourceTree = "<group>"; };
+		6A86B36A1AA60F2800D280AF /* Message.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Message.m; sourceTree = "<group>"; };
+		6A86B36C1AA60F2900D280AF /* Groups.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Groups.h; sourceTree = "<group>"; };
+		6A86B36D1AA60F2900D280AF /* Groups.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Groups.m; sourceTree = "<group>"; };
 		6AFD40421A5D5EF4009C0080 /* DoctorFei_Patient_iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DoctorFei_Patient_iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6AFD40461A5D5EF4009C0080 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6AFD40471A5D5EF4009C0080 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -1323,15 +1326,17 @@
 		6A28DD991A9E07C700B50F8E /* Modal */ = {
 			isa = PBXGroup;
 			children = (
-				6A28DD9A1A9E07C700B50F8E /* Chat.h */,
-				6A28DD9B1A9E07C700B50F8E /* Chat.m */,
 				6A28DD9C1A9E07C700B50F8E /* Friends+PinYinUtil.h */,
 				6A28DD9D1A9E07C700B50F8E /* Friends+PinYinUtil.m */,
-				6A28DD9E1A9E07C700B50F8E /* Friends.h */,
-				6A28DD9F1A9E07C700B50F8E /* Friends.m */,
 				6A28DDA01A9E07C700B50F8E /* MainCoreData.xcdatamodeld */,
-				6A28DDA21A9E07C700B50F8E /* Message.h */,
-				6A28DDA31A9E07C700B50F8E /* Message.m */,
+				6A86B36C1AA60F2900D280AF /* Groups.h */,
+				6A86B36D1AA60F2900D280AF /* Groups.m */,
+				6A86B3691AA60F2800D280AF /* Message.h */,
+				6A86B36A1AA60F2800D280AF /* Message.m */,
+				6A86B3661AA60F2800D280AF /* Friends.h */,
+				6A86B3671AA60F2800D280AF /* Friends.m */,
+				6A86B3631AA60F2700D280AF /* Chat.h */,
+				6A86B3641AA60F2700D280AF /* Chat.m */,
 				6A28DDA41A9E07C700B50F8E /* MessagesModalData.h */,
 				6A28DDA51A9E07C700B50F8E /* MessagesModalData.m */,
 			);
@@ -1345,8 +1350,8 @@
 				6A28DDA81A9E07C700B50F8E /* BaseHTTPRequestOperationManager.m */,
 				6A28DDA91A9E07C700B50F8E /* ChatAPI.h */,
 				6A28DDAA1A9E07C700B50F8E /* ChatAPI.m */,
-				6A28DDAB1A9E07C700B50F8E /* DoctorAPI.h */,
-				6A28DDAC1A9E07C700B50F8E /* DoctorAPI.m */,
+				6A28DDAB1A9E07C700B50F8E /* MemberAPI.h */,
+				6A28DDAC1A9E07C700B50F8E /* MemberAPI.m */,
 				6A28DDAD1A9E07C700B50F8E /* MobileAPI.h */,
 				6A28DDAE1A9E07C700B50F8E /* MobileAPI.m */,
 				6A28DDAF1A9E07C700B50F8E /* RegisterAPI.h */,
@@ -2709,7 +2714,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6A28DDBE1A9E07C700B50F8E /* Friends.m in Sources */,
 				D3B9FBC91A712DE80024F1DF /* pinyin.c in Sources */,
 				6A28DE4E1AA3340400B50F8E /* MoreFeedbackViewController.m in Sources */,
 				6A28DDB81A9E07C700B50F8E /* RegisterMoreTableViewController.m in Sources */,
@@ -2719,12 +2723,11 @@
 				6A28DDB71A9E07C700B50F8E /* ForgetPasswordViewController.m in Sources */,
 				6A28DDE91AA0C89A00B50F8E /* DOPDropDownMenu.m in Sources */,
 				6A28DDB51A9E07C700B50F8E /* LoginViewController.m in Sources */,
-				6A28DDC41A9E07C700B50F8E /* DoctorAPI.m in Sources */,
+				6A28DDC41A9E07C700B50F8E /* MemberAPI.m in Sources */,
 				6A28DDC71A9E07C700B50F8E /* UserAPI.m in Sources */,
 				6A28DE4F1AA3340400B50F8E /* MoreTableViewController.m in Sources */,
-				6A28DDC01A9E07C700B50F8E /* Message.m in Sources */,
-				6A28DDBC1A9E07C700B50F8E /* Chat.m in Sources */,
 				6A28DDB31A9E07C700B50F8E /* MainTabBarViewController.m in Sources */,
+				6A86B3651AA60F2700D280AF /* Chat.m in Sources */,
 				6A28DE501AA3340400B50F8E /* MoreUpdateViewController.m in Sources */,
 				D3B9FC041A7145A70024F1DF /* SetOnlineStateUtil.m in Sources */,
 				6A28DE391AA3328500B50F8E /* MySelfMainTableViewController.m in Sources */,
@@ -2744,6 +2747,7 @@
 				6A28DE291AA2E31900B50F8E /* TextBasicInfoViewController.m in Sources */,
 				D3B9FC0A1A7145C60024F1DF /* ImageUtil.m in Sources */,
 				6A28DDFF1AA161CE00B50F8E /* ContactMainViewController.m in Sources */,
+				6A86B36E1AA60F2900D280AF /* Groups.m in Sources */,
 				6A28DE111AA1980A00B50F8E /* ContactDoctorFriendDetailTableViewController.m in Sources */,
 				6A28DDB61A9E07C700B50F8E /* ForgetPassVerifyCodeViewController.m in Sources */,
 				6A28DDC51A9E07C700B50F8E /* MobileAPI.m in Sources */,
@@ -2754,11 +2758,13 @@
 				6A28DE051AA18F3100B50F8E /* ContactDetailViewController.m in Sources */,
 				D3B9FC071A7145B70024F1DF /* FetchChatUtil.m in Sources */,
 				6A28DDEC1AA0C95000B50F8E /* OrganDisplayTableViewCell.m in Sources */,
+				6A86B36B1AA60F2800D280AF /* Message.m in Sources */,
 				6A28DDDD1A9EFA2F00B50F8E /* MainChatTableViewCell.m in Sources */,
 				6A28DE4D1AA3340400B50F8E /* MoreAboutUsViewController.m in Sources */,
 				6A28DDBD1A9E07C700B50F8E /* Friends+PinYinUtil.m in Sources */,
 				6A28DDC61A9E07C700B50F8E /* RegisterAPI.m in Sources */,
 				6AFD40481A5D5EF4009C0080 /* main.m in Sources */,
+				6A86B3681AA60F2800D280AF /* Friends.m in Sources */,
 				6A28DE141AA1985200B50F8E /* ContactPeronsalFriendDetailTableViewController.m in Sources */,
 				6A28DDC31A9E07C700B50F8E /* ChatAPI.m in Sources */,
 				6A28DE351AA32FC800B50F8E /* ContactFriendTableViewCell.m in Sources */,

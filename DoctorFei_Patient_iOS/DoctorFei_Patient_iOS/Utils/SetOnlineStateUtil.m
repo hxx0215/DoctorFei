@@ -7,7 +7,7 @@
 //
 
 #import "SetOnlineStateUtil.h"
-#import "DoctorAPI.h"
+#import "MemberAPI.h"
 @implementation SetOnlineStateUtil
 
 + (void)online {
@@ -25,7 +25,7 @@
                                  @"doctorid": [[NSUserDefaults standardUserDefaults]objectForKey:@"UserId"],
                                  @"online": statue
                                  };
-        [DoctorAPI onlineWithParameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [MemberAPI onlineWithParameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
             NSDictionary *dataDict = [responseObject firstObject];
             if ([dataDict[@"state"]intValue] == 1) {
                 NSLog(@"SetOnlineStateSuccess! State = %@", [statue stringValue]);

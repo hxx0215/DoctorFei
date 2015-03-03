@@ -7,7 +7,7 @@
 //
 
 #import "MoreTableViewController.h"
-#import "DoctorAPI.h"
+#import "MemberAPI.h"
 #import "DataUtil.h"
 #import <MBProgressHUD.h>
 //#import "SocketConnection.h"
@@ -55,7 +55,7 @@
                              @"doctorid": [[NSUserDefaults standardUserDefaults]objectForKey:@"UserId"],
                              @"online": @(0)
                              };
-    [DoctorAPI onlineWithParameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [MemberAPI onlineWithParameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSDictionary *dataDict = [responseObject firstObject];
 //        NSLog(@"%@",dataDict);
         hud.mode = MBProgressHUDModeText;

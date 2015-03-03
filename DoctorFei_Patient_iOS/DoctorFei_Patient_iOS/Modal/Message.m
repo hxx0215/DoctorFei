@@ -1,12 +1,13 @@
 //
 //  Message.m
-//  DoctorFei_iOS
+//  DoctorFei_Patient_iOS
 //
-//  Created by GuJunjia on 14/12/6.
+//  Created by GuJunjia on 15/3/3.
 //
 //
 
 #import "Message.h"
+#import "Chat.h"
 #import "Friends.h"
 
 
@@ -18,5 +19,6 @@
 @dynamic messageId;
 @dynamic msgType;
 @dynamic user;
+@dynamic chat;
 
 @end

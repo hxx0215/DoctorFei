@@ -6,7 +6,7 @@
 //
 //
 
-#import "DoctorAPI.h"
+#import "MemberAPI.h"
 #define kMethodUpdateInfomation @"update.member.information"
 #define kMethodLogin @"set.member.login"
 #define kMethodOnline @"set.member.online"
@@ -17,7 +17,7 @@
 #define kMethodUserDescribe @"set.member.userdesribe"
 #define kMethodDelFriend @"set.member.delfriend"
 
-@implementation DoctorAPI
+@implementation MemberAPI
 + (void)updateInfomationWithParameters: (id)parameters success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
 {
     [[self sharedManager]defaultGetWithMethod:kMethodUpdateInfomation WithParameters:parameters success:success failure:failure];

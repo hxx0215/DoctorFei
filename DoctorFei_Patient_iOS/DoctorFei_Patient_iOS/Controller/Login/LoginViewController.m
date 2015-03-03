@@ -11,7 +11,7 @@
 #import <ReactiveCocoa.h>
 #import <MBProgressHUD.h>
 #import "DeviceUtil.h"
-#import "DoctorAPI.h"
+#import "MemberAPI.h"
 #import "APService.h"
 #import "DataUtil.h"
 //#import "SocketConnection.h"
@@ -127,7 +127,7 @@
                              @"sn": [DeviceUtil getUUID]
                              };
     NSLog(@"%@",params);
-    [DoctorAPI loginWithParameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [MemberAPI loginWithParameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"%@",responseObject);
         NSDictionary *dataDict = [responseObject firstObject];
         hud.mode = MBProgressHUDModeText;

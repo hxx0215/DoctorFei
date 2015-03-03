@@ -1,8 +1,8 @@
 //
 //  Friends.h
-//  DoctorFei_iOS
+//  DoctorFei_Patient_iOS
 //
-//  Created by GuJunjia on 14/12/8.
+//  Created by GuJunjia on 15/3/3.
 //
 //
 
@@ -22,8 +22,10 @@
 @property (nonatomic, retain) NSString * situation;
 @property (nonatomic, retain) NSNumber * userId;
 @property (nonatomic, retain) NSNumber * userType;
+@property (nonatomic, retain) NSDate * lastLoginTime;
 @property (nonatomic, retain) Chat *chat;
 @property (nonatomic, retain) NSSet *messages;
+@property (nonatomic, retain) NSManagedObject *group;
 @end
 
 @interface Friends (CoreDataGeneratedAccessors)
