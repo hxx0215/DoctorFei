@@ -8291,6 +8291,9 @@
                                                     <include reference="bxa-Uv-Gvf"/>
                                                 </mask>
                                             </variation>
+                                            <connections>
+                                                <action selector="addFriendClicked:" destination="Yqe-RC-6aG" eventType="touchUpInside" id="xyt-3Y-Cun"/>
+                                            </connections>
                                         </button>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10m" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GlO-qX-Bw0">
                                             <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
@@ -8356,6 +8359,13 @@
                                         </mask>
                                     </variation>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="addButton" destination="ecG-9H-5cT" id="vcD-Ty-x5k"/>
+                                    <outlet property="distanceLabel" destination="GlO-qX-Bw0" id="vOO-KN-7mM"/>
+                                    <outlet property="iconImage" destination="BFk-FU-rj0" id="rMs-dX-lU8"/>
+                                    <outlet property="nameLabel" destination="Rgo-sc-cmf" id="hZe-dF-l0J"/>
+                                    <outlet property="typeImage" destination="wXw-dC-ehh" id="igA-Qa-54W"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -11044,15 +11054,15 @@
         <image name="vip_pic.png" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="xAo-Kx-7vt"/>
-        <segue reference="wpO-fm-KSL"/>
         <segue reference="8FK-Id-c2E"/>
-        <segue reference="JeB-AN-IOM"/>
-        <segue reference="rqJ-cO-jCt"/>
         <segue reference="zKw-Eq-Pwx"/>
+        <segue reference="JeB-AN-IOM"/>
+        <segue reference="wpO-fm-KSL"/>
         <segue reference="G9W-g1-ayd"/>
         <segue reference="PPz-pu-GWN"/>
         <segue reference="6jn-ZK-h5N"/>
+        <segue reference="Hb8-Q6-QO7"/>
+        <segue reference="QWB-UP-Nry"/>
         <segue reference="pVr-DH-hJQ"/>
     </inferredMetricsTieBreakers>
 </document>
