@@ -7,6 +7,7 @@
 //
 
 #import "MyAppointmentDetailViewController.h"
+#import "DoctorAPI.h"
 
 @interface MyAppointmentDetailViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
@@ -31,19 +32,23 @@
             self.agreeButton.hidden = YES;
             self.disagreeButton.hidden = YES;
             break;
-        case AppointDetailTypeAgreeAndDisagree:
+        case AppointDetailTypeAgreeAndAdd:
         {
             [self.agreeButton setTitle:@"同意并添加到通讯录" forState:UIControlStateNormal];
             break;
         }
         case AppointDetailTypeDisagreed:{
-            self.agreeButton.hidden = YES;
+            self.agreeButton.enabled = NO;
+            self.disagreeButton.hidden =YES;
+            [self.agreeButton setTitle:@"已拒绝" forState:UIControlStateNormal];
             break;
         }
         case AppointDetailTypeAgreed:
             self.disagreeButton.hidden = YES;
+            self.agreeButton.enabled = NO;
+            [self.agreeButton setTitle:@"已同意" forState:UIControlStateNormal];
             break;
-        case AppointDetailTypeAgreeAndAdd:
+        case AppointDetailTypeAgreeAndDisagree:
         default:
             break;
     }
@@ -56,10 +61,39 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 - (IBAction)agree:(id)sender {
+    if (self.flag == AppointDetailTypeAgreeAndAdd)
+        [self auditReferral:YES];
+    else
+        [self auditAppointment:YES];
 }
 - (IBAction)disagree:(id)sender {
+    if (self.flag == AppointDetailTypeAgreeAndAdd)
+        [self auditReferral:NO];
+    else
+        [self auditAppointment:NO];
 }
 
+-(void)auditReferral:(BOOL)flag{
+    NSDictionary *params = @{@"doctorid": [[NSUserDefaults standardUserDefaults] objectForKey:@"UserId"],
+                             @"referralid": self.ID,
+                             @"type" : flag ? @(1):@(2)};
+    [DoctorAPI AuditReferralWithParameters:params success:^(AFHTTPRequestOperation *operation, id responseObject){
+        NSLog(@"%@",responseObject);
+    }failure:^(AFHTTPRequestOperation *operation,NSError *error){
+        NSLog(@"%@",error);
+    }];
+}
+
+-(void)auditAppointment:(BOOL)flag{
+    NSDictionary *params = @{@"doctorid": [[NSUserDefaults standardUserDefaults] objectForKey:@"UserId"],
+                             @"appid": self.ID,
+                             @"type" : flag ? @(1):@(2)};
+    [DoctorAPI setAppointmentWithParameters:params success:^(AFHTTPRequestOperation *operation,id responseObject){
+        NSLog(@"%@",responseObject);
+    }failure:^(AFHTTPRequestOperation *operation, NSError *error){
+        NSLog(@"%@",error);
+    }];
+}
 /*
 #pragma mark - Navigation
 
