@@ -73,7 +73,7 @@
 
 + (UINib *)nib
 {
-    return [UINib nibWithNibName:NSStringFromClass([self class]) bundle:[NSBundle mainBundle]];
+    return [UINib nibWithNibName:NSStringFromClass([self class]) bundle:[NSBundle bundleForClass:[self class]]];
 }
 
 + (NSString *)cellReuseIdentifier
@@ -336,14 +336,6 @@
     }
     
     return YES;
-}
-
-- (BOOL)canPerformAction:(SEL)action withSender:(id)sender {
-    return (action == @selector(delete:) || action == @selector(copy:));
-}
-
-- (void)delete:(id)sender {
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"DeleteMessageNotification" object:self];
 }
 
 @end

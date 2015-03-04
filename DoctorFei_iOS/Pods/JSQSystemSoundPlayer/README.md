@@ -27,7 +27,7 @@ See [AVAudioPlayer](https://developer.apple.com/library/ios/DOCUMENTATION/AVFoun
 * Block-based completion handlers
 * Integration with `NSUserDefaults` to globally toggle sound effects in your app
 * Sweet and efficient memory management
-* Caches sounds (`SystemSoundID` objects) and purges on memory warning
+* Caches sounds (`SystemSoundID` instances) and purges on memory warning
 * Works with Swift! (v2.0.0 and above)
 
 ## Requirements
@@ -43,6 +43,8 @@ pod 'JSQSystemSoundPlayer'
 Otherwise, drag the `JSQSystemSoundPlayer/` folder to your project, and add `AudioToolbox.framework`.
 
 ## Getting Started
+
+#### Playing sounds
 
 ````objective-c
 [[JSQSystemSoundPlayer sharedPlayer] playSoundWithFilename:@"mySoundFile"
@@ -60,15 +62,30 @@ String constants for file extensions provided for you:
 * `kJSQSystemSoundTypeAIFF`
 * `kJSQSystemSoundTypeWAV`
 
+#### Toggle sounds effects settings on/off
+
 Need a setting in your app's preferences to toggle sound effects on/off? `JSQSystemSoundPlayer` can do that, too! There's no need to ever check the saved settings (`[JSQSystemSoundPlayer sharedPlayer].on`) before you play a sound effect. Just play a sound like in the example above. `JSQSystemSoundPlayer` respects whatever setting has been previously saved.
 
 ````objective-c
 [[JSQSystemSoundPlayer sharedPlayer] toggleSoundPlayerOn:YES];
 ````
 
+#### Specifying a bundle
+
+Need to load your audio resources from a specific bundle? `JSQSystemSoundPlayer` uses the main bundle by default, but you can specify another. 
+
+**NOTE:** for each sound that is played `JSQSystemSoundPlayer` will **always** search the **last specified bundle**. If you are playing sound effects from multiple bundles, you will need to specify the bundle before playing each sound.
+
+````objective-c
+[JSQSystemSoundPlayer sharedPlayer].bundle = [NSBundle mainBundle];
+````
+
+#### Demo
+
 Also see the included demo project: `SoundPlayerDemo.xcodeproj`
 
-_**For a good time:**_
+#### For a good time
+
 ````objective-c
 while (1) {
     [[JSQSystemSoundPlayer sharedPlayer] playVibrateSound];
@@ -83,6 +100,13 @@ Read the fucking docs, [available here][docsLink] via [@CocoaDocs](https://twitt
 
 Please follow these sweet [contribution guidelines](https://github.com/jessesquires/HowToContribute).
 
+## Design
+
+Why is this a [Singleton](http://en.wikipedia.org/wiki/Singleton_pattern)? Singletons are [garbage](https://twitter.com/jesse_squires/status/532800746656239616). I agree! But here's why this is a valid use case:
+
+1. This library manages the use of audio resources. Semantically, you only have 1 sound asset per sound effect. This is akin to `[NSFileManager defaultManager]`. You only have file system from which to read data. 
+2. The singleton allows the caching of `SystemSoundID` instances.
+
 ## Donate
 
 Support the development of this **free**, open-source library! 
@@ -95,8 +119,6 @@ Support the development of this **free**, open-source library!
 ## Credits
 
 Created by [**@jesse_squires**](https://twitter.com/jesse_squires), a [programming-motherfucker](http://programming-motherfucker.com).
-
-Many thanks to [**the contributors**](https://github.com/jessesquires/JSQSystemSoundPlayer/graphs/contributors) of this project.
 
 ## Apps using this library
 

@@ -19,6 +19,7 @@
 @property (nonatomic, readonly) UIImageView *imageView;
 @property (nonatomic, readonly) UIButton *button;
 @property (nonatomic, strong) UIView *customView;
+@property (nonatomic, strong) UITapGestureRecognizer *tapGesture;
 
 @property (nonatomic, assign) CGPoint offset;
 @property (nonatomic, assign) CGFloat verticalSpace;
@@ -71,10 +72,10 @@ static char const * const kEmptyDataSetView =       "emptyDataSetView";
         view.userInteractionEnabled = YES;
         view.hidden = YES;
         
-        UITapGestureRecognizer *gesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dzn_didTapContentView:)];
-        gesture.delegate = self;
-        [view addGestureRecognizer:gesture];
-        
+        view.tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dzn_didTapContentView:)];
+        view.tapGesture.delegate = self;
+        [view addGestureRecognizer:view.tapGesture];
+
         [self setEmptyDataSetView:view];
     }
     return view;
@@ -547,8 +548,27 @@ NSString *dzn_implementationKey(id target, SEL selector)
     return [super gestureRecognizerShouldBegin:gestureRecognizer];
 }
 
-- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
-    return YES;
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
+{
+    UIGestureRecognizer *tapGesture = self.emptyDataSetView.tapGesture;
+
+    if ([gestureRecognizer isEqual:tapGesture] || [otherGestureRecognizer isEqual:tapGesture]) {
+        return YES;
+    }
+
+    // check if the delegate is implemented
+    if (self.emptyDataSetDelegate == nil) {
+        return NO;
+    }
+    else{
+        // if it is then check if user has his own implementation of silmutaneous gestures
+        if ([self.emptyDataSetDelegate respondsToSelector:@selector(gestureRecognizer:shouldRecognizeSimultaneouslyWithGestureRecognizer:)]) {
+            return [[self.emptyDataSetDelegate performSelector:@selector(gestureRecognizer:shouldRecognizeSimultaneouslyWithGestureRecognizer:) withObject:gestureRecognizer withObject:otherGestureRecognizer] boolValue];
+        }
+        else {
+            return NO;
+        }
+    }
 }
 
 
@@ -704,9 +724,17 @@ NSString *dzn_implementationKey(id target, SEL selector)
     }
     
     _customView = view;
-    _customView.translatesAutoresizingMaskIntoConstraints = !CGRectIsEmpty(view.frame);
     
-    [_contentView addSubview:_customView];
+    BOOL autoresizes = !CGRectIsEmpty(view.frame);
+    _customView.translatesAutoresizingMaskIntoConstraints = autoresizes;
+    
+    if (autoresizes) {
+        [self addSubview:_customView];
+        [_contentView removeFromSuperview];
+    }
+    else {
+        [_contentView addSubview:_customView];
+    }
 }
 
 
@@ -735,7 +763,7 @@ NSString *dzn_implementationKey(id target, SEL selector)
 - (void)removeAllConstraints
 {
     [self removeConstraints:self.constraints];
-    [self.contentView removeConstraints:self.contentView.constraints];
+    [_contentView removeConstraints:_contentView.constraints];
 }
 
 
@@ -752,6 +780,22 @@ NSString *dzn_implementationKey(id target, SEL selector)
     [self removeAllConstraints];
     
     NSMutableDictionary *views = [NSMutableDictionary dictionary];
+    
+    if (_customView) {
+        
+        if (_customView.translatesAutoresizingMaskIntoConstraints == YES) {
+            // Skips since no need to update any custom constraints
+            return [super updateConstraints];
+        }
+        
+        [views setObject:_customView forKey:@"customView"];
+        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[customView]|" options:0 metrics:nil views:views]];
+        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[customView]|" options:0 metrics:nil views:views]];
+        
+        // Skips from any further configuration
+        return [super updateConstraints];;
+    }
+    
     [views setObject:self forKey:@"self"];
     [views setObject:self.contentView forKey:@"contentView"];
     
@@ -769,15 +813,6 @@ NSString *dzn_implementationKey(id target, SEL selector)
         // the values must be inverted to follow the up-bottom and left-right directions
         vConstraint.constant = self.offset.y*-1;
         hConstraint.constant = self.offset.x*-1;
-    }
-    
-    if (_customView) {
-        [views setObject:_customView forKey:@"customView"];
-        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[customView]|" options:0 metrics:nil views:views]];
-        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[customView]|" options:0 metrics:nil views:views]];
-        
-        // Skips from any further configuration
-        return [super updateConstraints];;
     }
     
     CGFloat width = CGRectGetWidth(self.frame) ? : CGRectGetWidth([UIScreen mainScreen].bounds);
@@ -829,7 +864,7 @@ NSString *dzn_implementationKey(id target, SEL selector)
     }
     
     // Assign the button's horizontal constraints
-    if (_button.superview) {
+    if ([self canShowButton]) {
         [views setObject:_button forKey:@"button"];
         [verticalSubviews addObject:@"[button]"];
         
