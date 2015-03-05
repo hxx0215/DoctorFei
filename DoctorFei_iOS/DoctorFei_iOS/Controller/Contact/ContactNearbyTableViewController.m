@@ -11,10 +11,11 @@
 #import "DoctorAPI.h"
 #import <MBProgressHUD.h>
 #import <MJRefresh.h>
-
+#import <CoreLocation/CoreLocation.h>
+#import <UIScrollView+EmptyDataSet.h>
 #define Contact_PageSize 10
 @interface ContactNearbyTableViewController ()
-
+    <CLLocationManagerDelegate, DZNEmptyDataSetSource>
 @end
 
 @implementation ContactNearbyTableViewController
@@ -23,6 +24,8 @@
     NSMutableArray *tableViewDicArray;
     NSInteger pageIndex;
     NSInteger lastSize;
+    CLLocationManager *locationManager;
+    CLLocation *currentLocation;
 }
 
 - (void)viewDidLoad {
@@ -39,17 +42,23 @@
     pageIndex = 1;
     lastSize = Contact_PageSize;
     
-    __weak typeof(self) wself = self;
-    [self.tableView addFooterWithCallback:^{
-        typeof(self) sself = wself;
-        [sself loadMore];
-    }];
+    
+    locationManager = [[CLLocationManager alloc]init];
+    locationManager.delegate = self;
+    if ([CLLocationManager locationServicesEnabled]) {
+        if ([locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
+            [locationManager requestWhenInUseAuthorization];
+        } else {
+            [locationManager startUpdatingLocation];
+        }
+    }
+
 }
 
 -(void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    [self searchFrind];
+//    [self searchFrind];
 }
 
 -(void)loadMore
@@ -72,11 +81,12 @@
                              @"type": @0,
                              @"userid": [userId stringValue],
                              //@"usertype": @1,
-                             @"lng": @0,
-                             @"lat": @0,
+                             @"lng": @(currentLocation.coordinate.longitude),
+                             @"lat": @(currentLocation.coordinate.latitude),
                              @"pageSize": @Contact_PageSize,
                              @"pageIndex": [NSNumber numberWithInteger:pageIndex]
                              };
+    NSLog(@"%@",params);
     [DoctorAPI searchFriendWithParameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"%@",responseObject);
         NSArray *dataArray = (NSArray *)responseObject;
@@ -134,39 +144,33 @@
 }
 
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
+#pragma mark - CLLocation Delegate
+- (void)locationManager:(CLLocationManager *)manager
+     didUpdateLocations:(NSArray *)locations {
+    currentLocation = locations.lastObject;
+    __weak typeof(self) wself = self;
+    [self.tableView addFooterWithCallback:^{
+        typeof(self) sself = wself;
+        [sself loadMore];
+    }];
+    [self searchFrind];
+    [manager stopUpdatingLocation];
 }
-*/
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
+- (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
+    if (status == kCLAuthorizationStatusAuthorizedWhenInUse || status == kCLAuthorizationStatusAuthorized) {
+        [manager startUpdatingLocation];
+        
+    }else{
+        UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"提示" message:@"您没有授权费医生使用您的位置" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [alertView show];
+    }
 }
-*/
 
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
+#pragma mark - DZNEmptyDatasource
+- (NSAttributedString *)titleForEmptyDataSet:(UIScrollView *)scrollView {
+    return [[NSAttributedString alloc]initWithString:@"暂无数据"];
 }
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
 
 /*
 #pragma mark - Navigation

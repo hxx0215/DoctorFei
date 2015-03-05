@@ -442,6 +442,7 @@
 		6AD6A28C1A713A4A00CE9888 /* talk_box_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AD6A2801A713A4900CE9888 /* talk_box_btn.png */; };
 		6AD6A28D1A713A4A00CE9888 /* talk_box_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AD6A2811A713A4900CE9888 /* talk_box_btn@2x.png */; };
 		6AD6A28E1A713A4A00CE9888 /* talk_box_btn@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AD6A2821A713A4900CE9888 /* talk_box_btn@3x.png */; };
+		6AF48F161AA8A32A00735C81 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AF48F151AA8A32A00735C81 /* CoreLocation.framework */; };
 		B90320BA1A5AC57E001FA485 /* MySelfRootTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B90320B91A5AC57E001FA485 /* MySelfRootTableViewController.m */; };
 		B90320BF1A5ADAA3001FA485 /* DoctorApproveViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B90320BE1A5ADAA3001FA485 /* DoctorApproveViewController.m */; };
 		B927B23F1A7F9E0600BC2C1C /* ContactFriendDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B927B23E1A7F9E0600BC2C1C /* ContactFriendDetailTableViewCell.m */; };
@@ -1058,6 +1059,7 @@
 		6AD6A2811A713A4900CE9888 /* talk_box_btn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "talk_box_btn@2x.png"; sourceTree = "<group>"; };
 		6AD6A2821A713A4900CE9888 /* talk_box_btn@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "talk_box_btn@3x.png"; sourceTree = "<group>"; };
 		6AEA74501A260DD900EEF37C /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		6AF48F151AA8A32A00735C81 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		B90320B81A5AC57E001FA485 /* MySelfRootTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MySelfRootTableViewController.h; sourceTree = "<group>"; };
 		B90320B91A5AC57E001FA485 /* MySelfRootTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MySelfRootTableViewController.m; sourceTree = "<group>"; };
 		B90320BD1A5ADAA3001FA485 /* DoctorApproveViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoctorApproveViewController.h; sourceTree = "<group>"; };
@@ -1189,6 +1191,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6AF48F161AA8A32A00735C81 /* CoreLocation.framework in Frameworks */,
 				B94F6C701A5D752F004E1B93 /* AVFoundation.framework in Frameworks */,
 				6A69A0281A2CC94C00D85777 /* libz.dylib in Frameworks */,
 				6A69A0261A2CC94500D85777 /* Security.framework in Frameworks */,
@@ -1210,6 +1213,7 @@
 		137C0372ACB57CB9BA345D67 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6AF48F151AA8A32A00735C81 /* CoreLocation.framework */,
 				B94F6C6F1A5D752F004E1B93 /* AVFoundation.framework */,
 				6A69A0271A2CC94C00D85777 /* libz.dylib */,
 				6A69A0251A2CC94500D85777 /* Security.framework */,
