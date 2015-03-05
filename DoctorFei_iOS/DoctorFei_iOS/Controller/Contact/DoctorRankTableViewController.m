@@ -10,6 +10,7 @@
 #import "DoctorRankTableViewCell.h"
 #import "DoctorAPI.h"
 #import <MBProgressHUD.h>
+#import <MJRefresh.h>
 
 #define Contact_PageSize 10
 @interface DoctorRankTableViewController ()
@@ -21,6 +22,7 @@
     MBProgressHUD *hud;
     NSMutableArray *tableViewDicArray;
     NSInteger pageIndex;
+    NSInteger lastSize;
 }
 
 - (void)viewDidLoad {
@@ -35,11 +37,30 @@
     
     tableViewDicArray = [[NSMutableArray alloc]init];
     pageIndex = 1;
+    lastSize = Contact_PageSize;
+    
+    __weak typeof(self) wself = self;
+    [self.tableView addFooterWithCallback:^{
+        typeof(self) sself = wself;
+        [sself loadMore];
+    }];
 }
 
 -(void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    [self searchFrind];
+}
+
+-(void)loadMore
+{
+    if (lastSize!=Contact_PageSize) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.tableView footerEndRefreshing];
+        });
+        return ;//已到最后。返回
+    }
+    pageIndex++;
     [self searchFrind];
 }
 
@@ -61,6 +82,10 @@
             NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:dict];
             [tableViewDicArray addObject:dic];
         }
+        lastSize = [dataArray count];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.tableView footerEndRefreshing];
+        });
         [self.tableView reloadData];
         [hud hide:YES];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -68,6 +93,10 @@
         hud.labelText = @"错误";
         hud.detailsLabelText = error.localizedDescription;
         [hud hide:YES afterDelay:1.5f];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.tableView footerEndRefreshing];
+        });
+
     }];
 }
 
