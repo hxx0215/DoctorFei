@@ -5173,7 +5173,7 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
-                                        <state key="highlighted" backgroundImage="button_login_after.png"/>
+                                        <state key="highlighted" image="GO_login_btn_after.png"/>
                                         <variation key="default">
                                             <mask key="constraints">
                                                 <exclude reference="UkG-W9-aRj"/>
@@ -6742,7 +6742,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="Ovn-qs-TTV" kind="relationship" relationship="rootViewController" id="WSF-Fs-8Sv"/>
+                        <segue destination="R8O-EF-oLU" kind="relationship" relationship="rootViewController" id="opd-jB-2qd"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Evx-hl-aSB" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -6778,9 +6778,6 @@
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <state key="highlighted" backgroundImage="button_narrow-02_btn_after.png"/>
-                                        <connections>
-                                            <segue destination="R8O-EF-oLU" kind="show" id="4kR-jW-GGw"/>
-                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cL0-mW-nxt">
                                         <rect key="frame" x="-23" y="-15" width="46" height="30"/>
@@ -8285,7 +8282,7 @@
         <!--性别-->
         <scene sceneID="W7q-6R-ude">
             <objects>
-                <tableViewController id="klo-wG-07C" customClass="MySelfGenderSelectTableViewController" sceneMemberID="viewController">
+                <tableViewController hidesBottomBarWhenPushed="YES" id="klo-wG-07C" customClass="MySelfGenderSelectTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="eVJ-P0-NdA">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="487"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -9000,12 +8997,12 @@
     <resources>
         <image name="Add-as-a-friend_btn.png" width="60" height="20"/>
         <image name="GO_login_btn.png" width="36" height="36"/>
+        <image name="GO_login_btn_after.png" width="36" height="36"/>
         <image name="V_pic.png" width="15" height="16"/>
         <image name="add-doctor_btn.png" width="40" height="20"/>
         <image name="add-doctor_btn_after.png" width="40" height="20"/>
         <image name="add-picture_btn.png" width="60" height="60"/>
         <image name="agree_btn.png" width="40" height="20"/>
-        <image name="button_login_after.png" width="36" height="36"/>
         <image name="button_narrow-01_btn.png" width="180" height="38"/>
         <image name="button_narrow-01_btn_after.png" width="180" height="38"/>
         <image name="button_narrow-02_btn.png" width="164" height="44"/>
