@@ -10,6 +10,8 @@
 #import "DoctorRankTableViewCell.h"
 #import "DoctorAPI.h"
 #import <MBProgressHUD.h>
+
+#define Contact_PageSize 10
 @interface DoctorRankTableViewController ()
 
 @end
@@ -17,7 +19,8 @@
 @implementation DoctorRankTableViewController
 {
     MBProgressHUD *hud;
-    NSArray *tableViewDicArray;
+    NSMutableArray *tableViewDicArray;
+    NSInteger pageIndex;
 }
 
 - (void)viewDidLoad {
@@ -29,6 +32,9 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     self.tableView.tableFooterView = [UIView new];
+    
+    tableViewDicArray = [[NSMutableArray alloc]init];
+    pageIndex = 1;
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -45,16 +51,16 @@
                              //@"type": @2,
                              @"userid": [userId stringValue],
                              @"usertype": @2,
-                             //@"pageSize": @1,
-                             //@"pageIndex": @8,
+                             @"pageSize": @Contact_PageSize,
+                             @"pageIndex": [NSNumber numberWithInteger:pageIndex]
                              };
     [DoctorAPI searchFriendWithParameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"%@",responseObject);
         NSArray *dataArray = (NSArray *)responseObject;
         for (NSDictionary *dict in dataArray) {
-            NSLog(@"%@",dict[@"realname"]);
+            NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:dict];
+            [tableViewDicArray addObject:dic];
         }
-        tableViewDicArray = [dataArray copy];
         [self.tableView reloadData];
         [hud hide:YES];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {

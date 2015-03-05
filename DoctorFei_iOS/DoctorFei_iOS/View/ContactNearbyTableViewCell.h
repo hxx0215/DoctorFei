@@ -14,5 +14,5 @@
 @property (nonatomic,weak) IBOutlet UIButton *addButton;
 @property (nonatomic,weak) IBOutlet UILabel *distanceLabel;
 @property (nonatomic,weak) IBOutlet UIImageView *typeImage;
--(void)setDataDic:(NSDictionary *)dic;
+-(void)setDataDic:(NSMutableDictionary *)dic;
 @end

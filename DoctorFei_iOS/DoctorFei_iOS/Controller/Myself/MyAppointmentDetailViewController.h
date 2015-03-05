@@ -18,4 +18,5 @@ typedef enum AppointDetailType{
 @property (nonatomic, copy)NSString *date;
 @property (nonatomic, copy)NSString *content;
 @property (nonatomic, assign)AppointDetailType flag;
+@property (nonatomic, assign)NSNumber *ID;//转诊或预约编号
 @end

@@ -167,6 +167,7 @@ static NSString * const kMyAppointmentIdenty = @"MyAppointmentIdenty";
             default:
                 break;
         }
+        vc.ID = [self.tableData[segmentIndex][indexPath.row] objectForKey:@"id"];
     }
     else{
         NSTimeInterval timestamp = [[self.tableData[segmentIndex][indexPath.row] objectForKey:@"createtime"] doubleValue];
@@ -192,6 +193,7 @@ static NSString * const kMyAppointmentIdenty = @"MyAppointmentIdenty";
         else{
             vc.flag = AppointDetailTypeNoButton;
         }
+        vc.ID = [self.tableData[segmentIndex][indexPath.row] objectForKey:@"id"];
     }
 }
 

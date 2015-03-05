@@ -19,7 +19,7 @@ If you want to learn more, we recommend these resources, roughly in order:
  1. [When to use ReactiveCocoa](#when-to-use-reactivecocoa)
  1. [Framework Overview][]
  1. [Basic Operators][]
- 1. [Header documentation](ReactiveCocoaFramework/ReactiveCocoa)
+ 1. [Header documentation](ReactiveCocoa)
  1. Previously answered [Stack Overflow](https://github.com/ReactiveCocoa/ReactiveCocoa/wiki)
     questions and [GitHub issues](https://github.com/ReactiveCocoa/ReactiveCocoa/issues?labels=question&state=closed)
  1. The rest of the [Documentation][] folder
@@ -482,7 +482,7 @@ RACSequence *results = [[strings.rac_sequence
 
 ## System Requirements
 
-ReactiveCocoa supports OS X 10.7+ and iOS 5.0+.
+ReactiveCocoa supports OS X 10.8+ and iOS 8.0+.
 
 ## Importing ReactiveCocoa
 
@@ -491,7 +491,7 @@ To add RAC to your application:
  1. Add the ReactiveCocoa repository as a submodule of your application's
     repository.
  1. Run `script/bootstrap` from within the ReactiveCocoa folder.
- 1. Drag and drop `ReactiveCocoaFramework/ReactiveCocoa.xcodeproj` into your
+ 1. Drag and drop `ReactiveCocoa.xcodeproj` into your
     application's Xcode project or workspace.
  1. On the "Build Phases" tab of your application target, add RAC to the "Link
     Binary With Libraries" phase.
@@ -517,7 +517,7 @@ which are real iOS apps written using ReactiveCocoa.
 
 ## Standalone Development
 
-If you’re working on RAC in isolation instead of integrating it into another project, you’ll want to open `ReactiveCocoaFramework/ReactiveCocoa.xcworkspace` and not the `.xcodeproj`.
+If you’re working on RAC in isolation instead of integrating it into another project, you’ll want to open `ReactiveCocoa.xcworkspace` and not the `.xcodeproj`.
 
 ## More Info
 
@@ -542,27 +542,12 @@ are some resources related to FRP:
 * [Escape from Callback Hell](http://elm-lang.org/learn/Escape-from-Callback-Hell.elm)
 * [Principles of Reactive Programming on Coursera](https://www.coursera.org/course/reactive)
 
-ReactiveCocoa also has a chat room on [Slack](https://slack.com/). If you'd like
-to join, just [provide your email
-address](https://github.com/ReactiveCocoa/ReactiveCocoa/issues/871#issuecomment-44237545) and we'll
-happily send you an invite!
-
 [Basic Operators]: Documentation/BasicOperators.md
 [Documentation]: Documentation
 [Framework Overview]: Documentation/FrameworkOverview.md
 [Functional Reactive Programming]: http://en.wikipedia.org/wiki/Functional_reactive_programming
 [GroceryList]:  https://github.com/jspahrsummers/GroceryList
-[Memory Management]: Documentation/MemoryManagement.md
-[NSObject+RACLifting]: ReactiveCocoaFramework/ReactiveCocoa/NSObject+RACLifting.h
-[RACDisposable]: ReactiveCocoaFramework/ReactiveCocoa/RACDisposable.h
-[RACEvent]: ReactiveCocoaFramework/ReactiveCocoa/RACEvent.h
-[RACMulticastConnection]: ReactiveCocoaFramework/ReactiveCocoa/RACMulticastConnection.h
-[RACScheduler]: ReactiveCocoaFramework/ReactiveCocoa/RACScheduler.h
-[RACSequence]: ReactiveCocoaFramework/ReactiveCocoa/RACSequence.h
-[RACSignal+Operations]: ReactiveCocoaFramework/ReactiveCocoa/RACSignal+Operations.h
-[RACSignal]: ReactiveCocoaFramework/ReactiveCocoa/RACSignal.h
-[RACStream]: ReactiveCocoaFramework/ReactiveCocoa/RACStream.h
-[RACSubscriber]: ReactiveCocoaFramework/ReactiveCocoa/RACSubscriber.h
-[RAC]: ReactiveCocoaFramework/ReactiveCocoa/RACSubscriptingAssignmentTrampoline.h
+[RACSequence]: ReactiveCocoa/RACSequence.h
+[RACSignal]: ReactiveCocoa/RACSignal.h
 [futures and promises]: http://en.wikipedia.org/wiki/Futures_and_promises
 [C-41]: https://github.com/AshFurrow/C-41

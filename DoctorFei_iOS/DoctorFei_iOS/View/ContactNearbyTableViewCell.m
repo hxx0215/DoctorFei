@@ -13,7 +13,7 @@
 
 @implementation ContactNearbyTableViewCell
 {
-    NSDictionary *dict;
+    NSMutableDictionary *dict;
 }
 
 - (void)awakeFromNib {
@@ -46,6 +46,7 @@
         hud.labelText = dic[@"msg"];//NSLocalizedString(@"好友添加成功", nil);
         [hud hide:YES afterDelay:2.0];
         sender.enabled = NO;
+        [dict setValue:@1 forKey:@"myfirend"];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         hud.mode = MBProgressHUDModeText;
         hud.labelText = @"错误";
@@ -56,12 +57,12 @@
     
 }
 
--(void)setDataDic:(NSDictionary *)dic
+-(void)setDataDic:(NSMutableDictionary *)dic
 {
     NSArray *tagImageArray = [NSArray arrayWithObjects:@"patient_tag.png",
                               @"family-member_tag.png",
                               @"dector_tag.png",nil];
-    dict = [dic copy];
+    dict = dic;
     self.nameLabel.text = dict[@"realname"];
     [self.iconImage sd_setImageWithURL:dict[@"icon"] placeholderImage:[UIImage imageNamed:@"doctor-ranking_preinstall_pic.png"]];
     self.addButton.enabled = ![dic[@"myfirend"] integerValue];

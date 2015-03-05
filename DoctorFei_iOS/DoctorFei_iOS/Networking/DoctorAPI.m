@@ -43,10 +43,13 @@
 #define kMethodGetMemberHistory @"get.member.history"
 
 #define kMethodGetMemberAppointment @"get.member.appointment"
+#define kMethodSetMemberAppointmentAudit @"set.member.appointmentaudit"
 
 #define kMethodSetDoctorReferral @"set.doctor.referral"
 #define kMethodUpdateDoctorReferral @"update.doctor.referral"//终止转诊
 #define kMethodGetDoctorReferral @"get.doctor.referral"
+#define kMethodSetDoctorReferralAudit @"set.doctor.referralaudit"
+
 @implementation DoctorAPI
 + (void)updateInfomationWithParameters: (id)parameters success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
 {
@@ -222,6 +225,11 @@
     [[self sharedManager] defaultGetWithMethod:kMethodGetMemberAppointment WithParameters:parameters success:success failure:failure];
 }
 
+//处理预约信息
++ (void)setAppointmentWithParameters: (id)parameters success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure{
+    [[self sharedManager] defaultGetWithMethod:kMethodSetMemberAppointmentAudit WithParameters:parameters success:success failure:failure];
+}
+
 //发起转诊
 + (void)initiateReferralWithParameters:(id)parameters success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure{
     [[self sharedManager] defaultGetWithMethod:kMethodSetDoctorReferral WithParameters:parameters success:success failure:failure];
@@ -235,5 +243,10 @@
 //获取转诊信息
 + (void)getReferralInfoWithParameters: (id)parameters success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure{
     [[self sharedManager] defaultGetWithMethod:kMethodGetDoctorReferral WithParameters:parameters success:success failure:failure];
+}
+
+//处理转诊信息
++ (void)AuditReferralWithParameters: (id)parameters success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure{
+    [[self sharedManager] defaultGetWithMethod:kMethodSetDoctorReferralAudit WithParameters:parameters success:success failure:failure];
 }
 @end

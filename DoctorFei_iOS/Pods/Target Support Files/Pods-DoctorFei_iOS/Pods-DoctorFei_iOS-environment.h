@@ -10,67 +10,67 @@
 #define COCOAPODS_POD_AVAILABLE_AFNetworking
 #define COCOAPODS_VERSION_MAJOR_AFNetworking 2
 #define COCOAPODS_VERSION_MINOR_AFNetworking 5
-#define COCOAPODS_VERSION_PATCH_AFNetworking 0
+#define COCOAPODS_VERSION_PATCH_AFNetworking 1
 
 // AFNetworking/NSURLConnection
 #define COCOAPODS_POD_AVAILABLE_AFNetworking_NSURLConnection
 #define COCOAPODS_VERSION_MAJOR_AFNetworking_NSURLConnection 2
 #define COCOAPODS_VERSION_MINOR_AFNetworking_NSURLConnection 5
-#define COCOAPODS_VERSION_PATCH_AFNetworking_NSURLConnection 0
+#define COCOAPODS_VERSION_PATCH_AFNetworking_NSURLConnection 1
 
 // AFNetworking/NSURLSession
 #define COCOAPODS_POD_AVAILABLE_AFNetworking_NSURLSession
 #define COCOAPODS_VERSION_MAJOR_AFNetworking_NSURLSession 2
 #define COCOAPODS_VERSION_MINOR_AFNetworking_NSURLSession 5
-#define COCOAPODS_VERSION_PATCH_AFNetworking_NSURLSession 0
+#define COCOAPODS_VERSION_PATCH_AFNetworking_NSURLSession 1
 
 // AFNetworking/Reachability
 #define COCOAPODS_POD_AVAILABLE_AFNetworking_Reachability
 #define COCOAPODS_VERSION_MAJOR_AFNetworking_Reachability 2
 #define COCOAPODS_VERSION_MINOR_AFNetworking_Reachability 5
-#define COCOAPODS_VERSION_PATCH_AFNetworking_Reachability 0
+#define COCOAPODS_VERSION_PATCH_AFNetworking_Reachability 1
 
 // AFNetworking/Security
 #define COCOAPODS_POD_AVAILABLE_AFNetworking_Security
 #define COCOAPODS_VERSION_MAJOR_AFNetworking_Security 2
 #define COCOAPODS_VERSION_MINOR_AFNetworking_Security 5
-#define COCOAPODS_VERSION_PATCH_AFNetworking_Security 0
+#define COCOAPODS_VERSION_PATCH_AFNetworking_Security 1
 
 // AFNetworking/Serialization
 #define COCOAPODS_POD_AVAILABLE_AFNetworking_Serialization
 #define COCOAPODS_VERSION_MAJOR_AFNetworking_Serialization 2
 #define COCOAPODS_VERSION_MINOR_AFNetworking_Serialization 5
-#define COCOAPODS_VERSION_PATCH_AFNetworking_Serialization 0
+#define COCOAPODS_VERSION_PATCH_AFNetworking_Serialization 1
 
 // AFNetworking/UIKit
 #define COCOAPODS_POD_AVAILABLE_AFNetworking_UIKit
 #define COCOAPODS_VERSION_MAJOR_AFNetworking_UIKit 2
 #define COCOAPODS_VERSION_MINOR_AFNetworking_UIKit 5
-#define COCOAPODS_VERSION_PATCH_AFNetworking_UIKit 0
+#define COCOAPODS_VERSION_PATCH_AFNetworking_UIKit 1
 
 // ActionSheetPicker-3.0
 #define COCOAPODS_POD_AVAILABLE_ActionSheetPicker_3_0
 #define COCOAPODS_VERSION_MAJOR_ActionSheetPicker_3_0 1
 #define COCOAPODS_VERSION_MINOR_ActionSheetPicker_3_0 3
-#define COCOAPODS_VERSION_PATCH_ActionSheetPicker_3_0 10
+#define COCOAPODS_VERSION_PATCH_ActionSheetPicker_3_0 12
 
 // CocoaAsyncSocket
 #define COCOAPODS_POD_AVAILABLE_CocoaAsyncSocket
 #define COCOAPODS_VERSION_MAJOR_CocoaAsyncSocket 7
-#define COCOAPODS_VERSION_MINOR_CocoaAsyncSocket 3
-#define COCOAPODS_VERSION_PATCH_CocoaAsyncSocket 5
+#define COCOAPODS_VERSION_MINOR_CocoaAsyncSocket 4
+#define COCOAPODS_VERSION_PATCH_CocoaAsyncSocket 1
 
 // DZNEmptyDataSet
 #define COCOAPODS_POD_AVAILABLE_DZNEmptyDataSet
 #define COCOAPODS_VERSION_MAJOR_DZNEmptyDataSet 1
 #define COCOAPODS_VERSION_MINOR_DZNEmptyDataSet 5
-#define COCOAPODS_VERSION_PATCH_DZNEmptyDataSet 0
+#define COCOAPODS_VERSION_PATCH_DZNEmptyDataSet 1
 
 // DateTools
 #define COCOAPODS_POD_AVAILABLE_DateTools
 #define COCOAPODS_VERSION_MAJOR_DateTools 1
-#define COCOAPODS_VERSION_MINOR_DateTools 4
-#define COCOAPODS_VERSION_PATCH_DateTools 3
+#define COCOAPODS_VERSION_MINOR_DateTools 5
+#define COCOAPODS_VERSION_PATCH_DateTools 0
 
 // IHKeyboardAvoiding
 #define COCOAPODS_POD_AVAILABLE_IHKeyboardAvoiding
@@ -94,19 +94,25 @@
 #define COCOAPODS_POD_AVAILABLE_JSQMessagesViewController
 #define COCOAPODS_VERSION_MAJOR_JSQMessagesViewController 6
 #define COCOAPODS_VERSION_MINOR_JSQMessagesViewController 1
-#define COCOAPODS_VERSION_PATCH_JSQMessagesViewController 0
+#define COCOAPODS_VERSION_PATCH_JSQMessagesViewController 3
 
 // JSQSystemSoundPlayer
 #define COCOAPODS_POD_AVAILABLE_JSQSystemSoundPlayer
 #define COCOAPODS_VERSION_MAJOR_JSQSystemSoundPlayer 2
 #define COCOAPODS_VERSION_MINOR_JSQSystemSoundPlayer 0
-#define COCOAPODS_VERSION_PATCH_JSQSystemSoundPlayer 0
+#define COCOAPODS_VERSION_PATCH_JSQSystemSoundPlayer 1
 
 // MBProgressHUD
 #define COCOAPODS_POD_AVAILABLE_MBProgressHUD
 #define COCOAPODS_VERSION_MAJOR_MBProgressHUD 0
 #define COCOAPODS_VERSION_MINOR_MBProgressHUD 9
 #define COCOAPODS_VERSION_PATCH_MBProgressHUD 0
+
+// MJRefresh
+#define COCOAPODS_POD_AVAILABLE_MJRefresh
+#define COCOAPODS_VERSION_MAJOR_MJRefresh 0
+#define COCOAPODS_VERSION_MINOR_MJRefresh 0
+#define COCOAPODS_VERSION_PATCH_MJRefresh 1
 
 // MagicalRecord
 #define COCOAPODS_POD_AVAILABLE_MagicalRecord
@@ -124,7 +130,7 @@
 #define COCOAPODS_POD_AVAILABLE_Masonry
 #define COCOAPODS_VERSION_MAJOR_Masonry 0
 #define COCOAPODS_VERSION_MINOR_Masonry 6
-#define COCOAPODS_VERSION_PATCH_Masonry 0
+#define COCOAPODS_VERSION_PATCH_Masonry 1
 
 // RHAddressBook
 #define COCOAPODS_POD_AVAILABLE_RHAddressBook
@@ -142,25 +148,25 @@
 #define COCOAPODS_POD_AVAILABLE_ReactiveCocoa
 #define COCOAPODS_VERSION_MAJOR_ReactiveCocoa 2
 #define COCOAPODS_VERSION_MINOR_ReactiveCocoa 4
-#define COCOAPODS_VERSION_PATCH_ReactiveCocoa 2
+#define COCOAPODS_VERSION_PATCH_ReactiveCocoa 7
 
 // ReactiveCocoa/Core
 #define COCOAPODS_POD_AVAILABLE_ReactiveCocoa_Core
 #define COCOAPODS_VERSION_MAJOR_ReactiveCocoa_Core 2
 #define COCOAPODS_VERSION_MINOR_ReactiveCocoa_Core 4
-#define COCOAPODS_VERSION_PATCH_ReactiveCocoa_Core 2
+#define COCOAPODS_VERSION_PATCH_ReactiveCocoa_Core 7
 
 // ReactiveCocoa/UI
 #define COCOAPODS_POD_AVAILABLE_ReactiveCocoa_UI
 #define COCOAPODS_VERSION_MAJOR_ReactiveCocoa_UI 2
 #define COCOAPODS_VERSION_MINOR_ReactiveCocoa_UI 4
-#define COCOAPODS_VERSION_PATCH_ReactiveCocoa_UI 2
+#define COCOAPODS_VERSION_PATCH_ReactiveCocoa_UI 7
 
 // ReactiveCocoa/no-arc
 #define COCOAPODS_POD_AVAILABLE_ReactiveCocoa_no_arc
 #define COCOAPODS_VERSION_MAJOR_ReactiveCocoa_no_arc 2
 #define COCOAPODS_VERSION_MINOR_ReactiveCocoa_no_arc 4
-#define COCOAPODS_VERSION_PATCH_ReactiveCocoa_no_arc 2
+#define COCOAPODS_VERSION_PATCH_ReactiveCocoa_no_arc 7
 
 // SDWebImage
 #define COCOAPODS_POD_AVAILABLE_SDWebImage
@@ -183,12 +189,12 @@
 // UMengAnalytics-NO-IDFA
 #define COCOAPODS_POD_AVAILABLE_UMengAnalytics_NO_IDFA
 #define COCOAPODS_VERSION_MAJOR_UMengAnalytics_NO_IDFA 3
-#define COCOAPODS_VERSION_MINOR_UMengAnalytics_NO_IDFA 1
-#define COCOAPODS_VERSION_PATCH_UMengAnalytics_NO_IDFA 11
+#define COCOAPODS_VERSION_MINOR_UMengAnalytics_NO_IDFA 4
+#define COCOAPODS_VERSION_PATCH_UMengAnalytics_NO_IDFA 5
 
 // WYPopoverController
 #define COCOAPODS_POD_AVAILABLE_WYPopoverController
 #define COCOAPODS_VERSION_MAJOR_WYPopoverController 0
 #define COCOAPODS_VERSION_MINOR_WYPopoverController 3
-#define COCOAPODS_VERSION_PATCH_WYPopoverController 5
+#define COCOAPODS_VERSION_PATCH_WYPopoverController 7
 

@@ -70,7 +70,7 @@ static RACDisposable *subscribeForever (RACSignal *signal, void (^next)(id), voi
 
 		[selfDisposable addDisposable:subscriptionDisposable];
 	};
-	
+
 	// Subscribe once immediately, and then use recursive scheduling for any
 	// further resubscriptions.
 	recursiveBlock(^{
@@ -102,7 +102,7 @@ static RACDisposable *subscribeForever (RACSignal *signal, void (^next)(id), voi
 
 - (RACSignal *)doError:(void (^)(NSError *error))block {
 	NSCParameterAssert(block != NULL);
-	
+
 	return [[RACSignal createSignal:^(id<RACSubscriber> subscriber) {
 		return [self subscribeNext:^(id x) {
 			[subscriber sendNext:x];
@@ -117,7 +117,7 @@ static RACDisposable *subscribeForever (RACSignal *signal, void (^next)(id), voi
 
 - (RACSignal *)doCompleted:(void (^)(void))block {
 	NSCParameterAssert(block != NULL);
-	
+
 	return [[RACSignal createSignal:^(id<RACSubscriber> subscriber) {
 		return [self subscribeNext:^(id x) {
 			[subscriber sendNext:x];
@@ -272,7 +272,7 @@ static RACDisposable *subscribeForever (RACSignal *signal, void (^next)(id), voi
 
 - (RACSignal *)try:(BOOL (^)(id value, NSError **errorPtr))tryBlock {
 	NSCParameterAssert(tryBlock != NULL);
-	
+
 	return [[self flattenMap:^(id value) {
 		NSError *error = nil;
 		BOOL passed = tryBlock(value, &error);
@@ -282,7 +282,7 @@ static RACDisposable *subscribeForever (RACSignal *signal, void (^next)(id), voi
 
 - (RACSignal *)tryMap:(id (^)(id value, NSError **errorPtr))mapBlock {
 	NSCParameterAssert(mapBlock != NULL);
-	
+
 	return [[self flattenMap:^(id value) {
 		NSError *error = nil;
 		id mappedValue = mapBlock(value, &error);
@@ -301,7 +301,7 @@ static RACDisposable *subscribeForever (RACSignal *signal, void (^next)(id), voi
 
 - (RACSignal *)finally:(void (^)(void))block {
 	NSCParameterAssert(block != NULL);
-	
+
 	return [[[self
 		doError:^(NSError *error) {
 			block();
@@ -326,7 +326,7 @@ static RACDisposable *subscribeForever (RACSignal *signal, void (^next)(id), voi
 
 				if (values.count == 0) return;
 
-				RACTuple *tuple = [RACTuple tupleWithObjectsFromArray:values convertNullsToNils:NO];
+				RACTuple *tuple = [RACTuple tupleWithObjectsFromArray:values];
 				[values removeAllObjects];
 				[subscriber sendNext:tuple];
 			}
@@ -351,7 +351,7 @@ static RACDisposable *subscribeForever (RACSignal *signal, void (^next)(id), voi
 			[selfDisposable dispose];
 			[timerDisposable dispose];
 		}];
-	}] setNameWithFormat:@"[%@] -bufferWithTime: %f", self.name, (double)interval];
+	}] setNameWithFormat:@"[%@] -bufferWithTime: %f onScheduler: %@", self.name, (double)interval, scheduler];
 }
 
 - (RACSignal *)collect {
@@ -364,11 +364,11 @@ static RACDisposable *subscribeForever (RACSignal *signal, void (^next)(id), voi
 }
 
 - (RACSignal *)takeLast:(NSUInteger)count {
-	return [[RACSignal createSignal:^(id<RACSubscriber> subscriber) {		
+	return [[RACSignal createSignal:^(id<RACSubscriber> subscriber) {
 		NSMutableArray *valuesTaken = [NSMutableArray arrayWithCapacity:count];
 		return [self subscribeNext:^(id x) {
 			[valuesTaken addObject:x ? : RACTupleNil.tupleNil];
-			
+
 			while (valuesTaken.count > count) {
 				[valuesTaken removeObjectAtIndex:0];
 			}
@@ -376,9 +376,9 @@ static RACDisposable *subscribeForever (RACSignal *signal, void (^next)(id), voi
 			[subscriber sendError:error];
 		} completed:^{
 			for (id value in valuesTaken) {
-				[subscriber sendNext:[value isKindOfClass:RACTupleNil.class] ? nil : value];
+				[subscriber sendNext:value == RACTupleNil.tupleNil ? nil : value];
 			}
-			
+
 			[subscriber sendCompleted];
 		}];
 	}] setNameWithFormat:@"[%@] -takeLast: %lu", self.name, (unsigned long)count];
@@ -399,7 +399,7 @@ static RACDisposable *subscribeForever (RACSignal *signal, void (^next)(id), voi
 		void (^sendNext)(void) = ^{
 			@synchronized (disposable) {
 				if (lastSelfValue == nil || lastOtherValue == nil) return;
-				[subscriber sendNext:[RACTuple tupleWithObjects:lastSelfValue, lastOtherValue, nil]];
+				[subscriber sendNext:RACTuplePack(lastSelfValue, lastOtherValue)];
 			}
 		};
 
@@ -502,7 +502,7 @@ static RACDisposable *subscribeForever (RACSignal *signal, void (^next)(id), voi
 
 		// Weak reference to the above, to avoid a leak.
 		__weak __block void (^recur)(RACSignal *);
-		
+
 		// Sends completed to the subscriber if all signals are finished.
 		//
 		// This should only be used while synchronized on `subscriber`.
@@ -520,7 +520,7 @@ static RACDisposable *subscribeForever (RACSignal *signal, void (^next)(id), voi
 		//
 		// This array should only be used while synchronized on `subscriber`.
 		NSMutableArray *queuedSignals = [NSMutableArray array];
-		
+
 		recur = subscribeToSignal = ^(RACSignal *signal) {
 			RACSerialDisposable *serialDisposable = [[RACSerialDisposable alloc] init];
 
@@ -697,7 +697,7 @@ static RACDisposable *subscribeForever (RACSignal *signal, void (^next)(id), voi
 	[disposable addDisposable:clearPointerDisposable];
 
 	[object.rac_deallocDisposable addDisposable:disposable];
-	
+
 	RACCompoundDisposable *objectDisposable = object.rac_deallocDisposable;
 	return [RACDisposable disposableWithBlock:^{
 		[objectDisposable removeDisposable:disposable];
@@ -838,7 +838,7 @@ static RACDisposable *subscribeForever (RACSignal *signal, void (^next)(id), voi
 	return [[[boolSignal
 		map:^(NSNumber *value) {
 			NSCAssert([value isKindOfClass:NSNumber.class], @"Expected %@ to send BOOLs, not %@", boolSignal, value);
-			
+
 			return (value.boolValue ? trueSignal : falseSignal);
 		}]
 		switchToLatest]
@@ -869,7 +869,7 @@ static RACDisposable *subscribeForever (RACSignal *signal, void (^next)(id), voi
 
 		value = x;
 		localSuccess = YES;
-		
+
 		done = YES;
 		[condition broadcast];
 		[condition unlock];
@@ -914,13 +914,13 @@ static RACDisposable *subscribeForever (RACSignal *signal, void (^next)(id), voi
 		ignoreValues]
 		setNameWithFormat:@"[%@] -waitUntilCompleted:", self.name]
 		firstOrDefault:nil success:&success error:error];
-	
+
 	return success;
 }
 
 + (RACSignal *)defer:(RACSignal * (^)(void))block {
 	NSCParameterAssert(block != NULL);
-	
+
 	return [[RACSignal createSignal:^(id<RACSubscriber> subscriber) {
 		return [block() subscribe:subscriber];
 	}] setNameWithFormat:@"+defer:"];
@@ -1000,7 +1000,7 @@ static RACDisposable *subscribeForever (RACSignal *signal, void (^next)(id), voi
 
 		[disposable addDisposable:subscriptionDisposable];
 		return disposable;
-	}] setNameWithFormat:@"[%@] -timeout: %f", self.name, (double)interval];
+	}] setNameWithFormat:@"[%@] -timeout: %f onScheduler: %@", self.name, (double)interval, scheduler];
 }
 
 - (RACSignal *)deliverOn:(RACScheduler *)scheduler {
@@ -1030,10 +1030,43 @@ static RACDisposable *subscribeForever (RACSignal *signal, void (^next)(id), voi
 
 			[disposable addDisposable:subscriptionDisposable];
 		}];
-		
+
 		[disposable addDisposable:schedulingDisposable];
 		return disposable;
 	}] setNameWithFormat:@"[%@] -subscribeOn: %@", self.name, scheduler];
+}
+
+- (RACSignal *)deliverOnMainThread {
+	return [[RACSignal createSignal:^(id<RACSubscriber> subscriber) {
+		__block volatile int32_t queueLength = 0;
+		
+		void (^performOnMainThread)(dispatch_block_t) = ^(dispatch_block_t block) {
+			int32_t queued = OSAtomicIncrement32(&queueLength);
+			if (NSThread.isMainThread && queued == 1) {
+				block();
+				OSAtomicDecrement32(&queueLength);
+			} else {
+				dispatch_async(dispatch_get_main_queue(), ^{
+					block();
+					OSAtomicDecrement32(&queueLength);
+				});
+			}
+		};
+
+		return [self subscribeNext:^(id x) {
+			performOnMainThread(^{
+				[subscriber sendNext:x];
+			});
+		} error:^(NSError *error) {
+			performOnMainThread(^{
+				[subscriber sendError:error];
+			});
+		} completed:^{
+			performOnMainThread(^{
+				[subscriber sendCompleted];
+			});
+		}];
+	}] setNameWithFormat:@"[%@] -deliverOnMainThread", self.name];
 }
 
 - (RACSignal *)groupBy:(id<NSCopying> (^)(id object))keyBlock transform:(id (^)(id object))transformBlock {
@@ -1041,6 +1074,7 @@ static RACDisposable *subscribeForever (RACSignal *signal, void (^next)(id), voi
 
 	return [[RACSignal createSignal:^(id<RACSubscriber> subscriber) {
 		NSMutableDictionary *groups = [NSMutableDictionary dictionary];
+		NSMutableArray *orderedGroups = [NSMutableArray array];
 
 		return [self subscribeNext:^(id x) {
 			id<NSCopying> key = keyBlock(x);
@@ -1050,6 +1084,7 @@ static RACDisposable *subscribeForever (RACSignal *signal, void (^next)(id), voi
 				if (groupSubject == nil) {
 					groupSubject = [RACGroupedSignal signalWithKey:key];
 					groups[key] = groupSubject;
+					[orderedGroups addObject:groupSubject];
 					[subscriber sendNext:groupSubject];
 				}
 			}
@@ -1058,11 +1093,11 @@ static RACDisposable *subscribeForever (RACSignal *signal, void (^next)(id), voi
 		} error:^(NSError *error) {
 			[subscriber sendError:error];
 
-			[groups.allValues makeObjectsPerformSelector:@selector(sendError:) withObject:error];
+			[orderedGroups makeObjectsPerformSelector:@selector(sendError:) withObject:error];
 		} completed:^{
 			[subscriber sendCompleted];
 
-			[groups.allValues makeObjectsPerformSelector:@selector(sendCompleted)];
+			[orderedGroups makeObjectsPerformSelector:@selector(sendCompleted)];
 		}];
 	}] setNameWithFormat:@"[%@] -groupBy:transform:", self.name];
 }
@@ -1071,7 +1106,7 @@ static RACDisposable *subscribeForever (RACSignal *signal, void (^next)(id), voi
 	return [[self groupBy:keyBlock transform:nil] setNameWithFormat:@"[%@] -groupBy:", self.name];
 }
 
-- (RACSignal *)any {	
+- (RACSignal *)any {
 	return [[self any:^(id x) {
 		return YES;
 	}] setNameWithFormat:@"[%@] -any", self.name];
@@ -1079,14 +1114,14 @@ static RACDisposable *subscribeForever (RACSignal *signal, void (^next)(id), voi
 
 - (RACSignal *)any:(BOOL (^)(id object))predicateBlock {
 	NSCParameterAssert(predicateBlock != NULL);
-	
+
 	return [[[self materialize] bind:^{
 		return ^(RACEvent *event, BOOL *stop) {
 			if (event.finished) {
 				*stop = YES;
 				return [RACSignal return:@NO];
 			}
-			
+
 			if (predicateBlock(event.value)) {
 				*stop = YES;
 				return [RACSignal return:@YES];
@@ -1099,14 +1134,14 @@ static RACDisposable *subscribeForever (RACSignal *signal, void (^next)(id), voi
 
 - (RACSignal *)all:(BOOL (^)(id object))predicateBlock {
 	NSCParameterAssert(predicateBlock != NULL);
-	
+
 	return [[[self materialize] bind:^{
 		return ^(RACEvent *event, BOOL *stop) {
 			if (event.eventType == RACEventTypeCompleted) {
 				*stop = YES;
 				return [RACSignal return:@YES];
 			}
-			
+
 			if (event.eventType == RACEventTypeError || !predicateBlock(event.value)) {
 				*stop = YES;
 				return [RACSignal return:@NO];
@@ -1244,10 +1279,10 @@ static RACDisposable *subscribeForever (RACSignal *signal, void (^next)(id), voi
 	return [[self map:^(RACTuple *tuple) {
 		NSCAssert([tuple isKindOfClass:RACTuple.class], @"-and must only be used on a signal of RACTuples of NSNumbers. Instead, received: %@", tuple);
 		NSCAssert(tuple.count > 0, @"-and must only be used on a signal of RACTuples of NSNumbers, with at least 1 value in the tuple");
-		
+
 		return @([tuple.rac_sequence all:^(NSNumber *number) {
 			NSCAssert([number isKindOfClass:NSNumber.class], @"-and must only be used on a signal of RACTuples of NSNumbers. Instead, tuple contains a non-NSNumber value: %@", tuple);
-			
+
 			return number.boolValue;
 		}]);
 	}] setNameWithFormat:@"[%@] -and", self.name];
@@ -1257,10 +1292,10 @@ static RACDisposable *subscribeForever (RACSignal *signal, void (^next)(id), voi
 	return [[self map:^(RACTuple *tuple) {
 		NSCAssert([tuple isKindOfClass:RACTuple.class], @"-or must only be used on a signal of RACTuples of NSNumbers. Instead, received: %@", tuple);
 		NSCAssert(tuple.count > 0, @"-or must only be used on a signal of RACTuples of NSNumbers, with at least 1 value in the tuple");
-		
+
 		return @([tuple.rac_sequence any:^(NSNumber *number) {
 			NSCAssert([number isKindOfClass:NSNumber.class], @"-or must only be used on a signal of RACTuples of NSNumbers. Instead, tuple contains a non-NSNumber value: %@", tuple);
-			
+
 			return number.boolValue;
 		}]);
 	}] setNameWithFormat:@"[%@] -or", self.name];
@@ -1270,14 +1305,14 @@ static RACDisposable *subscribeForever (RACSignal *signal, void (^next)(id), voi
 	return [[self map:^(RACTuple *tuple) {
 		NSCAssert([tuple isKindOfClass:RACTuple.class], @"-reduceApply must only be used on a signal of RACTuples. Instead, received: %@", tuple);
 		NSCAssert(tuple.count > 1, @"-reduceApply must only be used on a signal of RACTuples, with at least a block in tuple[0] and its first argument in tuple[1]");
-		
+
 		// We can't use -array, because we need to preserve RACTupleNil
 		NSMutableArray *tupleArray = [NSMutableArray arrayWithCapacity:tuple.count];
 		for (id val in tuple) {
 			[tupleArray addObject:val];
 		}
 		RACTuple *arguments = [RACTuple tupleWithObjectsFromArray:[tupleArray subarrayWithRange:NSMakeRange(1, tupleArray.count - 1)]];
-		
+
 		return [RACBlockTrampoline invokeBlock:tuple[0] withArguments:arguments];
 	}] setNameWithFormat:@"[%@] -reduceApply", self.name];
 }
@@ -1292,24 +1327,24 @@ static RACDisposable *subscribeForever (RACSignal *signal, void (^next)(id), voi
 - (RACSignal *)windowWithStart:(RACSignal *)openSignal close:(RACSignal * (^)(RACSignal *start))closeBlock {
 	NSCParameterAssert(openSignal != nil);
 	NSCParameterAssert(closeBlock != NULL);
-	
+
 	return [[RACSignal createSignal:^(id<RACSubscriber> subscriber) {
 		__block RACSubject *currentWindow = nil;
 		__block RACSignal *currentCloseWindow = nil;
 		__block RACDisposable *closeObserverDisposable = NULL;
-		
+
 		void (^closeCurrentWindow)(void) = ^{
 			[currentWindow sendCompleted];
 			currentWindow = nil;
 			currentCloseWindow = nil;
 			[closeObserverDisposable dispose], closeObserverDisposable = nil;
 		};
-		
+
 		RACDisposable *openObserverDisposable = [openSignal subscribe:[RACSubscriber subscriberWithNext:^(id x) {
 			if(currentWindow == nil) {
 				currentWindow = [RACSubject subject];
 				[subscriber sendNext:currentWindow];
-				
+
 				currentCloseWindow = closeBlock(currentWindow);
 				closeObserverDisposable = [currentCloseWindow subscribe:[RACSubscriber subscriberWithNext:^(id x) {
 					closeCurrentWindow();
@@ -1320,11 +1355,11 @@ static RACDisposable *subscribeForever (RACSignal *signal, void (^next)(id), voi
 				}]];
 			}
 		} error:^(NSError *error) {
-			
+
 		} completed:^{
-			
+
 		}]];
-				
+
 		RACDisposable *selfObserverDisposable = [self subscribeNext:^(id x) {
 			[currentWindow sendNext:x];
 		} error:^(NSError *error) {
@@ -1332,7 +1367,7 @@ static RACDisposable *subscribeForever (RACSignal *signal, void (^next)(id), voi
 		} completed:^{
 			[subscriber sendCompleted];
 		}];
-				
+
 		return [RACDisposable disposableWithBlock:^{
 			[closeObserverDisposable dispose];
 			[openObserverDisposable dispose];
@@ -1346,16 +1381,16 @@ static RACDisposable *subscribeForever (RACSignal *signal, void (^next)(id), voi
 	return [[RACSignal createSignal:^(id<RACSubscriber> subscriber) {
 		NSMutableArray *values = [NSMutableArray arrayWithCapacity:bufferCount];
 		RACSubject *windowCloseSubject = [RACSubject subject];
-		
+
 		RACDisposable *closeDisposable = [windowCloseSubject subscribeNext:^(id x) {
-			[subscriber sendNext:[RACTuple tupleWithObjectsFromArray:values convertNullsToNils:NO]];
+			[subscriber sendNext:[RACTuple tupleWithObjectsFromArray:values]];
 			[values removeAllObjects];
 		}];
 
 		__block RACDisposable *innerDisposable = nil;
 		RACDisposable *outerDisposable = [[self windowWithStart:self close:^(RACSignal *start) {
 			return windowCloseSubject;
-		}] subscribeNext:^(id x) {		
+		}] subscribeNext:^(id x) {
 			innerDisposable = [x subscribeNext:^(id x) {
 				[values addObject:x ? : [RACTupleNil tupleNil]];
 				if(values.count % bufferCount == 0) {
@@ -1378,7 +1413,7 @@ static RACDisposable *subscribeForever (RACSignal *signal, void (^next)(id), voi
 
 - (RACSignal *)let:(RACSignal * (^)(RACSignal *sharedSignal))letBlock {
 	NSCParameterAssert(letBlock != NULL);
-	
+
 	return [[RACSignal createSignal:^(id<RACSubscriber> subscriber) {
 		RACMulticastConnection *connection = [self publish];
 		RACDisposable *finalDisposable = [letBlock(connection.signal) subscribeNext:^(id x) {
@@ -1388,9 +1423,9 @@ static RACDisposable *subscribeForever (RACSignal *signal, void (^next)(id), voi
 		} completed:^{
 			[subscriber sendCompleted];
 		}];
-		
+
 		RACDisposable *connectionDisposable = [connection connect];
-		
+
 		return [RACDisposable disposableWithBlock:^{
 			[connectionDisposable dispose];
 			[finalDisposable dispose];

@@ -102,6 +102,10 @@ static NSCalendar *implicitCalendar = nil;
 }
 
 - (NSString *)timeAgoSinceDate:(NSDate *)date numericDates:(BOOL)useNumericDates{
+    return [self timeAgoSinceDate:date numericDates:useNumericDates numericTimes:NO];
+}
+
+- (NSString *)timeAgoSinceDate:(NSDate *)date numericDates:(BOOL)useNumericDates numericTimes:(BOOL)useNumericTimes{
 
     NSCalendar *calendar = [NSCalendar currentCalendar];
     NSUInteger unitFlags = NSCalendarUnitMinute | NSCalendarUnitHour | NSCalendarUnitDay | NSCalendarUnitWeekOfYear | NSCalendarUnitMonth | NSCalendarUnitYear | NSCalendarUnitSecond;
@@ -162,18 +166,33 @@ static NSCalendar *implicitCalendar = nil;
         return [self logicLocalizedStringFromFormat:@"%%d %@hours ago" withValue:components.hour];
     }
     else if (components.hour >= 1) {
+        
+        if (useNumericTimes) {
+            return DateToolsLocalizedStrings(@"1 hour ago");
+        }
+        
         return DateToolsLocalizedStrings(@"An hour ago");
     }
     else if (components.minute >= 2) {
         return [self logicLocalizedStringFromFormat:@"%%d %@minutes ago" withValue:components.minute];
     }
     else if (components.minute >= 1) {
+        
+        if (useNumericTimes) {
+            return DateToolsLocalizedStrings(@"1 minute ago");
+        }
+        
         return DateToolsLocalizedStrings(@"A minute ago");
     }
     else if (components.second >= 3) {
         return [self logicLocalizedStringFromFormat:@"%%d %@seconds ago" withValue:components.second];
     }
     else {
+        
+        if (useNumericTimes) {
+            return DateToolsLocalizedStrings(@"1 second ago");
+        }
+        
         return DateToolsLocalizedStrings(@"Just now");
     }
     
@@ -228,7 +247,7 @@ static NSCalendar *implicitCalendar = nil;
     NSString *localeCode = [[[NSBundle mainBundle] preferredLocalizations] objectAtIndex:0];
     
     // Russian (ru) and Ukrainian (uk)
-    if([localeCode isEqual:@"ru"] || [localeCode isEqual:@"uk"]) {
+    if([localeCode isEqualToString:@"ru"] || [localeCode isEqualToString:@"uk"]) {
         int XY = (int)floor(value) % 100;
         int Y = (int)floor(value) % 10;
         
@@ -455,6 +474,21 @@ static NSCalendar *implicitCalendar = nil;
 	return [tomorrow isEqualToDate:otherDate];
 }
 
+- (BOOL)isWeekend {
+    NSCalendar *calendar            = [NSCalendar currentCalendar];
+    NSRange weekdayRange            = [calendar maximumRangeOfUnit:NSCalendarUnitWeekday];
+    NSDateComponents *components    = [calendar components:NSCalendarUnitWeekday
+                                                  fromDate:self];
+    NSUInteger weekdayOfSomeDate    = [components weekday];
+    
+    BOOL result = NO;
+    
+    if (weekdayOfSomeDate == weekdayRange.location || weekdayOfSomeDate == weekdayRange.length)
+        result = YES;
+    
+    return result;
+}
+
 #pragma mark - Date Components With Calendar
 /**
  *  Returns the era of the receiver from a given calendar
@@ -599,6 +633,7 @@ static NSCalendar *implicitCalendar = nil;
     return [self componentForDate:self type:DTDateComponentYearForWeekOfYear calendar:calendar];
 }
 
+
 /**
  *  Returns the day of the year of the receiver from a given calendar
  *
@@ -670,6 +705,29 @@ static NSCalendar *implicitCalendar = nil;
     }
     
     return 0;
+}
+
+#pragma mark - Date Creating
++ (NSDate *)dateWithYear:(NSInteger)year month:(NSInteger)month day:(NSInteger)day {
+	
+	return [self dateWithYear:year month:month day:day hour:0 minute:0 second:0];
+}
+
++ (NSDate *)dateWithYear:(NSInteger)year month:(NSInteger)month day:(NSInteger)day hour:(NSInteger)hour minute:(NSInteger)minute second:(NSInteger)second {
+	
+	NSDate *nsDate = nil;
+	NSDateComponents *components = [[NSDateComponents alloc] init];
+	
+	components.year   = year;
+	components.month  = month;
+	components.day    = day;
+	components.hour   = hour;
+	components.minute = minute;
+	components.second = second;
+	
+	nsDate = [[[self class] implicitCalendar] dateFromComponents:components];
+	
+	return nsDate;
 }
 
 #pragma mark - Date Editing

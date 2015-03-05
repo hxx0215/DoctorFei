@@ -12,5 +12,5 @@
 @property (nonatomic,weak) IBOutlet UILabel *nameLabel;
 @property (nonatomic,weak) IBOutlet UIImageView *iconImage;
 @property (nonatomic,weak) IBOutlet UIButton *addButton;
--(void)setDataDic:(NSDictionary *)dic;
+-(void)setDataDic:(NSMutableDictionary *)dic;
 @end
