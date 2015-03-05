@@ -5,7 +5,8 @@
 //  Created by GuJunjia on 14/12/4.
 //
 //
-#define kSocketAddress @"115.159.0.61"
+//#define kSocketAddress @"115.159.0.61"
+#define kSocketAddress @"113.105.159.115"
 #define kSocketPort 20013
 #define kSendKeepAliveDuration 30
 #import "SocketConnection.h"
@@ -59,7 +60,7 @@
 - (void)sendKeepAlive {
     NSDictionary *dict = @{
                            @"sn": [DeviceUtil getUUID],
-                           @"type": @(0)
+                           @"type": @(10)
                            };
     NSData *data = [dict JSONData];
     if ([self.socket isDisconnected] || !isAlive) {
@@ -81,7 +82,7 @@
 - (void)sendCheckMessages {
     NSDictionary *dict = @{
                            @"sn": [DeviceUtil getUUID],
-                           @"type": @(1)
+                           @"type": @(11)
                            };
     NSData *data = [dict JSONData];
     if ([self.socket isDisconnected] || !isAlive) {
