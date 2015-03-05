@@ -8,7 +8,7 @@
 
 #import "MyAppointmentDetailViewController.h"
 #import "DoctorAPI.h"
-
+#import "MBProgressHUD.h"
 @interface MyAppointmentDetailViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 @property (weak, nonatomic) IBOutlet UITextView *contentText;
@@ -79,6 +79,15 @@
                              @"type" : flag ? @(1):@(2)};
     [DoctorAPI AuditReferralWithParameters:params success:^(AFHTTPRequestOperation *operation, id responseObject){
         NSLog(@"%@",responseObject);
+        NSString *msg = [[responseObject firstObject] objectForKey:@"msg"];
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view.window animated:YES];
+        hud.mode = MBProgressHUDModeText;
+        hud.labelText =msg;
+        hud.dimBackground = YES;
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 3 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+            [hud hide:YES];
+            [self.navigationController popViewControllerAnimated:YES];
+        });
     }failure:^(AFHTTPRequestOperation *operation,NSError *error){
         NSLog(@"%@",error);
     }];
