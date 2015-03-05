@@ -23,6 +23,7 @@
 #import "ContactDetailPopoverViewController.h"
 #import "ContactViewController.h"
 #import "ContactRecordTableViewController.h"
+#import "DoctorAPI.h"
 
 typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
     SMSToolbarSendMethodVoice,
@@ -399,7 +400,53 @@ typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
     }];
 }
 
-
+- (void)sendSchedule{
+    NSDictionary *params = @{@"doctorid": [[NSUserDefaults standardUserDefaults] objectForKey:@"UserId"]};
+    [DoctorAPI getDoctorScheduleWithParameters:params success:^(AFHTTPRequestOperation *operation, id responseObject){
+        NSLog(@"%@",responseObject);
+        NSArray *weekDay = @[@"Monday",@"Tuesday",@"Wednesday",@"Thursday",@"Friday",@"Saturday",@"Sunday"];
+        NSArray *chinaDay = @[@"星期一,",@"星期二,",@"星期三,",@"星期四,",@"星期五,",@"星期六,",@"星期日,"];
+        NSArray *time = @[@"_AM",@"_PM"];
+        NSDictionary *schedule = [responseObject firstObject];
+        NSMutableString *scheduleStr = [@"您好!我的门诊时间为:\n" mutableCopy];
+        NSInteger index = 0;
+        for (NSString *day in weekDay){
+            NSInteger ans = 0;
+            for (NSString *t in time){
+                NSString *key = [NSString stringWithFormat:@"%@%@",day,t];
+                ans = ans * 10 + [[schedule objectForKey:key] integerValue];
+            }
+            [scheduleStr appendString:chinaDay[index]];
+            switch (ans) {
+                case 0:
+                    [scheduleStr appendString:@"休息"];
+                    break;
+                case 1:
+                    [scheduleStr appendString:@"下午"];
+                    break;
+                case 10:
+                    [scheduleStr appendString:@"上午"];
+                    break;
+                case 11:
+                    [scheduleStr appendString:@"全天"];
+                    break;
+                default:
+                    break;
+            }
+            if (index < weekDay.count - 1)
+                [scheduleStr appendString:@";"];
+            else
+                [scheduleStr appendString:@"。"];
+            if (index % 2 != 0){
+                [scheduleStr appendString:@"\n"];
+            }
+            index++;
+        }
+        [self didPressSendButton:nil withMessageText:scheduleStr senderId:self.senderId senderDisplayName:self.senderDisplayName date:[NSDate date]];
+    }failure:^(AFHTTPRequestOperation *operation, NSError *error){
+        NSLog(@"%@",error);
+    }];
+}
 
 #pragma mark - Navigation
 
@@ -426,7 +473,8 @@ typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
         };
         vc.sendOutpatientTime = ^{
 //            NSLog(@"send");
-            [self didPressSendButton:nil withMessageText:@"星期一休息星期二休息星期三休息星期四休息星期五休息" senderId:self.senderId senderDisplayName:self.senderDisplayName date:[NSDate date]];
+//            [self didPressSendButton:nil withMessageText:@"星期一休息星期二休息星期三休息星期四休息星期五休息" senderId:self.senderId senderDisplayName:self.senderDisplayName date:[NSDate date]];
+            [self sendSchedule];
         };
         vc.preferredContentSize = CGSizeMake(120, 163);
         WYStoryboardPopoverSegue *popoverSegue = (WYStoryboardPopoverSegue *)segue;
