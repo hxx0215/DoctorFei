@@ -13,7 +13,7 @@
 #import "DeviceUtil.h"
 #import "SetOnlineStateUtil.h"
 #import "MobileAPI.h"
-//#import "SocketConnection.h"
+#import "SocketConnection.h"
 #import "DataUtil.h"
 #import <MobClick.h>
 @interface AppDelegate ()
@@ -63,38 +63,38 @@
     
      */
      
-//    [SetOnlineStateUtil online];
-//    [self setPushUser];
-//    [[SocketConnection sharedConnection]beginListen];
-//    [[SocketConnection sharedConnection]sendKeepAlive];
+    [SetOnlineStateUtil online];
+    [self setPushUser];
+    [[SocketConnection sharedConnection]beginListen];
+    [[SocketConnection sharedConnection]sendKeepAlive];
     return YES;
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
-    //    [SetOnlineStateUtil offline];
+    [SetOnlineStateUtil offline];
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-//    [SetOnlineStateUtil offline];
-//    [[SocketConnection sharedConnection]stopListen];
+    [SetOnlineStateUtil offline];
+    [[SocketConnection sharedConnection]stopListen];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
     [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
     
-//    [SetOnlineStateUtil online];
-//    [self setPushUser];
-//    NSNumber *userId = [[NSUserDefaults standardUserDefaults] objectForKey:@"UserId"];
-//    if (userId) {
-//        [[SocketConnection sharedConnection]beginListen];
-//        [[SocketConnection sharedConnection]sendKeepAlive];
-//        [[SocketConnection sharedConnection]sendCheckMessages];
-//    }
+    [SetOnlineStateUtil online];
+    [self setPushUser];
+    NSNumber *userId = [[NSUserDefaults standardUserDefaults] objectForKey:@"UserId"];
+    if (userId) {
+        [[SocketConnection sharedConnection]beginListen];
+        [[SocketConnection sharedConnection]sendKeepAlive];
+        [[SocketConnection sharedConnection]sendCheckMessages];
+    }
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
@@ -130,24 +130,24 @@
 //    }
 //}
 //
-//- (void)setPushUser {
-//    NSDictionary *params = @{
-//                             @"sn": [DeviceUtil getUUID],
-//                             @"cityid": @(0),
-//                             @"model": [DeviceUtil getDeviceModalDescription],
-//                             @"type": @(2)
-//                             };
-//    [MobileAPI setPushUserWithParameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-//        NSDictionary *dataDict = [responseObject firstObject];
-//        if ([dataDict[@"state"]intValue] == 1) {
-//            NSLog(@"SetPushUserSuccess");
-//        }
-//        else{
-//            NSLog(@"SetPushUserFailedMessage:%@", dataDict[@"msg"]);
-//        }
-//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-//        NSLog(@"%@",error.localizedDescription);
-//    }];
-//}
+- (void)setPushUser {
+    NSDictionary *params = @{
+                             @"sn": [DeviceUtil getUUID],
+                             @"cityid": @(0),
+                             @"model": [DeviceUtil getDeviceModalDescription],
+                             @"type": @(2)
+                             };
+    [MobileAPI setPushUserWithParameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSDictionary *dataDict = [responseObject firstObject];
+        if ([dataDict[@"state"]intValue] == 1) {
+            NSLog(@"SetPushUserSuccess");
+        }
+        else{
+            NSLog(@"SetPushUserFailedMessage:%@", dataDict[@"msg"]);
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"%@",error.localizedDescription);
+    }];
+}
 
 @end

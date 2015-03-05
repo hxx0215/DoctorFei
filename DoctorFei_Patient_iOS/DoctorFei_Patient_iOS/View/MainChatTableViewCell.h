@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+@class Chat;
+
 @interface MainChatTableViewCell : UITableViewCell
+
+@property (nonatomic, strong) Chat *currentChat;
 
 @end

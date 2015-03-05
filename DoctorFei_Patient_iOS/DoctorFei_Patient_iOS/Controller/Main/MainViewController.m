@@ -9,18 +9,70 @@
 #import "MainViewController.h"
 #import <UIScrollView+EmptyDataSet.h>
 #import "MainChatTableViewCell.h"
+#import <UIImageView+WebCache.h>
+#import "Chat.h"
+#import "SocketConnection.h"
 @interface MainViewController ()
-    <UITableViewDelegate, UITableViewDataSource, DZNEmptyDataSetDelegate, DZNEmptyDataSetSource>
+    <UITableViewDelegate, UITableViewDataSource, DZNEmptyDataSetDelegate, DZNEmptyDataSetSource, UIGestureRecognizerDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+
+@property (weak, nonatomic) IBOutlet UIImageView *avatarImageView;
+@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *genderLabel;
 
 @end
 
 @implementation MainViewController
+{
+    UIBarButtonItem *fetchButtonItem, *loadingButtonItem;
+    CABasicAnimation *rotation;
+    NSArray *chatArray;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.navigationController.interactivePopGestureRecognizer.delegate = self;
+    [self.navigationController.interactivePopGestureRecognizer setEnabled:YES];
+
     [self.tableView setTableFooterView:[UIView new]];
+    fetchButtonItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"refresh"] style:UIBarButtonItemStyleDone target:self action:@selector(refreshButtonClicked:)];
+    fetchButtonItem.tintColor = [UIColor whiteColor];
+    loadingButtonItem = [[UIBarButtonItem alloc]initWithCustomView:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"refresh_after"]]];
+    
+    
+    rotation = [CABasicAnimation animationWithKeyPath:@"transform.rotation"];
+    rotation.fromValue = [NSNumber numberWithFloat:0];
+    rotation.toValue = [NSNumber numberWithFloat:(2 * M_PI)];
+    rotation.duration = 0.7f; // Speed
+    rotation.repeatCount = HUGE_VALF; // Repeat forever. Can be a finite number.
+
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(reloadTableViewData) name:@"NewChatArrivedNotification" object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(fetchChatComplete) name:@"FetchChatCompleteNotification" object:nil];
+    [self.navigationItem setLeftBarButtonItem:fetchButtonItem animated:YES];
+    
+    NSString *icon = [[NSUserDefaults standardUserDefaults]objectForKey:@"UserIcon"];
+    if (icon && icon.length > 0) {
+        [_avatarImageView sd_setImageWithURL:[NSURL URLWithString:icon] placeholderImage:[UIImage imageNamed:@"home_user_example_pic"]];
+    }
+    else {
+        [_avatarImageView setImage:[UIImage imageNamed:@"home_user_example_pic"]];
+    }
+    [_nameLabel setText:[[NSUserDefaults standardUserDefaults]objectForKey:@"UserRealName"]];
+    [_genderLabel setText:[[[NSUserDefaults standardUserDefaults] objectForKey:@"UserGender"] intValue] ? @"女" : @"男"];
+
+    
+    [self reloadTableViewData];
+
+    
+}
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter]removeObserver:self];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -38,6 +90,27 @@
 }
 */
 
+#pragma mark - Actions
+- (void)reloadTableViewData {
+    chatArray = [Chat MR_findAll];
+    [self.tableView reloadData];
+}
+
+- (void)fetchChatComplete {
+    dispatch_sync(dispatch_get_main_queue(), ^{
+        [loadingButtonItem.customView.layer removeAllAnimations];
+        [self.navigationItem setLeftBarButtonItem:fetchButtonItem animated:YES];
+    });
+}
+
+- (IBAction)refreshButtonClicked:(id)sender {
+    [self.navigationItem setLeftBarButtonItem:loadingButtonItem animated:YES];
+    [loadingButtonItem.customView.layer removeAllAnimations];
+    [loadingButtonItem.customView.layer addAnimation:rotation forKey:@"Spin"];
+    [[SocketConnection sharedConnection]sendCheckMessages];
+}
+
+
 #pragma mark - UITableView Delegate
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 65.0f;
@@ -49,7 +122,7 @@
 #pragma mark - UITableView Datasource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 1;
+    return chatArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {

@@ -19,10 +19,10 @@
 }
 
 + (void)setOnlineStateWithStatue: (NSNumber *) statue {
-    NSString *doctorId = [[NSUserDefaults standardUserDefaults]objectForKey:@"UserId"];
-    if (doctorId) {
+    NSString *memberId = [[NSUserDefaults standardUserDefaults]objectForKey:@"UserId"];
+    if (memberId) {
         NSDictionary *params = @{
-                                 @"doctorid": [[NSUserDefaults standardUserDefaults]objectForKey:@"UserId"],
+                                 @"memberid": memberId,
                                  @"online": statue
                                  };
         [MemberAPI onlineWithParameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
@@ -38,7 +38,7 @@
         }];
     }
     else{
-        NSLog(@"DoctorId is nil");
+        NSLog(@"MemberId is nil");
     }
 }
 @end

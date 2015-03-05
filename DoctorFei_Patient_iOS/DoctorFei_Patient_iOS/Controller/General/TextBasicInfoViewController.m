@@ -67,5 +67,6 @@
     if (_delegate && [_delegate respondsToSelector:@selector(textBasicInfoVC:didClickedConfirmButtonWithText:)]) {
         [_delegate textBasicInfoVC:self didClickedConfirmButtonWithText:_infoTextField.text];
     }
+    [self.navigationController popViewControllerAnimated:YES];
 }
 @end

@@ -146,13 +146,18 @@
             }
             [[NSUserDefaults standardUserDefaults] setObject:dataDict[@"userId"] forKey:@"UserId"];
             [[NSUserDefaults standardUserDefaults] setObject:dataDict[@"userId"] forKey:@"LastLoginUserId"];
-            [[NSUserDefaults standardUserDefaults] setObject:dataDict[@"icon"] forKey:@"UserIcon"];
+            [[NSUserDefaults standardUserDefaults] setObject:dataDict[@"Mobile"] forKey:@"UserPhone"];
+            [[NSUserDefaults standardUserDefaults] setObject:dataDict[@"headimage"] forKey:@"UserIcon"];
             [[NSUserDefaults standardUserDefaults] setObject:dataDict[@"RealName"] forKey:@"UserRealName"];
+            [[NSUserDefaults standardUserDefaults] setObject:dataDict[@"Gender"] forKey:@"UserGender"];
             [[NSUserDefaults standardUserDefaults] setObject:dataDict[@"hospital"] forKey:@"UserHospital"];
             [[NSUserDefaults standardUserDefaults] setObject:dataDict[@"department"] forKey:@"UserDepartment"];
-            [[NSUserDefaults standardUserDefaults] setObject:dataDict[@"jobtitle"] forKey:@"UserJobTitle"];
+//            [[NSUserDefaults standardUserDefaults] setObject:dataDict[@"jobtitle"] forKey:@"UserJobTitle"];
             [[NSUserDefaults standardUserDefaults] setObject:dataDict[@"Email"] forKey:@"UserEmail"];
             [[NSUserDefaults standardUserDefaults] setObject:dataDict[@"OtherContact"] forKey:@"UserOtherContact"];
+            [[NSUserDefaults standardUserDefaults] setObject: dataDict[@"isopenmobile"] forKey:@"UserIsOpenMobile"];
+            [[NSUserDefaults standardUserDefaults] setObject:dataDict[@"visible"] forKey:@"UserVisible"];
+            
             [[NSUserDefaults standardUserDefaults] synchronize];
 //            [[SocketConnection sharedConnection]beginListen];
 //            [[SocketConnection sharedConnection]sendCheckMessages];

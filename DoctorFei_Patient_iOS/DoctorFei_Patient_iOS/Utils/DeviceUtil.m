@@ -77,7 +77,8 @@
 
 + (NSString *)getUUID
 {
-    return [[[[[UIDevice currentDevice]identifierForVendor] UUIDString]stringByReplacingOccurrencesOfString:@"-" withString:@""]uppercaseString];
+    return @"";
+//    return [[[[[UIDevice currentDevice]identifierForVendor] UUIDString]stringByReplacingOccurrencesOfString:@"-" withString:@""]uppercaseString];
 }
 
 @end

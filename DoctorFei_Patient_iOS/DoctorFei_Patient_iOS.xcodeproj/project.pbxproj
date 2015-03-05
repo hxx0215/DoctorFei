@@ -71,6 +71,14 @@
 		6A28DE4E1AA3340400B50F8E /* MoreFeedbackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A28DE481AA3340400B50F8E /* MoreFeedbackViewController.m */; };
 		6A28DE4F1AA3340400B50F8E /* MoreTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A28DE4A1AA3340400B50F8E /* MoreTableViewController.m */; };
 		6A28DE501AA3340400B50F8E /* MoreUpdateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A28DE4C1AA3340400B50F8E /* MoreUpdateViewController.m */; };
+		6A3361391AA82D6D00D49312 /* MySelfGenderSelectTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A3361381AA82D6D00D49312 /* MySelfGenderSelectTableViewController.m */; };
+		6A7E7F461AA74E8F00E0D736 /* SocketConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A7E7F451AA74E8F00E0D736 /* SocketConnection.m */; };
+		6A7E7F4D1AA74F5E00E0D736 /* refresh_after.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A7E7F471AA74F5D00E0D736 /* refresh_after.png */; };
+		6A7E7F4E1AA74F5E00E0D736 /* refresh_after@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A7E7F481AA74F5D00E0D736 /* refresh_after@2x.png */; };
+		6A7E7F4F1AA74F5E00E0D736 /* refresh_after@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A7E7F491AA74F5E00E0D736 /* refresh_after@3x.png */; };
+		6A7E7F501AA74F5E00E0D736 /* refresh.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A7E7F4A1AA74F5E00E0D736 /* refresh.png */; };
+		6A7E7F511AA74F5E00E0D736 /* refresh@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A7E7F4B1AA74F5E00E0D736 /* refresh@2x.png */; };
+		6A7E7F521AA74F5E00E0D736 /* refresh@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A7E7F4C1AA74F5E00E0D736 /* refresh@3x.png */; };
 		6A86B3651AA60F2700D280AF /* Chat.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A86B3641AA60F2700D280AF /* Chat.m */; };
 		6A86B3681AA60F2800D280AF /* Friends.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A86B3671AA60F2800D280AF /* Friends.m */; };
 		6A86B36B1AA60F2800D280AF /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A86B36A1AA60F2800D280AF /* Message.m */; };
@@ -695,6 +703,16 @@
 		6A28DE4A1AA3340400B50F8E /* MoreTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoreTableViewController.m; sourceTree = "<group>"; };
 		6A28DE4B1AA3340400B50F8E /* MoreUpdateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoreUpdateViewController.h; sourceTree = "<group>"; };
 		6A28DE4C1AA3340400B50F8E /* MoreUpdateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoreUpdateViewController.m; sourceTree = "<group>"; };
+		6A3361371AA82D6D00D49312 /* MySelfGenderSelectTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MySelfGenderSelectTableViewController.h; sourceTree = "<group>"; };
+		6A3361381AA82D6D00D49312 /* MySelfGenderSelectTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MySelfGenderSelectTableViewController.m; sourceTree = "<group>"; };
+		6A7E7F441AA74E8F00E0D736 /* SocketConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocketConnection.h; sourceTree = "<group>"; };
+		6A7E7F451AA74E8F00E0D736 /* SocketConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocketConnection.m; sourceTree = "<group>"; };
+		6A7E7F471AA74F5D00E0D736 /* refresh_after.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = refresh_after.png; sourceTree = "<group>"; };
+		6A7E7F481AA74F5D00E0D736 /* refresh_after@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "refresh_after@2x.png"; sourceTree = "<group>"; };
+		6A7E7F491AA74F5E00E0D736 /* refresh_after@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "refresh_after@3x.png"; sourceTree = "<group>"; };
+		6A7E7F4A1AA74F5E00E0D736 /* refresh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = refresh.png; sourceTree = "<group>"; };
+		6A7E7F4B1AA74F5E00E0D736 /* refresh@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "refresh@2x.png"; sourceTree = "<group>"; };
+		6A7E7F4C1AA74F5E00E0D736 /* refresh@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "refresh@3x.png"; sourceTree = "<group>"; };
 		6A86B3631AA60F2700D280AF /* Chat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Chat.h; sourceTree = "<group>"; };
 		6A86B3641AA60F2700D280AF /* Chat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Chat.m; sourceTree = "<group>"; };
 		6A86B3661AA60F2800D280AF /* Friends.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Friends.h; sourceTree = "<group>"; };
@@ -1431,6 +1449,8 @@
 				6A28DE3E1AA3333800B50F8E /* MySelfRecordListViewController.m */,
 				6A28DE401AA3336D00B50F8E /* MySelfNotificationViewController.h */,
 				6A28DE411AA3336D00B50F8E /* MySelfNotificationViewController.m */,
+				6A3361371AA82D6D00D49312 /* MySelfGenderSelectTableViewController.h */,
+				6A3361381AA82D6D00D49312 /* MySelfGenderSelectTableViewController.m */,
 			);
 			path = MySelf;
 			sourceTree = "<group>";
@@ -1557,6 +1577,12 @@
 		D3B9F7E31A712D120024F1DF /* Image */ = {
 			isa = PBXGroup;
 			children = (
+				6A7E7F471AA74F5D00E0D736 /* refresh_after.png */,
+				6A7E7F481AA74F5D00E0D736 /* refresh_after@2x.png */,
+				6A7E7F491AA74F5E00E0D736 /* refresh_after@3x.png */,
+				6A7E7F4A1AA74F5E00E0D736 /* refresh.png */,
+				6A7E7F4B1AA74F5E00E0D736 /* refresh@2x.png */,
+				6A7E7F4C1AA74F5E00E0D736 /* refresh@3x.png */,
 				6A28DE1B1AA2D79B00B50F8E /* simile_btn_after.png */,
 				6A28DE1C1AA2D79B00B50F8E /* simile_btn_after@2x.png */,
 				6A28DE1D1AA2D79B00B50F8E /* simile_btn_after@3x.png */,
@@ -2062,6 +2088,8 @@
 		D3B9FBB71A712DE80024F1DF /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				6A7E7F441AA74E8F00E0D736 /* SocketConnection.h */,
+				6A7E7F451AA74E8F00E0D736 /* SocketConnection.m */,
 				D3B9FC051A7145B70024F1DF /* FetchChatUtil.h */,
 				D3B9FC061A7145B70024F1DF /* FetchChatUtil.m */,
 				D3B9FBFF1A7145850024F1DF /* DataUtil.h */,
@@ -2333,6 +2361,7 @@
 				D3B9FB061A712D150024F1DF /* praise_btn@2x.png in Resources */,
 				D3B9FB341A712D150024F1DF /* search-icon@3x.png in Resources */,
 				D3B9FA9F1A712D150024F1DF /* imange_btn_after.png in Resources */,
+				6A7E7F4F1AA74F5E00E0D736 /* refresh_after@3x.png in Resources */,
 				D3B9FB4A1A712D150024F1DF /* subtab-02_middle.png in Resources */,
 				D3B9F9F91A712D150024F1DF /* button_wide-01_btn_after@3x.png in Resources */,
 				D3B9FA871A712D150024F1DF /* home-warn_btn.png in Resources */,
@@ -2368,6 +2397,7 @@
 				D3B9FAF81A712D150024F1DF /* pitch-on-01@3x.png in Resources */,
 				D3B9FB501A712D150024F1DF /* subtab_bg.png in Resources */,
 				D3B9F9F21A712D150024F1DF /* button_verification-code_btn_after@2x.png in Resources */,
+				6A7E7F4E1AA74F5E00E0D736 /* refresh_after@2x.png in Resources */,
 				D3B9F9FE1A712D150024F1DF /* button_wide-02_btn_after@2x.png in Resources */,
 				6A28DDD31A9E2A5C00B50F8E /* on_line_pic.png in Resources */,
 				6A28DE211AA2D79B00B50F8E /* simile_btn_after.png in Resources */,
@@ -2455,6 +2485,7 @@
 				6A28DDF91AA15A0F00B50F8E /* list_user-small_example_pic.png in Resources */,
 				D3B9FB251A712D150024F1DF /* refresh_btn_after@3x.png in Resources */,
 				D3B9FB161A712D150024F1DF /* qq_logo_after@3x.png in Resources */,
+				6A7E7F4D1AA74F5E00E0D736 /* refresh_after.png in Resources */,
 				D3B9FA021A712D150024F1DF /* button_wide-03_btn@3x.png in Resources */,
 				D3B9FAC41A712D150024F1DF /* logo_prompt-01_pic@2x.png in Resources */,
 				D3B9FA841A712D150024F1DF /* home-icon03_btn_after.png in Resources */,
@@ -2479,6 +2510,7 @@
 				D3B9FB841A712D150024F1DF /* text_login@2x.png in Resources */,
 				D3B9FB4B1A712D150024F1DF /* subtab-02_middle@2x.png in Resources */,
 				D3B9FB451A712D150024F1DF /* subtab-01_right@2x.png in Resources */,
+				6A7E7F501AA74F5E00E0D736 /* refresh.png in Resources */,
 				D3B9FB401A712D150024F1DF /* sinaweibo_logo_after@3x.png in Resources */,
 				D3B9FA101A712D150024F1DF /* case-history_icon@2x.png in Resources */,
 				D3B9FA091A712D150024F1DF /* button_wide-04_btn_after.png in Resources */,
@@ -2545,6 +2577,7 @@
 				D3B9FAC21A712D150024F1DF /* logo_login_pic@3x.png in Resources */,
 				D3B9FB9C1A712D150024F1DF /* weixin_logo_after@2x.png in Resources */,
 				D3B9FB5A1A712D150024F1DF /* tab_02@2x.png in Resources */,
+				6A7E7F521AA74F5E00E0D736 /* refresh@3x.png in Resources */,
 				D3B9FA701A712D150024F1DF /* group-data_btn@2x.png in Resources */,
 				D3B9F9EE1A712D150024F1DF /* button_verification-code_btn.png in Resources */,
 				D3B9FA0E1A712D150024F1DF /* case-history_bg@3x.png in Resources */,
@@ -2625,6 +2658,7 @@
 				D3B9F9D31A712D150024F1DF /* agree_btn.png in Resources */,
 				D3B9FA651A712D150024F1DF /* form@3x.png in Resources */,
 				D3B9FB361A712D150024F1DF /* share_btn@2x.png in Resources */,
+				6A7E7F511AA74F5E00E0D736 /* refresh@2x.png in Resources */,
 				D3B9FA771A712D150024F1DF /* home-icon01_btn@3x.png in Resources */,
 				D3B9F9CB1A712D150024F1DF /* add-doctor_btn_after@2x.png in Resources */,
 				D3B9FB4C1A712D150024F1DF /* subtab-02_middle@3x.png in Resources */,
@@ -2741,6 +2775,7 @@
 				6A28DDBA1A9E07C700B50F8E /* SetNewPasswordTableViewController.m in Sources */,
 				6A28DDE51AA0BD9800B50F8E /* OrganDisplayViewController.m in Sources */,
 				D3B9FBC81A712DE80024F1DF /* NSString+Crypt.m in Sources */,
+				6A3361391AA82D6D00D49312 /* MySelfGenderSelectTableViewController.m in Sources */,
 				6A28DDEF1AA0CB3400B50F8E /* OrganDisplayDetailViewController.m in Sources */,
 				6A28DDB91A9E07C700B50F8E /* RegisterTableViewController.m in Sources */,
 				6A28DE021AA161D900B50F8E /* ContactAddFriendViewController.m in Sources */,
@@ -2760,6 +2795,7 @@
 				6A28DDEC1AA0C95000B50F8E /* OrganDisplayTableViewCell.m in Sources */,
 				6A86B36B1AA60F2800D280AF /* Message.m in Sources */,
 				6A28DDDD1A9EFA2F00B50F8E /* MainChatTableViewCell.m in Sources */,
+				6A7E7F461AA74E8F00E0D736 /* SocketConnection.m in Sources */,
 				6A28DE4D1AA3340400B50F8E /* MoreAboutUsViewController.m in Sources */,
 				6A28DDBD1A9E07C700B50F8E /* Friends+PinYinUtil.m in Sources */,
 				6A28DDC61A9E07C700B50F8E /* RegisterAPI.m in Sources */,

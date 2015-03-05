@@ -16,6 +16,15 @@
 #define kMethodUploadImage @"set.picture.add"
 #define kMethodUserDescribe @"set.member.userdesribe"
 #define kMethodDelFriend @"set.member.delfriend"
+#define kMethodGetInfomation @"get.member.information"
+#define kMethodGetHistory @"get.member.history"
+#define kMethodSetHistory @"set.member.history"
+#define kMethodGetOpenInfo @"get.member.openinfo"
+#define kMethodSetOpenInfo @"set.member.openinfo"
+#define kMethodGetAppointment @"get.member.appointment"
+#define kMethodSetAppointment @"set.member.appointment"
+
+
 
 @implementation MemberAPI
 + (void)updateInfomationWithParameters: (id)parameters success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
@@ -58,6 +67,26 @@
 + (void)delFriendWithParameters: (id)parameters success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
 {
     [[self sharedManager]defaultGetWithMethod:kMethodDelFriend WithParameters:parameters success:success failure:failure];
+}
+
++ (void)getInfomationWithParameters: (id)parameters success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure {
+    [[self sharedManager]defaultGetWithMethod:kMethodGetInfomation WithParameters:parameters success:success failure:failure];
+}
+
++ (void)getHistoryWithParameters: (id)parameters success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure {
+    [[self sharedManager]defaultGetWithMethod:kMethodGetHistory WithParameters:parameters success:success failure:failure];
+}
+
++ (void)setHistoryWithParameters: (id)parameters success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure {
+    [[self sharedManager]defaultGetWithMethod:kMethodSetHistory WithParameters:parameters success:success failure:failure];
+}
+
++ (void)getOpenInfoWithParameters: (id)parameters success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure {
+    [[self sharedManager]defaultGetWithMethod:kMethodGetOpenInfo WithParameters:parameters success:success failure:failure];
+}
+
++ (void)setOpenInfoWithParameters: (id)parameters success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure {
+    [[self sharedManager]defaultGetWithMethod:kMethodSetOpenInfo WithParameters:parameters success:success failure:failure];
 }
 
 @end

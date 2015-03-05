@@ -146,7 +146,7 @@
     hud.dimBackground = YES;
     [hud setLabelText:@"完善资料中..."];
     NSDictionary *params = @{
-                             @"doctorid": @(_userId),
+                             @"memberid": @(_userId),
                              @"realname": self.nameLabel.text,
                              @"email": self.emailLabel.text,
                              @"hospital": self.hospitalNameLabel.text,
