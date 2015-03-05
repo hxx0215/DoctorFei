@@ -16,6 +16,8 @@
 #define kMethodUploadImage @"set.picture.add"
 #define kMethodUserDescribe @"set.doctor.userdesribe"
 #define kMethodSearchFriend @"get.search.user"
+#define kMethodGetFriendInvitation @"get.friend.invitation"
+#define kMethodSetFriendInvitation @"set.friend.invitation"
 #define kMethodAddFriend @"set.doctor.friend"
 #define kMethodDelFriend @"set.doctor.delfriend"
 #define kMethodSetAudit @"set.doctor.audit"
@@ -106,6 +108,17 @@
 + (void)searchFriendWithParameters: (id)parameters success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
 {
     [[self sharedManager]defaultGetWithMethod:kMethodSearchFriend WithParameters:parameters success:success failure:failure];
+}
+
+//医生患者通用新的好友请求
++ (void)getFriendInvitationWithParameters: (id)parameters success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
+{
+    [[self sharedManager]defaultGetWithMethod:kMethodGetFriendInvitation WithParameters:parameters success:success failure:failure];
+}
+//医生患者通用同意或拒绝好友请求
++ (void)setFriendInvitationWithParameters: (id)parameters success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
+{
+    [[self sharedManager]defaultGetWithMethod:kMethodSetFriendInvitation WithParameters:parameters success:success failure:failure];
 }
 
 + (void)addFriendWithParameters: (id)parameters success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure

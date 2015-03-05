@@ -8,11 +8,17 @@
 
 #import "ContactNewFriendTableViewController.h"
 #import "ContactNewFriendTableViewCell.h"
+#import "DoctorAPI.h"
+#import <MBProgressHUD.h>
 @interface ContactNewFriendTableViewController ()
 
 @end
 
 @implementation ContactNewFriendTableViewController
+{
+    NSMutableArray *tableViewDicArray;
+    BOOL first;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -23,6 +29,9 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     self.tableView.tableFooterView = [UIView new];
+    
+    tableViewDicArray = [[NSMutableArray alloc]init];
+    first = YES;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -31,6 +40,40 @@
 }
 - (IBAction)backButtonClicked:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    if (first) {
+        [self loadFriendInvitation];
+        first = NO;
+    }
+}
+
+-(void)loadFriendInvitation
+{
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view.window animated:YES];
+    NSNumber *userId = [[NSUserDefaults standardUserDefaults]objectForKey:@"UserId"];
+    NSDictionary *params = @{
+                             @"usertype": @2,
+                             @"userid": [userId stringValue]
+                             };
+    [DoctorAPI getFriendInvitationWithParameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"%@",responseObject);
+        NSArray *dataArray = (NSArray *)responseObject;
+        for (NSDictionary *dict in dataArray) {
+            NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:dict];
+            [tableViewDicArray addObject:dic];
+        }
+        [self.tableView reloadData];
+        [hud hide:YES];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        hud.mode = MBProgressHUDModeText;
+        hud.labelText = @"错误";
+        hud.detailsLabelText = error.localizedDescription;
+        [hud hide:YES afterDelay:1.5f];
+    }];
 }
 
 #pragma mark - Table view data source
@@ -44,7 +87,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 
     // Return the number of rows in the section.
-    return 1;
+    return [tableViewDicArray count];
 }
 
 
@@ -53,7 +96,7 @@
     ContactNewFriendTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
     
     // Configure the cell...
-    
+    [cell setDataDic:[tableViewDicArray objectAtIndex:indexPath.row]];
     return cell;
 }
 
