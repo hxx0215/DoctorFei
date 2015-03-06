@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+@class Friends;
 
 @interface ContactFriendTableViewCell : UITableViewCell
+
+@property (nonatomic, strong) Friends *currentFriend;
 
 @end
