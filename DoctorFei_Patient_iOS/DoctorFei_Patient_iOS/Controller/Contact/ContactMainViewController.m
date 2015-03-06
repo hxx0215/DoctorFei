@@ -12,6 +12,7 @@
 #import "Friends+PinYinUtil.h"
 #import "MemberAPI.h"
 #import <MBProgressHUD.h>
+#import "ContactDetailViewController.h"
 @interface ContactMainViewController ()
     <UITableViewDelegate, UITableViewDataSource, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate, UISearchDisplayDelegate>
 
@@ -50,15 +51,27 @@
     [self reloadTableViewDataWithUserType:[self currentUserType]];
 }
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    if ([segue.identifier isEqualToString:@"ContactDetailSegueIdentifier"]) {
+        ContactDetailViewController *vc = [segue destinationViewController];
+        NSIndexPath *indexPath = [self.searchDisplayController.searchResultsTableView indexPathForCell:(UITableViewCell *)sender];
+        if (indexPath != nil) {
+            [vc setCurrentFriend:searchResultArray[indexPath.row]];
+            [self.searchDisplayController setActive:NO];
+        }
+        else {
+            indexPath = [self.tableView indexPathForCell:(UITableViewCell *)sender];
+            [vc setCurrentFriend:tableViewDataArray[indexPath.section - 1][indexPath.row]];
+        }
+
+    }
 }
-*/
 
 #pragma mark - Actions
 - (NSNumber *)currentUserType {
@@ -84,7 +97,7 @@
                             @"usertype": type
                             };
     [MemberAPI getFriendsWithParameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"%@",responseObject);
+//        NSLog(@"%@",responseObject);
         NSArray *dataArray = (NSArray *)responseObject;
         for (NSDictionary *dict in dataArray) {
             if (dict[@"state"] && [dict[@"state"]intValue] == 0) {
@@ -106,7 +119,10 @@
             friend.userType = type;
         }
         [[NSManagedObjectContext MR_defaultContext]MR_saveToPersistentStoreAndWait];
-        [self reloadTableViewDataWithUserType:type];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self reloadTableViewDataWithUserType:type];
+        });
+
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view.window animated:YES];
         hud.mode = MBProgressHUDModeText;
@@ -240,6 +256,24 @@
 #pragma mark - DZNEmptyDatasource
 - (NSAttributedString *)titleForEmptyDataSet:(UIScrollView *)scrollView {
     return [[NSAttributedString alloc]initWithString:@"暂无好友"];
+}
+#pragma mark - UISearchDisplayController Delegate
+- (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString {
+    [searchResultArray removeAllObjects];
+    for (Friends *friend in friendArray) {
+        NSString *actionName;
+        if (friend.noteName && friend.noteName.length > 0) {
+            actionName = friend.noteName;
+        }
+        else{
+            actionName = friend.realname;
+        }
+        NSRange foundRange = [actionName rangeOfString:searchString options:(NSCaseInsensitiveSearch | NSDiacriticInsensitiveSearch)];
+        if (foundRange.length > 0) {
+            [searchResultArray addObject:friend];
+        }
+    }
+    return YES;
 }
 
 @end

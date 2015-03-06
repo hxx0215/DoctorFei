@@ -286,9 +286,32 @@ typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
 
 - (void)reloadMessageData {
     [self cleanUnreadMessageCount];
-    [self generateMessageModalData];
+//    [self generateMessageModalData];
+    [self refreshMessageModal];
     [self.collectionView reloadData];
     [self scrollToBottomAnimated:YES];
+}
+
+- (void)refreshMessageModal {
+    NSString *myName = [[NSUserDefaults standardUserDefaults] objectForKey:@"UserRealName"];
+    NSString *userSenderId = [_currentFriend.userId stringValue];
+    NSString *mySenderId = self.senderId;
+    _modalData.messages = [NSMutableArray array];
+    
+    messageArray = [Message MR_findByAttribute:@"user" withValue:_currentFriend andOrderBy:@"messageId" ascending:YES];
+    for (Message *message in messageArray) {
+        NSString *senderId, *senderName;
+        if ([message.flag intValue] == 0) {
+            senderId = userSenderId;
+            senderName = _currentFriend.realname;
+        }
+        else{
+            senderId = mySenderId;
+            senderName = myName;
+        }
+        JSQMessage *jsqMessage = [[JSQMessage alloc] initWithSenderId:senderId senderDisplayName:senderName date:message.createtime text:message.content];
+        [_modalData.messages addObject:jsqMessage];
+    }
 }
 
 - (void)generateMessageModalData {
