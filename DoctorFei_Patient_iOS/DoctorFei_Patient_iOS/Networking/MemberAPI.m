@@ -23,6 +23,7 @@
 #define kMethodSetOpenInfo @"set.member.openinfo"
 #define kMethodGetAppointment @"get.member.appointment"
 #define kMethodSetAppointment @"set.member.appointment"
+#define kMethodSendMessage @"set.member.send"
 
 
 
@@ -89,4 +90,7 @@
     [[self sharedManager]defaultGetWithMethod:kMethodSetOpenInfo WithParameters:parameters success:success failure:failure];
 }
 
++ (void)sendMessageWithParameters: (id)parameters success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure {
+    [[self sharedManager]defaultGetWithMethod:kMethodSendMessage WithParameters:parameters success:success failure:failure];
+}
 @end

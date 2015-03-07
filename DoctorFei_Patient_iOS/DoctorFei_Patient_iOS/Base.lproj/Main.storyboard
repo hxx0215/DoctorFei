@@ -127,7 +127,7 @@
                                         <connections>
                                             <outlet property="avatarImageView" destination="Aqz-KI-kHv" id="zOL-2H-MTK"/>
                                             <outlet property="nameLabel" destination="A5B-NC-oM4" id="AY6-iZ-8mk"/>
-                                            <segue destination="Hq9-Kl-986" kind="show" id="8dG-p0-wDZ"/>
+                                            <segue destination="Hq9-Kl-986" kind="show" identifier="ContactDetailSegueIdentifier" id="8dG-p0-wDZ"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ContactFriendSelectCellIdentifier" rowHeight="65" id="mzL-Qg-Rne" customClass="ContactFriendTableViewCell">
