@@ -80,10 +80,7 @@
     [DoctorAPI AuditReferralWithParameters:params success:^(AFHTTPRequestOperation *operation, id responseObject){
         NSLog(@"%@",responseObject);
         NSString *msg = [[responseObject firstObject] objectForKey:@"msg"];
-        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view.window animated:YES];
-        hud.mode = MBProgressHUDModeText;
-        hud.labelText =msg;
-        hud.dimBackground = YES;
+        MBProgressHUD *hud = [self showHUDText:msg];
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 3 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
             [hud hide:YES];
             [self.navigationController popViewControllerAnimated:YES];
@@ -99,9 +96,23 @@
                              @"type" : flag ? @(1):@(2)};
     [DoctorAPI setAppointmentWithParameters:params success:^(AFHTTPRequestOperation *operation,id responseObject){
         NSLog(@"%@",responseObject);
+        NSString *msg = [[responseObject firstObject] objectForKey:@"msg"];
+        MBProgressHUD *hud = [self showHUDText:msg];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 3 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+            [hud hide:YES];
+            [self.navigationController popViewControllerAnimated:YES];
+        });
     }failure:^(AFHTTPRequestOperation *operation, NSError *error){
         NSLog(@"%@",error);
     }];
+}
+
+-(MBProgressHUD *)showHUDText:(NSString *)msg{
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view.window animated:YES];
+    hud.mode = MBProgressHUDModeText;
+    hud.labelText =msg;
+    hud.dimBackground = YES;
+    return hud;
 }
 /*
 #pragma mark - Navigation
