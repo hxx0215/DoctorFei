@@ -24,7 +24,7 @@
 #define kMethodGetAppointment @"get.member.appointment"
 #define kMethodSetAppointment @"set.member.appointment"
 #define kMethodSendMessage @"set.member.send"
-
+#define kMethodGetChatLog @"get.member.chatlog"
 
 
 @implementation MemberAPI
@@ -92,5 +92,8 @@
 
 + (void)sendMessageWithParameters: (id)parameters success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure {
     [[self sharedManager]defaultGetWithMethod:kMethodSendMessage WithParameters:parameters success:success failure:failure];
+}
++ (void)getChatLogWithParameters: (id)parameters success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure {
+    [[self sharedManager]defaultGetWithMethod:kMethodGetChatLog WithParameters:parameters success:success failure:failure];
 }
 @end

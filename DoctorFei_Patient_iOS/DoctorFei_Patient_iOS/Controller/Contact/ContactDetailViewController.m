@@ -247,7 +247,7 @@ typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
     messageArray = [Message MR_findByAttribute:@"user" withValue:_currentFriend andOrderBy:@"messageId" ascending:YES];
     for (Message *message in messageArray) {
         NSString *senderId, *senderName;
-        if ([message.flag intValue] == 0) {
+        if ([message.flag intValue] != 0) {
             senderId = userSenderId;
             senderName = _currentFriend.realname;
         }

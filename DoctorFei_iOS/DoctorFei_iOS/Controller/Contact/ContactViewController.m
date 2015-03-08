@@ -482,7 +482,7 @@
 
 #pragma mark - UIActionSheet Delegate
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
-    Friends *friend = tableViewDataArray[currentIndexPath.section][currentIndexPath.row];
+    Friends *friend = tableViewDataArray[currentIndexPath.section - 1][currentIndexPath.row];
     if (buttonIndex == 0) {
         NSNumber *doctorId = [[NSUserDefaults standardUserDefaults]objectForKey:@"UserId"];
         NSDictionary *params = @{

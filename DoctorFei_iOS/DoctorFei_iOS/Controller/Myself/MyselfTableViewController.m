@@ -148,24 +148,6 @@
                              @"picturename": [NSString stringWithFormat:@"%d.jpg", (int)[[NSDate date] timeIntervalSince1970]],
                              @"img": str
                              };
-    
-//    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-//    NSString *jsonStr = [NSString stringWithFormat:@"{\"picturename\":\"%@\"}",[NSString stringWithFormat:@"%d.jpg", (int)[[NSDate date] timeIntervalSince1970]]];
-//    request.URL = [NSURL URLWithString:[NSString createResponseURLWithMethod:@"set.picture.add" Params:jsonStr]];
-//    NSString *body = [NSString stringWithFormat:@"img=%@",str];
-//    NSData *jsonBody = [body dataUsingEncoding:NSUTF8StringEncoding];
-//    
-//    NSString *contentType = @"application/x-www-form-urlencoded; charset=utf-8";
-//    [request addValue:contentType forHTTPHeaderField:@"Content-Type"];
-//    [request setHTTPMethod:@"POST"];
-//    [request setHTTPBody:jsonBody];
-//    NSString *postLength = [NSString stringWithFormat:@"%d",[jsonBody length]];
-//    [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
-//    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError){
-//        NSString *retStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-//        NSString *retJson =[NSString decodeFromPercentEscapeString:[retStr decryptWithDES]];
-//        NSLog(@"%@",retJson);
-//    }];
 
     [DoctorAPI uploadImageWithParameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSDictionary *dataDict = [responseObject firstObject];

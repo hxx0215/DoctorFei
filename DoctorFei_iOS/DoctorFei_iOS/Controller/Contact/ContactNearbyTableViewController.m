@@ -75,7 +75,7 @@
 
 -(void)searchFrind
 {
-    hud = [MBProgressHUD showHUDAddedTo:self.view.window animated:YES];
+//    hud = [MBProgressHUD showHUDAddedTo:self.view.window animated:YES];
     NSNumber *userId = [[NSUserDefaults standardUserDefaults]objectForKey:@"UserId"];
     NSDictionary *params = @{
                              @"type": @0,
@@ -96,11 +96,12 @@
         }
         lastSize = [dataArray count];
         dispatch_async(dispatch_get_main_queue(), ^{
+//            [hud hide:YES];
             [self.tableView footerEndRefreshing];
+            [self.tableView reloadData];
         });
-        [self.tableView reloadData];
-        [hud hide:YES];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        hud = [MBProgressHUD showHUDAddedTo:self.view.window animated:YES];
         hud.mode = MBProgressHUDModeText;
         hud.labelText = @"错误";
         hud.detailsLabelText = error.localizedDescription;

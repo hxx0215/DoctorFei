@@ -59,8 +59,15 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 - (IBAction)chooseApproveImage:(id)sender {
-    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"" delegate:self cancelButtonTitle:NSLocalizedString(@"取消", nil) destructiveButtonTitle:nil otherButtonTitles:NSLocalizedString(@"拍照", nil),NSLocalizedString(@"从手机相册选择", nil), nil];
-    [actionSheet showInView:self.view];
+    UIActionSheet *sheet;
+    if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
+    {
+        sheet  = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"拍照",@"从手机相册选择", nil];
+    }
+    else {
+        sheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"从手机相册选择", nil];
+    }
+    [sheet showInView:self.view];
 }
 
 - (IBAction)commitButtonClicked:(id)sender {
@@ -129,22 +136,34 @@
 #pragma mark - UIActionSheetDelegate
 - (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex{
     NSUInteger sourceType = 0;
-    if (0==buttonIndex){
-        //拍照
-        sourceType = UIImagePickerControllerSourceTypeCamera;
-    }else if (1==buttonIndex){
-        //相册
-        sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-    }else{
-        return ;
+    if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+        switch (buttonIndex) {
+            case 0:
+                // 相机
+                sourceType = UIImagePickerControllerSourceTypeCamera;
+                break;
+            case 1:
+                // 相册
+                sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+                break;
+            default:
+                return;
+        }
     }
-    if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]){
+    else {
+        if (buttonIndex == 1) {
+            return;
+        } else {
+            sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+        }
+    }
+//    if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]){
         UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
         imagePickerController.delegate = self;
         imagePickerController.allowsEditing = YES;
         imagePickerController.sourceType = sourceType;
         [self presentViewController:imagePickerController animated:YES completion:nil];
-    }
+//    }
 }
 #pragma mark - UIImagePickerControllerDelegate
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{

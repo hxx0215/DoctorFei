@@ -8,6 +8,7 @@
 
 #import "DoctorAPI.h"
 #define kMethodUpdateInfomation @"update.doctor.information"
+#define kMethodGetInfomation @"get.doctor.information"
 #define kMethodLogin @"set.doctor.login"
 #define kMethodOnline @"set.doctor.online"
 #define kMethodQRCode @"set.doctor.qrscene"
@@ -56,6 +57,10 @@
 + (void)updateInfomationWithParameters: (id)parameters success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
 {
     [[self sharedManager]defaultGetWithMethod:kMethodUpdateInfomation WithParameters:parameters success:success failure:failure];
+}
+
++ (void)getInfomationWithParameters: (id)parameters success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure {
+    [[self sharedManager]defaultGetWithMethod:kMethodGetInfomation WithParameters:parameters success:success failure:failure];
 }
 + (void)loginWithParameters: (id)parameters success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
 {

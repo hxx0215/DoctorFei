@@ -9,8 +9,9 @@
 #import "MyAppointmentTableViewController.h"
 #import "DoctorAPI.h"
 #import "MyAppointmentDetailViewController.h"
-
+#import <UIScrollView+EmptyDataSet.h>
 @interface MyAppointmentTableViewController ()
+    <DZNEmptyDataSetSource>
 @property (weak, nonatomic) IBOutlet UISegmentedControl *appointSegment;
 @property (nonatomic, strong) NSMutableArray *appointmentData;
 @property (nonatomic, strong) NSMutableArray *referralData;
@@ -28,7 +29,7 @@ static NSString * const kMyAppointmentIdenty = @"MyAppointmentIdenty";
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     CGRect headFrame = self.tableView.tableHeaderView.frame;
-    headFrame.size.height = 28;
+    headFrame.size.height = 44;
     self.tableView.tableHeaderView.frame = headFrame;
     self.tableData = [[NSMutableArray alloc] initWithCapacity:2];
 }
@@ -46,14 +47,21 @@ static NSString * const kMyAppointmentIdenty = @"MyAppointmentIdenty";
     NSDictionary *params = @{@"doctorid": [[NSUserDefaults standardUserDefaults] objectForKey:@"UserId"]};
     [DoctorAPI getAppointmentWithParameters:params success:^(AFHTTPRequestOperation *operation, id responseObject){
         NSLog(@"appointment:%@",responseObject);
-        self.tableData[0] = responseObject;
-        [self.tableView reloadData];
+        NSArray *resultArray = (NSArray *)responseObject;
+        if (resultArray.firstObject[@"state"] && [resultArray.firstObject[@"state"] intValue] == 0) {
+        }else{
+            self.tableData[0] = resultArray;
+            [self.tableView reloadData];
+        }
     }failure:^(AFHTTPRequestOperation *operation, NSError *error){
         NSLog(@"%@",error);
     }];
     [DoctorAPI getReferralInfoWithParameters:params success:^(AFHTTPRequestOperation *operation, id responseObject){
         NSLog(@"referral:%@",responseObject);
-        self.tableData[1] = responseObject;
+        NSArray *resultArray = (NSArray *)responseObject;
+        if (resultArray.count > 0) {
+            self.tableData[1] = resultArray;
+        }
     }failure:^(AFHTTPRequestOperation *operation, NSError *error){
         NSLog(@"%@",error);
     }];
@@ -102,40 +110,12 @@ static NSString * const kMyAppointmentIdenty = @"MyAppointmentIdenty";
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     [self performSegueWithIdentifier:@"MyAppointmentSegueIdentifier" sender:indexPath];
 }
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
+#pragma mark - DZNEmptyDatasource
 
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
+- (NSAttributedString *)titleForEmptyDataSet:(UIScrollView *)scrollView {
+    return [[NSAttributedString alloc]initWithString:@"暂无记录"];
 }
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
 
 #pragma mark - Navigation
 
@@ -172,7 +152,7 @@ static NSString * const kMyAppointmentIdenty = @"MyAppointmentIdenty";
     else{
         NSTimeInterval timestamp = [[self.tableData[segmentIndex][indexPath.row] objectForKey:@"createtime"] doubleValue];
         NSDate *date = [NSDate dateWithTimeIntervalSince1970:timestamp];
-        vc.date = [formatter stringFromDate:date];
+        vc.date = [NSString stringWithFormat:@"时间: %@", [formatter stringFromDate:date]];
         vc.content = [self.tableData[segmentIndex][indexPath.row] objectForKey:@"content"];
         NSInteger flag = [[self.tableData[segmentIndex][indexPath.row] objectForKey:@"flag"] integerValue];
         if (flag == 0)
