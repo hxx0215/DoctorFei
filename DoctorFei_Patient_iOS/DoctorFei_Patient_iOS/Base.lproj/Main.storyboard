@@ -301,6 +301,9 @@
                                                 </mask>
                                             </variation>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="b6b-4P-a9w" kind="show" identifier="ContactNewFriendSegueIdentifier" id="IGC-WO-jLf"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ContactGroupTalkCellIdentifier" rowHeight="65" id="J7H-wW-iRL">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -536,7 +539,6 @@
                         <outlet property="searchDisplayController" destination="27p-zk-ZWV" id="APo-0k-gqZ"/>
                         <outlet property="segmentControl" destination="Gqk-QM-8cw" id="G6r-DX-cva"/>
                         <outlet property="tableView" destination="iTe-Bg-Yrm" id="6r0-3B-NJH"/>
-                        <segue destination="b6b-4P-a9w" kind="show" id="aw4-uB-0he"/>
                         <segue destination="9MH-7J-7yK" kind="show" id="FKz-oG-2Dd"/>
                     </connections>
                 </viewController>
@@ -569,13 +571,13 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="56" id="0uE-io-teX">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="NewFriendCellIdentifier" rowHeight="56" id="0uE-io-teX" customClass="ContactNewFriendTableViewCell">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0uE-io-teX" id="eg4-hP-nal">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4Jg-yg-Eoy">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="list_user_preinstall_pic.png" translatesAutoresizingMaskIntoConstraints="NO" id="4Jg-yg-Eoy">
                                                     <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="36" id="AJ7-ZS-nXC"/>
@@ -594,7 +596,7 @@
                                                         </mask>
                                                     </variation>
                                                 </imageView>
-                                                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3xn-ei-lio">
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3xn-ei-lio">
                                                     <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                                     <state key="normal" image="agree_btn.png">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -672,8 +674,19 @@
                                                 </mask>
                                             </variation>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="agreeButton" destination="3xn-ei-lio" id="PQW-cx-r0w"/>
+                                            <outlet property="agreedLabel" destination="glA-ax-qKT" id="Qur-lQ-wzA"/>
+                                            <outlet property="avatarImageView" destination="4Jg-yg-Eoy" id="vic-Uo-x5f"/>
+                                            <outlet property="nameLabel" destination="dVn-Ix-OgJ" id="X3C-tg-RLf"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="b6b-4P-a9w" id="ah6-48-dL9"/>
+                                    <outlet property="delegate" destination="b6b-4P-a9w" id="uYp-fg-hUD"/>
+                                    <outlet property="emptyDataSetSource" destination="b6b-4P-a9w" id="WCG-CG-n4b"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -709,6 +722,9 @@
                     <navigationItem key="navigationItem" title="新朋友" id="fIP-vW-tWA">
                         <barButtonItem key="leftBarButtonItem" image="return.png" id="DoI-rf-0qu">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="backButtonClicked:" destination="b6b-4P-a9w" id="DXd-UI-rPP"/>
+                            </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="添加朋友" id="asj-l0-gmu">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -717,6 +733,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="tableView" destination="rIZ-nk-He2" id="JK9-XC-W0N"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="59O-u3-lEa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -8298,6 +8317,9 @@
                                             <include reference="Nlr-74-1qa"/>
                                         </mask>
                                     </variation>
+                                    <connections>
+                                        <action selector="confirmButtonClicked:" destination="Z6L-uo-Jdo" eventType="touchUpInside" id="FAe-Aj-FEL"/>
+                                    </connections>
                                 </button>
                             </subviews>
                             <color key="backgroundColor" red="0.93333333330000001" green="0.93333333330000001" blue="0.93333333330000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -8581,6 +8603,12 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="confirmButton" destination="J5Y-Qg-B46" id="OCB-QW-ZfH"/>
+                        <outlet property="originalPasswordTextField" destination="s5T-SS-B09" id="duQ-b6-rJa"/>
+                        <outlet property="repeatPasswordTextField" destination="dBd-vr-0Yt" id="5H2-2j-HYW"/>
+                        <outlet property="setPasswordTextField" destination="nzk-qj-WRt" id="Pcy-TU-rlU"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f5s-Av-UQy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -9342,6 +9370,7 @@
         <image name="line_login.png" width="220" height="2"/>
         <image name="list_user-big_example_pic.png" width="40" height="40"/>
         <image name="list_user-small_example_pic.png" width="36" height="36"/>
+        <image name="list_user_preinstall_pic.png" width="36" height="36"/>
         <image name="login-text_bg.png" width="236" height="322"/>
         <image name="login_bg.png" width="320" height="480"/>
         <image name="logo01_login_pic.png" width="106" height="110"/>
@@ -9369,7 +9398,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="bmV-ue-nhQ"/>
         <segue reference="za8-Z1-TCX"/>
-        <segue reference="jqJ-9d-6M3"/>
-        <segue reference="dLf-ye-Pez"/>
+        <segue reference="2W9-8n-Hth"/>
+        <segue reference="8dG-p0-wDZ"/>
     </inferredMetricsTieBreakers>
 </document>
