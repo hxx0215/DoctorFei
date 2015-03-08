@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="hjp-xA-J3Y">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="hjp-xA-J3Y">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -40,6 +41,9 @@
                                         <include reference="u5P-PR-zhc"/>
                                     </mask>
                                 </variation>
+                                <connections>
+                                    <action selector="segmentValueChanged:" destination="cVJ-je-ZKu" eventType="valueChanged" id="Cib-Vx-l9l"/>
+                                </connections>
                             </segmentedControl>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="0nR-px-MK6">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
@@ -223,6 +227,7 @@
                     <connections>
                         <outlet property="backButton" destination="XV3-wO-iwf" id="Sfw-nu-qnH"/>
                         <outlet property="searchDisplayController" destination="f5O-qJ-8da" id="JUj-gk-DcI"/>
+                        <outlet property="segmentControl" destination="MPU-zP-p2H" id="4Kh-wc-xob"/>
                         <outlet property="tableView" destination="0nR-px-MK6" id="haH-Z4-XAG"/>
                         <segue destination="431-Df-Pyj" kind="show" identifier="ContactNewFriendSegueIdentifier" id="Om8-xz-GWh"/>
                         <segue destination="QZS-KQ-MzU" kind="show" identifier="ContactDetailSegueIdentifier" id="QWB-UP-Nry"/>
@@ -2849,7 +2854,7 @@
                         <viewControllerLayoutGuide type="bottom" id="6xZ-Vt-ozy"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="EfW-kW-Y1v">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="487"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -3161,7 +3166,7 @@
             <objects>
                 <tableViewController id="R3e-aB-uT1" customClass="ContactRecordTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="F0s-b3-cy4">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="487"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -3195,7 +3200,7 @@
             <objects>
                 <tableViewController id="mZ8-1i-3x3" customClass="ContactFriendDetailTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="cjm-fp-VJT">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="487"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <color key="sectionIndexBackgroundColor" red="0.93333333330000001" green="0.93333333330000001" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -3615,7 +3620,7 @@
                         <viewControllerLayoutGuide type="bottom" id="vpu-gS-NsJ"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Pjy-qZ-SQ8">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="487"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入备注信息" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dpv-4e-IP9">
@@ -9826,9 +9831,6 @@
                                 <variation key="heightClass=compact-widthClass=compact" ambiguous="YES">
                                     <rect key="frame" x="86" y="179" width="228" height="18"/>
                                 </variation>
-                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="86" y="288" width="227" height="38"/>
-                                </variation>
                                 <connections>
                                     <action selector="updateButtonClicked:" destination="uaT-mB-nYo" eventType="touchUpInside" id="9cb-u2-xol"/>
                                 </connections>
@@ -10588,7 +10590,7 @@
             <objects>
                 <tableViewController title="电话添加" id="7vi-g4-sXh" customClass="ContactFriendSetDescribeTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Efp-pk-9BO">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="487"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93333333330000001" green="0.93333333330000001" blue="0.93333333330000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <sections>
@@ -11069,15 +11071,15 @@
         <image name="vip_pic.png" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="JeB-AN-IOM"/>
         <segue reference="8FK-Id-c2E"/>
         <segue reference="zKw-Eq-Pwx"/>
-        <segue reference="JeB-AN-IOM"/>
+        <segue reference="6jn-ZK-h5N"/>
+        <segue reference="Hb8-Q6-QO7"/>
+        <segue reference="pVr-DH-hJQ"/>
+        <segue reference="QWB-UP-Nry"/>
         <segue reference="wpO-fm-KSL"/>
         <segue reference="G9W-g1-ayd"/>
         <segue reference="PPz-pu-GWN"/>
-        <segue reference="6jn-ZK-h5N"/>
-        <segue reference="Hb8-Q6-QO7"/>
-        <segue reference="QWB-UP-Nry"/>
-        <segue reference="iEM-sC-kWf"/>
     </inferredMetricsTieBreakers>
 </document>

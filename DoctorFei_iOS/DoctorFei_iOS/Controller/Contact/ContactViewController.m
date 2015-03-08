@@ -23,6 +23,10 @@
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *backButton;
 @property (copy, nonatomic) NSArray *stableTableData;
 @property (strong, nonatomic) NSMutableArray *cellSelected;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *segmentControl;
+- (IBAction)segmentValueChanged:(id)sender;
+
+
 @end
 
 @implementation ContactViewController
@@ -88,7 +92,8 @@
 }
 
 - (void)reloadTableViewData {
-    friendArray = [Friends MR_findAll];
+//    friendArray = [Friends MR_findAll];
+    friendArray = [Friends MR_findByAttribute:@"userType" withValue:[self currentUserType]];
     
     NSInteger sectionTitlesCount = [[[UILocalizedIndexedCollation currentCollation] sectionTitles] count];
     
@@ -170,6 +175,22 @@
         hud.detailsLabelText = error.localizedDescription;
         [hud hide:YES afterDelay:1.5f];
     }];
+}
+- (NSNumber *)currentUserType {
+    switch (_segmentControl.selectedSegmentIndex) {
+        case 0:
+            return @2;
+            break;
+        case 1:
+            return @0;
+            break;
+        case 2:
+            return @1;
+            break;
+        default:
+            break;
+    }
+    return @0;
 }
 
 #pragma mark - Navigation
@@ -263,7 +284,9 @@
         }
     }
 }
-
+- (IBAction)segmentValueChanged:(id)sender {
+    [self reloadTableViewData];
+}
 #pragma mark - UITableViewCellLongPressed
 -(void)tableviewCellLongPressed:(UILongPressGestureRecognizer *)gestureRecognizer{
     if (gestureRecognizer.state == UIGestureRecognizerStateBegan) {
@@ -531,4 +554,5 @@
     }
     return YES;
 }
+
 @end

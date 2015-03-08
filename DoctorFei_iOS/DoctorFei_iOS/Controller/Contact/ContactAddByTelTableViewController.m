@@ -87,6 +87,8 @@
             hud.mode = MBProgressHUDModeCustomView;
             hud.dimBackground = YES;
             hud.customView = completeImage;
+        }else{
+            hud.mode = MBProgressHUDModeText;
         }
         hud.labelText = dic[@"msg"];//NSLocalizedString(@"好友添加成功", nil);
         [hud hide:YES afterDelay:2.0];

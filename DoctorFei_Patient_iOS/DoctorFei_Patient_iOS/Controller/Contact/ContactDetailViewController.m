@@ -158,6 +158,11 @@ typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
     // Dispose of any resources that can be recreated.
 }
 
+- (void)didPressAccessoryButton:(UIButton *)sender
+{
+//    NSAssert(NO, @"Error! required method not implemented in subclass. Need to implement %s", __PRETTY_FUNCTION__);
+}
+
 #pragma mark - Actions
 - (void)cleanUnreadMessageCount {
     Chat *chat = [Chat MR_findFirstByAttribute:@"user" withValue:_currentFriend];

@@ -220,7 +220,8 @@
         hud.labelText = dict[@"msg"];
         [hud hide:YES afterDelay:1.0f];
         if ([dict[@"state"]intValue] == 1) {
-            [self dismissViewControllerAnimated:YES completion:nil];
+            [self fetchFriendWithGroup: _currentGroup];
+//            [self dismissViewControllerAnimated:YES completion:nil];
         }
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -240,7 +241,12 @@
     if (gestureRecognizer.state == UIGestureRecognizerStateBegan) {
 //        CGPoint point=[gestureRecognizer locationInView:self.tableView];
 //        NSIndexPath *path=[self.tableView indexPathForRowAtPoint:point];
-        UIActionSheet *sheet  = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"转移到其他组",@"从该组删除", nil];
+        UIActionSheet *sheet;
+        if (_currentGroup) {
+            sheet  = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"转移到其他组",@"从该组删除", nil];
+        }else{
+            sheet  = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"转移到其他组", nil];
+        }
         [sheet showFromTabBar:self.tabBarController.tabBar];
         CGPoint point=[gestureRecognizer locationInView:self.tableView];
         NSIndexPath* path=[self.tableView indexPathForRowAtPoint:point];
@@ -251,6 +257,38 @@
     }
     
     
+}
+
+- (void)deleteGroupMemberWithFriend:(Friends *)friend {
+    NSNumber *doctorId = [[NSUserDefaults standardUserDefaults] objectForKey:@"UserId"];
+    NSDictionary *param = @{
+                            @"doctorid": doctorId,
+                            @"groupid": @0,
+                            @"userids": [friend.userId stringValue]
+                            };
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view.window animated:YES];
+    hud.labelText = @"删除中...";
+    [DoctorAPI moveDoctorFriendGroupWithParameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSDictionary *dict = [responseObject firstObject];
+        hud.mode = MBProgressHUDModeText;
+        hud.labelText = @"删除成功";
+        [hud hide:YES afterDelay:1.0f];
+        if ([dict[@"state"]intValue] == 1) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+//                [self.navigationController popViewControllerAnimated:YES];
+                friend.group = nil;
+                [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
+                [self reloadTableViewData];
+            });
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"%@",error.localizedDescription);
+        hud.mode = MBProgressHUDModeText;
+        hud.labelText = error.localizedDescription;
+        [hud hide:YES afterDelay:1.5f];
+    }];
+
+
 }
 
 
@@ -282,6 +320,8 @@
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (buttonIndex == 0) {
         [self performSegueWithIdentifier:@"MainGroupDetailChangeSegueIdentifier" sender:nil];
+    }else if (buttonIndex == 1) {
+        [self deleteGroupMemberWithFriend:friendArray[currentIndexPath.row]];
     }
 }
 - (IBAction)titleButtonClciked:(id)sender {

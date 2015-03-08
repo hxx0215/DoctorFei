@@ -3,7 +3,7 @@ This application makes use of the following third party libraries:
 
 ## AFNetworking
 
-Copyright (c) 2013-2014 AFNetworking (http://afnetworking.com/)
+Copyright (c) 2013-2015 AFNetworking (http://afnetworking.com/)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -400,7 +400,7 @@ OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 ## MBProgressHUD
 
-Copyright (c) 2013 Matej Bukovinski
+Copyright (c) 2009-2015 Matej Bukovinski
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -511,7 +511,7 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
 
 ## ReactiveCocoa
 
-**Copyright (c) 2012 - 2014, GitHub, Inc.**
+**Copyright (c) 2012 - 2015, GitHub, Inc.**
 **All rights reserved.**
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of
