@@ -80,7 +80,7 @@
     NSDictionary *params = @{
                              @"type": @0,
                              @"userid": [userId stringValue],
-                             //@"usertype": @1,
+                             @"usertype": @-1,
                              @"lng": @(currentLocation.coordinate.longitude),
                              @"lat": @(currentLocation.coordinate.latitude),
                              @"pageSize": @Contact_PageSize,
