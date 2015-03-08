@@ -94,25 +94,17 @@ CG_INLINE BOOL isIPhone4()
 
 #pragma mark - Abstract Implementation
 
-- (id)initWithTarget:(id)target successAction:(SEL)successAction cancelAction:(SEL)cancelActionOrNil origin:(id)origin
+- (instancetype)init
 {
     self = [super init];
     if ( self )
     {
-        self.target = target;
-        self.successAction = successAction;
-        self.cancelAction = cancelActionOrNil;
         self.presentFromRect = CGRectZero;
         self.popoverBackgroundViewClass = nil;
+
         self.supportedInterfaceOrientations = (UIInterfaceOrientationMask) [[UIApplication sharedApplication]
-                                                                                     supportedInterfaceOrientationsForWindow:
-                                                                                             [UIApplication sharedApplication].keyWindow];
-        if ( [origin isKindOfClass:[UIBarButtonItem class]] )
-            self.barButtonItem = origin;
-        else if ( [origin isKindOfClass:[UIView class]] )
-            self.containerView = origin;
-        else
-            NSAssert(NO, @"Invalid origin provided to ActionSheetPicker ( %@ )", origin);
+                                                                                           supportedInterfaceOrientationsForWindow:
+                                                                                                   [UIApplication sharedApplication].keyWindow];
 
         UIBarButtonItem *sysDoneButton = [self createButtonWithType:UIBarButtonSystemItemDone target:self
                                                              action:@selector(actionPickerDone:)];
@@ -123,8 +115,30 @@ CG_INLINE BOOL isIPhone4()
         [self setCancelBarButtonItem:sysCancelButton];
         [self setDoneBarButtonItem:sysDoneButton];
 
+        self.tapDismissAction = TapActionNone;
         //allows us to use this without needing to store a reference in calling class
         self.selfReference = self;
+    }
+
+    return self;
+}
+
+
+- (instancetype)initWithTarget:(id)target successAction:(SEL)successAction cancelAction:(SEL)cancelActionOrNil origin:(id)origin
+{
+    self = [self init];
+    if ( self )
+    {
+        self.target = target;
+        self.successAction = successAction;
+        self.cancelAction = cancelActionOrNil;
+
+        if ( [origin isKindOfClass:[UIBarButtonItem class]] )
+            self.barButtonItem = origin;
+        else if ( [origin isKindOfClass:[UIView class]] )
+            self.containerView = origin;
+        else
+            NSAssert(NO, @"Invalid origin provided to ActionSheetPicker ( %@ )", origin);
     }
     return self;
 }
@@ -199,8 +213,34 @@ CG_INLINE BOOL isIPhone4()
 
     self.pickerView = [self configuredPickerView];
     NSAssert(_pickerView != NULL, @"Picker view failed to instantiate, perhaps you have invalid component data.");
+    // toolbar hidden remove the toolbar frame and update pickerview frame
+    if ( self.toolbar.hidden )
+    {
+        masterView.frame = CGRectMake(0, 0, self.viewSize.width, 220);
+        self.pickerView.frame = CGRectMake(0, 4, self.viewSize.width, 216);
+    }
     [masterView addSubview:_pickerView];
     [self presentPickerForView:masterView];
+
+    switch (self.tapDismissAction)
+    {
+        case TapActionNone:break;
+        case TapActionSuccess:{
+            // add tap dismiss action
+            self.actionSheet.window.userInteractionEnabled = YES;
+            UITapGestureRecognizer *tapAction = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(actionPickerDone:)];
+            [self.actionSheet.window addGestureRecognizer:tapAction];
+            break;
+        }
+        case TapActionCancel:{
+            // add tap dismiss action
+            self.actionSheet.window.userInteractionEnabled = YES;
+            UITapGestureRecognizer *tapAction = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(actionPickerCancel:)];
+            [self.actionSheet.window addGestureRecognizer:tapAction];
+            break;
+        }
+    };
+
 }
 
 - (IBAction)actionPickerDone:(id)sender
@@ -652,7 +692,18 @@ CG_INLINE BOOL isIPhone4()
 #pragma mark - Popoverdelegate
 - (void)popoverControllerDidDismissPopover:(UIPopoverController *)popoverController
 {
-    [self notifyTarget:self.target didCancelWithAction:self.cancelAction origin:[self storedOrigin]];
+    switch (self.tapDismissAction)
+    {
+        case TapActionSuccess:{
+            [self notifyTarget:self.target didSucceedWithAction:self.successAction origin:self.storedOrigin];
+            break;
+        }
+        case TapActionNone:
+        case TapActionCancel:{
+            [self notifyTarget:self.target didCancelWithAction:self.cancelAction origin:self.storedOrigin];
+            break;
+        }
+    };
 }
 
 
