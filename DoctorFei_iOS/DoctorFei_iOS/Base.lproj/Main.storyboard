@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="hjp-xA-J3Y">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="hjp-xA-J3Y">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -2873,6 +2873,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="actionItem" destination="PPH-uv-qZ0" id="qlS-V6-RiB"/>
                         <segue destination="mZ8-1i-3x3" kind="show" identifier="FriendDetailSegueIdentifier" id="1zF-jl-fGY"/>
                         <segue destination="R3e-aB-uT1" kind="show" identifier="ContactShowRecordSegueIdentifier" id="vCe-tG-Nxd"/>
                         <segue destination="PfZ-BT-0Ww" kind="presentation" identifier="ContactConsultationTransferSegueIdentifier" id="SfG-iR-NoF"/>
@@ -9829,6 +9830,9 @@
                                 <variation key="heightClass=compact-widthClass=compact" ambiguous="YES">
                                     <rect key="frame" x="86" y="179" width="228" height="18"/>
                                 </variation>
+                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="86" y="288" width="227" height="38"/>
+                                </variation>
                                 <connections>
                                     <action selector="updateButtonClicked:" destination="uaT-mB-nYo" eventType="touchUpInside" id="9cb-u2-xol"/>
                                 </connections>
@@ -11070,15 +11074,15 @@
         <image name="vip_pic.png" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="JeB-AN-IOM"/>
-        <segue reference="8FK-Id-c2E"/>
         <segue reference="zKw-Eq-Pwx"/>
-        <segue reference="6jn-ZK-h5N"/>
-        <segue reference="Hb8-Q6-QO7"/>
-        <segue reference="pVr-DH-hJQ"/>
-        <segue reference="QWB-UP-Nry"/>
-        <segue reference="wpO-fm-KSL"/>
+        <segue reference="JeB-AN-IOM"/>
+        <segue reference="rqJ-cO-jCt"/>
+        <segue reference="8FK-Id-c2E"/>
         <segue reference="G9W-g1-ayd"/>
         <segue reference="PPz-pu-GWN"/>
+        <segue reference="SfG-iR-NoF"/>
+        <segue reference="Hb8-Q6-QO7"/>
+        <segue reference="pVr-DH-hJQ"/>
+        <segue reference="wpO-fm-KSL"/>
     </inferredMetricsTieBreakers>
 </document>

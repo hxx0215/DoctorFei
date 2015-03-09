@@ -16,4 +16,5 @@ typedef enum ContactDetailMode{
 
 @property (nonatomic, strong) Friends *currentFriend;
 @property (nonatomic, assign) ContactDetailMode detailMode;
+@property (nonatomic, assign) BOOL isDoctor;
 @end

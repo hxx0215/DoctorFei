@@ -35,6 +35,7 @@ typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
 - (IBAction)backButtonClicked:(id)sender;
 @property (nonatomic, strong) MessagesModalData *modalData;
 @property (nonatomic, strong) WYPopoverController *popover;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *actionItem;
 @end
 
 @implementation ContactDetailViewController
@@ -168,6 +169,8 @@ typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
     }
 }
 - (void)initNavigationBar{
+    if (self.isDoctor)
+        self.navigationItem.rightBarButtonItem = nil;
     switch (self.detailMode){
         case ContactDetailModeConsultation:{
             self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"return.png"] style:UIBarButtonItemStylePlain target:self action:@selector(dismissButtonClicked:)];

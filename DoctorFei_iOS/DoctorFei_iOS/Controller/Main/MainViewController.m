@@ -284,6 +284,7 @@
         ContactDetailViewController *vc = [segue destinationViewController];
         Chat *chat = chatArray[indexPath.row];
         [vc setCurrentFriend:chat.user];
+        vc.isDoctor = ([chat.user.userType integerValue] == 2);
     } else if ([segue.identifier isEqualToString:@"MainGroupPopoverSegueIdentifier"]) {
         [_titleButton setBackgroundImage:[UIImage imageNamed:@"top_arrow_up"] forState:UIControlStateNormal];
         MainGroupPopoverViewController *vc = [segue destinationViewController];

@@ -201,6 +201,7 @@
     // Pass the selected object to the new view controller.
     if ([segue.identifier isEqualToString:@"ContactDetailSegueIdentifier"]) {
         ContactDetailViewController *vc = [segue destinationViewController];
+        vc.isDoctor = (self.segmentControl.selectedSegmentIndex == 0);
         NSIndexPath *indexPath = [self.searchDisplayController.searchResultsTableView indexPathForCell:(UITableViewCell *)sender];
         if (indexPath != nil) {
             [vc setCurrentFriend:searchResultArray[indexPath.row]];
