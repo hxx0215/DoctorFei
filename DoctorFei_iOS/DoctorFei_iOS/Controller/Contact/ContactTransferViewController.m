@@ -8,7 +8,7 @@
 
 #import "ContactTransferViewController.h"
 #import "DoctorAPI.h"
-
+#import <UIImageView+WebCache.h>
 @interface ContactTransferViewController ()<UIAlertViewDelegate>
 @property (weak, nonatomic) IBOutlet UITextView *referralMessage;
 @property (weak, nonatomic) IBOutlet UIImageView *doctorAvatar;
@@ -24,6 +24,9 @@
 }
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    if (self.target.icon && ![self.target.icon isEqualToString:@""])
+        [self.receiverAvatar sd_setImageWithURL:[NSURL URLWithString:self.target.icon]];
+    [self.doctorAvatar sd_setImageWithURL:[NSURL URLWithString:[[[NSUserDefaults standardUserDefaults]objectForKey:@"UserIcon"] copy]]];
     [self transferAction];
 }
 - (void)didReceiveMemoryWarning {

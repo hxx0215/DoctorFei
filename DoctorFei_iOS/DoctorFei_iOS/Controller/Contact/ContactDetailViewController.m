@@ -554,6 +554,7 @@ typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
         Friends *f = [sender firstObject];
         vc.targetID = f.userId;
         vc.patientID = self.currentFriend.userId;
+        vc.target = f;
     }
 }
 
