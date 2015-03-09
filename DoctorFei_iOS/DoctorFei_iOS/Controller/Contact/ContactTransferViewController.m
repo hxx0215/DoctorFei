@@ -34,8 +34,8 @@
 - (void)transferAction{
     NSDictionary *params=@{
                            @"doctorid": [[NSUserDefaults standardUserDefaults] objectForKey:@"UserId"],
-                           @"userid":@(17),
-                           @"todoctorid":@(129)
+                           @"userid":self.patientID,
+                           @"todoctorid":self.targetID
                            };
     [DoctorAPI initiateReferralWithParameters:params success:^(AFHTTPRequestOperation *operation, id responseObject){
         NSLog(@"%@",[[responseObject firstObject] objectForKey:@"msg"]);

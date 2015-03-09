@@ -235,6 +235,7 @@
             NSString *title = [DataUtil nameStringForFriend:tableViewDataArray[indexPath.section][indexPath.row]].string;
             [didSelect addObject:title];
         }
+        
         if (self.selectedArray){
             [self.selectedArray addObjectsFromArray:didSelect];
         }
@@ -253,7 +254,13 @@
             }
             case ContactViewControllerModeTransfer:{
                 [self.navigationController dismissViewControllerAnimated:NO completion:^{
-                    self.didSelectFriends(self.selectedArray);
+//                    self.didSelectFriends(self.selectedArray);
+                    NSMutableArray *selectFriend = [NSMutableArray new];
+                    for (NSIndexPath *indexPath in self.cellSelected){
+                        Friends *selectedFriend = tableViewDataArray[indexPath.section][indexPath.row];
+                        [selectFriend addObject:selectedFriend];
+                    }
+                    self.didSelectFriends(selectFriend);
                 }];
             }
                 break;

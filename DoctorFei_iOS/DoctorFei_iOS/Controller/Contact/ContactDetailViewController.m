@@ -24,6 +24,7 @@
 #import "ContactViewController.h"
 #import "ContactRecordTableViewController.h"
 #import "DoctorAPI.h"
+#import "ContactTransferViewController.h"
 
 typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
     SMSToolbarSendMethodVoice,
@@ -536,6 +537,7 @@ typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
         else{
             vc.didSelectFriends = ^(NSArray *friend){
                 [self performSegueWithIdentifier:@"ContactTransferSegueIdentifier" sender:friend];
+                
             };
         }
     }
@@ -543,6 +545,12 @@ typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
     if ([[segue identifier] isEqualToString:@"ContactShowRecordSegueIdentifier"]){
         ContactRecordTableViewController *vc = [segue destinationViewController];
         vc.patientID = _currentFriend.userId;
+    }
+    if ([[segue identifier] isEqualToString:@"ContactTransferSegueIdentifier"]){
+        ContactTransferViewController *vc = (ContactTransferViewController *)((UINavigationController *)[segue destinationViewController]).topViewController;
+        Friends *f = [sender firstObject];
+        vc.targetID = f.userId;
+        vc.patientID = self.currentFriend.userId;
     }
 }
 
