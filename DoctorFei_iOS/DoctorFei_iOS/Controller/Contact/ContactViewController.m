@@ -150,6 +150,11 @@
                              };
     [DoctorAPI getFriendsWithParameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"%@",responseObject);
+        NSString *msg = [[responseObject firstObject] objectForKey:@"msg"];
+        if (msg){//为毛服务器没有数据还要返回个啊哦。真是有病
+            [self reloadTableViewData];
+            return ;
+        }
         NSArray *dataArray = (NSArray *)responseObject;
         for (NSDictionary *dict in dataArray) {
             Friends *friend = [Friends MR_findFirstByAttribute:@"userId" withValue:dict[@"userid"]];
