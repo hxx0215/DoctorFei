@@ -26,6 +26,7 @@
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentControl;
 - (IBAction)segmentValueChanged:(id)sender;
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *tableVIewTopConstraint;
 
 @end
 
@@ -81,6 +82,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self fetchFriend];
+    [self shouldShowSegment];
     [self reloadTableViewData];
 }
 - (void)viewWillDisappear:(BOOL)animated{
@@ -90,7 +92,28 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+- (void)shouldShowSegment{
+    switch (self.contactMode) {
+        case ContactViewControllerModeNormal:
+        case ContactViewControllerModeCreateGroup:
+        case ContactViewControllerModeGMAddFriend:
+        case ContactViewControllerModeMainGroupAddFriend:
+            self.segmentControl.hidden = NO;
+            break;
+        case ContactViewControllerModeTransfer:
+        case ContactViewControllerModeConsultation:
+            self.tableVIewTopConstraint.constant = -38;
+            self.segmentControl.hidden = YES;
+            self.segmentControl.selectedSegmentIndex = 0;
+            break;
+        case ContactViewControllerModeScheduleSelectFriend:
+            self.tableVIewTopConstraint.constant = -38;
+            self.segmentControl.hidden = YES;
+            self.segmentControl.selectedSegmentIndex = 1;
+        default:
+            break;
+    }
+}
 - (void)reloadTableViewData {
 //    friendArray = [Friends MR_findAll];
     friendArray = [Friends MR_findByAttribute:@"userType" withValue:[self currentUserType]];
