@@ -161,7 +161,7 @@
     }else{
         [param setObject:state forKey:@"isopenmobile"];
     }
-    hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud = [MBProgressHUD showHUDAddedTo:self.view.window animated:YES];
     [MemberAPI setOpenInfoWithParameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSDictionary *result = [responseObject firstObject];
         NSLog(@"%@",result);
@@ -178,9 +178,9 @@
 
 - (void)updateMemberInfoWithKey:(NSString *)key value:(id) value {
     NSNumber *uid = [[NSUserDefaults standardUserDefaults] objectForKey:@"UserId"];
-    hud = [MBProgressHUD HUDForView:self.view];
+    hud = [MBProgressHUD HUDForView:self.view.window];
     if (hud.alpha == 0) {
-        hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        hud = [MBProgressHUD showHUDAddedTo:self.view.window animated:YES];
     }
     NSDictionary *param = @{
                             @"memberid": uid,
@@ -230,7 +230,7 @@
     [sheet showFromTabBar:self.tabBarController.tabBar];
 }
 - (void)uploadImage: (UIImage *)image {
-    hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud = [MBProgressHUD showHUDAddedTo:self.view.window animated:YES];
     hud.dimBackground = YES;
     [hud setLabelText:@"图片上传中..."];
     
