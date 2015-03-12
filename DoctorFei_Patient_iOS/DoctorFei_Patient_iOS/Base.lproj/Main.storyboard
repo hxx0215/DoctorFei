@@ -5717,11 +5717,11 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="centerX" secondItem="bTE-kU-0ar" secondAttribute="centerX" id="CcL-Uk-nfZ"/>
-                            <constraint firstItem="Eu9-79-vD1" firstAttribute="leading" secondItem="xJC-dI-1Zd" secondAttribute="leading" id="QUg-n9-1kN"/>
-                            <constraint firstItem="Eu9-79-vD1" firstAttribute="centerX" secondItem="bTE-kU-0ar" secondAttribute="centerX" id="aQy-M7-RlN"/>
+                            <constraint firstItem="Eu9-79-vD1" firstAttribute="leading" secondItem="xJC-dI-1Zd" secondAttribute="leading" id="MKO-6F-hCA"/>
+                            <constraint firstItem="2yA-Lz-VRJ" firstAttribute="top" secondItem="Eu9-79-vD1" secondAttribute="bottom" id="RtW-hd-83j"/>
+                            <constraint firstAttribute="trailing" secondItem="Eu9-79-vD1" secondAttribute="trailing" id="aqC-wr-r02"/>
                             <constraint firstAttribute="centerY" secondItem="bTE-kU-0ar" secondAttribute="centerY" id="cy8-ir-2VI"/>
-                            <constraint firstItem="Eu9-79-vD1" firstAttribute="bottom" secondItem="2yA-Lz-VRJ" secondAttribute="top" id="kUP-Lo-Csn"/>
-                            <constraint firstItem="Eu9-79-vD1" firstAttribute="centerY" secondItem="bTE-kU-0ar" secondAttribute="centerY" id="l7a-Kj-u6x"/>
+                            <constraint firstItem="Eu9-79-vD1" firstAttribute="top" secondItem="xJC-dI-1Zd" secondAttribute="top" constant="-20" id="uj3-yN-doQ"/>
                         </constraints>
                         <variation key="default">
                             <mask key="subviews">
@@ -5729,12 +5729,12 @@
                                 <exclude reference="bTE-kU-0ar"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="QUg-n9-1kN"/>
-                                <exclude reference="aQy-M7-RlN"/>
-                                <exclude reference="kUP-Lo-Csn"/>
-                                <exclude reference="l7a-Kj-u6x"/>
+                                <exclude reference="MKO-6F-hCA"/>
+                                <exclude reference="aqC-wr-r02"/>
+                                <exclude reference="uj3-yN-doQ"/>
                                 <exclude reference="CcL-Uk-nfZ"/>
                                 <exclude reference="cy8-ir-2VI"/>
+                                <exclude reference="RtW-hd-83j"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
@@ -5743,12 +5743,12 @@
                                 <include reference="bTE-kU-0ar"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="QUg-n9-1kN"/>
-                                <include reference="aQy-M7-RlN"/>
-                                <include reference="kUP-Lo-Csn"/>
-                                <include reference="l7a-Kj-u6x"/>
+                                <include reference="MKO-6F-hCA"/>
+                                <include reference="aqC-wr-r02"/>
+                                <include reference="uj3-yN-doQ"/>
                                 <include reference="CcL-Uk-nfZ"/>
                                 <include reference="cy8-ir-2VI"/>
+                                <include reference="RtW-hd-83j"/>
                             </mask>
                         </variation>
                     </view>
