@@ -44,7 +44,6 @@
 		6A32523F1A82835300B5E31F /* AgendaArrangement.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A32523E1A82835300B5E31F /* AgendaArrangement.m */; };
 		6A3252421A83697800B5E31F /* MainArrangementNewTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A3252411A83697800B5E31F /* MainArrangementNewTableViewCell.m */; };
 		6A3252461A85302A00B5E31F /* Groups.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A3252451A85302A00B5E31F /* Groups.m */; };
-		6A3252491A85305000B5E31F /* Friends.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A3252481A85305000B5E31F /* Friends.m */; };
 		6A32524C1A85EC5F00B5E31F /* MainGroupGroupActionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A32524B1A85EC5F00B5E31F /* MainGroupGroupActionViewController.m */; };
 		6A3DA1031A7E7BF200BE721B /* MainCoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6A3DA1011A7E7BF200BE721B /* MainCoreData.xcdatamodeld */; };
 		6A3DA1091A7F5DF100BE721B /* ShuoShuo.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A3DA1081A7F5DF100BE721B /* ShuoShuo.m */; };
@@ -61,8 +60,6 @@
 		6A4FC1691A2F67F10042497C /* ContactFriendTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A4FC1681A2F67F10042497C /* ContactFriendTableViewCell.m */; };
 		6A5DC5D81A32DF3800961E53 /* UserAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A5DC5D71A32DF3800961E53 /* UserAPI.m */; };
 		6A5DC5F01A33135E00961E53 /* MainChatTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A5DC5EF1A33135E00961E53 /* MainChatTableViewCell.m */; };
-		6A5DC5F31A3317FE00961E53 /* Chat.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A5DC5F21A3317FE00961E53 /* Chat.m */; };
-		6A5DC5F61A3317FE00961E53 /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A5DC5F51A3317FE00961E53 /* Message.m */; };
 		6A5DC5FC1A332DF200961E53 /* MessagesModalData.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A5DC5FB1A332DF200961E53 /* MessagesModalData.m */; };
 		6A5DE8171A791A3C000F24DA /* QuickReplyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A5DE8161A791A3C000F24DA /* QuickReplyTableViewCell.m */; };
 		6A5DE81A1A792621000F24DA /* QuickReplyCustomActionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A5DE8191A792621000F24DA /* QuickReplyCustomActionTableViewCell.m */; };
@@ -86,6 +83,9 @@
 		6A69A0261A2CC94500D85777 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A69A0251A2CC94500D85777 /* Security.framework */; };
 		6A69A0281A2CC94C00D85777 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A69A0271A2CC94C00D85777 /* libz.dylib */; };
 		6A69A02A1A2D4DC500D85777 /* PushConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6A69A0291A2D4DC500D85777 /* PushConfig.plist */; };
+		6A6D076B1AB1CCD40052EA5A /* Friends.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A6D076A1AB1CCD40052EA5A /* Friends.m */; };
+		6A6D076E1AB1CCD50052EA5A /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A6D076D1AB1CCD50052EA5A /* Message.m */; };
+		6A6D07711AB1CCD60052EA5A /* Chat.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A6D07701AB1CCD60052EA5A /* Chat.m */; };
 		6A7372C91A2034B4006EF54F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A7372C81A2034B4006EF54F /* main.m */; };
 		6A7372CC1A2034B4006EF54F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A7372CB1A2034B4006EF54F /* AppDelegate.m */; };
 		6A7372D41A2034B4006EF54F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6A7372D31A2034B4006EF54F /* Images.xcassets */; };
@@ -601,8 +601,6 @@
 		6A3252431A852DC900B5E31F /* MainCoreData_2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MainCoreData_2.xcdatamodel; sourceTree = "<group>"; };
 		6A3252441A85302A00B5E31F /* Groups.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Groups.h; sourceTree = "<group>"; };
 		6A3252451A85302A00B5E31F /* Groups.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Groups.m; sourceTree = "<group>"; };
-		6A3252471A85305000B5E31F /* Friends.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Friends.h; sourceTree = "<group>"; };
-		6A3252481A85305000B5E31F /* Friends.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Friends.m; sourceTree = "<group>"; };
 		6A32524A1A85EC5F00B5E31F /* MainGroupGroupActionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainGroupGroupActionViewController.h; sourceTree = "<group>"; };
 		6A32524B1A85EC5F00B5E31F /* MainGroupGroupActionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainGroupGroupActionViewController.m; sourceTree = "<group>"; };
 		6A3DA1021A7E7BF200BE721B /* MainCoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MainCoreData.xcdatamodel; sourceTree = "<group>"; };
@@ -629,10 +627,6 @@
 		6A5DC5D71A32DF3800961E53 /* UserAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserAPI.m; sourceTree = "<group>"; };
 		6A5DC5EE1A33135E00961E53 /* MainChatTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainChatTableViewCell.h; sourceTree = "<group>"; };
 		6A5DC5EF1A33135E00961E53 /* MainChatTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainChatTableViewCell.m; sourceTree = "<group>"; };
-		6A5DC5F11A3317FE00961E53 /* Chat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Chat.h; sourceTree = "<group>"; };
-		6A5DC5F21A3317FE00961E53 /* Chat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Chat.m; sourceTree = "<group>"; };
-		6A5DC5F41A3317FE00961E53 /* Message.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Message.h; sourceTree = "<group>"; };
-		6A5DC5F51A3317FE00961E53 /* Message.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Message.m; sourceTree = "<group>"; };
 		6A5DC5FA1A332DF200961E53 /* MessagesModalData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessagesModalData.h; sourceTree = "<group>"; };
 		6A5DC5FB1A332DF200961E53 /* MessagesModalData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessagesModalData.m; sourceTree = "<group>"; };
 		6A5DE8151A791A3C000F24DA /* QuickReplyTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuickReplyTableViewCell.h; sourceTree = "<group>"; };
@@ -665,6 +659,12 @@
 		6A69A0251A2CC94500D85777 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		6A69A0271A2CC94C00D85777 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		6A69A0291A2D4DC500D85777 /* PushConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = PushConfig.plist; sourceTree = "<group>"; };
+		6A6D07691AB1CCD40052EA5A /* Friends.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Friends.h; sourceTree = "<group>"; };
+		6A6D076A1AB1CCD40052EA5A /* Friends.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Friends.m; sourceTree = "<group>"; };
+		6A6D076C1AB1CCD50052EA5A /* Message.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Message.h; sourceTree = "<group>"; };
+		6A6D076D1AB1CCD50052EA5A /* Message.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Message.m; sourceTree = "<group>"; };
+		6A6D076F1AB1CCD50052EA5A /* Chat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Chat.h; sourceTree = "<group>"; };
+		6A6D07701AB1CCD60052EA5A /* Chat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Chat.m; sourceTree = "<group>"; };
 		6A7372C31A2034B4006EF54F /* DoctorFei_iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DoctorFei_iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6A7372C71A2034B4006EF54F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6A7372C81A2034B4006EF54F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -1312,14 +1312,14 @@
 			isa = PBXGroup;
 			children = (
 				6A3DA1011A7E7BF200BE721B /* MainCoreData.xcdatamodeld */,
-				6A3252471A85305000B5E31F /* Friends.h */,
-				6A3252481A85305000B5E31F /* Friends.m */,
+				6A6D076F1AB1CCD50052EA5A /* Chat.h */,
+				6A6D07701AB1CCD60052EA5A /* Chat.m */,
+				6A6D076C1AB1CCD50052EA5A /* Message.h */,
+				6A6D076D1AB1CCD50052EA5A /* Message.m */,
+				6A6D07691AB1CCD40052EA5A /* Friends.h */,
+				6A6D076A1AB1CCD40052EA5A /* Friends.m */,
 				6A3252441A85302A00B5E31F /* Groups.h */,
 				6A3252451A85302A00B5E31F /* Groups.m */,
-				6A5DC5F41A3317FE00961E53 /* Message.h */,
-				6A5DC5F51A3317FE00961E53 /* Message.m */,
-				6A5DC5F11A3317FE00961E53 /* Chat.h */,
-				6A5DC5F21A3317FE00961E53 /* Chat.m */,
 				6A5DC5FA1A332DF200961E53 /* MessagesModalData.h */,
 				6A5DC5FB1A332DF200961E53 /* MessagesModalData.m */,
 				6AB8B0991A3747EA00866281 /* Friends+PinYinUtil.h */,
@@ -2604,12 +2604,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				6AB8B0981A3742A200866281 /* pinyin.c in Sources */,
+				6A6D07711AB1CCD60052EA5A /* Chat.m in Sources */,
 				6AC6EA071A28C4B5007689D8 /* NSString+Crypt.m in Sources */,
 				6A6454271A6D4C0F00070D5E /* MainGroupDetailActionViewController.m in Sources */,
 				B94F6C681A5D70AF004E1B93 /* QRCodeScanViewController.m in Sources */,
 				6A5DE8171A791A3C000F24DA /* QuickReplyTableViewCell.m in Sources */,
 				B94F6C6B1A5D7113004E1B93 /* DoctorRankTableViewController.m in Sources */,
 				6A2BD5E01A31B139002F7644 /* ContactFriendDetailTableViewController.m in Sources */,
+				6A6D076B1AB1CCD40052EA5A /* Friends.m in Sources */,
 				6A5DE81D1A79E7C8000F24DA /* QuickReplyAddCustomViewController.m in Sources */,
 				6ABFDC031A6C043700DB8E74 /* MainGroupPopoverTableViewCell.m in Sources */,
 				B9E2E0E31A6D2D02009401F1 /* TITokenField.m in Sources */,
@@ -2618,12 +2620,10 @@
 				6AB359B11A2B5758008C48B4 /* BaseHTTPRequestOperationManager.m in Sources */,
 				6ABFDBE21A6B946100DB8E74 /* MyPageContentArticleViewController.m in Sources */,
 				6AD089BB1A654CB5007D0988 /* AgendaArrangementTableViewController.m in Sources */,
-				6A3252491A85305000B5E31F /* Friends.m in Sources */,
 				6A5DC5FC1A332DF200961E53 /* MessagesModalData.m in Sources */,
 				6AD089D01A66C276007D0988 /* AgendaArrangementTableViewCell.m in Sources */,
 				6A7376531A20D84C006EF54F /* LoginViewController.m in Sources */,
 				6ABFDBD91A6B8D8E00DB8E74 /* MyPageContentTalkTableViewCell.m in Sources */,
-				6A5DC5F31A3317FE00961E53 /* Chat.m in Sources */,
 				6A6454211A6D488C00070D5E /* MainGroupTableViewCell.m in Sources */,
 				6A2BD5CC1A300207002F7644 /* MobileAPI.m in Sources */,
 				B94F6C6E1A5D72D6004E1B93 /* ContactAddByTelTableViewController.m in Sources */,
@@ -2651,6 +2651,7 @@
 				B9D4EA121A5C173900DB2A8D /* MyAppointmentDetailViewController.m in Sources */,
 				6A2BD60A1A31EDA7002F7644 /* FetchChatUtil.m in Sources */,
 				6ABFDBDC1A6B8DA100DB8E74 /* MyPageContentArticleTableViewCell.m in Sources */,
+				6A6D076E1AB1CCD50052EA5A /* Message.m in Sources */,
 				6A7376571A20E4CC006EF54F /* RegisterTableViewController.m in Sources */,
 				6A6454241A6D4BB700070D5E /* MainGroupDetailViewController.m in Sources */,
 				B9E2E12E1A6FF832009401F1 /* ContactRecordTableViewController.m in Sources */,
@@ -2697,7 +2698,6 @@
 				6A78BE2A1A2229F8005457F3 /* ForgetPasswordViewController.m in Sources */,
 				B9DD58E11A30912200AA4CDC /* MoreUpdateViewController.m in Sources */,
 				6A2BD6071A31EC44002F7644 /* ChatAPI.m in Sources */,
-				6A5DC5F61A3317FE00961E53 /* Message.m in Sources */,
 				6A78BE271A2215DD005457F3 /* RegisterMoreTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
