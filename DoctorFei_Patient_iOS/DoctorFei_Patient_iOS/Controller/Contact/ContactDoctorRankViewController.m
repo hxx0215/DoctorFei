@@ -140,7 +140,6 @@
     [cell setDataDict:dataArray[indexPath.row]];
     [cell.addButton addTarget:self action:@selector(addButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
     [cell.addButton setTag:indexPath.row];
-    cell.contentView.layer.cornerRadius = 10.0f;
     return cell;
 }
 #pragma mark - UITableView Delegate

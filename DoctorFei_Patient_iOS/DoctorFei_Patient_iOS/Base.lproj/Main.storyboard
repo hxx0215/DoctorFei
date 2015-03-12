@@ -3931,11 +3931,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="487"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="fcE-Vx-Hxu">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="fcE-Vx-Hxu">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" red="0.93333333330000001" green="0.93333333330000001" blue="0.93333333330000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ContactDoctorRankCellIdentifier" rowHeight="100" id="nyH-D9-KbJ" customClass="ContactDoctorRankTableViewCell">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="ContactDoctorRankCellIdentifier" rowHeight="100" id="nyH-D9-KbJ" customClass="ContactDoctorRankTableViewCell">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="nyH-D9-KbJ" id="434-aY-VTJ">
@@ -4150,6 +4150,7 @@
                                         <connections>
                                             <outlet property="addButton" destination="rO4-zX-bef" id="ubF-yB-e0H"/>
                                             <outlet property="avatarImageView" destination="Nsf-OH-m0z" id="SJb-j1-s1g"/>
+                                            <outlet property="backView" destination="BrD-yC-dKi" id="aRV-9L-Rut"/>
                                             <outlet property="goodAtLabel" destination="MH3-t9-BRP" id="4wY-Io-C0Y"/>
                                             <outlet property="hospitalLabel" destination="8dQ-dl-Od8" id="yqq-LN-64m"/>
                                             <outlet property="nameLabel" destination="7iI-nt-J82" id="h8U-XS-gzg"/>

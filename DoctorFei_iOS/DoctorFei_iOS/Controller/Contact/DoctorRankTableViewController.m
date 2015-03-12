@@ -69,9 +69,9 @@
     hud = [MBProgressHUD showHUDAddedTo:self.view.window animated:YES];
     NSNumber *userId = [[NSUserDefaults standardUserDefaults]objectForKey:@"UserId"];
     NSDictionary *params = @{
-                             //@"type": @2,
-                             @"userid": [userId stringValue],
-                             @"usertype": @2,
+                             @"type": @2,
+//                             @"userid": [userId stringValue],
+//                             @"usertype": @2,
                              @"pageSize": @Contact_PageSize,
                              @"pageIndex": [NSNumber numberWithInteger:pageIndex]
                              };

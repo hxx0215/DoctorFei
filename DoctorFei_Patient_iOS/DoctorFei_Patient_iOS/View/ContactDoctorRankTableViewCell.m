@@ -14,6 +14,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *hospitalLabel;
 @property (weak, nonatomic) IBOutlet UILabel *goodAtLabel;
 @property (weak, nonatomic) IBOutlet UILabel *upCountLabel;
+@property (weak, nonatomic) IBOutlet UIView *backView;
 
 @end
 
@@ -28,6 +29,7 @@
 
 - (void)awakeFromNib {
     // Initialization code
+    _backView.layer.cornerRadius = 5.0f;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
