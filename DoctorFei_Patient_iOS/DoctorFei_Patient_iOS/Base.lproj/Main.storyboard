@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1510" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="fJh-M9-nxj">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="fJh-M9-nxj">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
@@ -260,7 +260,8 @@
                                                             <exclude reference="uZZ-yy-e3Z"/>
                                                         </mask>
                                                     </variation>
-                                                    <variation key="heightClass=regular-widthClass=compact">
+                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                        <rect key="frame" x="71" y="22" width="229" height="21"/>
                                                         <mask key="constraints">
                                                             <include reference="uZZ-yy-e3Z"/>
                                                         </mask>
@@ -4089,7 +4090,7 @@
                                                         </mask>
                                                     </variation>
                                                     <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                        <rect key="frame" x="10" y="7" width="300" height="85.5"/>
+                                                        <rect key="frame" x="10" y="7" width="300" height="85"/>
                                                         <mask key="subviews">
                                                             <include reference="Nsf-OH-m0z"/>
                                                             <include reference="7iI-nt-J82"/>
@@ -4495,10 +4496,10 @@
                                 <exclude reference="qKR-C6-GcD"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="yFN-Xd-RQC"/>
                                 <exclude reference="3eP-Y8-iPY"/>
                                 <exclude reference="Mgx-Rl-VfI"/>
                                 <exclude reference="tVd-d7-AoR"/>
-                                <exclude reference="yFN-Xd-RQC"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
@@ -4506,10 +4507,10 @@
                                 <include reference="qKR-C6-GcD"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="yFN-Xd-RQC"/>
                                 <include reference="3eP-Y8-iPY"/>
                                 <include reference="Mgx-Rl-VfI"/>
                                 <include reference="tVd-d7-AoR"/>
-                                <include reference="yFN-Xd-RQC"/>
                             </mask>
                         </variation>
                     </view>
@@ -5729,12 +5730,12 @@
                                 <exclude reference="bTE-kU-0ar"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="RtW-hd-83j"/>
                                 <exclude reference="MKO-6F-hCA"/>
                                 <exclude reference="aqC-wr-r02"/>
                                 <exclude reference="uj3-yN-doQ"/>
                                 <exclude reference="CcL-Uk-nfZ"/>
                                 <exclude reference="cy8-ir-2VI"/>
-                                <exclude reference="RtW-hd-83j"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
@@ -5743,12 +5744,12 @@
                                 <include reference="bTE-kU-0ar"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="RtW-hd-83j"/>
                                 <include reference="MKO-6F-hCA"/>
                                 <include reference="aqC-wr-r02"/>
                                 <include reference="uj3-yN-doQ"/>
                                 <include reference="CcL-Uk-nfZ"/>
                                 <include reference="cy8-ir-2VI"/>
-                                <include reference="RtW-hd-83j"/>
                             </mask>
                         </variation>
                     </view>
@@ -8026,7 +8027,7 @@
         <!-- 添加病历-->
         <scene sceneID="Aup-db-26y">
             <objects>
-                <viewController id="5pk-1Y-ADe" sceneMemberID="viewController">
+                <viewController id="5pk-1Y-ADe" customClass="MySelfAddHistoryViewController" customModule="DoctorFei_Patient_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="m6h-Vo-zQF"/>
                         <viewControllerLayoutGuide type="bottom" id="HtE-nH-oAw"/>
@@ -8088,7 +8089,7 @@
                                     <inset key="sectionInset" minX="20" minY="10" maxX="20" maxY="10"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="xA1-0R-A2I">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="HistoryCollectionCellIdentifier" id="xA1-0R-A2I" customClass="MySelfRecordAddCollectionViewCell" customModule="DoctorFei_Patient_iOS" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -8114,8 +8115,15 @@
                                                 <include reference="Vg3-FJ-hTE"/>
                                             </mask>
                                         </variation>
+                                        <connections>
+                                            <outlet property="contentImage" destination="Vg3-FJ-hTE" id="MHd-uP-H4H"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="5pk-1Y-ADe" id="OlP-0U-l8Z"/>
+                                    <outlet property="delegate" destination="5pk-1Y-ADe" id="OXL-d4-VXi"/>
+                                </connections>
                             </collectionView>
                         </subviews>
                         <color key="backgroundColor" red="0.93333333330000001" green="0.93333333330000001" blue="0.93333333330000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -8165,11 +8173,17 @@
                     <navigationItem key="navigationItem" title=" 添加病历" id="xtl-bL-fen">
                         <barButtonItem key="leftBarButtonItem" image="return.png" id="8Ks-wl-Azi">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="backButtonClicked:" destination="5pk-1Y-ADe" id="e9R-Cj-59V"/>
+                            </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="保存" id="rIh-lJ-9bk">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="collectionView" destination="ilK-VA-pw8" id="pfW-HG-LFp"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Z6-An-5Fx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

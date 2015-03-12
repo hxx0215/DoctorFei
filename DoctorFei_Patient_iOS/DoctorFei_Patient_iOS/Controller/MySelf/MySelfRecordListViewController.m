@@ -40,7 +40,7 @@ static NSString * const myselfRecordIdentifier = @"MySelfRecordTableViewIdentifi
     self.tableView.dataSource = self;
     [self.view addSubview:self.tableView];
     
-    UINib *nib = [UINib nibWithNibName:NSStringFromClass([MySelfRecordListTableViewCell class]) bundle:nil];
+    UINib *nib = [UINib nibWithNibName:@"MySelfRecordListTableViewCell" bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:myselfRecordIdentifier];
     self.tableData = [NSMutableArray new];
 }
@@ -56,10 +56,11 @@ static NSString * const myselfRecordIdentifier = @"MySelfRecordTableViewIdentifi
 }
 
 - (void)getRecord{
-    NSDictionary *params = @{@"uid": [[NSUserDefaults standardUserDefaults] objectForKey:@"UserId"]};
+    NSDictionary *params = @{@"uid": @(1)};//[[NSUserDefaults standardUserDefaults] objectForKey:@"UserId"]};
     [MemberAPI getHistoryWithParameters:params success:^(AFHTTPRequestOperation *operation, id responseObject){
         NSLog(@"%@",responseObject);
         self.tableData = responseObject;
+        [self.tableView reloadData];
     }failure:^(AFHTTPRequestOperation *operation,NSError *error){
         NSLog(@"%@",error);
     }];
@@ -83,10 +84,21 @@ static NSString * const myselfRecordIdentifier = @"MySelfRecordTableViewIdentifi
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     MySelfRecordListTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:myselfRecordIdentifier forIndexPath:indexPath];
+    cell.contentLabel.text = self.tableData[indexPath.row][@"notes"];
+    cell.imageUrl = self.tableData[indexPath.row][@"imgs"];
+    cell.recordDate.text = self.tableData[indexPath.row][@"addtime"];
     return cell;
 }
 - (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 176;
 }
-
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    MySelfRecordListTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:myselfRecordIdentifier];
+    cell.translatesAutoresizingMaskIntoConstraints = NO;
+    cell.contentLabel.text = self.tableData[indexPath.row][@"notes"];
+    NSString *str = self.tableData[indexPath.row][@"notes"];
+    CGSize size = [str calculateSize:CGSizeMake(cell.contentLabel.frame.size.width, FLT_MAX) font:cell.contentLabel.font];
+    NSArray *imgs = self.tableData[indexPath.row][@"imgs"];
+    return size.height + 61 + imgs.count * 134;
+}
 @end
