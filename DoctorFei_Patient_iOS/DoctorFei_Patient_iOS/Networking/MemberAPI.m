@@ -26,6 +26,7 @@
 #define kMethodSendMessage @"set.member.send"
 #define kMethodGetChatLog @"get.member.chatlog"
 #define kMethodModifyPwd @"update.member.modifypwd"
+#define kMethodSetFriend @"set.member.friend"
 
 @implementation MemberAPI
 + (void)updateInfomationWithParameters: (id)parameters success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
@@ -98,5 +99,8 @@
 }
 + (void)modifyPwdWithParameters: (id)parameters success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure {
     [[self sharedManager]defaultGetWithMethod:kMethodModifyPwd WithParameters:parameters success:success failure:failure];
+}
++ (void)setFriendWithParameters: (id)parameters success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure {
+    [[self sharedManager]defaultGetWithMethod:kMethodSetFriend WithParameters:parameters success:success failure:failure];
 }
 @end

@@ -72,6 +72,8 @@
 		6A28DE4F1AA3340400B50F8E /* MoreTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A28DE4A1AA3340400B50F8E /* MoreTableViewController.m */; };
 		6A28DE501AA3340400B50F8E /* MoreUpdateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A28DE4C1AA3340400B50F8E /* MoreUpdateViewController.m */; };
 		6A3361391AA82D6D00D49312 /* MySelfGenderSelectTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A3361381AA82D6D00D49312 /* MySelfGenderSelectTableViewController.m */; };
+		6A6D070D1AB1298E0052EA5A /* ContactNearByViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A6D070C1AB1298E0052EA5A /* ContactNearByViewController.m */; };
+		6A6D07101AB12A370052EA5A /* ContactNearByTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A6D070F1AB12A370052EA5A /* ContactNearByTableViewCell.m */; };
 		6A7E7F461AA74E8F00E0D736 /* SocketConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A7E7F451AA74E8F00E0D736 /* SocketConnection.m */; };
 		6A7E7F4D1AA74F5E00E0D736 /* refresh_after.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A7E7F471AA74F5D00E0D736 /* refresh_after.png */; };
 		6A7E7F4E1AA74F5E00E0D736 /* refresh_after@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A7E7F481AA74F5D00E0D736 /* refresh_after@2x.png */; };
@@ -710,6 +712,10 @@
 		6A28DE4C1AA3340400B50F8E /* MoreUpdateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoreUpdateViewController.m; sourceTree = "<group>"; };
 		6A3361371AA82D6D00D49312 /* MySelfGenderSelectTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MySelfGenderSelectTableViewController.h; sourceTree = "<group>"; };
 		6A3361381AA82D6D00D49312 /* MySelfGenderSelectTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MySelfGenderSelectTableViewController.m; sourceTree = "<group>"; };
+		6A6D070B1AB1298E0052EA5A /* ContactNearByViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactNearByViewController.h; sourceTree = "<group>"; };
+		6A6D070C1AB1298E0052EA5A /* ContactNearByViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactNearByViewController.m; sourceTree = "<group>"; };
+		6A6D070E1AB12A370052EA5A /* ContactNearByTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactNearByTableViewCell.h; sourceTree = "<group>"; };
+		6A6D070F1AB12A370052EA5A /* ContactNearByTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactNearByTableViewCell.m; sourceTree = "<group>"; };
 		6A7E7F441AA74E8F00E0D736 /* SocketConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocketConnection.h; sourceTree = "<group>"; };
 		6A7E7F451AA74E8F00E0D736 /* SocketConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocketConnection.m; sourceTree = "<group>"; };
 		6A7E7F471AA74F5D00E0D736 /* refresh_after.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = refresh_after.png; sourceTree = "<group>"; };
@@ -1418,6 +1424,8 @@
 				6A28DE341AA32FC800B50F8E /* ContactFriendTableViewCell.m */,
 				6A8265DE1AAC805A004F71FE /* ContactNewFriendTableViewCell.h */,
 				6A8265DF1AAC805A004F71FE /* ContactNewFriendTableViewCell.m */,
+				6A6D070E1AB12A370052EA5A /* ContactNearByTableViewCell.h */,
+				6A6D070F1AB12A370052EA5A /* ContactNearByTableViewCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1450,6 +1458,8 @@
 				6A28DE2B1AA31E3600B50F8E /* ContactNewFriendViewController.m */,
 				6A28DE2D1AA31E6100B50F8E /* ContactGroupChatListViewController.h */,
 				6A28DE2E1AA31E6100B50F8E /* ContactGroupChatListViewController.m */,
+				6A6D070B1AB1298E0052EA5A /* ContactNearByViewController.h */,
+				6A6D070C1AB1298E0052EA5A /* ContactNearByViewController.m */,
 			);
 			path = Contact;
 			sourceTree = "<group>";
@@ -2803,6 +2813,7 @@
 				6A28DDEF1AA0CB3400B50F8E /* OrganDisplayDetailViewController.m in Sources */,
 				6A28DDB91A9E07C700B50F8E /* RegisterTableViewController.m in Sources */,
 				6A28DE021AA161D900B50F8E /* ContactAddFriendViewController.m in Sources */,
+				6A6D07101AB12A370052EA5A /* ContactNearByTableViewCell.m in Sources */,
 				6A28DE291AA2E31900B50F8E /* TextBasicInfoViewController.m in Sources */,
 				D3B9FC0A1A7145C60024F1DF /* ImageUtil.m in Sources */,
 				6A28DDFF1AA161CE00B50F8E /* ContactMainViewController.m in Sources */,
@@ -2826,6 +2837,7 @@
 				6AFD40481A5D5EF4009C0080 /* main.m in Sources */,
 				6A86B3681AA60F2800D280AF /* Friends.m in Sources */,
 				6A28DE141AA1985200B50F8E /* ContactPeronsalFriendDetailTableViewController.m in Sources */,
+				6A6D070D1AB1298E0052EA5A /* ContactNearByViewController.m in Sources */,
 				6A28DDC31A9E07C700B50F8E /* ChatAPI.m in Sources */,
 				6A28DE351AA32FC800B50F8E /* ContactFriendTableViewCell.m in Sources */,
 				6A28DDBF1A9E07C700B50F8E /* MainCoreData.xcdatamodeld in Sources */,

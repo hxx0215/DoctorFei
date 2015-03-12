@@ -162,7 +162,7 @@
     if (status == kCLAuthorizationStatusAuthorizedWhenInUse || status == kCLAuthorizationStatusAuthorized) {
         [manager startUpdatingLocation];
         
-    }else{
+    }else if(status == kCLAuthorizationStatusDenied){
         UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"提示" message:@"您没有授权费医生使用您的位置" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
         [alertView show];
     }

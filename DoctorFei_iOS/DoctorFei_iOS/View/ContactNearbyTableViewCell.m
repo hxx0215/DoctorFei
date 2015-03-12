@@ -43,8 +43,11 @@
             hud.dimBackground = YES;
             hud.customView = completeImage;
         }
-        hud.labelText = dic[@"msg"];//NSLocalizedString(@"好友添加成功", nil);
-        [hud hide:YES afterDelay:2.0];
+        else{
+            hud.mode = MBProgressHUDModeText;
+        }
+        hud.detailsLabelText = dic[@"msg"];//NSLocalizedString(@"好友添加成功", nil);
+        [hud hide:YES afterDelay:1.0f];
         sender.enabled = NO;
         [dict setValue:@1 forKey:@"myfirend"];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
