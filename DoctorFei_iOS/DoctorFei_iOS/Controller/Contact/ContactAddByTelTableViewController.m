@@ -53,12 +53,17 @@
     [DoctorAPI searchFriendWithParameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"%@",responseObject);
         NSArray *dataArray = (NSArray *)responseObject;
-        NSDictionary *dic = [dataArray firstObject];
-        if (dic) {
-            [self addFriendByDic:dic];
+        if (dataArray.count > 0) {
+            for (NSDictionary *dic in dataArray) {
+                [self addFriendByDic:dic];
+            }
         }
-        else
-        {
+//        NSDictionary *dic = [dataArray firstObject];
+//        if (dic) {
+//            [self addFriendByDic:dic];
+//        }
+//        else
+        else {
             hud.mode = MBProgressHUDModeText;
             hud.labelText = @"没有该用户！";
             [hud hide:YES afterDelay:1.5f];
@@ -90,7 +95,7 @@
         }else{
             hud.mode = MBProgressHUDModeText;
         }
-        hud.labelText = dic[@"msg"];//NSLocalizedString(@"好友添加成功", nil);
+        hud.detailsLabelText = dic[@"msg"];//NSLocalizedString(@"好友添加成功", nil);
         [hud hide:YES afterDelay:2.0];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         hud.mode = MBProgressHUDModeText;

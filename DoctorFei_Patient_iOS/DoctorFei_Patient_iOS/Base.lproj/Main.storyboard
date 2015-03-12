@@ -4214,7 +4214,7 @@
         <!--电话添加-->
         <scene sceneID="uCj-GE-7tn">
             <objects>
-                <viewController id="w0A-t9-r99" sceneMemberID="viewController">
+                <viewController id="w0A-t9-r99" customClass="ContactAddByTelViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="BvF-eN-sNc"/>
                         <viewControllerLayoutGuide type="bottom" id="Oob-jv-h5J"/>
@@ -4223,11 +4223,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="487"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="svx-ZH-Jdy">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入要搜索的电话号码" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="svx-ZH-Jdy">
                                 <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="done"/>
                                 <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
                                     <rect key="frame" x="0.0" y="0.0" width="400" height="44"/>
@@ -4249,11 +4249,20 @@
                     <navigationItem key="navigationItem" title="电话添加" id="uxS-9J-mHT">
                         <barButtonItem key="leftBarButtonItem" image="return.png" id="Yi4-nj-dJg">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="backButtonClicked:" destination="w0A-t9-r99" id="v0l-tt-xQ4"/>
+                            </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="确定" style="done" id="tUi-7Z-Q74">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="confirmButtonClicked:" destination="w0A-t9-r99" id="UkQ-VL-AwU"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="telTextField" destination="svx-ZH-Jdy" id="IrF-b0-6B7"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Sc8-9d-Kbv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
