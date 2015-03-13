@@ -870,9 +870,14 @@
                                 <action selector="backButtonClicked:" destination="Hq9-Kl-986" id="dMj-q2-Pjd"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" image="extend_btn.png" id="L9M-H2-kKu">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <segue destination="9HM-o9-OPg" kind="custom" identifier="ContactDetailActionSegueIdentifier" customClass="WYStoryboardPopoverSegue" id="u61-TB-K9u"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <segue destination="9HM-o9-OPg" kind="custom" customClass="WYStoryboardPopoverSegue" id="Pzn-At-gep"/>
                         <segue destination="3Tq-yN-1WH" kind="show" id="tM4-ud-G8V"/>
                         <segue destination="WOt-U1-2bu" kind="show" id="nML-D2-BiX"/>
                         <segue destination="TMu-MZ-fe0" kind="show" id="28A-fE-6bt"/>
@@ -949,10 +954,15 @@
                     <nil key="simulatedStatusBarMetrics"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="120" height="122"/>
+                    <connections>
+                        <outlet property="departTimeBtn" destination="JBo-Lf-9uA" id="VR2-N6-VZy"/>
+                        <outlet property="hisPageBtn" destination="r6T-F2-EzZ" id="6Zw-TU-MzG"/>
+                        <outlet property="launchAppointmentBtn" destination="3SP-nk-136" id="KDi-Y3-cds"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="C6t-hW-fN9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3798" y="870"/>
+            <point key="canvasLocation" x="-3831" y="951.75"/>
         </scene>
         <!--详细资料-->
         <scene sceneID="EZa-Bv-4xZ">
@@ -9499,6 +9509,7 @@
         <image name="choose_btn_after.png" width="36" height="36"/>
         <image name="dector_tag.png" width="28" height="14"/>
         <image name="download_pic.png" width="135" height="131"/>
+        <image name="extend_btn.png" width="44" height="44"/>
         <image name="form.png" width="301" height="353"/>
         <image name="home-icon01_btn.png" width="32" height="32"/>
         <image name="home-icon01_btn_after.png" width="32" height="32"/>
@@ -9541,9 +9552,9 @@
         <image name="the-phone-book_icon-03.png" width="36" height="36"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="bmV-ue-nhQ"/>
-        <segue reference="8dG-p0-wDZ"/>
-        <segue reference="2W9-8n-Hth"/>
         <segue reference="za8-Z1-TCX"/>
+        <segue reference="jqJ-9d-6M3"/>
+        <segue reference="PZz-Jx-16t"/>
+        <segue reference="2W9-8n-Hth"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -9,6 +9,9 @@
 #import "ContactDetailPopoverViewController.h"
 
 @interface ContactDetailPopoverViewController ()
+@property (weak, nonatomic) IBOutlet UIButton *hisPageBtn;
+@property (weak, nonatomic) IBOutlet UIButton *departTimeBtn;
+@property (weak, nonatomic) IBOutlet UIButton *launchAppointmentBtn;
 
 @end
 
@@ -17,6 +20,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [self.hisPageBtn addTarget:self.target action:self.showHisPage forControlEvents:UIControlEventTouchUpInside];
+    [self.departTimeBtn addTarget:self.target action:self.departTime forControlEvents:UIControlEventTouchUpInside];
+    [self.launchAppointmentBtn addTarget:self.target action:self.launchAppointment forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (void)didReceiveMemoryWarning {
