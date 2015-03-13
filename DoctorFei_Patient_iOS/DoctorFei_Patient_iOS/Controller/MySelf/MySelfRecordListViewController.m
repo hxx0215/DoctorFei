@@ -53,10 +53,11 @@ static NSString * const myselfRecordIdentifier = @"MySelfRecordTableViewIdentifi
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self getRecord];
+    self.tableView.frame = self.view.bounds;
 }
 
 - (void)getRecord{
-    NSDictionary *params = @{@"uid": @(1)};//[[NSUserDefaults standardUserDefaults] objectForKey:@"UserId"]};
+    NSDictionary *params = @{@"uid": [[NSUserDefaults standardUserDefaults] objectForKey:@"UserId"]};
     [MemberAPI getHistoryWithParameters:params success:^(AFHTTPRequestOperation *operation, id responseObject){
         NSLog(@"%@",responseObject);
         self.tableData = responseObject;

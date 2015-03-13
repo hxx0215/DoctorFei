@@ -16,18 +16,56 @@ class MySelfAddHistoryViewController: UIViewController,UICollectionViewDelegate,
 
         // Do any additional setup after loading the view.
         self.images = NSMutableArray()
+        self.notes.inputAccessoryView = self.keyboardBar
     }
 
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var notes: UITextView!
+    @IBOutlet weak var keyboardBar: UIToolbar!
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func keyboardDone(sender: AnyObject) {
+        self.notes.resignFirstResponder()
+    }
 
     @IBAction func backButtonClicked(sender: AnyObject) {
         self.navigationController?.popViewControllerAnimated(true)
+    }
+    @IBAction func saveHistory(sender: AnyObject) {
+        self.notes.resignFirstResponder()
+        var imgUrl = ""
+        if (self.images!.count > 0){
+            for i in 0..<self.images!.count - 1{
+            imgUrl += self.images![i] as String
+            imgUrl += ","
+            }
+        }
+        if let l: AnyObject = self.images!.lastObject {
+            imgUrl += l as String
+        }
+        let params = ["suid" : NSUserDefaults.standardUserDefaults().objectForKey("UserId")! as NSNumber ,
+            "notes" : self.notes.text,
+            "imgs" : imgUrl]
+        MemberAPI.setHistoryWithParameters(params,
+            success: {
+                operation, responseObject in
+                let response = (responseObject as NSArray).firstObject as NSDictionary
+                var hud = MBProgressHUD.showHUDAddedTo(self.view.window, animated: true)
+                hud.labelText = response.objectForKey("msg") as String
+                hud.dimBackground = true
+                hud.hide(true, afterDelay: 0.5)
+                hud.mode = MBProgressHUDMode.Text
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(0.5 * Double(NSEC_PER_SEC))), dispatch_get_main_queue(), {
+                    self.navigationController?.popViewControllerAnimated(true)
+                    return
+                })
+            }, failure: {
+                operation, error in
+        })
     }
     
     
@@ -91,10 +129,13 @@ class MySelfAddHistoryViewController: UIViewController,UICollectionViewDelegate,
         var image = (info as NSDictionary).objectForKey(UIImagePickerControllerEditedImage) as UIImage?
         picker.dismissViewControllerAnimated(true, completion: {
             if let img = image {
+                var hud = MBProgressHUD.showHUDAddedTo(self.view.window, animated: true)
+                hud.labelText = "上传中"
                 MemberAPI.uploadImage(img, {
                     operation,responseObject in
                     NSLog("%@", responseObject as NSObject)
                     self.images!.addObject(((responseObject as NSArray).firstObject as NSDictionary).objectForKey("spath")!)
+                    hud.hide(true)
                     self.collectionView.reloadData()
                     }, failure: {
                         operation,error in

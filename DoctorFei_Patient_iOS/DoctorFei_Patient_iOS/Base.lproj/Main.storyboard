@@ -3977,7 +3977,8 @@
                                                                     <exclude reference="QQb-Pa-p6I"/>
                                                                 </mask>
                                                             </variation>
-                                                            <variation key="heightClass=regular-widthClass=compact">
+                                                            <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                                <rect key="frame" x="75" y="15" width="162" height="20"/>
                                                                 <mask key="constraints">
                                                                     <include reference="QQb-Pa-p6I"/>
                                                                 </mask>
@@ -3999,7 +4000,8 @@
                                                                     <exclude reference="hRx-57-nDM"/>
                                                                 </mask>
                                                             </variation>
-                                                            <variation key="heightClass=regular-widthClass=compact">
+                                                            <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                                <rect key="frame" x="247" y="15" width="40" height="40"/>
                                                                 <mask key="constraints">
                                                                     <include reference="7d8-Fl-iHI"/>
                                                                     <include reference="hRx-57-nDM"/>
@@ -4011,12 +4013,18 @@
                                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                             <color key="textColor" red="0.43137254899999999" green="0.6588235294" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
+                                                            <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                                <rect key="frame" x="216" y="55" width="69" height="16"/>
+                                                            </variation>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="河南省人民医院 医生" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8dQ-dl-Od8">
                                                             <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
+                                                            <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                                <rect key="frame" x="75" y="36" width="133" height="17"/>
+                                                            </variation>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="擅长: 呼吸科" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MH3-t9-BRP">
                                                             <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
@@ -4031,7 +4039,8 @@
                                                                     <exclude reference="w5R-yo-5qR"/>
                                                                 </mask>
                                                             </variation>
-                                                            <variation key="heightClass=regular-widthClass=compact">
+                                                            <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                                <rect key="frame" x="75" y="54" width="133" height="17"/>
                                                                 <mask key="constraints">
                                                                     <include reference="w5R-yo-5qR"/>
                                                                 </mask>
@@ -4087,10 +4096,8 @@
                                                             <exclude reference="lbd-fW-yPz"/>
                                                         </mask>
                                                     </variation>
-
                                                     <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                        <rect key="frame" x="10" y="7" width="300" height="85"/>
-
+                                                        <rect key="frame" x="10" y="7" width="300" height="86"/>
                                                         <mask key="subviews">
                                                             <include reference="Nsf-OH-m0z"/>
                                                             <include reference="7iI-nt-J82"/>
@@ -8213,13 +8220,31 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="保存" id="rIh-lJ-9bk">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="saveHistory:" destination="5pk-1Y-ADe" id="eEL-Tc-FTK"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="ilK-VA-pw8" id="pfW-HG-LFp"/>
+                        <outlet property="keyboardBar" destination="3mJ-zW-T5a" id="lTo-eM-ubR"/>
+                        <outlet property="notes" destination="lT8-pE-hmS" id="C8u-8f-LCX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Z6-An-5Fx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="3mJ-zW-T5a">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <items>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="D1K-Ap-AVb"/>
+                        <barButtonItem title="完成" id="Hby-jy-rdG">
+                            <color key="tintColor" red="0.43137254899999999" green="0.6588235294" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="keyboardDone:" destination="5pk-1Y-ADe" id="F9k-Ht-FU6"/>
+                            </connections>
+                        </barButtonItem>
+                    </items>
+                </toolbar>
             </objects>
             <point key="canvasLocation" x="-5727" y="-2858.25"/>
         </scene>
