@@ -61,6 +61,18 @@
     [[self sharedManager]defaultPostWithMethod:kMethodUploadImage WithParameters:parameters success:success failure:failure];
 }
 
++ (void)uploadImage:(UIImage *)image success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation * operation, NSError *error))failure{
+    NSString *str = [UIImageJPEGRepresentation(image, 0.8) base64EncodedStringWithOptions:0];
+    str = [str stringByReplacingOccurrencesOfString:@"+" withString:@"|JH|"];
+    str = [str stringByReplacingOccurrencesOfString:@" " withString:@"|KG|"];
+    str = [str stringByReplacingOccurrencesOfString:@"\n" withString:@"|HC|"];
+    
+    NSDictionary *params = @{
+                             @"picturename": [NSString stringWithFormat:@"%d.jpg", (int)[[NSDate date] timeIntervalSince1970]],
+                             @"img": str
+                             };
+    [MemberAPI uploadImageWithParameters:params success:success failure:failure];
+}
 + (void)setUserDescribeWithParameters: (id)parameters success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
 {
     [[self sharedManager]defaultGetWithMethod:kMethodUserDescribe WithParameters:parameters success:success failure:failure];

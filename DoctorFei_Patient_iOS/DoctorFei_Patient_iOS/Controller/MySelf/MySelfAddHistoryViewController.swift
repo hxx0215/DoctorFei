@@ -42,13 +42,18 @@ class MySelfAddHistoryViewController: UIViewController,UICollectionViewDelegate,
         var cell = collectionView.dequeueReusableCellWithReuseIdentifier(collectionViewIdentifier, forIndexPath: indexPath) as MySelfRecordAddCollectionViewCell
         if let tImages=images{
             if indexPath.row < tImages.count{
-                cell.contentImage.image = tImages[indexPath.row] as? UIImage
+                cell.contentImage.sd_setImageWithURL(NSURL(string: images![indexPath.row] as String))
             } else{
                 cell.contentImage.image = UIImage(named: "add-picture_btn.png")
             }
         }else{
             cell.contentImage.image = UIImage(named: "add-picture_btn.png")
         }
+//        if indexPath.row < images!.count{
+//            cell.contentImage.sd_setImageWithURL(NSURL(string: images![indexPath.row] as String))
+//        }else{
+//            cell.contentImage.image = UIImage(named: "add-picture_btn.png")
+//        }
         return cell
     }
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
@@ -79,6 +84,23 @@ class MySelfAddHistoryViewController: UIViewController,UICollectionViewDelegate,
         imagePickController.sourceType = sourceType
         self.presentViewController(imagePickController, animated: true, completion: {
             
+        })
+    }
+    
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
+        var image = (info as NSDictionary).objectForKey(UIImagePickerControllerEditedImage) as UIImage?
+        picker.dismissViewControllerAnimated(true, completion: {
+            if let img = image {
+                MemberAPI.uploadImage(img, {
+                    operation,responseObject in
+                    NSLog("%@", responseObject as NSObject)
+                    self.images!.addObject(((responseObject as NSArray).firstObject as NSDictionary).objectForKey("spath")!)
+                    self.collectionView.reloadData()
+                    }, failure: {
+                        operation,error in
+                        NSLog("%@", error)
+                })
+            }
         })
     }
     /*

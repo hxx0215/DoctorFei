@@ -243,7 +243,8 @@
                              @"picturename": [NSString stringWithFormat:@"%d.jpg", (int)[[NSDate date] timeIntervalSince1970]],
                              @"img": str
                              };
-    [MemberAPI uploadImageWithParameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    
+    [MemberAPI uploadImage:image success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSDictionary *dataDict = [responseObject firstObject];
         NSString *urlString = dataDict[@"spath"];
         //        NSString *urlString = [responseObject firstObject];
