@@ -359,7 +359,7 @@ typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
     [self performSegueWithIdentifier:@"ContactShowRecordSegueIdentifier" sender:sender];
 }
 - (void)showHisPage:(id)sender{
-    NSLog(@"showPage");
+    [self performSegueWithIdentifier:@"ContactLaunchAppointmentSegueIdentifier" sender:sender];
 }
 - (void)departTime:(id)sender{
     NSLog(@"depart");

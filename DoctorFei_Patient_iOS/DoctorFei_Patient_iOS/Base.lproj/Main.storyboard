@@ -882,7 +882,7 @@
                         <segue destination="WOt-U1-2bu" kind="show" id="nML-D2-BiX"/>
                         <segue destination="TMu-MZ-fe0" kind="show" id="28A-fE-6bt"/>
                         <segue destination="eeR-CC-86J" kind="show" id="xwx-0L-3BW"/>
-                        <segue destination="j2B-jm-mJS" kind="show" id="p6S-Yb-Lkm"/>
+                        <segue destination="j2B-jm-mJS" kind="show" identifier="ContactLaunchAppointmentSegueIdentifier" id="p6S-Yb-Lkm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MLS-cK-3dh" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2627,7 +2627,7 @@
         <!--发起预约-->
         <scene sceneID="wD7-t6-Wao">
             <objects>
-                <tableViewController id="j2B-jm-mJS" sceneMemberID="viewController">
+                <tableViewController id="j2B-jm-mJS" customClass="ContactLaunchApointmentTableViewController" customModule="DoctorFei_Patient_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="wwK-gO-TbM">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="487"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2681,15 +2681,28 @@
                                                     <color key="textColor" red="0.64313725489999995" green="0.64313725489999995" blue="0.64313725489999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b90-3z-zcr">
+                                                    <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                                    <state key="normal">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="timeButtonClicked:" destination="j2B-jm-mJS" eventType="touchUpInside" id="TaX-59-Z7y"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="rlv-G7-sIR" firstAttribute="leading" secondItem="lq9-Vi-A2e" secondAttribute="leading" constant="20" id="0c0-JY-efa"/>
                                                 <constraint firstItem="Iut-nJ-Qv8" firstAttribute="centerY" secondItem="IER-rn-eaV" secondAttribute="centerY" id="Dvr-YA-38e"/>
+                                                <constraint firstAttribute="bottom" secondItem="b90-3z-zcr" secondAttribute="bottom" id="Ehq-V5-Imd"/>
                                                 <constraint firstItem="IER-rn-eaV" firstAttribute="leading" secondItem="Iut-nJ-Qv8" secondAttribute="trailing" constant="6" id="WFV-vM-ZOA"/>
                                                 <constraint firstItem="Iut-nJ-Qv8" firstAttribute="leading" secondItem="rlv-G7-sIR" secondAttribute="trailing" constant="8" symbolic="YES" id="WqG-Py-Qqx"/>
                                                 <constraint firstItem="rlv-G7-sIR" firstAttribute="top" secondItem="Iut-nJ-Qv8" secondAttribute="top" id="atP-sG-iwK"/>
                                                 <constraint firstItem="Iut-nJ-Qv8" firstAttribute="centerY" secondItem="lq9-Vi-A2e" secondAttribute="centerY" id="d6C-mN-19T"/>
                                                 <constraint firstItem="rlv-G7-sIR" firstAttribute="top" secondItem="lq9-Vi-A2e" secondAttribute="top" constant="11" id="dBk-ve-3MQ"/>
+                                                <constraint firstItem="b90-3z-zcr" firstAttribute="top" secondItem="lq9-Vi-A2e" secondAttribute="top" id="ga2-5U-cW7"/>
+                                                <constraint firstAttribute="trailing" secondItem="b90-3z-zcr" secondAttribute="trailing" id="hPB-0b-MDK"/>
+                                                <constraint firstItem="b90-3z-zcr" firstAttribute="leading" secondItem="lq9-Vi-A2e" secondAttribute="leading" id="m5r-iE-NjS"/>
                                                 <constraint firstItem="rlv-G7-sIR" firstAttribute="baseline" secondItem="Iut-nJ-Qv8" secondAttribute="baseline" id="pex-Wl-1E1"/>
                                                 <constraint firstAttribute="trailing" secondItem="IER-rn-eaV" secondAttribute="trailing" constant="12" id="qJf-og-3Zw"/>
                                             </constraints>
@@ -2698,15 +2711,20 @@
                                                     <exclude reference="rlv-G7-sIR"/>
                                                     <exclude reference="IER-rn-eaV"/>
                                                     <exclude reference="Iut-nJ-Qv8"/>
+                                                    <exclude reference="b90-3z-zcr"/>
                                                 </mask>
                                                 <mask key="constraints">
-                                                    <exclude reference="Dvr-YA-38e"/>
-                                                    <exclude reference="WqG-Py-Qqx"/>
-                                                    <exclude reference="d6C-mN-19T"/>
                                                     <exclude reference="0c0-JY-efa"/>
                                                     <exclude reference="atP-sG-iwK"/>
                                                     <exclude reference="dBk-ve-3MQ"/>
                                                     <exclude reference="pex-Wl-1E1"/>
+                                                    <exclude reference="Dvr-YA-38e"/>
+                                                    <exclude reference="WqG-Py-Qqx"/>
+                                                    <exclude reference="d6C-mN-19T"/>
+                                                    <exclude reference="Ehq-V5-Imd"/>
+                                                    <exclude reference="ga2-5U-cW7"/>
+                                                    <exclude reference="hPB-0b-MDK"/>
+                                                    <exclude reference="m5r-iE-NjS"/>
                                                     <exclude reference="WFV-vM-ZOA"/>
                                                     <exclude reference="qJf-og-3Zw"/>
                                                 </mask>
@@ -2716,15 +2734,20 @@
                                                     <include reference="rlv-G7-sIR"/>
                                                     <include reference="IER-rn-eaV"/>
                                                     <include reference="Iut-nJ-Qv8"/>
+                                                    <include reference="b90-3z-zcr"/>
                                                 </mask>
                                                 <mask key="constraints">
-                                                    <include reference="Dvr-YA-38e"/>
-                                                    <include reference="WqG-Py-Qqx"/>
-                                                    <include reference="d6C-mN-19T"/>
                                                     <include reference="0c0-JY-efa"/>
                                                     <include reference="atP-sG-iwK"/>
                                                     <include reference="dBk-ve-3MQ"/>
                                                     <include reference="pex-Wl-1E1"/>
+                                                    <include reference="Dvr-YA-38e"/>
+                                                    <include reference="WqG-Py-Qqx"/>
+                                                    <include reference="d6C-mN-19T"/>
+                                                    <include reference="Ehq-V5-Imd"/>
+                                                    <include reference="ga2-5U-cW7"/>
+                                                    <include reference="hPB-0b-MDK"/>
+                                                    <include reference="m5r-iE-NjS"/>
                                                     <include reference="WFV-vM-ZOA"/>
                                                     <include reference="qJf-og-3Zw"/>
                                                 </mask>
