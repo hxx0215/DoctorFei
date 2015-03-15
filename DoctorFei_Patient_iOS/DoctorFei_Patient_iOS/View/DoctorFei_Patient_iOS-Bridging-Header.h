@@ -4,6 +4,7 @@
 
 #import <UIImageView+WebCache.h>
 #import <MBProgressHUD.h>
-#import <ActionSheetDatePicker.h>
+#import <ActionSheetPicker.h>
 #import "swiftActionSheet.h"
 #import "MemberAPI.h"
+#import "TextBasicInfoViewController.h"

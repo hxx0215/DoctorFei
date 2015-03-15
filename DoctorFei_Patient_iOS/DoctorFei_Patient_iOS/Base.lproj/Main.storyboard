@@ -2830,7 +2830,7 @@
                                             </variation>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="LHY-gT-VvZ" kind="show" id="PZz-Jx-16t"/>
+                                            <segue destination="LHY-gT-VvZ" kind="show" identifier="LaunchAppointmentNameSegueIdentifier" id="PZz-Jx-16t"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="Skd-4E-iKG">
@@ -2866,6 +2866,9 @@
                                                             <include reference="hMW-U5-liy"/>
                                                         </mask>
                                                     </variation>
+                                                    <connections>
+                                                        <action selector="maleButtonClicked:" destination="j2B-jm-mJS" eventType="touchUpInside" id="NkZ-wq-2Eo"/>
+                                                    </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IBN-4Q-2Nt">
                                                     <rect key="frame" x="-23" y="-15" width="46" height="30"/>
@@ -2889,6 +2892,9 @@
                                                             <include reference="w05-vx-1dc"/>
                                                         </mask>
                                                     </variation>
+                                                    <connections>
+                                                        <action selector="maleButtonClicked:" destination="j2B-jm-mJS" eventType="touchUpInside" id="Qao-oe-fQD"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>
@@ -2989,16 +2995,29 @@
                                                     <color key="textColor" red="0.64313725489999995" green="0.64313725489999995" blue="0.64313725489999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B7e-L6-x22">
+                                                    <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                                    <state key="normal">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="ageButtonClicked:" destination="j2B-jm-mJS" eventType="touchUpInside" id="aL4-0h-xch"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="Zbu-dg-i3I" firstAttribute="centerY" secondItem="BUZ-VX-vsy" secondAttribute="centerY" id="8aJ-Zq-g6J"/>
+                                                <constraint firstItem="B7e-L6-x22" firstAttribute="top" secondItem="KlP-fw-EO2" secondAttribute="top" id="9mg-rV-2cW"/>
                                                 <constraint firstItem="wLt-6D-R83" firstAttribute="top" secondItem="Zbu-dg-i3I" secondAttribute="top" id="DC1-JW-HXW"/>
                                                 <constraint firstItem="BUZ-VX-vsy" firstAttribute="leading" secondItem="Zbu-dg-i3I" secondAttribute="trailing" constant="6" id="Kdp-Mb-jgV"/>
+                                                <constraint firstItem="B7e-L6-x22" firstAttribute="leading" secondItem="KlP-fw-EO2" secondAttribute="leading" id="PCL-W5-kAr"/>
                                                 <constraint firstItem="wLt-6D-R83" firstAttribute="centerY" secondItem="KlP-fw-EO2" secondAttribute="centerY" id="TlL-rH-eow"/>
                                                 <constraint firstAttribute="trailing" secondItem="BUZ-VX-vsy" secondAttribute="trailing" constant="12" id="UCK-Ew-dgO"/>
                                                 <constraint firstItem="wLt-6D-R83" firstAttribute="leading" secondItem="KlP-fw-EO2" secondAttribute="leading" constant="20" id="aDx-64-J3d"/>
                                                 <constraint firstItem="Zbu-dg-i3I" firstAttribute="baseline" secondItem="wLt-6D-R83" secondAttribute="baseline" id="aR4-Sj-91G"/>
+                                                <constraint firstAttribute="bottom" secondItem="B7e-L6-x22" secondAttribute="bottom" id="c2O-62-AxI"/>
                                                 <constraint firstItem="wLt-6D-R83" firstAttribute="top" secondItem="KlP-fw-EO2" secondAttribute="top" constant="11" id="min-zF-d6G"/>
+                                                <constraint firstAttribute="trailing" secondItem="B7e-L6-x22" secondAttribute="trailing" id="txu-AZ-Yid"/>
                                                 <constraint firstItem="Zbu-dg-i3I" firstAttribute="leading" secondItem="wLt-6D-R83" secondAttribute="trailing" constant="8" symbolic="YES" id="xCt-ii-3hh"/>
                                             </constraints>
                                             <variation key="default">
@@ -3006,15 +3025,20 @@
                                                     <exclude reference="wLt-6D-R83"/>
                                                     <exclude reference="BUZ-VX-vsy"/>
                                                     <exclude reference="Zbu-dg-i3I"/>
+                                                    <exclude reference="B7e-L6-x22"/>
                                                 </mask>
                                                 <mask key="constraints">
-                                                    <exclude reference="8aJ-Zq-g6J"/>
-                                                    <exclude reference="aR4-Sj-91G"/>
-                                                    <exclude reference="xCt-ii-3hh"/>
                                                     <exclude reference="DC1-JW-HXW"/>
                                                     <exclude reference="TlL-rH-eow"/>
                                                     <exclude reference="aDx-64-J3d"/>
                                                     <exclude reference="min-zF-d6G"/>
+                                                    <exclude reference="8aJ-Zq-g6J"/>
+                                                    <exclude reference="aR4-Sj-91G"/>
+                                                    <exclude reference="xCt-ii-3hh"/>
+                                                    <exclude reference="9mg-rV-2cW"/>
+                                                    <exclude reference="PCL-W5-kAr"/>
+                                                    <exclude reference="c2O-62-AxI"/>
+                                                    <exclude reference="txu-AZ-Yid"/>
                                                     <exclude reference="Kdp-Mb-jgV"/>
                                                     <exclude reference="UCK-Ew-dgO"/>
                                                 </mask>
@@ -3024,15 +3048,20 @@
                                                     <include reference="wLt-6D-R83"/>
                                                     <include reference="BUZ-VX-vsy"/>
                                                     <include reference="Zbu-dg-i3I"/>
+                                                    <include reference="B7e-L6-x22"/>
                                                 </mask>
                                                 <mask key="constraints">
-                                                    <include reference="8aJ-Zq-g6J"/>
-                                                    <include reference="aR4-Sj-91G"/>
-                                                    <include reference="xCt-ii-3hh"/>
                                                     <include reference="DC1-JW-HXW"/>
                                                     <include reference="TlL-rH-eow"/>
                                                     <include reference="aDx-64-J3d"/>
                                                     <include reference="min-zF-d6G"/>
+                                                    <include reference="8aJ-Zq-g6J"/>
+                                                    <include reference="aR4-Sj-91G"/>
+                                                    <include reference="xCt-ii-3hh"/>
+                                                    <include reference="9mg-rV-2cW"/>
+                                                    <include reference="PCL-W5-kAr"/>
+                                                    <include reference="c2O-62-AxI"/>
+                                                    <include reference="txu-AZ-Yid"/>
                                                     <include reference="Kdp-Mb-jgV"/>
                                                     <include reference="UCK-Ew-dgO"/>
                                                 </mask>
@@ -3111,7 +3140,7 @@
                                             </variation>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="LHY-gT-VvZ" kind="show" id="PBF-TY-a31"/>
+                                            <segue destination="LHY-gT-VvZ" kind="show" identifier="LaunchAppointmentMobileSegueIdentifier" id="PBF-TY-a31"/>
                                         </connections>
                                     </tableViewCell>
                                 </cells>
@@ -3199,11 +3228,26 @@
                     <navigationItem key="navigationItem" title="发起预约" id="mtl-ZT-uQp">
                         <barButtonItem key="leftBarButtonItem" image="return.png" id="bof-9s-37S">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="backButtonClicked:" destination="j2B-jm-mJS" id="SuT-ah-dNd"/>
+                            </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="发送" id="g3Q-Df-uoY">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="sendButtonClicked:" destination="j2B-jm-mJS" id="i2W-PO-rph"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="ageLabel" destination="Zbu-dg-i3I" id="bLj-dc-0lu"/>
+                        <outlet property="dateLabel" destination="Iut-nJ-Qv8" id="D2c-t6-x4Q"/>
+                        <outlet property="detailContent" destination="DOC-s8-IvL" id="OC3-es-6yx"/>
+                        <outlet property="femaleButton" destination="IBN-4Q-2Nt" id="yJT-bb-NCq"/>
+                        <outlet property="maleButton" destination="vYA-hX-qJe" id="ITk-2y-lgN"/>
+                        <outlet property="mobileLabel" destination="D6b-e1-haa" id="DP9-TF-ujj"/>
+                        <outlet property="nameLabel" destination="583-eX-kwo" id="yPA-HE-Ogv"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mdg-g6-hIR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -9575,9 +9619,9 @@
         <image name="the-phone-book_icon-03.png" width="36" height="36"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="za8-Z1-TCX"/>
         <segue reference="jqJ-9d-6M3"/>
-        <segue reference="PZz-Jx-16t"/>
+        <segue reference="PBF-TY-a31"/>
+        <segue reference="AUh-4L-m1M"/>
         <segue reference="2W9-8n-Hth"/>
     </inferredMetricsTieBreakers>
 </document>

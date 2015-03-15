@@ -18,7 +18,7 @@
 #import "Chat.h"
 #import "MemberAPI.h"
 #import "ContactDetailPopoverViewController.h"
-
+#import "DoctorFei_Patient_iOS-swift.h"
 typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
     SMSToolbarSendMethodVoice,
     SMSToolbarSendMethodText
@@ -359,12 +359,13 @@ typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
     [self performSegueWithIdentifier:@"ContactShowRecordSegueIdentifier" sender:sender];
 }
 - (void)showHisPage:(id)sender{
-    [self performSegueWithIdentifier:@"ContactLaunchAppointmentSegueIdentifier" sender:sender];
+    
 }
 - (void)departTime:(id)sender{
     NSLog(@"depart");
 }
 - (void)launchAppointment:(id)sender{
+    [self performSegueWithIdentifier:@"ContactLaunchAppointmentSegueIdentifier" sender:sender];
     NSLog(@"launch");
 }
 
@@ -392,6 +393,10 @@ typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
         self.popover.theme.fillBottomColor = [UIColor darkGrayColor];
         self.popover.theme.arrowHeight = 8.0f;
         self.popover.popoverLayoutMargins = UIEdgeInsetsZero;
+    }
+    if ([segue.identifier isEqualToString:@"ContactLaunchAppointmentSegueIdentifier"]){
+        ContactLaunchApointmentTableViewController *vc = [segue destinationViewController];
+        vc.doctorId = self.currentFriend.userId;
     }
 }
 
