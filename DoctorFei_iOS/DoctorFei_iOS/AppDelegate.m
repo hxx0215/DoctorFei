@@ -24,7 +24,7 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-//    [[NSUserDefaults standardUserDefaults] setObject:@(56) forKey:@"UserId"];
+//    [[NSUserDefaults standardUserDefaults] setObject:@(139) forKey:@"UserId"];
     // Override point for customization after application launch.
 #if TARGET_IPHONE_SIMULATOR
     NSLog(@"Documents Directory: %@", [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject]);

@@ -2,7 +2,7 @@
 //  Friends.m
 //  DoctorFei_iOS
 //
-//  Created by GuJunjia on 15/3/12.
+//  Created by GuJunjia on 15/3/14.
 //
 //
 
@@ -24,6 +24,9 @@
 @dynamic situation;
 @dynamic userId;
 @dynamic userType;
+@dynamic hospital;
+@dynamic department;
+@dynamic otherContact;
 @dynamic chat;
 @dynamic group;
 @dynamic messages;

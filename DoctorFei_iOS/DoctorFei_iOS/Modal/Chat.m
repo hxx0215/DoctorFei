@@ -2,7 +2,7 @@
 //  Chat.m
 //  DoctorFei_iOS
 //
-//  Created by GuJunjia on 15/3/12.
+//  Created by GuJunjia on 15/3/15.
 //
 //
 
@@ -13,11 +13,10 @@
 
 @implementation Chat
 
-@dynamic lastMessageContent;
-@dynamic lastMessageTime;
 @dynamic type;
 @dynamic unreadMessageCount;
-@dynamic user;
+@dynamic chatId;
 @dynamic messages;
+@dynamic user;
 
 @end
