@@ -362,7 +362,7 @@ typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
     
 }
 - (void)departTime:(id)sender{
-    NSLog(@"depart");
+    [self performSegueWithIdentifier:@"AgendaTimeScheduleSegueIdentifier" sender:sender];
 }
 - (void)launchAppointment:(id)sender{
     [self performSegueWithIdentifier:@"ContactLaunchAppointmentSegueIdentifier" sender:sender];
@@ -396,6 +396,10 @@ typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
     }
     if ([segue.identifier isEqualToString:@"ContactLaunchAppointmentSegueIdentifier"]){
         ContactLaunchApointmentTableViewController *vc = [segue destinationViewController];
+        vc.doctorId = self.currentFriend.userId;
+    }
+    if ([segue.identifier isEqualToString:@"AgendaTimeScheduleSegueIdentifier"]){
+        AgendaTimeScheduleViewController *vc = [segue destinationViewController];
         vc.doctorId = self.currentFriend.userId;
     }
 }

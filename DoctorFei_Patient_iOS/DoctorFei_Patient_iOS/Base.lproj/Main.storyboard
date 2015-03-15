@@ -881,7 +881,7 @@
                         <segue destination="3Tq-yN-1WH" kind="show" id="tM4-ud-G8V"/>
                         <segue destination="WOt-U1-2bu" kind="show" id="nML-D2-BiX"/>
                         <segue destination="TMu-MZ-fe0" kind="show" id="28A-fE-6bt"/>
-                        <segue destination="eeR-CC-86J" kind="show" id="xwx-0L-3BW"/>
+                        <segue destination="eeR-CC-86J" kind="show" identifier="AgendaTimeScheduleSegueIdentifier" id="xwx-0L-3BW"/>
                         <segue destination="j2B-jm-mJS" kind="show" identifier="ContactLaunchAppointmentSegueIdentifier" id="p6S-Yb-Lkm"/>
                     </connections>
                 </viewController>
@@ -2190,7 +2190,7 @@
         <!--门诊时间-->
         <scene sceneID="bOL-Gu-t2Z">
             <objects>
-                <viewController id="eeR-CC-86J" sceneMemberID="viewController">
+                <viewController id="eeR-CC-86J" customClass="AgendaTimeScheduleViewController" customModule="DoctorFei_Patient_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="vqj-fr-ZSB"/>
                         <viewControllerLayoutGuide type="bottom" id="BOS-Fl-ABC"/>
@@ -2508,7 +2508,8 @@
                                         <exclude reference="qKS-B4-ozg"/>
                                     </mask>
                                 </variation>
-                                <variation key="heightClass=regular-widthClass=compact">
+                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="50" y="168" width="301" height="353"/>
                                     <mask key="subviews">
                                         <include reference="suE-Ra-mFt"/>
                                         <include reference="J4Q-e4-Inl"/>
@@ -2617,8 +2618,14 @@
                     <navigationItem key="navigationItem" title="门诊时间" id="1Rf-9k-8t3">
                         <barButtonItem key="leftBarButtonItem" image="return.png" id="QWB-3D-LQc">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="backButtonClicked:" destination="eeR-CC-86J" id="fd4-xc-x5r"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="scheduleTableBackImage" destination="suE-Ra-mFt" id="brQ-Wl-BtI"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QvI-7H-YYT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -103,6 +103,10 @@
 		B9154DC31AB1673300423B80 /* MySelfRecordAddCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9154DC21AB1673300423B80 /* MySelfRecordAddCollectionViewCell.swift */; };
 		B9154DC61AB1773500423B80 /* swiftActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = B9154DC51AB1773500423B80 /* swiftActionSheet.m */; };
 		B9BF2A5D1AB327EB003593A7 /* ContactLaunchApointmentTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9BF2A5C1AB327EB003593A7 /* ContactLaunchApointmentTableViewController.swift */; };
+		B9BF2A641AB58485003593A7 /* form_1.png in Resources */ = {isa = PBXBuildFile; fileRef = B9BF2A611AB58485003593A7 /* form_1.png */; };
+		B9BF2A651AB58486003593A7 /* form_1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B9BF2A621AB58485003593A7 /* form_1@2x.png */; };
+		B9BF2A661AB58486003593A7 /* form_1@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = B9BF2A631AB58485003593A7 /* form_1@3x.png */; };
+		B9BF2A681AB5B3D0003593A7 /* AgendaTimeScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9BF2A671AB5B3D0003593A7 /* AgendaTimeScheduleViewController.swift */; };
 		B9E175DD1AAFBF650024967C /* MySelfRecordListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E175DB1AAFBF650024967C /* MySelfRecordListTableViewCell.swift */; };
 		B9E175DE1AAFBF650024967C /* MySelfRecordListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9E175DC1AAFBF650024967C /* MySelfRecordListTableViewCell.xib */; };
 		D3B9F9C11A712D150024F1DF /* Add-as-a-friend_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = D3B9F7E41A712D120024F1DF /* Add-as-a-friend_btn.png */; };
@@ -772,6 +776,10 @@
 		B9154DC41AB1773500423B80 /* swiftActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = swiftActionSheet.h; sourceTree = "<group>"; };
 		B9154DC51AB1773500423B80 /* swiftActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = swiftActionSheet.m; sourceTree = "<group>"; };
 		B9BF2A5C1AB327EB003593A7 /* ContactLaunchApointmentTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactLaunchApointmentTableViewController.swift; sourceTree = "<group>"; };
+		B9BF2A611AB58485003593A7 /* form_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = form_1.png; sourceTree = "<group>"; };
+		B9BF2A621AB58485003593A7 /* form_1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "form_1@2x.png"; sourceTree = "<group>"; };
+		B9BF2A631AB58485003593A7 /* form_1@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "form_1@3x.png"; sourceTree = "<group>"; };
+		B9BF2A671AB5B3D0003593A7 /* AgendaTimeScheduleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AgendaTimeScheduleViewController.swift; sourceTree = "<group>"; };
 		B9E175D61AAF3B850024967C /* DoctorFei_Patient_iOS-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "DoctorFei_Patient_iOS-Bridging-Header.h"; path = "View/DoctorFei_Patient_iOS-Bridging-Header.h"; sourceTree = "<group>"; };
 		B9E175DB1AAFBF650024967C /* MySelfRecordListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MySelfRecordListTableViewCell.swift; sourceTree = "<group>"; };
 		B9E175DC1AAFBF650024967C /* MySelfRecordListTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MySelfRecordListTableViewCell.xib; sourceTree = "<group>"; };
@@ -1495,6 +1503,7 @@
 				6A6D07171AB168E50052EA5A /* ContactAddByTelViewController.h */,
 				6A6D07181AB168E50052EA5A /* ContactAddByTelViewController.m */,
 				B9BF2A5C1AB327EB003593A7 /* ContactLaunchApointmentTableViewController.swift */,
+				B9BF2A671AB5B3D0003593A7 /* AgendaTimeScheduleViewController.swift */,
 			);
 			path = Contact;
 			sourceTree = "<group>";
@@ -1832,6 +1841,9 @@
 				D3B9F8831A712D130024F1DF /* fold-line01.png */,
 				D3B9F8841A712D130024F1DF /* fold-line01@2x.png */,
 				D3B9F8851A712D130024F1DF /* fold-line01@3x.png */,
+				B9BF2A611AB58485003593A7 /* form_1.png */,
+				B9BF2A621AB58485003593A7 /* form_1@2x.png */,
+				B9BF2A631AB58485003593A7 /* form_1@3x.png */,
 				D3B9F8861A712D130024F1DF /* form.png */,
 				D3B9F8871A712D130024F1DF /* form@2x.png */,
 				D3B9F8881A712D130024F1DF /* form@3x.png */,
@@ -2450,6 +2462,7 @@
 				D3B9FA7C1A712D150024F1DF /* home-icon02_btn@2x.png in Resources */,
 				D3B9FB2F1A712D150024F1DF /* search-box-02_bg.png in Resources */,
 				D3B9FB961A712D150024F1DF /* voice_btn_after@2x.png in Resources */,
+				B9BF2A641AB58485003593A7 /* form_1.png in Resources */,
 				D3B9FA731A712D150024F1DF /* group-data_btn_after@2x.png in Resources */,
 				6A28DDD21A9E2A5C00B50F8E /* off_line@3x.png in Resources */,
 				D3B9FA831A712D150024F1DF /* home-icon03_btn@3x.png in Resources */,
@@ -2557,6 +2570,7 @@
 				6A7E7F4D1AA74F5E00E0D736 /* refresh_after.png in Resources */,
 				D3B9FA021A712D150024F1DF /* button_wide-03_btn@3x.png in Resources */,
 				D3B9FAC41A712D150024F1DF /* logo_prompt-01_pic@2x.png in Resources */,
+				B9BF2A651AB58486003593A7 /* form_1@2x.png in Resources */,
 				D3B9FA841A712D150024F1DF /* home-icon03_btn_after.png in Resources */,
 				D3B9FA2A1A712D150024F1DF /* dector_tag.png in Resources */,
 				D3B9FAFF1A712D150024F1DF /* pitch-on-02_after.png in Resources */,
@@ -2744,6 +2758,7 @@
 				D3B9FA321A712D150024F1DF /* dialog-boxes_bg@3x.png in Resources */,
 				D3B9FAD21A712D150024F1DF /* mic_bg.png in Resources */,
 				D3B9FB271A712D150024F1DF /* return@2x.png in Resources */,
+				B9BF2A661AB58486003593A7 /* form_1@3x.png in Resources */,
 				D3B9FA391A712D150024F1DF /* download_pic.png in Resources */,
 				D3B9FA291A712D150024F1DF /* corner-mark_bg@3x.png in Resources */,
 				D3B9F9CC1A712D150024F1DF /* add-doctor_btn_after@3x.png in Resources */,
@@ -2846,6 +2861,7 @@
 				6A28DE081AA1903C00B50F8E /* ContactDetailPopoverViewController.m in Sources */,
 				6A28DE2F1AA31E6100B50F8E /* ContactGroupChatListViewController.m in Sources */,
 				6A28DDC11A9E07C700B50F8E /* MessagesModalData.m in Sources */,
+				B9BF2A681AB5B3D0003593A7 /* AgendaTimeScheduleViewController.swift in Sources */,
 				6A28DE3C1AA332A300B50F8E /* MySelfChangePasswordTableViewController.m in Sources */,
 				B9154DC61AB1773500423B80 /* swiftActionSheet.m in Sources */,
 				6A28DDBA1A9E07C700B50F8E /* SetNewPasswordTableViewController.m in Sources */,
