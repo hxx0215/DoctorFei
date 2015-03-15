@@ -16,6 +16,7 @@
 @property (nonatomic, retain) NSNumber * type;
 @property (nonatomic, retain) NSNumber * unreadMessageCount;
 @property (nonatomic, retain) NSNumber * chatId;
+@property (nonatomic, retain) NSString * title;
 @property (nonatomic, retain) NSSet *messages;
 @property (nonatomic, retain) NSSet *user;
 @end

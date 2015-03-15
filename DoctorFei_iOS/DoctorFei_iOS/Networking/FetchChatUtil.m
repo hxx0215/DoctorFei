@@ -20,7 +20,7 @@
     if (friend == nil) {
         friend = [Friends MR_createEntity];
         friend.userId = userId;
-        friend.userType = @2;
+        friend.userType = userType;
     }
     friend.icon = dataDict[@"icon"];
     friend.realname = dataDict[@"realname"];
@@ -32,6 +32,7 @@
     friend.hospital = dataDict[@"hospital"];
     friend.department = dataDict[@"department"];
     friend.otherContact = dataDict[@"OtherContact"];
+    friend.isFriend = @([dataDict[@"friend"] intValue]);
     [[NSManagedObjectContext MR_defaultContext]MR_saveToPersistentStoreAndWait];
 }
 
@@ -103,13 +104,15 @@
     if (doctorId == nil || userId == nil || userType == nil || chatType == nil) {
         return;
     }
-    Friends *friend = [Friends MR_findFirstWithPredicate:[NSPredicate predicateWithFormat:@"userId == %@ && userType == %@"]];
+    Friends *friend = [Friends MR_findFirstWithPredicate:[NSPredicate predicateWithFormat:@"userId == %@ && userType == %@", userId, userType]];
     Chat *chat = [Chat MR_findFirstWithPredicate:[NSPredicate predicateWithFormat:@"type == %@ AND (ANY user == %@)", chatType, friend]];
     if (chat == nil) {
         chat = [Chat MR_createEntity];
         chat.type = chatType;
-        [chat.user setByAddingObject:friend];
+        chat.user = [chat.user setByAddingObject:friend];
     }
+    [[NSManagedObjectContext MR_defaultContext]MR_saveToPersistentStoreAndWait];
+
 //    Friends *friend = [Friends MR_findFirstByAttribute:@"userId" withValue:userId];
     Message *lastMessage = [Message MR_findFirstWithPredicate:[NSPredicate predicateWithFormat:@"chat == %@ AND user == %@", chat,friend] sortedBy:@"messageId" ascending:YES];
 //    Message *lastMessage = [[Message MR_findByAttribute:@"user" withValue:friend andOrderBy:@"messageId" ascending:YES]lastObject];
@@ -132,7 +135,8 @@
         NSLog(@"GetChat: %@", responseObject);
         NSArray *messageArray = (NSArray *)responseObject;
 //        Friends *messageFriend = [Friends MR_findFirstByAttribute:@"userId" withValue:userId];
-        Friends *messageFriend = [Friends MR_findFirstWithPredicate:[NSPredicate predicateWithFormat:@"userId == %@ && userType == %@"]];
+        Chat *messageChat = [Chat MR_findFirstWithPredicate:[NSPredicate predicateWithFormat:@"type == %@ AND (ANY user == %@)", chatType, friend]];
+        Friends *messageFriend = [Friends MR_findFirstWithPredicate:[NSPredicate predicateWithFormat:@"userId == %@ && userType == %@", userId, userType]];
         for (NSDictionary *dict in messageArray) {
             Message *message = [Message MR_findFirstByAttribute:@"messageId" withValue:dict[@"id"]];
             if (message == nil) {
@@ -145,6 +149,8 @@
             message.flag = @([dict[@"flag"]intValue]);
             message.msgType = dict[@"msgtype"];
             message.user = [dict[@"flag"] intValue] ? nil :messageFriend;
+//            chat.messages = [chat.messages setByAddingObject:message];
+            message.chat = messageChat;
         }
 //        [[NSManagedObjectContext MR_defaultContext]MR_saveToPersistentStoreAndWait];
 //        Chat *chat = [Chat MR_findFirstByAttribute:@"user" withValue:messageFriend];

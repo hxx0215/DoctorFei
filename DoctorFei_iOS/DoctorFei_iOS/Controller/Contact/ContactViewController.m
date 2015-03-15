@@ -193,6 +193,7 @@
             friend.userType = @([dict[@"usertype"]intValue]);
             friend.noteName = dict[@"notename"];
             friend.situation = dict[@"describe"];
+            friend.isFriend = @YES;
         }
         [[NSManagedObjectContext MR_defaultContext]MR_saveToPersistentStoreAndWait];
         [self reloadTableViewData];

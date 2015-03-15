@@ -2,7 +2,7 @@
 //  Friends.h
 //  DoctorFei_iOS
 //
-//  Created by GuJunjia on 15/3/14.
+//  Created by GuJunjia on 15/3/15.
 //
 //
 
@@ -26,6 +26,7 @@
 @property (nonatomic, retain) NSString * hospital;
 @property (nonatomic, retain) NSString * department;
 @property (nonatomic, retain) NSString * otherContact;
+@property (nonatomic, retain) NSNumber * isFriend;
 @property (nonatomic, retain) NSSet *chat;
 @property (nonatomic, retain) Groups *group;
 @property (nonatomic, retain) NSSet *messages;

@@ -9,8 +9,8 @@
 #import "UserAPI.h"
 #define kMethodUserInfomation @"get.user.infomation"
 #define kMethodFeedBack @"set.feed.back"
-#define kMethodGetDoctorInfomation @"get.doctor.infomation"
-#define kMethodGetMemberInfomation @"get.member.infomtaion"
+#define kMethodGetDoctorInfomation @"get.doctor.information"
+#define kMethodGetMemberInfomation @"get.member.information"
 @implementation UserAPI
 
 + (void)getUserInfomationWithParameters: (id)parameters success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure {

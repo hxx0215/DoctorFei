@@ -16,6 +16,7 @@
 @dynamic type;
 @dynamic unreadMessageCount;
 @dynamic chatId;
+@dynamic title;
 @dynamic messages;
 @dynamic user;
 

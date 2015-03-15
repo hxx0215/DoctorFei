@@ -61,7 +61,7 @@
             [self.nameLabel setText: friend.realname];
         }
         //
-        Message *lastMessage = [Message MR_findFirstWithPredicate:[NSPredicate predicateWithFormat:@"chat == %@", _currentChat] sortedBy:@"messageId" ascending:YES];
+        Message *lastMessage = [Message MR_findFirstWithPredicate:[NSPredicate predicateWithFormat:@"chat == %@", _currentChat] sortedBy:@"messageId" ascending:NO];
         if (lastMessage == nil) {
             [self.lastMessageLabel setText:@"没有消息记录"];
         }

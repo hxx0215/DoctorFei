@@ -27,6 +27,9 @@
 #import "DoctorAPI.h"
 #import "ContactTransferViewController.h"
 
+#import "ContactPeronsalFriendDetailTableViewController.h"
+#import "ContactDoctorFriendDetailTableViewController.h"
+
 typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
     SMSToolbarSendMethodVoice,
     SMSToolbarSendMethodText
@@ -344,8 +347,8 @@ typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
     NSString *myName = [[NSUserDefaults standardUserDefaults] objectForKey:@"UserRealName"];
     NSString *mySenderId = self.senderId;
     _modalData.messages = [NSMutableArray array];
-    
-    messageArray = [_currentChat.messages allObjects];
+    messageArray = [Message MR_findByAttribute:@"chat" withValue:_currentChat andOrderBy:@"messageId" ascending:YES];
+//    messageArray = [_currentChat.messages allObjects] ;
     for (Message *message in messageArray) {
         NSString *senderId, *senderName;
         if ([message.flag intValue] == 0) {
@@ -387,7 +390,7 @@ typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
     [avatarDict setObject:myAvatarImage forKey:mySenderId];
     
     for (Friends *friend in _currentChat.user) {
-        NSString *userSenderId = [friend.userId stringValue];
+        NSString *userSenderId = [NSString stringWithFormat:@"%@;%@",[friend.userId stringValue],[friend.userType stringValue]];
         JSQMessagesAvatarImage *userAvatarImage = [JSQMessagesAvatarImage avatarImageWithPlaceholder:[UIImage imageNamed:@"details_uers_example_pic"]];
         if (friend.icon && friend.icon.length > 0) {
             [[SDWebImageManager sharedManager]downloadImageWithURL:[NSURL URLWithString:friend.icon] options:0 progress:^(NSInteger receivedSize, NSInteger expectedSize) {
@@ -410,11 +413,12 @@ typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
     _modalData.messages = [NSMutableArray array];
     
     //    messageArray = [Message MR_findByAttribute:@"user" withValue:_currentFriend andOrderBy:@"messageId" ascending:YES];
-    messageArray = [_currentChat.messages allObjects];
+        messageArray = [Message MR_findByAttribute:@"chat" withValue:_currentChat andOrderBy:@"messageId" ascending:YES];
+//    messageArray = [_currentChat.messages allObjects];
     for (Message *message in messageArray) {
         NSString *senderId, *senderName;
         if ([message.flag intValue] == 0) {
-            senderId = [message.user.userId stringValue];
+            senderId = [NSString stringWithFormat:@"%@;%@",[message.user.userId stringValue],[message.user.userType stringValue]];
             senderName = message.user.realname;
         }
         else{
@@ -482,12 +486,23 @@ typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
     //资料
-    if ([segue.identifier isEqualToString:@"FriendDetailSegueIdentifier"]) {
-        ContactFriendDetailTableViewController *vc = [segue destinationViewController];
-//        [vc setCurrentFriend:_currentFriend];
+    if ([segue.identifier isEqualToString:@"ContactDetailDoctorSegueIdentifier"]) {
+        Friends *friend = (Friends *)sender;
+        ContactDoctorFriendDetailTableViewController *vc = [segue destinationViewController];
+        [vc setCurrentFriend:friend];
+        [vc setMode:ContactDoctorFriendDetailModeNormal];
+    }else if ([segue.identifier isEqualToString:@"ContactDetailMemberSegueIdentifier"]) {
+        Friends *friend = (Friends *)sender;
+        ContactPeronsalFriendDetailTableViewController *vc = [segue destinationViewController];
+        [vc setCurrentFriend:friend];
+        [vc setMode:ContactPersonalFriendDetailModeNormal];
     }
+//    else if ([segue.identifier isEqualToString:@"FriendDetailSegueIdentifier"]) {
+//        ContactFriendDetailTableViewController *vc = [segue destinationViewController];
+////        [vc setCurrentFriend:_currentFriend];
+//    }
     //弹出框
-    if ([segue.identifier isEqualToString:@"ContactDetailActionSegueIdentifier"]){
+    else if ([segue.identifier isEqualToString:@"ContactDetailActionSegueIdentifier"]){
         ContactDetailPopoverViewController *vc = [segue destinationViewController];
         vc.showRecord = ^{
             [self performSegueWithIdentifier:@"ContactShowRecordSegueIdentifier" sender:nil];
@@ -517,7 +532,7 @@ typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
         self.popover.popoverLayoutMargins = UIEdgeInsetsZero;
     }
     //会诊或转诊
-    if ([segue.identifier isEqualToString:@"ContactConsultationTransferSegueIdentifier"]){
+    else if ([segue.identifier isEqualToString:@"ContactConsultationTransferSegueIdentifier"]){
         NSInteger mode = [sender integerValue];
         UINavigationController *nav = [segue destinationViewController];
         ContactViewController *vc = (ContactViewController *)nav.viewControllers[0];
@@ -545,12 +560,12 @@ typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
         }
     }
     //病历本
-    if ([[segue identifier] isEqualToString:@"ContactShowRecordSegueIdentifier"]){
+    else if ([[segue identifier] isEqualToString:@"ContactShowRecordSegueIdentifier"]){
         ContactRecordTableViewController *vc = [segue destinationViewController];
         Friends *currentFriend = _currentChat.user.allObjects.firstObject;
         vc.patientID = currentFriend.userId;
     }
-    if ([[segue identifier] isEqualToString:@"ContactTransferSegueIdentifier"]){
+    else if ([[segue identifier] isEqualToString:@"ContactTransferSegueIdentifier"]){
         ContactTransferViewController *vc = (ContactTransferViewController *)((UINavigationController *)[segue destinationViewController]).topViewController;
         Friends *currentFriend = _currentChat.user.allObjects.firstObject;
         Friends *f = [sender firstObject];
@@ -677,7 +692,17 @@ typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
 {
     JSQMessage *currentMessage = self.modalData.messages[indexPath.item];
     if (![[currentMessage senderId]isEqualToString:self.senderId]) {
-        [self performSegueWithIdentifier:@"FriendDetailSegueIdentifier" sender:nil];
+        NSString *userSenderId = currentMessage.senderId;
+        NSArray *array = [userSenderId componentsSeparatedByString:@";"];
+        NSNumber *userId = @([array[0]intValue]);
+        NSNumber *userType = @([array[1]intValue]);
+        Friends *friend = [Friends MR_findFirstWithPredicate:[NSPredicate predicateWithFormat:@"userId == %@ AND userType == %@", userId, userType]];
+        if (userType.intValue == 2) {
+            [self performSegueWithIdentifier:@"ContactDetailDoctorSegueIdentifier" sender:friend];
+        }else{
+            [self performSegueWithIdentifier:@"ContactDetailMemberSegueIdentifier" sender:friend];
+        }
+//        [self performSegueWithIdentifier:@"FriendDetailSegueIdentifier" sender:nil];
     }
 //    NSLog(@"Tapped avatar!");
 }
