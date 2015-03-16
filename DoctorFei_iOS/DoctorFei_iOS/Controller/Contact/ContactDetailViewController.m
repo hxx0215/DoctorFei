@@ -109,6 +109,8 @@ typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
         else {
             self.title = currentFriend.realname;
         }
+    }else{
+        self.title = _currentChat.title;
     }
 }
 

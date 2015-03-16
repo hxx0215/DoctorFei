@@ -528,7 +528,15 @@
 #pragma mark - DZNEmptyDataSetSource
 
 - (NSAttributedString *)titleForEmptyDataSet:(UIScrollView *)scrollView {
-    NSAttributedString *emptyTitle = [[NSAttributedString alloc]initWithString:@"暂无患者"];
+    NSString *emptyString;
+    if (_segmentControl.selectedSegmentIndex == 0) {
+        emptyString = @"暂无医生好友";
+    }else if (_segmentControl.selectedSegmentIndex == 1){
+        emptyString = @"暂无患者好友";
+    }else if (_segmentControl.selectedSegmentIndex == 2) {
+        emptyString = @"暂无家属好友";
+    }
+    NSAttributedString *emptyTitle = [[NSAttributedString alloc]initWithString:emptyString];
     return emptyTitle;
 }
 #pragma mark - DZNEmptySetDelegate
