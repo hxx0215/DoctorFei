@@ -189,7 +189,7 @@ typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
     messageArray = [Message MR_findByAttribute:@"user" withValue:_currentFriend andOrderBy:@"messageId" ascending:YES];
     for (Message *message in messageArray) {
         NSString *senderId, *senderName;
-        if ([message.flag intValue] == 0) {
+        if ([message.flag intValue] != 0) {
             senderId = userSenderId;
             senderName = _currentFriend.realname;
         }
@@ -281,6 +281,7 @@ typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
     NSDictionary *params = @{
                              @"memberid": memberId,
                              @"userid": _currentFriend.userId,
+                             @"usertype": _currentFriend.userType,
                              @"msgtype": @"text",
                              @"content": text
                              };
@@ -294,7 +295,7 @@ typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
             newMessage.messageId = @([dataDict[@"state"]intValue]);
             newMessage.content = text;
             newMessage.createtime = [NSDate date];
-            newMessage.flag = @(1);
+            newMessage.flag = @(0);
             newMessage.msgType = @"text";
             newMessage.user = _currentFriend;
             Chat *chat = [Chat MR_findFirstByAttribute:@"user" withValue:_currentFriend];

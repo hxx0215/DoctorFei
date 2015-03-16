@@ -6,6 +6,7 @@
 //
 //
 
+
 #import "ContactDetailViewController.h"
 #import "Message.h"
 #import "Friends.h"
@@ -26,6 +27,9 @@
 #import "DoctorAPI.h"
 #import "ContactTransferViewController.h"
 
+#import "ContactPeronsalFriendDetailTableViewController.h"
+#import "ContactDoctorFriendDetailTableViewController.h"
+
 typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
     SMSToolbarSendMethodVoice,
     SMSToolbarSendMethodText
@@ -44,7 +48,7 @@ typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
     UIButton *voiceButton, *keyboardButton, *faceButton, *pictureButton, *sendVoiceButton;
     MBProgressHUD *voiceHUD;
 }
-@synthesize currentFriend = _currentFriend, modalData = _modalData;
+@synthesize /*currentFriend = _currentFriend,*/ modalData = _modalData, currentChat = _currentChat;
 
 
 - (void)viewDidLoad {
@@ -89,7 +93,7 @@ typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
     self.inputToolbar.contentView.textView.returnKeyType = UIReturnKeySend;
     self.inputToolbar.contentView.textView.delegate = self;
 
-    [self initNavigationBar];
+//    [self initNavigationBar];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -97,11 +101,16 @@ typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(reloadMessageData) name:@"NewChatArrivedNotification" object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(deleteMessage:) name:@"DeleteMessageNotification" object:nil];
     [self cleanUnreadMessageCount];
-    if (_currentFriend.noteName && _currentFriend.noteName.length > 0) {
-        self.title = _currentFriend.noteName;
-    }
-    else {
-        self.title = _currentFriend.realname;
+    if (_currentChat.type.intValue < 3){
+        Friends *currentFriend = _currentChat.user.allObjects.firstObject;
+        if (currentFriend.noteName && currentFriend.noteName.length > 0) {
+            self.title = currentFriend.noteName;
+        }
+        else {
+            self.title = currentFriend.realname;
+        }
+    }else{
+        self.title = _currentChat.title;
     }
 }
 
@@ -168,22 +177,22 @@ typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
         [sendVoiceButton setHidden:NO];
     }
 }
-- (void)initNavigationBar{
-    if (self.isDoctor)
-        self.navigationItem.rightBarButtonItem = nil;
-    switch (self.detailMode){
-        case ContactDetailModeConsultation:{
-            self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"return.png"] style:UIBarButtonItemStylePlain target:self action:@selector(dismissButtonClicked:)];
-            self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"病历", nil) style:UIBarButtonItemStylePlain target:self action:@selector(showRecordButtonClicked:)];
-            self.navigationItem.leftBarButtonItem.tintColor = [UIColor whiteColor];
-            self.navigationItem.rightBarButtonItem.tintColor = [UIColor whiteColor];
-            self.title = NSLocalizedString(@"会诊中", nil);
-        }
-            break;
-        default:
-            break;
-    }
-}
+//- (void)initNavigationBar{
+//    if (self.isDoctor)
+//        self.navigationItem.rightBarButtonItem = nil;
+//    switch (self.detailMode){
+//        case ContactDetailModeConsultation:{
+//            self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"return.png"] style:UIBarButtonItemStylePlain target:self action:@selector(dismissButtonClicked:)];
+//            self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"病历", nil) style:UIBarButtonItemStylePlain target:self action:@selector(showRecordButtonClicked:)];
+//            self.navigationItem.leftBarButtonItem.tintColor = [UIColor whiteColor];
+//            self.navigationItem.rightBarButtonItem.tintColor = [UIColor whiteColor];
+//            self.title = NSLocalizedString(@"会诊中", nil);
+//        }
+//            break;
+//        default:
+//            break;
+//    }
+//}
 #pragma mark - Button Actions
      
 - (void)sendVoiceButtonTouchDown: (UIButton *)sender {
@@ -220,52 +229,92 @@ typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
 }
 #pragma mark - Private Actions
 
-- (void)sendMessageWithText:(NSString *)text{
-    //发送消息
+- (void)sendMessageWithContent:(NSString *)content andType:(NSString *)type{
     NSNumber *doctorId = [[NSUserDefaults standardUserDefaults]objectForKey:@"UserId"];
     NSDictionary *params = @{
                              @"doctorid": doctorId,
-                             @"userid": _currentFriend.userId,
-                             @"msgtype": @"text",
-                             @"content": text
+                             @"userid": [_currentChat.user.allObjects.firstObject userId],
+                             @"usertype": [_currentChat.user.allObjects.firstObject userType],
+                             @"msgtype": type,
+                             @"content": content
                              };
     [ChatAPI sendMessageWithParameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        //        NSLog(@"%@",responseObject);
         NSDictionary *dataDict = [responseObject firstObject];
         if ([dataDict[@"state"]intValue] > -1) {
-            JSQMessage *message = [[JSQMessage alloc]initWithSenderId:self.senderId senderDisplayName:self.senderDisplayName date:[NSDate date] text:text];
+            JSQMessage *message = [[JSQMessage alloc]initWithSenderId:self.senderId senderDisplayName:self.senderDisplayName date:[NSDate date] text:content];
             [self.modalData.messages addObject:message];
             Message *newMessage = [Message MR_createEntity];
             newMessage.messageId = @([dataDict[@"state"]intValue]);
-            newMessage.content = text;
+            newMessage.content = content;
             newMessage.createtime = [NSDate date];
             newMessage.flag = @(1);
             newMessage.msgType = @"text";
-            newMessage.user = _currentFriend;
-            Chat *chat = [Chat MR_findFirstByAttribute:@"user" withValue:_currentFriend];
-            if (chat == nil) {
-                chat = [Chat MR_createEntity];
-                chat.user = _currentFriend;
-                chat.unreadMessageCount = @(0);
-            }
-            chat.lastMessageTime = newMessage.createtime;
-            chat.lastMessageContent = newMessage.content;
+            newMessage.user = nil;
+            newMessage.chat = _currentChat;
+            _currentChat.unreadMessageCount = @0;
             [[NSManagedObjectContext MR_defaultContext]MR_saveToPersistentStoreAndWait];
             [self.collectionView reloadData];
-            //            [self loadNewMessage];
             [self finishSendingMessage];
         }
-        else {
+        else{
             MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view.window animated:YES];
             hud.mode = MBProgressHUDModeText;
             hud.labelText = @"发送失败";
             hud.detailsLabelText = dataDict[@"msg"];
-            [hud hide:YES afterDelay:1.0f];
+            [hud hide:YES afterDelay:1.5f];
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"%@",error.localizedDescription);
     }];
+
 }
+
+//- (void)sendMessageWithText:(NSString *)text{
+//    //发送消息
+//    NSNumber *doctorId = [[NSUserDefaults standardUserDefaults]objectForKey:@"UserId"];
+//    NSDictionary *params = @{
+//                             @"doctorid": doctorId,
+//                             @"userid": _currentFriend.userId,
+//                             @"msgtype": @"text",
+//                             @"content": text
+//                             };
+//    [ChatAPI sendMessageWithParameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+//        //        NSLog(@"%@",responseObject);
+//        NSDictionary *dataDict = [responseObject firstObject];
+//        if ([dataDict[@"state"]intValue] > -1) {
+//            JSQMessage *message = [[JSQMessage alloc]initWithSenderId:self.senderId senderDisplayName:self.senderDisplayName date:[NSDate date] text:text];
+//            [self.modalData.messages addObject:message];
+//            Message *newMessage = [Message MR_createEntity];
+//            newMessage.messageId = @([dataDict[@"state"]intValue]);
+//            newMessage.content = text;
+//            newMessage.createtime = [NSDate date];
+//            newMessage.flag = @(1);
+//            newMessage.msgType = @"text";
+//            newMessage.user = _currentFriend;
+//            Chat *chat = [Chat MR_findFirstByAttribute:@"user" withValue:_currentFriend];
+//            if (chat == nil) {
+//                chat = [Chat MR_createEntity];
+//                chat.user = _currentFriend;
+//                chat.unreadMessageCount = @(0);
+//            }
+//            chat.lastMessageTime = newMessage.createtime;
+//            chat.lastMessageContent = newMessage.content;
+//            [[NSManagedObjectContext MR_defaultContext]MR_saveToPersistentStoreAndWait];
+//            [self.collectionView reloadData];
+//            //            [self loadNewMessage];
+//            [self finishSendingMessage];
+//        }
+//        else {
+//            MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view.window animated:YES];
+//            hud.mode = MBProgressHUDModeText;
+//            hud.labelText = @"发送失败";
+//            hud.detailsLabelText = dataDict[@"msg"];
+//            [hud hide:YES afterDelay:1.0f];
+//        }
+//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//        NSLog(@"%@",error.localizedDescription);
+//    }];
+//}
 
 - (void)deleteMessage:(NSNotification *)notification {
     JSQMessagesCollectionViewCell *cell = notification.object;
@@ -281,9 +330,9 @@ typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
 
 
 - (void)cleanUnreadMessageCount {
-    Chat *chat = [Chat MR_findFirstByAttribute:@"user" withValue:_currentFriend];
-    if (chat) {
-        chat.unreadMessageCount = @(0);
+//    Chat *chat = [Chat MR_findFirstByAttribute:@"user" withValue:_currentFriend];
+    if (_currentChat) {
+        _currentChat.unreadMessageCount = @(0);
         [[NSManagedObjectContext MR_defaultContext]MR_saveToPersistentStoreAndWait];
     }
 }
@@ -298,16 +347,15 @@ typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
 
 - (void)refreshMessageModal {
     NSString *myName = [[NSUserDefaults standardUserDefaults] objectForKey:@"UserRealName"];
-    NSString *userSenderId = [_currentFriend.userId stringValue];
     NSString *mySenderId = self.senderId;
     _modalData.messages = [NSMutableArray array];
-    
-    messageArray = [Message MR_findByAttribute:@"user" withValue:_currentFriend andOrderBy:@"messageId" ascending:YES];
+    messageArray = [Message MR_findByAttribute:@"chat" withValue:_currentChat andOrderBy:@"messageId" ascending:YES];
+//    messageArray = [_currentChat.messages allObjects] ;
     for (Message *message in messageArray) {
         NSString *senderId, *senderName;
         if ([message.flag intValue] == 0) {
-            senderId = userSenderId;
-            senderName = _currentFriend.realname;
+            senderId = [message.user.userId stringValue];
+            senderName = message.user.realname;
         }
         else{
             senderId = mySenderId;
@@ -316,33 +364,23 @@ typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
         JSQMessage *jsqMessage = [[JSQMessage alloc] initWithSenderId:senderId senderDisplayName:senderName date:message.createtime text:message.content];
         [_modalData.messages addObject:jsqMessage];
     }
+
 }
 
 - (void)generateMessageModalData {
     _modalData = [[MessagesModalData alloc]init];
     NSString *myName = [[NSUserDefaults standardUserDefaults] objectForKey:@"UserRealName"];
     NSString *myIcon = [[NSUserDefaults standardUserDefaults] objectForKey:@"UserIcon"];
-    NSString *userSenderId = [_currentFriend.userId stringValue];
+    
+    NSMutableDictionary  *avatarDict, *nameDict;
+    avatarDict = [NSMutableDictionary dictionary];
+    nameDict = [NSMutableDictionary dictionary];
     NSString *mySenderId = self.senderId;
     if (myName == nil || [myName isEqualToString:@""]) {
         myName = @"无姓名";
     }
-    _modalData.users = @{
-                         userSenderId: _currentFriend.realname,
-                         mySenderId: myName
-                         };
-    JSQMessagesAvatarImage *userAvatarImage = [JSQMessagesAvatarImage avatarImageWithPlaceholder:[UIImage imageNamed:@"details_uers_example_pic"]];
+    [nameDict setObject:myName forKey:mySenderId];
     JSQMessagesAvatarImage *myAvatarImage = [JSQMessagesAvatarImage avatarImageWithPlaceholder:[UIImage imageNamed:@"details_uers_example_pic"]];
-//    JSQMessagesAvatarImage *userAvatarImage = [JSQMessagesAvatarImageFactory avatarImageWithPlaceholder:[UIImage imageNamed:@"details_uers_example_pic"] diameter:44];
-//    JSQMessagesAvatarImage *myAvatarImage = [JSQMessagesAvatarImageFactory avatarImageWithPlaceholder:[UIImage imageNamed:@"details_uers_example_pic"] diameter:44];
-    if (_currentFriend.icon && _currentFriend.icon.length > 0) {
-        [[SDWebImageManager sharedManager]downloadImageWithURL:[NSURL URLWithString:_currentFriend.icon] options:0 progress:^(NSInteger receivedSize, NSInteger expectedSize) {
-        } completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
-            if (image && finished) {
-                [userAvatarImage setAvatarImage:image];
-            }
-        }];
-    }
     if (myIcon && myIcon.length > 0) {
         [[SDWebImageManager sharedManager]downloadImageWithURL:[NSURL URLWithString:myIcon] options:0 progress:^(NSInteger receivedSize, NSInteger expectedSize) {
         } completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
@@ -351,23 +389,39 @@ typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
             }
         }];
     }
-    _modalData.avatars = @{
-                           userSenderId: userAvatarImage,
-                           mySenderId: myAvatarImage
-                           };
+    [avatarDict setObject:myAvatarImage forKey:mySenderId];
     
+    for (Friends *friend in _currentChat.user) {
+        NSString *userSenderId = [NSString stringWithFormat:@"%@;%@",[friend.userId stringValue],[friend.userType stringValue]];
+        JSQMessagesAvatarImage *userAvatarImage = [JSQMessagesAvatarImage avatarImageWithPlaceholder:[UIImage imageNamed:@"details_uers_example_pic"]];
+        if (friend.icon && friend.icon.length > 0) {
+            [[SDWebImageManager sharedManager]downloadImageWithURL:[NSURL URLWithString:friend.icon] options:0 progress:^(NSInteger receivedSize, NSInteger expectedSize) {
+            } completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
+                if (image && finished) {
+                    [userAvatarImage setAvatarImage:image];
+                }
+            }];
+        }
+        [nameDict setObject:friend.realname forKey:userSenderId];
+        [avatarDict setObject:userAvatarImage forKey:userSenderId];
+    }
+    
+    _modalData.avatars = avatarDict;
+    _modalData.users = nameDict;
     JSQMessagesBubbleImageFactory *bubbleFactory = [[JSQMessagesBubbleImageFactory alloc]init];
     _modalData.outgoingBubbleImageData = [bubbleFactory outgoingMessagesBubbleImageWithColor:UIColorFromRGB(0xADE85B)];
     _modalData.incomingBubbleImageData = [bubbleFactory incomingMessagesBubbleImageWithColor:[UIColor whiteColor]];
     
     _modalData.messages = [NSMutableArray array];
-
-    messageArray = [Message MR_findByAttribute:@"user" withValue:_currentFriend andOrderBy:@"messageId" ascending:YES];
+    
+    //    messageArray = [Message MR_findByAttribute:@"user" withValue:_currentFriend andOrderBy:@"messageId" ascending:YES];
+        messageArray = [Message MR_findByAttribute:@"chat" withValue:_currentChat andOrderBy:@"messageId" ascending:YES];
+//    messageArray = [_currentChat.messages allObjects];
     for (Message *message in messageArray) {
         NSString *senderId, *senderName;
         if ([message.flag intValue] == 0) {
-            senderId = userSenderId;
-            senderName = _currentFriend.realname;
+            senderId = [NSString stringWithFormat:@"%@;%@",[message.user.userId stringValue],[message.user.userType stringValue]];
+            senderName = message.user.realname;
         }
         else{
             senderId = mySenderId;
@@ -377,54 +431,6 @@ typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
         [_modalData.messages addObject:jsqMessage];
     }
 
-}
-
-- (void)loadNewMessage {
-    NSNumber *doctorId = [[NSUserDefaults standardUserDefaults]objectForKey:@"UserId"];
-//    NSArray *messageArray = [Message MR_findByAttribute:@"user" withValue:_currentFriend andOrderBy:@"messageId" ascending:YES];
-    Message *message = [messageArray lastObject];
-//    if ([lastDate isEqual:[NSNull null]]){
-//        lastDate = [NSDate dateWithTimeIntervalSinceNow:-86400];
-//    }
-    NSDictionary *params = @{
-                             @"doctorid": doctorId,
-                             @"userid": _currentFriend.userId,
-                             @"times": @((int)message.createtime.timeIntervalSince1970)
-                             };
-//    NSLog(@"%@",params);
-    [ChatAPI getChatWithParameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-//        NSLog(@"%@",responseObject);
-        NSArray *receiveMessageArray = (NSArray *)responseObject;
-        for (NSDictionary *dict in receiveMessageArray) {
-            Message *message = [Message MR_findFirstByAttribute:@"messageId" withValue:dict[@"id"]];
-            if (message == nil) {
-                message = [Message MR_createEntity];
-                message.messageId = dict[@"id"];
-            }
-            message.content = dict[@"content"];
-            message.createtime = [NSDate dateWithTimeIntervalSince1970:[dict[@"createtime"]intValue]];
-//            message.createtime = [DataUtil dateaFromFormatedString:dict[@"createtime"]];
-            message.flag = @([dict[@"flag"]intValue]);
-            message.msgType = dict[@"msgtype"];
-            message.user = _currentFriend;
-        }
-        //        [[NSManagedObjectContext MR_defaultContext]MR_saveToPersistentStoreAndWait];
-        Chat *chat = [Chat MR_findFirstByAttribute:@"user" withValue:_currentFriend];
-        if (chat == nil) {
-            chat = [Chat MR_createEntity];
-            chat.user = _currentFriend;
-        }
-        chat.unreadMessageCount = @([params[@"total"]intValue]);
-        Message *message = [[Message MR_findByAttribute:@"user" withValue:_currentFriend andOrderBy:@"messageId" ascending:YES]lastObject];
-        chat.lastMessageTime = message.createtime;
-        chat.lastMessageContent = message.content;
-        [[NSManagedObjectContext MR_defaultContext]MR_saveToPersistentStoreAndWait];
-        //发送通知通知刷新MainVC
-        [[NSNotificationCenter defaultCenter]postNotificationName:@"NewChatArrivedNotification" object:nil];
-
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"%@",error.localizedDescription);
-    }];
 }
 
 - (void)sendSchedule{
@@ -482,12 +488,23 @@ typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
     //资料
-    if ([segue.identifier isEqualToString:@"FriendDetailSegueIdentifier"]) {
-        ContactFriendDetailTableViewController *vc = [segue destinationViewController];
-        [vc setCurrentFriend:_currentFriend];
+    if ([segue.identifier isEqualToString:@"ContactDetailDoctorSegueIdentifier"]) {
+        Friends *friend = (Friends *)sender;
+        ContactDoctorFriendDetailTableViewController *vc = [segue destinationViewController];
+        [vc setCurrentFriend:friend];
+        [vc setMode:ContactDoctorFriendDetailModeNormal];
+    }else if ([segue.identifier isEqualToString:@"ContactDetailMemberSegueIdentifier"]) {
+        Friends *friend = (Friends *)sender;
+        ContactPeronsalFriendDetailTableViewController *vc = [segue destinationViewController];
+        [vc setCurrentFriend:friend];
+        [vc setMode:ContactPersonalFriendDetailModeNormal];
     }
+//    else if ([segue.identifier isEqualToString:@"FriendDetailSegueIdentifier"]) {
+//        ContactFriendDetailTableViewController *vc = [segue destinationViewController];
+////        [vc setCurrentFriend:_currentFriend];
+//    }
     //弹出框
-    if ([segue.identifier isEqualToString:@"ContactDetailActionSegueIdentifier"]){
+    else if ([segue.identifier isEqualToString:@"ContactDetailActionSegueIdentifier"]){
         ContactDetailPopoverViewController *vc = [segue destinationViewController];
         vc.showRecord = ^{
             [self performSegueWithIdentifier:@"ContactShowRecordSegueIdentifier" sender:nil];
@@ -517,7 +534,7 @@ typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
         self.popover.popoverLayoutMargins = UIEdgeInsetsZero;
     }
     //会诊或转诊
-    if ([segue.identifier isEqualToString:@"ContactConsultationTransferSegueIdentifier"]){
+    else if ([segue.identifier isEqualToString:@"ContactConsultationTransferSegueIdentifier"]){
         NSInteger mode = [sender integerValue];
         UINavigationController *nav = [segue destinationViewController];
         ContactViewController *vc = (ContactViewController *)nav.viewControllers[0];
@@ -525,8 +542,8 @@ typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
         if (mode == 3){
             vc.didSelectFriends = ^(NSArray *friend){
                 ContactDetailViewController *contact = [self.storyboard instantiateViewControllerWithIdentifier:@"ContactDetailStoryboardID"];//[[ContactDetailViewController alloc] init];
-                contact.currentFriend = self.currentFriend;
-                contact.detailMode = ContactDetailModeConsultation;
+//                contact.currentFriend = self.currentFriend;
+//                contact.detailMode = ContactDetailModeConsultation;
                 UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:contact];
                 nav.navigationBar.barTintColor = self.navigationController.navigationBar.barTintColor;
                 nav.navigationBar.translucent = self.navigationController.navigationBar.translucent;
@@ -545,15 +562,17 @@ typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
         }
     }
     //病历本
-    if ([[segue identifier] isEqualToString:@"ContactShowRecordSegueIdentifier"]){
+    else if ([[segue identifier] isEqualToString:@"ContactShowRecordSegueIdentifier"]){
         ContactRecordTableViewController *vc = [segue destinationViewController];
-        vc.patientID = _currentFriend.userId;
+        Friends *currentFriend = _currentChat.user.allObjects.firstObject;
+        vc.patientID = currentFriend.userId;
     }
-    if ([[segue identifier] isEqualToString:@"ContactTransferSegueIdentifier"]){
+    else if ([[segue identifier] isEqualToString:@"ContactTransferSegueIdentifier"]){
         ContactTransferViewController *vc = (ContactTransferViewController *)((UINavigationController *)[segue destinationViewController]).topViewController;
+        Friends *currentFriend = _currentChat.user.allObjects.firstObject;
         Friends *f = [sender firstObject];
         vc.targetID = f.userId;
-        vc.patientID = self.currentFriend.userId;
+        vc.patientID = currentFriend.userId;
         vc.target = f;
     }
 }
@@ -566,7 +585,8 @@ typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
          senderDisplayName:(NSString *)senderDisplayName
                       date:(NSDate *)date
 {
-    [self sendMessageWithText:text];
+    [self sendMessageWithContent:text andType:kSendMessageTypeText];
+//    [self sendMessageWithText:text];
 }
 
 #pragma mark - JSQMessages CollectionView DataSource
@@ -674,7 +694,17 @@ typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
 {
     JSQMessage *currentMessage = self.modalData.messages[indexPath.item];
     if (![[currentMessage senderId]isEqualToString:self.senderId]) {
-        [self performSegueWithIdentifier:@"FriendDetailSegueIdentifier" sender:nil];
+        NSString *userSenderId = currentMessage.senderId;
+        NSArray *array = [userSenderId componentsSeparatedByString:@";"];
+        NSNumber *userId = @([array[0]intValue]);
+        NSNumber *userType = @([array[1]intValue]);
+        Friends *friend = [Friends MR_findFirstWithPredicate:[NSPredicate predicateWithFormat:@"userId == %@ AND userType == %@", userId, userType]];
+        if (userType.intValue == 2) {
+            [self performSegueWithIdentifier:@"ContactDetailDoctorSegueIdentifier" sender:friend];
+        }else{
+            [self performSegueWithIdentifier:@"ContactDetailMemberSegueIdentifier" sender:friend];
+        }
+//        [self performSegueWithIdentifier:@"FriendDetailSegueIdentifier" sender:nil];
     }
 //    NSLog(@"Tapped avatar!");
 }
@@ -695,7 +725,8 @@ typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
     if ([text length] == 1 && resultRange.location != NSNotFound) {
         if (textView.text.length > 0) {
             [textView resignFirstResponder];
-            [self sendMessageWithText:textView.text];
+            [self sendMessageWithContent:textView.text andType:kSendMessageTypeText];
+//            [self sendMessageWithText:textView.text];
         }
         return NO;
     }
