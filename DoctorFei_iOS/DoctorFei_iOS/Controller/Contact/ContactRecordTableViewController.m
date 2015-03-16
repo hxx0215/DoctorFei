@@ -9,6 +9,7 @@
 #import "ContactRecordTableViewController.h"
 #import "ContactRecordTableViewCell.h"
 #import "DoctorAPI.h"
+#import <UIScrollView+EmptyDataSet.h>
 @implementation NSString(size)
 - (CGSize)calculateSize:(CGSize)size font:(UIFont *)font {
     CGSize expectedLabelSize = CGSizeZero;
@@ -25,6 +26,7 @@
 }
 @end
 @interface ContactRecordTableViewController ()
+    <DZNEmptyDataSetSource>
 @property (nonatomic, strong)NSMutableArray *tableData;
 @end
 
@@ -41,6 +43,7 @@ static NSString * const contactRecordIdentifier = @"ContactRecordIdentifier";
     UINib *nib = [UINib nibWithNibName:NSStringFromClass([ContactRecordTableViewCell class]) bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:contactRecordIdentifier];
     self.tableData = [NSMutableArray new];
+    [self.tableView setTableFooterView:[UIView new]];
 }
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -139,6 +142,12 @@ static NSString * const contactRecordIdentifier = @"ContactRecordIdentifier";
     return YES;
 }
 */
+
+#pragma mark - DZNEmptyDatasource
+- (NSAttributedString *)titleForEmptyDataSet:(UIScrollView *)scrollView {
+    return [[NSAttributedString alloc]initWithString:@"暂无病历"];
+}
+
 
 /*
 #pragma mark - Navigation

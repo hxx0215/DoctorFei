@@ -120,7 +120,7 @@
     [DoctorAPI getInfomationWithParameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"%@",responseObject);
         NSDictionary *result = [responseObject firstObject];
-        if ([result[@"invisible"] intValue] == 1) {
+        if ([result[@"visible"] intValue] == 1) {
             [_isVisibleNearby setOn:YES];
         }else{
             [_isVisibleNearby setOn:NO];

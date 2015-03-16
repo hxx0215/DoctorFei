@@ -193,6 +193,7 @@
             friend.userType = @([dict[@"usertype"]intValue]);
             friend.noteName = dict[@"notename"];
             friend.situation = dict[@"describe"];
+            friend.isFriend = @YES;
         }
         [[NSManagedObjectContext MR_defaultContext]MR_saveToPersistentStoreAndWait];
         [self reloadTableViewData];
@@ -229,16 +230,32 @@
     // Pass the selected object to the new view controller.
     if ([segue.identifier isEqualToString:@"ContactDetailSegueIdentifier"]) {
         ContactDetailViewController *vc = [segue destinationViewController];
-        vc.isDoctor = (self.segmentControl.selectedSegmentIndex == 0);
         NSIndexPath *indexPath = [self.searchDisplayController.searchResultsTableView indexPathForCell:(UITableViewCell *)sender];
+        Friends *currentFriend;
         if (indexPath != nil) {
-            [vc setCurrentFriend:searchResultArray[indexPath.row]];
+            currentFriend = searchResultArray[indexPath.row];
             [self.searchDisplayController setActive:NO];
         }
         else {
             indexPath = [self.tableView indexPathForCell:(UITableViewCell *)sender];
-            [vc setCurrentFriend:tableViewDataArray[indexPath.section - 1][indexPath.row]];
+            currentFriend = tableViewDataArray[indexPath.section - 1][indexPath.row];
         }
+        Chat *chat = [Chat MR_findFirstWithPredicate:[NSPredicate predicateWithFormat: @"type <= %@ AND ANY user == %@", @2, currentFriend]];
+        if (chat == nil) {
+            chat = [Chat MR_createEntity];
+            chat.type = @0;
+            chat.user = [chat.user setByAddingObject:currentFriend];
+        }
+        [vc setCurrentChat:chat];
+//        vc.isDoctor = (self.segmentControl.selectedSegmentIndex == 0);
+//        if (indexPath != nil) {
+//            [vc setCurrentFriend:searchResultArray[indexPath.row]];
+//            [self.searchDisplayController setActive:NO];
+//        }
+//        else {
+//            indexPath = [self.tableView indexPathForCell:(UITableViewCell *)sender];
+//            [vc setCurrentFriend:tableViewDataArray[indexPath.section - 1][indexPath.row]];
+//        }
 //        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
     }
 }
@@ -511,7 +528,15 @@
 #pragma mark - DZNEmptyDataSetSource
 
 - (NSAttributedString *)titleForEmptyDataSet:(UIScrollView *)scrollView {
-    NSAttributedString *emptyTitle = [[NSAttributedString alloc]initWithString:@"暂无患者"];
+    NSString *emptyString;
+    if (_segmentControl.selectedSegmentIndex == 0) {
+        emptyString = @"暂无医生好友";
+    }else if (_segmentControl.selectedSegmentIndex == 1){
+        emptyString = @"暂无患者好友";
+    }else if (_segmentControl.selectedSegmentIndex == 2) {
+        emptyString = @"暂无家属好友";
+    }
+    NSAttributedString *emptyTitle = [[NSAttributedString alloc]initWithString:emptyString];
     return emptyTitle;
 }
 #pragma mark - DZNEmptySetDelegate

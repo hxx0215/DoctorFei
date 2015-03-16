@@ -44,7 +44,6 @@
 		6A32523F1A82835300B5E31F /* AgendaArrangement.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A32523E1A82835300B5E31F /* AgendaArrangement.m */; };
 		6A3252421A83697800B5E31F /* MainArrangementNewTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A3252411A83697800B5E31F /* MainArrangementNewTableViewCell.m */; };
 		6A3252461A85302A00B5E31F /* Groups.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A3252451A85302A00B5E31F /* Groups.m */; };
-		6A3252491A85305000B5E31F /* Friends.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A3252481A85305000B5E31F /* Friends.m */; };
 		6A32524C1A85EC5F00B5E31F /* MainGroupGroupActionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A32524B1A85EC5F00B5E31F /* MainGroupGroupActionViewController.m */; };
 		6A3DA1031A7E7BF200BE721B /* MainCoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6A3DA1011A7E7BF200BE721B /* MainCoreData.xcdatamodeld */; };
 		6A3DA1091A7F5DF100BE721B /* ShuoShuo.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A3DA1081A7F5DF100BE721B /* ShuoShuo.m */; };
@@ -61,8 +60,6 @@
 		6A4FC1691A2F67F10042497C /* ContactFriendTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A4FC1681A2F67F10042497C /* ContactFriendTableViewCell.m */; };
 		6A5DC5D81A32DF3800961E53 /* UserAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A5DC5D71A32DF3800961E53 /* UserAPI.m */; };
 		6A5DC5F01A33135E00961E53 /* MainChatTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A5DC5EF1A33135E00961E53 /* MainChatTableViewCell.m */; };
-		6A5DC5F31A3317FE00961E53 /* Chat.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A5DC5F21A3317FE00961E53 /* Chat.m */; };
-		6A5DC5F61A3317FE00961E53 /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A5DC5F51A3317FE00961E53 /* Message.m */; };
 		6A5DC5FC1A332DF200961E53 /* MessagesModalData.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A5DC5FB1A332DF200961E53 /* MessagesModalData.m */; };
 		6A5DE8171A791A3C000F24DA /* QuickReplyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A5DE8161A791A3C000F24DA /* QuickReplyTableViewCell.m */; };
 		6A5DE81A1A792621000F24DA /* QuickReplyCustomActionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A5DE8191A792621000F24DA /* QuickReplyCustomActionTableViewCell.m */; };
@@ -86,6 +83,7 @@
 		6A69A0261A2CC94500D85777 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A69A0251A2CC94500D85777 /* Security.framework */; };
 		6A69A0281A2CC94C00D85777 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A69A0271A2CC94C00D85777 /* libz.dylib */; };
 		6A69A02A1A2D4DC500D85777 /* PushConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6A69A0291A2D4DC500D85777 /* PushConfig.plist */; };
+		6A6D076E1AB1CCD50052EA5A /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A6D076D1AB1CCD50052EA5A /* Message.m */; };
 		6A7372C91A2034B4006EF54F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A7372C81A2034B4006EF54F /* main.m */; };
 		6A7372CC1A2034B4006EF54F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A7372CB1A2034B4006EF54F /* AppDelegate.m */; };
 		6A7372D41A2034B4006EF54F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6A7372D31A2034B4006EF54F /* Images.xcassets */; };
@@ -443,6 +441,17 @@
 		6AD6A28D1A713A4A00CE9888 /* talk_box_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AD6A2811A713A4900CE9888 /* talk_box_btn@2x.png */; };
 		6AD6A28E1A713A4A00CE9888 /* talk_box_btn@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AD6A2821A713A4900CE9888 /* talk_box_btn@3x.png */; };
 		6AF48F161AA8A32A00735C81 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AF48F151AA8A32A00735C81 /* CoreLocation.framework */; };
+		6AF8EF4F1AB5746800B12756 /* Chat.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AF8EF4E1AB5746800B12756 /* Chat.m */; };
+		6AF8EF521AB58E7C00B12756 /* Friends.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AF8EF511AB58E7C00B12756 /* Friends.m */; };
+		6AF8EF591AB58F9100B12756 /* button_wide-02_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AF8EF531AB58F9100B12756 /* button_wide-02_btn.png */; };
+		6AF8EF5A1AB58F9100B12756 /* button_wide-02_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AF8EF541AB58F9100B12756 /* button_wide-02_btn@2x.png */; };
+		6AF8EF5B1AB58F9100B12756 /* button_wide-02_btn@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AF8EF551AB58F9100B12756 /* button_wide-02_btn@3x.png */; };
+		6AF8EF5C1AB58F9100B12756 /* button_wide-03_btn_after.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AF8EF561AB58F9100B12756 /* button_wide-03_btn_after.png */; };
+		6AF8EF5D1AB58F9100B12756 /* button_wide-03_btn_after@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AF8EF571AB58F9100B12756 /* button_wide-03_btn_after@2x.png */; };
+		6AF8EF5E1AB58F9100B12756 /* button_wide-03_btn_after@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AF8EF581AB58F9100B12756 /* button_wide-03_btn_after@3x.png */; };
+		6AF8EF611AB591F800B12756 /* ContactPeronsalFriendDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AF8EF601AB591F800B12756 /* ContactPeronsalFriendDetailTableViewController.m */; };
+		6AF8EF641AB5921200B12756 /* ContactDoctorFriendDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AF8EF631AB5921200B12756 /* ContactDoctorFriendDetailTableViewController.m */; };
+		6AF8EF671AB5A9E900B12756 /* ContactPersonalDetailInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AF8EF661AB5A9E900B12756 /* ContactPersonalDetailInfoViewController.m */; };
 		B90320BA1A5AC57E001FA485 /* MySelfRootTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B90320B91A5AC57E001FA485 /* MySelfRootTableViewController.m */; };
 		B90320BF1A5ADAA3001FA485 /* DoctorApproveViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B90320BE1A5ADAA3001FA485 /* DoctorApproveViewController.m */; };
 		B927B23F1A7F9E0600BC2C1C /* ContactFriendDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B927B23E1A7F9E0600BC2C1C /* ContactFriendDetailTableViewCell.m */; };
@@ -601,8 +610,6 @@
 		6A3252431A852DC900B5E31F /* MainCoreData_2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MainCoreData_2.xcdatamodel; sourceTree = "<group>"; };
 		6A3252441A85302A00B5E31F /* Groups.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Groups.h; sourceTree = "<group>"; };
 		6A3252451A85302A00B5E31F /* Groups.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Groups.m; sourceTree = "<group>"; };
-		6A3252471A85305000B5E31F /* Friends.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Friends.h; sourceTree = "<group>"; };
-		6A3252481A85305000B5E31F /* Friends.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Friends.m; sourceTree = "<group>"; };
 		6A32524A1A85EC5F00B5E31F /* MainGroupGroupActionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainGroupGroupActionViewController.h; sourceTree = "<group>"; };
 		6A32524B1A85EC5F00B5E31F /* MainGroupGroupActionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainGroupGroupActionViewController.m; sourceTree = "<group>"; };
 		6A3DA1021A7E7BF200BE721B /* MainCoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MainCoreData.xcdatamodel; sourceTree = "<group>"; };
@@ -629,10 +636,6 @@
 		6A5DC5D71A32DF3800961E53 /* UserAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserAPI.m; sourceTree = "<group>"; };
 		6A5DC5EE1A33135E00961E53 /* MainChatTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainChatTableViewCell.h; sourceTree = "<group>"; };
 		6A5DC5EF1A33135E00961E53 /* MainChatTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainChatTableViewCell.m; sourceTree = "<group>"; };
-		6A5DC5F11A3317FE00961E53 /* Chat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Chat.h; sourceTree = "<group>"; };
-		6A5DC5F21A3317FE00961E53 /* Chat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Chat.m; sourceTree = "<group>"; };
-		6A5DC5F41A3317FE00961E53 /* Message.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Message.h; sourceTree = "<group>"; };
-		6A5DC5F51A3317FE00961E53 /* Message.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Message.m; sourceTree = "<group>"; };
 		6A5DC5FA1A332DF200961E53 /* MessagesModalData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessagesModalData.h; sourceTree = "<group>"; };
 		6A5DC5FB1A332DF200961E53 /* MessagesModalData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessagesModalData.m; sourceTree = "<group>"; };
 		6A5DE8151A791A3C000F24DA /* QuickReplyTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuickReplyTableViewCell.h; sourceTree = "<group>"; };
@@ -665,6 +668,8 @@
 		6A69A0251A2CC94500D85777 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		6A69A0271A2CC94C00D85777 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		6A69A0291A2D4DC500D85777 /* PushConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = PushConfig.plist; sourceTree = "<group>"; };
+		6A6D076C1AB1CCD50052EA5A /* Message.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Message.h; sourceTree = "<group>"; };
+		6A6D076D1AB1CCD50052EA5A /* Message.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Message.m; sourceTree = "<group>"; };
 		6A7372C31A2034B4006EF54F /* DoctorFei_iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DoctorFei_iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6A7372C71A2034B4006EF54F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6A7372C81A2034B4006EF54F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -1060,6 +1065,22 @@
 		6AD6A2821A713A4900CE9888 /* talk_box_btn@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "talk_box_btn@3x.png"; sourceTree = "<group>"; };
 		6AEA74501A260DD900EEF37C /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		6AF48F151AA8A32A00735C81 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		6AF8EF4D1AB5746800B12756 /* Chat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Chat.h; sourceTree = "<group>"; };
+		6AF8EF4E1AB5746800B12756 /* Chat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Chat.m; sourceTree = "<group>"; };
+		6AF8EF501AB58E7C00B12756 /* Friends.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Friends.h; sourceTree = "<group>"; };
+		6AF8EF511AB58E7C00B12756 /* Friends.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Friends.m; sourceTree = "<group>"; };
+		6AF8EF531AB58F9100B12756 /* button_wide-02_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button_wide-02_btn.png"; sourceTree = "<group>"; };
+		6AF8EF541AB58F9100B12756 /* button_wide-02_btn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button_wide-02_btn@2x.png"; sourceTree = "<group>"; };
+		6AF8EF551AB58F9100B12756 /* button_wide-02_btn@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button_wide-02_btn@3x.png"; sourceTree = "<group>"; };
+		6AF8EF561AB58F9100B12756 /* button_wide-03_btn_after.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button_wide-03_btn_after.png"; sourceTree = "<group>"; };
+		6AF8EF571AB58F9100B12756 /* button_wide-03_btn_after@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button_wide-03_btn_after@2x.png"; sourceTree = "<group>"; };
+		6AF8EF581AB58F9100B12756 /* button_wide-03_btn_after@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button_wide-03_btn_after@3x.png"; sourceTree = "<group>"; };
+		6AF8EF5F1AB591F800B12756 /* ContactPeronsalFriendDetailTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactPeronsalFriendDetailTableViewController.h; sourceTree = "<group>"; };
+		6AF8EF601AB591F800B12756 /* ContactPeronsalFriendDetailTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactPeronsalFriendDetailTableViewController.m; sourceTree = "<group>"; };
+		6AF8EF621AB5921200B12756 /* ContactDoctorFriendDetailTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactDoctorFriendDetailTableViewController.h; sourceTree = "<group>"; };
+		6AF8EF631AB5921200B12756 /* ContactDoctorFriendDetailTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactDoctorFriendDetailTableViewController.m; sourceTree = "<group>"; };
+		6AF8EF651AB5A9E900B12756 /* ContactPersonalDetailInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactPersonalDetailInfoViewController.h; sourceTree = "<group>"; };
+		6AF8EF661AB5A9E900B12756 /* ContactPersonalDetailInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactPersonalDetailInfoViewController.m; sourceTree = "<group>"; };
 		B90320B81A5AC57E001FA485 /* MySelfRootTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MySelfRootTableViewController.h; sourceTree = "<group>"; };
 		B90320B91A5AC57E001FA485 /* MySelfRootTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MySelfRootTableViewController.m; sourceTree = "<group>"; };
 		B90320BD1A5ADAA3001FA485 /* DoctorApproveViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoctorApproveViewController.h; sourceTree = "<group>"; };
@@ -1312,14 +1333,14 @@
 			isa = PBXGroup;
 			children = (
 				6A3DA1011A7E7BF200BE721B /* MainCoreData.xcdatamodeld */,
-				6A3252471A85305000B5E31F /* Friends.h */,
-				6A3252481A85305000B5E31F /* Friends.m */,
+				6AF8EF501AB58E7C00B12756 /* Friends.h */,
+				6AF8EF511AB58E7C00B12756 /* Friends.m */,
+				6AF8EF4D1AB5746800B12756 /* Chat.h */,
+				6AF8EF4E1AB5746800B12756 /* Chat.m */,
+				6A6D076C1AB1CCD50052EA5A /* Message.h */,
+				6A6D076D1AB1CCD50052EA5A /* Message.m */,
 				6A3252441A85302A00B5E31F /* Groups.h */,
 				6A3252451A85302A00B5E31F /* Groups.m */,
-				6A5DC5F41A3317FE00961E53 /* Message.h */,
-				6A5DC5F51A3317FE00961E53 /* Message.m */,
-				6A5DC5F11A3317FE00961E53 /* Chat.h */,
-				6A5DC5F21A3317FE00961E53 /* Chat.m */,
 				6A5DC5FA1A332DF200961E53 /* MessagesModalData.h */,
 				6A5DC5FB1A332DF200961E53 /* MessagesModalData.m */,
 				6AB8B0991A3747EA00866281 /* Friends+PinYinUtil.h */,
@@ -1672,6 +1693,12 @@
 				B9E2E12D1A6FF832009401F1 /* ContactRecordTableViewController.m */,
 				B9FBC4DF1A77D2E200BD6C0F /* ContactTransferViewController.h */,
 				B9FBC4E01A77D2E200BD6C0F /* ContactTransferViewController.m */,
+				6AF8EF5F1AB591F800B12756 /* ContactPeronsalFriendDetailTableViewController.h */,
+				6AF8EF601AB591F800B12756 /* ContactPeronsalFriendDetailTableViewController.m */,
+				6AF8EF621AB5921200B12756 /* ContactDoctorFriendDetailTableViewController.h */,
+				6AF8EF631AB5921200B12756 /* ContactDoctorFriendDetailTableViewController.m */,
+				6AF8EF651AB5A9E900B12756 /* ContactPersonalDetailInfoViewController.h */,
+				6AF8EF661AB5A9E900B12756 /* ContactPersonalDetailInfoViewController.m */,
 			);
 			path = Contact;
 			sourceTree = "<group>";
@@ -1945,6 +1972,12 @@
 		6AD6A24F1A712E3C00CE9888 /* Contact */ = {
 			isa = PBXGroup;
 			children = (
+				6AF8EF531AB58F9100B12756 /* button_wide-02_btn.png */,
+				6AF8EF541AB58F9100B12756 /* button_wide-02_btn@2x.png */,
+				6AF8EF551AB58F9100B12756 /* button_wide-02_btn@3x.png */,
+				6AF8EF561AB58F9100B12756 /* button_wide-03_btn_after.png */,
+				6AF8EF571AB58F9100B12756 /* button_wide-03_btn_after@2x.png */,
+				6AF8EF581AB58F9100B12756 /* button_wide-03_btn_after@3x.png */,
 				6A86B3571AA600D800D280AF /* chat_animation_white1.png */,
 				6A86B3581AA600D800D280AF /* chat_animation_white2.png */,
 				6A86B3591AA600D800D280AF /* chat_animation_white3.png */,
@@ -2168,6 +2201,7 @@
 				6AD089DA1A66C98D007D0988 /* arrow.png in Resources */,
 				6AC6E9691A28C015007689D8 /* button_send-verification-code_after@3x.png in Resources */,
 				6AC6E9681A28C015007689D8 /* button_send-verification-code_after@2x.png in Resources */,
+				6AF8EF5E1AB58F9100B12756 /* button_wide-03_btn_after@3x.png in Resources */,
 				6AC6E9A11A28C015007689D8 /* id_example_03@2x.png in Resources */,
 				6AD6A28C1A713A4A00CE9888 /* talk_box_btn.png in Resources */,
 				6AC6E9DD1A28C015007689D8 /* tab_01_after@3x.png in Resources */,
@@ -2216,6 +2250,7 @@
 				6AC6E9F11A28C015007689D8 /* tab_04@2x.png in Resources */,
 				6AD089731A64282E007D0988 /* on_line_pic@3x.png in Resources */,
 				6AC6E98D1A28C015007689D8 /* home_bg@3x.png in Resources */,
+				6AF8EF5B1AB58F9100B12756 /* button_wide-02_btn@3x.png in Resources */,
 				B94F6C4F1A5D6442004E1B93 /* Upload_btn.png in Resources */,
 				6AC6E9B91A28C015007689D8 /* logo_prompt-01@3x.png in Resources */,
 				6AC6E9CC1A28C015007689D8 /* prompt-box_right.png in Resources */,
@@ -2276,9 +2311,11 @@
 				B94F6C5A1A5D6542004E1B93 /* add-user_btn@2x.png in Resources */,
 				6AD6A2781A712EA100CE9888 /* voice_btn@2x.png in Resources */,
 				6A86B35F1AA600D800D280AF /* chat_animation_white3.png in Resources */,
+				6AF8EF5A1AB58F9100B12756 /* button_wide-02_btn@2x.png in Resources */,
 				6AD0894B1A6405DD007D0988 /* GO_login_btn_after@3x.png in Resources */,
 				B95EEF981A65564D006F7FEF /* family-member_tag.png in Resources */,
 				6AC6E9891A28C015007689D8 /* gray background@2x.png in Resources */,
+				6AF8EF5D1AB58F9100B12756 /* button_wide-03_btn_after@2x.png in Resources */,
 				B9CEE4041A8102460099A540 /* form_1@3x.png in Resources */,
 				6AD089DC1A66C98D007D0988 /* arrow@3x.png in Resources */,
 				6AC6E98B1A28C015007689D8 /* home_bg.png in Resources */,
@@ -2400,6 +2437,7 @@
 				B93969D01A6417250073DEF4 /* list_user_preinstall_pic.png in Resources */,
 				6AC6E9931A28C015007689D8 /* id_02@3x.png in Resources */,
 				6AC6E9771A28C015007689D8 /* button_verification-code@2x.png in Resources */,
+				6AF8EF591AB58F9100B12756 /* button_wide-02_btn.png in Resources */,
 				6AC6E9E91A28C015007689D8 /* tab_03_after@3x.png in Resources */,
 				6AC6E9761A28C015007689D8 /* button_verification-code.png in Resources */,
 				6AC6E97C1A28C015007689D8 /* choice box.png in Resources */,
@@ -2516,6 +2554,7 @@
 				B95EEF941A65563C006F7FEF /* dector_tag@3x.png in Resources */,
 				6AC6E9CD1A28C015007689D8 /* prompt-box_right@2x.png in Resources */,
 				B9CEE4141A811D640099A540 /* success_pic.png in Resources */,
+				6AF8EF5C1AB58F9100B12756 /* button_wide-03_btn_after.png in Resources */,
 				6AC6E9741A28C015007689D8 /* button_verification-code_after@2x.png in Resources */,
 				6AD6A26B1A712E4300CE9888 /* pic_btn.png in Resources */,
 				6A21F5741A68FAF400504C65 /* delete_btn@3x.png in Resources */,
@@ -2604,6 +2643,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6AB8B0981A3742A200866281 /* pinyin.c in Sources */,
+				6AF8EF4F1AB5746800B12756 /* Chat.m in Sources */,
 				6AC6EA071A28C4B5007689D8 /* NSString+Crypt.m in Sources */,
 				6A6454271A6D4C0F00070D5E /* MainGroupDetailActionViewController.m in Sources */,
 				B94F6C681A5D70AF004E1B93 /* QRCodeScanViewController.m in Sources */,
@@ -2617,16 +2657,16 @@
 				6A9177F61A2DE2E2000645A4 /* DataUtil.m in Sources */,
 				6AB359B11A2B5758008C48B4 /* BaseHTTPRequestOperationManager.m in Sources */,
 				6ABFDBE21A6B946100DB8E74 /* MyPageContentArticleViewController.m in Sources */,
+				6AF8EF521AB58E7C00B12756 /* Friends.m in Sources */,
 				6AD089BB1A654CB5007D0988 /* AgendaArrangementTableViewController.m in Sources */,
-				6A3252491A85305000B5E31F /* Friends.m in Sources */,
 				6A5DC5FC1A332DF200961E53 /* MessagesModalData.m in Sources */,
 				6AD089D01A66C276007D0988 /* AgendaArrangementTableViewCell.m in Sources */,
 				6A7376531A20D84C006EF54F /* LoginViewController.m in Sources */,
 				6ABFDBD91A6B8D8E00DB8E74 /* MyPageContentTalkTableViewCell.m in Sources */,
-				6A5DC5F31A3317FE00961E53 /* Chat.m in Sources */,
 				6A6454211A6D488C00070D5E /* MainGroupTableViewCell.m in Sources */,
 				6A2BD5CC1A300207002F7644 /* MobileAPI.m in Sources */,
 				B94F6C6E1A5D72D6004E1B93 /* ContactAddByTelTableViewController.m in Sources */,
+				6AF8EF611AB591F800B12756 /* ContactPeronsalFriendDetailTableViewController.m in Sources */,
 				6AD089AC1A64FE80007D0988 /* QuickReplyTableViewController.m in Sources */,
 				6AA547401A4163CD00037C25 /* ContactFriendSetDescribeTableViewController.m in Sources */,
 				6A3252461A85302A00B5E31F /* Groups.m in Sources */,
@@ -2641,7 +2681,9 @@
 				6A5DC5D81A32DF3800961E53 /* UserAPI.m in Sources */,
 				6AB359BA1A2B6C3B008C48B4 /* DeviceUtil.m in Sources */,
 				6A4FC1691A2F67F10042497C /* ContactFriendTableViewCell.m in Sources */,
+				6AF8EF671AB5A9E900B12756 /* ContactPersonalDetailInfoViewController.m in Sources */,
 				6A1D42CC1A67EC10002B0F7C /* MyPageViewController.m in Sources */,
+				6AF8EF641AB5921200B12756 /* ContactDoctorFriendDetailTableViewController.m in Sources */,
 				6AB359B71A2B638C008C48B4 /* RegisterAPI.m in Sources */,
 				B99EFBA41AA0965500961E61 /* ContactRecordTableViewCell.m in Sources */,
 				B95EEFC71A669887006F7FEF /* ContactGroupListTableViewController.m in Sources */,
@@ -2651,6 +2693,7 @@
 				B9D4EA121A5C173900DB2A8D /* MyAppointmentDetailViewController.m in Sources */,
 				6A2BD60A1A31EDA7002F7644 /* FetchChatUtil.m in Sources */,
 				6ABFDBDC1A6B8DA100DB8E74 /* MyPageContentArticleTableViewCell.m in Sources */,
+				6A6D076E1AB1CCD50052EA5A /* Message.m in Sources */,
 				6A7376571A20E4CC006EF54F /* RegisterTableViewController.m in Sources */,
 				6A6454241A6D4BB700070D5E /* MainGroupDetailViewController.m in Sources */,
 				B9E2E12E1A6FF832009401F1 /* ContactRecordTableViewController.m in Sources */,
@@ -2697,7 +2740,6 @@
 				6A78BE2A1A2229F8005457F3 /* ForgetPasswordViewController.m in Sources */,
 				B9DD58E11A30912200AA4CDC /* MoreUpdateViewController.m in Sources */,
 				6A2BD6071A31EC44002F7644 /* ChatAPI.m in Sources */,
-				6A5DC5F61A3317FE00961E53 /* Message.m in Sources */,
 				6A78BE271A2215DD005457F3 /* RegisterMoreTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

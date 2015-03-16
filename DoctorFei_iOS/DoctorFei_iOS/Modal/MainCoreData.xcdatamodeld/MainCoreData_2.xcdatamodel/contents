@@ -1,24 +1,29 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6254" systemVersion="14C109" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6751" systemVersion="14C1510" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="Chat" representedClassName="Chat" syncable="YES">
-        <attribute name="lastMessageContent" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="lastMessageTime" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="chatId" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="type" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="unreadMessageCount" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Friends" inverseName="chat" inverseEntity="Friends" syncable="YES"/>
+        <relationship name="messages" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Message" inverseName="chat" inverseEntity="Message" syncable="YES"/>
+        <relationship name="user" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Friends" inverseName="chat" inverseEntity="Friends" syncable="YES"/>
     </entity>
     <entity name="Friends" representedClassName="Friends" syncable="YES">
+        <attribute name="department" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="gender" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="hospital" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="icon" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="isFriend" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="lastLoginTime" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="mobile" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="noteName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="otherContact" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="realname" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="situation" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="userId" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="userType" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <relationship name="chat" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Chat" inverseName="user" inverseEntity="Chat" syncable="YES"/>
+        <relationship name="chat" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Chat" inverseName="user" inverseEntity="Chat" syncable="YES"/>
         <relationship name="group" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Groups" inverseName="member" inverseEntity="Groups" syncable="YES"/>
         <relationship name="messages" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Message" inverseName="user" inverseEntity="Message" syncable="YES"/>
     </entity>
@@ -34,12 +39,13 @@
         <attribute name="flag" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="messageId" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="msgType" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="chat" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Chat" inverseName="messages" inverseEntity="Chat" syncable="YES"/>
         <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Friends" inverseName="messages" inverseEntity="Friends" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Chat" positionX="18" positionY="284" width="128" height="118"/>
-        <element name="Friends" positionX="-63" positionY="-18" width="128" height="238"/>
+        <element name="Chat" positionX="18" positionY="284" width="128" height="133"/>
+        <element name="Friends" positionX="-63" positionY="-18" width="128" height="298"/>
         <element name="Groups" positionX="187" positionY="144" width="128" height="103"/>
-        <element name="Message" positionX="162" positionY="-9" width="128" height="133"/>
+        <element name="Message" positionX="162" positionY="-9" width="128" height="148"/>
     </elements>
 </model>
