@@ -17,6 +17,8 @@
 #import "Message.h"
 #import "Chat.h"
 #import "MemberAPI.h"
+#import "ContactDetailPopoverViewController.h"
+#import "DoctorFei_Patient_iOS-swift.h"
 typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
     SMSToolbarSendMethodVoice,
     SMSToolbarSendMethodText
@@ -357,18 +359,51 @@ typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
 - (void)showRecordButtonClicked:(id)sender{
     [self performSegueWithIdentifier:@"ContactShowRecordSegueIdentifier" sender:sender];
 }
+- (void)showHisPage:(id)sender{
+    
+}
+- (void)departTime:(id)sender{
+    [self performSegueWithIdentifier:@"AgendaTimeScheduleSegueIdentifier" sender:sender];
+}
+- (void)launchAppointment:(id)sender{
+    [self performSegueWithIdentifier:@"ContactLaunchAppointmentSegueIdentifier" sender:sender];
+    NSLog(@"launch");
+}
 
-
-
-/*
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    if ([segue.identifier isEqualToString:@"ContactDetailActionSegueIdentifier"]){
+        ContactDetailPopoverViewController *vc = [segue destinationViewController];
+        vc.preferredContentSize = CGSizeMake(120, 122);
+        vc.showHisPage = @selector(showHisPage:);
+        vc.launchAppointment = @selector(launchAppointment:);
+        vc.departTime = @selector(departTime:);
+        vc.target = self;
+        WYStoryboardPopoverSegue *popoverSegue = (WYStoryboardPopoverSegue *)segue;
+        
+        self.popover = [popoverSegue popoverControllerWithSender:sender permittedArrowDirections:WYPopoverArrowDirectionAny animated:YES];
+        self.popover.delegate = self;
+        self.popover.dismissOnTap = YES;
+        self.popover.theme.outerCornerRadius = 0;
+        self.popover.theme.innerCornerRadius = 0;
+        self.popover.theme.fillTopColor = [UIColor darkGrayColor];
+        self.popover.theme.fillBottomColor = [UIColor darkGrayColor];
+        self.popover.theme.arrowHeight = 8.0f;
+        self.popover.popoverLayoutMargins = UIEdgeInsetsZero;
+    }
+    if ([segue.identifier isEqualToString:@"ContactLaunchAppointmentSegueIdentifier"]){
+        ContactLaunchApointmentTableViewController *vc = [segue destinationViewController];
+        vc.doctorId = self.currentFriend.userId;
+    }
+    if ([segue.identifier isEqualToString:@"AgendaTimeScheduleSegueIdentifier"]){
+        AgendaTimeScheduleViewController *vc = [segue destinationViewController];
+        vc.doctorId = self.currentFriend.userId;
+    }
 }
-*/
 
 #pragma mark - UITextView Delegate
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {

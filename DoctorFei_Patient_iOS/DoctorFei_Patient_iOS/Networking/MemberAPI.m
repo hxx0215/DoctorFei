@@ -27,6 +27,7 @@
 #define kMethodGetChatLog @"get.member.chatlog"
 #define kMethodModifyPwd @"update.member.modifypwd"
 #define kMethodSetFriend @"set.member.friend"
+#define kMethodGetDoctorSchedule @"get.doctor.schedule"
 
 @implementation MemberAPI
 + (void)updateInfomationWithParameters: (id)parameters success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
@@ -114,5 +115,13 @@
 }
 + (void)setFriendWithParameters: (id)parameters success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure {
     [[self sharedManager]defaultGetWithMethod:kMethodSetFriend WithParameters:parameters success:success failure:failure];
+}
+//添加预约
++ (void)setAppointmentWithParameters:(id)parameters success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure{
+    [[self sharedManager] defaultGetWithMethod:kMethodSetAppointment WithParameters:parameters success:success failure:failure];
+}
+//获取医生日程
++ (void)getDoctorScheduleWithParameters:(id)parameters success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure{
+    [[self sharedManager] defaultGetWithMethod:kMethodGetDoctorSchedule WithParameters:parameters success:success failure:failure];
 }
 @end

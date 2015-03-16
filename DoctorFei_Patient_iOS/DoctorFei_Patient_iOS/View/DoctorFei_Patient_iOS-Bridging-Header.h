@@ -3,6 +3,8 @@
 //
 
 #import <UIImageView+WebCache.h>
+#import <MBProgressHUD.h>
+#import <ActionSheetPicker.h>
 #import "swiftActionSheet.h"
 #import "MemberAPI.h"
-#import <MBProgressHUD.h>
+#import "TextBasicInfoViewController.h"
