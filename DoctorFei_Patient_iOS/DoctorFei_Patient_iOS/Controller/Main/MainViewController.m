@@ -93,7 +93,8 @@
         [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
         ContactDetailViewController *vc = [segue destinationViewController];
         Chat *chat = chatArray[indexPath.row];
-        [vc setCurrentFriend:chat.user];
+//        [vc setCurrentFriend:chat.user];
+        [vc setCurrentChat:chat];
     }
 }
 

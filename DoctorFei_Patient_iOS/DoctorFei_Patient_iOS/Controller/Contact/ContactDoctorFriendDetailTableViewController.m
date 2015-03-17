@@ -1,14 +1,25 @@
 //
 //  ContactDoctorFriendDetailTableViewController.m
-//  DoctorFei_Patient_iOS
+//  DoctorFei_iOS
 //
-//  Created by GuJunjia on 15/2/28.
+//  Created by GuJunjia on 15/3/15.
 //
 //
 
 #import "ContactDoctorFriendDetailTableViewController.h"
-
+#import "Friends.h"
+#import <UIImageView+WebCache.h>
 @interface ContactDoctorFriendDetailTableViewController ()
+- (IBAction)backButtonClicked:(id)sender;
+@property (weak, nonatomic) IBOutlet UIImageView *avatarImageView;
+@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *hospitalLabel;
+@property (weak, nonatomic) IBOutlet UILabel *departmentLabel;
+@property (weak, nonatomic) IBOutlet UILabel *jobTitleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *emailLabel;
+@property (weak, nonatomic) IBOutlet UITextView *otherContactLabel;
+@property (weak, nonatomic) IBOutlet UIButton *addToContactButton;
+@property (weak, nonatomic) IBOutlet UIButton *sendMessageButton;
 
 @end
 
@@ -22,6 +33,17 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    if (_currentFriend.icon && _currentFriend.icon.length > 0) {
+        [self.avatarImageView sd_setImageWithURL:[NSURL URLWithString:_currentFriend.icon] placeholderImage:[UIImage imageNamed:@"details_uers_example_pic"]];
+    }
+    [self.nameLabel setText:_currentFriend.realname];
+    [self.hospitalLabel setText:_currentFriend.hospital];
+    [self.departmentLabel setText:_currentFriend.department];
+    [self.emailLabel setText:_currentFriend.email];
+    [self.otherContactLabel setText:_currentFriend.otherContact];
+    [self.addToContactButton setHidden:[_currentFriend.isFriend boolValue]];
+    [self.sendMessageButton setHidden:(_mode == ContactDoctorFriendDetailModeNormal)];
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -29,19 +51,7 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Potentially incomplete method implementation.
-    // Return the number of sections.
-    return 0;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete method implementation.
-    // Return the number of rows in the section.
-    return 0;
-}
 
 /*
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -97,4 +107,7 @@
 }
 */
 
+- (IBAction)backButtonClicked:(id)sender {
+    [self.navigationController popViewControllerAnimated:YES];
+}
 @end

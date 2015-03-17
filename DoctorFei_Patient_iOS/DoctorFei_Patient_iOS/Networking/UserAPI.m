@@ -10,6 +10,9 @@
 #define kMethodUserInfomation @"get.user.infomation"
 #define kMethodFeedBack @"set.feed.back"
 #define kMethodSearchUser @"get.search.user"
+#define kMethodGetDoctorInfomation @"get.doctor.information"
+#define kMethodGetMemberInfomation @"get.member.information"
+
 @implementation UserAPI
 
 + (void)getUserInfomationWithParameters: (id)parameters success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure {
@@ -21,5 +24,11 @@
 }
 + (void)searchUserWithParameters: (id)parameters success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure {
     [[self sharedManager]defaultGetWithMethod:kMethodSearchUser WithParameters:parameters success:success failure:failure];
+}
++ (void)getDoctorInfomationWithParameters: (id)parameters success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure {
+    [[self sharedManager]defaultGetWithMethod:kMethodGetDoctorInfomation WithParameters:parameters success:success failure:failure];
+}
++ (void)getMemberInfomationWithParameters: (id)parameters success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure {
+    [[self sharedManager]defaultGetWithMethod:kMethodGetMemberInfomation WithParameters:parameters success:success failure:failure];
 }
 @end

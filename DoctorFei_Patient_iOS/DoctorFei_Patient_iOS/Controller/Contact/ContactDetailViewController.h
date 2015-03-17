@@ -8,10 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import <JSQMessagesViewController.h>
-@class Friends;
+//@class Friends;
+@class Chat;
 
 @interface ContactDetailViewController : JSQMessagesViewController
 
-@property (nonatomic, strong) Friends *currentFriend;
+//@property (nonatomic, strong) Friends *currentFriend;
+@property (nonatomic, strong) Chat *currentChat;
 
 @end
