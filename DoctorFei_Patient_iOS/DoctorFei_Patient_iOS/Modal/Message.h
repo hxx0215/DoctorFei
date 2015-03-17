@@ -2,7 +2,7 @@
 //  Message.h
 //  DoctorFei_Patient_iOS
 //
-//  Created by GuJunjia on 15/3/3.
+//  Created by GuJunjia on 15/3/16.
 //
 //
 
@@ -18,7 +18,7 @@
 @property (nonatomic, retain) NSNumber * flag;
 @property (nonatomic, retain) NSNumber * messageId;
 @property (nonatomic, retain) NSString * msgType;
-@property (nonatomic, retain) Friends *user;
 @property (nonatomic, retain) Chat *chat;
+@property (nonatomic, retain) Friends *user;
 
 @end

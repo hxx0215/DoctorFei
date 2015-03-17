@@ -354,7 +354,7 @@ typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
     for (Message *message in messageArray) {
         NSString *senderId, *senderName;
         if ([message.flag intValue] == 0) {
-            senderId = [message.user.userId stringValue];
+            senderId = [NSString stringWithFormat:@"%@;%@",[message.user.userId stringValue],[message.user.userType stringValue]];
             senderName = message.user.realname;
         }
         else{

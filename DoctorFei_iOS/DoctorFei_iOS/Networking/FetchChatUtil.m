@@ -31,6 +31,7 @@
     friend.email = dataDict[@"Email"];
     friend.hospital = dataDict[@"hospital"];
     friend.department = dataDict[@"department"];
+    friend.jobTitle = dataDict[@"jobTitle"];
     friend.otherContact = dataDict[@"OtherContact"];
     friend.isFriend = @([dataDict[@"friend"] intValue]);
     [[NSManagedObjectContext MR_defaultContext]MR_saveToPersistentStoreAndWait];
@@ -126,7 +127,7 @@
                  };
     }
     else{
-        dict = @{@"doctorid": doctorId, @"userid": userId, @"userType": userType};
+        dict = @{@"doctorid": doctorId, @"userid": userId, @"usertype": userType};
     }
     
     
@@ -135,8 +136,8 @@
         NSLog(@"GetChat: %@", responseObject);
         NSArray *messageArray = (NSArray *)responseObject;
 //        Friends *messageFriend = [Friends MR_findFirstByAttribute:@"userId" withValue:userId];
-        Chat *messageChat = [Chat MR_findFirstWithPredicate:[NSPredicate predicateWithFormat:@"type == %@ AND (ANY user == %@)", chatType, friend]];
         Friends *messageFriend = [Friends MR_findFirstWithPredicate:[NSPredicate predicateWithFormat:@"userId == %@ && userType == %@", userId, userType]];
+        Chat *messageChat = [Chat MR_findFirstWithPredicate:[NSPredicate predicateWithFormat:@"type == %@ AND (ANY user == %@)", chatType, friend]];
         for (NSDictionary *dict in messageArray) {
             Message *message = [Message MR_findFirstByAttribute:@"messageId" withValue:dict[@"id"]];
             if (message == nil) {
@@ -145,11 +146,9 @@
             }
             message.content = dict[@"content"];
             message.createtime = [NSDate dateWithTimeIntervalSince1970:[dict[@"createtime"]intValue]];
-//            message.createtime = [DataUtil dateaFromFormatedString:dict[@"createtime"]];
             message.flag = @([dict[@"flag"]intValue]);
             message.msgType = dict[@"msgtype"];
             message.user = [dict[@"flag"] intValue] ? nil :messageFriend;
-//            chat.messages = [chat.messages setByAddingObject:message];
             message.chat = messageChat;
         }
 //        [[NSManagedObjectContext MR_defaultContext]MR_saveToPersistentStoreAndWait];
@@ -162,7 +161,7 @@
 //        else{
 //            chat.unreadMessageCount = @([params[@"total"]intValue] + chat.unreadMessageCount.intValue);
 //        }
-        chat.unreadMessageCount = @(chat.unreadMessageCount.intValue + [params[@"total"]intValue]);
+        messageChat.unreadMessageCount = @([messageChat.unreadMessageCount intValue] + [params[@"total"]intValue]);
         
 //        Message *message = [[Message MR_findByAttribute:@"user" withValue:messageFriend andOrderBy:@"messageId" ascending:YES]lastObject];
 //        Message *message = [Message MR_findFirstWithPredicate:[NSPredicate predicateWithFormat:@"chat == %@ AND user == %@", chat,friend] sortedBy:@"messageId" ascending:YES];

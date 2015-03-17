@@ -2,7 +2,7 @@
 //  Message.m
 //  DoctorFei_Patient_iOS
 //
-//  Created by GuJunjia on 15/3/3.
+//  Created by GuJunjia on 15/3/16.
 //
 //
 
@@ -18,7 +18,7 @@
 @dynamic flag;
 @dynamic messageId;
 @dynamic msgType;
-@dynamic user;
 @dynamic chat;
+@dynamic user;
 
 @end
