@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1510" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="fJh-M9-nxj">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="fJh-M9-nxj">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
@@ -2182,6 +2182,15 @@
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="approvedStatus" destination="R3c-hd-zKu" id="Uf6-O2-0HY"/>
+                        <outlet property="avatarImageView" destination="YKK-jO-Pgl" id="tIW-os-eKP"/>
+                        <outlet property="contentTableView" destination="Mgb-Sn-aqb" id="Ign-UF-XJ9"/>
+                        <outlet property="contentTypeSegmentControl" destination="Hpf-Vq-AaZ" id="hHb-Gf-4tP"/>
+                        <outlet property="departAndJobLabel" destination="DNA-zw-hoq" id="LZg-DH-UbJ"/>
+                        <outlet property="hospitalLabel" destination="pfl-3Q-ERJ" id="oaR-OY-1Vv"/>
+                        <outlet property="nameLabel" destination="hx2-uj-WTo" id="ba1-xT-fLh"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cad-P5-RPa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -2508,8 +2517,7 @@
                                         <exclude reference="qKS-B4-ozg"/>
                                     </mask>
                                 </variation>
-                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="50" y="168" width="301" height="353"/>
+                                <variation key="heightClass=regular-widthClass=compact">
                                     <mask key="subviews">
                                         <include reference="suE-Ra-mFt"/>
                                         <include reference="J4Q-e4-Inl"/>
@@ -2721,13 +2729,13 @@
                                                     <exclude reference="b90-3z-zcr"/>
                                                 </mask>
                                                 <mask key="constraints">
+                                                    <exclude reference="Dvr-YA-38e"/>
+                                                    <exclude reference="WqG-Py-Qqx"/>
+                                                    <exclude reference="d6C-mN-19T"/>
                                                     <exclude reference="0c0-JY-efa"/>
                                                     <exclude reference="atP-sG-iwK"/>
                                                     <exclude reference="dBk-ve-3MQ"/>
                                                     <exclude reference="pex-Wl-1E1"/>
-                                                    <exclude reference="Dvr-YA-38e"/>
-                                                    <exclude reference="WqG-Py-Qqx"/>
-                                                    <exclude reference="d6C-mN-19T"/>
                                                     <exclude reference="Ehq-V5-Imd"/>
                                                     <exclude reference="ga2-5U-cW7"/>
                                                     <exclude reference="hPB-0b-MDK"/>
@@ -2744,13 +2752,13 @@
                                                     <include reference="b90-3z-zcr"/>
                                                 </mask>
                                                 <mask key="constraints">
+                                                    <include reference="Dvr-YA-38e"/>
+                                                    <include reference="WqG-Py-Qqx"/>
+                                                    <include reference="d6C-mN-19T"/>
                                                     <include reference="0c0-JY-efa"/>
                                                     <include reference="atP-sG-iwK"/>
                                                     <include reference="dBk-ve-3MQ"/>
                                                     <include reference="pex-Wl-1E1"/>
-                                                    <include reference="Dvr-YA-38e"/>
-                                                    <include reference="WqG-Py-Qqx"/>
-                                                    <include reference="d6C-mN-19T"/>
                                                     <include reference="Ehq-V5-Imd"/>
                                                     <include reference="ga2-5U-cW7"/>
                                                     <include reference="hPB-0b-MDK"/>
@@ -3035,13 +3043,13 @@
                                                     <exclude reference="B7e-L6-x22"/>
                                                 </mask>
                                                 <mask key="constraints">
+                                                    <exclude reference="8aJ-Zq-g6J"/>
+                                                    <exclude reference="aR4-Sj-91G"/>
+                                                    <exclude reference="xCt-ii-3hh"/>
                                                     <exclude reference="DC1-JW-HXW"/>
                                                     <exclude reference="TlL-rH-eow"/>
                                                     <exclude reference="aDx-64-J3d"/>
                                                     <exclude reference="min-zF-d6G"/>
-                                                    <exclude reference="8aJ-Zq-g6J"/>
-                                                    <exclude reference="aR4-Sj-91G"/>
-                                                    <exclude reference="xCt-ii-3hh"/>
                                                     <exclude reference="9mg-rV-2cW"/>
                                                     <exclude reference="PCL-W5-kAr"/>
                                                     <exclude reference="c2O-62-AxI"/>
@@ -3058,13 +3066,13 @@
                                                     <include reference="B7e-L6-x22"/>
                                                 </mask>
                                                 <mask key="constraints">
+                                                    <include reference="8aJ-Zq-g6J"/>
+                                                    <include reference="aR4-Sj-91G"/>
+                                                    <include reference="xCt-ii-3hh"/>
                                                     <include reference="DC1-JW-HXW"/>
                                                     <include reference="TlL-rH-eow"/>
                                                     <include reference="aDx-64-J3d"/>
                                                     <include reference="min-zF-d6G"/>
-                                                    <include reference="8aJ-Zq-g6J"/>
-                                                    <include reference="aR4-Sj-91G"/>
-                                                    <include reference="xCt-ii-3hh"/>
                                                     <include reference="9mg-rV-2cW"/>
                                                     <include reference="PCL-W5-kAr"/>
                                                     <include reference="c2O-62-AxI"/>

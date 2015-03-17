@@ -28,7 +28,7 @@
 #define kMethodModifyPwd @"update.member.modifypwd"
 #define kMethodSetFriend @"set.member.friend"
 #define kMethodGetDoctorSchedule @"get.doctor.schedule"
-
+#define kMethodGetDoctorShuoshuo @"get.doctor.shuoshuo"
 @implementation MemberAPI
 + (void)updateInfomationWithParameters: (id)parameters success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
 {
@@ -123,5 +123,9 @@
 //获取医生日程
 + (void)getDoctorScheduleWithParameters:(id)parameters success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure{
     [[self sharedManager] defaultGetWithMethod:kMethodGetDoctorSchedule WithParameters:parameters success:success failure:failure];
+}
+//获取医生说说
++ (void)getDoctorShuoShuoWithParameters:(id)parameters success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure{
+    [[self sharedManager] defaultGetWithMethod:kMethodGetDoctorShuoshuo WithParameters:parameters success:success failure:failure];
 }
 @end
