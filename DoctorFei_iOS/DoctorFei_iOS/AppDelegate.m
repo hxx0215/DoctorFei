@@ -16,6 +16,7 @@
 #import "SocketConnection.h"
 #import "DataUtil.h"
 #import <MobClick.h>
+#import "ImageDetailViewController.h"
 @interface AppDelegate ()
 
 @end
@@ -145,6 +146,18 @@
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"%@",error.localizedDescription);
     }];
+}
+
+- (NSUInteger)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window {
+    if ([self.window.rootViewController.presentedViewController isKindOfClass: [ImageDetailViewController class]])
+    {
+        ImageDetailViewController *secondController = (ImageDetailViewController *) self.window.rootViewController.presentedViewController;
+        
+        if (secondController.isPresented)
+            return UIInterfaceOrientationMaskAll;
+        else return UIInterfaceOrientationMaskPortrait;
+    }
+    else return UIInterfaceOrientationMaskPortrait;
 }
 
 @end

@@ -69,34 +69,34 @@
         CGSize size = [self mediaViewDisplaySize];
         UIView *imageView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, size.width, size.height)];
         if (self.appliesMediaViewMaskAsOutgoing) {
-            imageView.backgroundColor = [UIColor jsq_messageBubbleLightGrayColor];
+            imageView.backgroundColor = UIColorFromRGB(0xADE85B);
             _voiceStateView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"chat_animation_white3"]];
             [_voiceStateView setFrame:CGRectMake(20, 12, 20, 20)];
             _voiceStateView.animationImages = @[[UIImage imageNamed:@"chat_animation_white1"],
                                                 [UIImage imageNamed:@"chat_animation_white2"],
                                                 [UIImage imageNamed:@"chat_animation_white3"]];
-            _timeLabel = [[UILabel alloc]initWithFrame:CGRectMake(80, 10, 50, 22)];
-            _timeLabel.textAlignment = NSTextAlignmentRight;
-            [_timeLabel setTextColor:[UIColor blackColor]];
+//            _timeLabel = [[UILabel alloc]initWithFrame:CGRectMake(80, 10, 50, 22)];
+//            _timeLabel.textAlignment = NSTextAlignmentRight;
+//            [_timeLabel setTextColor:[UIColor blackColor]];
         }
         else{
-            imageView.backgroundColor = [UIColor jsq_messageBubbleGreenColor];
+            imageView.backgroundColor = [UIColor whiteColor];
             _voiceStateView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"chat_animation3"]];
             [_voiceStateView setFrame:CGRectMake(110, 12, 20, 20)];
             _voiceStateView.animationImages = @[[UIImage imageNamed:@"chat_animation1"],
                                                 [UIImage imageNamed:@"chat_animation2"],
                                                 [UIImage imageNamed:@"chat_animation3"]];
-            _timeLabel = [[UILabel alloc]initWithFrame:CGRectMake(25, 10, 50, 22)];
-            _timeLabel.textAlignment = NSTextAlignmentLeft;
-            [_timeLabel setTextColor:[UIColor whiteColor]];
+//            _timeLabel = [[UILabel alloc]initWithFrame:CGRectMake(25, 10, 50, 22)];
+//            _timeLabel.textAlignment = NSTextAlignmentLeft;
+//            [_timeLabel setTextColor:[UIColor whiteColor]];
         }
         _voiceStateView.animationDuration = 1;
         _voiceStateView.animationRepeatCount = 0;
         [imageView addSubview:_voiceStateView];
         
-        [_timeLabel setFont:[UIFont systemFontOfSize:14.0f]];
-        [_timeLabel setText:@"60''"];
-        [imageView addSubview:_timeLabel];
+//        [_timeLabel setFont:[UIFont systemFontOfSize:14.0f]];
+//        [_timeLabel setText:@"60''"];
+//        [imageView addSubview:_timeLabel];
         //        [_voiceStateView startAnimating];
         [JSQMessagesMediaViewBubbleImageMasker applyBubbleImageMaskToMediaView:imageView isOutgoing:self.appliesMediaViewMaskAsOutgoing];
         self.cachedAudioImageView = imageView;

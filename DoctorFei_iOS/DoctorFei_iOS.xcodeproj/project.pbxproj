@@ -107,6 +107,11 @@
 		6A86B3621AA600D800D280AF /* chat_animation3.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A86B35C1AA600D800D280AF /* chat_animation3.png */; };
 		6A9177F61A2DE2E2000645A4 /* DataUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A9177F51A2DE2E2000645A4 /* DataUtil.m */; };
 		6AA547401A4163CD00037C25 /* ContactFriendSetDescribeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AA5473F1A4163CD00037C25 /* ContactFriendSetDescribeTableViewController.m */; };
+		6AA94DB51AB812A60095D1C8 /* amrFileCodec.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AA94DA81AB812A60095D1C8 /* amrFileCodec.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		6AA94DB61AB812A60095D1C8 /* libopencore-amrnb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AA94DB11AB812A60095D1C8 /* libopencore-amrnb.a */; };
+		6AA94DB71AB812A60095D1C8 /* libopencore-amrwb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AA94DB21AB812A60095D1C8 /* libopencore-amrwb.a */; };
+		6AA94DB81AB812A60095D1C8 /* RecordAudio.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AA94DB41AB812A60095D1C8 /* RecordAudio.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		6AA94DBF1AB957280095D1C8 /* ImageDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AA94DBE1AB957280095D1C8 /* ImageDetailViewController.m */; };
 		6AB359B11A2B5758008C48B4 /* BaseHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AB359B01A2B5758008C48B4 /* BaseHTTPRequestOperationManager.m */; };
 		6AB359B71A2B638C008C48B4 /* RegisterAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AB359B61A2B638C008C48B4 /* RegisterAPI.m */; };
 		6AB359BA1A2B6C3B008C48B4 /* DeviceUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AB359B91A2B6C3B008C48B4 /* DeviceUtil.m */; };
@@ -710,6 +715,18 @@
 		6A9177F51A2DE2E2000645A4 /* DataUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataUtil.m; sourceTree = "<group>"; };
 		6AA5473E1A4163CD00037C25 /* ContactFriendSetDescribeTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactFriendSetDescribeTableViewController.h; sourceTree = "<group>"; };
 		6AA5473F1A4163CD00037C25 /* ContactFriendSetDescribeTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactFriendSetDescribeTableViewController.m; sourceTree = "<group>"; };
+		6AA94DA71AB812A60095D1C8 /* amrFileCodec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = amrFileCodec.h; sourceTree = "<group>"; };
+		6AA94DA81AB812A60095D1C8 /* amrFileCodec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = amrFileCodec.m; sourceTree = "<group>"; };
+		6AA94DAB1AB812A60095D1C8 /* interf_dec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = interf_dec.h; sourceTree = "<group>"; };
+		6AA94DAC1AB812A60095D1C8 /* interf_enc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = interf_enc.h; sourceTree = "<group>"; };
+		6AA94DAE1AB812A60095D1C8 /* dec_if.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dec_if.h; sourceTree = "<group>"; };
+		6AA94DAF1AB812A60095D1C8 /* if_rom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = if_rom.h; sourceTree = "<group>"; };
+		6AA94DB11AB812A60095D1C8 /* libopencore-amrnb.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libopencore-amrnb.a"; sourceTree = "<group>"; };
+		6AA94DB21AB812A60095D1C8 /* libopencore-amrwb.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libopencore-amrwb.a"; sourceTree = "<group>"; };
+		6AA94DB31AB812A60095D1C8 /* RecordAudio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordAudio.h; sourceTree = "<group>"; };
+		6AA94DB41AB812A60095D1C8 /* RecordAudio.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordAudio.m; sourceTree = "<group>"; };
+		6AA94DBD1AB957280095D1C8 /* ImageDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageDetailViewController.h; sourceTree = "<group>"; };
+		6AA94DBE1AB957280095D1C8 /* ImageDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageDetailViewController.m; sourceTree = "<group>"; };
 		6AB359AF1A2B5758008C48B4 /* BaseHTTPRequestOperationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseHTTPRequestOperationManager.h; sourceTree = "<group>"; };
 		6AB359B01A2B5758008C48B4 /* BaseHTTPRequestOperationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseHTTPRequestOperationManager.m; sourceTree = "<group>"; };
 		6AB359B51A2B638C008C48B4 /* RegisterAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterAPI.h; sourceTree = "<group>"; };
@@ -1213,6 +1230,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6AF48F161AA8A32A00735C81 /* CoreLocation.framework in Frameworks */,
+				6AA94DB71AB812A60095D1C8 /* libopencore-amrwb.a in Frameworks */,
 				B94F6C701A5D752F004E1B93 /* AVFoundation.framework in Frameworks */,
 				6A69A0281A2CC94C00D85777 /* libz.dylib in Frameworks */,
 				6A69A0261A2CC94500D85777 /* Security.framework in Frameworks */,
@@ -1223,6 +1241,7 @@
 				6A69A01D1A2CC91100D85777 /* CoreTelephony.framework in Frameworks */,
 				6A69A01B1A2CC90400D85777 /* CoreFoundation.framework in Frameworks */,
 				6A69A0191A2CC8FE00D85777 /* CFNetwork.framework in Frameworks */,
+				6AA94DB61AB812A60095D1C8 /* libopencore-amrnb.a in Frameworks */,
 				6A69A0171A2CC8EB00D85777 /* libPushSDK.a in Frameworks */,
 				E5DC0A78865BEBA4AB7CC615 /* libPods-DoctorFei_iOS.a in Frameworks */,
 			);
@@ -1253,6 +1272,7 @@
 		6A69A0131A2CC8E400D85777 /* Dependence */ = {
 			isa = PBXGroup;
 			children = (
+				6AA94DA61AB812A60095D1C8 /* arm */,
 				6A69A0141A2CC8EB00D85777 /* JPush */,
 			);
 			path = Dependence;
@@ -1808,6 +1828,8 @@
 			children = (
 				6A73764D1A20D829006EF54F /* MainTabBarViewController.h */,
 				6A73764E1A20D829006EF54F /* MainTabBarViewController.m */,
+				6AA94DBD1AB957280095D1C8 /* ImageDetailViewController.h */,
+				6AA94DBE1AB957280095D1C8 /* ImageDetailViewController.m */,
 			);
 			path = General;
 			sourceTree = "<group>";
@@ -1836,6 +1858,55 @@
 				6A78BE321A222C5B005457F3 /* SetNewPasswordTableViewController.m */,
 			);
 			path = Register;
+			sourceTree = "<group>";
+		};
+		6AA94DA61AB812A60095D1C8 /* arm */ = {
+			isa = PBXGroup;
+			children = (
+				6AA94DA71AB812A60095D1C8 /* amrFileCodec.h */,
+				6AA94DA81AB812A60095D1C8 /* amrFileCodec.m */,
+				6AA94DA91AB812A60095D1C8 /* include */,
+				6AA94DB01AB812A60095D1C8 /* lib */,
+				6AA94DB31AB812A60095D1C8 /* RecordAudio.h */,
+				6AA94DB41AB812A60095D1C8 /* RecordAudio.m */,
+			);
+			path = arm;
+			sourceTree = "<group>";
+		};
+		6AA94DA91AB812A60095D1C8 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				6AA94DAA1AB812A60095D1C8 /* opencore-amrnb */,
+				6AA94DAD1AB812A60095D1C8 /* opencore-amrwb */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		6AA94DAA1AB812A60095D1C8 /* opencore-amrnb */ = {
+			isa = PBXGroup;
+			children = (
+				6AA94DAB1AB812A60095D1C8 /* interf_dec.h */,
+				6AA94DAC1AB812A60095D1C8 /* interf_enc.h */,
+			);
+			path = "opencore-amrnb";
+			sourceTree = "<group>";
+		};
+		6AA94DAD1AB812A60095D1C8 /* opencore-amrwb */ = {
+			isa = PBXGroup;
+			children = (
+				6AA94DAE1AB812A60095D1C8 /* dec_if.h */,
+				6AA94DAF1AB812A60095D1C8 /* if_rom.h */,
+			);
+			path = "opencore-amrwb";
+			sourceTree = "<group>";
+		};
+		6AA94DB01AB812A60095D1C8 /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				6AA94DB11AB812A60095D1C8 /* libopencore-amrnb.a */,
+				6AA94DB21AB812A60095D1C8 /* libopencore-amrwb.a */,
+			);
+			path = lib;
 			sourceTree = "<group>";
 		};
 		6AC6E8D41A28C015007689D8 /* ios 欢迎页 */ = {
@@ -2661,6 +2732,7 @@
 				6A5DC5FC1A332DF200961E53 /* MessagesModalData.m in Sources */,
 				6AD089D01A66C276007D0988 /* AgendaArrangementTableViewCell.m in Sources */,
 				6A7376531A20D84C006EF54F /* LoginViewController.m in Sources */,
+				6AA94DB51AB812A60095D1C8 /* amrFileCodec.m in Sources */,
 				6ABFDBD91A6B8D8E00DB8E74 /* MyPageContentTalkTableViewCell.m in Sources */,
 				6A6454211A6D488C00070D5E /* MainGroupTableViewCell.m in Sources */,
 				6A2BD5CC1A300207002F7644 /* MobileAPI.m in Sources */,
@@ -2678,9 +2750,11 @@
 				6A32524C1A85EC5F00B5E31F /* MainGroupGroupActionViewController.m in Sources */,
 				6AD089B51A654C19007D0988 /* AgendaViewController.m in Sources */,
 				6A5DC5D81A32DF3800961E53 /* UserAPI.m in Sources */,
+				6AA94DB81AB812A60095D1C8 /* RecordAudio.m in Sources */,
 				6AB359BA1A2B6C3B008C48B4 /* DeviceUtil.m in Sources */,
 				6A4FC1691A2F67F10042497C /* ContactFriendTableViewCell.m in Sources */,
 				6AF8EF671AB5A9E900B12756 /* ContactPersonalDetailInfoViewController.m in Sources */,
+				6AA94DBF1AB957280095D1C8 /* ImageDetailViewController.m in Sources */,
 				6A1D42CC1A67EC10002B0F7C /* MyPageViewController.m in Sources */,
 				6AF8EF641AB5921200B12756 /* ContactDoctorFriendDetailTableViewController.m in Sources */,
 				6AB359B71A2B638C008C48B4 /* RegisterAPI.m in Sources */,
@@ -2854,6 +2928,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/DoctorFei_iOS/Dependence/JPush",
+					"$(PROJECT_DIR)/DoctorFei_iOS/Dependence/arm/lib",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -2874,6 +2949,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/DoctorFei_iOS/Dependence/JPush",
+					"$(PROJECT_DIR)/DoctorFei_iOS/Dependence/arm/lib",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
