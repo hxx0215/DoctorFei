@@ -15,6 +15,8 @@
 #import "ContactFriendDetailTableViewController.h"
 #import "MessagesModalData.h"
 #import <SDWebImageManager.h>
+#import <SDImageCache.h>
+#import <SDWebImageDownloader.h>
 #import "ChatAPI.h"
 #import <MBProgressHUD.h>
 #import <Masonry.h>
@@ -29,13 +31,17 @@
 
 #import "ContactPeronsalFriendDetailTableViewController.h"
 #import "ContactDoctorFriendDetailTableViewController.h"
-
+#import "RecordAudio.h"
+#import "ImageUtil.h"
+#import "ImageDetailViewController.h"
+#import "JSQAudioMediaItem.h"
 typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
     SMSToolbarSendMethodVoice,
     SMSToolbarSendMethodText
 };
 
-@interface ContactDetailViewController ()<WYPopoverControllerDelegate, UITextViewDelegate>
+@interface ContactDetailViewController ()
+    <WYPopoverControllerDelegate, UITextViewDelegate, RecordAudioDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 - (IBAction)backButtonClicked:(id)sender;
 @property (nonatomic, strong) MessagesModalData *modalData;
 @property (nonatomic, strong) WYPopoverController *popover;
@@ -47,6 +53,10 @@ typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
     NSArray *messageArray;
     UIButton *voiceButton, *keyboardButton, *faceButton, *pictureButton, *sendVoiceButton;
     MBProgressHUD *voiceHUD;
+    RecordAudio *recordAudio;
+    NSData *currentRecordData;
+    double startRecordTime, endRecordTime;
+    JSQAudioMediaItem *currentPlayItem;
 }
 @synthesize /*currentFriend = _currentFriend,*/ modalData = _modalData, currentChat = _currentChat;
 
@@ -94,6 +104,11 @@ typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
     self.inputToolbar.contentView.textView.delegate = self;
 
 //    [self initNavigationBar];
+    
+    
+    recordAudio = [[RecordAudio alloc]init];
+    recordAudio.delegate = self;
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -148,6 +163,7 @@ typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
     pictureButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [pictureButton setImage:[UIImage imageNamed:@"pic_btn"] forState:UIControlStateNormal];
     [pictureButton setImage:[UIImage imageNamed:@"pic_btn_after"] forState:UIControlStateHighlighted];
+    [pictureButton addTarget:self action:@selector(pictureButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
     
     
     sendVoiceButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -202,14 +218,54 @@ typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
     voiceHUD.labelText = @"手指上滑, 取消发送";
     voiceHUD.labelFont = [UIFont systemFontOfSize:14.0f];
     voiceHUD.labelColor = UIColorFromRGB(0xAAAAAA);
+    
+    [recordAudio stopPlay];
+    [recordAudio startRecord];
+    startRecordTime = [NSDate timeIntervalSinceReferenceDate];
+    currentRecordData = nil;
+    
 }
 
 - (void)sendVoiceButtonTouchUpInside: (UIButton *)sender {
     [voiceHUD hide:YES];
+    
+    endRecordTime = [NSDate timeIntervalSinceReferenceDate];
+    endRecordTime -= startRecordTime;
+    if (endRecordTime<2.00f) {
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        hud.mode = MBProgressHUDModeText;
+        hud.labelText = @"录音时间过短";
+        [hud hide:YES afterDelay:1.0f];
+        return;
+    } else if (endRecordTime>60.00f){
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        hud.mode = MBProgressHUDModeText;
+        hud.labelText = @"录音时间过长";
+        [hud hide:YES afterDelay:1.0f];
+        return;
+    }
+
+    NSURL *url = [recordAudio stopRecord];
+    if (url != nil) {
+        currentRecordData = EncodeWAVEToAMR([NSData dataWithContentsOfURL:url], 1, 16);
+        [ChatAPI uploadAudio:@".amr" dataStream:currentRecordData success:^(NSURLResponse *operation, id responseObject) {
+            NSLog(@"%@",responseObject);
+            NSDictionary *result = [responseObject firstObject];
+            if ([result[@"state"] intValue] == 1) {
+                NSString *urlString = result[@"spath"];
+                if (urlString.length > 0) {
+                    [self sendMessageWithContent:urlString andType:kSendMessageTypeAudio];
+                }
+            }
+        } failure:^(NSURLResponse *operation, NSError *error) {
+            NSLog(@"%@",error.localizedDescription);
+        }];
+    }
 }
 
 - (void)sendVoiceButtonTouchUpOutside: (UIButton *)sender {
     [voiceHUD hide:YES];
+    [recordAudio stopRecord];
 }
 - (void)voiceButtonClicked:(UIButton *)sender {
     [self setToolbarSendMethod:SMSToolbarSendMethodVoice];
@@ -223,6 +279,20 @@ typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
 }
 - (void)dismissButtonClicked:(id)sender{
     [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+}
+- (void)pictureButtonClicked:(id)sender{
+    [self.inputToolbar.contentView.textView resignFirstResponder];
+    UIActionSheet *sheet;
+    if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
+    {
+        sheet  = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"拍照",@"从手机相册选择", nil];
+    }
+    else {
+        sheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"从手机相册选择", nil];
+    }
+    sheet.tag = 255;
+    [sheet showFromTabBar:self.tabBarController.tabBar];
+
 }
 - (void)showRecordButtonClicked:(id)sender{
     [self performSegueWithIdentifier:@"ContactShowRecordSegueIdentifier" sender:sender];
@@ -241,14 +311,30 @@ typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
     [ChatAPI sendMessageWithParameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSDictionary *dataDict = [responseObject firstObject];
         if ([dataDict[@"state"]intValue] > -1) {
-            JSQMessage *message = [[JSQMessage alloc]initWithSenderId:self.senderId senderDisplayName:self.senderDisplayName date:[NSDate date] text:content];
+            JSQMessage *message;
+            if ([type isEqualToString:kSendMessageTypeText]) {
+                message = [[JSQMessage alloc]initWithSenderId:self.senderId senderDisplayName:self.senderDisplayName date:[NSDate date] text:content];
+            }else if ([type isEqualToString:kSendMessageTypeImage]) {
+                JSQPhotoMediaItem *photoItem = [[JSQPhotoMediaItem alloc]initWithImage:nil];
+                message = [[JSQMessage alloc]initWithSenderId:self.senderId senderDisplayName:self.senderDisplayName date:[NSDate date] media:photoItem];
+                [[SDWebImageDownloader sharedDownloader]downloadImageWithURL:[NSURL URLWithString:content] options:0 progress:^(NSInteger receivedSize, NSInteger expectedSize) {
+                } completed:^(UIImage *image, NSData *data, NSError *error, BOOL finished) {
+                    if (image && finished) {
+                        photoItem.image = image;
+                        [self.collectionView reloadData];
+                    }
+                }];
+            }else if ([type isEqualToString:kSendMessageTypeAudio]) {
+                JSQAudioMediaItem *audioItem = [[JSQAudioMediaItem alloc]initWithFileURL:[NSURL URLWithString:content] isReadyToPlay:YES];
+                message = [[JSQMessage alloc]initWithSenderId:self.senderId senderDisplayName:self.senderDisplayName date:[NSDate date] media:audioItem];
+            }
             [self.modalData.messages addObject:message];
             Message *newMessage = [Message MR_createEntity];
-            newMessage.messageId = @([dataDict[@"state"]intValue]);
+            newMessage.messageId = @([dataDict[@"state"] intValue]) ;
             newMessage.content = content;
             newMessage.createtime = [NSDate date];
             newMessage.flag = @(1);
-            newMessage.msgType = @"text";
+            newMessage.msgType = type;
             newMessage.user = nil;
             newMessage.chat = _currentChat;
             _currentChat.unreadMessageCount = @0;
@@ -348,9 +434,7 @@ typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
 - (void)refreshMessageModal {
     NSString *myName = [[NSUserDefaults standardUserDefaults] objectForKey:@"UserRealName"];
     NSString *mySenderId = self.senderId;
-    _modalData.messages = [NSMutableArray array];
     messageArray = [Message MR_findByAttribute:@"chat" withValue:_currentChat andOrderBy:@"messageId" ascending:YES];
-//    messageArray = [_currentChat.messages allObjects] ;
     for (Message *message in messageArray) {
         NSString *senderId, *senderName;
         if ([message.flag intValue] == 0) {
@@ -361,10 +445,26 @@ typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
             senderId = mySenderId;
             senderName = myName;
         }
-        JSQMessage *jsqMessage = [[JSQMessage alloc] initWithSenderId:senderId senderDisplayName:senderName date:message.createtime text:message.content];
+        JSQMessage *jsqMessage;
+        if ([message.msgType isEqualToString:kSendMessageTypeText]) {
+            jsqMessage = [[JSQMessage alloc] initWithSenderId:senderId senderDisplayName:senderName date:message.createtime text:message.content];
+        }else if([message.msgType isEqualToString:kSendMessageTypeImage]) {
+            JSQPhotoMediaItem *photoItem = [[JSQPhotoMediaItem alloc]initWithImage:nil];
+            jsqMessage = [[JSQMessage alloc]initWithSenderId:senderId senderDisplayName:senderName date:message.createtime media:photoItem];
+            [[SDWebImageManager sharedManager]downloadImageWithURL:[NSURL URLWithString:message.content] options:0 progress:^(NSInteger receivedSize, NSInteger expectedSize) {
+                
+            } completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
+                if (image && finished) {
+                    photoItem.image = image;
+                    [self.collectionView reloadData];
+                }
+            }];
+        }else if ([message.msgType isEqualToString:kSendMessageTypeAudio]) {
+            JSQAudioMediaItem *audioItem = [[JSQAudioMediaItem alloc]initWithFileURL:[NSURL URLWithString:message.content] isReadyToPlay:YES];
+            jsqMessage = [[JSQMessage alloc]initWithSenderId:senderId senderDisplayName:senderName date:[NSDate date] media:audioItem];
+        }
         [_modalData.messages addObject:jsqMessage];
     }
-
 }
 
 - (void)generateMessageModalData {
@@ -413,23 +513,7 @@ typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
     _modalData.incomingBubbleImageData = [bubbleFactory incomingMessagesBubbleImageWithColor:[UIColor whiteColor]];
     
     _modalData.messages = [NSMutableArray array];
-    
-    //    messageArray = [Message MR_findByAttribute:@"user" withValue:_currentFriend andOrderBy:@"messageId" ascending:YES];
-        messageArray = [Message MR_findByAttribute:@"chat" withValue:_currentChat andOrderBy:@"messageId" ascending:YES];
-//    messageArray = [_currentChat.messages allObjects];
-    for (Message *message in messageArray) {
-        NSString *senderId, *senderName;
-        if ([message.flag intValue] == 0) {
-            senderId = [NSString stringWithFormat:@"%@;%@",[message.user.userId stringValue],[message.user.userType stringValue]];
-            senderName = message.user.realname;
-        }
-        else{
-            senderId = mySenderId;
-            senderName = myName;
-        }
-        JSQMessage *jsqMessage = [[JSQMessage alloc] initWithSenderId:senderId senderDisplayName:senderName date:message.createtime text:message.content];
-        [_modalData.messages addObject:jsqMessage];
-    }
+    [self refreshMessageModal];
 
 }
 
@@ -575,6 +659,10 @@ typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
         vc.patientID = currentFriend.userId;
         vc.target = f;
     }
+    else if ([[segue identifier] isEqualToString:@"ImageDetailSegueIdentifier"]) {
+        ImageDetailViewController *vc = [segue destinationViewController];
+        [vc setImage:sender];
+    }
 }
 
 #pragma mark - Messages view controller
@@ -587,6 +675,9 @@ typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
 {
     [self sendMessageWithContent:text andType:kSendMessageTypeText];
 //    [self sendMessageWithText:text];
+}
+- (void)didPressAccessoryButton:(UIButton *)sender
+{
 }
 
 #pragma mark - JSQMessages CollectionView DataSource
@@ -642,11 +733,13 @@ typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
 - (UICollectionViewCell *)collectionView:(JSQMessagesCollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     JSQMessagesCollectionViewCell *cell = (JSQMessagesCollectionViewCell *)[super collectionView:collectionView cellForItemAtIndexPath:indexPath];
     
-//    JSQMessage *message = self.modalData.messages[indexPath.item];
-    cell.textView.textColor = [UIColor blackColor];
-    cell.textView.linkTextAttributes = @{ NSForegroundColorAttributeName : cell.textView.textColor,
-                                          NSUnderlineStyleAttributeName : @(NSUnderlineStyleSingle | NSUnderlinePatternSolid) };
-    cell.backgroundColor =[UIColor clearColor];
+    JSQMessage *message = self.modalData.messages[indexPath.item];
+    if (!message.isMediaMessage) {
+        cell.textView.textColor = [UIColor blackColor];
+        cell.textView.linkTextAttributes = @{ NSForegroundColorAttributeName : cell.textView.textColor,
+                                              NSUnderlineStyleAttributeName : @(NSUnderlineStyleSingle | NSUnderlinePatternSolid) };
+        cell.backgroundColor =[UIColor clearColor];
+    }
     return cell;
 }
 
@@ -712,6 +805,23 @@ typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
 - (void)collectionView:(JSQMessagesCollectionView *)collectionView didTapMessageBubbleAtIndexPath:(NSIndexPath *)indexPath
 {
     NSLog(@"Tapped message bubble!");
+    JSQMessage *currentMessage = self.modalData.messages[indexPath.item];
+    if (currentMessage.isMediaMessage) {
+        if ([currentMessage.media isKindOfClass:[JSQPhotoMediaItem class]]) {
+            [self performSegueWithIdentifier:@"ImageDetailSegueIdentifier" sender:((JSQPhotoMediaItem *)currentMessage.media).image];
+        }else if ([currentMessage.media isKindOfClass:[JSQAudioMediaItem class]]) {
+            JSQAudioMediaItem *item = (JSQAudioMediaItem *)currentMessage.media;
+            if (currentPlayItem != item) {
+                [recordAudio stopPlay];
+                [item startPlaySound];
+                [recordAudio play:[NSData dataWithContentsOfURL:item.fileURL]];
+                currentPlayItem = item;
+                
+            }else{
+                [recordAudio stopPlay];
+            }
+        }
+    }
 }
 
 - (void)collectionView:(JSQMessagesCollectionView *)collectionView didTapCellAtIndexPath:(NSIndexPath *)indexPath touchLocation:(CGPoint)touchLocation
@@ -732,5 +842,93 @@ typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
     }
     return YES;
 }
+
+#pragma mark - RecordAudioDelegate
+-(void)RecordStatus:(int)status {
+    if (status==0){
+        //播放中
+    } else if(status==1){
+        //完成
+        NSLog(@"播放完成");
+        [currentPlayItem endPlaySound];
+        currentPlayItem = nil;
+    }else if(status==2){
+        //出错
+        NSLog(@"播放出错");
+    }
+
+}
+
+#pragma mark - UIActionSheet Delegate
+-(void) actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (actionSheet.tag == 255) {
+        NSUInteger sourceType = 0;
+        if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+            switch (buttonIndex) {
+                case 0:
+                    // 相机
+                    sourceType = UIImagePickerControllerSourceTypeCamera;
+                    break;
+                case 1:
+                    // 相册
+                    sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+                    break;
+                default:
+                    return;
+            }
+        }
+        else {
+            if (buttonIndex == 1) {
+                return;
+            } else {
+                sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+            }
+        }
+        UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
+        imagePickerController.delegate = self;
+        imagePickerController.allowsEditing = NO;
+        imagePickerController.sourceType = sourceType;
+        [self presentViewController:imagePickerController animated:YES completion:nil];
+    }
+}
+#pragma mark - UIImagePickerController
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
+    UIImage *image=[info objectForKey:UIImagePickerControllerOriginalImage];
+    [picker dismissViewControllerAnimated:YES completion:^{
+        if(image)
+        {
+//            UIImage *cropImage = [ImageUtil imageWithImage:image scaledToSize:CGSizeMake(72.0f, 72.0f)];
+            //            [self updateInfo];
+            MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+            hud.labelText = @"上传中...";
+            UIImage *cropImage = [ImageUtil imageResizeToRetinaScreenSizeWithImage:image];
+//            [self uploadImage:image];
+            [DoctorAPI uploadImage:cropImage success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                NSDictionary *result = [responseObject firstObject];
+                NSString *urlString = result[@"spath"];
+                if (urlString.length > 0) {
+                    [[SDImageCache sharedImageCache]storeImage:cropImage forKey:urlString toDisk:YES];
+                    [self sendMessageWithContent:urlString andType:kSendMessageTypeImage];
+                    [hud hide:YES];
+                }else{
+                    hud.mode = MBProgressHUDModeText;
+                    hud.labelText = @"图片上传失败";
+//                    hud.detailsLabelText = dataDict[@"msg"];
+                    [hud hide:YES afterDelay:1.0f];
+                }
+            } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                hud.mode = MBProgressHUDModeText;
+                hud.labelText = error.localizedDescription;
+                [hud hide:YES afterDelay:1.5f];
+                NSLog(@"%@",error.localizedDescription);
+            }];
+        }
+    }];
+    
+    //MBProgressHUD *hud=[MBProgressHUD showHUDAddedTo:((UIViewController*)self.delegate).view animated:YES];
+    //hud.labelText = NSLocalizedString(@"正在上传", nil);
+}
+
 
 @end
