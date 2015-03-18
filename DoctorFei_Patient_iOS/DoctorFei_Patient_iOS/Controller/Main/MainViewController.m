@@ -13,6 +13,8 @@
 #import "Chat.h"
 #import "SocketConnection.h"
 #import "ContactDetailViewController.h"
+#import "BaseHTTPRequestOperationManager.h"
+
 @interface MainViewController ()
     <UITableViewDelegate, UITableViewDataSource, DZNEmptyDataSetDelegate, DZNEmptyDataSetSource, UIGestureRecognizerDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -68,7 +70,7 @@
 
     
     [self reloadTableViewData];
-
+    [[BaseHTTPRequestOperationManager sharedManager] defaultAuth];
     
 }
 

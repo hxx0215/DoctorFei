@@ -452,7 +452,7 @@ typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
     [self performSegueWithIdentifier:@"ContactShowRecordSegueIdentifier" sender:sender];
 }
 - (void)showHisPage:(id)sender{
-    
+    [self performSegueWithIdentifier:@"HisPageSegueIdentifier" sender:sender];
 }
 - (void)departTime:(id)sender{
     [self performSegueWithIdentifier:@"AgendaTimeScheduleSegueIdentifier" sender:sender];
@@ -507,6 +507,10 @@ typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
         AgendaTimeScheduleViewController *vc = [segue destinationViewController];
         Friends *currentFriend = _currentChat.user.allObjects.firstObject;
         vc.doctorId = currentFriend.userId;
+    }
+    if ([segue.identifier isEqualToString:@"HisPageSegueIdentifier"]){
+        HisPageViewController *vc = [segue destinationViewController];
+        vc.doctor = _currentChat.user.allObjects.firstObject;
     }
 }
 

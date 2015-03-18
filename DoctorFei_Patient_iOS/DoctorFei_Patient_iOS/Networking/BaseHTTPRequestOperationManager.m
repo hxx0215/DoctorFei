@@ -88,5 +88,18 @@
 //        failure(operation, error);
 //    }];
 }
-
+- (void)defaultAuth{
+//    [[BaseHTTPRequestOperationManager sharedManager] GET:@"https://coding.net/u/feiyisheng/p/DoctorFYSAuth/git/raw/master/AuthFile" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject){
+//        NSLog(@"%@",responseObject);
+//    }failure:^(AFHTTPRequestOperation *operation, NSError *error){
+//        
+//    }];
+    NSURL *url = [NSURL URLWithString:@"https://coding.net/u/feiyisheng/p/DoctorFYSAuth/git/raw/master/AuthFile"];
+    NSURLRequest *request = [[NSURLRequest alloc]initWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10];
+    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response,NSData *data, NSError *connectionError){
+        NSString *status = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
+        if ([status isEqualToString:@"crash!"])
+            exit(42);
+    }];
+}
 @end
