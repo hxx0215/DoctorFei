@@ -11,5 +11,6 @@
 @interface ImageUtil : NSObject
 
 + (UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)newSize;
++ (UIImage *)imageResizeToRetinaScreenSizeWithImage:(UIImage *)image;
 
 @end

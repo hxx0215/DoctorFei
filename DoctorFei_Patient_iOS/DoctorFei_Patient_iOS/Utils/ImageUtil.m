@@ -17,5 +17,39 @@
     UIGraphicsEndImageContext();
     return newImage;
 }
++ (UIImage *)imageResizeToRetinaScreenSizeWithImage:(UIImage *)image{
+    CGSize screenSize = CGSizeMake([[UIScreen mainScreen]bounds].size.width * 2, [[UIScreen mainScreen]bounds].size.height * 2);
+    UIImage *returnimage = [self scaleImage:image toSize:screenSize];
+    return returnimage;
+}
+
++ (UIImage *)scaleImage:(UIImage *)image toSize:(CGSize)newSize {
+    float actualHeight = image.size.height;
+    float actualWidth = image.size.width;
+    float imgRatio = actualWidth/actualHeight;
+    float maxRatio = newSize.width/newSize.height;
+    
+    if(imgRatio!=maxRatio){
+        if(imgRatio < maxRatio){
+            imgRatio = newSize.height / actualHeight;
+            actualWidth = imgRatio * actualWidth;
+            actualHeight = newSize.height;
+        }
+        else{
+            imgRatio = newSize.width / actualWidth;
+            actualHeight = imgRatio * actualHeight;
+            actualWidth = newSize.width;
+        }
+    }else{
+        actualWidth = newSize.width;
+        actualHeight = newSize.height;
+    }
+    CGRect rect = CGRectMake(0.0, 0.0, actualWidth, actualHeight);
+    UIGraphicsBeginImageContext(rect.size);
+    [image drawInRect:rect];
+    UIImage *img = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return img;
+}
 
 @end
