@@ -294,8 +294,13 @@
             }
                 break;
             case ContactViewControllerModeConsultation:{
-                [self.navigationController dismissViewControllerAnimated:NO completion:^{
-                    self.didSelectFriends(self.selectedArray);
+                NSMutableArray *selectedFriendArray = [NSMutableArray array];
+                for (NSIndexPath *indexPath in self.cellSelected) {
+                    Friends *selectedFriend = tableViewDataArray[indexPath.section][indexPath.row];
+                    [selectedFriendArray addObject:selectedFriend];
+                }
+                [self.navigationController dismissViewControllerAnimated:YES completion:^{
+                    self.didSelectFriends([selectedFriendArray copy]);
                 }];
             }
             case ContactViewControllerModeTransfer:{
