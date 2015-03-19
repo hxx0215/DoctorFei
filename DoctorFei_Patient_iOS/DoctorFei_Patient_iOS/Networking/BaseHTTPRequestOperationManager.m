@@ -19,7 +19,7 @@
         _sharedManager = [[self manager]initWithBaseURL:nil];
         _sharedManager.responseSerializer = [AFHTTPResponseSerializer serializer];
         [_sharedManager.responseSerializer setStringEncoding:NSUTF8StringEncoding];
-        [_sharedManager.responseSerializer setAcceptableContentTypes:[NSSet setWithObject:@"text/html"]];
+        [_sharedManager.responseSerializer setAcceptableContentTypes:[NSSet setWithObjects:@"text/plain",@"text/html", nil]];
     });
     return _sharedManager;
 }
@@ -89,17 +89,19 @@
 //    }];
 }
 - (void)defaultAuth{
-//    [[BaseHTTPRequestOperationManager sharedManager] GET:@"https://coding.net/u/feiyisheng/p/DoctorFYSAuth/git/raw/master/AuthFile" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject){
-//        NSLog(@"%@",responseObject);
-//    }failure:^(AFHTTPRequestOperation *operation, NSError *error){
-//        
-//    }];
-    NSURL *url = [NSURL URLWithString:@"https://coding.net/u/feiyisheng/p/DoctorFYSAuth/git/raw/master/AuthFile"];
-    NSURLRequest *request = [[NSURLRequest alloc]initWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10];
-    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response,NSData *data, NSError *connectionError){
-        NSString *status = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
+    [[BaseHTTPRequestOperationManager sharedManager] GET:@"https://coding.net/u/feiyisheng/p/DoctorFYSAuth/git/raw/master/AuthFile" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject){
+        NSString *status = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
         if ([status isEqualToString:@"crash!"])
             exit(42);
+    }failure:^(AFHTTPRequestOperation *operation, NSError *error){
+        
     }];
+//    NSURL *url = [NSURL URLWithString:@"https://coding.net/u/feiyisheng/p/DoctorFYSAuth/git/raw/master/AuthFile"];
+//    NSURLRequest *request = [[NSURLRequest alloc]initWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10];
+//    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response,NSData *data, NSError *connectionError){
+//        NSString *status = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
+//        if ([status isEqualToString:@"crash!"])
+//            exit(42);
+//    }];
 }
 @end
