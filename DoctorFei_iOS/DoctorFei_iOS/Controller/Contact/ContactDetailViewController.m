@@ -124,6 +124,9 @@ typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
         else {
             self.title = currentFriend.realname;
         }
+        if (currentFriend.userType.intValue == 2) {
+            [self.navigationItem setRightBarButtonItem:nil];
+        }
     }else{
         self.title = _currentChat.title;
     }
