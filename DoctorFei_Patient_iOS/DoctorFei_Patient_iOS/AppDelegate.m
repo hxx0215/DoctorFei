@@ -17,6 +17,16 @@
 #import "DataUtil.h"
 #import <MobClick.h>
 #import "ImageDetailViewController.h"
+
+//shareSDK
+#import <ShareSDK/ShareSDK.h>
+#import <TencentOpenAPI/QQApiInterface.h>
+#import <TencentOpenAPI/TencentOAuth.h>
+#import "WXApi.h"
+#import "WeiboApi.h"
+#import "WeiboSDK.h"
+#define shareSDKKey @"63d7ba6195cf"
+#define shareSDKAPPSecret @"8c8732d0d3ea54b1e6dfa3fd443e91f4"
 @interface AppDelegate ()
 
 @end
@@ -163,4 +173,11 @@
     else return UIInterfaceOrientationMaskPortrait;
 }
 
+- (void)initShareSDK{//使用mob.com的sharesdk账号为feiyisheng@126.com 密码为shengyifei
+    [ShareSDK registerApp:shareSDKKey];
+    
+}
+- (void)initPlatform{
+    [ShareSDK connectSinaWeiboWithAppKey:shareSDKKey appSecret:shareSDKAPPSecret redirectUri:@"www."];
+}
 @end
