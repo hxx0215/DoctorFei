@@ -23,7 +23,18 @@ class HisPageViewController: UIViewController,UITableViewDelegate,UITableViewDat
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.avatarImageView.sd_setImageWithURL(NSURL(string: self.doctor.icon))
+        self.nameLabel.text = self.doctor.realname?
+        self.hospitalLabel.text = self.doctor.hospital?
+        var depart = self.doctor.department
+        if depart == nil {
+            depart = ""
+        }
+        var job = self.doctor.jobTitle
+        if job == nil {
+            job = ""
+        }
+        self.departAndJobLabel.text = depart + " " + job
         // Do any additional setup after loading the view.
     }
 
@@ -35,6 +46,11 @@ class HisPageViewController: UIViewController,UITableViewDelegate,UITableViewDat
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         self.loadAllShuoshuoAndDaylog()
+    }
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.myContentArray.removeAllObjects()
+        self.repostContentArray.removeAllObjects()
     }
     func loadAllShuoshuoAndDaylog() {
         if self.doctor.userId.integerValue == 0{

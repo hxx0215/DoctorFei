@@ -2739,7 +2739,7 @@
         <!--详情-->
         <scene sceneID="kIn-To-GsI">
             <objects>
-                <viewController id="YNK-8U-Jrq" sceneMemberID="viewController">
+                <viewController id="YNK-8U-Jrq" customClass="HisPageDetailViewController" customModule="DoctorFei_Patient_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="rKx-6z-HOw"/>
                         <viewControllerLayoutGuide type="bottom" id="yGd-v0-znM"/>
@@ -2852,15 +2852,21 @@
                     <navigationItem key="navigationItem" title="详情" id="0S9-1H-owf">
                         <barButtonItem key="leftBarButtonItem" image="return.png" id="V8f-RD-CyR">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="backButtonClicked:" destination="YNK-8U-Jrq" id="dtQ-aM-In8"/>
+                            </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="share_btn.png" id="i8z-vE-uf0">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="shareButtonClicked:" destination="YNK-8U-Jrq" id="ofD-WE-7sY"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sgt-Pg-ra1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1975.5" y="1754.25"/>
+            <point key="canvasLocation" x="-1972.5" y="1758.75"/>
         </scene>
         <!--添加朋友-->
         <scene sceneID="MBf-Hg-ahE">
