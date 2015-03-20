@@ -468,6 +468,9 @@ typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
             jsqMessage = [[JSQMessage alloc] initWithSenderId:senderId senderDisplayName:senderName date:message.createtime text:message.content];
         }else if([message.msgType isEqualToString:kSendMessageTypeImage]) {
             JSQPhotoMediaItem *photoItem = [[JSQPhotoMediaItem alloc]initWithImage:nil];
+            if ([message.flag intValue] == 0) {
+                photoItem.appliesMediaViewMaskAsOutgoing = NO;
+            }
             jsqMessage = [[JSQMessage alloc]initWithSenderId:senderId senderDisplayName:senderName date:message.createtime media:photoItem];
             [[SDWebImageManager sharedManager]downloadImageWithURL:[NSURL URLWithString:message.content] options:0 progress:^(NSInteger receivedSize, NSInteger expectedSize) {
                 
@@ -479,6 +482,9 @@ typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
             }];
         }else if ([message.msgType isEqualToString:kSendMessageTypeAudio]) {
             JSQAudioMediaItem *audioItem = [[JSQAudioMediaItem alloc]initWithFileURL:[NSURL URLWithString:message.content] isReadyToPlay:YES];
+            if ([message.flag intValue] == 0) {
+                audioItem.appliesMediaViewMaskAsOutgoing = NO;
+            }
             jsqMessage = [[JSQMessage alloc]initWithSenderId:senderId senderDisplayName:senderName date:[NSDate date] media:audioItem];
         }
         [_modalData.messages addObject:jsqMessage];

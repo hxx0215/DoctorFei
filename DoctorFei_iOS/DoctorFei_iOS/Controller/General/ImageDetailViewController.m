@@ -19,6 +19,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.imageView.contentMode = UIViewContentModeScaleAspectFit;
+
     UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapDetected)];
     singleTap.numberOfTapsRequired = 1;
     [self.imageView setUserInteractionEnabled:YES];
@@ -26,11 +27,16 @@
     [self.imageView setImage:_image];
     self.isPresented = YES;
 
+
 }
 - (void)tapDetected {
     self.isPresented = NO;
     [self dismissViewControllerAnimated:YES completion:nil];
 }
+- (BOOL)prefersStatusBarHidden {
+    return YES;
+}
+
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 }
@@ -40,6 +46,11 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
+    [super willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
+    [self.imageView setNeedsUpdateConstraints];
 }
 //- (BOOL)shouldAutorotate {
 //    return YES;
