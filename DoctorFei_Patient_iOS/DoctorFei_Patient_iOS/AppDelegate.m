@@ -16,6 +16,7 @@
 #import "SocketConnection.h"
 #import "DataUtil.h"
 #import <MobClick.h>
+#import "ImageDetailViewController.h"
 
 //shareSDK
 #import <ShareSDK/ShareSDK.h>
@@ -159,6 +160,19 @@
         NSLog(@"%@",error.localizedDescription);
     }];
 }
+
+- (NSUInteger)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window {
+    if ([self.window.rootViewController.presentedViewController isKindOfClass: [ImageDetailViewController class]])
+    {
+        ImageDetailViewController *secondController = (ImageDetailViewController *) self.window.rootViewController.presentedViewController;
+        
+        if (secondController.isPresented)
+            return UIInterfaceOrientationMaskAll;
+        else return UIInterfaceOrientationMaskPortrait;
+    }
+    else return UIInterfaceOrientationMaskPortrait;
+}
+
 - (void)initShareSDK{//使用mob.com的sharesdk账号为feiyisheng@126.com 密码为shengyifei
     [ShareSDK registerApp:shareSDKKey];
     

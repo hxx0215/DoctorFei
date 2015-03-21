@@ -40,7 +40,7 @@
 + (void)fetchChatWithParmas: (NSDictionary *)params {
 //    NSNumber *doctorId = [[NSUserDefaults standardUserDefaults]objectForKey:@"UserId"];
     NSNumber *userId = @([params[@"userId"] intValue]);
-    NSNumber *userType = @([params[@"userType"] intValue]);
+    NSNumber *userType = @([params[@"usertype"] intValue]);
     Friends *friend = [Friends MR_findFirstWithPredicate:[NSPredicate predicateWithFormat:@"userId == %@ && userType == %@", userId, userType]];
 //    Friends *friend = [Friends MR_findFirstByAttribute:@"userId" withValue:userId];
     if (friend == nil) {
@@ -100,7 +100,7 @@
 + (void)fetchHasUserIdChatWithParam: (NSDictionary *)params {
     NSNumber *doctorId = [[NSUserDefaults standardUserDefaults]objectForKey:@"UserId"];
     NSNumber *userId = @([params[@"userId"] intValue]);
-    NSNumber *userType = @([params[@"userType"]intValue]);
+    NSNumber *userType = @([params[@"usertype"]intValue]);
     NSNumber *chatType = @([params[@"type"]intValue]);
     if (doctorId == nil || userId == nil || userType == nil || chatType == nil) {
         return;
@@ -115,7 +115,7 @@
     [[NSManagedObjectContext MR_defaultContext]MR_saveToPersistentStoreAndWait];
 
 //    Friends *friend = [Friends MR_findFirstByAttribute:@"userId" withValue:userId];
-    Message *lastMessage = [Message MR_findFirstWithPredicate:[NSPredicate predicateWithFormat:@"chat == %@ AND user == %@", chat,friend] sortedBy:@"messageId" ascending:YES];
+    Message *lastMessage = [Message MR_findFirstWithPredicate:[NSPredicate predicateWithFormat:@"chat == %@ AND user == %@", chat,friend] sortedBy:@"messageId" ascending:NO];
 //    Message *lastMessage = [[Message MR_findByAttribute:@"user" withValue:friend andOrderBy:@"messageId" ascending:YES]lastObject];
     NSDictionary *dict;
     if (lastMessage) {

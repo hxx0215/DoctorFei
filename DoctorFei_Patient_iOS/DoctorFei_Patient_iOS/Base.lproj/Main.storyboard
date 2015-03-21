@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="fJh-M9-nxj">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1510" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="fJh-M9-nxj">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
@@ -883,6 +883,7 @@
                         <segue destination="j2B-jm-mJS" kind="show" identifier="ContactLaunchAppointmentSegueIdentifier" id="p6S-Yb-Lkm"/>
                         <segue destination="qZ7-v8-Tr4" kind="show" identifier="ContactDetailMemberSegueIdentifier" id="TVA-ML-YhK"/>
                         <segue destination="hdN-69-moy" kind="show" identifier="ContactDetailDoctorSegueIdentifier" id="Z8O-Mv-ZD5"/>
+                        <segue destination="NHB-VT-c3w" kind="presentation" identifier="ImageDetailSegueIdentifier" id="5ZY-ca-K7T"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MLS-cK-3dh" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -10250,6 +10251,36 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YaO-48-4lS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="16.5" y="873.75"/>
+        </scene>
+        <!--Image Detail View Controller-->
+        <scene sceneID="lXf-Z6-tPX">
+            <objects>
+                <viewController id="NHB-VT-c3w" customClass="ImageDetailViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="AlM-Ah-lS7"/>
+                        <viewControllerLayoutGuide type="bottom" id="mWG-HM-gLP"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="c2x-H1-hFl">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DJs-Ip-P8O"/>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="DJs-Ip-P8O" secondAttribute="trailing" id="NyG-86-tpf"/>
+                            <constraint firstItem="DJs-Ip-P8O" firstAttribute="top" secondItem="c2x-H1-hFl" secondAttribute="top" id="PJf-iW-KGv"/>
+                            <constraint firstItem="mWG-HM-gLP" firstAttribute="top" secondItem="DJs-Ip-P8O" secondAttribute="bottom" id="dbU-g9-6we"/>
+                            <constraint firstItem="DJs-Ip-P8O" firstAttribute="leading" secondItem="c2x-H1-hFl" secondAttribute="leading" id="qnU-ZS-jQ5"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="imageView" destination="DJs-Ip-P8O" id="ftx-De-feX"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oN7-5e-DpD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-972" y="2375.25"/>
         </scene>
     </scenes>
     <resources>
