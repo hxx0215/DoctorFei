@@ -13,6 +13,7 @@ class HisPageViewController: UIViewController,UITableViewDelegate,UITableViewDat
     var doctor:Friends!
     private var myContentArray = NSMutableArray()
     private var repostContentArray = NSMutableArray()
+    private var currentIndexPath = NSIndexPath()
     @IBOutlet weak var contentTableView: UITableView!
     @IBOutlet weak var contentTypeSegmentControl: UISegmentedControl!
     @IBOutlet weak var avatarImageView: UIImageView!
@@ -51,6 +52,9 @@ class HisPageViewController: UIViewController,UITableViewDelegate,UITableViewDat
         super.viewWillDisappear(animated)
         self.myContentArray.removeAllObjects()
         self.repostContentArray.removeAllObjects()
+    }
+    @IBAction func backButtonClicked(sender: AnyObject) {
+        self.navigationController?.popViewControllerAnimated(true)
     }
     func loadAllShuoshuoAndDaylog() {
         if self.doctor.userId.integerValue == 0{
@@ -130,14 +134,24 @@ class HisPageViewController: UIViewController,UITableViewDelegate,UITableViewDat
         var cell = UITableViewCell()
         return cell
     }
-    /*
+    func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
+        currentIndexPath = indexPath
+        return indexPath
+    }
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        if (segue.identifier == "ShowHisDalylogDetailSegueIdentifier"){
+            var vc = segue.destinationViewController as HisPageDetailViewController
+            if (self.contentTypeSegmentControl.selectedSegmentIndex > 0){
+                vc.daylog = repostContentArray[currentIndexPath.row] as DayLog
+            }else {
+                vc.daylog = myContentArray[currentIndexPath.row] as DayLog
+            }
+        }
     }
-    */
 
 }
