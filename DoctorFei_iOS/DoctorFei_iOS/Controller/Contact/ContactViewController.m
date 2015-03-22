@@ -240,12 +240,14 @@
             indexPath = [self.tableView indexPathForCell:(UITableViewCell *)sender];
             currentFriend = tableViewDataArray[indexPath.section - 1][indexPath.row];
         }
-        Chat *chat = [Chat MR_findFirstWithPredicate:[NSPredicate predicateWithFormat: @"type <= %@ AND ANY user == %@", @2, currentFriend]];
+        Chat *chat = [Chat MR_findFirstWithPredicate:[NSPredicate predicateWithFormat: @"type <= %@ AND ANY user == %@", @3, currentFriend]];
         if (chat == nil) {
             chat = [Chat MR_createEntity];
             chat.type = @0;
-            chat.user = [chat.user setByAddingObject:currentFriend];
+            [chat addUserObject:currentFriend];
+//            chat.user = [chat.user setByAddingObject:currentFriend];
         }
+        [[NSManagedObjectContext MR_defaultContext]MR_saveToPersistentStoreAndWait];
         [vc setCurrentChat:chat];
 //        vc.isDoctor = (self.segmentControl.selectedSegmentIndex == 0);
 //        if (indexPath != nil) {
