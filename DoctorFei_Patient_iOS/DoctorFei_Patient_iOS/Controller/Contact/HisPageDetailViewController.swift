@@ -73,6 +73,12 @@ class HisPageDetailViewController: UIViewController {
             })
         }
     }
+    @IBAction func shareAction(sender : UIButton){
+        var dic = ["content" : self.contentText.text,
+            "vc" : self,
+        ]
+        ShareUtil.sharedShareUtil().shareTo(shareTypeWeibo, content: dic)
+    }
     /*
     // MARK: - Navigation
 

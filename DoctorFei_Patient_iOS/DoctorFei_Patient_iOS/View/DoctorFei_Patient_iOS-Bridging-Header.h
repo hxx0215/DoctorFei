@@ -13,3 +13,4 @@
 #import "Shuoshuo.h"
 #import "Daylog.h"
 #import "Friends.h"
+#import "ShareUtil.h"

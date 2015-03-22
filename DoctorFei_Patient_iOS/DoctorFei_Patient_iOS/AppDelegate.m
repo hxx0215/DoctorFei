@@ -176,7 +176,12 @@
     }
     else return UIInterfaceOrientationMaskPortrait;
 }
-
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url{
+    return [ShareSDK handleOpenURL:url wxDelegate:self];
+}
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation{
+    return [ShareSDK handleOpenURL:url sourceApplication:sourceApplication annotation:annotation wxDelegate:self];
+}
 - (void)initShareSDK{//使用mob.com的sharesdk账号为feiyisheng@126.com 密码为shengyifei
 //    [ShareSDK registerApp:shareSDKKey];
     [ShareSDK registerApp:@"5577ff992136"];
