@@ -7,7 +7,7 @@
 //
 
 #import "ShareUtil.h"
-#import <ShareSDK/ShareSDK.h>
+
 @implementation ShareUtil
 + (instancetype)sharedShareUtil {
     static id _sharedInstance = nil;
@@ -17,13 +17,11 @@
     });
     return _sharedInstance;
 }
-- (void)shareTo:(shareType)type content:(NSDictionary *)content{
+- (void)shareTo:(ShareType)type content:(NSDictionary *)content complete:(void (^)(ShareType type, SSResponseState state, id<ISSPlatformShareInfo> statusInfo, id<ICMErrorInfo> error, BOOL end))complete{
     switch (type) {
-        case shareTypeWeibo:
+        case ShareTypeSinaWeibo:
         {
-            [self shareWeibo:content complete:^{
-                
-            }];
+            [self shareWeibo:content complete:complete];
         }
             break;
             
@@ -31,13 +29,27 @@
             break;
     }
 }
-- (void)shareWeibo:(NSDictionary *)content complete:(void(^)())complete{
+- (void)shareWeibo:(NSDictionary *)content complete:(void(^)(ShareType type, SSResponseState state, id<ISSPlatformShareInfo> statusInfo, id<ICMErrorInfo> error, BOOL end))complete{
     id<ISSContent> publishConetent = [ShareSDK content:content[@"content"] defaultContent:@"" image:nil title:content[@"title"] url:nil description:nil mediaType:SSPublishContentMediaTypeText];
     id<ISSContainer> container = [ShareSDK container];
     [container setIPhoneContainerWithViewController:content[@"vc"]];
     id<ISSAuthOptions> authOptions = [ShareSDK authOptionsWithAutoAuth:YES allowCallback:NO authViewStyle:SSAuthViewStyleModal viewDelegate:nil authManagerViewDelegate:nil];
-    [ShareSDK showShareViewWithType:ShareTypeSinaWeibo container:container content:publishConetent statusBarTips:YES authOptions:authOptions shareOptions:[ShareSDK defaultShareOptionsWithTitle:nil oneKeyShareList:nil qqButtonHidden:YES wxSessionButtonHidden:YES wxTimelineButtonHidden:YES showKeyboardOnAppear:NO shareViewDelegate:nil friendsViewDelegate:nil picViewerViewDelegate:nil] result:^(ShareType type, SSResponseState state, id<ISSPlatformShareInfo> statusInfo, id<ICMErrorInfo> error, BOOL end){
-        
-    }];
+    [ShareSDK showShareViewWithType:ShareTypeSinaWeibo
+                          container:container
+                            content:publishConetent
+                      statusBarTips:YES
+                        authOptions:authOptions
+                       shareOptions:[ShareSDK defaultShareOptionsWithTitle:nil
+                                                           oneKeyShareList:nil
+                                                            qqButtonHidden:YES
+                                                     wxSessionButtonHidden:YES wxTimelineButtonHidden:YES
+                                                      showKeyboardOnAppear:NO
+                                                         shareViewDelegate:nil
+                                                       friendsViewDelegate:nil
+                                                     picViewerViewDelegate:nil]
+                             result:complete];
+}
+- (void)shareSMS:(NSDictionary *)content complete:(void(^)(ShareType type, SSResponseState state, id<ISSPlatformShareInfo> statusInfo, id<ICMErrorInfo> error, BOOL end)) complete{
+    
 }
 @end
