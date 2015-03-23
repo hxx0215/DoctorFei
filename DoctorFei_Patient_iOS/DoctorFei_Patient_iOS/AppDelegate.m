@@ -177,10 +177,10 @@
     else return UIInterfaceOrientationMaskPortrait;
 }
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url{
-    return [ShareSDK handleOpenURL:url wxDelegate:self];
+    return [ShareSDK handleOpenURL:url wxDelegate:nil];
 }
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation{
-    return [ShareSDK handleOpenURL:url sourceApplication:sourceApplication annotation:annotation wxDelegate:self];
+    return [ShareSDK handleOpenURL:url sourceApplication:sourceApplication annotation:annotation wxDelegate:nil];
 }
 - (void)initShareSDK{//使用mob.com的sharesdk账号为feiyisheng@126.com 密码为shengyifei
 //    [ShareSDK registerApp:shareSDKKey];
@@ -194,13 +194,13 @@
      连接新浪微博开放平台应用以使用相关功能，此应用需要引用SinaWeiboConnection.framework
      http://open.weibo.com上注册新浪微博开放平台应用，并将相关信息填写到以下字段
      **/
-    [ShareSDK connectSinaWeiboWithAppKey:@"568898243"
-                               appSecret:@"38a4f8204cc784f81f9f0daaf31e02e3"
-                             redirectUri:@"http://www.sharesdk.cn"];
+    [ShareSDK connectSinaWeiboWithAppKey:@"3300102933"
+                               appSecret:@"3c16aa5b5edab3bfdec045def23b8f61"
+                             redirectUri:@"https://api.weibo.com/oauth2/default.html"];
     
-    [ShareSDK connectSinaWeiboWithAppKey:@"568898243"
-                               appSecret:@"38a4f8204cc784f81f9f0daaf31e02e3"
-                             redirectUri:@"http://www.sharesdk.cn"
+    [ShareSDK connectSinaWeiboWithAppKey:@"3300102933"
+                               appSecret:@"3c16aa5b5edab3bfdec045def23b8f61"
+                             redirectUri:@"https://api.weibo.com/oauth2/default.html"
                              weiboSDKCls:[WeiboSDK class]];
     
     /**

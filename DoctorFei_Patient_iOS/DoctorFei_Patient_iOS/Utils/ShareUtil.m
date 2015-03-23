@@ -32,7 +32,7 @@
     }
 }
 - (void)shareWeibo:(NSDictionary *)content complete:(void(^)())complete{
-    id<ISSContent> publishConetent = [ShareSDK content:content[@"content"] defaultContent:@"" image:[ShareSDK imageWithUrl:content[@"imagePath"]] title:content[@"title"] url:nil description:nil mediaType:SSPublishContentMediaTypeText];
+    id<ISSContent> publishConetent = [ShareSDK content:content[@"content"] defaultContent:@"" image:nil title:content[@"title"] url:nil description:nil mediaType:SSPublishContentMediaTypeText];
     id<ISSContainer> container = [ShareSDK container];
     [container setIPhoneContainerWithViewController:content[@"vc"]];
     id<ISSAuthOptions> authOptions = [ShareSDK authOptionsWithAutoAuth:YES allowCallback:NO authViewStyle:SSAuthViewStyleModal viewDelegate:nil authManagerViewDelegate:nil];
