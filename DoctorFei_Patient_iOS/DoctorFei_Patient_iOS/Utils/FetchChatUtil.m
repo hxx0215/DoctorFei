@@ -24,7 +24,7 @@
         friend.userType = userType;
     }
     friend.icon = dataDict[@"icon"];
-    friend.realname = dataDict[@"realname"];
+    friend.realname = dataDict[@"RealName"];
     friend.gender = @([dataDict[@"Gender"]intValue]);
     friend.mobile = dataDict[@"mobile"];
     friend.noteName = dataDict[@"notename"];
@@ -38,11 +38,20 @@
     [[NSManagedObjectContext MR_defaultContext]MR_saveToPersistentStoreAndWait];
 }
 
++ (void)fetchGeneralChatWithParmas: (NSDictionary *)params {
+    int type = [params[@"type"]intValue];
+    if (type < 4) {
+        [self fetchChatWithParmas:params];
+    }else if(type == 4){
+        [self fetchTempGroupChatWithParmas: params];
+    }
+}
+
+
 + (void)fetchChatWithParmas: (NSDictionary *)params {
-//    NSNumber *memberId = [[NSUserDefaults standardUserDefaults]objectForKey:@"UserId"];
+    NSLog(@"%@",params);
     NSNumber *userId = @([params[@"userId"] intValue]);
     NSNumber *userType = @([params[@"usertype"] intValue]);
-//    Friends *friend = [Friends MR_findFirstByAttribute:@"userId" withValue:userId];
     Friends *friend = [Friends MR_findFirstWithPredicate:[NSPredicate predicateWithFormat:@"userId == %@ && userType == %@", userId, userType]];
     if (friend == nil) {
         NSDictionary *friendParam = @{@"userid": userId};
@@ -67,33 +76,6 @@
                 NSLog(@"%@",error.localizedDescription);
             }];
         }
-
-//    if (friend == nil) {
-//        NSDictionary *friendParam = @{
-//                                      @"memberid": memberId,
-//                                      @"userid": userId
-//                                      };
-//        [UserAPI getUserInfomationWithParameters:friendParam success:^(AFHTTPRequestOperation *operation, id responseObject) {
-//            NSDictionary *dataDict = [responseObject firstObject];
-//            if ([dataDict[@"state"]intValue] == 1) {
-//                Friends *friend = [Friends MR_findFirstByAttribute:@"userId" withValue:userId];
-//                if (friend == nil) {
-//                    friend = [Friends MR_createEntity];
-//                    friend.userId = userId;
-//                }
-//                friend.icon = dataDict[@"icon"];
-//                friend.realname = dataDict[@"realname"];
-//                friend.gender = @([dataDict[@"Gender"]intValue]);
-//                friend.mobile = dataDict[@"mobile"];
-//                friend.noteName = dataDict[@"notename"];
-//                friend.situation = dataDict[@"describe"];
-//                
-//            }
-//            [[NSManagedObjectContext MR_defaultContext]MR_saveToPersistentStoreAndWait];
-//            [self fetchHasUserIdChatWithParam:params];
-//        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-//            NSLog(@"%@",error.localizedDescription);
-//        }];
     }
     else{
         [self fetchHasUserIdChatWithParam:params];
@@ -108,9 +90,8 @@
     if (memberId == nil || userId == nil || userType == nil || chatType == nil) {
         return;
     }
-//    Friends *friend = [Friends MR_findFirstByAttribute:@"userId" withValue:userId];
-//    Message *lastMessage = [[Message MR_findByAttribute:@"user" withValue:friend andOrderBy:@"messageId" ascending:YES]lastObject];
     Friends *friend = [Friends MR_findFirstWithPredicate:[NSPredicate predicateWithFormat:@"userId == %@ && userType == %@", userId, userType]];
+    NSLog(@"%@",friend.debugDescription);
     Chat *chat = [Chat MR_findFirstWithPredicate:[NSPredicate predicateWithFormat:@"type == %@ AND (ANY user == %@)", chatType, friend]];
     if (chat == nil) {
         chat = [Chat MR_createEntity];
@@ -118,7 +99,7 @@
         chat.user = [chat.user setByAddingObject:friend];
     }
     [[NSManagedObjectContext MR_defaultContext]MR_saveToPersistentStoreAndWait];
-    Message *lastMessage = [Message MR_findFirstWithPredicate:[NSPredicate predicateWithFormat:@"chat == %@ AND user == %@", chat,friend] sortedBy:@"messageId" ascending:NO];
+    Message *lastMessage = [Message MR_findFirstWithPredicate:[NSPredicate predicateWithFormat:@"chat == %@", chat] sortedBy:@"messageId" ascending:NO];
 
     NSDictionary *dict;
     if (lastMessage) {
@@ -132,6 +113,7 @@
     else{
         dict = @{@"memberid": memberId, @"userid": userId, @"usertype": userType};
     }
+    NSLog(@"%@",dict);
     
     [MemberAPI getChatLogWithParameters:dict success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"GetChat: %@", responseObject);
@@ -153,34 +135,6 @@
             message.chat = messageChat;
         }
         messageChat.unreadMessageCount = @([messageChat.unreadMessageCount intValue] + [params[@"total"]intValue]);
-
-//        Friends *messageFriend = [Friends MR_findFirstByAttribute:@"userId" withValue:userId];
-//        Chat *chat = [Chat MR_findFirstByAttribute:@"user" withValue:messageFriend];
-//        if (chat == nil) {
-//            chat = [Chat MR_createEntity];
-//            chat.user = messageFriend;
-//            chat.unreadMessageCount = @([params[@"total"]intValue]);
-//        }
-//        else{
-//            chat.unreadMessageCount = @([params[@"total"]intValue] + chat.unreadMessageCount.intValue);
-//        }
-
-//        for (NSDictionary *dict in messageArray) {
-//            Message *message = [Message MR_findFirstByAttribute:@"messageId" withValue:dict[@"id"]];
-//            if (message == nil) {
-//                message = [Message MR_createEntity];
-//                message.messageId = dict[@"id"];
-//            }
-//            message.content = dict[@"content"];
-//            message.createtime = [NSDate dateWithTimeIntervalSince1970:[dict[@"createtime"]intValue]];
-//            message.flag = @([dict[@"flag"]intValue]);
-//            message.msgType = dict[@"msgtype"];
-//            message.user = messageFriend;
-//            message.chat = chat;
-//        }
-//        Message *message = [[Message MR_findByAttribute:@"user" withValue:messageFriend andOrderBy:@"messageId" ascending:YES]lastObject];
-//        chat.lastMessageTime = message.createtime;
-//        chat.lastMessageContent = message.content;
         [[NSManagedObjectContext MR_defaultContext]MR_saveToPersistentStoreAndWait];
         //发送通知通知刷新MainVC
         [[NSNotificationCenter defaultCenter]postNotificationName:@"NewChatArrivedNotification" object:nil];
@@ -188,45 +142,86 @@
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"%@",error.localizedDescription);
     }];
-    
-/*
-    [ChatAPI getChatWithParameters:dict success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"GetChat: %@", responseObject);
+}
+
++ (void)fetchLostInfomationWithSet: (NSSet *)userSet {
+    dispatch_group_t group = dispatch_group_create();
+    for (Friends *friend in userSet) {
+        dispatch_group_enter(group);
+        NSDictionary *friendParam = @{@"userid": friend.userId};
+        if (friend.userType.intValue == 2) {
+            [UserAPI getDoctorInfomationWithParameters:friendParam success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                NSDictionary *dataDict = [responseObject firstObject];
+                if (dataDict.count > 0) {
+                    [self newFriendWithDict:dataDict userType:friend.userType userId:friend.userId];
+                }
+                dispatch_group_leave(group);
+            } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                NSLog(@"%@",error.localizedDescription);
+            }];
+        }else{
+            [UserAPI getMemberInfomationWithParameters:friendParam success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                NSDictionary *dataDict = [responseObject firstObject];
+                if (dataDict.count > 0) {
+                    [self newFriendWithDict:dataDict userType:friend.userType userId:friend.userId];
+                }
+                dispatch_group_leave(group);
+            } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                NSLog(@"%@",error.localizedDescription);
+            }];
+        }
+    }
+    dispatch_group_wait(group, 30);
+}
++ (void)fetchTempGroupChatWithParmas: (NSDictionary *)params {
+    NSNumber *groupId = @([params[@"groupid"]intValue]);
+    NSNumber *doctorId = [[NSUserDefaults standardUserDefaults]objectForKey:@"UserId"];
+    Chat *currentChat = [Chat MR_findFirstWithPredicate:[NSPredicate predicateWithFormat:@"type == %@ && chatId == %@", @4, groupId]];
+    if (currentChat == nil) {
+        currentChat = [Chat MR_createEntity];
+        currentChat.chatId = groupId;
+        currentChat.type = @4;
+    }
+    [[NSManagedObjectContext MR_defaultContext]MR_saveToPersistentStoreAndWait];
+    NSDictionary *requestDict = @{@"userid": doctorId,
+                                  @"groupid": groupId
+                                  };
+    NSMutableSet *lostInfomationUsers = [NSMutableSet set];
+    [ChatAPI getTempGroupChatLogWithParameters:requestDict success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"Get TempGroup Chat: %@", responseObject);
+        Chat *currentChat = [Chat MR_findFirstWithPredicate:[NSPredicate predicateWithFormat:@"type == %@ && chatId == %@", @4, requestDict[@"groupid"]]];
         NSArray *messageArray = (NSArray *)responseObject;
-        Friends *messageFriend = [Friends MR_findFirstByAttribute:@"userId" withValue:userId];
         for (NSDictionary *dict in messageArray) {
-            Message *message = [Message MR_findFirstByAttribute:@"messageId" withValue:dict[@"id"]];
+            Friends *messageFriend = [Friends MR_findFirstWithPredicate:[NSPredicate predicateWithFormat:@"userId == %@ && userType == %@", @([dict[@"userid"] intValue]), @([dict[@"usertype"] intValue])]];
+            if (messageFriend == nil && [dict[@"userid"]intValue] != doctorId.intValue) {
+                messageFriend = [Friends MR_createEntity];
+                messageFriend.userId = @([dict[@"userid"]intValue]);
+                messageFriend.userType = @([dict[@"usertype"] intValue]);
+                [lostInfomationUsers addObject:messageFriend];
+            }
+            if (messageFriend) {
+                [currentChat addUserObject:messageFriend];
+            }
+            Message *message = [Message MR_findFirstWithPredicate:[NSPredicate predicateWithFormat: @"messageId == %@ && chat == %@", dict[@"id"], currentChat]];
             if (message == nil) {
                 message = [Message MR_createEntity];
                 message.messageId = dict[@"id"];
             }
-            message.content = dict[@"content"];
-            message.createtime = [NSDate dateWithTimeIntervalSince1970:[dict[@"createtime"]intValue]];
-//            message.createtime = [DataUtil dateaFromFormatedString:dict[@"createtime"]];
-            message.flag = @([dict[@"flag"]intValue]);
             message.msgType = dict[@"msgtype"];
+            message.createtime = [NSDate dateWithTimeIntervalSince1970:[dict[@"ctime"]intValue]];
+            message.content = dict[@"content"];
             message.user = messageFriend;
+            message.chat = currentChat;
         }
-//        [[NSManagedObjectContext MR_defaultContext]MR_saveToPersistentStoreAndWait];
-        Chat *chat = [Chat MR_findFirstByAttribute:@"user" withValue:messageFriend];
-        if (chat == nil) {
-            chat = [Chat MR_createEntity];
-            chat.user = messageFriend;
-            chat.unreadMessageCount = @([params[@"total"]intValue]);
-        }
-        else{
-            chat.unreadMessageCount = @([params[@"total"]intValue] + chat.unreadMessageCount.intValue);
-        }
-//        chat.unreadMessageCount = @([params[@"total"]intValue]);
-        Message *message = [[Message MR_findByAttribute:@"user" withValue:messageFriend andOrderBy:@"messageId" ascending:YES]lastObject];
-        chat.lastMessageTime = message.createtime;
-        chat.lastMessageContent = message.content;
+        currentChat.unreadMessageCount = @([currentChat.unreadMessageCount intValue] + [params[@"total"]intValue]);
+        [self fetchLostInfomationWithSet: lostInfomationUsers];
         [[NSManagedObjectContext MR_defaultContext]MR_saveToPersistentStoreAndWait];
         //发送通知通知刷新MainVC
         [[NSNotificationCenter defaultCenter]postNotificationName:@"NewChatArrivedNotification" object:nil];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"%@", error.localizedDescription);
+        NSLog(@"%@",error.localizedDescription);
     }];
-*/
+    
 }
+
 @end

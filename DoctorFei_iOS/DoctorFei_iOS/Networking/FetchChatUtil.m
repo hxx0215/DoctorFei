@@ -95,7 +95,7 @@
     }
     [[NSManagedObjectContext MR_defaultContext]MR_saveToPersistentStoreAndWait];
 
-    Message *lastMessage = [Message MR_findFirstWithPredicate:[NSPredicate predicateWithFormat:@"chat == %@ AND user == %@", chat,friend] sortedBy:@"messageId" ascending:NO];
+    Message *lastMessage = [Message MR_findFirstWithPredicate:[NSPredicate predicateWithFormat:@"chat == %@", chat] sortedBy:@"messageId" ascending:NO];
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     [dict setObject:userId forKey:@"userid"];
     [dict setObject:userType forKey:@"usertype"];

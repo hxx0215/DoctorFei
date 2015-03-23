@@ -199,7 +199,7 @@ typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
 #pragma mark - Actions
 - (void)cleanUnreadMessageCount {
 //    Chat *chat = [Chat MR_findFirstByAttribute:@"user" withValue:_currentFriend];
-    if (_currentChat) {
+    if ([_currentChat.unreadMessageCount intValue] > 0) {
         _currentChat.unreadMessageCount = @(0);
         [[NSManagedObjectContext MR_defaultContext]MR_saveToPersistentStoreAndWait];
     }
@@ -212,13 +212,14 @@ typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
     [self scrollToBottomAnimated:YES];
 }
 - (void)refreshMessageModal {
-
+    _modalData.messages = [NSMutableArray array];
     NSString *myName = [[NSUserDefaults standardUserDefaults] objectForKey:@"UserRealName"];
     NSString *mySenderId = self.senderId;
     messageArray = [Message MR_findByAttribute:@"chat" withValue:_currentChat andOrderBy:@"messageId" ascending:YES];
     for (Message *message in messageArray) {
         NSString *senderId, *senderName;
-        if ([message.flag intValue] != 0) {
+//        if ([message.flag intValue] != 0) {
+        if (message.user != nil) {
             senderId = [NSString stringWithFormat:@"%@;%@",[message.user.userId stringValue],[message.user.userType stringValue]];
             senderName = message.user.realname;
         }
@@ -231,7 +232,7 @@ typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
             jsqMessage = [[JSQMessage alloc] initWithSenderId:senderId senderDisplayName:senderName date:message.createtime text:message.content];
         }else if([message.msgType isEqualToString:kSendMessageTypeImage]) {
             JSQPhotoMediaItem *photoItem = [[JSQPhotoMediaItem alloc]initWithImage:nil];
-            if ([message.flag intValue] != 0) {
+            if (message.user != nil) {
                 photoItem.appliesMediaViewMaskAsOutgoing = NO;
             }
             jsqMessage = [[JSQMessage alloc]initWithSenderId:senderId senderDisplayName:senderName date:message.createtime media:photoItem];
@@ -245,7 +246,7 @@ typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
             }];
         }else if ([message.msgType isEqualToString:kSendMessageTypeAudio]) {
             JSQAudioMediaItem *audioItem = [[JSQAudioMediaItem alloc]initWithFileURL:[NSURL URLWithString:message.content] isReadyToPlay:YES];
-            if ([message.flag intValue] != 0) {
+            if (message.user != nil) {
                 audioItem.appliesMediaViewMaskAsOutgoing = NO;
             }
             jsqMessage = [[JSQMessage alloc]initWithSenderId:senderId senderDisplayName:senderName date:[NSDate date] media:audioItem];
@@ -301,7 +302,6 @@ typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
     JSQMessagesBubbleImageFactory *bubbleFactory = [[JSQMessagesBubbleImageFactory alloc]init];
     _modalData.outgoingBubbleImageData = [bubbleFactory outgoingMessagesBubbleImageWithColor:UIColorFromRGB(0xADE85B)];
     _modalData.incomingBubbleImageData = [bubbleFactory incomingMessagesBubbleImageWithColor:[UIColor whiteColor]];
-    _modalData.messages = [NSMutableArray array];
     [self refreshMessageModal];
 }
 
@@ -316,59 +316,93 @@ typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
     //    [self.collectionView deleteItemsAtIndexPaths:@[indexPath]];
     [self.collectionView reloadData];
 }
-- (void)sendMessageWithContent:(NSString *)content andType:(NSString *)type{
-    NSNumber *memberId = [[NSUserDefaults standardUserDefaults]objectForKey:@"UserId"];
-    NSDictionary *params = @{
-                             @"memberid": memberId,
-                             @"userid": [_currentChat.user.allObjects.firstObject userId],
-                             @"usertype": [_currentChat.user.allObjects.firstObject userType],
-                             @"msgtype": type,
-                             @"content": content
-                             };
-    [MemberAPI sendMessageWithParameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSDictionary *dataDict = [responseObject firstObject];
-        if ([dataDict[@"state"]intValue] > -1) {
-            JSQMessage *message;
-            if ([type isEqualToString:kSendMessageTypeText]) {
-                message = [[JSQMessage alloc]initWithSenderId:self.senderId senderDisplayName:self.senderDisplayName date:[NSDate date] text:content];
-            }else if ([type isEqualToString:kSendMessageTypeImage]) {
-                JSQPhotoMediaItem *photoItem = [[JSQPhotoMediaItem alloc]initWithImage:nil];
-                message = [[JSQMessage alloc]initWithSenderId:self.senderId senderDisplayName:self.senderDisplayName date:[NSDate date] media:photoItem];
-                [[SDWebImageDownloader sharedDownloader]downloadImageWithURL:[NSURL URLWithString:content] options:0 progress:^(NSInteger receivedSize, NSInteger expectedSize) {
-                } completed:^(UIImage *image, NSData *data, NSError *error, BOOL finished) {
-                    if (image && finished) {
-                        photoItem.image = image;
-                        [self.collectionView reloadData];
-                    }
-                }];
-            }else if ([type isEqualToString:kSendMessageTypeAudio]) {
-                JSQAudioMediaItem *audioItem = [[JSQAudioMediaItem alloc]initWithFileURL:[NSURL URLWithString:content] isReadyToPlay:YES];
-                message = [[JSQMessage alloc]initWithSenderId:self.senderId senderDisplayName:self.senderDisplayName date:[NSDate date] media:audioItem];
+- (void)saveMessageWithMessageId:(NSNumber *)messageId type:(NSString *)type andContent:(NSString *)content{
+    JSQMessage *message;
+    if ([type isEqualToString:kSendMessageTypeText]) {
+        message = [[JSQMessage alloc]initWithSenderId:self.senderId senderDisplayName:self.senderDisplayName date:[NSDate date] text:content];
+    }else if ([type isEqualToString:kSendMessageTypeImage]) {
+        JSQPhotoMediaItem *photoItem = [[JSQPhotoMediaItem alloc]initWithImage:nil];
+        message = [[JSQMessage alloc]initWithSenderId:self.senderId senderDisplayName:self.senderDisplayName date:[NSDate date] media:photoItem];
+        [[SDWebImageDownloader sharedDownloader]downloadImageWithURL:[NSURL URLWithString:content] options:0 progress:^(NSInteger receivedSize, NSInteger expectedSize) {
+        } completed:^(UIImage *image, NSData *data, NSError *error, BOOL finished) {
+            if (image && finished) {
+                photoItem.image = image;
+                [self.collectionView reloadData];
             }
-            [self.modalData.messages addObject:message];
-            Message *newMessage = [Message MR_createEntity];
-            newMessage.messageId = @([dataDict[@"state"]intValue]);
-            newMessage.content = content;
-            newMessage.createtime = [NSDate date];
-            newMessage.flag = @(0);
-            newMessage.msgType = type;
-            newMessage.user = nil;
-            newMessage.chat = _currentChat;
-            _currentChat.unreadMessageCount = @0;
-            [[NSManagedObjectContext MR_defaultContext]MR_saveToPersistentStoreAndWait];
-            [self.collectionView reloadData];
-            [self finishSendingMessage];
-        }
-        else{
+        }];
+    }else if ([type isEqualToString:kSendMessageTypeAudio]) {
+        JSQAudioMediaItem *audioItem = [[JSQAudioMediaItem alloc]initWithFileURL:[NSURL URLWithString:content] isReadyToPlay:YES];
+        message = [[JSQMessage alloc]initWithSenderId:self.senderId senderDisplayName:self.senderDisplayName date:[NSDate date] media:audioItem];
+    }
+    [self.modalData.messages addObject:message];
+    Message *newMessage = [Message MR_createEntity];
+    newMessage.messageId = messageId ;
+    newMessage.content = content;
+    newMessage.createtime = [NSDate date];
+    newMessage.flag = @(0);
+    newMessage.msgType = type;
+    newMessage.user = nil;
+    newMessage.chat = _currentChat;
+    _currentChat.unreadMessageCount = @0;
+    [[NSManagedObjectContext MR_defaultContext]MR_saveToPersistentStoreAndWait];
+    [self.collectionView reloadData];
+    [self finishSendingMessage];
+    
+}
+
+- (void)sendMessageWithContent:(NSString *)content andType:(NSString *)type{
+    if (_currentChat.type.intValue < 4) {
+        NSNumber *memberId = [[NSUserDefaults standardUserDefaults]objectForKey:@"UserId"];
+        NSDictionary *params = @{
+                                 @"memberid": memberId,
+                                 @"userid": [_currentChat.user.allObjects.firstObject userId],
+                                 @"usertype": [_currentChat.user.allObjects.firstObject userType],
+                                 @"msgtype": type,
+                                 @"content": content
+                                 };
+        [MemberAPI sendMessageWithParameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            NSDictionary *dataDict = [responseObject firstObject];
+            if ([dataDict[@"state"]intValue] > -1) {
+                [self saveMessageWithMessageId:@([dataDict[@"state"] intValue]) type:type andContent:content];
+            }
+            else{
+                MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view.window animated:YES];
+                hud.mode = MBProgressHUDModeText;
+                hud.labelText = @"发送失败";
+                hud.detailsLabelText = dataDict[@"msg"];
+                [hud hide:YES afterDelay:1.5f];
+            }
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            NSLog(@"%@",error.localizedDescription);
             MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view.window animated:YES];
             hud.mode = MBProgressHUDModeText;
             hud.labelText = @"发送失败";
-            hud.detailsLabelText = dataDict[@"msg"];
+            hud.detailsLabelText = error.localizedDescription;
             [hud hide:YES afterDelay:1.5f];
-        }
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"%@",error.localizedDescription);
-    }];
+        }];
+    }else if (_currentChat.type.intValue == 4) {
+        NSDictionary *param = @{
+                                @"groupid": _currentChat.chatId,
+                                @"userid": [[NSUserDefaults standardUserDefaults]objectForKey:@"UserId"],
+                                @"usertype": @0,
+                                @"msgtype": type,
+                                @"contents": content
+                                };
+        [ChatAPI sendTempGroupMessageWithParameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            NSDictionary *dataDict = [responseObject firstObject];
+            if ([dataDict[@"curid"]intValue] > 0) {
+                [self saveMessageWithMessageId:@([dataDict[@"curid"]intValue]) type:type andContent:content];
+            }
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            NSLog(@"%@",error.localizedDescription);
+            MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view.window animated:YES];
+            hud.mode = MBProgressHUDModeText;
+            hud.labelText = @"发送失败";
+            hud.detailsLabelText = error.localizedDescription;
+            [hud hide:YES afterDelay:1.5f];
+        }];
+
+    }
     
 }
 
@@ -502,6 +536,10 @@ typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
 }
 
 - (IBAction)backButtonClicked:(id)sender {
+    if (_currentChat.messages.count == 0) {
+        [_currentChat MR_deleteEntity];
+        [[NSManagedObjectContext MR_defaultContext]MR_saveToPersistentStoreAndWait];
+    }
     [self.navigationController popViewControllerAnimated:YES];
 }
 - (void)dismissButtonClicked:(id)sender{

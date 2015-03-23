@@ -133,7 +133,7 @@
             NSArray *dataArray = result[@"data"];
 //            NSLog(@"%@",dataArray);
             for (NSDictionary *dict in dataArray) {
-                [FetchChatUtil fetchChatWithParmas:dict];
+                [FetchChatUtil fetchGeneralChatWithParmas:dict];
             }
         }
         else{

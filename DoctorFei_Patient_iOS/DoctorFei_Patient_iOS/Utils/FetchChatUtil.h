@@ -10,6 +10,6 @@
 
 @interface FetchChatUtil : NSObject
 
-+ (void)fetchChatWithParmas: (NSDictionary *)params;
++ (void)fetchGeneralChatWithParmas: (NSDictionary *)params;
 
 @end

@@ -10,6 +10,9 @@
 #define kMethodGetChat @"get.user.chatlog"
 #define kMethodSendMessage @"set.doctorchat.send"
 #define kMethodUploadAudio @"set.audio.add"
+#define kMethodSetTempGroup @"set.chat.tempgroup"
+#define kMethodSendTempGroupMessage @"set.chat.tempnote"
+#define kMethodGetTempGroupChatLog @"get.chat.tempnote"
 #import "NSString+Crypt.h"
 #import <JSONKit.h>
 @implementation ChatAPI
@@ -94,4 +97,15 @@
         
     }];
 }
+
++ (void)setTempGroupWithParameters: (id)parameters success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure {
+    [[self sharedManager]defaultGetWithMethod:kMethodSetTempGroup WithParameters:parameters success:success failure:failure];
+}
++ (void)sendTempGroupMessageWithParameters: (id)parameters success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure {
+    [[self sharedManager]defaultGetWithMethod:kMethodSendTempGroupMessage WithParameters:parameters success:success failure:failure];
+}
++ (void)getTempGroupChatLogWithParameters: (id)parameters success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure {
+    [[self sharedManager]defaultGetWithMethod:kMethodGetTempGroupChatLog WithParameters:parameters success:success failure:failure];
+}
+
 @end

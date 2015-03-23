@@ -344,7 +344,7 @@ typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
 
 }
 - (void)sendMessageWithContent:(NSString *)content andType:(NSString *)type{
-    if (_currentChat.type.intValue < 3) {
+    if (_currentChat.type.intValue < 4) {
         NSDictionary *params = @{
                                  @"doctorid": [[NSUserDefaults standardUserDefaults]objectForKey:@"UserId"],
                                  @"userid": [_currentChat.user.allObjects.firstObject userId],
@@ -401,52 +401,6 @@ typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
 
 }
 
-//- (void)sendMessageWithText:(NSString *)text{
-//    //发送消息
-//    NSNumber *doctorId = [[NSUserDefaults standardUserDefaults]objectForKey:@"UserId"];
-//    NSDictionary *params = @{
-//                             @"doctorid": doctorId,
-//                             @"userid": _currentFriend.userId,
-//                             @"msgtype": @"text",
-//                             @"content": text
-//                             };
-//    [ChatAPI sendMessageWithParameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-//        //        NSLog(@"%@",responseObject);
-//        NSDictionary *dataDict = [responseObject firstObject];
-//        if ([dataDict[@"state"]intValue] > -1) {
-//            JSQMessage *message = [[JSQMessage alloc]initWithSenderId:self.senderId senderDisplayName:self.senderDisplayName date:[NSDate date] text:text];
-//            [self.modalData.messages addObject:message];
-//            Message *newMessage = [Message MR_createEntity];
-//            newMessage.messageId = @([dataDict[@"state"]intValue]);
-//            newMessage.content = text;
-//            newMessage.createtime = [NSDate date];
-//            newMessage.flag = @(1);
-//            newMessage.msgType = @"text";
-//            newMessage.user = _currentFriend;
-//            Chat *chat = [Chat MR_findFirstByAttribute:@"user" withValue:_currentFriend];
-//            if (chat == nil) {
-//                chat = [Chat MR_createEntity];
-//                chat.user = _currentFriend;
-//                chat.unreadMessageCount = @(0);
-//            }
-//            chat.lastMessageTime = newMessage.createtime;
-//            chat.lastMessageContent = newMessage.content;
-//            [[NSManagedObjectContext MR_defaultContext]MR_saveToPersistentStoreAndWait];
-//            [self.collectionView reloadData];
-//            //            [self loadNewMessage];
-//            [self finishSendingMessage];
-//        }
-//        else {
-//            MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view.window animated:YES];
-//            hud.mode = MBProgressHUDModeText;
-//            hud.labelText = @"发送失败";
-//            hud.detailsLabelText = dataDict[@"msg"];
-//            [hud hide:YES afterDelay:1.0f];
-//        }
-//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-//        NSLog(@"%@",error.localizedDescription);
-//    }];
-//}
 
 - (void)deleteMessage:(NSNotification *)notification {
     JSQMessagesCollectionViewCell *cell = notification.object;
@@ -462,7 +416,6 @@ typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
 
 
 - (void)cleanUnreadMessageCount {
-//    Chat *chat = [Chat MR_findFirstByAttribute:@"user" withValue:_currentFriend];
     if ([_currentChat.unreadMessageCount intValue] > 0) {
         _currentChat.unreadMessageCount = @(0);
         [[NSManagedObjectContext MR_defaultContext]MR_saveToPersistentStoreAndWait];
@@ -478,6 +431,8 @@ typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
 }
 
 - (void)refreshMessageModal {
+    _modalData.messages = [NSMutableArray array];
+
     NSString *myName = [[NSUserDefaults standardUserDefaults] objectForKey:@"UserRealName"];
     NSString *mySenderId = self.senderId;
     messageArray = [Message MR_findByAttribute:@"chat" withValue:_currentChat andOrderBy:@"messageId" ascending:YES];
@@ -567,7 +522,6 @@ typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
     _modalData.outgoingBubbleImageData = [bubbleFactory outgoingMessagesBubbleImageWithColor:UIColorFromRGB(0xADE85B)];
     _modalData.incomingBubbleImageData = [bubbleFactory incomingMessagesBubbleImageWithColor:[UIColor whiteColor]];
     
-    _modalData.messages = [NSMutableArray array];
     [self refreshMessageModal];
 
 }
