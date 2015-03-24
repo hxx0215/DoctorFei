@@ -87,19 +87,19 @@ class HisPageDetailViewController: UIViewController {
                 self.hud!.labelText = "发布中"
             case SSResponseStateSuccess.value:
                 NSLog("success")
-                self.hud!.mode = MBProgressHUDMode.Text
-                self.hud!.labelText = "发布成功"
-                self.hud!.hide(true, afterDelay: 0.5)
+                self.hud?.mode = MBProgressHUDMode.Text
+                self.hud?.labelText = "发布成功"
+                self.hud?.hide(true, afterDelay: 0.5)
             case SSResponseStateCancel.value:
                 NSLog("Cancel")
-                self.hud!.mode = MBProgressHUDMode.Text
-                self.hud!.labelText = "已取消"
-                self.hud!.hide(true)
+                self.hud?.mode = MBProgressHUDMode.Text
+                self.hud?.labelText = "已取消"
+                self.hud?.hide(true)
             case SSResponseStateFail.value:
                 NSLog("fail")
-                self.hud!.mode = MBProgressHUDMode.Text
-                self.hud!.labelText = "发布失败:错误:" + error.errorDescription()
-                self.hud!.hide(true, afterDelay: 1.5)
+                self.hud?.mode = MBProgressHUDMode.Text
+                self.hud?.labelText = "发布失败:错误:" + error.errorDescription()
+                self.hud?.hide(true, afterDelay: 1.5)
             default:
                 NSLog("default")
             }
