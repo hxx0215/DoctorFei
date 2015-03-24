@@ -17,8 +17,10 @@
 @interface ContactMainViewController ()
     <UITableViewDelegate, UITableViewDataSource, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate, UISearchDisplayDelegate>
 
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *rightItem;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentControl;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (nonatomic, strong) NSMutableArray *selectedIndexPath;
 - (IBAction)segmentValueChanged:(id)sender;
 @end
 
@@ -38,7 +40,18 @@
     [self.tableView setSectionIndexColor:[UIColor blackColor]];
     [self.tableView setSectionIndexBackgroundColor:[UIColor clearColor]];
     [self.searchDisplayController.searchResultsTableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
-
+    self.selectedIndexPath = [NSMutableArray new];
+    switch (self.contactMode) {
+        case ContactMainViewControllerModeNormal:
+            self.navigationItem.leftBarButtonItem = nil;
+            break;
+        case ContactMainViewControllerModeCreateGroup:
+            [self.rightItem setTitle:@"确定"];
+            self.rightItem.enabled = NO;
+            
+        default:
+            break;
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -176,6 +189,25 @@
     [self fetchFriendWithUserType:[self currentUserType]];
     [self reloadTableViewDataWithUserType:[self currentUserType]];
 }
+- (IBAction)backButtonClicked:(id)sender {
+    [self.navigationController popViewControllerAnimated:YES];
+}
+- (IBAction)rightItemClicked:(id)sender {
+    switch (self.contactMode) {
+        case ContactMainViewControllerModeNormal:
+            [self performSegueWithIdentifier:@"ContactAddFriendsSegueIdentifier" sender:sender];
+            break;
+        case ContactMainViewControllerModeCreateGroup:
+        {
+            NSMutableArray *selected = [NSMutableArray new];
+            for (NSIndexPath *indexPath in self.selectedIndexPath)
+                [selected addObject:tableViewDataArray[indexPath.section][indexPath.row]];
+            self.didSelectFriend(selected);
+        }
+        default:
+            break;
+    }
+}
 #pragma mark - UITableView Delegate
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -190,13 +222,32 @@
 //}
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    switch (self.contactMode) {
+        case ContactMainViewControllerModeCreateGroup:
+        {
+            ContactFriendTableViewCell *cell =(ContactFriendTableViewCell *) [tableView cellForRowAtIndexPath:indexPath];
+            cell.selectedButton.selected = !cell.selectedButton.selected;
+            if (cell.selectedButton.selected)
+                [self.selectedIndexPath addObject:indexPath];
+            else
+                [self.selectedIndexPath removeObject:indexPath];
+            self.rightItem.enabled = (self.selectedIndexPath.count > 0);
+        }
+            break;
+            
+        default:
+            break;
+    }
 }
 
 #pragma mark - UITableView Datasource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (tableView == self.searchDisplayController.searchResultsTableView) {
         return searchResultArray.count;;
+    }
+    if (self.contactMode == ContactMainViewControllerModeCreateGroup){
+        return [tableViewDataArray[section] count];
     }
     if (section == 0) {
         return 3;
@@ -209,6 +260,9 @@
     if (tableView == self.searchDisplayController.searchResultsTableView) {
         return 1;
     }
+    if (self.contactMode == ContactMainViewControllerModeCreateGroup){
+        return tableViewDataArray.count;
+    }
     return tableViewDataArray.count + 1;
 }
 
@@ -217,44 +271,62 @@
     static NSString *ContactNewFriendCellIdentifier = @"ContactNewFriendCellIdentifier";
     static NSString *ContactGroupTalkCellIdentifier = @"ContactGroupTalkCellIdentifier";
     static NSString *ContactNearByCellIdentifier = @"ContactNearByCellIdentifier";
-    if (indexPath.section == 0) {
-        switch (indexPath.row) {
-            case 0:
-            {
-                return [tableView dequeueReusableCellWithIdentifier:ContactNewFriendCellIdentifier forIndexPath:indexPath];
+    static NSString *ContactFriendSelectCellIdentifier = @"ContactFriendSelectCellIdentifier";
+    if (self.contactMode == ContactMainViewControllerModeNormal)
+    {
+        if (indexPath.section == 0) {
+            switch (indexPath.row) {
+                case 0:
+                {
+                    return [tableView dequeueReusableCellWithIdentifier:ContactNewFriendCellIdentifier forIndexPath:indexPath];
+                }
+                    break;
+                case 1:
+                {
+                    return [tableView dequeueReusableCellWithIdentifier:ContactGroupTalkCellIdentifier forIndexPath:indexPath];
+                }
+                    break;
+                case 2:
+                {
+                    return [tableView dequeueReusableCellWithIdentifier:ContactNearByCellIdentifier forIndexPath:indexPath];
+                }
+                    break;
+                default:
+                    break;
             }
-                break;
-            case 1:
-            {
-                return [tableView dequeueReusableCellWithIdentifier:ContactGroupTalkCellIdentifier forIndexPath:indexPath];
-            }
-                break;
-            case 2:
-            {
-                return [tableView dequeueReusableCellWithIdentifier:ContactNearByCellIdentifier forIndexPath:indexPath];
-            }
-                break;
-            default:
-                break;
+        }
+        else{
+            ContactFriendTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ContactFriendCellIdentifier forIndexPath:indexPath];
+            [cell setCurrentFriend:tableViewDataArray[indexPath.section - 1][indexPath.row]];
+            return cell;
         }
     }else{
-        ContactFriendTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ContactFriendCellIdentifier forIndexPath:indexPath];
-        [cell setCurrentFriend:tableViewDataArray[indexPath.section - 1][indexPath.row]];
+        ContactFriendTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ContactFriendSelectCellIdentifier forIndexPath:indexPath];
+        [cell setCurrentFriend:tableViewDataArray[indexPath.section][indexPath.row]];
+        if ([self.selectedIndexPath containsObject:indexPath]){
+            cell.selectedButton.selected = YES;
+        }
         return cell;
     }
+    
     return nil;
 }
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     if (tableView == self.searchDisplayController.searchResultsTableView) {
         return nil;
     }
-    else if (section == 0){
-        return @" ";
-    }
-    else{
-        if ([tableViewDataArray[section - 1] count] > 0) {
-            return [[[UILocalizedIndexedCollation currentCollation]sectionTitles]objectAtIndex:section - 1];
+    else if (self.contactMode == ContactMainViewControllerModeNormal){
+        if (section == 0){
+            return @" ";
         }
+        else{
+            if ([tableViewDataArray[section - 1] count] > 0) {
+                return [[[UILocalizedIndexedCollation currentCollation]sectionTitles]objectAtIndex:section - 1];
+            }
+        }
+    }else if (self.contactMode == ContactMainViewControllerModeCreateGroup){
+        if ([tableViewDataArray[section] count]>0)
+            return [[[UILocalizedIndexedCollation currentCollation] sectionTitles] objectAtIndex:section];
     }
     return nil;
 }

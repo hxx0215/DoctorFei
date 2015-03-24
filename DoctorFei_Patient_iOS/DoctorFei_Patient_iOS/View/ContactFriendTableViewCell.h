@@ -12,5 +12,5 @@
 @interface ContactFriendTableViewCell : UITableViewCell
 
 @property (nonatomic, strong) Friends *currentFriend;
-
+@property (weak, nonatomic) IBOutlet UIButton *selectedButton;
 @end
