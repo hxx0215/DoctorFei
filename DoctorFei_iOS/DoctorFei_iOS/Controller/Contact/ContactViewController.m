@@ -172,15 +172,16 @@
                              @"doctorid": [userId stringValue]
                              };
     [DoctorAPI getFriendsWithParameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"%@",responseObject);
         NSString *msg = [[responseObject firstObject] objectForKey:@"msg"];
         if (msg){//为毛服务器没有数据还要返回个啊哦。真是有病
             [self reloadTableViewData];
             return ;
         }
+//        [Friends MR_deleteAllMatchingPredicate:[NSPredicate predicateWithFormat:@"userType == %@", [self currentUserType]]];
         NSArray *dataArray = (NSArray *)responseObject;
         for (NSDictionary *dict in dataArray) {
-            Friends *friend = [Friends MR_findFirstByAttribute:@"userId" withValue:dict[@"userid"]];
+            Friends *friend = [Friends MR_findFirstWithPredicate:[NSPredicate predicateWithFormat:@"userId == %@ && userType == %@", @([dict[@"userid"] intValue]), @([dict[@"usertype"]intValue])]];
+//            Friends *friend = [Friends MR_findFirstByAttribute:@"userId" withValue:dict[@"userid"]];
             if (friend == nil) {
                 friend = [Friends MR_createEntity];
                 friend.userId = @([dict[@"userid"]intValue]);
@@ -291,8 +292,16 @@
             self.selectedArray = didSelect;
         switch (self.contactMode) {
             case ContactViewControllerModeCreateGroup:{
-                [self.navigationController popToRootViewControllerAnimated:NO];
-                self.didSelectFriends(self.selectedArray);
+                NSMutableArray *selectedFriendArray = [NSMutableArray array];
+                for (NSIndexPath *indexPath in self.cellSelected) {
+                    Friends *selectedFriend = tableViewDataArray[indexPath.section][indexPath.row];
+                    [selectedFriendArray addObject:selectedFriend];
+                }
+                [self.navigationController dismissViewControllerAnimated:NO completion:^{
+                    self.didSelectFriends([selectedFriendArray copy]);
+                }];
+//                [self.navigationController popToRootViewControllerAnimated:NO];
+//                self.didSelectFriends(self.selectedArray);
             }
                 break;
             case ContactViewControllerModeConsultation:{
