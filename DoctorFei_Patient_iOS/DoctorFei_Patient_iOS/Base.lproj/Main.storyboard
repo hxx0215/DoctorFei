@@ -169,7 +169,7 @@
                                                     <state key="normal" image="pitch-on-02.png">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
-                                                    <state key="selected" image="choose_btn_after.png"/>
+                                                    <state key="selected" image="pitch-on-02_after.png"/>
                                                 </button>
                                             </subviews>
                                             <constraints>
@@ -224,6 +224,11 @@
                                                 </mask>
                                             </variation>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="avatarImageView" destination="AIS-GE-OyW" id="2iy-c5-G1y"/>
+                                            <outlet property="nameLabel" destination="sOK-hF-hy4" id="nA6-o5-DW3"/>
+                                            <outlet property="selectedButton" destination="6fG-g9-Wxo" id="fM6-8h-NDr"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ContactNewFriendCellIdentifier" rowHeight="65" id="ne1-DL-WNB">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -540,17 +545,25 @@
                         </variation>
                     </view>
                     <navigationItem key="navigationItem" title="通讯录" id="Kaa-e3-Zmr">
+                        <barButtonItem key="leftBarButtonItem" image="return.png" id="2xB-WC-0yr">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="backButtonClicked:" destination="XYl-QD-IuN" id="0zE-14-h3T"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="添加朋友" id="g18-jr-fO6">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
-                                <segue destination="XB3-eo-WEZ" kind="show" id="2W9-8n-Hth"/>
+                                <action selector="rightItemClicked:" destination="XYl-QD-IuN" id="WsZ-5Y-7ZQ"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="rightItem" destination="g18-jr-fO6" id="VOr-af-hYP"/>
                         <outlet property="searchDisplayController" destination="27p-zk-ZWV" id="APo-0k-gqZ"/>
                         <outlet property="segmentControl" destination="Gqk-QM-8cw" id="G6r-DX-cva"/>
                         <outlet property="tableView" destination="iTe-Bg-Yrm" id="6r0-3B-NJH"/>
+                        <segue destination="XB3-eo-WEZ" kind="show" identifier="ContactAddFriendsSegueIdentifier" id="kod-tF-SWu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="glR-cE-AvV" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -860,6 +873,7 @@
                     <connections>
                         <outlet property="searchDisplayController" destination="WeE-dH-fzo" id="XSH-5J-Mdt"/>
                         <outlet property="tableView" destination="xn9-af-lep" id="w1F-Yo-VQL"/>
+                        <segue destination="XYl-QD-IuN" kind="show" identifier="ContactCreateGroupSequeIdentifier" id="fae-pn-pOl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2O4-dv-zzR" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -10340,7 +10354,6 @@
         <image name="button_wide-02_btn.png" width="300" height="40"/>
         <image name="choice-box_after.png" width="14" height="14"/>
         <image name="choice-box_before.png" width="14" height="14"/>
-        <image name="choose_btn_after.png" width="36" height="36"/>
         <image name="dector_tag.png" width="28" height="14"/>
         <image name="download_pic.png" width="135" height="131"/>
         <image name="extend_btn.png" width="44" height="44"/>
@@ -10372,6 +10385,7 @@
         <image name="off_line.png" width="40" height="15"/>
         <image name="on_line_pic.png" width="40" height="15"/>
         <image name="pitch-on-02.png" width="16" height="16"/>
+        <image name="pitch-on-02_after.png" width="16" height="16"/>
         <image name="praise_btn.png" width="26" height="26"/>
         <image name="praise_btn_after.png" width="26" height="26"/>
         <image name="pull-down.png" width="15" height="15"/>
@@ -10392,9 +10406,10 @@
         <image name="weixin_logo.png" width="40" height="40"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="AUh-4L-m1M"/>
+        <segue reference="fae-pn-pOl"/>
         <segue reference="8dG-p0-wDZ"/>
-        <segue reference="2W9-8n-Hth"/>
+        <segue reference="kod-tF-SWu"/>
         <segue reference="PBF-TY-a31"/>
+        <segue reference="AUh-4L-m1M"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-
+typedef enum ContactMode{
+    ContactMainViewControllerModeNormal,
+    ContactMainViewControllerModeCreateGroup
+}ContactMainViewControllerMode;
+typedef void(^editCallback)(NSArray *friendSelect);
 @interface ContactMainViewController : UIViewController
-
+@property (nonatomic, assign)ContactMainViewControllerMode contactMode;
+@property (nonatomic, copy)editCallback didSelectFriend;
 @end

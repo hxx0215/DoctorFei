@@ -7,6 +7,7 @@
 //
 
 #import "ContactGroupChatListViewController.h"
+#import "ContactMainViewController.h"
 
 @interface ContactGroupChatListViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -49,14 +50,27 @@ static NSString * const contactGroupChatListIdentifier = @"ContactGroupChatListI
     cell.textLabel.text = @"新建群";
     return cell;
 }
-/*
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.row == 0){
+        [self performSegueWithIdentifier:@"ContactCreateGroupSequeIdentifier" sender:indexPath];
+    }
+}
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    if ([segue.identifier isEqualToString:@"ContactCreateGroupSequeIdentifier"]){
+        ContactMainViewController *vc = [segue destinationViewController];
+        vc.contactMode = ContactMainViewControllerModeCreateGroup;
+        // TODO:会诊
+        vc.didSelectFriend = ^(NSArray *friends){
+            NSLog(@"%@",friends);
+        };
+    }
 }
-*/
+
 
 @end

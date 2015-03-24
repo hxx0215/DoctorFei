@@ -15,6 +15,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *avatarImageView;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 
+
 @end
 
 @implementation ContactFriendTableViewCell
@@ -37,6 +38,9 @@
         [self.avatarImageView setImage:[UIImage imageNamed:@"list_user-small_example_pic"]];
     }
     [self.nameLabel setAttributedText:[DataUtil nameStringForFriend:_currentFriend]];
+}
+- (void)layoutSubviews{
+    [super layoutSubviews];
 }
 
 @end
