@@ -7,11 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-typedef enum shareType{
-    shareTypeWeibo,
-    shareTypeTencentWeibo
-}shareType;
+#import <ShareSDK/ShareSDK.h>
+
 @interface ShareUtil : NSObject
 + (instancetype)sharedShareUtil;
-- (void)shareTo:(shareType)type content:(NSDictionary *)content;
+- (void)shareTo:(ShareType)type content:(NSDictionary *)content complete:(void(^)(ShareType type, SSResponseState state, id<ISSPlatformShareInfo> statusInfo, id<ICMErrorInfo> error, BOOL end))complete;
 @end

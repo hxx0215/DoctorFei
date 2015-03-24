@@ -25,6 +25,7 @@ class HisPageDetailViewController: UIViewController {
 
     var daylog = DayLog()
     private var format = NSDateFormatter()
+    var hud:MBProgressHUD?
     override func viewDidLoad() {
         super.viewDidLoad()
         self.format.dateFormat = "yyyy-MM-dd HH:mm:"
@@ -77,7 +78,32 @@ class HisPageDetailViewController: UIViewController {
         var dic = ["content" : self.contentText.text,
             "vc" : self,
         ]
-        ShareUtil.sharedShareUtil().shareTo(shareTypeWeibo, content: dic)
+        ShareUtil.sharedShareUtil().shareTo(ShareTypeSinaWeibo, content: dic, complete: {
+            type, state, shareInfo, error, end in
+            switch state.value {
+            case SSResponseStateBegan.value:
+                NSLog("begin")
+                self.hud = MBProgressHUD.showHUDAddedTo(self.view.window, animated: true)
+                self.hud!.labelText = "发布中"
+            case SSResponseStateSuccess.value:
+                NSLog("success")
+                self.hud!.mode = MBProgressHUDMode.Text
+                self.hud!.labelText = "发布成功"
+                self.hud!.hide(true, afterDelay: 0.5)
+            case SSResponseStateCancel.value:
+                NSLog("Cancel")
+                self.hud!.mode = MBProgressHUDMode.Text
+                self.hud!.labelText = "已取消"
+                self.hud!.hide(true)
+            case SSResponseStateFail.value:
+                NSLog("fail")
+                self.hud!.mode = MBProgressHUDMode.Text
+                self.hud!.labelText = "发布失败:错误:" + error.errorDescription()
+                self.hud!.hide(true, afterDelay: 1.5)
+            default:
+                NSLog("default")
+            }
+            })
     }
     /*
     // MARK: - Navigation
