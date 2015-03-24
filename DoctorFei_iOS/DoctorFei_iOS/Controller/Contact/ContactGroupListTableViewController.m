@@ -31,11 +31,12 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     self.tableView.tableFooterView = [UIView new];
-
+    [self reloadTableViewData];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    [self fetchChatGroup];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -55,22 +56,24 @@
                             @"usertype": @2,
                             };
     [ChatAPI getChatGroupWithParameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"%@",responseObject);
         NSArray *dataArray = (NSArray *)responseObject;
-        if ([[dataArray firstObject][@"state"]intValue] == 0) {
+        if ([dataArray firstObject][@"state"] && [[dataArray firstObject][@"state"]intValue] == 0) {
             MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
             hud.mode = MBProgressHUDModeText;
             hud.labelText = [dataArray firstObject][@"msg"];
             [hud hide:YES afterDelay:1.0f];
         }else{
             for (NSDictionary *dict in dataArray) {
-                Chat *receiveChat = [Chat MR_findFirstWithPredicate:[NSPredicate predicateWithFormat:@"type == %@ && chatId == %@", @5, @([dict[@"groupId"] intValue])]];
+                Chat *receiveChat = [Chat MR_findFirstWithPredicate:[NSPredicate predicateWithFormat:@"type == %@ && chatId == %@", @5, @([dict[@"groupid"] intValue])]];
                 if (receiveChat == nil) {
                     receiveChat = [Chat MR_createEntity];
-                    receiveChat.chatId = @([dict[@"groupId"] intValue]);
+                    receiveChat.chatId = @([dict[@"groupid"] intValue]);
                 }
+                receiveChat.type = @5;
                 receiveChat.title = dict[@"name"];
+                [[NSManagedObjectContext MR_defaultContext]MR_saveToPersistentStoreAndWait];
             }
-            [[NSManagedObjectContext MR_defaultContext]MR_saveToPersistentStoreAndWait];
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self reloadTableViewData];
             });
@@ -100,9 +103,24 @@
                             @"name": @"未命名",
                             @"joinuserids": [joinArray JSONString],
                             };
-    NSLog(@"param: %@",param);
     [ChatAPI setChatGroupWithParameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"%@",responseObject);
+        NSDictionary *result = [responseObject firstObject];
+        if ([result[@"state"] intValue] == 1) {
+            Chat *groupChat = [Chat MR_createEntity];
+            groupChat.type = @5;
+            groupChat.title = @"未命名";
+            groupChat.chatId = @([result[@"curid"]intValue]);
+            [[NSManagedObjectContext MR_defaultContext]MR_saveToPersistentStoreAndWait];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self reloadTableViewData];
+            });
+        }else{
+            MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+            hud.mode = MBProgressHUDModeText;
+            hud.labelText = result[@"msg"];
+            [hud hide:YES afterDelay:1.5f];
+        }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"%@",error.localizedDescription);
         MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
@@ -110,6 +128,10 @@
         hud.labelText = error.localizedDescription;
         [hud hide:YES afterDelay:1.5f];
     }];
+}
+
+- (void)fetchGroupUserWithChat:(Chat *)chat {
+    
 }
 
 #pragma mark - Actions
@@ -197,8 +219,6 @@
         ContactViewController *contact = nav.viewControllers.firstObject;
         contact.contactMode = ContactViewControllerModeCreateGroup;
         contact.didSelectFriends = ^(NSArray *friends){
-            NSLog(@"%@",friends);
-            //TODO 创建群
             [self createChatGroupWithUserArray:friends];
         };
 

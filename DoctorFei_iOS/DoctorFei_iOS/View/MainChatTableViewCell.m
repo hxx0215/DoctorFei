@@ -53,7 +53,7 @@
         }
         [self.situationLabel setText:friend.situation];
     }
-    else if (_currentChat.type.intValue == 4) {
+    else if (_currentChat.type.intValue >= 4) {
         [self.avatarImageView setImage:[UIImage imageNamed:@"list_user-big_example_pic"]];
         [self.nameLabel setText:_currentChat.title];
         [self.situationLabel setText:nil];

@@ -242,7 +242,8 @@
 }
 
 - (void)reloadTableViewData {
-    chatArray = [Chat MR_findAll];
+//    chatArray = [Chat MR_findAll];
+    chatArray = [Chat MR_findAllWithPredicate:[NSPredicate predicateWithFormat:@"messages.@count > 0"]];
     [self.tableView reloadData];
     currentUnreadCount = 0;
     for (Chat *chat in chatArray) {

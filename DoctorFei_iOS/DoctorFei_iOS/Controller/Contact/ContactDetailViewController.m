@@ -28,6 +28,8 @@
 #import "ContactRecordTableViewController.h"
 #import "DoctorAPI.h"
 #import "ContactTransferViewController.h"
+#import "ContactGroupDetailUserTableViewController.h"
+
 
 #import "ContactPeronsalFriendDetailTableViewController.h"
 #import "ContactDoctorFriendDetailTableViewController.h"
@@ -57,6 +59,7 @@ typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
     NSData *currentRecordData;
     double startRecordTime, endRecordTime;
     JSQAudioMediaItem *currentPlayItem;
+    UIBarButtonItem *groupUserButtonItem;
 }
 @synthesize /*currentFriend = _currentFriend,*/ modalData = _modalData, currentChat = _currentChat;
 
@@ -105,6 +108,7 @@ typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
 
 //    [self initNavigationBar];
     
+
     
     recordAudio = [[RecordAudio alloc]init];
     recordAudio.delegate = self;
@@ -116,7 +120,7 @@ typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(reloadMessageData) name:@"NewChatArrivedNotification" object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(deleteMessage:) name:@"DeleteMessageNotification" object:nil];
     [self cleanUnreadMessageCount];
-    if (_currentChat.type.intValue < 3){
+    if (_currentChat.type.intValue < 4){
         Friends *currentFriend = _currentChat.user.allObjects.firstObject;
         if (currentFriend.noteName && currentFriend.noteName.length > 0) {
             self.title = currentFriend.noteName;
@@ -127,6 +131,11 @@ typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
         if (currentFriend.userType.intValue == 2) {
             [self.navigationItem setRightBarButtonItem:nil];
         }
+    }else if (_currentChat.type.intValue == 5){
+        self.title = _currentChat.title;
+        groupUserButtonItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"button_details"] style:UIBarButtonItemStyleBordered target:self action:@selector(groupUserButtonItemClicked:)];
+        [groupUserButtonItem setTintColor:[UIColor whiteColor]];
+        [self.navigationItem setRightBarButtonItem:groupUserButtonItem];
     }else{
         self.title = _currentChat.title;
         [self.navigationItem setRightBarButtonItem:nil];
@@ -218,7 +227,11 @@ typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
 //    }
 //}
 #pragma mark - Button Actions
-     
+
+- (void)groupUserButtonItemClicked:(id)sender {
+    [self performSegueWithIdentifier:@"ContactGroupDetailUserSegueIdentifier" sender:nil];
+}
+
 - (void)sendVoiceButtonTouchDown: (UIButton *)sender {
     voiceHUD = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     voiceHUD.mode = MBProgressHUDModeCustomView;
@@ -703,6 +716,10 @@ typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
     else if ([[segue identifier] isEqualToString:@"ImageDetailSegueIdentifier"]) {
         ImageDetailViewController *vc = [segue destinationViewController];
         [vc setImage:sender];
+    }
+    else if ([segue.identifier isEqualToString:@"ContactGroupDetailUserSegueIdentifier"]) {
+        ContactGroupDetailUserTableViewController *vc = [segue destinationViewController];
+        [vc setCurrentChat:_currentChat];
     }
 }
 
