@@ -389,6 +389,9 @@
                                                 </mask>
                                             </variation>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="9MH-7J-7yK" kind="show" identifier="ContactGroupListSegueIdentifier" id="kd6-gH-gjb"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ContactNearByCellIdentifier" rowHeight="65" id="s2R-MR-UnF">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -548,7 +551,6 @@
                         <outlet property="searchDisplayController" destination="27p-zk-ZWV" id="APo-0k-gqZ"/>
                         <outlet property="segmentControl" destination="Gqk-QM-8cw" id="G6r-DX-cva"/>
                         <outlet property="tableView" destination="iTe-Bg-Yrm" id="6r0-3B-NJH"/>
-                        <segue destination="9MH-7J-7yK" kind="show" id="FKz-oG-2Dd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="glR-cE-AvV" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -811,30 +813,53 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
-                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="0.0" y="0.0" width="400" height="687"/>
-                                </variation>
+                                <connections>
+                                    <outlet property="dataSource" destination="9MH-7J-7yK" id="8Ap-ay-WdW"/>
+                                    <outlet property="delegate" destination="9MH-7J-7yK" id="2N6-qt-B8p"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="xn9-af-lep" firstAttribute="top" secondItem="RVW-Aw-ajh" secondAttribute="bottom" id="70F-jW-CWp"/>
+                            <constraint firstItem="eSK-Wn-sDf" firstAttribute="top" secondItem="xn9-af-lep" secondAttribute="bottom" id="Yo1-Gn-VdS"/>
+                            <constraint firstItem="xn9-af-lep" firstAttribute="leading" secondItem="6JN-IZ-Hog" secondAttribute="leading" id="d5n-NG-fK8"/>
+                            <constraint firstAttribute="trailing" secondItem="xn9-af-lep" secondAttribute="trailing" id="nV9-9F-l5p"/>
+                        </constraints>
                         <variation key="default">
                             <mask key="subviews">
                                 <exclude reference="xn9-af-lep"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="70F-jW-CWp"/>
+                                <exclude reference="d5n-NG-fK8"/>
+                                <exclude reference="nV9-9F-l5p"/>
+                                <exclude reference="Yo1-Gn-VdS"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
                             <mask key="subviews">
                                 <include reference="xn9-af-lep"/>
                             </mask>
+                            <mask key="constraints">
+                                <include reference="70F-jW-CWp"/>
+                                <include reference="d5n-NG-fK8"/>
+                                <include reference="nV9-9F-l5p"/>
+                                <include reference="Yo1-Gn-VdS"/>
+                            </mask>
                         </variation>
                     </view>
                     <navigationItem key="navigationItem" title="群聊" id="eXD-KS-L3i">
                         <barButtonItem key="leftBarButtonItem" image="return.png" id="RkP-y8-SNg">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="backButtonClicked:" destination="9MH-7J-7yK" id="ein-e2-h7t"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="searchDisplayController" destination="WeE-dH-fzo" id="XSH-5J-Mdt"/>
+                        <outlet property="tableView" destination="xn9-af-lep" id="w1F-Yo-VQL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2O4-dv-zzR" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -10367,9 +10392,9 @@
         <image name="weixin_logo.png" width="40" height="40"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="jqJ-9d-6M3"/>
-        <segue reference="PBF-TY-a31"/>
         <segue reference="AUh-4L-m1M"/>
+        <segue reference="8dG-p0-wDZ"/>
         <segue reference="2W9-8n-Hth"/>
+        <segue reference="PBF-TY-a31"/>
     </inferredMetricsTieBreakers>
 </document>
