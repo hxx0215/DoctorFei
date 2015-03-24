@@ -244,7 +244,11 @@
         Chat *chat = [Chat MR_findFirstWithPredicate:[NSPredicate predicateWithFormat: @"type <= %@ AND ANY user == %@", @3, currentFriend]];
         if (chat == nil) {
             chat = [Chat MR_createEntity];
-            chat.type = @0;
+            if (currentFriend.userType.intValue == 2) {
+                chat.type = @1;
+            }else{
+                chat.type = @0;
+            }
             [chat addUserObject:currentFriend];
 //            chat.user = [chat.user setByAddingObject:currentFriend];
         }

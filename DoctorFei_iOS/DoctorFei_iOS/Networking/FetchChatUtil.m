@@ -117,9 +117,17 @@
             }
             message.content = dict[@"content"];
             message.createtime = [NSDate dateWithTimeIntervalSince1970:[dict[@"createtime"]intValue]];
-            message.flag = @([dict[@"flag"]intValue]);
             message.msgType = dict[@"msgtype"];
-            message.user = [dict[@"flag"] intValue] ? nil :messageFriend;
+            message.flag = @([dict[@"flag"]intValue]);
+            if (chatType.intValue == 1) {
+                if ([dict[@"Fromid"]intValue] == doctorId.intValue) {
+                    message.user = nil;
+                }else{
+                    message.user = messageFriend;
+                }
+            }else{
+                message.user = [dict[@"flag"] intValue] ? nil :messageFriend;
+            }
             message.chat = messageChat;
         }
         messageChat.unreadMessageCount = @([messageChat.unreadMessageCount intValue] + [params[@"total"]intValue]);
@@ -163,21 +171,22 @@
 + (void)fetchTempGroupChatWithParmas: (NSDictionary *)params {
     NSNumber *groupId = @([params[@"groupid"]intValue]);
     NSNumber *doctorId = [[NSUserDefaults standardUserDefaults]objectForKey:@"UserId"];
-    Chat *currentChat = [Chat MR_findFirstWithPredicate:[NSPredicate predicateWithFormat:@"type == %@ && chatId == %@", @4, groupId]];
-    if (currentChat == nil) {
-        currentChat = [Chat MR_createEntity];
-        currentChat.chatId = groupId;
-        currentChat.type = @4;
-    }
-    [[NSManagedObjectContext MR_defaultContext]MR_saveToPersistentStoreAndWait];
+//    [[NSManagedObjectContext MR_defaultContext]MR_saveToPersistentStoreAndWait];
     NSDictionary *requestDict = @{@"userid": doctorId,
-                           @"groupid": groupId
+                                  @"groupid": groupId,
+                                  @"lastmsgid": @([params[@"minmsgid"]intValue] - 1)
                            };
-    NSMutableSet *lostInfomationUsers = [NSMutableSet set];
     [ChatAPI getTempGroupChatLogWithParameters:requestDict success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"Get TempGroup Chat: %@", responseObject);
-        Chat *currentChat = [Chat MR_findFirstWithPredicate:[NSPredicate predicateWithFormat:@"type == %@ && chatId == %@", @4, requestDict[@"groupid"]]];
+        Chat *currentChat = [Chat MR_findFirstWithPredicate:[NSPredicate predicateWithFormat:@"type == %@ && chatId == %@", @4, groupId]];
+        if (currentChat == nil) {
+            currentChat = [Chat MR_createEntity];
+            currentChat.chatId = groupId;
+            currentChat.type = @4;
+        }
+        currentChat.title = params[@"title"];
         NSArray *messageArray = (NSArray *)responseObject;
+        NSMutableSet *lostInfomationUsers = [NSMutableSet set];
         for (NSDictionary *dict in messageArray) {
             Friends *messageFriend = [Friends MR_findFirstWithPredicate:[NSPredicate predicateWithFormat:@"userId == %@ && userType == %@", @([dict[@"userid"] intValue]), @([dict[@"usertype"] intValue])]];
             if (messageFriend == nil && [dict[@"userid"]intValue] != doctorId.intValue) {
