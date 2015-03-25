@@ -7,6 +7,7 @@
 //
 
 #import "ShareUtil.h"
+#import "AGViewDelegate.h"
 
 @implementation ShareUtil
 + (instancetype)sharedShareUtil {
@@ -44,7 +45,7 @@
                                                             qqButtonHidden:YES
                                                      wxSessionButtonHidden:YES wxTimelineButtonHidden:YES
                                                       showKeyboardOnAppear:NO
-                                                         shareViewDelegate:nil
+                                                         shareViewDelegate:[AGViewDelegate sharedAGViewDelegate]
                                                        friendsViewDelegate:nil
                                                      picViewerViewDelegate:nil]
                              result:complete];
