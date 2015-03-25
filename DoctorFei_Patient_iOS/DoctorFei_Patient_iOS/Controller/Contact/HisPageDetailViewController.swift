@@ -78,7 +78,18 @@ class HisPageDetailViewController: UIViewController {
         var dic = ["content" : self.contentText.text,
             "vc" : self,
         ]
-        ShareUtil.sharedShareUtil().shareTo(ShareTypeSinaWeibo, content: dic, complete: {
+        var sharetype = ShareTypeSinaWeibo
+        switch (sender.tag){
+        case 300:
+            sharetype = ShareTypeSinaWeibo
+        case 302:
+            sharetype = ShareTypeWeixiSession
+        case 305:
+            sharetype = ShareTypeWeixiTimeline
+        default:
+            sharetype = ShareTypeSinaWeibo
+        }
+        ShareUtil.sharedShareUtil().shareTo(sharetype, content: dic, complete: {
             type, state, shareInfo, error, end in
             switch state.value {
             case SSResponseStateBegan.value:

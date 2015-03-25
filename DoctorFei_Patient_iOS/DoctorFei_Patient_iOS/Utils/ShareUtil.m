@@ -25,7 +25,14 @@
             [self shareWeibo:content complete:complete];
         }
             break;
-            
+        case ShareTypeWeixiSession:
+        {
+            [self shareWeixin:content Type:type complete:complete];
+        }
+        case ShareTypeWeixiTimeline:
+        {
+            [self shareWeixin:content Type:type complete:complete];
+        }
         default:
             break;
     }
@@ -36,7 +43,7 @@
     [container setIPhoneContainerWithViewController:content[@"vc"]];
     id<ISSAuthOptions> authOptions = [ShareSDK authOptionsWithAutoAuth:YES allowCallback:NO authViewStyle:SSAuthViewStyleModal viewDelegate:nil authManagerViewDelegate:nil];
     [ShareSDK showShareViewWithType:ShareTypeSinaWeibo
-                          container:container
+                          container:nil
                             content:publishConetent
                       statusBarTips:YES
                         authOptions:authOptions
@@ -52,5 +59,23 @@
 }
 - (void)shareSMS:(NSDictionary *)content complete:(void(^)(ShareType type, SSResponseState state, id<ISSPlatformShareInfo> statusInfo, id<ICMErrorInfo> error, BOOL end)) complete{
     
+}
+- (void)shareWeixin:(NSDictionary *)content Type:(ShareType)type complete:(void(^)(ShareType type, SSResponseState state, id<ISSPlatformShareInfo> statusInfo, id<ICMErrorInfo> error, BOOL end))complete{
+    id<ISSContent> publishContent = [ShareSDK content:content[@"content"]
+                                       defaultContent:nil
+                                                image:nil
+                                                title:nil
+                                                  url:nil
+                                          description:nil
+                                            mediaType:SSPublishContentMediaTypeText];
+    id<ISSAuthOptions> authOptions = [ShareSDK authOptionsWithAutoAuth:YES
+                                                         allowCallback:YES
+                                                         authViewStyle:SSAuthViewStylePopup viewDelegate:nil
+                                               authManagerViewDelegate:[AGViewDelegate sharedAGViewDelegate]];
+    [ShareSDK shareContent:publishContent
+                      type:type
+               authOptions:authOptions
+             statusBarTips:YES
+                    result:complete];
 }
 @end

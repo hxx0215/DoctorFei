@@ -21,7 +21,9 @@
     return _sharedInstance;
 }
 #pragma mark - ISSShareViewDelegate
-
+- (UIStatusBarStyle)preferredStatusBarStyle{
+    return UIStatusBarStyleLightContent;
+}
 - (void)viewOnWillDisplay:(UIViewController *)viewController shareType:(ShareType)shareType
 {
     
