@@ -138,30 +138,13 @@
     
     
     tableViewDataArray = mutableSections;
-    for (int i=0;i< [tableViewDataArray count];i++){
-        for (int j=0;j<[tableViewDataArray[i] count];j++){
-            NSString *title = [DataUtil nameStringForFriend:tableViewDataArray[i][j]].string;
-            [self.selectedArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop){
-                if (_contactMode == ContactViewControllerModeMainGroupAddFriend) {
-                    Friends *selectFriend = (Friends *)obj;
-                    if ([selectFriend isEqual:tableViewDataArray[i][j]]) {
-                        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:j inSection:i];
-                        [self.cellSelected addObject:indexPath];
-                        [self.selectedArray removeObject:selectFriend];
-                        self.navigationItem.rightBarButtonItem.enabled = YES;
-                    }
-                } else{
-                    NSString *friendName = (NSString *)obj;
-                    if ([friendName isEqualToString:title]){
-                        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:j inSection:i];
-                        [self.cellSelected addObject:indexPath];
-                        [self.selectedArray removeObject:friendName];
-                        self.navigationItem.rightBarButtonItem.enabled = YES;//self.cellSelected肯定不为空
-                    }
-                }
-            }];
-        }
+    for (Friends *f in [Friends MR_findAll]){
+        if ([self.selectedArray containsObject:f])
+            [self.cellSelected addObject:f];
     }
+    [self.selectedArray removeAllObjects];
+    if (self.cellSelected.count >0)
+        self.navigationItem.rightBarButtonItem.enabled = YES;
     [self.tableView reloadData];
 }
 
@@ -279,78 +262,19 @@
         [self performSegueWithIdentifier:@"ContactAddFriendSegueIdentifier" sender:sender];
     }
     else{
-        NSMutableArray *didSelect = [NSMutableArray new];
-//        for (int i=0;i<tableViewDataArray.count;i++){
-//            if (self.cellSelected[i])
-//                [didSelect addObject:tableViewDataArray[i]];
-//        }
-//        for (NSIndexPath *indexPath in self.cellSelected){
-//            NSString *title = [DataUtil nameStringForFriend:tableViewDataArray[indexPath.section][indexPath.row]].string;
-//            [didSelect addObject:title];
-//        }
-        
-        if (self.selectedArray){
-            [self.selectedArray addObjectsFromArray:didSelect];
-        }
-        else
-            self.selectedArray = didSelect;
         switch (self.contactMode) {
-            case ContactViewControllerModeCreateGroup:{
-                NSMutableArray *selectedFriendArray = [NSMutableArray array];
-                for (NSIndexPath *indexPath in self.cellSelected) {
-                    Friends *selectedFriend = tableViewDataArray[indexPath.section][indexPath.row];
-                    [selectedFriendArray addObject:selectedFriend];
-                }
-                [self.navigationController dismissViewControllerAnimated:NO completion:^{
-                    self.didSelectFriends([selectedFriendArray copy]);
-                }];
-//                [self.navigationController popToRootViewControllerAnimated:NO];
-//                self.didSelectFriends(self.selectedArray);
-            }
-                break;
-            case ContactViewControllerModeConsultation:{
-                NSMutableArray *selectedFriendArray = [NSMutableArray array];
-                for (NSIndexPath *indexPath in self.cellSelected) {
-                    Friends *selectedFriend = tableViewDataArray[indexPath.section][indexPath.row];
-                    [selectedFriendArray addObject:selectedFriend];
-                }
-                [self.navigationController dismissViewControllerAnimated:YES completion:^{
-                    self.didSelectFriends([selectedFriendArray copy]);
-                }];
-            }
-            case ContactViewControllerModeTransfer:{
-                [self.navigationController dismissViewControllerAnimated:NO completion:^{
-//                    self.didSelectFriends(self.selectedArray);
-                    NSMutableArray *selectFriend = [NSMutableArray new];
-                    for (NSIndexPath *indexPath in self.cellSelected){
-                        Friends *selectedFriend = tableViewDataArray[indexPath.section][indexPath.row];
-                        [selectFriend addObject:selectedFriend];
-                    }
-                    self.didSelectFriends(selectFriend);
-                }];
-            }
-                break;
-            case ContactViewControllerModeScheduleSelectFriend:{
-                NSIndexPath *indexPath = self.cellSelected.firstObject;
-                Friends *selectedFriend = tableViewDataArray[indexPath.section][indexPath.row];
-                [self.navigationController dismissViewControllerAnimated:YES completion:^{
-                    self.didSelectFriends(@[selectedFriend]);
-                }];
-            }
-                break;
+            case ContactViewControllerModeCreateGroup:
+            case ContactViewControllerModeConsultation:
+            case ContactViewControllerModeTransfer:
+            case ContactViewControllerModeScheduleSelectFriend:
             case ContactViewControllerModeMainGroupAddFriend:{
-                NSMutableArray *selectedFriendArray = [NSMutableArray array];
-                for (NSIndexPath *indexPath in self.cellSelected) {
-                    Friends *selectedFriend = tableViewDataArray[indexPath.section][indexPath.row];
-                    [selectedFriendArray addObject:selectedFriend];
-                }
                 [self.navigationController dismissViewControllerAnimated:YES completion:^{
-                    self.didSelectFriends([selectedFriendArray copy]);
+                    self.didSelectFriends([self.cellSelected copy]);
                 }];
             }
                 break;
             default:{
-                self.didSelectFriends(self.selectedArray);
+                self.didSelectFriends(self.cellSelected);
                 [self.navigationController popViewControllerAnimated:YES];
             }
                 break;
@@ -433,7 +357,7 @@
         else
         {
             [cell setDataFriend:tableViewDataArray[indexPath.section][indexPath.row]];
-            cell.selectedButton.selected = [self.cellSelected containsObject:indexPath];
+            cell.selectedButton.selected = [self.cellSelected containsObject:tableViewDataArray[indexPath.section][indexPath.row]];
         }
         cell.contactMode = self.contactMode;
         return cell;
@@ -525,8 +449,15 @@
         ContactFriendTableViewCell *cell = (ContactFriendTableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
         cell.selectedButton.selected = !cell.selectedButton.selected;
         if (self.contactMode == ContactViewControllerModeTransfer || self.contactMode == ContactViewControllerModeScheduleSelectFriend){
-            for (NSIndexPath *ip in self.cellSelected){
-                ContactFriendTableViewCell *tCell = (ContactFriendTableViewCell *)[tableView cellForRowAtIndexPath:ip];
+            for (Friends *f in self.cellSelected){
+                ContactFriendTableViewCell *tCell = nil;
+                for (int i=0;i<tableViewDataArray.count;i++)
+                    for (int j=0;j<[tableViewDataArray[i] count];j++){
+                        if ([f isEqual:tableViewDataArray[i][j]]){
+                            NSIndexPath *path = [NSIndexPath indexPathForRow:j inSection:i];
+                            tCell = (ContactFriendTableViewCell *)[tableView cellForRowAtIndexPath:path];
+                        }
+                    }
                 if (tCell){
                     tCell.selectedButton.selected = NO;
                 }
@@ -534,9 +465,9 @@
             [self.cellSelected removeAllObjects];
         }
         if (cell.selectedButton.selected)
-            [self.cellSelected addObject:indexPath];
+            [self.cellSelected addObject:tableViewDataArray[indexPath.section][indexPath.row]];
         else
-            [self.cellSelected removeObject:indexPath];
+            [self.cellSelected removeObject:tableViewDataArray[indexPath.section][indexPath.row]];
         if ([self.cellSelected count]<1)
             self.navigationItem.rightBarButtonItem.enabled = NO;
         else

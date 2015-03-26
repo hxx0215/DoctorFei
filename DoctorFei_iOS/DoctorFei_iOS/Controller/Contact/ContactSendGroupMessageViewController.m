@@ -17,6 +17,7 @@
 @property (nonatomic, strong)TITokenFieldView *tokenFieldView;
 @property (nonatomic, strong)UITextView *messageView;
 @property (nonatomic, assign)CGFloat keyboardHeight;
+@property (nonatomic, strong)NSMutableArray *selectedFriends;
 @end
 
 @implementation ContactSendGroupMessageViewController
@@ -52,7 +53,7 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
-    
+    self.selectedFriends = [NSMutableArray new];
     // You can call this on either the view on the field.
     // They both do the same thing.
     [_tokenFieldView becomeFirstResponder];
@@ -78,17 +79,19 @@
     contact.didSelectFriends = ^(NSArray *friendArr){
 //        NSLog(@"%@",friendArr);
         [_tokenFieldView.tokenField removeAllTokens];
-        for (NSString *fr in friendArr){
-            TIToken * token = [_tokenFieldView.tokenField addTokenWithTitle:fr];
+        [self.selectedFriends removeAllObjects];
+        for (Friends *fr in friendArr){
+            TIToken * token = [_tokenFieldView.tokenField addTokenWithTitle:fr.realname representedObject:fr];
             [_tokenFieldView.tokenField layoutTokensAnimated:YES];
             [token setTintColor:[TIToken blueTintColor]];
         }
+        self.selectedFriends = [friendArr mutableCopy];
     };
-    NSMutableArray *ma = [NSMutableArray new];
-    for (TIToken *token in _tokenFieldView.tokenField.tokens){
-        [ma addObject:token.title];
-    }
-    contact.selectedArray = [ma mutableCopy];
+//    NSMutableArray *ma = [NSMutableArray new];
+//    for (TIToken *token in _tokenFieldView.tokenField.tokens){
+//        [ma addObject:token.title];
+//    }
+    contact.selectedArray = self.selectedFriends;
 }
 - (void)keyboardWillShow:(NSNotification *)notification {
     
@@ -210,5 +213,13 @@
 - (NSString *)tokenField:(TITokenField *)tokenField displayStringForRepresentedObject:(id)object{
     Friends *fr = (Friends *)object;
     return [DataUtil nameStringForFriend:fr].string;
+}
+- (void)tokenField:(TITokenField *)tokenField didAddToken:(TIToken *)token{
+    NSLog(@"%@",token);
+    [self.selectedFriends addObject:[token representedObject]];
+}
+- (void)tokenField:(TITokenField *)tokenField didRemoveToken:(TIToken *)token{
+    NSLog(@"%@",token);
+    [self.selectedFriends removeObject:[token representedObject]];
 }
 @end

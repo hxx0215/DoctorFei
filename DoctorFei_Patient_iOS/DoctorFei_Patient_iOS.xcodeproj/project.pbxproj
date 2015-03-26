@@ -146,6 +146,7 @@
 		B94543211ABE5B3000BC2AD1 /* HisPageDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B94543201ABE5B3000BC2AD1 /* HisPageDetailViewController.swift */; };
 		B94543241ABE5BF600BC2AD1 /* ShareUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = B94543231ABE5BF600BC2AD1 /* ShareUtil.m */; };
 		B9782BA01AB8743700807768 /* HisPageContentArticleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9782B9F1AB8743700807768 /* HisPageContentArticleTableViewCell.swift */; };
+		B991E7351AC280EA003EDABC /* AGViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B991E7341AC280EA003EDABC /* AGViewDelegate.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		B9AA25531ABBCAC800A23432 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9AA25521ABBCAC800A23432 /* QuartzCore.framework */; };
 		B9AA25551ABBCAE800A23432 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B9AA25541ABBCAE800A23432 /* libicucore.dylib */; };
 		B9AA25571ABBCAF700A23432 /* libz.1.2.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B9AA25561ABBCAF700A23432 /* libz.1.2.5.dylib */; };
@@ -891,6 +892,8 @@
 		B94543221ABE5BF600BC2AD1 /* ShareUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareUtil.h; sourceTree = "<group>"; };
 		B94543231ABE5BF600BC2AD1 /* ShareUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareUtil.m; sourceTree = "<group>"; };
 		B9782B9F1AB8743700807768 /* HisPageContentArticleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HisPageContentArticleTableViewCell.swift; sourceTree = "<group>"; };
+		B991E7331AC280EA003EDABC /* AGViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGViewDelegate.h; sourceTree = "<group>"; };
+		B991E7341AC280EA003EDABC /* AGViewDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGViewDelegate.m; sourceTree = "<group>"; };
 		B9AA25521ABBCAC800A23432 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		B9AA25541ABBCAE800A23432 /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
 		B9AA25561ABBCAF700A23432 /* libz.1.2.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.5.dylib; path = usr/lib/libz.1.2.5.dylib; sourceTree = SDKROOT; };
@@ -1761,6 +1764,8 @@
 		6AA67F171ABC8588002A0A8B /* ShareSDK */ = {
 			isa = PBXGroup;
 			children = (
+				B991E7331AC280EA003EDABC /* AGViewDelegate.h */,
+				B991E7341AC280EA003EDABC /* AGViewDelegate.m */,
 				6AA67F181ABC8588002A0A8B /* Connection */,
 				6AA67F1F1ABC8588002A0A8B /* Core */,
 				6AA67F261ABC8588002A0A8B /* Extend */,
@@ -3271,6 +3276,7 @@
 				6A28DDEC1AA0C95000B50F8E /* OrganDisplayTableViewCell.m in Sources */,
 				6A28DDDD1A9EFA2F00B50F8E /* MainChatTableViewCell.m in Sources */,
 				6A7E7F461AA74E8F00E0D736 /* SocketConnection.m in Sources */,
+				B991E7351AC280EA003EDABC /* AGViewDelegate.m in Sources */,
 				6A28DE4D1AA3340400B50F8E /* MoreAboutUsViewController.m in Sources */,
 				6A28DDBD1A9E07C700B50F8E /* Friends+PinYinUtil.m in Sources */,
 				B9782BA01AB8743700807768 /* HisPageContentArticleTableViewCell.swift in Sources */,

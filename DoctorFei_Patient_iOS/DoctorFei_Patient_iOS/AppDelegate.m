@@ -209,9 +209,9 @@
      
      如果需要实现SSO，需要导入libWeiboSDK.a，并引入WBApi.h，将WBApi类型传入接口
      **/
-    [ShareSDK connectTencentWeiboWithAppKey:@"801307650"
-                                  appSecret:@"ae36f4ee3946e1cbb98d6965b0b2ff5c"
-                                redirectUri:@"http://www.sharesdk.cn"
+    [ShareSDK connectTencentWeiboWithAppKey:@"801562366"
+                                  appSecret:@"6c425734e5eb27cf5f44efff83ab4791"
+                                redirectUri:@"http://www.feiyisheng.com"
                                    wbApiCls:[WeiboApi class]];
     
     //连接短信分享
@@ -233,8 +233,8 @@
      http://open.weixin.qq.com上注册应用，并将相关信息填写以下字段
      **/
     //    [ShareSDK connectWeChatWithAppId:@"wx4868b35061f87885" wechatCls:[WXApi class]];
-    [ShareSDK connectWeChatWithAppId:@"wx4868b35061f87885"
-                           appSecret:@"64020361b8ec4c99936c0e3999a9f249"
+    [ShareSDK connectWeChatWithAppId:@"wxabfd4004fe84881c"
+                           appSecret:@"db702e09a5e05012bd57c13818019238"
                            wechatCls:[WXApi class]];
     /**
      连接QQ应用以使用相关功能，此应用需要引用QQConnection.framework和QQApi.framework库
