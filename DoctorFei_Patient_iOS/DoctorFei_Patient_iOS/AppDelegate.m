@@ -223,8 +223,8 @@
      
      如果需要实现SSO，需要导入TencentOpenAPI.framework,并引入QQApiInterface.h和TencentOAuth.h，将QQApiInterface和TencentOAuth的类型传入接口
      **/
-    [ShareSDK connectQZoneWithAppKey:@"100371282"
-                           appSecret:@"aed9b0303e3ed1e27bae87c33761161d"
+    [ShareSDK connectQZoneWithAppKey:@"1104417951"
+                           appSecret:@"N9hs1H4Xbr34dfX5"
                    qqApiInterfaceCls:[QQApiInterface class]
                      tencentOAuthCls:[TencentOAuth class]];
     
@@ -243,7 +243,7 @@
     //旧版中申请的AppId（如：QQxxxxxx类型），可以通过下面方法进行初始化
     //    [ShareSDK connectQQWithAppId:@"QQ075BCD15" qqApiCls:[QQApi class]];
     
-    [ShareSDK connectQQWithQZoneAppKey:@"100371282"
+    [ShareSDK connectQQWithQZoneAppKey:@"1104417951"
                      qqApiInterfaceCls:[QQApiInterface class]
                        tencentOAuthCls:[TencentOAuth class]];
 }
