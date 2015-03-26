@@ -55,7 +55,7 @@
 - (IBAction)terminalReferral:(id)sender {
     NSDictionary *params = @{
                              @"doctorid": [[NSUserDefaults standardUserDefaults] objectForKey:@"UserId"],
-                             @"userid":@(17)
+                             @"userid":self.patientID
                              };
     [DoctorAPI terminalReferralWithParameters:params success:^(AFHTTPRequestOperation *operation, id responseObject){
         NSLog(@"%@",responseObject);
