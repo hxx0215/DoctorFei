@@ -20,7 +20,7 @@
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *rightItem;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentControl;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (nonatomic, strong) NSMutableArray *selectedIndexPath;
+@property (nonatomic, strong) NSMutableArray *cellSelected;
 - (IBAction)segmentValueChanged:(id)sender;
 @end
 
@@ -40,7 +40,7 @@
     [self.tableView setSectionIndexColor:[UIColor blackColor]];
     [self.tableView setSectionIndexBackgroundColor:[UIColor clearColor]];
     [self.searchDisplayController.searchResultsTableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
-    self.selectedIndexPath = [NSMutableArray new];
+    self.cellSelected = [NSMutableArray new];
     switch (self.contactMode) {
         case ContactMainViewControllerModeNormal:
             self.navigationItem.leftBarButtonItem = nil;
@@ -199,10 +199,7 @@
             break;
         case ContactMainViewControllerModeCreateGroup:
         {
-            NSMutableArray *selected = [NSMutableArray new];
-            for (NSIndexPath *indexPath in self.selectedIndexPath)
-                [selected addObject:tableViewDataArray[indexPath.section][indexPath.row]];
-            self.didSelectFriend(selected);
+            self.didSelectFriend(self.cellSelected);
         }
         default:
             break;
@@ -229,10 +226,10 @@
             ContactFriendTableViewCell *cell =(ContactFriendTableViewCell *) [tableView cellForRowAtIndexPath:indexPath];
             cell.selectedButton.selected = !cell.selectedButton.selected;
             if (cell.selectedButton.selected)
-                [self.selectedIndexPath addObject:indexPath];
+                [self.cellSelected addObject:tableViewDataArray[indexPath.section][indexPath.row]];
             else
-                [self.selectedIndexPath removeObject:indexPath];
-            self.rightItem.enabled = (self.selectedIndexPath.count > 0);
+                [self.cellSelected removeObject:tableViewDataArray[indexPath.section][indexPath.row]];
+            self.rightItem.enabled = (self.cellSelected.count > 0);
         }
             break;
             
@@ -303,7 +300,7 @@
     }else{
         ContactFriendTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ContactFriendSelectCellIdentifier forIndexPath:indexPath];
         [cell setCurrentFriend:tableViewDataArray[indexPath.section][indexPath.row]];
-        if ([self.selectedIndexPath containsObject:indexPath]){
+        if ([self.cellSelected containsObject:tableViewDataArray[indexPath.section][indexPath.row]]){
             cell.selectedButton.selected = YES;
         }
         return cell;
