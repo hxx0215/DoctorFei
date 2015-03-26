@@ -213,6 +213,7 @@
                                   appSecret:@"6c425734e5eb27cf5f44efff83ab4791"
                                 redirectUri:@"http://www.feiyisheng.com"
                                    wbApiCls:[WeiboApi class]];
+    [ShareSDK importTencentWeiboClass:[WeiboApi class]];
     
     //连接短信分享
     [ShareSDK connectSMS];

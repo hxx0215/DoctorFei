@@ -82,6 +82,8 @@ class HisPageDetailViewController: UIViewController {
         switch (sender.tag){
         case 300:
             sharetype = ShareTypeSinaWeibo
+        case 301:
+            sharetype = ShareTypeTencentWeibo
         case 302:
             sharetype = ShareTypeWeixiSession
         case 305:

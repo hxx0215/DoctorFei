@@ -28,11 +28,16 @@
         case ShareTypeWeixiSession:
         {
             [self shareWeixin:content Type:type complete:complete];
+            break;
         }
         case ShareTypeWeixiTimeline:
         {
             [self shareWeixin:content Type:type complete:complete];
+            break;
         }
+        case ShareTypeTencentWeibo:
+            [self shareTencentWeibo:content complete:complete];
+            break;
         default:
             break;
     }
@@ -77,5 +82,30 @@
                authOptions:authOptions
              statusBarTips:YES
                     result:complete];
+}
+- (void)shareTencentWeibo:(NSDictionary *)content complete:(void(^)(ShareType type, SSResponseState state, id <ISSPlatformShareInfo> statusInfo, id<ICMErrorInfo> error, BOOL end))complete{
+    id<ISSContent> publishContent = [ShareSDK content:content[@"content"]
+                                       defaultContent:nil
+                                                image:nil
+                                                title:content[@"title"]
+                                                  url:nil
+                                          description:nil
+                                            mediaType:SSPublishContentMediaTypeText];
+    id<ISSContainer> container = [ShareSDK container];
+    [container setIPhoneContainerWithViewController:content[@"vc"]];
+    id<ISSAuthOptions> authOptions = [ShareSDK authOptionsWithAutoAuth:YES allowCallback:YES authViewStyle:SSAuthViewStyleModal viewDelegate:nil authManagerViewDelegate:[AGViewDelegate sharedAGViewDelegate]];
+    [ShareSDK showShareViewWithType:ShareTypeTencentWeibo
+                          container:container
+                            content:publishContent
+                      statusBarTips:YES
+                        authOptions:authOptions
+                       shareOptions:[ShareSDK defaultShareOptionsWithTitle:nil
+                                                           oneKeyShareList:nil
+                                                            qqButtonHidden:YES
+                                                     wxSessionButtonHidden:YES
+                                                    wxTimelineButtonHidden:YES
+                                                      showKeyboardOnAppear:NO
+                                                         shareViewDelegate:[AGViewDelegate sharedAGViewDelegate] friendsViewDelegate:nil picViewerViewDelegate:nil]
+                             result:complete];
 }
 @end
