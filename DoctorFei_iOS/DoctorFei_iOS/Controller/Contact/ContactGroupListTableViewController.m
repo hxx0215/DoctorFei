@@ -59,11 +59,12 @@
         NSLog(@"%@",responseObject);
         NSArray *dataArray = (NSArray *)responseObject;
         if ([dataArray firstObject][@"state"] && [[dataArray firstObject][@"state"]intValue] == 0) {
-            MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-            hud.mode = MBProgressHUDModeText;
-            hud.labelText = [dataArray firstObject][@"msg"];
-            [hud hide:YES afterDelay:1.0f];
+//            MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+//            hud.mode = MBProgressHUDModeText;
+//            hud.labelText = [dataArray firstObject][@"msg"];
+//            [hud hide:YES afterDelay:1.0f];
         }else{
+            [Chat MR_deleteAllMatchingPredicate:[NSPredicate predicateWithFormat:@"type == %@", @5]];
             for (NSDictionary *dict in dataArray) {
                 Chat *receiveChat = [Chat MR_findFirstWithPredicate:[NSPredicate predicateWithFormat:@"type == %@ && chatId == %@", @5, @([dict[@"groupid"] intValue])]];
                 if (receiveChat == nil) {
@@ -72,8 +73,8 @@
                 }
                 receiveChat.type = @5;
                 receiveChat.title = dict[@"name"];
-                [[NSManagedObjectContext MR_defaultContext]MR_saveToPersistentStoreAndWait];
             }
+            [[NSManagedObjectContext MR_defaultContext]MR_saveToPersistentStoreAndWait];
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self reloadTableViewData];
             });
@@ -130,8 +131,33 @@
     }];
 }
 
-- (void)fetchGroupUserWithChat:(Chat *)chat {
-    
+- (void)deleteChatGroupWithIndexPath: (NSIndexPath *)indexPath{
+    Chat *chat = groupArray[indexPath.row - 1];
+    NSNumber *userId = [[NSUserDefaults standardUserDefaults]objectForKey:@"UserId"];
+    NSDictionary *param = @{
+                            @"groupid": chat.chatId,
+                            @"userid": userId,
+                            @"usertype": @2
+                            };
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view.window animated:YES];
+    [ChatAPI delChatGroupWithParameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSDictionary *result = [responseObject firstObject];
+        hud.mode = MBProgressHUDModeText;
+        hud.labelText = result[@"msg"];
+        [hud hide:YES afterDelay:1.0f];
+        if ([result[@"state"] intValue] == 1) {
+            [chat MR_deleteEntity];
+            groupArray = [Chat MR_findByAttribute:@"type" withValue:@5];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+            });
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"%@",error.localizedDescription);
+        hud.mode = MBProgressHUDModeText;
+        hud.labelText = error.localizedDescription;
+        [hud hide:YES afterDelay:1.5f];
+    }];
 }
 
 #pragma mark - Actions
@@ -161,6 +187,7 @@
         cell.textLabel.textColor = [UIColor colorWithRed:127.0/255 green:203.0/255.0 blue:62.0/255.0 alpha:1.0];
     }else{
         cell.textLabel.text = [groupArray[indexPath.row - 1] title];
+        cell.textLabel.textColor = [UIColor blackColor];
     }
     return cell;
 }
@@ -181,17 +208,14 @@
 }
 */
 
-/*
+
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
+        [self deleteChatGroupWithIndexPath:indexPath];
+//        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    }}
 
 /*
 // Override to support rearranging the table view.
