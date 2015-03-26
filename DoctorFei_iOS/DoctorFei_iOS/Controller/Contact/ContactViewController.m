@@ -284,10 +284,10 @@
 //            if (self.cellSelected[i])
 //                [didSelect addObject:tableViewDataArray[i]];
 //        }
-        for (NSIndexPath *indexPath in self.cellSelected){
-            NSString *title = [DataUtil nameStringForFriend:tableViewDataArray[indexPath.section][indexPath.row]].string;
-            [didSelect addObject:title];
-        }
+//        for (NSIndexPath *indexPath in self.cellSelected){
+//            NSString *title = [DataUtil nameStringForFriend:tableViewDataArray[indexPath.section][indexPath.row]].string;
+//            [didSelect addObject:title];
+//        }
         
         if (self.selectedArray){
             [self.selectedArray addObjectsFromArray:didSelect];

@@ -3203,10 +3203,11 @@
             <objects>
                 <tableViewController id="kQD-8F-yg4" customClass="ContactGroupDetailUserTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="lLT-1G-bXL">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="487"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="UeC-lx-7Ax">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                            <rect key="frame" x="0.0" y="0.0" width="600" height="568"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="p3f-mE-dAR">
@@ -3304,14 +3305,14 @@
                                                     <exclude reference="jZj-ot-9As"/>
                                                 </mask>
                                                 <mask key="constraints">
+                                                    <exclude reference="AAT-3U-nUI"/>
+                                                    <exclude reference="MX3-vu-teW"/>
+                                                    <exclude reference="V3a-Ds-IlP"/>
                                                     <exclude reference="AnT-Re-xtW"/>
                                                     <exclude reference="EVv-v7-lJ6"/>
                                                     <exclude reference="6rs-Xt-v2n"/>
                                                     <exclude reference="Sfv-7a-GkF"/>
                                                     <exclude reference="UOc-xB-Pfm"/>
-                                                    <exclude reference="AAT-3U-nUI"/>
-                                                    <exclude reference="MX3-vu-teW"/>
-                                                    <exclude reference="V3a-Ds-IlP"/>
                                                 </mask>
                                             </variation>
                                             <variation key="heightClass=regular-widthClass=compact">
@@ -3321,14 +3322,14 @@
                                                     <include reference="jZj-ot-9As"/>
                                                 </mask>
                                                 <mask key="constraints">
+                                                    <include reference="AAT-3U-nUI"/>
+                                                    <include reference="MX3-vu-teW"/>
+                                                    <include reference="V3a-Ds-IlP"/>
                                                     <include reference="AnT-Re-xtW"/>
                                                     <include reference="EVv-v7-lJ6"/>
                                                     <include reference="6rs-Xt-v2n"/>
                                                     <include reference="Sfv-7a-GkF"/>
                                                     <include reference="UOc-xB-Pfm"/>
-                                                    <include reference="AAT-3U-nUI"/>
-                                                    <include reference="MX3-vu-teW"/>
-                                                    <include reference="V3a-Ds-IlP"/>
                                                 </mask>
                                             </variation>
                                             <connections>
@@ -12614,15 +12615,15 @@
         <image name="vip_pic.png" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="pVr-DH-hJQ"/>
+        <segue reference="Hb8-Q6-QO7"/>
         <segue reference="Tpb-k1-2hl"/>
         <segue reference="JeB-AN-IOM"/>
-        <segue reference="G9W-g1-ayd"/>
-        <segue reference="PPz-pu-GWN"/>
-        <segue reference="g9C-yb-yuY"/>
         <segue reference="XRC-P1-gD5"/>
+        <segue reference="g9C-yb-yuY"/>
         <segue reference="wpO-fm-KSL"/>
-        <segue reference="Hb8-Q6-QO7"/>
-        <segue reference="pVr-DH-hJQ"/>
+        <segue reference="G9W-g1-ayd"/>
+        <segue reference="7qh-2R-9ti"/>
         <segue reference="yFq-lP-6PL"/>
     </inferredMetricsTieBreakers>
 </document>
