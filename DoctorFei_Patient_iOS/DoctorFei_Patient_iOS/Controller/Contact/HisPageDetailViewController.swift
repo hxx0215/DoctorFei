@@ -77,6 +77,8 @@ class HisPageDetailViewController: UIViewController {
     @IBAction func shareAction(sender : UIButton){
         var dic = ["content" : self.contentText.text,
             "vc" : self,
+            "title" : self.titleLabel.text!,
+            "url" : ""
         ]
         var sharetype = ShareTypeSinaWeibo
         switch (sender.tag){
@@ -86,13 +88,22 @@ class HisPageDetailViewController: UIViewController {
             sharetype = ShareTypeTencentWeibo
         case 302:
             sharetype = ShareTypeWeixiSession
+        case 303:
+            sharetype = ShareTypeQQSpace
+        case 304:
+            sharetype = ShareTypeQQ
         case 305:
             sharetype = ShareTypeWeixiTimeline
+        case 306:
+            sharetype = ShareTypeSMS
         default:
             sharetype = ShareTypeSinaWeibo
         }
         ShareUtil.sharedShareUtil().shareTo(sharetype, content: dic, complete: {
             type, state, shareInfo, error, end in
+            if (type.value == ShareTypeSMS.value){
+                return
+            }
             switch state.value {
             case SSResponseStateBegan.value:
                 NSLog("begin")
