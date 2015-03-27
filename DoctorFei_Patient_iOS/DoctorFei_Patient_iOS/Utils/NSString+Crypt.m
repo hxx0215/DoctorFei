@@ -9,6 +9,7 @@
 #define KeyStr @"feiyi#8("
 #define baseURL @"http://113.105.159.115:5027"
 //#define baseURL @"http://api.feiyisheng.com:82"
+#define prefixURL @"http://fei.eredian.com"
 #import "NSString+Crypt.h"
 #import <CommonCrypto/CommonCryptor.h>
 #import <CommonCrypto/CommonDigest.h>
@@ -190,5 +191,11 @@
                                     range:NSMakeRange(0, [outputStr length])];
     
     return [outputStr stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+}
+- (NSString *)urlAutoCompelete{
+    if ([self hasPrefix:prefixURL])
+        return self;
+    else
+        return [NSString stringWithFormat:@"%@%@",prefixURL,self];
 }
 @end

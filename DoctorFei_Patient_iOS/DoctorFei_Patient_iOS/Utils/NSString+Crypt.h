@@ -12,4 +12,5 @@
 +(NSString *)createResponseURLWithMethod:(NSString *)method Params:(NSString *)params;
 - (NSString *)decryptWithDES;
 + (NSString *)decodeFromPercentEscapeString: (NSString *) input;
+- (NSString *)urlAutoCompelete;
 @end
