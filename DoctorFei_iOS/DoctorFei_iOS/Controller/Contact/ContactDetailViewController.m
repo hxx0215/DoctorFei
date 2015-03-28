@@ -11,6 +11,7 @@
 #import "Message.h"
 #import "Friends.h"
 #import "Chat.h"
+#import "GroupChatFriend.h"
 #import "DeviceUtil.h"
 #import "ContactFriendDetailTableViewController.h"
 #import "MessagesModalData.h"
@@ -417,7 +418,10 @@ typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
                                 @"contents": content
                                 };
         [ChatAPI setChatNoteWithParameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
-            NSLog(@"%@",responseObject);
+            NSDictionary *result = [responseObject firstObject];
+            if ([result[@"curid"] intValue] != 0) {
+                [self saveMessageWithMessageId:@([result[@"curid"] intValue]) type:type andContent:content];
+            }
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
             NSLog(@"%@",error.localizedDescription);
             MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view.window animated:YES];
@@ -735,7 +739,8 @@ typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
     }
     else if ([segue.identifier isEqualToString:@"ContactGroupDetailUserSegueIdentifier"]) {
         ContactGroupDetailUserTableViewController *vc = [segue destinationViewController];
-        [vc setCurrentChat:_currentChat];
+        [vc setCurrentGroupChat:_currentChat.groupChat];
+//        [vc setCurrentChat:_currentChat];
     }
 }
 

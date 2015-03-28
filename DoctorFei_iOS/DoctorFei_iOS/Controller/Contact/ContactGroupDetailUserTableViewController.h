@@ -8,10 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@class Chat;
+//@class Chat;
+@class GroupChat;
 
 @interface ContactGroupDetailUserTableViewController : UITableViewController
 
-@property (nonatomic, strong) Chat *currentChat;
+//@property (nonatomic, strong) Chat *currentChat;
+@property (nonatomic, strong) GroupChat *currentGroupChat;
 
 @end

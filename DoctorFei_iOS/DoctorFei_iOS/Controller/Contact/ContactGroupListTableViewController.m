@@ -8,12 +8,14 @@
 
 #import "ContactGroupListTableViewController.h"
 #import "ContactViewController.h"
-#import "Chat.h"
+//#import "Chat.h"
 #import "ChatAPI.h"
 #import "ContactDetailViewController.h"
 #import <MBProgressHUD.h>
 #import <JSONKit.h>
 #import "Friends.h"
+#import "GroupChat.h"
+#import "Chat.h"
 @interface ContactGroupListTableViewController ()
 
 @end
@@ -45,7 +47,8 @@
 }
 #pragma mark - NetActions
 - (void)reloadTableViewData{
-    groupArray = [Chat MR_findByAttribute:@"type" withValue:@5];
+//    groupArray = [Chat MR_findByAttribute:@"type" withValue:@5];
+    groupArray = [GroupChat MR_findAll];
     [self.tableView reloadData];
 }
 
@@ -64,15 +67,22 @@
 //            hud.labelText = [dataArray firstObject][@"msg"];
 //            [hud hide:YES afterDelay:1.0f];
         }else{
-            [Chat MR_deleteAllMatchingPredicate:[NSPredicate predicateWithFormat:@"type == %@", @5]];
+            [GroupChat MR_truncateAll];
+//            [Chat MR_deleteAllMatchingPredicate:[NSPredicate predicateWithFormat:@"type == %@", @5]];
             for (NSDictionary *dict in dataArray) {
-                Chat *receiveChat = [Chat MR_findFirstWithPredicate:[NSPredicate predicateWithFormat:@"type == %@ && chatId == %@", @5, @([dict[@"groupid"] intValue])]];
-                if (receiveChat == nil) {
-                    receiveChat = [Chat MR_createEntity];
-                    receiveChat.chatId = @([dict[@"groupid"] intValue]);
+                GroupChat *groupChat = [GroupChat MR_findFirstByAttribute:@"groupId" withValue:@([dict[@"groupid"] intValue])];
+                if (groupChat == nil) {
+                    groupChat = [GroupChat MR_createEntity];
+                    groupChat.groupId = @([dict[@"groupid"] intValue]);
                 }
-                receiveChat.type = @5;
-                receiveChat.title = dict[@"name"];
+                groupChat.name = dict[@"name"];
+//                Chat *receiveChat = [Chat MR_findFirstWithPredicate:[NSPredicate predicateWithFormat:@"type == %@ && chatId == %@", @5, @([dict[@"groupid"] intValue])]];
+//                if (receiveChat == nil) {
+//                    receiveChat = [Chat MR_createEntity];
+//                    receiveChat.chatId = @([dict[@"groupid"] intValue]);
+//                }
+//                receiveChat.type = @5;
+//                receiveChat.title = dict[@"name"];
             }
             [[NSManagedObjectContext MR_defaultContext]MR_saveToPersistentStoreAndWait];
             dispatch_async(dispatch_get_main_queue(), ^{
@@ -108,10 +118,13 @@
         NSLog(@"%@",responseObject);
         NSDictionary *result = [responseObject firstObject];
         if ([result[@"state"] intValue] == 1) {
-            Chat *groupChat = [Chat MR_createEntity];
-            groupChat.type = @5;
-            groupChat.title = @"未命名";
-            groupChat.chatId = @([result[@"curid"]intValue]);
+            GroupChat *groupChat = [GroupChat MR_createEntity];
+            groupChat.groupId = @([result[@"curid"]intValue]);
+            groupChat.name = @"未命名";
+//            Chat *groupChat = [Chat MR_createEntity];
+//            groupChat.type = @5;
+//            groupChat.title = @"未命名";
+//            groupChat.chatId = @([result[@"curid"]intValue]);
             [[NSManagedObjectContext MR_defaultContext]MR_saveToPersistentStoreAndWait];
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self reloadTableViewData];
@@ -132,10 +145,10 @@
 }
 
 - (void)deleteChatGroupWithIndexPath: (NSIndexPath *)indexPath{
-    Chat *chat = groupArray[indexPath.row - 1];
+    GroupChat *groupChat = groupArray[indexPath.row - 1];
     NSNumber *userId = [[NSUserDefaults standardUserDefaults]objectForKey:@"UserId"];
     NSDictionary *param = @{
-                            @"groupid": chat.chatId,
+                            @"groupid": groupChat.groupId,
                             @"userid": userId,
                             @"usertype": @2
                             };
@@ -146,8 +159,10 @@
         hud.labelText = result[@"msg"];
         [hud hide:YES afterDelay:1.0f];
         if ([result[@"state"] intValue] == 1) {
-            [chat MR_deleteEntity];
-            groupArray = [Chat MR_findByAttribute:@"type" withValue:@5];
+            [groupChat MR_deleteEntity];
+//            [chat MR_deleteEntity];
+//            groupArray = [Chat MR_findByAttribute:@"type" withValue:@5];
+            groupArray = [GroupChat MR_findAll];
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
             });
@@ -186,7 +201,7 @@
         cell.textLabel.text = NSLocalizedString(@"新建群", nil);
         cell.textLabel.textColor = [UIColor colorWithRed:127.0/255 green:203.0/255.0 blue:62.0/255.0 alpha:1.0];
     }else{
-        cell.textLabel.text = [groupArray[indexPath.row - 1] title];
+        cell.textLabel.text = [groupArray[indexPath.row - 1] name];
         cell.textLabel.textColor = [UIColor blackColor];
     }
     return cell;
@@ -248,7 +263,18 @@
 
     }else if ([segue.identifier isEqualToString:@"ContactGroupDetailSegueIdentifier"]){
         NSIndexPath *indexPath = (NSIndexPath *)sender;
-        Chat *selectedChat = groupArray[indexPath.row - 1];
+//        Chat *selectedChat = groupArray[indexPath.row - 1];
+        GroupChat *selectedGroupChat = groupArray[indexPath.row - 1];
+        Chat *selectedChat = selectedGroupChat.chat;
+//        Chat *selectedChat = [Chat MR_findFirstWithPredicate:[NSPredicate predicateWithFormat:@"ANY groupChat == %@", selectedGroupChat]];
+        if (selectedChat == nil) {
+            selectedChat = [Chat MR_createEntity];
+            selectedChat.chatId = selectedGroupChat.groupId;
+            selectedChat.type = @5;
+            selectedChat.user = selectedGroupChat.member;
+            selectedChat.title = selectedGroupChat.name;
+            selectedGroupChat.chat = selectedChat;
+        }
         ContactDetailViewController *vc = [segue destinationViewController];
         [vc setCurrentChat:selectedChat];
     }

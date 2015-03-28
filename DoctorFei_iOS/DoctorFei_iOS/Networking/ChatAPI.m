@@ -18,7 +18,7 @@
 #define kMethodUpdateChatGroup @"update.chat.group"
 #define kMethodDelChatGroup @"set.chat.groupdel"
 #define kMethodGetChatGroupUser @"get.chat.user"
-#define kMethodSetChatGroupUser @"set.chat.user"
+#define kMethodSetChatGroupUser @"set.chat.groupuser"
 #define kMethodDelChatGroupUser @"set.chat.userdel"
 #define kMethodGetChatNote @"get.chat.note"
 #define kMethodSetChatNote @"set.chat.note"
