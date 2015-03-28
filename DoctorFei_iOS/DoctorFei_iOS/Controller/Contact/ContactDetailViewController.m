@@ -409,7 +409,23 @@ typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
             [hud hide:YES afterDelay:1.5f];
         }];
     }else if (_currentChat.type.intValue == 5) {
-        
+        NSDictionary *param = @{
+                                @"groupid": _currentChat.chatId,
+                                @"userid": [[NSUserDefaults standardUserDefaults] objectForKey:@"UserId"],
+                                @"usertype": @2,
+                                @"msgtype": type,
+                                @"contents": content
+                                };
+        [ChatAPI setChatNoteWithParameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            NSLog(@"%@",responseObject);
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            NSLog(@"%@",error.localizedDescription);
+            MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view.window animated:YES];
+            hud.mode = MBProgressHUDModeText;
+            hud.labelText = @"发送失败";
+            hud.detailsLabelText = error.localizedDescription;
+            [hud hide:YES afterDelay:1.5f];
+        }];
     }
 
 }

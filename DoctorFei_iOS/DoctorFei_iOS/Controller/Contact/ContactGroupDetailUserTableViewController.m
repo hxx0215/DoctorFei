@@ -56,7 +56,7 @@ static NSString *ContactGroupUserCellIdentifier = @"ContactGroupUserCellIdentifi
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
     CGRect headRect = self.tableView.tableHeaderView.frame;
-    headRect.size.height = self.collectionView.contentSize.height;
+    headRect.size.height = self.collectionView.contentSize.height + 20;
     UIView *headerView = self.tableView.tableHeaderView;
     [headerView setFrame:headRect];
     [self.tableView setTableHeaderView:headerView];
@@ -68,6 +68,7 @@ static NSString *ContactGroupUserCellIdentifier = @"ContactGroupUserCellIdentifi
 - (void)fetchChatUser{
     NSDictionary *param = @{@"groupid": _currentChat.chatId};
     [ChatAPI getChatUserWithParameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"%@",responseObject);
         NSNumber *doctorId = [[NSUserDefaults standardUserDefaults]objectForKey:@"UserId"];
         userDataArray = (NSArray *)responseObject;
         for (NSDictionary *dict in responseObject) {
@@ -97,7 +98,25 @@ static NSString *ContactGroupUserCellIdentifier = @"ContactGroupUserCellIdentifi
 }
 
 - (void)deleteUserWithFriend:(Friends *)friend {
-    
+    NSNumber *friendId = nil;
+    for (NSDictionary *dict in userDataArray) {
+        if ([dict[@"userid"] intValue] == friend.userId.intValue && [dict[@"usertype"]intValue] == friend.userType.intValue){
+            friendId = @([dict[@"id"] intValue]);
+            break;
+        }
+    }
+    if (friendId) {
+        NSDictionary *param = @{@"id": friendId,
+                                @"groupid" : _currentChat.chatId,
+                                @"userid": [[NSUserDefaults standardUserDefaults]objectForKey:@"UserId"],
+                                @"usertype": @2
+                                };
+        [ChatAPI delChatUserWithParameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            NSLog(@"%@",responseObject);
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            NSLog(@"%@",error.localizedDescription);
+        }];
+    }
 }
 
 - (void)changeDeleteButtonState {
@@ -110,7 +129,7 @@ static NSString *ContactGroupUserCellIdentifier = @"ContactGroupUserCellIdentifi
 - (void)deleteUserButtonClicked:(UIButton *)sender {
     NSInteger tag = sender.tag;
     Friends *deleteFriend = userArray[tag];
-    //TODO
+    [self deleteUserWithFriend:deleteFriend];
 }
 #pragma mark - Actions
 - (IBAction)backButtonClicked:(id)sender {
