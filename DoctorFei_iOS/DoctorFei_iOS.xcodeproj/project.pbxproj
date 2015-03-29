@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6A01C6541AC6AECF003AD085 /* GroupChat.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A01C6531AC6AECF003AD085 /* GroupChat.m */; };
+		6A01C6571AC6AED0003AD085 /* Chat.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A01C6561AC6AED0003AD085 /* Chat.m */; };
+		6A01C65A1AC70548003AD085 /* GroupChatFriend.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A01C6591AC70548003AD085 /* GroupChatFriend.m */; };
+		6A01C65D1AC70549003AD085 /* Friends.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A01C65C1AC70549003AD085 /* Friends.m */; };
+		6A01C6601AC7197F003AD085 /* ContactGroupDetailInfoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A01C65F1AC7197F003AD085 /* ContactGroupDetailInfoTableViewController.m */; };
 		6A1D42C31A67A729002B0F7C /* AgendaArrangementDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A1D42C21A67A729002B0F7C /* AgendaArrangementDetailViewController.m */; };
 		6A1D42C71A67EB94002B0F7C /* edit_pic.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A1D42C41A67EB94002B0F7C /* edit_pic.png */; };
 		6A1D42C81A67EB94002B0F7C /* edit_pic@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A1D42C51A67EB94002B0F7C /* edit_pic@2x.png */; };
@@ -466,7 +471,6 @@
 		6AD6A28D1A713A4A00CE9888 /* talk_box_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AD6A2811A713A4900CE9888 /* talk_box_btn@2x.png */; };
 		6AD6A28E1A713A4A00CE9888 /* talk_box_btn@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AD6A2821A713A4900CE9888 /* talk_box_btn@3x.png */; };
 		6AF48F161AA8A32A00735C81 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AF48F151AA8A32A00735C81 /* CoreLocation.framework */; };
-		6AF8EF4F1AB5746800B12756 /* Chat.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AF8EF4E1AB5746800B12756 /* Chat.m */; };
 		6AF8EF591AB58F9100B12756 /* button_wide-02_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AF8EF531AB58F9100B12756 /* button_wide-02_btn.png */; };
 		6AF8EF5A1AB58F9100B12756 /* button_wide-02_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AF8EF541AB58F9100B12756 /* button_wide-02_btn@2x.png */; };
 		6AF8EF5B1AB58F9100B12756 /* button_wide-02_btn@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AF8EF551AB58F9100B12756 /* button_wide-02_btn@3x.png */; };
@@ -476,7 +480,6 @@
 		6AF8EF611AB591F800B12756 /* ContactPeronsalFriendDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AF8EF601AB591F800B12756 /* ContactPeronsalFriendDetailTableViewController.m */; };
 		6AF8EF641AB5921200B12756 /* ContactDoctorFriendDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AF8EF631AB5921200B12756 /* ContactDoctorFriendDetailTableViewController.m */; };
 		6AF8EF671AB5A9E900B12756 /* ContactPersonalDetailInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AF8EF661AB5A9E900B12756 /* ContactPersonalDetailInfoViewController.m */; };
-		6AF8EF731AB6DCA400B12756 /* Friends.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AF8EF721AB6DCA400B12756 /* Friends.m */; };
 		B90320BA1A5AC57E001FA485 /* MySelfRootTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B90320B91A5AC57E001FA485 /* MySelfRootTableViewController.m */; };
 		B90320BF1A5ADAA3001FA485 /* DoctorApproveViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B90320BE1A5ADAA3001FA485 /* DoctorApproveViewController.m */; };
 		B927B23F1A7F9E0600BC2C1C /* ContactFriendDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B927B23E1A7F9E0600BC2C1C /* ContactFriendDetailTableViewCell.m */; };
@@ -582,6 +585,16 @@
 /* Begin PBXFileReference section */
 		42764DE19551474565D51270 /* Pods-DoctorFei_iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DoctorFei_iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-DoctorFei_iOS/Pods-DoctorFei_iOS.release.xcconfig"; sourceTree = "<group>"; };
 		57A1FFA4D74E0A39C5ACB6D1 /* libPods-DoctorFei_iOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DoctorFei_iOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6A01C6521AC6AECF003AD085 /* GroupChat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupChat.h; sourceTree = "<group>"; };
+		6A01C6531AC6AECF003AD085 /* GroupChat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupChat.m; sourceTree = "<group>"; };
+		6A01C6551AC6AED0003AD085 /* Chat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Chat.h; sourceTree = "<group>"; };
+		6A01C6561AC6AED0003AD085 /* Chat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Chat.m; sourceTree = "<group>"; };
+		6A01C6581AC70548003AD085 /* GroupChatFriend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupChatFriend.h; sourceTree = "<group>"; };
+		6A01C6591AC70548003AD085 /* GroupChatFriend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupChatFriend.m; sourceTree = "<group>"; };
+		6A01C65B1AC70549003AD085 /* Friends.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Friends.h; sourceTree = "<group>"; };
+		6A01C65C1AC70549003AD085 /* Friends.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Friends.m; sourceTree = "<group>"; };
+		6A01C65E1AC7197F003AD085 /* ContactGroupDetailInfoTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactGroupDetailInfoTableViewController.h; sourceTree = "<group>"; };
+		6A01C65F1AC7197F003AD085 /* ContactGroupDetailInfoTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactGroupDetailInfoTableViewController.m; sourceTree = "<group>"; };
 		6A1D42C11A67A729002B0F7C /* AgendaArrangementDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AgendaArrangementDetailViewController.h; sourceTree = "<group>"; };
 		6A1D42C21A67A729002B0F7C /* AgendaArrangementDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AgendaArrangementDetailViewController.m; sourceTree = "<group>"; };
 		6A1D42C41A67EB94002B0F7C /* edit_pic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = edit_pic.png; sourceTree = "<group>"; };
@@ -1124,8 +1137,6 @@
 		6AD6A2821A713A4900CE9888 /* talk_box_btn@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "talk_box_btn@3x.png"; sourceTree = "<group>"; };
 		6AEA74501A260DD900EEF37C /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		6AF48F151AA8A32A00735C81 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
-		6AF8EF4D1AB5746800B12756 /* Chat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Chat.h; sourceTree = "<group>"; };
-		6AF8EF4E1AB5746800B12756 /* Chat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Chat.m; sourceTree = "<group>"; };
 		6AF8EF531AB58F9100B12756 /* button_wide-02_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button_wide-02_btn.png"; sourceTree = "<group>"; };
 		6AF8EF541AB58F9100B12756 /* button_wide-02_btn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button_wide-02_btn@2x.png"; sourceTree = "<group>"; };
 		6AF8EF551AB58F9100B12756 /* button_wide-02_btn@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button_wide-02_btn@3x.png"; sourceTree = "<group>"; };
@@ -1138,8 +1149,6 @@
 		6AF8EF631AB5921200B12756 /* ContactDoctorFriendDetailTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactDoctorFriendDetailTableViewController.m; sourceTree = "<group>"; };
 		6AF8EF651AB5A9E900B12756 /* ContactPersonalDetailInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactPersonalDetailInfoViewController.h; sourceTree = "<group>"; };
 		6AF8EF661AB5A9E900B12756 /* ContactPersonalDetailInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactPersonalDetailInfoViewController.m; sourceTree = "<group>"; };
-		6AF8EF711AB6DCA400B12756 /* Friends.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Friends.h; sourceTree = "<group>"; };
-		6AF8EF721AB6DCA400B12756 /* Friends.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Friends.m; sourceTree = "<group>"; };
 		B90320B81A5AC57E001FA485 /* MySelfRootTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MySelfRootTableViewController.h; sourceTree = "<group>"; };
 		B90320B91A5AC57E001FA485 /* MySelfRootTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MySelfRootTableViewController.m; sourceTree = "<group>"; };
 		B90320BD1A5ADAA3001FA485 /* DoctorApproveViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoctorApproveViewController.h; sourceTree = "<group>"; };
@@ -1395,10 +1404,14 @@
 			isa = PBXGroup;
 			children = (
 				6A3DA1011A7E7BF200BE721B /* MainCoreData.xcdatamodeld */,
-				6AF8EF711AB6DCA400B12756 /* Friends.h */,
-				6AF8EF721AB6DCA400B12756 /* Friends.m */,
-				6AF8EF4D1AB5746800B12756 /* Chat.h */,
-				6AF8EF4E1AB5746800B12756 /* Chat.m */,
+				6A01C65B1AC70549003AD085 /* Friends.h */,
+				6A01C65C1AC70549003AD085 /* Friends.m */,
+				6A01C6581AC70548003AD085 /* GroupChatFriend.h */,
+				6A01C6591AC70548003AD085 /* GroupChatFriend.m */,
+				6A01C6551AC6AED0003AD085 /* Chat.h */,
+				6A01C6561AC6AED0003AD085 /* Chat.m */,
+				6A01C6521AC6AECF003AD085 /* GroupChat.h */,
+				6A01C6531AC6AECF003AD085 /* GroupChat.m */,
 				6A6D076C1AB1CCD50052EA5A /* Message.h */,
 				6A6D076D1AB1CCD50052EA5A /* Message.m */,
 				6A3252441A85302A00B5E31F /* Groups.h */,
@@ -1765,6 +1778,8 @@
 				6AF8EF661AB5A9E900B12756 /* ContactPersonalDetailInfoViewController.m */,
 				6ABF6D751AC1B76D00C4ED19 /* ContactGroupDetailUserTableViewController.h */,
 				6ABF6D761AC1B76D00C4ED19 /* ContactGroupDetailUserTableViewController.m */,
+				6A01C65E1AC7197F003AD085 /* ContactGroupDetailInfoTableViewController.h */,
+				6A01C65F1AC7197F003AD085 /* ContactGroupDetailInfoTableViewController.m */,
 			);
 			path = Contact;
 			sourceTree = "<group>";
@@ -2796,9 +2811,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				6AB8B0981A3742A200866281 /* pinyin.c in Sources */,
-				6AF8EF4F1AB5746800B12756 /* Chat.m in Sources */,
 				6AC6EA071A28C4B5007689D8 /* NSString+Crypt.m in Sources */,
 				6A6454271A6D4C0F00070D5E /* MainGroupDetailActionViewController.m in Sources */,
+				6A01C6541AC6AECF003AD085 /* GroupChat.m in Sources */,
 				B94F6C681A5D70AF004E1B93 /* QRCodeScanViewController.m in Sources */,
 				6A5DE8171A791A3C000F24DA /* QuickReplyTableViewCell.m in Sources */,
 				B94F6C6B1A5D7113004E1B93 /* DoctorRankTableViewController.m in Sources */,
@@ -2875,12 +2890,12 @@
 				6A78BE2D1A222C13005457F3 /* ForgetPassVerifyCodeViewController.m in Sources */,
 				B95EEFB21A655B5F006F7FEF /* ContactNearbyTableViewCell.m in Sources */,
 				6A2BD5E31A31E025002F7644 /* ContactFriendSetNoteTableViewController.m in Sources */,
-				6AF8EF731AB6DCA400B12756 /* Friends.m in Sources */,
 				6A1D42C31A67A729002B0F7C /* AgendaArrangementDetailViewController.m in Sources */,
 				6A69A0121A2CBB2500D85777 /* DoctorAPI.m in Sources */,
 				6A32523F1A82835300B5E31F /* AgendaArrangement.m in Sources */,
 				6A73763A1A208972006EF54F /* MainViewController.m in Sources */,
 				B90320BF1A5ADAA3001FA485 /* DoctorApproveViewController.m in Sources */,
+				6A01C6601AC7197F003AD085 /* ContactGroupDetailInfoTableViewController.m in Sources */,
 				6ABFDBDF1A6B944C00DB8E74 /* MyPageContentTalkViewController.m in Sources */,
 				B93969C81A6406590073DEF4 /* ContactNewFriendTableViewController.m in Sources */,
 				6A5DE81A1A792621000F24DA /* QuickReplyCustomActionTableViewCell.m in Sources */,
@@ -2897,6 +2912,9 @@
 				6ABFDC001A6BAD1200DB8E74 /* MainGroupPopoverViewController.m in Sources */,
 				6A78BE2A1A2229F8005457F3 /* ForgetPasswordViewController.m in Sources */,
 				B9DD58E11A30912200AA4CDC /* MoreUpdateViewController.m in Sources */,
+				6A01C65D1AC70549003AD085 /* Friends.m in Sources */,
+				6A01C65A1AC70548003AD085 /* GroupChatFriend.m in Sources */,
+				6A01C6571AC6AED0003AD085 /* Chat.m in Sources */,
 				6A2BD6071A31EC44002F7644 /* ChatAPI.m in Sources */,
 				6A78BE271A2215DD005457F3 /* RegisterMoreTableViewController.m in Sources */,
 			);

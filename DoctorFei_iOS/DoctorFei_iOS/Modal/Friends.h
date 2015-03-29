@@ -2,14 +2,14 @@
 //  Friends.h
 //  DoctorFei_iOS
 //
-//  Created by GuJunjia on 15/3/16.
+//  Created by GuJunjia on 15/3/28.
 //
 //
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class Chat, Groups, Message;
+@class Chat, GroupChatFriend, Groups, Message;
 
 @interface Friends : NSManagedObject
 
@@ -19,6 +19,7 @@
 @property (nonatomic, retain) NSString * hospital;
 @property (nonatomic, retain) NSString * icon;
 @property (nonatomic, retain) NSNumber * isFriend;
+@property (nonatomic, retain) NSString * jobTitle;
 @property (nonatomic, retain) NSDate * lastLoginTime;
 @property (nonatomic, retain) NSString * mobile;
 @property (nonatomic, retain) NSString * noteName;
@@ -27,10 +28,10 @@
 @property (nonatomic, retain) NSString * situation;
 @property (nonatomic, retain) NSNumber * userId;
 @property (nonatomic, retain) NSNumber * userType;
-@property (nonatomic, retain) NSString * jobTitle;
 @property (nonatomic, retain) NSSet *chat;
 @property (nonatomic, retain) Groups *group;
 @property (nonatomic, retain) NSSet *messages;
+@property (nonatomic, retain) NSSet *groupChatFriend;
 @end
 
 @interface Friends (CoreDataGeneratedAccessors)
@@ -44,5 +45,10 @@
 - (void)removeMessagesObject:(Message *)value;
 - (void)addMessages:(NSSet *)values;
 - (void)removeMessages:(NSSet *)values;
+
+- (void)addGroupChatFriendObject:(GroupChatFriend *)value;
+- (void)removeGroupChatFriendObject:(GroupChatFriend *)value;
+- (void)addGroupChatFriend:(NSSet *)values;
+- (void)removeGroupChatFriend:(NSSet *)values;
 
 @end
