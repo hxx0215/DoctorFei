@@ -10,11 +10,12 @@
 #import <UIScrollView+EmptyDataSet.h>
 #import "OrganDisplayTableViewCell.h"
 #import "DOPDropDownMenu.h"
+#import "DoctorFei_Patient_iOS-Swift.h"
 @interface OrganDisplayViewController ()
-    <UITableViewDelegate, UITableViewDataSource, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
+    <UITableViewDelegate, UITableViewDataSource, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate,androidTableViewDelegate,androidTableViewDataSource>
 - (IBAction)backButtonClicked:(id)sender;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-
+@property (strong, nonatomic) AndroidTableView *androidTableView;
 @end
 
 @implementation OrganDisplayViewController
@@ -23,6 +24,9 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self.tableView setTableFooterView:[UIView new]];
+    self.androidTableView = [[AndroidTableView alloc] initWithFrame:self.view.bounds];
+    self.androidTableView.delegate =self;
+    self.androidTableView.dataSource = self;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -39,6 +43,7 @@
     // Pass the selected object to the new view controller.
 }
 */
+
 
 #pragma mark - UITableView Datasource
 
@@ -58,8 +63,17 @@
     return 77.0f;
 }
 
+#pragma mark - androidTableViewDelegate &DataSource
+- (NSInteger)androidTableView:(AndroidTableView *)androidTableView numberOfRowsInSection:(NSInteger)section{
+    return 0;
+}
+- (NSString *)androidTableView:(AndroidTableView *)androidTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return @"";
+}
 #pragma mark - Actions
 - (IBAction)backButtonClicked:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
+}
+- (IBAction)titleButtonClicked:(UIButton *)sender {
 }
 @end
