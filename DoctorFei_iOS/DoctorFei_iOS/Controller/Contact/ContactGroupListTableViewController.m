@@ -238,12 +238,12 @@
 
 
 // Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [self deleteChatGroupWithIndexPath:indexPath];
-//        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }}
+//- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+//    if (editingStyle == UITableViewCellEditingStyleDelete) {
+//        // Delete the row from the data source
+//        [self deleteChatGroupWithIndexPath:indexPath];
+////        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+//    }}
 
 /*
 // Override to support rearranging the table view.
@@ -283,7 +283,7 @@
         if (selectedChat == nil) {
             selectedChat = [Chat MR_createEntity];
             selectedChat.chatId = selectedGroupChat.groupId;
-            selectedChat.type = @5;
+            selectedChat.type = @3;
             selectedChat.user = selectedGroupChat.member;
             selectedChat.title = selectedGroupChat.name;
             selectedGroupChat.chat = selectedChat;

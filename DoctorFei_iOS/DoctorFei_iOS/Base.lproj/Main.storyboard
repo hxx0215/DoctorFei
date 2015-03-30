@@ -86,9 +86,6 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
-                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                        <rect key="frame" x="105" y="22" width="195" height="20.5"/>
-                                                    </variation>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FkY-V8-lgK">
                                                     <rect key="frame" x="-23" y="-15" width="46" height="30"/>
@@ -3400,6 +3397,32 @@
                                 </mask>
                             </variation>
                         </view>
+                        <view key="tableFooterView" contentMode="scaleToFill" id="yGO-BF-Wxj">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MCu-P4-Mhe">
+                                    <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                    <state key="normal" title="Button">
+                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                        <rect key="frame" x="177" y="7" width="46" height="30"/>
+                                    </variation>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <variation key="default">
+                                <mask key="subviews">
+                                    <exclude reference="MCu-P4-Mhe"/>
+                                </mask>
+                            </variation>
+                            <variation key="heightClass=regular-widthClass=compact">
+                                <mask key="subviews">
+                                    <include reference="MCu-P4-Mhe"/>
+                                </mask>
+                            </variation>
+                        </view>
                         <sections>
                             <tableViewSection id="1LW-Vu-eK9">
                                 <cells>
@@ -3444,7 +3467,7 @@
                                                         </mask>
                                                     </variation>
                                                     <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                        <rect key="frame" x="84" y="11.5" width="483" height="21"/>
+                                                        <rect key="frame" x="84" y="11" width="483" height="21"/>
                                                         <mask key="constraints">
                                                             <include reference="Cla-Fq-mcv"/>
                                                         </mask>
@@ -8760,7 +8783,7 @@
                                                 </mask>
                                             </variation>
                                             <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                <rect key="frame" x="513" y="29.5" width="60" height="22"/>
+                                                <rect key="frame" x="513" y="29" width="60" height="22"/>
                                                 <mask key="constraints">
                                                     <include reference="WCY-ZL-ehf"/>
                                                     <include reference="bxa-Uv-Gvf"/>
@@ -12338,7 +12361,7 @@
                                                         </mask>
                                                     </variation>
                                                     <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                        <rect key="frame" x="62" y="11.5" width="517" height="21"/>
+                                                        <rect key="frame" x="62" y="11" width="517" height="21"/>
                                                         <mask key="constraints">
                                                             <include reference="Tvc-ZN-q51"/>
                                                         </mask>
@@ -12813,14 +12836,14 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="JeB-AN-IOM"/>
+        <segue reference="G9W-g1-ayd"/>
+        <segue reference="7qh-2R-9ti"/>
         <segue reference="XRC-P1-gD5"/>
         <segue reference="g9C-yb-yuY"/>
         <segue reference="wpO-fm-KSL"/>
-        <segue reference="G9W-g1-ayd"/>
-        <segue reference="7qh-2R-9ti"/>
+        <segue reference="QWB-UP-Nry"/>
         <segue reference="Hb8-Q6-QO7"/>
-        <segue reference="fY0-0D-Mis"/>
-        <segue reference="yFq-lP-6PL"/>
+        <segue reference="IPz-Wa-fyl"/>
         <segue reference="pVr-DH-hJQ"/>
     </inferredMetricsTieBreakers>
 </document>

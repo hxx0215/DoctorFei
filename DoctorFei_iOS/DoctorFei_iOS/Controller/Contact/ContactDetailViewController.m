@@ -121,7 +121,7 @@ typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(reloadMessageData) name:@"NewChatArrivedNotification" object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(deleteMessage:) name:@"DeleteMessageNotification" object:nil];
     [self cleanUnreadMessageCount];
-    if (_currentChat.type.intValue < 4){
+    if (_currentChat.type.intValue < 3){
         Friends *currentFriend = _currentChat.user.allObjects.firstObject;
         if (currentFriend.noteName && currentFriend.noteName.length > 0) {
             self.title = currentFriend.noteName;
@@ -132,7 +132,7 @@ typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
         if (currentFriend.userType.intValue == 2) {
             [self.navigationItem setRightBarButtonItem:nil];
         }
-    }else if (_currentChat.type.intValue == 5){
+    }else if (_currentChat.type.intValue == 3){
         self.title = _currentChat.title;
         groupUserButtonItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"button_details"] style:UIBarButtonItemStyleBordered target:self action:@selector(groupUserButtonItemClicked:)];
         [groupUserButtonItem setTintColor:[UIColor whiteColor]];
@@ -358,7 +358,7 @@ typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
 
 }
 - (void)sendMessageWithContent:(NSString *)content andType:(NSString *)type{
-    if (_currentChat.type.intValue < 4) {
+    if (_currentChat.type.intValue < 3) {
         NSDictionary *params = @{
                                  @"doctorid": [[NSUserDefaults standardUserDefaults]objectForKey:@"UserId"],
                                  @"userid": [_currentChat.user.allObjects.firstObject userId],
@@ -409,7 +409,7 @@ typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
             hud.detailsLabelText = error.localizedDescription;
             [hud hide:YES afterDelay:1.5f];
         }];
-    }else if (_currentChat.type.intValue == 5) {
+    }else if (_currentChat.type.intValue == 3) {
         NSDictionary *param = @{
                                 @"groupid": _currentChat.chatId,
                                 @"userid": [[NSUserDefaults standardUserDefaults] objectForKey:@"UserId"],

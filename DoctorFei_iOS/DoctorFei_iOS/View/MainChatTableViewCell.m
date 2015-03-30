@@ -40,7 +40,7 @@
 
 - (void)setCurrentChat:(Chat *)currentChat {
     _currentChat = currentChat;
-    if (_currentChat.type.intValue < 4) {
+    if (_currentChat.type.intValue < 3) {
         Friends *friend = [[_currentChat.user allObjects]firstObject];
         if (friend.icon && friend.icon.length > 0) {
             [self.avatarImageView sd_setImageWithURL:[NSURL URLWithString:friend.icon] placeholderImage:[UIImage imageNamed:@"list_user-big_example_pic"]];
@@ -53,7 +53,7 @@
         }
         [self.situationLabel setText:friend.situation];
     }
-    else if (_currentChat.type.intValue >= 4) {
+    else {
         [self.avatarImageView setImage:[UIImage imageNamed:@"list_user-big_example_pic"]];
         [self.nameLabel setText:_currentChat.title];
         [self.situationLabel setText:nil];
