@@ -65,15 +65,16 @@
 
 #pragma mark - androidTableViewDelegate &DataSource
 - (NSInteger)androidTableView:(AndroidTableView *)androidTableView numberOfRowsInSection:(NSInteger)section{
-    return 0;
+    return 1;
 }
 - (NSString *)androidTableView:(AndroidTableView *)androidTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return @"";
+    return @"河南";
 }
 #pragma mark - Actions
 - (IBAction)backButtonClicked:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
 }
 - (IBAction)titleButtonClicked:(UIButton *)sender {
+    [self.androidTableView showInView:self.view.window];
 }
 @end

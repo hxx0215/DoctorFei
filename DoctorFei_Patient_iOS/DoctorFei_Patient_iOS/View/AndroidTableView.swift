@@ -21,8 +21,8 @@ import UIKit
     var cityButton:UIButton!
     var areaButton:UIButton!
     var tableView:UITableView!
-    var delegate:androidTableViewDelegate?
-    var dataSource:androidTableViewDataSource?
+    weak var delegate:androidTableViewDelegate?
+    weak var dataSource:androidTableViewDataSource?
     let androidTableViewCellIdentifier = "AndroidTableViewCellIdentifier"
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -32,12 +32,16 @@ import UIKit
         self.addSubview(self.backgroudView)
         tableView = UITableView(frame: frame, style: UITableViewStyle.Plain)
         tableView.separatorStyle = UITableViewCellSeparatorStyle.None
+        tableView.delegate = self;
+        tableView.dataSource = self;
         cityButton = UIButton.buttonWithType(UIButtonType.Custom) as UIButton
         areaButton = UIButton.buttonWithType(UIButtonType.Custom) as UIButton
         cityButton.setTitleColor(UIColor(white: 176.0/255.0, alpha: 1.0), forState: UIControlState.Normal)
         cityButton.setTitleColor(UIColor.greenColor(), forState: UIControlState.Selected)
         areaButton.setTitleColor(UIColor(white: 176.0/255.0, alpha: 1.0), forState: UIControlState.Normal)
         areaButton.setTitleColor(UIColor.greenColor(), forState: UIControlState.Selected)
+        cityButton.backgroundColor = UIColor.whiteColor()
+        areaButton.backgroundColor = UIColor.whiteColor()
         horizontalView = UIView()
         verticalView = UIView()
         horizontalView.backgroundColor = UIColor(white: 176.0/255.0, alpha: 1.0)
@@ -55,6 +59,7 @@ import UIKit
     func showInView(sView: UIView!){
         self.layoutWithSuperView(sView)
         sView.addSubview(self)
+        tableView.reloadData()
     }
     func dismiss(){
         self.removeFromSuperview()
@@ -63,11 +68,11 @@ import UIKit
         self.frame = sView.bounds
         let width = self.frame.size.width
         let height = self.frame.size.height
-        cityButton.frame = CGRect(x: 0, y: 64, width: width / 2 - 1, height: 40)
-        areaButton.frame = CGRect(x: width / 2 + 1, y: 64, width: width / 2 - 1, height: 40)
+        cityButton.frame = CGRect(x: 0, y: 64, width: width / 2 , height: 40)
+        areaButton.frame = CGRect(x: width / 2 + 1, y: 64, width: width / 2 , height: 40)
         verticalView.frame = CGRect(x: width / 2, y: 64, width: 1, height: 40)
-        horizontalView.frame = CGRect(x: 0, y: 40, width: width, height: 1)
-        tableView.frame = CGRect(x: 0, y: 41, width: width, height: 320)
+        horizontalView.frame = CGRect(x: 0, y: 104, width: width, height: 1)
+        tableView.frame = CGRect(x: 0, y: 105, width: width, height: 320)
     }
     // MARK:TableViewDelegat&DataSource
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -80,7 +85,7 @@ import UIKit
             cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: androidTableViewCellIdentifier)
         }
         cell?.textLabel?.text = self.dataSource?.androidTableView(self, cellForRowAtIndexPath: indexPath)
-        return UITableViewCell()
+        return cell!
     }
     /*
     // Only override drawRect: if you perform custom drawing.
