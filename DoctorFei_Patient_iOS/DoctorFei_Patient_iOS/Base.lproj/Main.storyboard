@@ -4239,7 +4239,7 @@
                                             <segue destination="Y3p-P3-Zcg" kind="show" id="za8-Z1-TCX"/>
                                         </connections>
                                     </button>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xoy-Yt-noq">
+                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xoy-Yt-noq">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7TO-Ag-vLP" userLabel="SeperateView1">
@@ -4253,7 +4253,8 @@
                                                         <exclude reference="B5K-It-D75"/>
                                                     </mask>
                                                 </variation>
-                                                <variation key="heightClass=regular-widthClass=compact">
+                                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                    <rect key="frame" x="133" y="5" width="1" height="0.0"/>
                                                     <mask key="constraints">
                                                         <include reference="B5K-It-D75"/>
                                                     </mask>
@@ -4270,7 +4271,8 @@
                                                         <exclude reference="18a-fh-RbI"/>
                                                     </mask>
                                                 </variation>
-                                                <variation key="heightClass=regular-widthClass=compact">
+                                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                    <rect key="frame" x="266" y="5" width="1" height="0.0"/>
                                                     <mask key="constraints">
                                                         <include reference="18a-fh-RbI"/>
                                                     </mask>
@@ -4640,7 +4642,9 @@
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="Xoy-Yt-noq" secondAttribute="trailing" id="2Nx-SP-HhQ"/>
                                     <constraint firstItem="2Kk-27-PEg" firstAttribute="bottom" secondItem="uKy-t5-7BM" secondAttribute="bottom" id="2Yh-km-FFi"/>
-                                    <constraint firstAttribute="bottom" secondItem="Xoy-Yt-noq" secondAttribute="bottom" id="3hu-fa-lZX"/>
+                                    <constraint firstAttribute="bottom" secondItem="Xoy-Yt-noq" secondAttribute="bottom" id="3hu-fa-lZX">
+                                        <variation key="heightClass=regular-widthClass=compact" constant="0.0"/>
+                                    </constraint>
                                     <constraint firstItem="j9D-NJ-kCp" firstAttribute="top" secondItem="wp3-19-2za" secondAttribute="bottom" constant="8" symbolic="YES" id="ERc-PE-xdb"/>
                                     <constraint firstItem="2Kk-27-PEg" firstAttribute="top" secondItem="4N9-5s-9QS" secondAttribute="top" id="J6f-fb-F9Z"/>
                                     <constraint firstItem="wp3-19-2za" firstAttribute="top" secondItem="2Kk-27-PEg" secondAttribute="bottom" constant="5" id="Lpu-qh-Ce9"/>
@@ -4895,8 +4899,8 @@
                             <constraint firstItem="hKT-5Y-hOp" firstAttribute="leading" secondItem="Z7Q-ui-Cnw" secondAttribute="leading" id="272-CO-k6j"/>
                             <constraint firstAttribute="trailing" secondItem="A4G-pX-Sqz" secondAttribute="trailing" id="AXe-5N-L4h"/>
                             <constraint firstAttribute="trailing" secondItem="hKT-5Y-hOp" secondAttribute="trailing" id="HSx-S5-FJL"/>
-                            <constraint firstItem="A4G-pX-Sqz" firstAttribute="top" secondItem="hKT-5Y-hOp" secondAttribute="bottom" id="QL6-du-3j7"/>
-                            <constraint firstItem="A4G-pX-Sqz" firstAttribute="top" secondItem="hKT-5Y-hOp" secondAttribute="bottom" id="Wlq-0P-m4a"/>
+                            <constraint firstItem="A4G-pX-Sqz" firstAttribute="top" secondItem="hKT-5Y-hOp" secondAttribute="bottom" constant="-80" id="QL6-du-3j7"/>
+                            <constraint firstItem="A4G-pX-Sqz" firstAttribute="top" secondItem="hKT-5Y-hOp" secondAttribute="bottom" constant="-80" id="Wlq-0P-m4a"/>
                             <constraint firstItem="Jhr-4i-2K4" firstAttribute="top" secondItem="A4G-pX-Sqz" secondAttribute="bottom" id="ZLI-hR-AQp"/>
                             <constraint firstItem="hKT-5Y-hOp" firstAttribute="top" secondItem="pCc-FY-EKt" secondAttribute="bottom" id="sjy-E1-tzo"/>
                             <constraint firstItem="A4G-pX-Sqz" firstAttribute="leading" secondItem="Z7Q-ui-Cnw" secondAttribute="leading" id="vRH-x1-WIE"/>
@@ -10555,10 +10559,10 @@
         <image name="weixin_logo.png" width="40" height="40"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="za8-Z1-TCX"/>
+        <segue reference="jqJ-9d-6M3"/>
+        <segue reference="PBF-TY-a31"/>
         <segue reference="9lA-6C-kiK"/>
         <segue reference="kod-tF-SWu"/>
-        <segue reference="8dG-p0-wDZ"/>
-        <segue reference="PBF-TY-a31"/>
-        <segue reference="za8-Z1-TCX"/>
     </inferredMetricsTieBreakers>
 </document>
