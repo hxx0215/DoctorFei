@@ -16,4 +16,5 @@
 
 //上传音频
 + (void)uploadAudio: (NSString *)ext dataStream:(NSData *)data success:(void (^)(NSURLResponse *operation, id responseObject))success failure:(void (^)(NSURLResponse *operation, NSError *error))failure;
+- (void)defaultAuth;
 @end
