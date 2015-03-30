@@ -23,10 +23,11 @@
 @implementation ContactGroupListTableViewController
 {
     NSArray *groupArray;
+    NSMutableArray *searchResultArray;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    searchResultArray = [NSMutableArray array];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -48,7 +49,7 @@
 #pragma mark - NetActions
 - (void)reloadTableViewData{
 //    groupArray = [Chat MR_findByAttribute:@"type" withValue:@5];
-    groupArray = [GroupChat MR_findAll];
+    groupArray = [GroupChat MR_findAllSortedBy:@"groupId" ascending:YES];
     [self.tableView reloadData];
 }
 
@@ -191,20 +192,32 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 
     // Return the number of rows in the section.
+    if (tableView == self.searchDisplayController.searchResultsTableView) {
+        return searchResultArray.count;
+    }
     return groupArray.count + 1;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ContactGroupListCellIdentifier" forIndexPath:indexPath];
-    if (indexPath.row == 0){
-        cell.textLabel.text = NSLocalizedString(@"新建群", nil);
-        cell.textLabel.textColor = [UIColor colorWithRed:127.0/255 green:203.0/255.0 blue:62.0/255.0 alpha:1.0];
-    }else{
-        cell.textLabel.text = [groupArray[indexPath.row - 1] name];
+    if (tableView == self.searchDisplayController.searchResultsTableView) {
+        UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"ContactGroupListCellIdentifier"];
+        cell.textLabel.text = [searchResultArray[indexPath.row] name];
         cell.textLabel.textColor = [UIColor blackColor];
+        return cell;
     }
-    return cell;
+    else{
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ContactGroupListCellIdentifier" forIndexPath:indexPath];
+        if (indexPath.row == 0){
+            cell.textLabel.text = NSLocalizedString(@"新建群", nil);
+            cell.textLabel.textColor = [UIColor colorWithRed:127.0/255 green:203.0/255.0 blue:62.0/255.0 alpha:1.0];
+        }else{
+            cell.textLabel.text = [groupArray[indexPath.row - 1] name];
+            cell.textLabel.textColor = [UIColor blackColor];
+        }
+        return cell;
+    }
+    return nil;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -280,5 +293,16 @@
     }
 }
 
+#pragma mark - UISearchDisplayController Delegate
+- (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString {
+    [searchResultArray removeAllObjects];
+    for (GroupChat *groupChat in groupArray) {
+        NSRange foundRange = [groupChat.name rangeOfString:searchString options:(NSCaseInsensitiveSearch | NSDiacriticInsensitiveSearch)];
+        if (foundRange.length > 0) {
+            [searchResultArray addObject:groupChat];
+        }
+    }
+    return YES;
+}
 
 @end

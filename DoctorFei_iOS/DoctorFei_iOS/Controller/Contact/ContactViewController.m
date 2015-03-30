@@ -254,7 +254,6 @@
         [self.navigationController popViewControllerAnimated:YES];
     else
         [self.navigationController dismissViewControllerAnimated:YES completion:^{
-            
         }];
 }
 - (IBAction)rightButtonClicked:(id)sender {
