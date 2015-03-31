@@ -16,7 +16,7 @@
 #import "GroupChat.h"
 #import "GroupChatFriend.h"
 #import "ContactGroupDetailInfoTableViewController.h"
-#import "ContactViewController.h"
+#import "ContactMainViewController.h"
 #import "JSONKit.h"
 #import "ContactGroupListTableViewController.h"
 static NSString *ContactGroupUserCellIdentifier = @"ContactGroupUserCellIdentifier";
@@ -103,7 +103,7 @@ static NSString *ContactGroupUserCellIdentifier = @"ContactGroupUserCellIdentifi
         userDataArray = (NSArray *)responseObject;
         [_currentGroupChat removeMember:_currentGroupChat.member];
         for (NSDictionary *dict in responseObject) {
-            if ([dict[@"userid"] intValue] == [doctorId intValue] && [dict[@"usertype"] intValue] == 2) {
+            if ([dict[@"userid"] intValue] == [doctorId intValue] && [dict[@"usertype"] intValue] == 0) {
                 isCanDeleteUser = ([dict[@"role"] intValue] == 2);
                 userGroupId = @([dict[@"id"] intValue]);
                 [self updateQuitButtonTitle];
@@ -146,13 +146,15 @@ static NSString *ContactGroupUserCellIdentifier = @"ContactGroupUserCellIdentifi
     NSDictionary *param = @{@"id": friend.id,
                             @"groupid" : _currentGroupChat.groupId,
                             @"userid": [[NSUserDefaults standardUserDefaults]objectForKey:@"UserId"],
-                            @"usertype": @2,
+                            @"usertype": @0,
                             @"etype": @1
                             };
     [ChatAPI delChatUserWithParameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"%@",responseObject);
         if ([[responseObject firstObject][@"state"]intValue] == 1) {
-            [self fetchChatUser];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self fetchChatUser];
+            });
         }
         hud.mode = MBProgressHUDModeText;
         hud.labelText = [responseObject firstObject][@"msg"];
@@ -177,12 +179,14 @@ static NSString *ContactGroupUserCellIdentifier = @"ContactGroupUserCellIdentifi
     NSDictionary *param = @{
                             @"groupid": _currentGroupChat.groupId,
                             @"userid": [[NSUserDefaults standardUserDefaults]objectForKey:@"UserId"],
-                            @"usertype": @2,
+                            @"usertype": @0,
                             @"joinuserids": [joinArray JSONString]
                             };
     [ChatAPI setChatUserWithParameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
         if ([[responseObject firstObject][@"state"]intValue] == 1) {
-            [self fetchChatUser];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self fetchChatUser];
+            });
         }
 //        hud.mode = MBProgressHUDModeText;
 //        hud.labelText = [responseObject firstObject][@"msg"];
@@ -220,7 +224,7 @@ static NSString *ContactGroupUserCellIdentifier = @"ContactGroupUserCellIdentifi
         NSDictionary *param = @{
                                 @"groupid": _currentGroupChat.groupId,
                                 @"userid": [[NSUserDefaults standardUserDefaults]objectForKey:@"UserId"],
-                                @"usertype": @2
+                                @"usertype": @0
                                 };
         [ChatAPI delChatGroupWithParameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
             hud.mode = MBProgressHUDModeText;
@@ -247,7 +251,7 @@ static NSString *ContactGroupUserCellIdentifier = @"ContactGroupUserCellIdentifi
         NSDictionary *param = @{@"id": userGroupId,
                                 @"groupid" : _currentGroupChat.groupId,
                                 @"userid": [[NSUserDefaults standardUserDefaults]objectForKey:@"UserId"],
-                                @"usertype": @2,
+                                @"usertype": @0,
                                 @"etype": @0
                                 };
         [ChatAPI delChatUserWithParameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
@@ -326,10 +330,10 @@ static NSString *ContactGroupUserCellIdentifier = @"ContactGroupUserCellIdentifi
         [vc setGroupChat:_currentGroupChat];
     }else if ([segue.identifier isEqualToString:@"ContactGroupDetailAddMemberSegueIdentifier"]) {
         UINavigationController *nav = [segue destinationViewController];
-        ContactViewController *contact = nav.viewControllers.firstObject;
-        contact.contactMode = ContactViewControllerModeCreateGroup;
-        contact.selectedArray = [_currentGroupChat.chat.user.allObjects mutableCopy];
-        contact.didSelectFriends = ^(NSArray *friends){
+        ContactMainViewController *contact = nav.viewControllers.firstObject;
+        contact.contactMode = ContactMainViewControllerModeCreateGroup;
+//        contact.selectedArray = [_currentGroupChat.chat.user.allObjects mutableCopy];
+        contact.didSelectFriend = ^(NSArray *friends){
 //            NSLog(@"%@",friends);
             [self addUserWithUserArray:friends];
         };

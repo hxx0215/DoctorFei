@@ -2,23 +2,24 @@
 //  Chat.h
 //  DoctorFei_Patient_iOS
 //
-//  Created by GuJunjia on 15/3/16.
+//  Created by GuJunjia on 15/3/31.
 //
 //
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class Friends, Message;
+@class Friends, GroupChat, Message;
 
 @interface Chat : NSManagedObject
 
+@property (nonatomic, retain) NSNumber * chatId;
+@property (nonatomic, retain) NSString * title;
 @property (nonatomic, retain) NSNumber * type;
 @property (nonatomic, retain) NSNumber * unreadMessageCount;
-@property (nonatomic, retain) NSString * title;
-@property (nonatomic, retain) NSNumber * chatId;
 @property (nonatomic, retain) NSSet *messages;
 @property (nonatomic, retain) NSSet *user;
+@property (nonatomic, retain) GroupChat *groupChat;
 @end
 
 @interface Chat (CoreDataGeneratedAccessors)

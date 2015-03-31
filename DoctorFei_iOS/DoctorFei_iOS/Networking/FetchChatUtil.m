@@ -50,7 +50,7 @@
     NSNumber *groupId = @([params[@"groupid"]intValue]);
     NSNumber *userId = [[NSUserDefaults standardUserDefaults]objectForKey:@"UserId"];
     NSNumber *lastmsgid = @0;
-    Chat *currentChat = [Chat MR_findFirstWithPredicate:[NSPredicate predicateWithFormat:@"type == %@ && chatId == %@", @4, groupId]];
+    Chat *currentChat = [Chat MR_findFirstWithPredicate:[NSPredicate predicateWithFormat:@"type == %@ && chatId == %@", @3, groupId]];
     if (currentChat != nil) {
         Message *lastMessage = [Message MR_findFirstWithPredicate:[NSPredicate predicateWithFormat:@"chat == %@", currentChat] sortedBy:@"messageId" ascending:NO];
         if (lastMessage != nil) {

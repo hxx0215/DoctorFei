@@ -200,6 +200,7 @@
         case ContactMainViewControllerModeCreateGroup:
         {
             self.didSelectFriend(self.cellSelected);
+            [self dismissViewControllerAnimated:YES completion:nil];
         }
         default:
             break;

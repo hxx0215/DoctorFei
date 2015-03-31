@@ -40,11 +40,73 @@
 
 + (void)fetchGeneralChatWithParmas: (NSDictionary *)params {
     int type = [params[@"type"]intValue];
-    if (type < 4) {
+    if (type < 3) {
         [self fetchChatWithParmas:params];
     }else if(type == 4){
         [self fetchTempGroupChatWithParmas: params];
+    }else if (type == 3) {
+        [self fetchGroupChatWithParmas: params];
     }
+}
++ (void)fetchGroupChatWithParmas: (NSDictionary *)params {
+    NSNumber *groupId = @([params[@"groupid"]intValue]);
+    NSNumber *userId = [[NSUserDefaults standardUserDefaults]objectForKey:@"UserId"];
+    NSNumber *lastmsgid = @0;
+    Chat *currentChat = [Chat MR_findFirstWithPredicate:[NSPredicate predicateWithFormat:@"type == %@ && chatId == %@", @3, groupId]];
+    if (currentChat != nil) {
+        Message *lastMessage = [Message MR_findFirstWithPredicate:[NSPredicate predicateWithFormat:@"chat == %@", currentChat] sortedBy:@"messageId" ascending:NO];
+        if (lastMessage != nil) {
+            lastmsgid = lastMessage.messageId;
+        }
+    }
+    NSDictionary *requestDict = @{
+                                  @"userid": userId,
+                                  @"usertype": @0,
+                                  @"groupid": groupId,
+                                  @"lastmsgid": lastmsgid
+                                  };
+    [ChatAPI getChatNoteWithParameters:requestDict success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"Get Group Chat: %@", responseObject);
+        Chat *currentChat = [Chat MR_findFirstWithPredicate:[NSPredicate predicateWithFormat:@"type == %@ && chatId == %@", @3, groupId]];
+        if (currentChat == nil) {
+            currentChat = [Chat MR_createEntity];
+            currentChat.chatId = groupId;
+            currentChat.type = @3;
+        }
+        currentChat.title = params[@"title"];
+        NSArray *messageArray = (NSArray *)responseObject;
+        NSMutableSet *lostInfomationUsers = [NSMutableSet set];
+        for (NSDictionary *dict in messageArray) {
+            Friends *messageFriend = [Friends MR_findFirstWithPredicate:[NSPredicate predicateWithFormat:@"userId == %@ && userType == %@", @([dict[@"userid"] intValue]), @([dict[@"usertype"] intValue])]];
+            if (messageFriend == nil && [dict[@"userid"]intValue] != userId.intValue) {
+                messageFriend = [Friends MR_createEntity];
+                messageFriend.userId = @([dict[@"userid"]intValue]);
+                messageFriend.userType = @([dict[@"usertype"] intValue]);
+                [lostInfomationUsers addObject:messageFriend];
+            }
+            if (messageFriend) {
+                [currentChat addUserObject:messageFriend];
+            }
+            Message *message = [Message MR_findFirstWithPredicate:[NSPredicate predicateWithFormat: @"messageId == %@ && chat == %@", dict[@"id"], currentChat]];
+            if (message == nil) {
+                message = [Message MR_createEntity];
+                message.messageId = dict[@"id"];
+            }
+            message.msgType = dict[@"msgtype"];
+            message.createtime = [NSDate dateWithTimeIntervalSince1970:[dict[@"ctime"]intValue]];
+            message.content = dict[@"content"];
+            message.user = messageFriend;
+            message.chat = currentChat;
+        }
+        currentChat.unreadMessageCount = @([currentChat.unreadMessageCount intValue] + [params[@"total"]intValue]);
+        [self fetchLostInfomationWithSet: lostInfomationUsers];
+        [[NSManagedObjectContext MR_defaultContext]MR_saveToPersistentStoreAndWait];
+        //发送通知通知刷新MainVC
+        [[NSNotificationCenter defaultCenter]postNotificationName:@"NewChatArrivedNotification" object:nil];
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"%@",error.localizedDescription);
+    }];
 }
 
 
@@ -113,7 +175,6 @@
     else{
         dict = @{@"memberid": memberId, @"userid": userId, @"usertype": userType};
     }
-    NSLog(@"%@",dict);
     
     [MemberAPI getChatLogWithParameters:dict success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"GetChat: %@", responseObject);
@@ -175,16 +236,20 @@
 }
 + (void)fetchTempGroupChatWithParmas: (NSDictionary *)params {
     NSNumber *groupId = @([params[@"groupid"]intValue]);
-    NSNumber *doctorId = [[NSUserDefaults standardUserDefaults]objectForKey:@"UserId"];
+    NSNumber *userId = [[NSUserDefaults standardUserDefaults]objectForKey:@"UserId"];
+    NSNumber *lastmsgid = @0;
     Chat *currentChat = [Chat MR_findFirstWithPredicate:[NSPredicate predicateWithFormat:@"type == %@ && chatId == %@", @4, groupId]];
-    if (currentChat == nil) {
-        currentChat = [Chat MR_createEntity];
-        currentChat.chatId = groupId;
-        currentChat.type = @4;
+    if (currentChat != nil) {
+        Message *lastMessage = [Message MR_findFirstWithPredicate:[NSPredicate predicateWithFormat:@"chat == %@", currentChat] sortedBy:@"messageId" ascending:NO];
+        if (lastMessage != nil) {
+            lastmsgid = lastMessage.messageId;
+        }
     }
-    [[NSManagedObjectContext MR_defaultContext]MR_saveToPersistentStoreAndWait];
-    NSDictionary *requestDict = @{@"userid": doctorId,
-                                  @"groupid": groupId
+    NSDictionary *requestDict = @{
+                                  @"userid": userId,
+                                  @"usertype": @0,
+                                  @"groupid": groupId,
+                                  @"lastmsgid": lastmsgid
                                   };
     NSMutableSet *lostInfomationUsers = [NSMutableSet set];
     [ChatAPI getTempGroupChatLogWithParameters:requestDict success:^(AFHTTPRequestOperation *operation, id responseObject) {
@@ -193,7 +258,7 @@
         NSArray *messageArray = (NSArray *)responseObject;
         for (NSDictionary *dict in messageArray) {
             Friends *messageFriend = [Friends MR_findFirstWithPredicate:[NSPredicate predicateWithFormat:@"userId == %@ && userType == %@", @([dict[@"userid"] intValue]), @([dict[@"usertype"] intValue])]];
-            if (messageFriend == nil && [dict[@"userid"]intValue] != doctorId.intValue) {
+            if (messageFriend == nil && [dict[@"userid"]intValue] != userId.intValue) {
                 messageFriend = [Friends MR_createEntity];
                 messageFriend.userId = @([dict[@"userid"]intValue]);
                 messageFriend.userType = @([dict[@"usertype"] intValue]);

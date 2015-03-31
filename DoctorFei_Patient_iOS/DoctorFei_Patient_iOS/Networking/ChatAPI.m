@@ -13,6 +13,15 @@
 #define kMethodSetTempGroup @"set.chat.tempgroup"
 #define kMethodSendTempGroupMessage @"set.chat.tempnote"
 #define kMethodGetTempGroupChatLog @"get.chat.tempnote"
+#define kMethodGetChatGroup @"get.chat.group"
+#define kMethodSetChatGroup @"set.chat.group"
+#define kMethodUpdateChatGroup @"update.chat.group"
+#define kMethodDelChatGroup @"set.chat.groupdel"
+#define kMethodGetChatGroupUser @"get.chat.user"
+#define kMethodSetChatGroupUser @"set.chat.groupuser"
+#define kMethodDelChatGroupUser @"set.chat.userdel"
+#define kMethodGetChatNote @"get.chat.note"
+#define kMethodSetChatNote @"set.chat.note"
 #import "NSString+Crypt.h"
 #import <JSONKit.h>
 @implementation ChatAPI
@@ -107,5 +116,35 @@
 + (void)getTempGroupChatLogWithParameters: (id)parameters success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure {
     [[self sharedManager]defaultGetWithMethod:kMethodGetTempGroupChatLog WithParameters:parameters success:success failure:failure];
 }
+
++ (void)getChatGroupWithParameters: (id)parameters success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure {
+    [[self sharedManager]defaultGetWithMethod:kMethodGetChatGroup WithParameters:parameters success:success failure:failure];
+}
++ (void)setChatGroupWithParameters: (id)parameters success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure{
+    [[self sharedManager]defaultGetWithMethod:kMethodSetChatGroup WithParameters:parameters success:success failure:failure];
+}
++ (void)updateChatGroupWithParameters: (id)parameters success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure{
+    [[self sharedManager]defaultGetWithMethod:kMethodUpdateChatGroup WithParameters:parameters success:success failure:failure];
+}
++ (void)delChatGroupWithParameters: (id)parameters success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure{
+    [[self sharedManager]defaultGetWithMethod:kMethodDelChatGroup WithParameters:parameters success:success failure:failure];
+}
++ (void)getChatUserWithParameters: (id)parameters success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure{
+    [[self sharedManager]defaultGetWithMethod:kMethodGetChatGroupUser WithParameters:parameters success:success failure:failure];
+}
++ (void)setChatUserWithParameters: (id)parameters success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure{
+    [[self sharedManager]defaultGetWithMethod:kMethodSetChatGroupUser WithParameters:parameters success:success failure:failure];
+}
++ (void)delChatUserWithParameters: (id)parameters success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure{
+    [[self sharedManager]defaultGetWithMethod:kMethodDelChatGroupUser WithParameters:parameters success:success failure:failure];
+}
++ (void)getChatNoteWithParameters: (id)parameters success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure{
+    [[self sharedManager]defaultGetWithMethod:kMethodGetChatNote WithParameters:parameters success:success failure:failure];
+}
++ (void)setChatNoteWithParameters: (id)parameters success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure{
+    [[self sharedManager]defaultGetWithMethod:kMethodSetChatNote WithParameters:parameters success:success failure:failure];
+}
+
+
 
 @end

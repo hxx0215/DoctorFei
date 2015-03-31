@@ -39,14 +39,18 @@
 }
 
 + (NSAttributedString *)nameStringForFriend : (Friends *)currentFriend {
-    if (currentFriend.noteName && currentFriend.noteName.length > 0) {
-        NSString *nameString = [NSString stringWithFormat:@"%@(%@)",currentFriend.noteName, currentFriend.realname];
-        NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc]initWithString:nameString];
-        [attributedString addAttribute:NSForegroundColorAttributeName value:UIColorFromRGB(0xAAAAAA) range:NSMakeRange(currentFriend.noteName.length, currentFriend.realname.length + 2)];
-        return attributedString;
-    }
-    else{
-        return [[NSAttributedString alloc]initWithString:currentFriend.realname];
+    if (currentFriend.realname.length > 0) {
+        if (currentFriend.noteName && currentFriend.noteName.length > 0) {
+            NSString *nameString = [NSString stringWithFormat:@"%@(%@)",currentFriend.noteName, currentFriend.realname];
+            NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc]initWithString:nameString];
+            [attributedString addAttribute:NSForegroundColorAttributeName value:UIColorFromRGB(0xAAAAAA) range:NSMakeRange(currentFriend.noteName.length, currentFriend.realname.length + 2)];
+            return attributedString;
+        }
+        else{
+            return [[NSAttributedString alloc]initWithString:currentFriend.realname];
+        }
+    }else{
+        return [[NSAttributedString alloc]initWithString:@"无姓名"];
     }
 }
 

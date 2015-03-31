@@ -27,6 +27,7 @@
 #import "ImageDetailViewController.h"
 #import "JSQAudioMediaItem.h"
 #import "ChatAPI.h"
+#import "ContactGroupDetailUserTableViewController.h"
 
 typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
     SMSToolbarSendMethodVoice,
@@ -50,6 +51,7 @@ typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
     NSData *currentRecordData;
     double startRecordTime, endRecordTime;
     JSQAudioMediaItem *currentPlayItem;
+    UIBarButtonItem *groupUserButtonItem;
 }
 
 //@synthesize currentFriend = _currentFriend;
@@ -117,16 +119,15 @@ typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
         else {
             self.title = currentFriend.realname;
         }
+    }else if (_currentChat.type.intValue == 3){
+        self.title = _currentChat.title;
+        groupUserButtonItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"group-data_btn"] style:UIBarButtonItemStyleBordered target:self action:@selector(groupUserButtonItemClicked:)];
+        [groupUserButtonItem setTintColor:[UIColor whiteColor]];
+        [self.navigationItem setRightBarButtonItem:groupUserButtonItem];
     }else{
         self.title = _currentChat.title;
+        [self.navigationItem setRightBarButtonItem:nil];
     }
-
-//    if (_currentFriend.noteName && _currentFriend.noteName.length > 0) {
-//        self.title = _currentFriend.noteName;
-//    }
-//    else {
-//        self.title = _currentFriend.realname;
-//    }
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -197,6 +198,10 @@ typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
 }
 
 #pragma mark - Actions
+- (void)groupUserButtonItemClicked:(id)sender {
+    [self performSegueWithIdentifier:@"ContactGroupDetailUserSegueIdentifier" sender:nil];
+}
+
 - (void)cleanUnreadMessageCount {
 //    Chat *chat = [Chat MR_findFirstByAttribute:@"user" withValue:_currentFriend];
     if ([_currentChat.unreadMessageCount intValue] > 0) {
@@ -351,7 +356,7 @@ typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
 }
 
 - (void)sendMessageWithContent:(NSString *)content andType:(NSString *)type{
-    if (_currentChat.type.intValue < 4) {
+    if (_currentChat.type.intValue < 3) {
         NSNumber *memberId = [[NSUserDefaults standardUserDefaults]objectForKey:@"UserId"];
         NSDictionary *params = @{
                                  @"memberid": memberId,
@@ -402,6 +407,27 @@ typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
             [hud hide:YES afterDelay:1.5f];
         }];
 
+    }else if (_currentChat.type.intValue == 3) {
+        NSDictionary *param = @{
+                                @"groupid": _currentChat.chatId,
+                                @"userid": [[NSUserDefaults standardUserDefaults] objectForKey:@"UserId"],
+                                @"usertype": @0,
+                                @"msgtype": type,
+                                @"contents": content
+                                };
+        [ChatAPI setChatNoteWithParameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            NSDictionary *result = [responseObject firstObject];
+            if ([result[@"curid"] intValue] != 0) {
+                [self saveMessageWithMessageId:@([result[@"curid"] intValue]) type:type andContent:content];
+            }
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            NSLog(@"%@",error.localizedDescription);
+            MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view.window animated:YES];
+            hud.mode = MBProgressHUDModeText;
+            hud.labelText = @"发送失败";
+            hud.detailsLabelText = error.localizedDescription;
+            [hud hide:YES afterDelay:1.5f];
+        }];
     }
     
 }
@@ -613,6 +639,11 @@ typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
         ImageDetailViewController *vc = [segue destinationViewController];
         [vc setImage:sender];
     }
+    else if ([segue.identifier isEqualToString:@"ContactGroupDetailUserSegueIdentifier"]) {
+        ContactGroupDetailUserTableViewController *vc = [segue destinationViewController];
+        [vc setCurrentGroupChat:_currentChat.groupChat];
+    }
+
 }
 
 #pragma mark - RecordAudioDelegate
