@@ -19,6 +19,8 @@
 #import "ContactViewController.h"
 #import "JSONKit.h"
 #import "ContactGroupListTableViewController.h"
+#import "ContactDoctorFriendDetailTableViewController.h"
+#import "ContactPeronsalFriendDetailTableViewController.h"
 static NSString *ContactGroupUserCellIdentifier = @"ContactGroupUserCellIdentifier";
 @interface ContactGroupDetailUserTableViewController ()
     <UICollectionViewDelegate, UICollectionViewDataSource>
@@ -110,11 +112,14 @@ static NSString *ContactGroupUserCellIdentifier = @"ContactGroupUserCellIdentifi
                 continue;
             }
             Friends *friend = [Friends MR_findFirstWithPredicate:[NSPredicate predicateWithFormat:@"userId == %@ && userType == %@", @([dict[@"userid"] intValue]), @([dict[@"usertype"] intValue])]];
-//            if (friend == nil) {
-//                friend = [Friends MR_createEntity];
-//                friend.userId = @([dict[@"userid"] intValue]);
-//                friend.userType = @([dict[@"usertype"] intValue]);
-//            }
+            if (friend == nil) {
+                friend = [Friends MR_createEntity];
+                friend.userId = @([dict[@"userid"] intValue]);
+                friend.userType = @([dict[@"usertype"] intValue]);
+            }
+            else{
+                [_currentGroupChat.chat addUserObject:friend];   
+            }
             GroupChatFriend *groupChatFriend = [GroupChatFriend MR_findFirstByAttribute:@"id" withValue:@([dict[@"id"] intValue])];
             if (groupChatFriend == nil) {
                 groupChatFriend = [GroupChatFriend MR_createEntity];
@@ -125,7 +130,6 @@ static NSString *ContactGroupUserCellIdentifier = @"ContactGroupUserCellIdentifi
             groupChatFriend.role = @([dict[@"role"] intValue]);
             groupChatFriend.friend = friend;
             [_currentGroupChat addMemberObject:groupChatFriend];
-            [_currentGroupChat.chat addUserObject:friend];
 //            [_currentChat addUserObject:friend];
         }
         [[NSManagedObjectContext MR_defaultContext]MR_saveToPersistentStoreAndWait];
@@ -318,6 +322,14 @@ static NSString *ContactGroupUserCellIdentifier = @"ContactGroupUserCellIdentifi
         [self performSegueWithIdentifier:@"ContactGroupDetailAddMemberSegueIdentifier" sender:nil];
     }else if (indexPath.item == userArray.count + 2){
         [self changeDeleteButtonState];
+    }else{
+        GroupChatFriend *groupFriend = userArray[indexPath.item - 1];
+        Friends *friend = groupFriend.friend;
+        if (friend.userType.intValue == 2) {
+            [self performSegueWithIdentifier:@"ContactGroupUserDetailDoctorSegueIdentifier" sender:friend];
+        }else{
+            [self performSegueWithIdentifier:@"ContactGroupUserDetailMemberSegueIdentifier" sender:friend];
+        }
     }
 }
 
@@ -340,7 +352,14 @@ static NSString *ContactGroupUserCellIdentifier = @"ContactGroupUserCellIdentifi
             [self addUserWithUserArray:friends];
         };
 
+    }else if ([segue.identifier isEqualToString:@"ContactGroupUserDetailDoctorSegueIdentifier"]) {
+        ContactDoctorFriendDetailTableViewController *vc = [segue destinationViewController];
+        [vc setCurrentFriend:sender];
+    }else if ([segue.identifier isEqualToString:@"ContactGroupUserDetailMemberSegueIdentifier"]) {
+        ContactPeronsalFriendDetailTableViewController *vc = [segue destinationViewController];
+        [vc setCurrentFriend:sender];
     }
+
 }
 
 

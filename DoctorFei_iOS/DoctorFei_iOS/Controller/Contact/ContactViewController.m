@@ -116,7 +116,8 @@
 }
 - (void)reloadTableViewData {
 //    friendArray = [Friends MR_findAll];
-    friendArray = [Friends MR_findByAttribute:@"userType" withValue:[self currentUserType]];
+    friendArray = [Friends MR_findAllWithPredicate:[NSPredicate predicateWithFormat:@"userType == %@ && isFriend == %@", [self currentUserType], @YES]];
+//    friendArray = [Friends MR_findByAttribute:@"userType" withValue:[self currentUserType]];
     
     NSInteger sectionTitlesCount = [[[UILocalizedIndexedCollation currentCollation] sectionTitles] count];
     
@@ -169,14 +170,18 @@
                 friend = [Friends MR_createEntity];
                 friend.userId = @([dict[@"userid"]intValue]);
             }
-            friend.email = dict[@"Email"];
-            friend.gender = dict[@"Gender"];
-            friend.mobile = dict[@"Mobile"];
-            friend.realname = dict[@"RealName"];
             friend.icon = dict[@"icon"];
-            friend.userType = @([dict[@"usertype"]intValue]);
+            friend.realname = dict[@"RealName"];
+            friend.gender = @([dict[@"Gender"]intValue]);
+            friend.mobile = dict[@"Mobile"];
             friend.noteName = dict[@"notename"];
             friend.situation = dict[@"describe"];
+            friend.email = dict[@"Email"];
+            friend.hospital = dict[@"hospital"];
+            friend.department = dict[@"department"];
+            friend.jobTitle = dict[@"jobTitle"];
+            friend.otherContact = dict[@"OtherContact"];
+            friend.userType = @([dict[@"usertype"]intValue]);
             friend.isFriend = @YES;
         }
         [[NSManagedObjectContext MR_defaultContext]MR_saveToPersistentStoreAndWait];

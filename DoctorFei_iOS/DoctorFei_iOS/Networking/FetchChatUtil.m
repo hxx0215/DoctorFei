@@ -25,7 +25,7 @@
     friend.icon = dataDict[@"icon"];
     friend.realname = dataDict[@"RealName"];
     friend.gender = @([dataDict[@"Gender"]intValue]);
-    friend.mobile = dataDict[@"mobile"];
+    friend.mobile = dataDict[@"Mobile"];
     friend.noteName = dataDict[@"notename"];
     friend.situation = dataDict[@"describe"];
     friend.email = dataDict[@"Email"];

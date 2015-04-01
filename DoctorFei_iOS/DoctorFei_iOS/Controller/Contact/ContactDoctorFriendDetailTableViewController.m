@@ -9,6 +9,8 @@
 #import "ContactDoctorFriendDetailTableViewController.h"
 #import "Friends.h"
 #import <UIImageView+WebCache.h>
+#import <MBProgressHUD.h>
+#import "UserAPI.h"
 @interface ContactDoctorFriendDetailTableViewController ()
 - (IBAction)backButtonClicked:(id)sender;
 @property (weak, nonatomic) IBOutlet UIImageView *avatarImageView;
@@ -33,6 +35,13 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    [self reloadUIView];
+    [self.sendMessageButton setHidden:(_mode == ContactDoctorFriendDetailModeNormal)];
+    [self fetchDoctorInfo];
+    [self checkFriend];
+}
+
+- (void)reloadUIView{
     if (_currentFriend.icon && _currentFriend.icon.length > 0) {
         [self.avatarImageView sd_setImageWithURL:[NSURL URLWithString:_currentFriend.icon] placeholderImage:[UIImage imageNamed:@"details_uers_example_pic"]];
     }
@@ -42,7 +51,7 @@
     [self.emailLabel setText:_currentFriend.email];
     [self.otherContactLabel setText:_currentFriend.otherContact];
     [self.addToContactButton setHidden:[_currentFriend.isFriend boolValue]];
-    [self.sendMessageButton setHidden:(_mode == ContactDoctorFriendDetailModeNormal)];
+    NSLog(@"%@",_currentFriend.isFriend);
 
 }
 
@@ -51,7 +60,57 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)checkFriend {
+    NSDictionary *param = @{
+                            @"myuserid": [[NSUserDefaults standardUserDefaults]objectForKey:@"UserId"],
+                            @"myusertype": @2,
+                            @"userid": _currentFriend.userId,
+                            @"usertype": _currentFriend.userType
+                            };
+    NSLog(@"%@",param);
+    [UserAPI checkFriendWithParameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSDictionary *dataDict = [responseObject firstObject];
+        _currentFriend.isFriend = @([dataDict[@"friend"] intValue] > 0 ? YES : NO);
+        [[NSManagedObjectContext MR_defaultContext]MR_saveToPersistentStoreAndWait];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self reloadUIView];
+        });
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        hud.mode = MBProgressHUDModeText;
+        hud.labelText = error.localizedDescription;
+        [hud hide:YES afterDelay:1.5f];
+    }];
+}
 
+- (void)fetchDoctorInfo {
+    NSDictionary *param = @{@"userid": _currentFriend.userId};
+    [UserAPI getDoctorInfomationWithParameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSDictionary *dataDict = [responseObject firstObject];
+        _currentFriend.icon = dataDict[@"icon"];
+        _currentFriend.realname = dataDict[@"RealName"];
+        _currentFriend.gender = @([dataDict[@"Gender"]intValue]);
+        _currentFriend.mobile = dataDict[@"Mobile"];
+        _currentFriend.noteName = dataDict[@"notename"];
+        _currentFriend.situation = dataDict[@"describe"];
+        _currentFriend.email = dataDict[@"Email"];
+        _currentFriend.hospital = dataDict[@"hospital"];
+        _currentFriend.department = dataDict[@"department"];
+        _currentFriend.jobTitle = dataDict[@"jobTitle"];
+        _currentFriend.otherContact = dataDict[@"OtherContact"];
+        [[NSManagedObjectContext MR_defaultContext]MR_saveToPersistentStoreAndWait];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self reloadUIView];
+        });
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        hud.mode = MBProgressHUDModeText;
+        hud.labelText = error.localizedDescription;
+        [hud hide:YES afterDelay:1.5f];
+    }];
+    
+}
 
 /*
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {

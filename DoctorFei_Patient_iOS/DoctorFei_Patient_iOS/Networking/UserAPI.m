@@ -12,7 +12,7 @@
 #define kMethodSearchUser @"get.search.user"
 #define kMethodGetDoctorInfomation @"get.doctor.information"
 #define kMethodGetMemberInfomation @"get.member.information"
-
+#define kMethodCheckFriend @"get.user.checkfriend"
 @implementation UserAPI
 
 + (void)getUserInfomationWithParameters: (id)parameters success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure {
@@ -30,5 +30,8 @@
 }
 + (void)getMemberInfomationWithParameters: (id)parameters success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure {
     [[self sharedManager]defaultGetWithMethod:kMethodGetMemberInfomation WithParameters:parameters success:success failure:failure];
+}
++ (void)checkFriendWithParameters: (id)parameters success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure {
+    [[self sharedManager]defaultGetWithMethod:kMethodCheckFriend WithParameters:parameters success:success failure:failure];
 }
 @end
