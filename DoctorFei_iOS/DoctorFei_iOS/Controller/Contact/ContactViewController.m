@@ -250,7 +250,7 @@
     }
 }
 - (IBAction)backButtonClicked:(id)sender {
-    if (self.contactMode <3)
+    if (self.contactMode <2)
         [self.navigationController popViewControllerAnimated:YES];
     else
         [self.navigationController dismissViewControllerAnimated:YES completion:^{

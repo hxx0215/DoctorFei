@@ -180,7 +180,9 @@ static NSString *ContactGroupUserCellIdentifier = @"ContactGroupUserCellIdentifi
                             @"usertype": @2,
                             @"joinuserids": [joinArray JSONString]
                             };
+    NSLog(@"%@",param);
     [ChatAPI setChatUserWithParameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"%@",responseObject);
         if ([[responseObject firstObject][@"state"]intValue] == 1) {
             [self fetchChatUser];
         }
@@ -227,6 +229,8 @@ static NSString *ContactGroupUserCellIdentifier = @"ContactGroupUserCellIdentifi
             hud.labelText = [responseObject firstObject][@"msg"];
             [hud hide:YES afterDelay:1.0f];
             if ([[responseObject firstObject][@"state"]intValue] == 1) {
+                [_currentGroupChat MR_deleteEntity];
+                [[NSManagedObjectContext MR_defaultContext]MR_saveToPersistentStoreAndWait];
                 NSMutableArray *allViewControllers = [NSMutableArray arrayWithArray:[self.navigationController viewControllers]];
                 for (UIViewController *aViewController in allViewControllers) {
                     if ([aViewController isKindOfClass:[ContactGroupListTableViewController class]]) {
@@ -253,6 +257,8 @@ static NSString *ContactGroupUserCellIdentifier = @"ContactGroupUserCellIdentifi
         [ChatAPI delChatUserWithParameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
             NSLog(@"%@",responseObject);
             if ([[responseObject firstObject][@"state"]intValue] == 1) {
+                [_currentGroupChat MR_deleteEntity];
+                [[NSManagedObjectContext MR_defaultContext]MR_saveToPersistentStoreAndWait];
                 NSMutableArray *allViewControllers = [NSMutableArray arrayWithArray:[self.navigationController viewControllers]];
                 for (UIViewController *aViewController in allViewControllers) {
                     if ([aViewController isKindOfClass:[ContactGroupListTableViewController class]]) {

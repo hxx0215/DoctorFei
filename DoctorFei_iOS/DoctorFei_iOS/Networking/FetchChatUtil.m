@@ -12,6 +12,7 @@
 #import "Chat.h"
 #import "Friends.h"
 #import "UserAPI.h"
+#import "GroupChat.h"
 @implementation FetchChatUtil
 
 + (void)newFriendWithDict:(NSDictionary *)dataDict userType: (NSNumber *)userType userId:(NSNumber *)userId{
@@ -72,6 +73,13 @@
             currentChat.type = @3;
         }
         currentChat.title = params[@"title"];
+        GroupChat *groupChat = [GroupChat MR_findFirstByAttribute:@"groupId" withValue:groupId];
+        if (groupChat == nil) {
+            groupChat = [GroupChat MR_createEntity];
+            groupChat.groupId = groupId;
+        }
+        groupChat.name = params[@"title"];
+        currentChat.groupChat = groupChat;
         NSArray *messageArray = (NSArray *)responseObject;
         NSMutableSet *lostInfomationUsers = [NSMutableSet set];
         for (NSDictionary *dict in messageArray) {
