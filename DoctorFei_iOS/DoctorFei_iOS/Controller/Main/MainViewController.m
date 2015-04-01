@@ -117,7 +117,7 @@
     [_infoLabel setText:infoString];
     [self fetchArrangement];
     [self reloadTableViewData];
-    
+    [self getAuditStatus];
 
 //    //医生认证接口
 //    NSNumber *doctorId = [[NSUserDefaults standardUserDefaults]objectForKey:@"UserId"];
@@ -156,7 +156,13 @@
 //        ;
 //    }];
 }
-
+- (void)getAuditStatus{
+    NSInteger status = [[[NSUserDefaults standardUserDefaults] objectForKey:@"auditState"] integerValue];
+    if (status == 1)
+        self.auditButton.selected = YES;
+    else
+        self.auditButton.selected = NO;
+}
 - (void)fetchArrangement {
     NSMutableArray *array = [NSMutableArray array];
     NSNumber *doctorId = [[NSUserDefaults standardUserDefaults]objectForKey:@"UserId"];

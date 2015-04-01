@@ -69,7 +69,8 @@
     self.nameLabel.text = dict[@"realname"];
     [self.iconImage sd_setImageWithURL:dict[@"icon"] placeholderImage:[UIImage imageNamed:@"doctor-ranking_preinstall_pic.png"]];
     self.addButton.enabled = ![dic[@"myfirend"] integerValue];
-    self.distanceLabel.text = [NSString stringWithFormat:@"%ldm",[dic[@"distance"] integerValue]];
+    CGFloat dist = [dic[@"distance"] floatValue];
+    self.distanceLabel.text = dist > 1000.0?[NSString stringWithFormat:@"%.2lfkm",dist / 1000.0] : [NSString stringWithFormat:@"%.lfm", dist];
     [self.typeImage setImage:[UIImage imageNamed:[tagImageArray objectAtIndex:[dic[@"usertype"] integerValue]]]];
 }
 @end
