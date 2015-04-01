@@ -31,6 +31,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *hospitalLabel;
 @property (weak, nonatomic) IBOutlet UILabel *departAndJobLabel;
 @property (weak, nonatomic) IBOutlet UITableView *contentTableView;
+@property (weak, nonatomic) IBOutlet UIButton *auditButton;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *contentTypeSegmentControl;
 @end
 
@@ -46,6 +47,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self loadAllShuoshuoAndDaylog];
+    self.auditButton.selected = ([[[NSUserDefaults standardUserDefaults] objectForKey:@"auditState"] integerValue] == 1);
     //设置表头信息
     NSNumber *userId = [[NSUserDefaults standardUserDefaults]objectForKey:@"UserId"];
     if (userId.intValue == _currentDoctorId.intValue) {
