@@ -73,7 +73,9 @@
             currentChat.chatId = groupId;
             currentChat.type = @3;
         }
-        currentChat.title = params[@"title"];
+        if ([params[@"title"]isKindOfClass:[NSString class]]){
+            currentChat.title = params[@"title"];
+        }
         NSArray *messageArray = (NSArray *)responseObject;
         NSMutableSet *lostInfomationUsers = [NSMutableSet set];
         for (NSDictionary *dict in messageArray) {

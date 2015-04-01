@@ -28,6 +28,7 @@
 #import "JSQAudioMediaItem.h"
 #import "ChatAPI.h"
 #import "ContactGroupDetailUserTableViewController.h"
+#import "GroupChat.h"
 
 typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
     SMSToolbarSendMethodVoice,
@@ -641,6 +642,13 @@ typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
     }
     else if ([segue.identifier isEqualToString:@"ContactGroupDetailUserSegueIdentifier"]) {
         ContactGroupDetailUserTableViewController *vc = [segue destinationViewController];
+        if (_currentChat.groupChat == nil) {
+            GroupChat *groupChat = [GroupChat MR_createEntity];
+            groupChat.groupId = _currentChat.chatId;
+            groupChat.name = _currentChat.title;
+            _currentChat.groupChat = groupChat;
+            [[NSManagedObjectContext MR_defaultContext]MR_saveToPersistentStoreAndWait];
+        }
         [vc setCurrentGroupChat:_currentChat.groupChat];
     }
 

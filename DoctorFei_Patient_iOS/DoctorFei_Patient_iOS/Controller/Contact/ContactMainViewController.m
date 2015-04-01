@@ -190,7 +190,11 @@
     [self reloadTableViewDataWithUserType:[self currentUserType]];
 }
 - (IBAction)backButtonClicked:(id)sender {
-    [self.navigationController popViewControllerAnimated:YES];
+    if (_contactMode == ContactMainViewControllerModeCreateGroup) {
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }else{
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 - (IBAction)rightItemClicked:(id)sender {
     switch (self.contactMode) {

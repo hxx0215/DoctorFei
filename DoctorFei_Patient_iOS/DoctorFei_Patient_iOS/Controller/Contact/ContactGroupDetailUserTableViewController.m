@@ -21,7 +21,7 @@
 #import "ContactGroupListTableViewController.h"
 static NSString *ContactGroupUserCellIdentifier = @"ContactGroupUserCellIdentifier";
 @interface ContactGroupDetailUserTableViewController ()
-    <UICollectionViewDelegate, UICollectionViewDataSource>
+<UICollectionViewDelegate, UICollectionViewDataSource>
 - (IBAction)backButtonClicked:(id)sender;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
@@ -44,14 +44,14 @@ static NSString *ContactGroupUserCellIdentifier = @"ContactGroupUserCellIdentifi
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-//    [self.tableView setTableFooterView:[UIView new]];
+    //    [self.tableView setTableFooterView:[UIView new]];
     
     [self.collectionView addObserver:self forKeyPath:@"contentSize" options:NSKeyValueObservingOptionOld context:NULL];
     
     CGRect headRect = self.tableView.tableHeaderView.frame;
     headRect.size.height = 200.0f;
     [self.tableView.tableHeaderView setFrame:headRect];
-//    [self reloadCollectionViewData];
+    //    [self reloadCollectionViewData];
     CGRect footerRect = self.tableView.tableFooterView.frame;
     footerRect.size.height = 60.0f;
     [self.tableView.tableFooterView setFrame:footerRect];
@@ -63,7 +63,7 @@ static NSString *ContactGroupUserCellIdentifier = @"ContactGroupUserCellIdentifi
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     _nameLabel.text = _currentGroupChat.name;
-
+    
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -79,7 +79,7 @@ static NSString *ContactGroupUserCellIdentifier = @"ContactGroupUserCellIdentifi
 }
 
 - (void)reloadCollectionViewData{
-//    userArray = _currentChat.user.allObjects;
+    //    userArray = _currentChat.user.allObjects;
     userArray = _currentGroupChat.member.allObjects;
     [self.collectionView reloadData];
 }
@@ -99,22 +99,22 @@ static NSString *ContactGroupUserCellIdentifier = @"ContactGroupUserCellIdentifi
     NSDictionary *param = @{@"groupid": _currentGroupChat.groupId};
     [ChatAPI getChatUserWithParameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"%@",responseObject);
-        NSNumber *doctorId = [[NSUserDefaults standardUserDefaults]objectForKey:@"UserId"];
+        NSNumber *userId = [[NSUserDefaults standardUserDefaults]objectForKey:@"UserId"];
         userDataArray = (NSArray *)responseObject;
         [_currentGroupChat removeMember:_currentGroupChat.member];
         for (NSDictionary *dict in responseObject) {
-            if ([dict[@"userid"] intValue] == [doctorId intValue] && [dict[@"usertype"] intValue] == 0) {
+            if ([dict[@"userid"] intValue] == [userId intValue] && [dict[@"usertype"] intValue] == 0) {
                 isCanDeleteUser = ([dict[@"role"] intValue] == 2);
                 userGroupId = @([dict[@"id"] intValue]);
                 [self updateQuitButtonTitle];
                 continue;
             }
             Friends *friend = [Friends MR_findFirstWithPredicate:[NSPredicate predicateWithFormat:@"userId == %@ && userType == %@", @([dict[@"userid"] intValue]), @([dict[@"usertype"] intValue])]];
-            if (friend == nil) {
-                friend = [Friends MR_createEntity];
-                friend.userId = @([dict[@"userid"] intValue]);
-                friend.userType = @([dict[@"usertype"] intValue]);
-            }
+//            if (friend == nil) {
+//                friend = [Friends MR_createEntity];
+//                friend.userId = @([dict[@"userid"] intValue]);
+//                friend.userType = @([dict[@"usertype"] intValue]);
+//            }
             GroupChatFriend *groupChatFriend = [GroupChatFriend MR_findFirstByAttribute:@"id" withValue:@([dict[@"id"] intValue])];
             if (groupChatFriend == nil) {
                 groupChatFriend = [GroupChatFriend MR_createEntity];
@@ -125,8 +125,10 @@ static NSString *ContactGroupUserCellIdentifier = @"ContactGroupUserCellIdentifi
             groupChatFriend.role = @([dict[@"role"] intValue]);
             groupChatFriend.friend = friend;
             [_currentGroupChat addMemberObject:groupChatFriend];
-            [_currentGroupChat.chat addUserObject:friend];
-//            [_currentChat addUserObject:friend];
+            if (friend != nil) {
+                [_currentGroupChat.chat addUserObject:friend];
+            }
+            //            [_currentChat addUserObject:friend];
         }
         [[NSManagedObjectContext MR_defaultContext]MR_saveToPersistentStoreAndWait];
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -152,9 +154,7 @@ static NSString *ContactGroupUserCellIdentifier = @"ContactGroupUserCellIdentifi
     [ChatAPI delChatUserWithParameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"%@",responseObject);
         if ([[responseObject firstObject][@"state"]intValue] == 1) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self fetchChatUser];
-            });
+            [self fetchChatUser];
         }
         hud.mode = MBProgressHUDModeText;
         hud.labelText = [responseObject firstObject][@"msg"];
@@ -182,15 +182,15 @@ static NSString *ContactGroupUserCellIdentifier = @"ContactGroupUserCellIdentifi
                             @"usertype": @0,
                             @"joinuserids": [joinArray JSONString]
                             };
+    NSLog(@"%@",param);
     [ChatAPI setChatUserWithParameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"%@",responseObject);
         if ([[responseObject firstObject][@"state"]intValue] == 1) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self fetchChatUser];
-            });
+            [self fetchChatUser];
         }
-//        hud.mode = MBProgressHUDModeText;
-//        hud.labelText = [responseObject firstObject][@"msg"];
-//        [hud hide:YES afterDelay:1.0f];
+        //        hud.mode = MBProgressHUDModeText;
+        //        hud.labelText = [responseObject firstObject][@"msg"];
+        //        [hud hide:YES afterDelay:1.0f];
         [hud hide:YES];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"%@",error.localizedDescription);
@@ -210,7 +210,7 @@ static NSString *ContactGroupUserCellIdentifier = @"ContactGroupUserCellIdentifi
 - (void)deleteUserButtonClicked:(UIButton *)sender {
     NSInteger tag = sender.tag;
     GroupChatFriend *deleteFriend = userArray[tag];
-//    Friends *deleteFriend = userArray[tag];
+    //    Friends *deleteFriend = userArray[tag];
     [self deleteUserWithGroupChatFriend:deleteFriend];
 }
 #pragma mark - Actions
@@ -231,6 +231,8 @@ static NSString *ContactGroupUserCellIdentifier = @"ContactGroupUserCellIdentifi
             hud.labelText = [responseObject firstObject][@"msg"];
             [hud hide:YES afterDelay:1.0f];
             if ([[responseObject firstObject][@"state"]intValue] == 1) {
+                [_currentGroupChat MR_deleteEntity];
+                [[NSManagedObjectContext MR_defaultContext]MR_saveToPersistentStoreAndWait];
                 NSMutableArray *allViewControllers = [NSMutableArray arrayWithArray:[self.navigationController viewControllers]];
                 for (UIViewController *aViewController in allViewControllers) {
                     if ([aViewController isKindOfClass:[ContactGroupListTableViewController class]]) {
@@ -243,7 +245,7 @@ static NSString *ContactGroupUserCellIdentifier = @"ContactGroupUserCellIdentifi
             hud.mode = MBProgressHUDModeText;
             hud.labelText = error.localizedDescription;
             [hud hide:YES afterDelay:1.5f];
-
+            
         }];
         
     }else{
@@ -257,6 +259,8 @@ static NSString *ContactGroupUserCellIdentifier = @"ContactGroupUserCellIdentifi
         [ChatAPI delChatUserWithParameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
             NSLog(@"%@",responseObject);
             if ([[responseObject firstObject][@"state"]intValue] == 1) {
+                [_currentGroupChat MR_deleteEntity];
+                [[NSManagedObjectContext MR_defaultContext]MR_saveToPersistentStoreAndWait];
                 NSMutableArray *allViewControllers = [NSMutableArray arrayWithArray:[self.navigationController viewControllers]];
                 for (UIViewController *aViewController in allViewControllers) {
                     if ([aViewController isKindOfClass:[ContactGroupListTableViewController class]]) {
@@ -273,9 +277,9 @@ static NSString *ContactGroupUserCellIdentifier = @"ContactGroupUserCellIdentifi
             hud.labelText = error.localizedDescription;
             [hud hide:YES afterDelay:1.5f];
         }];
-
+        
     }
-
+    
 }
 
 
@@ -286,7 +290,7 @@ static NSString *ContactGroupUserCellIdentifier = @"ContactGroupUserCellIdentifi
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     ContactGroupUserCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:ContactGroupUserCellIdentifier forIndexPath:indexPath];
     if (indexPath.item > 0 && indexPath.item < userArray.count + 1) {
-//        Friends *friend = userArray[indexPath.item - 1];
+        //        Friends *friend = userArray[indexPath.item - 1];
         GroupChatFriend *friend = userArray[indexPath.item - 1];
         [cell.nameLabel setText:friend.name];
         [cell.imageView sd_setImageWithURL:[NSURL URLWithString:friend.friend.icon]    placeholderImage:[UIImage imageNamed:@"details_uers_example_pic"]];
@@ -334,10 +338,10 @@ static NSString *ContactGroupUserCellIdentifier = @"ContactGroupUserCellIdentifi
         contact.contactMode = ContactMainViewControllerModeCreateGroup;
 //        contact.selectedArray = [_currentGroupChat.chat.user.allObjects mutableCopy];
         contact.didSelectFriend = ^(NSArray *friends){
-//            NSLog(@"%@",friends);
+            //            NSLog(@"%@",friends);
             [self addUserWithUserArray:friends];
         };
-
+        
     }
 }
 

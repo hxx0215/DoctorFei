@@ -110,11 +110,11 @@ static NSString *ContactGroupUserCellIdentifier = @"ContactGroupUserCellIdentifi
                 continue;
             }
             Friends *friend = [Friends MR_findFirstWithPredicate:[NSPredicate predicateWithFormat:@"userId == %@ && userType == %@", @([dict[@"userid"] intValue]), @([dict[@"usertype"] intValue])]];
-            if (friend == nil) {
-                friend = [Friends MR_createEntity];
-                friend.userId = @([dict[@"userid"] intValue]);
-                friend.userType = @([dict[@"usertype"] intValue]);
-            }
+//            if (friend == nil) {
+//                friend = [Friends MR_createEntity];
+//                friend.userId = @([dict[@"userid"] intValue]);
+//                friend.userType = @([dict[@"usertype"] intValue]);
+//            }
             GroupChatFriend *groupChatFriend = [GroupChatFriend MR_findFirstByAttribute:@"id" withValue:@([dict[@"id"] intValue])];
             if (groupChatFriend == nil) {
                 groupChatFriend = [GroupChatFriend MR_createEntity];
