@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@class Friends;
 @interface ContactPersonalDetailInfoViewController : UIViewController
+
+@property (nonatomic, strong) Friends *currentFriend;
 
 @end

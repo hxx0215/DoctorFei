@@ -85,6 +85,9 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
+                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                        <rect key="frame" x="105" y="22" width="195" height="20.5"/>
+                                                    </variation>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FkY-V8-lgK">
                                                     <rect key="frame" x="-23" y="-15" width="46" height="30"/>
@@ -11509,6 +11512,9 @@
                                             <include reference="7Iv-U7-VWd"/>
                                         </mask>
                                     </variation>
+                                    <connections>
+                                        <action selector="addToContactButtonClicked:" destination="Amq-F3-hxG" eventType="touchUpInside" id="fM2-fq-iCj"/>
+                                    </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kRJ-H7-26y">
                                     <rect key="frame" x="-23" y="-15" width="46" height="30"/>
@@ -12137,6 +12143,9 @@
                                             <include reference="rdi-MS-l8t"/>
                                         </mask>
                                     </variation>
+                                    <connections>
+                                        <action selector="addToContactButtonClicked:" destination="dBl-rr-j8b" eventType="touchUpInside" id="qFK-me-QgF"/>
+                                    </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fjn-xS-NSx">
                                     <rect key="frame" x="-23" y="-15" width="46" height="30"/>
@@ -12703,6 +12712,11 @@
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="confirmButton" destination="khj-jz-oAg" id="NEC-bp-5WQ"/>
+                        <outlet property="describeTextView" destination="7Vg-06-gr3" id="Epo-6k-cDh"/>
+                        <outlet property="noteTextField" destination="A8g-h7-1eb" id="pGT-du-EU9"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WDh-kT-fMe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

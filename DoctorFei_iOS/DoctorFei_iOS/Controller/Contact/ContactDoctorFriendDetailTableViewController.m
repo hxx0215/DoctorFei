@@ -11,6 +11,7 @@
 #import <UIImageView+WebCache.h>
 #import <MBProgressHUD.h>
 #import "UserAPI.h"
+#import "DoctorAPI.h"
 @interface ContactDoctorFriendDetailTableViewController ()
 - (IBAction)backButtonClicked:(id)sender;
 @property (weak, nonatomic) IBOutlet UIImageView *avatarImageView;
@@ -22,6 +23,7 @@
 @property (weak, nonatomic) IBOutlet UITextView *otherContactLabel;
 @property (weak, nonatomic) IBOutlet UIButton *addToContactButton;
 @property (weak, nonatomic) IBOutlet UIButton *sendMessageButton;
+- (IBAction)addToContactButtonClicked:(id)sender;
 
 @end
 
@@ -111,6 +113,37 @@
     }];
     
 }
+- (void)addFriend{
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    NSNumber *userId = [[NSUserDefaults standardUserDefaults]objectForKey:@"UserId"];
+    NSDictionary *params = @{
+                             @"usertype": _currentFriend.userType,
+                             @"doctorid": [userId stringValue],
+                             @"friendid": _currentFriend.userId
+                             };
+    [DoctorAPI addFriendWithParameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSDictionary *dic = [responseObject firstObject];
+        if ([dic[@"state"] integerValue]==1) {
+            UIImageView *completeImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logo_prompt-01_pic.png"]];
+            hud.mode = MBProgressHUDModeCustomView;
+            hud.dimBackground = YES;
+            hud.customView = completeImage;
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.addToContactButton setEnabled: NO];
+            });
+        }
+        else{
+            hud.mode = MBProgressHUDModeText;
+        }
+        hud.detailsLabelText = dic[@"msg"];//NSLocalizedString(@"好友添加成功", nil);
+        [hud hide:YES afterDelay:1.0f];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        hud.mode = MBProgressHUDModeText;
+        hud.labelText = @"错误";
+        hud.detailsLabelText = error.localizedDescription;
+        [hud hide:YES afterDelay:1.5f];
+    }];
+}
 
 /*
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -168,5 +201,8 @@
 
 - (IBAction)backButtonClicked:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
+}
+- (IBAction)addToContactButtonClicked:(id)sender {
+    [self addFriend];
 }
 @end

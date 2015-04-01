@@ -11,6 +11,7 @@
 #import <UIImageView+WebCache.h>
 #import "UserAPI.h"
 #import <MBProgressHUD.h>
+#import "MemberAPI.h"
 @interface ContactPeronsalFriendDetailTableViewController ()
 - (IBAction)backButtonClicked:(id)sender;
 @property (weak, nonatomic) IBOutlet UIImageView *avatarImageView;
@@ -19,6 +20,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *phoneLabel;
 @property (weak, nonatomic) IBOutlet UIButton *addToContactButton;
 @property (weak, nonatomic) IBOutlet UIButton *sendMessageButton;
+- (IBAction)addToContactButtonClicked:(id)sender;
 
 @end
 
@@ -104,6 +106,38 @@
     
 }
 
+- (void)addFriend {
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    NSNumber *memberId = [[NSUserDefaults standardUserDefaults]objectForKey:@"UserId"];
+    NSDictionary *param = @{
+                            @"userid": memberId,
+                            @"friendid": _currentFriend.userId,
+                            @"usertype": _currentFriend.userType
+                            };
+    [MemberAPI setFriendWithParameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSDictionary *dic = [responseObject firstObject];
+        if ([dic[@"state"] integerValue]==1) {
+            UIImageView *completeImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logo_prompt-01_pic.png"]];
+            hud.mode = MBProgressHUDModeCustomView;
+            hud.dimBackground = YES;
+            hud.customView = completeImage;
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.addToContactButton setEnabled:NO];
+            });
+        }else{
+            hud.mode = MBProgressHUDModeText;
+        }
+        hud.detailsLabelText = dic[@"msg"];//NSLocalizedString(@"好友添加成功", nil);
+        [hud hide:YES afterDelay:1.0f];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        hud.mode = MBProgressHUDModeText;
+        hud.labelText = @"错误";
+        hud.detailsLabelText = error.localizedDescription;
+        [hud hide:YES afterDelay:1.5f];
+    }];
+
+}
+
 /*
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
@@ -160,5 +194,8 @@
 
 - (IBAction)backButtonClicked:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
+}
+- (IBAction)addToContactButtonClicked:(id)sender {
+    [self addFriend];
 }
 @end

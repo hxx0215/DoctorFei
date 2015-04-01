@@ -7,9 +7,13 @@
 //
 
 #import "ContactPersonalDetailInfoViewController.h"
-
+#import <ReactiveCocoa.h>
+#import "Friends.h"
 @interface ContactPersonalDetailInfoViewController ()
 - (IBAction)backButtonClicked:(id)sender;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *confirmButton;
+@property (weak, nonatomic) IBOutlet UITextField *noteTextField;
+@property (weak, nonatomic) IBOutlet UITextView *describeTextView;
 
 @end
 
@@ -18,13 +22,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [self.noteTextField setText:_currentFriend.noteName];
+    [self.describeTextView setText:_currentFriend.situation];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
 /*
 #pragma mark - Navigation
 

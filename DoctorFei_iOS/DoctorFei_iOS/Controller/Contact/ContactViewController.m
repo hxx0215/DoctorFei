@@ -513,10 +513,15 @@
             hud.mode = MBProgressHUDModeText;
             if ([dict[@"state"]intValue] == 1) {
                 hud.labelText = @"删除成功";
-                Chat *chat = [Chat MR_findFirstByAttribute:@"user" withValue:friend];
-                if (chat) {
-                    [chat MR_deleteEntity];
+                for (Chat *chat in friend.chat) {
+                    if (chat.type.intValue < 3) {
+                        [chat MR_deleteEntity];
+                    }
                 }
+//                Chat *chat = [Chat MR_findFirstByAttribute:@"user" withValue:friend];
+//                if (chat) {
+//                    [chat MR_deleteEntity];
+//                }
                 [friend MR_deleteEntity];
                 [[NSManagedObjectContext MR_defaultContext]MR_saveToPersistentStoreAndWait];
                 [self reloadTableViewData];
