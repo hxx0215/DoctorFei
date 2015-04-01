@@ -45,8 +45,29 @@ static NSString * const kMyAppointmentIdenty = @"MyAppointmentIdenty";
     [self refreshData];
 }
 //TODO:将获得的数组排序
-- (void)sortTableData{
-    
+- (void)sortAppointData{
+    self.tableData[0]=[self.tableData[0] sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2){
+        NSString *s1 = obj1[@"addtime"];
+        NSString *s2 = obj2[@"addtime"];
+        NSDate *date1 = nil;
+        NSDate *date2 = nil;
+        NSDateFormatter *dateformatter = [[NSDateFormatter alloc] init];
+        [dateformatter setDateFormat:@"yyyy/MM/dd HH:mm:ss"];
+        date1 = [dateformatter dateFromString:s1];
+        date2 = [dateformatter dateFromString:s2];
+        if ([s1 isEqualToString:@""]){
+            date1 = [NSDate dateWithTimeIntervalSince1970:0];
+        }
+        if ([s2 isEqualToString:@""]){
+            date2 = [NSDate dateWithTimeIntervalSince1970:0];
+        }
+        return [date2 compare:date1];
+    }];
+}
+- (void)sortReferralData{
+    self.tableData[1] = [self.tableData[1] sortedArrayUsingComparator:^NSComparisonResult(id obj1,id obj2) {
+        return [obj1[@"createtime"] integerValue]<[obj2[@"createtime"] integerValue];
+    }];
 }
 - (void)refreshData{
     NSDictionary *params = @{@"doctorid": [[NSUserDefaults standardUserDefaults] objectForKey:@"UserId"],@"sorttype" : @(1)};
@@ -56,6 +77,7 @@ static NSString * const kMyAppointmentIdenty = @"MyAppointmentIdenty";
         if (resultArray.firstObject[@"state"] && [resultArray.firstObject[@"state"] intValue] == 0) {
         }else{
             self.tableData[0] = resultArray;
+            [self sortAppointData];
             [self.tableView reloadData];
         }
     }failure:^(AFHTTPRequestOperation *operation, NSError *error){
@@ -66,6 +88,7 @@ static NSString * const kMyAppointmentIdenty = @"MyAppointmentIdenty";
         NSArray *resultArray = (NSArray *)responseObject;
         if (resultArray.count > 0) {
             self.tableData[1] = resultArray;
+            [self sortReferralData];
         }
     }failure:^(AFHTTPRequestOperation *operation, NSError *error){
         NSLog(@"%@",error);
