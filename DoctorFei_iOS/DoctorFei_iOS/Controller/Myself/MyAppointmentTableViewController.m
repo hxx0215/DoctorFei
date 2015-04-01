@@ -31,7 +31,9 @@ static NSString * const kMyAppointmentIdenty = @"MyAppointmentIdenty";
     CGRect headFrame = self.tableView.tableHeaderView.frame;
     headFrame.size.height = 44;
     self.tableView.tableHeaderView.frame = headFrame;
-    self.tableData = [[NSMutableArray alloc] initWithCapacity:2];
+    self.tableData = [NSMutableArray new];
+    [self.tableData addObject:[NSArray new]];
+    [self.tableData addObject:[NSArray new]];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -42,9 +44,12 @@ static NSString * const kMyAppointmentIdenty = @"MyAppointmentIdenty";
     [super viewWillAppear:animated];
     [self refreshData];
 }
-
+//TODO:将获得的数组排序
+- (void)sortTableData{
+    
+}
 - (void)refreshData{
-    NSDictionary *params = @{@"doctorid": [[NSUserDefaults standardUserDefaults] objectForKey:@"UserId"]};
+    NSDictionary *params = @{@"doctorid": [[NSUserDefaults standardUserDefaults] objectForKey:@"UserId"],@"sorttype" : @(1)};
     [DoctorAPI getAppointmentWithParameters:params success:^(AFHTTPRequestOperation *operation, id responseObject){
         NSLog(@"appointment:%@",responseObject);
         NSArray *resultArray = (NSArray *)responseObject;
