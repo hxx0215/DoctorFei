@@ -32,7 +32,7 @@ class ContactLaunchApointmentTableViewController: UITableViewController,TextBasi
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         self.formatter.dateFormat = "yyyy-MM-dd HH:mm"
         self.dateLabel.text = self.formatter.stringFromDate(NSDate())
-        self.nameLabel.text = ""
+        self.nameLabel.text = (NSUserDefaults.standardUserDefaults().objectForKey("UserRealName") as String);
         self.mobileLabel.text = ""
         self.ageLabel.text = "18"
         self.maleButton.selected = true
