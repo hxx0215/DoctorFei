@@ -38,6 +38,9 @@
     [self reloadUIView];
     [self fetchMemberInfo];
     [self checkFriend];
+    CGRect footFrame = self.tableView.tableFooterView.frame;
+    footFrame.size.height = 90;
+    self.tableView.tableFooterView.frame = footFrame;
 }
 
 - (void)didReceiveMemoryWarning {
