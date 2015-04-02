@@ -41,6 +41,11 @@
     [self.sendMessageButton setHidden:(_mode == ContactDoctorFriendDetailModeNormal)];
     [self fetchDoctorInfo];
     [self checkFriend];
+    
+    CGRect footerRect = self.tableView.tableFooterView.frame;
+    footerRect.size.height = 100.0f;
+    [self.tableView.tableFooterView setFrame:footerRect];
+
 }
 
 - (void)reloadUIView{
