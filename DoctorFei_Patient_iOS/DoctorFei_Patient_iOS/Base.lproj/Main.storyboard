@@ -1144,7 +1144,8 @@
                                                                     <exclude reference="jGS-hT-Sbo"/>
                                                                 </mask>
                                                             </variation>
-                                                            <variation key="heightClass=regular-widthClass=compact">
+                                                            <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                                <rect key="frame" x="70" y="7" width="215" height="21"/>
                                                                 <mask key="constraints">
                                                                     <include reference="jGS-hT-Sbo"/>
                                                                 </mask>
@@ -1163,7 +1164,8 @@
                                                                     <exclude reference="iDh-Yh-X0e"/>
                                                                 </mask>
                                                             </variation>
-                                                            <variation key="heightClass=regular-widthClass=compact">
+                                                            <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                                <rect key="frame" x="70" y="33" width="215" height="15"/>
                                                                 <mask key="constraints">
                                                                     <include reference="iDh-Yh-X0e"/>
                                                                 </mask>
@@ -1175,6 +1177,9 @@
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
+                                                            <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                                <rect key="frame" x="15" y="50" width="270" height="58"/>
+                                                            </variation>
                                                         </label>
                                                     </subviews>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1216,7 +1221,8 @@
                                                             <exclude reference="dq3-xh-CQ9"/>
                                                         </mask>
                                                     </variation>
-                                                    <variation key="heightClass=regular-widthClass=compact">
+                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                        <rect key="frame" x="10" y="5" width="300" height="114"/>
                                                         <mask key="subviews">
                                                             <include reference="0Mq-7O-L10"/>
                                                             <include reference="ZJ6-nM-pXR"/>
@@ -3839,7 +3845,8 @@
                                                             <exclude reference="btd-ky-S8P"/>
                                                         </mask>
                                                     </variation>
-                                                    <variation key="heightClass=regular-widthClass=compact">
+                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                        <rect key="frame" x="240" y="15" width="60" height="50"/>
                                                         <mask key="constraints">
                                                             <include reference="Rqs-5K-j6a"/>
                                                             <include reference="btd-ky-S8P"/>
@@ -3851,6 +3858,9 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <color key="textColor" red="0.64313725489999995" green="0.64313725489999995" blue="0.64313725489999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
+                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                        <rect key="frame" x="90" y="45" width="142" height="15"/>
+                                                    </variation>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="已添加" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JDh-s6-8oK">
                                                     <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
@@ -3867,7 +3877,8 @@
                                                             <exclude reference="aWH-25-E4P"/>
                                                         </mask>
                                                     </variation>
-                                                    <variation key="heightClass=regular-widthClass=compact">
+                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                        <rect key="frame" x="240" y="29" width="60" height="22"/>
                                                         <mask key="constraints">
                                                             <include reference="9Aj-zP-EOB"/>
                                                             <include reference="aWH-25-E4P"/>
@@ -4098,7 +4109,7 @@
                                             <segue destination="Y3p-P3-Zcg" kind="show" id="za8-Z1-TCX"/>
                                         </connections>
                                     </button>
-                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xoy-Yt-noq">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xoy-Yt-noq">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7TO-Ag-vLP" userLabel="SeperateView1">
@@ -4756,8 +4767,8 @@
                             <constraint firstItem="hKT-5Y-hOp" firstAttribute="leading" secondItem="Z7Q-ui-Cnw" secondAttribute="leading" id="272-CO-k6j"/>
                             <constraint firstAttribute="trailing" secondItem="A4G-pX-Sqz" secondAttribute="trailing" id="AXe-5N-L4h"/>
                             <constraint firstAttribute="trailing" secondItem="hKT-5Y-hOp" secondAttribute="trailing" id="HSx-S5-FJL"/>
-                            <constraint firstItem="A4G-pX-Sqz" firstAttribute="top" secondItem="hKT-5Y-hOp" secondAttribute="bottom" constant="-80" id="QL6-du-3j7"/>
-                            <constraint firstItem="A4G-pX-Sqz" firstAttribute="top" secondItem="hKT-5Y-hOp" secondAttribute="bottom" constant="-80" id="Wlq-0P-m4a"/>
+                            <constraint firstItem="A4G-pX-Sqz" firstAttribute="top" secondItem="hKT-5Y-hOp" secondAttribute="bottom" id="QL6-du-3j7"/>
+                            <constraint firstItem="A4G-pX-Sqz" firstAttribute="top" secondItem="hKT-5Y-hOp" secondAttribute="bottom" id="Wlq-0P-m4a"/>
                             <constraint firstItem="Jhr-4i-2K4" firstAttribute="top" secondItem="A4G-pX-Sqz" secondAttribute="bottom" id="ZLI-hR-AQp"/>
                             <constraint firstItem="hKT-5Y-hOp" firstAttribute="top" secondItem="pCc-FY-EKt" secondAttribute="bottom" id="sjy-E1-tzo"/>
                             <constraint firstItem="A4G-pX-Sqz" firstAttribute="leading" secondItem="Z7Q-ui-Cnw" secondAttribute="leading" id="vRH-x1-WIE"/>
@@ -8736,7 +8747,7 @@
                         <viewControllerLayoutGuide type="bottom" id="soF-EK-2nd"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="FLj-NX-Dcp">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="487"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2zM-i5-v5T">
@@ -11867,12 +11878,12 @@
         <image name="weixin_logo.png" width="40" height="40"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="kod-tF-SWu"/>
+        <segue reference="jqJ-9d-6M3"/>
         <segue reference="ds7-ED-s8D"/>
+        <segue reference="kod-tF-SWu"/>
         <segue reference="za8-Z1-TCX"/>
-        <segue reference="L6L-uQ-DJe"/>
-        <segue reference="Paz-oa-rTw"/>
         <segue reference="4d4-mg-Sy5"/>
+        <segue reference="Paz-oa-rTw"/>
         <segue reference="PBF-TY-a31"/>
     </inferredMetricsTieBreakers>
 </document>

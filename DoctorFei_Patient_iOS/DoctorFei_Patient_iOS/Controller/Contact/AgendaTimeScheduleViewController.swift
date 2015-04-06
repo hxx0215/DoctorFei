@@ -46,8 +46,28 @@ class AgendaTimeScheduleViewController: UIViewController {
         super.viewWillAppear(animated)
         self.loadSchedule()
     }
+    func test(){
+        test()
+    }
+    func testCallByName(bl: Bool,testfunc: @autoclosure ()->Void ){
+        if bl {
+            println("yes")
+        }else {
+            println("no")
+        }
+    }
+    func testCallByValue(bl: Bool,testfunc:Void ){
+        if bl{
+            println("yes")
+        }
+        else{
+            println("no")
+        }
+    }
     
     @IBAction func backButtonClicked(sender: AnyObject) {
+//        testCallByName(true, testfunc: test())
+//        testCallByValue(true, testfunc: test())
         self.navigationController?.popViewControllerAnimated(true)
     }
     func loadSchedule() {
