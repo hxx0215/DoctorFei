@@ -89,6 +89,7 @@
 		6A69A0281A2CC94C00D85777 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A69A0271A2CC94C00D85777 /* libz.dylib */; };
 		6A69A02A1A2D4DC500D85777 /* PushConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6A69A0291A2D4DC500D85777 /* PushConfig.plist */; };
 		6A6D076E1AB1CCD50052EA5A /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A6D076D1AB1CCD50052EA5A /* Message.m */; };
+		6A70B4951AD41801007C7BD0 /* ContactInviteTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A70B4941AD41801007C7BD0 /* ContactInviteTableViewCell.m */; };
 		6A7372C91A2034B4006EF54F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A7372C81A2034B4006EF54F /* main.m */; };
 		6A7372CC1A2034B4006EF54F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A7372CB1A2034B4006EF54F /* AppDelegate.m */; };
 		6A7372D41A2034B4006EF54F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6A7372D31A2034B4006EF54F /* Images.xcassets */; };
@@ -711,6 +712,8 @@
 		6A69A0291A2D4DC500D85777 /* PushConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = PushConfig.plist; sourceTree = "<group>"; };
 		6A6D076C1AB1CCD50052EA5A /* Message.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Message.h; sourceTree = "<group>"; };
 		6A6D076D1AB1CCD50052EA5A /* Message.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Message.m; sourceTree = "<group>"; };
+		6A70B4931AD41801007C7BD0 /* ContactInviteTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactInviteTableViewCell.h; sourceTree = "<group>"; };
+		6A70B4941AD41801007C7BD0 /* ContactInviteTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactInviteTableViewCell.m; sourceTree = "<group>"; };
 		6A7372C31A2034B4006EF54F /* DoctorFei_iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DoctorFei_iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6A7372C71A2034B4006EF54F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6A7372C81A2034B4006EF54F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -1737,6 +1740,8 @@
 				B99EFBA31AA0965500961E61 /* ContactRecordTableViewCell.xib */,
 				6ABF6D781AC1BB2F00C4ED19 /* ContactGroupUserCollectionViewCell.h */,
 				6ABF6D791AC1BB2F00C4ED19 /* ContactGroupUserCollectionViewCell.m */,
+				6A70B4931AD41801007C7BD0 /* ContactInviteTableViewCell.h */,
+				6A70B4941AD41801007C7BD0 /* ContactInviteTableViewCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2919,6 +2924,7 @@
 				6A5DC5F01A33135E00961E53 /* MainChatTableViewCell.m in Sources */,
 				B94F6C651A5D6FBC004E1B93 /* ContactAddFriendViewController.m in Sources */,
 				B9A6F9D61A5EA71800B01686 /* DoctorRankTableViewCell.m in Sources */,
+				6A70B4951AD41801007C7BD0 /* ContactInviteTableViewCell.m in Sources */,
 				B90320BA1A5AC57E001FA485 /* MySelfRootTableViewController.m in Sources */,
 				6A78BE331A222C5B005457F3 /* SetNewPasswordTableViewController.m in Sources */,
 				6ABFDC001A6BAD1200DB8E74 /* MainGroupPopoverViewController.m in Sources */,

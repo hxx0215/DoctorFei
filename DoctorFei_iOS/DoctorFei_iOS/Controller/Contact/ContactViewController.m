@@ -17,6 +17,7 @@
 #import "Chat.h"
 #import "Message.h"
 #import "DataUtil.h"
+#import <RHAddressBook.h>
 @interface ContactViewController ()
     <UITableViewDelegate, UITableViewDataSource, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate, UIActionSheetDelegate, UIGestureRecognizerDelegate, UISearchDisplayDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -28,11 +29,13 @@
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *tableVIewTopConstraint;
 
+@property (nonatomic, strong) RHAddressBook *addressbook;
+
 @end
 
 @implementation ContactViewController
 {
-    NSArray *friendArray, *tableViewDataArray;
+    NSArray *friendArray, *tableViewDataArray, *needInvitePersonArray;
     NSMutableArray *searchResultArray;
     NSIndexPath *currentIndexPath;
 }
@@ -70,6 +73,27 @@
         self.navigationItem.rightBarButtonItem.enabled = NO;
     }
     self.cellSelected = [NSMutableArray new];
+    
+    
+    if ([RHAddressBook authorizationStatus] == RHAuthorizationStatusNotDetermined) {
+        [[[RHAddressBook alloc]init] requestAuthorizationWithCompletion:^(bool granted, NSError *error) {
+            if (!granted) {
+                UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示" message:@"没有获取到通讯录权限, 将不能使用推荐功能" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                [alert show];
+                self.addressbook = nil;
+            }else{
+                self.addressbook = [[RHAddressBook alloc]init];
+            }
+        }];
+    }
+    if ([RHAddressBook authorizationStatus] == RHAuthorizationStatusDenied || [RHAddressBook authorizationStatus] == RHAuthorizationStatusRestricted) {
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示" message:@"没有获取到通讯录, 将不能使用推荐功能" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [alert show];
+    }
+    if ([RHAddressBook authorizationStatus] == RHAuthorizationStatusAuthorized) {
+        self.addressbook = [[RHAddressBook alloc]init];
+    }
+    
 }
 
 - (void)initStableTableData{
@@ -318,6 +342,9 @@
         return 1;
     }
     if (self.contactMode == ContactViewControllerModeNormal)
+//        if (self.addressbook != nil) {
+//            return tableViewDataArray.count + 2;
+//        }
         return tableViewDataArray.count + 1;
     return tableViewDataArray.count;
 }
@@ -341,6 +368,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 
     static NSString *ContactFriendCellIdentifier = @"ContactFriendCellIdentifier";
+    static NSString *ContactInviteCellIdentifier = @"ContactInviteCellIdentifier";
     if (tableView == self.searchDisplayController.searchResultsTableView) {
         ContactFriendTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:ContactFriendCellIdentifier];
         [cell setDataFriend:searchResultArray[indexPath.row]];
