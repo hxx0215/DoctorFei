@@ -34,4 +34,6 @@
 + (void)getDoctorScheduleWithParameters: (id)parameters success:(void (^)(AFHTTPRequestOperation *operation, id resoponseObject))success failure:(void(^)(AFHTTPRequestOperation *operation, NSError *error))failure;
 //获取医生说说
 + (void)getDoctorShuoShuoWithParameters: (id)parameters success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void(^)(AFHTTPRequestOperation *operation, NSError *error))failure;
+//获取区域名称列表
++ (void)getAreaListWithParameters: (id)parameters success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void(^)(AFHTTPRequestOperation *operation, NSError *error))failure;
 @end

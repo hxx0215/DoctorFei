@@ -24,6 +24,32 @@ import UIKit
     weak var delegate:androidTableViewDelegate?
     weak var dataSource:androidTableViewDataSource?
     let androidTableViewCellIdentifier = "AndroidTableViewCellIdentifier"
+    var currentCity:String{
+        get{
+            if let text = self.cityButton.titleLabel?.text{
+                return text
+            }
+            else {
+                return ""
+            }
+        }
+        set{
+            self.cityButton.setTitle(newValue, forState: UIControlState.Normal)
+        }
+    }
+    var currentArea:String{
+        get{
+            if let text = self.areaButton.titleLabel?.text{
+                return text
+            }
+            else{
+                return ""
+            }
+        }
+        set{
+            self.areaButton.setTitle(newValue, forState: UIControlState.Normal)
+        }
+    }
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroudView = UIView(frame: frame)
@@ -86,6 +112,12 @@ import UIKit
         }
         cell?.textLabel?.text = self.dataSource?.androidTableView(self, cellForRowAtIndexPath: indexPath)
         return cell!
+    }
+    override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
+        var touch = touches.anyObject() as UITouch
+        NSLog("%@", NSStringFromCGPoint(touch.locationInView(self)))
+        NSLog("%@", NSStringFromCGPoint(touch.locationInView(self.tableView)))
+        self.removeFromSuperview()
     }
     /*
     // Only override drawRect: if you perform custom drawing.
