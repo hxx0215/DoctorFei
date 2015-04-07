@@ -85,10 +85,19 @@ import UIKit
     func showInView(sView: UIView!){
         self.layoutWithSuperView(sView)
         sView.addSubview(self)
+        self.alpha = 0
+        UIView.animateWithDuration(0.5, animations: {
+            self.alpha = 1.0
+        })
         tableView.reloadData()
     }
     func dismiss(){
-        self.removeFromSuperview()
+        self.alpha = 1.0
+        UIView.animateWithDuration(0.5, animations: {
+            self.alpha = 0.0
+            }, completion:{finished in
+            self.removeFromSuperview()
+            })
     }
     func layoutWithSuperView(sView: UIView!){
         self.frame = sView.bounds
@@ -111,13 +120,21 @@ import UIKit
             cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: androidTableViewCellIdentifier)
         }
         cell?.textLabel?.text = self.dataSource?.androidTableView(self, cellForRowAtIndexPath: indexPath)
+        if (cell?.textLabel?.text == self.cityButton.currentTitle)||(cell?.textLabel?.text == self.areaButton.currentTitle){
+            cell?.accessoryType = UITableViewCellAccessoryType.Checkmark
+        }else{
+            cell?.accessoryType = UITableViewCellAccessoryType.None
+        }
         return cell!
+    }
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        self.delegate?.androidTableView!(self, didSelectRowAtIndexPath: indexPath)
     }
     override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
         var touch = touches.anyObject() as UITouch
         NSLog("%@", NSStringFromCGPoint(touch.locationInView(self)))
         NSLog("%@", NSStringFromCGPoint(touch.locationInView(self.tableView)))
-        self.removeFromSuperview()
+        self.dismiss()
     }
     /*
     // Only override drawRect: if you perform custom drawing.
