@@ -53,6 +53,9 @@ class HisPageViewController: UIViewController,UITableViewDelegate,UITableViewDat
         self.myContentArray.removeAllObjects()
         self.repostContentArray.removeAllObjects()
     }
+    @IBAction func segmentChanged(sender: UISegmentedControl) {
+        self.contentTableView.reloadData()
+    }
     @IBAction func backButtonClicked(sender: AnyObject) {
         self.navigationController?.popViewControllerAnimated(true)
     }
