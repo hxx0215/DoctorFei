@@ -26,6 +26,7 @@
 #define kMethodGetDoctorDaylog @"get.doctor.daylog"
 #define kMethodSetDoctorDaylog @"set.doctor.daylog"
 #define kMethodUpdateDoctorDaylog @"update.doctor.daylog"
+#define kMethodSetDoctorDayZZ @"set.doctor.dayzz"
 #define kMethodDoctorShuoshuo @"get.doctor.shuoshuo"
 #define kMethodDelDoctorShuoshuoOrDay @"set.doctor.delday"
 #define kMethodSetDoctorShuoshuo @"set.doctor.shuoshuo"
@@ -159,6 +160,10 @@
 + (void)setDoctorDaylogWithParameters: (id)parameters WithBodyParameters:(id)bodyParameters success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
 {
     [[self sharedManager]defaultPostWithMethod:kMethodSetDoctorDaylog WithParameters:parameters WithBodyParameters:bodyParameters success:success failure:failure];
+}
+
++ (void)setDoctorDayZZWithParameters: (id)parameters success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure {
+    [[self sharedManager]defaultGetWithMethod:kMethodSetDoctorDayZZ WithParameters:parameters success:success failure:failure];
 }
 
 + (void)getDoctorDaylogWithParameters: (id)parameters success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure

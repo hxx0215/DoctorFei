@@ -57,16 +57,23 @@
         Friends *friend = [Friends MR_findFirstByAttribute:@"userId" withValue:_currentDoctorId];
         if (friend) {
             [_nameLabel setText:friend.realname];
-            //TODO nickName; 采用Category通用解决
+//            TODO nickName; 采用Category通用解决
             if (friend.icon.length) {
                 [_avatarImageView sd_setImageWithURL:[NSURL URLWithString:friend.icon] placeholderImage:[UIImage imageNamed:@"home_user_example_pic"]];
             }
             else{
                 [_avatarImageView setImage:[UIImage imageNamed:@"home_user_example_pic"]];
             }
-            //TODO 个人信息补全后添加
-            [_hospitalLabel setText:@""];
-            [_departAndJobLabel setText: @""];
+            [_hospitalLabel setText:friend.hospital];
+            NSMutableString *infoString = [NSMutableString string];
+            if (friend.department.length > 0) {
+                [infoString appendString:friend.department];
+                [infoString appendString:@" "];
+            }
+            if (friend.jobTitle.length > 0) {
+                [infoString appendString:friend.jobTitle];
+            }
+            [_departAndJobLabel setText:infoString];
         }
     }
 

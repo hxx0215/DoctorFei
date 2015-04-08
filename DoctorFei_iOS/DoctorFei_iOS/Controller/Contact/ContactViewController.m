@@ -253,19 +253,38 @@
             indexPath = [self.tableView indexPathForCell:(UITableViewCell *)sender];
             currentFriend = tableViewDataArray[indexPath.section - 1][indexPath.row];
         }
-        Chat *chat = [Chat MR_findFirstWithPredicate:[NSPredicate predicateWithFormat: @"type <= %@ AND ANY user == %@", @3, currentFriend]];
-        if (chat == nil) {
-            chat = [Chat MR_createEntity];
-            if (currentFriend.userType.intValue == 2) {
-                chat.type = @1;
-            }else{
-                chat.type = @0;
+//        Chat *chat = [Chat MR_findFirstWithPredicate:[NSPredicate predicateWithFormat: @"type <= %@ AND ANY user == %@", @3, currentFriend]];
+//        if (chat == nil) {
+//            chat = [Chat MR_createEntity];
+//            if (currentFriend.userType.intValue == 2) {
+//                chat.type = @1;
+//            }else{
+//                chat.type = @0;
+//            }
+//            [chat addUserObject:currentFriend];
+////            chat.user = [chat.user setByAddingObject:currentFriend];
+//        }
+//        [[NSManagedObjectContext MR_defaultContext]MR_saveToPersistentStoreAndWait];
+//        [vc setCurrentChat:chat];
+        Chat *currentChat = nil;
+        for (Chat *chat in currentFriend.chat) {
+            if (chat.type.intValue < 3) {
+                currentChat = chat;
+                break;
             }
-            [chat addUserObject:currentFriend];
-//            chat.user = [chat.user setByAddingObject:currentFriend];
         }
-        [[NSManagedObjectContext MR_defaultContext]MR_saveToPersistentStoreAndWait];
-        [vc setCurrentChat:chat];
+        if (currentChat == nil) {
+            currentChat = [Chat MR_createEntity];
+            if (currentFriend.userType.intValue == 2) {
+                currentChat.type = @1;
+            }else{
+                currentChat.type = @0;
+            }
+            [currentChat addUserObject:currentFriend];
+            [[NSManagedObjectContext MR_defaultContext]MR_saveToPersistentStoreAndWait];
+        }
+        [vc setCurrentChat:currentChat];
+        
 //        vc.isDoctor = (self.segmentControl.selectedSegmentIndex == 0);
 //        if (indexPath != nil) {
 //            [vc setCurrentFriend:searchResultArray[indexPath.row]];
@@ -342,9 +361,6 @@
         return 1;
     }
     if (self.contactMode == ContactViewControllerModeNormal)
-//        if (self.addressbook != nil) {
-//            return tableViewDataArray.count + 2;
-//        }
         return tableViewDataArray.count + 1;
     return tableViewDataArray.count;
 }

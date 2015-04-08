@@ -44,6 +44,7 @@
         }else{
             _deleteButton.hidden = YES;
             _repostButton.hidden = NO;
+            self.navigationItem.rightBarButtonItem = nil;
         }
     }
 }
@@ -118,6 +119,25 @@
 }
 
 - (IBAction)repostButtonClicked:(id)sender {
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view.window animated:YES];
+    hud.labelText = @"转载日志中...";
+    NSNumber *userId = [[NSUserDefaults standardUserDefaults]objectForKey:@"UserId"];
+    NSDictionary *param = @{
+                            @"doctorid": userId,
+                            @"id": _currentDayLog.dayLogId
+                            };
+    [DoctorAPI setDoctorDayZZWithParameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"%@",responseObject);
+        NSDictionary *dic = [responseObject firstObject];
+        hud.mode = MBProgressHUDModeText;
+        hud.labelText = dic[@"msg"];
+        [hud hide:YES afterDelay:1.0f];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"%@",error.localizedDescription);
+        hud.mode = MBProgressHUDModeText;
+        hud.labelText = error.localizedDescription;
+        [hud hide:YES afterDelay:1.0f];
+    }];
 }
 
 #pragma mark - UIAlertView Delegate

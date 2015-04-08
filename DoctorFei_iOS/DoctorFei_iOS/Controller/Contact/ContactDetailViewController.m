@@ -39,6 +39,7 @@
 #import "ImageDetailViewController.h"
 #import "JSQAudioMediaItem.h"
 #import "GroupChat.h"
+#import "MyPageViewController.h"
 typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
     SMSToolbarSendMethodVoice,
     SMSToolbarSendMethodText
@@ -750,6 +751,10 @@ typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
         [vc setCurrentGroupChat:_currentChat.groupChat];
 //        [vc setCurrentChat:_currentChat];
     }
+    else if ([segue.identifier isEqualToString:@"ContactDoctorPageSegueIdentfier"]) {
+        MyPageViewController *vc = [segue destinationViewController];
+        [vc setCurrentDoctorId:sender];
+    }
 }
 
 #pragma mark - Messages view controller
@@ -878,11 +883,16 @@ typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
         NSArray *array = [userSenderId componentsSeparatedByString:@";"];
         NSNumber *userId = @([array[0]intValue]);
         NSNumber *userType = @([array[1]intValue]);
-        Friends *friend = [Friends MR_findFirstWithPredicate:[NSPredicate predicateWithFormat:@"userId == %@ AND userType == %@", userId, userType]];
-        if (userType.intValue == 2) {
-            [self performSegueWithIdentifier:@"ContactDetailDoctorSegueIdentifier" sender:friend];
-        }else{
-            [self performSegueWithIdentifier:@"ContactDetailMemberSegueIdentifier" sender:friend];
+        if (_currentChat.type.intValue == 1){
+            [self performSegueWithIdentifier:@"ContactDoctorPageSegueIdentfier" sender:userId];
+        }
+        else{
+            Friends *friend = [Friends MR_findFirstWithPredicate:[NSPredicate predicateWithFormat:@"userId == %@ AND userType == %@", userId, userType]];
+            if (userType.intValue == 2) {
+                [self performSegueWithIdentifier:@"ContactDetailDoctorSegueIdentifier" sender:friend];
+            }else{
+                [self performSegueWithIdentifier:@"ContactDetailMemberSegueIdentifier" sender:friend];
+            }
         }
 //        [self performSegueWithIdentifier:@"FriendDetailSegueIdentifier" sender:nil];
     }
