@@ -30,6 +30,7 @@
 #define kMethodGetDoctorSchedule @"get.doctor.schedule"
 #define kMethodGetDoctorShuoshuo @"get.doctor.shuoshuo"
 #define kMethodGetAreaList @"get.area.list"
+#define kMethodGetOrgInfo @"get.org.info"
 @implementation MemberAPI
 + (void)updateInfomationWithParameters: (id)parameters success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
 {
@@ -132,5 +133,9 @@
 //获取地区列表
 + (void)getAreaListWithParameters:(id)parameters success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure{
     [[self sharedManager] defaultGetWithMethod:kMethodGetAreaList WithParameters:parameters success:success failure:failure];
+}
+//获取机构列表
++ (void)getOrgListWithParameters:(id)parameters success:(void (^)(AFHTTPRequestOperation *, id))success failure:(void (^)(AFHTTPRequestOperation *, NSError *))failure{
+    [[self sharedManager] defaultGetWithMethod:kMethodGetOrgInfo WithParameters:parameters success:success failure:failure];
 }
 @end

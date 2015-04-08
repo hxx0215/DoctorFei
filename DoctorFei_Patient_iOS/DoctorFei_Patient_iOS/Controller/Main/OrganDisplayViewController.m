@@ -66,7 +66,18 @@
         self.areaData = [[[responseObject firstObject] objectForKey:@"data"] mutableCopy];
         self.currentCity = @"182";
         self.currentArea = @"1247";
+        [self getDisplayData];
     }failure:^(AFHTTPRequestOperation *operation, NSError *error){
+        
+    }];
+}
+- (void)getDisplayData{
+    NSDictionary *params = @{@"id": @"0",
+                             @"cid": _currentCity,
+                             @"rid": _currentArea};
+    [MemberAPI getOrgListWithParameters:params success:^(AFHTTPRequestOperation *operation,id responseObject) {
+        NSLog(@"%@",responseObject);
+    }failure:^(AFHTTPRequestOperation *operation,NSError *error){
         
     }];
 }
