@@ -14,6 +14,7 @@
 #import "SocketConnection.h"
 #import "ContactDetailViewController.h"
 #import "BaseHTTPRequestOperationManager.h"
+#import "OrganDisplayViewController.h"
 
 @interface MainViewController ()
     <UITableViewDelegate, UITableViewDataSource, DZNEmptyDataSetDelegate, DZNEmptyDataSetSource, UIGestureRecognizerDelegate>
@@ -97,6 +98,10 @@
         Chat *chat = chatArray[indexPath.row];
 //        [vc setCurrentFriend:chat.user];
         [vc setCurrentChat:chat];
+    }
+    if ([segue.identifier isEqualToString:@"ShowProjectInfoSegueIdentifier"]){
+        OrganDisplayViewController *vc = [segue destinationViewController];
+        vc.type = OrganTypeOutstanding;
     }
 }
 

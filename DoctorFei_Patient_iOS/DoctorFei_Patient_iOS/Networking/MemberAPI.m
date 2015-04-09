@@ -31,6 +31,7 @@
 #define kMethodGetDoctorShuoshuo @"get.doctor.shuoshuo"
 #define kMethodGetAreaList @"get.area.list"
 #define kMethodGetOrgInfo @"get.org.info"
+#define kMethodGetProjectInformation @"get.project.information"
 @implementation MemberAPI
 + (void)updateInfomationWithParameters: (id)parameters success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
 {
@@ -138,4 +139,8 @@
 + (void)getOrgListWithParameters:(id)parameters success:(void (^)(AFHTTPRequestOperation *, id))success failure:(void (^)(AFHTTPRequestOperation *, NSError *))failure{
     [[self sharedManager] defaultGetWithMethod:kMethodGetOrgInfo WithParameters:parameters success:success failure:failure];
 }
++ (void)getOutStandingSampleWithParameters:(id)parameters success:(void (^)(AFHTTPRequestOperation *, id))success failure:(void (^)(AFHTTPRequestOperation *, NSError *))failure{
+    [[self sharedManager] defaultGetWithMethod:kMethodGetProjectInformation WithParameters:parameters success:success failure:failure];
+}
 @end
+

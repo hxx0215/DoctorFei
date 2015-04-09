@@ -14,3 +14,4 @@
 #import "Daylog.h"
 #import "Friends.h"
 #import "ShareUtil.h"
+#import "NSString+Crypt.h"
