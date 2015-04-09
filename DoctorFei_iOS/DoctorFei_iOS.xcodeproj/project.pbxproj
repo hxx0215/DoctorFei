@@ -45,6 +45,7 @@
 		6A2BD5E31A31E025002F7644 /* ContactFriendSetNoteTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A2BD5E21A31E025002F7644 /* ContactFriendSetNoteTableViewController.m */; };
 		6A2BD6071A31EC44002F7644 /* ChatAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A2BD6061A31EC44002F7644 /* ChatAPI.m */; };
 		6A2BD60A1A31EDA7002F7644 /* FetchChatUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A2BD6091A31EDA7002F7644 /* FetchChatUtil.m */; };
+		6A2E54151AD6BA220001222E /* BaiduMapAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A2E54141AD6BA220001222E /* BaiduMapAPI.framework */; };
 		6A32523C1A827A5C00B5E31F /* AgendaArrangementDetailEventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A32523B1A827A5C00B5E31F /* AgendaArrangementDetailEventViewController.m */; };
 		6A32523F1A82835300B5E31F /* AgendaArrangement.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A32523E1A82835300B5E31F /* AgendaArrangement.m */; };
 		6A3252421A83697800B5E31F /* MainArrangementNewTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A3252411A83697800B5E31F /* MainArrangementNewTableViewCell.m */; };
@@ -91,7 +92,7 @@
 		6A6D076E1AB1CCD50052EA5A /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A6D076D1AB1CCD50052EA5A /* Message.m */; };
 		6A70B4951AD41801007C7BD0 /* ContactInviteTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A70B4941AD41801007C7BD0 /* ContactInviteTableViewCell.m */; };
 		6A7372C91A2034B4006EF54F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A7372C81A2034B4006EF54F /* main.m */; };
-		6A7372CC1A2034B4006EF54F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A7372CB1A2034B4006EF54F /* AppDelegate.m */; };
+		6A7372CC1A2034B4006EF54F /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6A7372CB1A2034B4006EF54F /* AppDelegate.mm */; };
 		6A7372D41A2034B4006EF54F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6A7372D31A2034B4006EF54F /* Images.xcassets */; };
 		6A73763A1A208972006EF54F /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A7376391A208972006EF54F /* MainViewController.m */; };
 		6A73763D1A20CFAD006EF54F /* ContactViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A73763C1A20CFAD006EF54F /* ContactViewController.m */; };
@@ -643,6 +644,7 @@
 		6A2BD6061A31EC44002F7644 /* ChatAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatAPI.m; sourceTree = "<group>"; };
 		6A2BD6081A31EDA7002F7644 /* FetchChatUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FetchChatUtil.h; path = ../Networking/FetchChatUtil.h; sourceTree = "<group>"; };
 		6A2BD6091A31EDA7002F7644 /* FetchChatUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FetchChatUtil.m; path = ../Networking/FetchChatUtil.m; sourceTree = "<group>"; };
+		6A2E54141AD6BA220001222E /* BaiduMapAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BaiduMapAPI.framework; sourceTree = "<group>"; };
 		6A32523A1A827A5C00B5E31F /* AgendaArrangementDetailEventViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AgendaArrangementDetailEventViewController.h; sourceTree = "<group>"; };
 		6A32523B1A827A5C00B5E31F /* AgendaArrangementDetailEventViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AgendaArrangementDetailEventViewController.m; sourceTree = "<group>"; };
 		6A32523D1A82835300B5E31F /* AgendaArrangement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AgendaArrangement.h; sourceTree = "<group>"; };
@@ -718,7 +720,7 @@
 		6A7372C71A2034B4006EF54F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6A7372C81A2034B4006EF54F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		6A7372CA1A2034B4006EF54F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		6A7372CB1A2034B4006EF54F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		6A7372CB1A2034B4006EF54F /* AppDelegate.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = AppDelegate.mm; sourceTree = "<group>"; };
 		6A7372D31A2034B4006EF54F /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		6A7376381A208972006EF54F /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		6A7376391A208972006EF54F /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
@@ -1303,6 +1305,7 @@
 				6A69A0191A2CC8FE00D85777 /* CFNetwork.framework in Frameworks */,
 				6AA94DB61AB812A60095D1C8 /* libopencore-amrnb.a in Frameworks */,
 				6A69A0171A2CC8EB00D85777 /* libPushSDK.a in Frameworks */,
+				6A2E54151AD6BA220001222E /* BaiduMapAPI.framework in Frameworks */,
 				E5DC0A78865BEBA4AB7CC615 /* libPods-DoctorFei_iOS.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1332,6 +1335,7 @@
 		6A69A0131A2CC8E400D85777 /* Dependence */ = {
 			isa = PBXGroup;
 			children = (
+				6A2E54141AD6BA220001222E /* BaiduMapAPI.framework */,
 				6AA94DA61AB812A60095D1C8 /* arm */,
 				6A69A0141A2CC8EB00D85777 /* JPush */,
 			);
@@ -1369,7 +1373,7 @@
 			isa = PBXGroup;
 			children = (
 				6A7372CA1A2034B4006EF54F /* AppDelegate.h */,
-				6A7372CB1A2034B4006EF54F /* AppDelegate.m */,
+				6A7372CB1A2034B4006EF54F /* AppDelegate.mm */,
 				6A7372D31A2034B4006EF54F /* Images.xcassets */,
 				6A21F5601A680F6D00504C65 /* Main.storyboard */,
 				6A7375611A207E89006EF54F /* View */,
@@ -2892,7 +2896,7 @@
 				6A73763D1A20CFAD006EF54F /* ContactViewController.m in Sources */,
 				6A3DA1031A7E7BF200BE721B /* MainCoreData.xcdatamodeld in Sources */,
 				D3F448921A30BC6700B20E0A /* MoreFeedbackViewController.m in Sources */,
-				6A7372CC1A2034B4006EF54F /* AppDelegate.m in Sources */,
+				6A7372CC1A2034B4006EF54F /* AppDelegate.mm in Sources */,
 				6A2BD5CF1A3008BF002F7644 /* SetOnlineStateUtil.m in Sources */,
 				6A7376481A20D052006EF54F /* MyselfTableViewController.m in Sources */,
 				6A73764F1A20D829006EF54F /* MainTabBarViewController.m in Sources */,
@@ -3042,6 +3046,11 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/DoctorFei_iOS/Dependence",
+				);
+				GCC_INPUT_FILETYPE = automatic;
 				INFOPLIST_FILE = DoctorFei_iOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -3063,6 +3072,11 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/DoctorFei_iOS/Dependence",
+				);
+				GCC_INPUT_FILETYPE = automatic;
 				INFOPLIST_FILE = DoctorFei_iOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
