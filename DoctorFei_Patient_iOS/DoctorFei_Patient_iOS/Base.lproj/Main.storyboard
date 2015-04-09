@@ -265,7 +265,8 @@
                                                             <exclude reference="uZZ-yy-e3Z"/>
                                                         </mask>
                                                     </variation>
-                                                    <variation key="heightClass=regular-widthClass=compact">
+                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                        <rect key="frame" x="71" y="22" width="229" height="21"/>
                                                         <mask key="constraints">
                                                             <include reference="uZZ-yy-e3Z"/>
                                                         </mask>
@@ -4941,6 +4942,10 @@
                                             </variation>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="hospitalImage" destination="Jv1-Ba-ndm" id="PaI-LA-y77"/>
+                                            <outlet property="hospitalName" destination="Nkm-IV-AmS" id="dYZ-g9-Bt0"/>
+                                            <outlet property="officeOrg" destination="poZ-vY-QV0" id="Om1-5Q-VBB"/>
+                                            <outlet property="rate" destination="R1K-DB-83U" id="9NO-fd-xYx"/>
                                             <segue destination="HtL-N6-3NR" kind="show" id="dg6-Nk-rw2"/>
                                         </connections>
                                     </tableViewCell>

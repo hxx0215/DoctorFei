@@ -23,6 +23,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *areaButton;
 @property (copy, nonatomic) NSString *currentCity;
 @property (copy, nonatomic) NSString *currentArea;
+@property (strong, nonatomic) NSMutableArray *tableData;
 @end
 
 
@@ -76,7 +77,8 @@
                              @"cid": _currentCity,
                              @"rid": _currentArea};
     [MemberAPI getOrgListWithParameters:params success:^(AFHTTPRequestOperation *operation,id responseObject) {
-        NSLog(@"%@",responseObject);
+        self.tableData = responseObject;
+        [self.tableView reloadData];
     }failure:^(AFHTTPRequestOperation *operation,NSError *error){
         
     }];
@@ -106,12 +108,13 @@
 #pragma mark - UITableView Datasource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 1;
+    return self.tableData.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *OrganDisplayCellIdentifier = @"OrganDisplayCellIdentifier";
     OrganDisplayTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:OrganDisplayCellIdentifier forIndexPath:indexPath];
+    [cell setCellData:self.tableData[indexPath.row]];
     return cell;
 }
 
@@ -142,6 +145,7 @@
     }else{
         self.currentArea = [self.areaData[indexPath.row] objectForKey:@"areaid"];
     }
+    [self getDisplayData];
     [self.androidTableView dismiss];
 }
 #pragma mark - Actions

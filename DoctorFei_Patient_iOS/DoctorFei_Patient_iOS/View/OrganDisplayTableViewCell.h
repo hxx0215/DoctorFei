@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface OrganDisplayTableViewCell : UITableViewCell
-
+- (void)setCellData:(NSDictionary *)data;
 @end
