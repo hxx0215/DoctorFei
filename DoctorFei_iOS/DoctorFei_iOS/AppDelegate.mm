@@ -26,6 +26,7 @@
 {
     BMKLocationService *locationService;
     BMKMapManager *mapManager;
+    BOOL ret;
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
@@ -63,7 +64,7 @@
     [APService setupWithOption:launchOptions];
     
     mapManager = [[BMKMapManager alloc]init];
-    BOOL ret = [mapManager start:@"21FP0IUKWmWrfHsnQMAUhxlE" generalDelegate:nil];
+    ret = [mapManager start:@"21FP0IUKWmWrfHsnQMAUhxlE" generalDelegate:nil];
     if (!ret) {
         NSLog(@"BaiduMapManager Start Error!");
         [self setPushUser];
@@ -105,7 +106,12 @@
     [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
 
     [SetOnlineStateUtil online];
-    [self setPushUser];
+    if (ret) {
+        [self beginFetchUserLocation];
+    }else{
+        [self setPushUser];
+    }
+//    [self setPushUser];
     NSNumber *userId = [[NSUserDefaults standardUserDefaults] objectForKey:@"UserId"];
     if (userId) {
         [[SocketConnection sharedConnection]beginListen];
