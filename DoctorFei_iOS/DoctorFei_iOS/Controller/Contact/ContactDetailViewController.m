@@ -40,6 +40,7 @@
 #import "JSQAudioMediaItem.h"
 #import "GroupChat.h"
 #import "MyPageViewController.h"
+#import "EmotionsKeyboardBuilder.h"
 typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
     SMSToolbarSendMethodVoice,
     SMSToolbarSendMethodText
@@ -179,6 +180,7 @@ typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
     faceButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [faceButton setImage:[UIImage imageNamed:@"face_btn"] forState:UIControlStateNormal];
     [faceButton setImage:[UIImage imageNamed:@"face_btn_after"] forState:UIControlStateHighlighted];
+    [faceButton addTarget:self action:@selector(faceButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
     
     pictureButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [pictureButton setImage:[UIImage imageNamed:@"pic_btn"] forState:UIControlStateNormal];
@@ -297,6 +299,17 @@ typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
 
 - (void)keyboardButtonClicked:(UIButton *)sender {
     [self setToolbarSendMethod:SMSToolbarSendMethodText];
+}
+
+- (void)faceButtonClicked:(UIButton *)sender {
+    if (self.inputToolbar.contentView.textView.isFirstResponder) {
+        if (self.inputToolbar.contentView.textView.emoticonsKeyboard) [self.inputToolbar.contentView.textView switchToDefaultKeyboard];
+        else [self.inputToolbar.contentView.textView switchToEmoticonsKeyboard:[EmotionsKeyboardBuilder sharedEmoticonsKeyboard]];
+    }else{
+        [self.inputToolbar.contentView.textView switchToEmoticonsKeyboard:[EmotionsKeyboardBuilder sharedEmoticonsKeyboard]];
+        [self.inputToolbar.contentView.textView becomeFirstResponder];
+    }
+
 }
 - (IBAction)backButtonClicked:(id)sender {
     if (_currentChat.messages.count == 0) {

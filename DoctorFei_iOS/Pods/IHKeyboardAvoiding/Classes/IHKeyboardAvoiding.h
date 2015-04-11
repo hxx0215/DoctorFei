@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Idle Hands Apps. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 enum KeyboardAvoidingMode {
     KeyboardAvoidingModeMaximum = 0, // Avoiding starts with keyboard and moves up same distance as keyboard

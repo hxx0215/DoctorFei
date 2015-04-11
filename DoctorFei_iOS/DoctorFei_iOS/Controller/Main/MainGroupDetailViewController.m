@@ -172,10 +172,10 @@
             if (dict[@"state"] && [dict[@"state"]intValue] == 0) {
                 break;
             }
-            Friends *friend = [Friends MR_findFirstByAttribute:@"userId" withValue:dict[@"userid"]];
+            Friends *friend = [Friends MR_findFirstByAttribute:@"userId" withValue:@([dict[@"userid"] intValue])];
             if (friend == nil) {
                 friend = [Friends MR_createEntity];
-                friend.userId = dict[@"userid"];
+                friend.userId = @([dict[@"userid"] intValue]);
             }
             friend.userType = usertype;
             friend.email = dict[@"Email"];

@@ -115,6 +115,7 @@ CG_INLINE BOOL isIPhone4()
         [self setCancelBarButtonItem:sysCancelButton];
         [self setDoneBarButtonItem:sysDoneButton];
 
+        self.tapDismissAction = TapActionNone;
         //allows us to use this without needing to store a reference in calling class
         self.selfReference = self;
     }
@@ -212,8 +213,34 @@ CG_INLINE BOOL isIPhone4()
 
     self.pickerView = [self configuredPickerView];
     NSAssert(_pickerView != NULL, @"Picker view failed to instantiate, perhaps you have invalid component data.");
+    // toolbar hidden remove the toolbar frame and update pickerview frame
+    if ( self.toolbar.hidden )
+    {
+        masterView.frame = CGRectMake(0, 0, self.viewSize.width, 220);
+        self.pickerView.frame = CGRectMake(0, 4, self.viewSize.width, 216);
+    }
     [masterView addSubview:_pickerView];
     [self presentPickerForView:masterView];
+
+    switch (self.tapDismissAction)
+    {
+        case TapActionNone:break;
+        case TapActionSuccess:{
+            // add tap dismiss action
+            self.actionSheet.window.userInteractionEnabled = YES;
+            UITapGestureRecognizer *tapAction = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(actionPickerDone:)];
+            [self.actionSheet.window addGestureRecognizer:tapAction];
+            break;
+        }
+        case TapActionCancel:{
+            // add tap dismiss action
+            self.actionSheet.window.userInteractionEnabled = YES;
+            UITapGestureRecognizer *tapAction = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(actionPickerCancel:)];
+            [self.actionSheet.window addGestureRecognizer:tapAction];
+            break;
+        }
+    };
+
 }
 
 - (IBAction)actionPickerDone:(id)sender
@@ -639,8 +666,11 @@ CG_INLINE BOOL isIPhone4()
     }
     else if ( (self.containerView) )
     {
-        [popover presentPopoverFromRect:_containerView.bounds inView:_containerView
-               permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [popover presentPopoverFromRect:_containerView.bounds inView:_containerView
+                   permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+
+        });
         return;
     }
     // Unfortunately, things go to hell whenever you try to present a popover from a table view cell.  These are failsafes.
@@ -650,22 +680,39 @@ CG_INLINE BOOL isIPhone4()
     {
         origin = (_containerView.superview ? _containerView.superview : _containerView);
         presentRect = origin.bounds;
-        [popover presentPopoverFromRect:presentRect inView:origin permittedArrowDirections:UIPopoverArrowDirectionAny
-                               animated:YES];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [popover presentPopoverFromRect:presentRect inView:origin
+                   permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+
+        });
     }
     @catch (NSException *exception)
     {
         origin = [[[[UIApplication sharedApplication] keyWindow] rootViewController] view];
         presentRect = CGRectMake(origin.center.x, origin.center.y, 1, 1);
-        [popover presentPopoverFromRect:presentRect inView:origin permittedArrowDirections:UIPopoverArrowDirectionAny
-                               animated:YES];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [popover presentPopoverFromRect:presentRect inView:origin
+                   permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+
+        });
     }
 }
 
 #pragma mark - Popoverdelegate
 - (void)popoverControllerDidDismissPopover:(UIPopoverController *)popoverController
 {
-    [self notifyTarget:self.target didCancelWithAction:self.cancelAction origin:[self storedOrigin]];
+    switch (self.tapDismissAction)
+    {
+        case TapActionSuccess:{
+            [self notifyTarget:self.target didSucceedWithAction:self.successAction origin:self.storedOrigin];
+            break;
+        }
+        case TapActionNone:
+        case TapActionCancel:{
+            [self notifyTarget:self.target didCancelWithAction:self.cancelAction origin:self.storedOrigin];
+            break;
+        }
+    };
 }
 
 

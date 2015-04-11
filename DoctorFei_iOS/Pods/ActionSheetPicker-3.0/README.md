@@ -6,11 +6,11 @@
 
 ActionSheetPicker-3.0
 ==================
+
 - [Overview](#overview)
 	- [Benefits](#benefits)
 - [QuickStart](#quickstart)
 	- [Basic Usage](#basic-usage)
-	- [ActionSheetCustomPicker Customisation](#actionsheetcustompicker-customisation)
 - [Installation](#installation)
 - [Example Projects](#example-projects)
 - [Screenshots](#screenshots)
@@ -19,13 +19,9 @@ ActionSheetPicker-3.0
 - [Credits](#credits)
 - [Contributing](#contributing)
 
-Since the [Tim's repo](https://github.com/TimCinel/ActionSheetPicker) is not support iOS 7+, I forked from his repo and implement iOS 7-8 support, and also bunch of UI fixes, crash-fixes and different customisation abilities.
-
-New updates will be added only in this repo.
-
 Please welcome: **ActionSheetPicker-3.0**!
 
-`pod 'ActionSheetPicker-3.0', '~> 1.3.12'` (**iOS 6-7-8** compatible!)
+`pod 'ActionSheetPicker-3.0', '~> 1.5.1'` (**iOS 6-7-8** compatible!)
 
 Improvements more than welcome - they are kindly requested :)
 
@@ -33,7 +29,7 @@ _Regards, Petr Korolev_
 
 ##ActionSheetPicker = UIPickerView + UIActionSheet ##
 
-![ActionSheetLocalePicker](https://raw.githubusercontent.com/skywinder/ActionSheetPicker-3.0/master/Screenshots/locale.png "ActionSheetLocalePicker")
+![Animation](Screenshots/example.gif)
 
 Well, that's how it started. Now, the following is more accurate:
 
@@ -58,21 +54,7 @@ There are 4 distinct picker view options: `ActionSheetStringPicker`, `ActionShee
 
 ### Basic Usage ##
 
-```objective-c
-// Inside a IBAction method:
-
-// Create an array of strings you want to show in the picker:
-NSArray *colors = [NSArray arrayWithObjects:@"Red", @"Green", @"Blue", @"Orange", nil];
-
-[ActionSheetStringPicker showPickerWithTitle:@"Select a Color"
-                                        rows:colors
-                            initialSelection:0
-                                   doneBlock:nil
-                                 cancelBlock:nil
-                                      origin:sender];
-```
-
-#### But you probably want to know when something happens, huh?
+For detailed examples, please look [Wiki-page](https://github.com/skywinder/ActionSheetPicker-3.0/wiki/Basic-Usage) and check [Example Projects](#example-projects) in this repo.
 
 ```obj-c
 // Inside a IBAction method:
@@ -95,63 +77,6 @@ NSArray *colors = [NSArray arrayWithObjects:@"Red", @"Green", @"Blue", @"Orange"
 // You can also use self.view if you don't have a sender
 ```
 
-### ActionSheetCustomPicker Customisation
-
-ActionSheetCustomPicker provides the following delegate function that can be used for customization:
-
-```obj-c
-- (void)actionSheetPicker:(AbstractActionSheetPicker *)actionSheetPicker configurePickerView:(UIPickerView *)pickerView;
-```
-This method is called right before `actionSheetPicker` is presented and it can be used to customize the appearance and properties of the `actionSheetPicker` and the `pickerView` associated with it.
-
-
-#### Want custom buttons view? Ok!
-
-Example with custom text in Done button:
-```obj-c
-    ActionSheetStringPicker *picker = [[ActionSheetStringPicker alloc] initWithTitle:@"Select a Block" rows:colors initialSelection:0 doneBlock:done cancelBlock:cancel origin:sender];
-    [picker setDoneButton:[[UIBarButtonItem alloc] initWithTitle:@"My Text"  style:UIBarButtonItemStylePlain target:nil action:nil]];
-    [picker showActionSheetPicker];
-```
-
-Example with custom button for cancel button:
-```obj-c
-    ActionSheetStringPicker *picker = [[ActionSheetStringPicker alloc] initWithTitle:@"Select a Block" rows:colors initialSelection:0 doneBlock:done cancelBlock:cancel origin:sender];
-    UIButton *cancelButton =  [UIButton buttonWithType:UIButtonTypeCustom];
-    [cancelButton setImage:[UIImage imageNamed:@"cancel.png"] forState:UIControlStateNormal];
-    [cancelButton setFrame:CGRectMake(0, 0, 32, 32)];
-    [picker setCancelButton:[[UIBarButtonItem alloc] initWithCustomView:cancelButton]];
-    [picker showActionSheetPicker];
-```
-
-#### What about custom buttons callbacks? Let's check it out:
- 
-```obj-c
- // Inside a IBAction method:
-
- // Create an array of strings you want to show in the picker:
-NSArray *colors = [NSArray arrayWithObjects:@"Red", @"Green", @"Blue", @"Orange", nil];
- 
- //Create your picker:
-ActionSheetStringPicker *colorPicker = [[ActionSheetStringPicker alloc] initWithTitle:@"Select a color"
-                                                                                 rows:colors
-                                                                     initialSelection:0
-                                                                               target:nil
-                                                                        successAction:nil
-                                                                         cancelAction:nil
-                                                                               origin:sender];
- 
- //You can pass your picker a value on custom button being pressed:
-[colorPicker addCustomButtonWithTitle:@"Value" value:@([colors indexOfObject:colors.lastObject])];
- 
- //Or you can pass it custom block:
-[colorPicker addCustomButtonWithTitle:@"Block" actionBlock:^{
-    NSLog(@"Custom block invoked");
-}];
-
- //If you prefer to send selectors rather than blocks you can use this method:
-[colorPicker addCustomButtonWithTitle:@"Selector" target:self selector:@selector(awesomeSelector)];
-```
  
 ##Installation##
 
@@ -161,7 +86,7 @@ Just add to your Podfile string: `pod 'ActionSheetPicker-3.0'`
 -  The "old school" way is manually add to your project all from [Pickers](/Pickers) folder and import necessary headers.
 
 ## Example Projects##
-#### For iOS 8 (Objective-C + Swift):
+
 `open Example.xcworkspace`
 
 Here is 4 projects:
@@ -189,7 +114,7 @@ Here is 4 projects:
 
 ## Credits
 
-- ActionSheetPicker was originally created by [Tim Cinel](http://github.com/TimCinel) ([@TimCinel](http://twitter.com/TimCinel))
+- ActionSheetPicker was originally created by [Tim Cinel](http://github.com/TimCinel) ([@TimCinel](http://twitter.com/TimCinel)) Since the [Tim's repo](https://github.com/TimCinel/ActionSheetPicker) is not support iOS 7+, I forked from his repo and implement iOS 7-8 support, and also bunch of UI fixes, crash-fixes and different customisation abilities.
 
 - And most of all, thanks to ActionSheetPicker-3.0's [growing list of contributors](https://github.com/skywinder/ActionSheetPicker-3.0/graphs/contributors).
 
