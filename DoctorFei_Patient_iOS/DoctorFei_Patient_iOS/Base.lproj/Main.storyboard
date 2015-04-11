@@ -4400,6 +4400,9 @@
                                                                 <include reference="dtT-Gv-NGj"/>
                                                             </mask>
                                                         </variation>
+                                                        <connections>
+                                                            <segue destination="kgY-37-ggq" kind="show" identifier="ShowNursingSegueIdentifier" id="lSs-Wa-zys"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                                 <constraints>
@@ -4954,72 +4957,6 @@
                                             <outlet property="officeOrg" destination="poZ-vY-QV0" id="Om1-5Q-VBB"/>
                                             <outlet property="rate" destination="R1K-DB-83U" id="9NO-fd-xYx"/>
                                             <segue destination="HtL-N6-3NR" kind="show" id="dg6-Nk-rw2"/>
-                                        </connections>
-                                    </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="OutstandingSampleIdentifier" rowHeight="77" id="kJL-Zx-ycP" customClass="OutstandingSampleTableViewCell" customModule="DoctorFei_Patient_iOS">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kJL-Zx-ycP" id="Hs4-Im-Jd0">
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hospital_pic.png" translatesAutoresizingMaskIntoConstraints="NO" id="T0a-Er-X3K">
-                                                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                                    <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                                        <rect key="frame" x="20" y="9" width="80" height="60"/>
-                                                    </variation>
-                                                </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="河南省人民医院" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hlN-y8-pxG">
-                                                    <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
-                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                    <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                                        <rect key="frame" x="115" y="8" width="265" height="20"/>
-                                                    </variation>
-                                                </label>
-                                                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="三级甲等" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q58-eR-QKn">
-                                                    <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                    <color key="textColor" red="0.43137254899999999" green="0.6588235294" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                    <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                                        <rect key="frame" x="115" y="28" width="265" height="17"/>
-                                                    </variation>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="口腔科" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XkZ-PS-YQE">
-                                                    <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                    <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                                        <rect key="frame" x="115" y="53" width="265" height="15"/>
-                                                    </variation>
-                                                </label>
-                                            </subviews>
-                                            <variation key="default">
-                                                <mask key="subviews">
-                                                    <exclude reference="T0a-Er-X3K"/>
-                                                    <exclude reference="hlN-y8-pxG"/>
-                                                    <exclude reference="q58-eR-QKn"/>
-                                                    <exclude reference="XkZ-PS-YQE"/>
-                                                </mask>
-                                            </variation>
-                                            <variation key="heightClass=regular-widthClass=compact">
-                                                <mask key="subviews">
-                                                    <include reference="T0a-Er-X3K"/>
-                                                    <include reference="hlN-y8-pxG"/>
-                                                    <include reference="q58-eR-QKn"/>
-                                                    <include reference="XkZ-PS-YQE"/>
-                                                </mask>
-                                            </variation>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="hospitalImage" destination="T0a-Er-X3K" id="1HZ-qG-rYS"/>
-                                            <outlet property="infomation" destination="XkZ-PS-YQE" id="c2T-4i-GPT"/>
-                                            <outlet property="officeOrg" destination="XkZ-PS-YQE" id="VwV-qV-6kL"/>
-                                            <outlet property="rate" destination="q58-eR-QKn" id="qgb-l7-iSw"/>
-                                            <outlet property="sampleName" destination="hlN-y8-pxG" id="P8G-Vl-doI"/>
-                                            <outlet property="samplePicture" destination="T0a-Er-X3K" id="Hyn-bn-qtb"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -11990,11 +11927,11 @@
         <image name="weixin_logo.png" width="40" height="40"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="jqJ-9d-6M3"/>
         <segue reference="ds7-ED-s8D"/>
         <segue reference="kod-tF-SWu"/>
+        <segue reference="jqJ-9d-6M3"/>
+        <segue reference="lSs-Wa-zys"/>
         <segue reference="za8-Z1-TCX"/>
-        <segue reference="7KT-OU-nS4"/>
         <segue reference="4d4-mg-Sy5"/>
         <segue reference="Paz-oa-rTw"/>
         <segue reference="PBF-TY-a31"/>

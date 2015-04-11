@@ -103,6 +103,10 @@
         OrganDisplayViewController *vc = [segue destinationViewController];
         vc.type = OrganTypeOutstanding;
     }
+    if ([segue.identifier isEqualToString:@"ShowNursingSegueIdentifier"]){
+        OrganDisplayViewController *vc = [segue destinationViewController];
+        vc.type = OrganTypeNursing;
+    }
 }
 
 #pragma mark - Actions

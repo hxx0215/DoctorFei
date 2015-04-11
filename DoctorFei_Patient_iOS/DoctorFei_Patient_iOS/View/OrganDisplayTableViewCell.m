@@ -41,5 +41,14 @@
         [self.hospitalImage sd_setImageWithURL:[NSURL URLWithString:[[data objectForKey:@"picture"] urlAutoCompelete]]placeholderImage:[UIImage imageNamed:@"hospital_pic.png"]];
         self.rate.text = @"";
     }
+    if (type == OrganTypeNursing){
+        self.hospitalName.text = [data objectForKey:@"name"];
+        self.officeOrg.text = [data objectForKey:@"info"];
+        if ([[data objectForKey:@"sex"] isEqualToString:@"0"])
+            self.rate.text = @"女";
+        else
+            self.rate.text = @"男";
+        [self.hospitalImage sd_setImageWithURL:[NSURL URLWithString:[[data objectForKey:@"icon"] urlAutoCompelete]] placeholderImage:[UIImage imageNamed:@"hospital_pic.png"]];
+    }
 }
 @end

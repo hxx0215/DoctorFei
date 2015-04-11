@@ -68,6 +68,9 @@
 		self.areaButton.hidden = YES;
 		[self getDisplayData];
 	}
+    if (self.type == OrganTypeNursing){
+        [self refreshData:@"15"];
+    }
 }
 
 - (void)refreshData:(NSString *)cityId {
@@ -101,6 +104,17 @@
 		} failure: ^(AFHTTPRequestOperation *operation, NSError *error) {
 		}];
 	}
+    if (self.type == OrganTypeNursing){
+        NSDictionary *params = @{@"id": @"0",
+                                 @"cid": _currentCity,
+                                 @"rid": _currentArea};
+        [MemberAPI getNursingWithParameters:params success:^(AFHTTPRequestOperation *operation, id responseObject){
+            self.tableData = responseObject;
+            [self.tableView reloadData];
+        }failure:^(AFHTTPRequestOperation *operation, NSError *error){
+            
+        }];
+    }
 }
 
 - (void)setCurrentCity:(NSString *)currentCity {
