@@ -27,10 +27,19 @@
 
     // Configure the view for the selected state
 }
-- (void)setCellData:(NSDictionary *)data{
-    self.hospitalName.text = [data objectForKey:@"name"];
-    self.officeOrg.text = [data objectForKey:@"officeorg"];
-    [self.hospitalImage sd_setImageWithURL:[NSURL URLWithString:[[data objectForKey:@"picture"] urlAutoCompelete]]placeholderImage:[UIImage imageNamed:@"hospital_pic.png"]];
-    self.rate.text = @"";
+- (void)setCellData:(NSDictionary *)data withType:(OrganType)type{
+    if (type == OrganTypeShow)
+    {
+        self.hospitalName.text = [data objectForKey:@"name"];
+        self.officeOrg.text = [data objectForKey:@"officeorg"];
+        [self.hospitalImage sd_setImageWithURL:[NSURL URLWithString:[[data objectForKey:@"picture"] urlAutoCompelete]]placeholderImage:[UIImage imageNamed:@"hospital_pic.png"]];
+        self.rate.text = @"";
+    }
+    if (type == OrganTypeOutstanding){
+        self.hospitalName.text = [data objectForKey:@"name"];
+        self.officeOrg.text = [data objectForKey:@"info"];
+        [self.hospitalImage sd_setImageWithURL:[NSURL URLWithString:[[data objectForKey:@"picture"] urlAutoCompelete]]placeholderImage:[UIImage imageNamed:@"hospital_pic.png"]];
+        self.rate.text = @"";
+    }
 }
 @end

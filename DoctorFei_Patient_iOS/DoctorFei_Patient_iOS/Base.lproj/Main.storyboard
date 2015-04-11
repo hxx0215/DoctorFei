@@ -82,6 +82,9 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
+                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                        <rect key="frame" x="70" y="22" width="230" height="20"/>
+                                                    </variation>
                                                 </label>
                                             </subviews>
                                             <constraints>
@@ -433,7 +436,8 @@
                                                             <exclude reference="oaV-C2-FPx"/>
                                                         </mask>
                                                     </variation>
-                                                    <variation key="heightClass=regular-widthClass=compact">
+                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                        <rect key="frame" x="71" y="22" width="229" height="21"/>
                                                         <mask key="constraints">
                                                             <include reference="oaV-C2-FPx"/>
                                                         </mask>
@@ -4952,7 +4956,7 @@
                                             <segue destination="HtL-N6-3NR" kind="show" id="dg6-Nk-rw2"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="OutstandingSampleIdentifier" rowHeight="77" id="kJL-Zx-ycP" customClass="OutstandingSampleTableViewCell">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="OutstandingSampleIdentifier" rowHeight="77" id="kJL-Zx-ycP" customClass="OutstandingSampleTableViewCell" customModule="DoctorFei_Patient_iOS">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kJL-Zx-ycP" id="Hs4-Im-Jd0">
@@ -5126,8 +5130,14 @@
                                 <exclude reference="JAC-24-PFP"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="3Eq-eT-dIS"/>
+                                <exclude reference="qXI-Kg-I9Q"/>
+                                <exclude reference="vMy-8Z-s6O"/>
                                 <exclude reference="HIe-9s-Z0H"/>
                                 <exclude reference="klA-mW-t9K"/>
+                                <exclude reference="JTw-dx-Pr8"/>
+                                <exclude reference="PT8-i7-UVB"/>
+                                <exclude reference="Suj-be-Tre"/>
                                 <exclude reference="3aR-jy-itw"/>
                                 <exclude reference="AXe-kk-9em"/>
                                 <exclude reference="lRA-z8-hgu"/>
@@ -5135,12 +5145,6 @@
                                 <exclude reference="6eY-R7-MLR"/>
                                 <exclude reference="dss-KX-AMa"/>
                                 <exclude reference="i6F-qu-kcQ"/>
-                                <exclude reference="JTw-dx-Pr8"/>
-                                <exclude reference="PT8-i7-UVB"/>
-                                <exclude reference="Suj-be-Tre"/>
-                                <exclude reference="3Eq-eT-dIS"/>
-                                <exclude reference="qXI-Kg-I9Q"/>
-                                <exclude reference="vMy-8Z-s6O"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
@@ -5152,8 +5156,14 @@
                                 <include reference="JAC-24-PFP"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="3Eq-eT-dIS"/>
+                                <include reference="qXI-Kg-I9Q"/>
+                                <include reference="vMy-8Z-s6O"/>
                                 <include reference="HIe-9s-Z0H"/>
                                 <include reference="klA-mW-t9K"/>
+                                <include reference="JTw-dx-Pr8"/>
+                                <include reference="PT8-i7-UVB"/>
+                                <include reference="Suj-be-Tre"/>
                                 <include reference="3aR-jy-itw"/>
                                 <include reference="AXe-kk-9em"/>
                                 <include reference="lRA-z8-hgu"/>
@@ -5161,12 +5171,6 @@
                                 <include reference="6eY-R7-MLR"/>
                                 <include reference="dss-KX-AMa"/>
                                 <include reference="i6F-qu-kcQ"/>
-                                <include reference="JTw-dx-Pr8"/>
-                                <include reference="PT8-i7-UVB"/>
-                                <include reference="Suj-be-Tre"/>
-                                <include reference="3Eq-eT-dIS"/>
-                                <include reference="qXI-Kg-I9Q"/>
-                                <include reference="vMy-8Z-s6O"/>
                             </mask>
                         </variation>
                     </view>

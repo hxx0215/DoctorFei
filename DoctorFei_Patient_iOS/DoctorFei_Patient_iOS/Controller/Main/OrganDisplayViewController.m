@@ -66,6 +66,7 @@
 		self.filterView.hidden = YES;
 		self.cityButton.hidden = YES;
 		self.areaButton.hidden = YES;
+		[self getDisplayData];
 	}
 }
 
@@ -92,15 +93,14 @@
 		} failure: ^(AFHTTPRequestOperation *operation, NSError *error) {
 		}];
 	}
-    if (self.type == OrganTypeOutstanding){
-        NSDictionary *params = @{ @"id": @""};
-        [MemberAPI getOutStandingSampleWithParameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-            self.tableData = responseObject;
-            [self.tableView reloadData];
-        }failure:^(AFHTTPRequestOperation *operation,NSError *error){
-            
-        }];
-    }
+	if (self.type == OrganTypeOutstanding) {
+		NSDictionary *params = @{ @"id": @"0" };
+		[MemberAPI getOutStandingSampleWithParameters:params success: ^(AFHTTPRequestOperation *operation, id responseObject) {
+		    self.tableData = responseObject;
+		    [self.tableView reloadData];
+		} failure: ^(AFHTTPRequestOperation *operation, NSError *error) {
+		}];
+	}
 }
 
 - (void)setCurrentCity:(NSString *)currentCity {
@@ -137,8 +137,8 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	static NSString *OrganDisplayCellIdentifier = @"OrganDisplayCellIdentifier";
-	OrganDisplayTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:OrganDisplayCellIdentifier forIndexPath:indexPath];
-	[cell setCellData:self.tableData[indexPath.row]];
+    OrganDisplayTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:OrganDisplayCellIdentifier  forIndexPath:indexPath];
+    [cell setCellData:self.tableData[indexPath.row] withType:self.type];
 	return cell;
 }
 

@@ -31,7 +31,7 @@
 #define kMethodGetDoctorShuoshuo @"get.doctor.shuoshuo"
 #define kMethodGetAreaList @"get.area.list"
 #define kMethodGetOrgInfo @"get.org.info"
-#define kMethodGetProjectInformation @"get.project.information"
+#define kMethodGetProjectInformation @"get.project.infomation"
 @implementation MemberAPI
 + (void)updateInfomationWithParameters: (id)parameters success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
 {

@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "OrganDisplayViewController.h"
 
 @interface OrganDisplayTableViewCell : UITableViewCell
-- (void)setCellData:(NSDictionary *)data;
+- (void)setCellData:(NSDictionary *)data withType:(OrganType)type;
 @end
