@@ -12,6 +12,8 @@
 #import "DOPDropDownMenu.h"
 #import "DoctorFei_Patient_iOS-Swift.h"
 #import "MemberAPI.h"
+#import "OrganDisplayDetailViewController.h"
+
 @interface OrganDisplayViewController ()
 <UITableViewDelegate, UITableViewDataSource, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate, androidTableViewDelegate, androidTableViewDataSource>
 - (IBAction)backButtonClicked:(id)sender;
@@ -48,15 +50,20 @@
 	// Dispose of any resources that can be recreated.
 }
 
-/*
+
    #pragma mark - Navigation
 
    // In a storyboard-based application, you will often want to do a little preparation before navigation
-   - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
-   }
- */
+    NSIndexPath *selectedIndex = [self.tableView indexPathForCell:sender];
+    [self.tableView deselectRowAtIndexPath:selectedIndex animated:YES];
+    OrganDisplayDetailViewController *vc = [segue destinationViewController];
+    vc.ID = [self.tableData[selectedIndex.row] objectForKey:@"id"];
+    vc.type = self.type;
+}
+
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
 	if (self.type == OrganTypeShow)

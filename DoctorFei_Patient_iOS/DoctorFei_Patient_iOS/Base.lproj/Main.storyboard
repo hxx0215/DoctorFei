@@ -5142,7 +5142,44 @@
                     <view key="view" contentMode="scaleToFill" id="gSF-Q9-w9i">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="487"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b2w-wh-jvm">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <mutableString key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</mutableString>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="b2w-wh-jvm" secondAttribute="trailing" constant="8" id="9Qo-ZV-bYG"/>
+                            <constraint firstItem="k9K-To-XJT" firstAttribute="top" secondItem="b2w-wh-jvm" secondAttribute="bottom" constant="8" id="At8-Xi-VQr"/>
+                            <constraint firstItem="b2w-wh-jvm" firstAttribute="leading" secondItem="gSF-Q9-w9i" secondAttribute="leading" constant="8" id="fOw-3f-EfG"/>
+                            <constraint firstItem="b2w-wh-jvm" firstAttribute="top" secondItem="OVO-QE-bY7" secondAttribute="bottom" constant="8" id="ki4-WP-lis"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="b2w-wh-jvm"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="9Qo-ZV-bYG"/>
+                                <exclude reference="fOw-3f-EfG"/>
+                                <exclude reference="ki4-WP-lis"/>
+                                <exclude reference="At8-Xi-VQr"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular-widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="b2w-wh-jvm"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="9Qo-ZV-bYG"/>
+                                <include reference="fOw-3f-EfG"/>
+                                <include reference="ki4-WP-lis"/>
+                                <include reference="At8-Xi-VQr"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" id="fFy-CE-12l">
                         <barButtonItem key="leftBarButtonItem" image="return.png" id="FpD-vO-Pi6">
@@ -5155,6 +5192,9 @@
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="content" destination="b2w-wh-jvm" id="bda-Nn-jrf"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Om4-kl-Mhw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
