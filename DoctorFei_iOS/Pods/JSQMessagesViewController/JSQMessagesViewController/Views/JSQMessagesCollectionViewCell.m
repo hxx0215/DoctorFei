@@ -338,12 +338,5 @@
 
     return YES;
 }
-- (BOOL)canPerformAction:(SEL)action withSender:(id)sender {
-    return (action == @selector(delete:)|| action == @selector(copy:));
-}
-
-- (void)delete:(id)sender {
-    [[NSNotificationCenter defaultCenter]postNotificationName:@"DeleteMessageNotification" object:self];
-}
 
 @end

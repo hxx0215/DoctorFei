@@ -95,9 +95,6 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
 
 - (void)jsq_addActionToInteractivePopGestureRecognizer:(BOOL)addAction;
 
-@property (nonatomic, strong) NSArray *emotionTextList;
-
-
 @end
 
 
@@ -155,8 +152,6 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
                                                                           contextView:self.view
                                                                  panGestureRecognizer:self.collectionView.panGestureRecognizer
                                                                              delegate:self];
-    
-    self.emotionTextList = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"expression" ofType:@"plist"]];
 }
 
 - (void)dealloc
@@ -167,6 +162,9 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
     _collectionView.dataSource = nil;
     _collectionView.delegate = nil;
     _collectionView = nil;
+    
+    _inputToolbar.contentView.textView.delegate = nil;
+    _inputToolbar.delegate = nil;
     _inputToolbar = nil;
 
     _toolbarHeightConstraint = nil;
@@ -472,34 +470,18 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
     cell.delegate = collectionView;
 
     if (!isMediaMessage) {
-//        cell.textView.text = [messageItem text];
         cell.textView.text = nil;
-        NSMutableAttributedString *messageText = [[NSMutableAttributedString alloc]initWithString:[messageItem text]];
-        [_emotionTextList enumerateObjectsUsingBlock:^(NSString *obj, NSUInteger idx, BOOL *stop) {
-            NSUInteger length = [messageText length];
-            NSRange range = NSMakeRange(0, length);
-            NSTextAttachment *attachment = [[NSTextAttachment alloc]init];
-            attachment.image = [UIImage imageNamed:[NSString stringWithFormat:@"Expression_%u@2x", idx + 1]];
-            NSAttributedString *iconAttributedString = [NSAttributedString attributedStringWithAttachment:attachment];
-            while (range.location != NSNotFound) {
-                range = [messageText.string rangeOfString:obj options:0 range:range];
-                if (range.location != NSNotFound) {
-                    [messageText replaceCharactersInRange:NSMakeRange(range.location, [obj length]) withAttributedString:iconAttributedString];
-                    range = NSMakeRange(range.location + iconAttributedString.length, messageText.length - (range.location + iconAttributedString.length));
-                }
-            }
-        }];
-        
-        [messageText addAttributes:@{NSFontAttributeName : collectionView.collectionViewLayout.messageBubbleFont} range:NSMakeRange(0, messageText.length)];
-        cell.textView.attributedText = messageText;
+        cell.textView.attributedText = [messageItem text];
+//        cell.textView.text = [messageItem text];
+//
 //        if ([UIDevice jsq_isCurrentDeviceBeforeiOS8]) {
 //            //  workaround for iOS 7 textView data detectors bug
 //            cell.textView.text = nil;
 //            cell.textView.attributedText = [[NSAttributedString alloc] initWithString:[messageItem text]
 //                                                                           attributes:@{ NSFontAttributeName : collectionView.collectionViewLayout.messageBubbleFont }];
 //        }
-
-        NSParameterAssert(cell.textView.text != nil);
+//
+//        NSParameterAssert(cell.textView.text != nil);
 
         id<JSQMessageBubbleImageDataSource> bubbleImageDataSource = [collectionView.dataSource collectionView:collectionView messageBubbleImageDataForItemAtIndexPath:indexPath];
         if (bubbleImageDataSource != nil) {
@@ -629,7 +611,7 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
 {
     if (action == @selector(copy:)) {
         id<JSQMessageData> messageData = [self collectionView:collectionView messageDataForItemAtIndexPath:indexPath];
-        [[UIPasteboard generalPasteboard] setString:[messageData text]];
+        [[UIPasteboard generalPasteboard] setString:[[messageData text]string]];
     }
 }
 

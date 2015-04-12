@@ -52,6 +52,8 @@ typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
 @property (nonatomic, strong) MessagesModalData *modalData;
 @property (nonatomic, strong) WYPopoverController *popover;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *actionItem;
+
+@property (nonatomic, strong) NSArray *textToInputArray;
 @end
 
 @implementation ContactDetailViewController
@@ -72,6 +74,8 @@ typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
     [super viewDidLoad];
     [self setupToolbarButtons];
     
+    
+    self.textToInputArray = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"expression" ofType:@"plist"]];
     //设置ToolBar按钮
     self.inputToolbar.contentView.leftBarButtonItem = voiceButton;
     self.inputToolbar.contentView.rightBarButtonItem = nil;
@@ -342,7 +346,26 @@ typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
 - (void)saveMessageWithMessageId:(NSNumber *)messageId type:(NSString *)type andContent:(NSString *)content{
     JSQMessage *message;
     if ([type isEqualToString:kSendMessageTypeText]) {
-        message = [[JSQMessage alloc]initWithSenderId:self.senderId senderDisplayName:self.senderDisplayName date:[NSDate date] text:content];
+        NSMutableAttributedString *messageText = [[NSMutableAttributedString alloc]initWithString:content];
+        [messageText addAttributes:@{NSFontAttributeName: self.collectionView.collectionViewLayout.messageBubbleFont} range:NSMakeRange(0, messageText.length)];
+        [_textToInputArray enumerateObjectsUsingBlock:^(NSString *obj, NSUInteger idx, BOOL *stop) {
+            NSUInteger length = [messageText length];
+            NSRange range = NSMakeRange(0, length);
+            NSTextAttachment *attachment = [[NSTextAttachment alloc]init];
+            attachment.image = [UIImage imageNamed:[NSString stringWithFormat:@"Expression_%u@2x", idx + 1]];
+            NSAttributedString *iconAttributedString = [NSAttributedString attributedStringWithAttachment:attachment];
+            while (range.location != NSNotFound) {
+                range = [messageText.string rangeOfString:obj options:0 range:range];
+                if (range.location != NSNotFound) {
+                    [messageText replaceCharactersInRange:NSMakeRange(range.location, [obj length]) withAttributedString:iconAttributedString];
+                    range = NSMakeRange(range.location + iconAttributedString.length, messageText.length - (range.location + iconAttributedString.length));
+                }
+            }
+        }];
+        
+        message = [[JSQMessage alloc] initWithSenderId:self.senderId senderDisplayName:self.senderDisplayName date:[NSDate date] text:messageText];
+
+//        message = [[JSQMessage alloc]initWithSenderId:self.senderId senderDisplayName:self.senderDisplayName date:[NSDate date] text:content];
     }else if ([type isEqualToString:kSendMessageTypeImage]) {
         JSQPhotoMediaItem *photoItem = [[JSQPhotoMediaItem alloc]initWithImage:nil];
         message = [[JSQMessage alloc]initWithSenderId:self.senderId senderDisplayName:self.senderDisplayName date:[NSDate date] media:photoItem];
@@ -497,7 +520,26 @@ typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
         }
         JSQMessage *jsqMessage;
         if ([message.msgType isEqualToString:kSendMessageTypeText]) {
-            jsqMessage = [[JSQMessage alloc] initWithSenderId:senderId senderDisplayName:senderName date:message.createtime text:message.content];
+            NSMutableAttributedString *messageText = [[NSMutableAttributedString alloc]initWithString:message.content];
+            [messageText addAttributes:@{NSFontAttributeName: self.collectionView.collectionViewLayout.messageBubbleFont} range:NSMakeRange(0, messageText.length)];
+            [_textToInputArray enumerateObjectsUsingBlock:^(NSString *obj, NSUInteger idx, BOOL *stop) {
+                if ([message.content rangeOfString:obj].location != NSNotFound) {
+                    NSUInteger length = [messageText length];
+                    NSRange range = NSMakeRange(0, length);
+                    NSTextAttachment *attachment = [[NSTextAttachment alloc]init];
+                    attachment.image = [UIImage imageNamed:[NSString stringWithFormat:@"Expression_%u@2x", idx + 1]];
+                    NSAttributedString *iconAttributedString = [NSAttributedString attributedStringWithAttachment:attachment];
+                    while (range.location != NSNotFound) {
+                        range = [messageText.string rangeOfString:obj options:0 range:range];
+                        if (range.location != NSNotFound) {
+                            [messageText replaceCharactersInRange:NSMakeRange(range.location, [obj length]) withAttributedString:iconAttributedString];
+                            range = NSMakeRange(range.location + iconAttributedString.length, messageText.length - (range.location + iconAttributedString.length));
+                        }
+                    }
+                }
+            }];
+            
+            jsqMessage = [[JSQMessage alloc] initWithSenderId:senderId senderDisplayName:senderName date:message.createtime text:messageText];
         }else if([message.msgType isEqualToString:kSendMessageTypeImage]) {
             JSQPhotoMediaItem *photoItem = [[JSQPhotoMediaItem alloc]initWithImage:nil];
 //            if ([message.flag intValue] == 0) {
