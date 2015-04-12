@@ -76,16 +76,17 @@
 //        [keyboard setImage:[UIImage imageNamed:@"keyboard_switch"] forButton:WUEmoticonsKeyboardButtonKeyboardSwitch state:UIControlStateNormal];
 //        [keyboard setImage:[UIImage imageNamed:@"keyboard_del"] forButton:WUEmoticonsKeyboardButtonBackspace state:UIControlStateNormal];
 //        [keyboard setImage:[UIImage imageNamed:@"keyboard_switch_pressed"] forButton:WUEmoticonsKeyboardButtonKeyboardSwitch state:UIControlStateHighlighted];
-        [keyboard setImage:[UIImage imageNamed:@"DeleteEmoticonBtn_ios7"] forButton:WUEmoticonsKeyboardButtonBackspace state:UIControlStateNormal];
+        [keyboard setImage:[UIImage imageNamed:@"del_button"] forButton:WUEmoticonsKeyboardButtonBackspace state:UIControlStateNormal];
+        [keyboard setImage:[UIImage imageNamed:@"keyboard_back_button"] forButton:WUEmoticonsKeyboardButtonKeyboardSwitch state:UIControlStateNormal];
 //        [keyboard setImage:[UIImage imageNamed:@"keyboard_del_pressed"] forButton:WUEmoticonsKeyboardButtonBackspace state:UIControlStateHighlighted];
-//        [keyboard setAttributedTitle:[[NSAttributedString alloc] initWithString:NSLocalizedString(@"Space", @"") attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:15], NSForegroundColorAttributeName: [UIColor darkGrayColor]}] forButton:WUEmoticonsKeyboardButtonSpace state:UIControlStateNormal];
-//        [keyboard setBackgroundImage:[[UIImage imageNamed:@"keyboard_segment_normal"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 10, 0, 10)] forButton:WUEmoticonsKeyboardButtonSpace state:UIControlStateNormal];
+//        [keyboard setAttributedTitle:[[NSAttributedString alloc] initWithString:@"空格" attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:15], NSForegroundColorAttributeName: [UIColor darkGrayColor]}] forButton:WUEmoticonsKeyboardButtonSpace state:UIControlStateNormal];
+//        [keyboard setBackgroundImage:[[UIImage imageNamed:@"keyboard_space_bg"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 10, 0, 10)] forButton:WUEmoticonsKeyboardButtonSpace state:UIControlStateNormal];
+        [keyboard setBackgroundColor:UIColorFromRGB(0xE5E6E8)];
 //        
 //        //Keyboard background
 //        [keyboard setBackgroundImage:[[UIImage imageNamed:@"keyboard_bg"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 1, 0, 1)]];
         
-        [keyboard setBackgroundColor:UIColorFromRGB(0xDDDDDD) forKeyItemGroup:imageIconsGroup];
-//        
+//
 //        //SegmentedControl
 //        [[UISegmentedControl appearanceWhenContainedIn:[WUEmoticonsKeyboard class], nil] setBackgroundImage:[[UIImage imageNamed:@"keyboard_segment_normal"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 10, 0, 10)] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
 //        [[UISegmentedControl appearanceWhenContainedIn:[WUEmoticonsKeyboard class], nil] setBackgroundImage:[[UIImage imageNamed:@"keyboard_segment_selected"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 10, 0, 10)] forState:UIControlStateSelected barMetrics:UIBarMetricsDefault];
