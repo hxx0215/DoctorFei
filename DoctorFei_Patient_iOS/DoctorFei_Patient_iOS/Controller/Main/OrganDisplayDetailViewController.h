@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "OrganDisplayViewController.h"
 
 @interface OrganDisplayDetailViewController : UIViewController
-
+@property (nonatomic, copy)NSString *ID;
+@property (nonatomic, assign)OrganType type;
 @end
