@@ -1,6 +1,9 @@
 ## MJRefresh
 The easiest way to use pull-to-refresh
 
+## 支持哪些控件的刷新
+* `UIScrollView`、`UITableView`、`UICollectionView`、`UIWebView`
+
 ## 如何使用MJRefresh
 * cocoapods导入：`pod 'MJRefresh'`
 * 手动导入：
@@ -21,6 +24,10 @@ UIScrollView+MJExtension.h  UIScrollView+MJExtension.m
 UIScrollView+MJRefresh.h    UIScrollView+MJRefresh.m
 UIView+MJExtension.h        UIView+MJExtension.m
 ```
+
+## 有哪些App正在使用MJRefresh
+![(App01)](http://ww3.sinaimg.cn/mw1024/800cdf9cgw1eqyhgnwcw9j20f10kl42r.jpg)
+![(App02)](http://ww3.sinaimg.cn/mw1024/800cdf9cgw1eqyhhg4qwnj20f10kgtd1.jpg)
 
 ## 具体用法
 ```objc
@@ -172,6 +179,15 @@ self.tableView.footer.hidden = YES;
 // 添加传统的上拉刷新
 [self.collectionView addLegendFooterWithRefreshingBlock:^{
    // 进入刷新状态后会自动调用这个block
+}];
+```
+
+## UIWebView01-下拉刷新
+![(UIWebView01-下拉刷新)](http://ww1.sinaimg.cn/mw1024/800cdf9cjw1eq2zjzu78ng208w0fy4qp.gif)
+```objc
+// 添加下拉刷新控件
+[self.webView.scrollView addLegendHeaderWithRefreshingBlock:^{
+    // 进入刷新状态后会自动调用这个block
 }];
 ```
 

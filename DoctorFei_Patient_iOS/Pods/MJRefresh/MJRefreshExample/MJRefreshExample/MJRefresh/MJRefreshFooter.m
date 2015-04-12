@@ -105,6 +105,8 @@
         
         // 重新调整frame
         [self adjustFrameWithContentSize];
+    } else { // 被移除了
+        _scrollView.mj_insetB -= self.mj_h;
     }
 }
 
@@ -227,6 +229,11 @@
     self.state = MJRefreshFooterStateNoMoreData;
 }
 
+- (void)resetNoMoreData
+{
+    self.state = MJRefreshFooterStateIdle;
+}
+
 - (void)setTitle:(NSString *)title forState:(MJRefreshFooterState)state
 {
     if (title == nil) return;
@@ -264,15 +271,19 @@
             break;
             
         case MJRefreshFooterStateRefreshing:
+        {
             self.loadMoreButton.hidden = YES;
             self.noMoreLabel.hidden = YES;
             if (!self.stateHidden) self.stateLabel.hidden = NO;
-            if (self.refreshingBlock) {
-                self.refreshingBlock();
-            }
-            if ([self.refreshingTarget respondsToSelector:self.refreshingAction]) {
-                msgSend(msgTarget(self.refreshingTarget), self.refreshingAction, self);
-            }
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                if (self.refreshingBlock) {
+                    self.refreshingBlock();
+                }
+                if ([self.refreshingTarget respondsToSelector:self.refreshingAction]) {
+                    msgSend(msgTarget(self.refreshingTarget), self.refreshingAction, self);
+                }
+            });
+        }
             break;
             
         case MJRefreshFooterStateNoMoreData:

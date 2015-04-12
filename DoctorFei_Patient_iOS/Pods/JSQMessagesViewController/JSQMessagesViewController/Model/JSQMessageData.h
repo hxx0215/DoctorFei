@@ -77,8 +77,11 @@
 
 /**
  *  @return An integer that can be used as a table address in a hash table structure.
+ *
+ *  @discussion This value must be unique for each message with distinct contents. 
+ *  This value is used to cache layout information in the collection view.
  */
-- (NSUInteger)hash;
+- (NSUInteger)messageHash;
 
 @optional
 
@@ -87,7 +90,7 @@
  *
  *  @warning You must not return `nil` from this method.
  */
-- (NSString *)text;
+- (NSAttributedString *)text;
 
 /**
  *  @return The media item of the message.

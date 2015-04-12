@@ -53,7 +53,7 @@ static float _minimumAnimationDuration;
     }
     
     // calculate if we are to move up the avoiding view
-    if (keyboardFrame.origin.y == 0 || (keyboardFrame.origin.y + keyboardFrame.size.height == screenSize.height)) {
+    if (!CGRectIsEmpty(keyboardFrame) && (keyboardFrame.origin.y == 0 || (keyboardFrame.origin.y + keyboardFrame.size.height == screenSize.height))) {
         isKeyBoardShowing = YES;
     }
     
@@ -66,7 +66,7 @@ static float _minimumAnimationDuration;
             //showing and docked
             if (triggerView) {
                 float diff = 0;
-                if (keyboardHeightDiff > 0) {
+                if (keyboardHeightDiff != 0) {
                     diff = keyboardHeightDiff;
                 }
                 else {
@@ -113,7 +113,7 @@ static float _minimumAnimationDuration;
                         default:
                         {
                             float minimumDisplacement = fmaxf(displacement, diff);
-                            displacement = minimumDisplacement - (keyboardHeightDiff <= 0 ? _paddingCurrent : 0);
+                            displacement = minimumDisplacement - (keyboardHeightDiff == 0 ? _paddingCurrent : 0);
                             break;
                         }
                     }

@@ -349,16 +349,18 @@ typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
         NSMutableAttributedString *messageText = [[NSMutableAttributedString alloc]initWithString:content];
         [messageText addAttributes:@{NSFontAttributeName: self.collectionView.collectionViewLayout.messageBubbleFont} range:NSMakeRange(0, messageText.length)];
         [_textToInputArray enumerateObjectsUsingBlock:^(NSString *obj, NSUInteger idx, BOOL *stop) {
-            NSUInteger length = [messageText length];
-            NSRange range = NSMakeRange(0, length);
-            NSTextAttachment *attachment = [[NSTextAttachment alloc]init];
-            attachment.image = [UIImage imageNamed:[NSString stringWithFormat:@"Expression_%u@2x", idx + 1]];
-            NSAttributedString *iconAttributedString = [NSAttributedString attributedStringWithAttachment:attachment];
-            while (range.location != NSNotFound) {
-                range = [messageText.string rangeOfString:obj options:0 range:range];
-                if (range.location != NSNotFound) {
-                    [messageText replaceCharactersInRange:NSMakeRange(range.location, [obj length]) withAttributedString:iconAttributedString];
-                    range = NSMakeRange(range.location + iconAttributedString.length, messageText.length - (range.location + iconAttributedString.length));
+            if ([content rangeOfString:obj].location != NSNotFound) {
+                NSUInteger length = [messageText length];
+                NSRange range = NSMakeRange(0, length);
+                NSTextAttachment *attachment = [[NSTextAttachment alloc]init];
+                attachment.image = [UIImage imageNamed:[NSString stringWithFormat:@"Expression_%u@2x", idx + 1]];
+                NSAttributedString *iconAttributedString = [NSAttributedString attributedStringWithAttachment:attachment];
+                while (range.location != NSNotFound) {
+                    range = [messageText.string rangeOfString:obj options:0 range:range];
+                    if (range.location != NSNotFound) {
+                        [messageText replaceCharactersInRange:NSMakeRange(range.location, [obj length]) withAttributedString:iconAttributedString];
+                        range = NSMakeRange(range.location + iconAttributedString.length, messageText.length - (range.location + iconAttributedString.length));
+                    }
                 }
             }
         }];

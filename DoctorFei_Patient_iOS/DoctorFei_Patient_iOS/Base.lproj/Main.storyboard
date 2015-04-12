@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="fJh-M9-nxj">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14D131" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="fJh-M9-nxj">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
@@ -5146,7 +5146,7 @@
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b2w-wh-jvm">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <mutableString key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</mutableString>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
@@ -5163,10 +5163,10 @@
                                 <exclude reference="b2w-wh-jvm"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="At8-Xi-VQr"/>
                                 <exclude reference="9Qo-ZV-bYG"/>
                                 <exclude reference="fOw-3f-EfG"/>
                                 <exclude reference="ki4-WP-lis"/>
-                                <exclude reference="At8-Xi-VQr"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
@@ -5174,10 +5174,10 @@
                                 <include reference="b2w-wh-jvm"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="At8-Xi-VQr"/>
                                 <include reference="9Qo-ZV-bYG"/>
                                 <include reference="fOw-3f-EfG"/>
                                 <include reference="ki4-WP-lis"/>
-                                <include reference="At8-Xi-VQr"/>
                             </mask>
                         </variation>
                     </view>
@@ -7038,7 +7038,9 @@
         <scene sceneID="oUH-4H-uyO">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="EqB-ch-UMp" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="首页" image="tab_01.png" id="bdD-F6-vIH"/>
+                    <tabBarItem key="tabBarItem" title="首页" image="tab_01.png" id="bdD-F6-vIH">
+                        <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="-2"/>
+                    </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" translucent="NO" id="drI-bt-l7f">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -7062,7 +7064,9 @@
         <scene sceneID="oOB-cz-MbP">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="bOa-zE-770" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="通讯录" image="tab_02.png" id="wrb-li-zZN"/>
+                    <tabBarItem key="tabBarItem" title="通讯录" image="tab_02.png" id="wrb-li-zZN">
+                        <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="-2"/>
+                    </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" translucent="NO" id="mBH-K5-Fdn">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -7086,7 +7090,9 @@
         <scene sceneID="Jsg-eM-hFo">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="674-5e-uQp" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="我" image="tab_03.png" id="Mju-PL-5cN"/>
+                    <tabBarItem key="tabBarItem" title="我" image="tab_03.png" id="Mju-PL-5cN">
+                        <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="-2"/>
+                    </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" translucent="NO" id="VTH-s9-P9M">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -8606,7 +8612,9 @@
         <scene sceneID="JOM-CY-WcP">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="SaA-Cf-jSa" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="设置" image="tab_04.png" id="BW5-7x-sNQ"/>
+                    <tabBarItem key="tabBarItem" title="设置" image="tab_04.png" id="BW5-7x-sNQ">
+                        <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="-2"/>
+                    </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" translucent="NO" id="xcq-f6-f4U">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
