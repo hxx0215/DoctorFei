@@ -8,6 +8,10 @@
 
 #import "OrganDisplayDetailViewController.h"
 #import "MemberAPI.h"
+@interface OrganShareView :UIView
+@end
+@implementation OrganShareView
+@end
 @interface OrganDisplayDetailViewController ()
 - (IBAction)backButtonClicked:(id)sender;
 @property (weak, nonatomic) IBOutlet UITextView *content;
