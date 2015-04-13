@@ -29,7 +29,11 @@
 }
 
 - (void)setPerson:(RHPerson *)person {
-    
+    _person = person;
+    if (_person.hasImage) {
+        [_avatarImageView setImage:_person.thumbnail];
+    }
+    [_nameLabel setText:_person.name];
 }
 
 @end

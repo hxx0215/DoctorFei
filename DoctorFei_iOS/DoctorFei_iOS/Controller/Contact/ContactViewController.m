@@ -18,6 +18,9 @@
 #import "Message.h"
 #import "DataUtil.h"
 #import <RHAddressBook.h>
+#import "RHPerson.h"
+#import "UserAPI.h"
+#import "ContactInviteTableViewCell.h"
 @interface ContactViewController ()
     <UITableViewDelegate, UITableViewDataSource, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate, UIActionSheetDelegate, UIGestureRecognizerDelegate, UISearchDisplayDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -89,11 +92,55 @@
     if ([RHAddressBook authorizationStatus] == RHAuthorizationStatusDenied || [RHAddressBook authorizationStatus] == RHAuthorizationStatusRestricted) {
         UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示" message:@"没有获取到通讯录, 将不能使用推荐功能" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
         [alert show];
+        self.addressbook = nil;
     }
     if ([RHAddressBook authorizationStatus] == RHAuthorizationStatusAuthorized) {
         self.addressbook = [[RHAddressBook alloc]init];
     }
-    
+    if (_addressbook) {
+        [self checkNeedInviteArray];
+    }
+}
+
+- (void)checkNeedInviteArray {
+    NSArray *peoples = _addressbook.people;
+    NSMutableDictionary *checkDict = [NSMutableDictionary dictionary];
+    NSMutableArray *checkArray = [NSMutableArray array];
+    for (RHPerson *person in peoples) {
+        NSString *phoneString = [person.phoneNumbers valueAtIndex:0];
+        NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"-| |\\+86|\\(|\\)" options:0 error:nil];
+        NSMutableString *needReplacePhone = [phoneString copy];
+        NSString *phone = [regex stringByReplacingMatchesInString:needReplacePhone options:0 range:NSMakeRange(0, needReplacePhone.length) withTemplate:@""];
+        [checkArray addObject:phone];
+        [checkDict setObject:phone forKey:@(person.recordID)];
+    }
+    NSString *checkString = [checkArray componentsJoinedByString:@","];
+    NSLog(@"%@",checkString);
+    NSDictionary *param = @{
+                            @"mobile": checkString
+                            };
+    [UserAPI checkFriendIsRegisterWithParameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"%@",responseObject);
+        NSMutableArray *needArray = [NSMutableArray array];
+        for (NSDictionary *dict in responseObject) {
+            if (dict[@"isjoin"] && [dict[@"isjoin"] intValue] == 0) {
+                NSString *phone = dict[@"mobile"];
+                NSArray *recordIdArray = [checkDict allKeysForObject:phone];
+                for (NSNumber *recordId in recordIdArray) {
+                    RHPerson *person = [_addressbook personForABRecordID:recordId.intValue];
+                    if (![needArray containsObject:person]) {
+                        [needArray addObject:person];
+                    }
+                }
+            }
+        }
+        needInvitePersonArray = [needArray copy];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.tableView reloadData];
+        });
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"%@",error.localizedDescription);
+    }];
 }
 
 - (void)initStableTableData{
@@ -331,6 +378,11 @@
 - (IBAction)segmentValueChanged:(id)sender {
     [self reloadTableViewData];
 }
+
+- (IBAction)inviteButtonClicked:(id)sender {
+    RHPerson *person = needInvitePersonArray[((UIButton *)sender).tag];
+    //TODO 发短信
+}
 #pragma mark - UITableViewCellLongPressed
 -(void)tableviewCellLongPressed:(UILongPressGestureRecognizer *)gestureRecognizer{
     if (gestureRecognizer.state == UIGestureRecognizerStateBegan) {
@@ -360,8 +412,9 @@
     if (tableView == self.searchDisplayController.searchResultsTableView) {
         return 1;
     }
-    if (self.contactMode == ContactViewControllerModeNormal)
-        return tableViewDataArray.count + 1;
+    if (self.contactMode == ContactViewControllerModeNormal){
+        return tableViewDataArray.count + 1 + (needInvitePersonArray.count > 0 ? 1 : 0);
+    }
     return tableViewDataArray.count;
 }
 
@@ -373,6 +426,9 @@
     {
         if (section == 0)
             return [self.stableTableData count];
+        else if (section == tableViewDataArray.count + 1){
+            return needInvitePersonArray.count;
+        }
         else
             return [tableViewDataArray[section - 1] count];
     }
@@ -388,6 +444,13 @@
     if (tableView == self.searchDisplayController.searchResultsTableView) {
         ContactFriendTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:ContactFriendCellIdentifier];
         [cell setDataFriend:searchResultArray[indexPath.row]];
+        return cell;
+    }
+    else if (indexPath.section == tableViewDataArray.count + 1){
+        ContactInviteTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:ContactInviteCellIdentifier forIndexPath:indexPath];
+        [cell setPerson:needInvitePersonArray[indexPath.row]];
+        [cell.inviteButton setTag:indexPath.row];
+        [cell.inviteButton addTarget:self action:@selector(inviteButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
         return cell;
     }
     else{
@@ -423,6 +486,9 @@
         {
             if (section == 0){
                 return @" ";
+            }
+            else if (section == tableViewDataArray.count + 1){
+                return @"以下朋友还没有注册,赶紧邀请他们吧";
             }
             else{
                 if ([tableViewDataArray[section - 1] count] > 0) {
