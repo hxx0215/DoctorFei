@@ -90,7 +90,7 @@
  *
  *  @warning You must not return `nil` from this method.
  */
-- (NSString *)text;
+- (NSAttributedString *)text;
 
 /**
  *  @return The media item of the message.

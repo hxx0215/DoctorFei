@@ -36,7 +36,7 @@
 
 + (instancetype)messageWithSenderId:(NSString *)senderId
                         displayName:(NSString *)displayName
-                               text:(NSString *)text
+                               text:(NSAttributedString *)text
 {
     return [[JSQMessage alloc] initWithSenderId:senderId
                               senderDisplayName:displayName
@@ -47,7 +47,7 @@
 - (instancetype)initWithSenderId:(NSString *)senderId
                senderDisplayName:(NSString *)senderDisplayName
                             date:(NSDate *)date
-                            text:(NSString *)text
+                            text:(NSAttributedString *)text
 {
     NSParameterAssert(text != nil);
     
@@ -116,6 +116,11 @@
     _media = nil;
 }
 
+- (NSUInteger)messageHash
+{
+    return self.hash;
+}
+
 #pragma mark - NSObject
 
 - (BOOL)isEqual:(id)object
@@ -133,8 +138,7 @@
     if (self.isMediaMessage != aMessage.isMediaMessage) {
         return NO;
     }
-    
-    BOOL hasEqualContent = self.isMediaMessage ? [self.media isEqual:aMessage.media] : [self.text isEqualToString:aMessage.text];
+    BOOL hasEqualContent = self.isMediaMessage ? [self.media isEqual:aMessage.media] : [self.text.string isEqualToString:aMessage.text.string];
     
     return [self.senderId isEqualToString:aMessage.senderId]
             && [self.senderDisplayName isEqualToString:aMessage.senderDisplayName]
@@ -144,8 +148,7 @@
 
 - (NSUInteger)hash
 {
-    NSUInteger contentHash = self.isMediaMessage ? self.media.hash : self.text.hash;
-    
+    NSUInteger contentHash = self.isMediaMessage ? [self.media mediaHash] : self.text.hash;
     return self.senderId.hash ^ self.date.hash ^ contentHash;
 }
 
