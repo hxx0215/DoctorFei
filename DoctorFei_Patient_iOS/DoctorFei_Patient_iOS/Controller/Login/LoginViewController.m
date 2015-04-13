@@ -14,7 +14,7 @@
 #import "MemberAPI.h"
 #import "APService.h"
 #import "DataUtil.h"
-//#import "SocketConnection.h"
+#import "SocketConnection.h"
 @interface LoginViewController ()
     <UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UIView *loginBackgroundView;
@@ -147,7 +147,7 @@
             [[NSUserDefaults standardUserDefaults] setObject:dataDict[@"userId"] forKey:@"UserId"];
             [[NSUserDefaults standardUserDefaults] setObject:dataDict[@"userId"] forKey:@"LastLoginUserId"];
             [[NSUserDefaults standardUserDefaults] setObject:dataDict[@"Mobile"] forKey:@"UserPhone"];
-            [[NSUserDefaults standardUserDefaults] setObject:dataDict[@"headimage"] forKey:@"UserIcon"];
+            [[NSUserDefaults standardUserDefaults] setObject:dataDict[@"icon"] forKey:@"UserIcon"];
             [[NSUserDefaults standardUserDefaults] setObject:dataDict[@"RealName"] forKey:@"UserRealName"];
             [[NSUserDefaults standardUserDefaults] setObject:dataDict[@"Gender"] forKey:@"UserGender"];
             [[NSUserDefaults standardUserDefaults] setObject:dataDict[@"hospital"] forKey:@"UserHospital"];
@@ -159,8 +159,9 @@
             [[NSUserDefaults standardUserDefaults] setObject:dataDict[@"visible"] forKey:@"UserVisible"];
             
             [[NSUserDefaults standardUserDefaults] synchronize];
-//            [[SocketConnection sharedConnection]beginListen];
-//            [[SocketConnection sharedConnection]sendCheckMessages];
+            [[SocketConnection sharedConnection]beginListen];
+            [[SocketConnection sharedConnection]sendKeepAlive];
+            [[SocketConnection sharedConnection]sendCheckMessages];
             [self dismissViewControllerAnimated:YES completion:nil];
         }
         else{

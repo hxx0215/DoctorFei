@@ -22,7 +22,7 @@
         [textKeys enumerateObjectsUsingBlock:^(NSString *obj, NSUInteger idx, BOOL *stop) {
             WUEmoticonsKeyboardKeyItem *item = [[WUEmoticonsKeyboardKeyItem alloc]init];
             item.textToInput = obj;
-            NSString *imageString = [NSString stringWithFormat:@"Expression_%d@2x", idx + 1];
+            NSString *imageString = [NSString stringWithFormat:@"Expression_%d@2x", (int)idx + 1];
             item.image = [UIImage imageNamed:imageString];
             [itemArray addObject:item];
 
@@ -44,14 +44,14 @@
         WUEmoticonsKeyboardKeyItemGroup *imageIconsGroup = [[WUEmoticonsKeyboardKeyItemGroup alloc] init];
 //        imageIconsGroup.keyItems = @[loveKey,applaudKey,weicoKey];
         imageIconsGroup.keyItems = [itemArray copy];
-        UIImage *keyboardEmotionImage = [UIImage imageNamed:@"keyboard_emotion"];
-        UIImage *keyboardEmotionSelectedImage = [UIImage imageNamed:@"keyboard_emotion_selected"];
-        if ([UIImage instancesRespondToSelector:@selector(imageWithRenderingMode:)]) {
-            keyboardEmotionImage = [keyboardEmotionImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-            keyboardEmotionSelectedImage = [keyboardEmotionSelectedImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-        }
-        imageIconsGroup.image = keyboardEmotionImage;
-        imageIconsGroup.selectedImage = keyboardEmotionSelectedImage;
+//        UIImage *keyboardEmotionImage = [UIImage imageNamed:@"keyboard_emotion"];
+//        UIImage *keyboardEmotionSelectedImage = [UIImage imageNamed:@"keyboard_emotion_selected"];
+//        if ([UIImage instancesRespondToSelector:@selector(imageWithRenderingMode:)]) {
+//            keyboardEmotionImage = [keyboardEmotionImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+//            keyboardEmotionSelectedImage = [keyboardEmotionSelectedImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+//        }
+//        imageIconsGroup.image = keyboardEmotionImage;
+//        imageIconsGroup.selectedImage = keyboardEmotionSelectedImage;
         
         //Set keyItemGroups
         keyboard.keyItemGroups = @[imageIconsGroup];
@@ -79,8 +79,8 @@
         [keyboard setImage:[UIImage imageNamed:@"del_button"] forButton:WUEmoticonsKeyboardButtonBackspace state:UIControlStateNormal];
         [keyboard setImage:[UIImage imageNamed:@"keyboard_back_button"] forButton:WUEmoticonsKeyboardButtonKeyboardSwitch state:UIControlStateNormal];
 //        [keyboard setImage:[UIImage imageNamed:@"keyboard_del_pressed"] forButton:WUEmoticonsKeyboardButtonBackspace state:UIControlStateHighlighted];
-//        [keyboard setAttributedTitle:[[NSAttributedString alloc] initWithString:@"空格" attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:15], NSForegroundColorAttributeName: [UIColor darkGrayColor]}] forButton:WUEmoticonsKeyboardButtonSpace state:UIControlStateNormal];
-//        [keyboard setBackgroundImage:[[UIImage imageNamed:@"keyboard_space_bg"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 10, 0, 10)] forButton:WUEmoticonsKeyboardButtonSpace state:UIControlStateNormal];
+        [keyboard setAttributedTitle:[[NSAttributedString alloc] initWithString:@"发送" attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:15], NSForegroundColorAttributeName: [UIColor darkGrayColor]}] forButton:WUEmoticonsKeyboardButtonSpace state:UIControlStateNormal];
+        [keyboard setBackgroundImage:[[UIImage imageNamed:@"keyboard_space_bg"] resizableImageWithCapInsets:UIEdgeInsetsMake(22, 22, 23, 23)] forButton:WUEmoticonsKeyboardButtonSpace state:UIControlStateNormal];
         [keyboard setBackgroundColor:UIColorFromRGB(0xE5E6E8)];
 //        
 //        //Keyboard background

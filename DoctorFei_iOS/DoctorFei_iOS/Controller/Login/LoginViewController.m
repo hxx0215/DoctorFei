@@ -154,6 +154,7 @@
             [[NSUserDefaults standardUserDefaults] setObject:dataDict[@"OtherContact"] forKey:@"UserOtherContact"];
             [[NSUserDefaults standardUserDefaults] synchronize];
             [[SocketConnection sharedConnection]beginListen];
+            [[SocketConnection sharedConnection]sendKeepAlive];
             [[SocketConnection sharedConnection]sendCheckMessages];
             [self dismissViewControllerAnimated:YES completion:nil];
         }

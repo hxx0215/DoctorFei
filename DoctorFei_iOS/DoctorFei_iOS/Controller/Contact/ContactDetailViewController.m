@@ -353,7 +353,7 @@ typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
                 NSUInteger length = [messageText length];
                 NSRange range = NSMakeRange(0, length);
                 NSTextAttachment *attachment = [[NSTextAttachment alloc]init];
-                attachment.image = [UIImage imageNamed:[NSString stringWithFormat:@"Expression_%u@2x", idx + 1]];
+                attachment.image = [UIImage imageNamed:[NSString stringWithFormat:@"Expression_%d@2x", (int)idx + 1]];
                 NSAttributedString *iconAttributedString = [NSAttributedString attributedStringWithAttachment:attachment];
                 while (range.location != NSNotFound) {
                     range = [messageText.string rangeOfString:obj options:0 range:range];

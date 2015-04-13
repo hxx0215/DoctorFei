@@ -154,7 +154,7 @@ CGFloat const WUEmoticonsKeyboardToolsViewDefaultHeight = 45;
     }];
     
     [toolsView setSpaceButtonTappedBlock:^{
-        [weakSelf inputText:@" "];
+        [weakSelf inputText:@"\n"];
     }];
     
     [toolsView setKeyItemGroupSelectedBlock:^(WUEmoticonsKeyboardKeyItemGroup *keyItemGroup) {

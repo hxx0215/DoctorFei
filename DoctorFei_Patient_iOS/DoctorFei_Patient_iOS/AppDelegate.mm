@@ -101,8 +101,11 @@
     
     [SetOnlineStateUtil online];
 //    [self setPushUser];
-    [[SocketConnection sharedConnection]beginListen];
-    [[SocketConnection sharedConnection]sendKeepAlive];
+    NSNumber *userId = [[NSUserDefaults standardUserDefaults] objectForKey:@"UserId"];
+    if (userId) {
+        [[SocketConnection sharedConnection]beginListen];
+        [[SocketConnection sharedConnection]sendKeepAlive];
+    }
     [self initShareSDK];
     return YES;
 }
