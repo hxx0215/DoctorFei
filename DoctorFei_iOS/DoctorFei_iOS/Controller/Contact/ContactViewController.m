@@ -21,8 +21,9 @@
 #import "RHPerson.h"
 #import "UserAPI.h"
 #import "ContactInviteTableViewCell.h"
+@import MessageUI;
 @interface ContactViewController ()
-    <UITableViewDelegate, UITableViewDataSource, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate, UIActionSheetDelegate, UIGestureRecognizerDelegate, UISearchDisplayDelegate>
+    <UITableViewDelegate, UITableViewDataSource, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate, UIActionSheetDelegate, UIGestureRecognizerDelegate, UISearchDisplayDelegate, MFMessageComposeViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *backButton;
 @property (copy, nonatomic) NSArray *stableTableData;
@@ -41,6 +42,7 @@
     NSArray *friendArray, *tableViewDataArray, *needInvitePersonArray;
     NSMutableArray *searchResultArray;
     NSIndexPath *currentIndexPath;
+    MBProgressHUD *smsHud;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -108,11 +110,13 @@
     NSMutableArray *checkArray = [NSMutableArray array];
     for (RHPerson *person in peoples) {
         NSString *phoneString = [person.phoneNumbers valueAtIndex:0];
-        NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"-| |\\+86|\\(|\\)" options:0 error:nil];
-        NSMutableString *needReplacePhone = [phoneString copy];
-        NSString *phone = [regex stringByReplacingMatchesInString:needReplacePhone options:0 range:NSMakeRange(0, needReplacePhone.length) withTemplate:@""];
-        [checkArray addObject:phone];
-        [checkDict setObject:phone forKey:@(person.recordID)];
+        if (phoneString.length > 0) {
+            NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"-| |\\+86|\\(|\\)" options:0 error:nil];
+            NSMutableString *needReplacePhone = [phoneString copy];
+            NSString *phone = [regex stringByReplacingMatchesInString:needReplacePhone options:0 range:NSMakeRange(0, needReplacePhone.length) withTemplate:@""];
+            [checkArray addObject:phone];
+            [checkDict setObject:phone forKey:@(person.recordID)];
+        }
     }
     NSString *checkString = [checkArray componentsJoinedByString:@","];
     NSLog(@"%@",checkString);
@@ -380,8 +384,23 @@
 }
 
 - (IBAction)inviteButtonClicked:(id)sender {
-    RHPerson *person = needInvitePersonArray[((UIButton *)sender).tag];
-    //TODO 发短信
+    if ([MFMessageComposeViewController canSendText]) {
+        RHPerson *person = needInvitePersonArray[((UIButton *)sender).tag];
+        MFMessageComposeViewController *mf = [[MFMessageComposeViewController alloc]init];
+        mf.messageComposeDelegate = self;
+        mf.navigationBar.tintColor = UIColorFromRGB(0xADE85B);
+        mf.body = @"";
+        mf.recipients = @[[person.phoneNumbers valueAtIndex:0]];
+        [self presentViewController:mf animated:YES completion:nil];
+        smsHud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        smsHud.removeFromSuperViewOnHide = YES;
+    }else{
+        smsHud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        smsHud.removeFromSuperViewOnHide = YES;
+        smsHud.mode = MBProgressHUDModeText;
+        smsHud.labelText = @"设备不支持发送短信";
+        [smsHud hide:YES afterDelay:1.0f];
+    }
 }
 #pragma mark - UITableViewCellLongPressed
 -(void)tableviewCellLongPressed:(UILongPressGestureRecognizer *)gestureRecognizer{
@@ -686,4 +705,28 @@
     return YES;
 }
 
+#pragma mark - MFMessageComposeViewControllerDelegate
+- (void)messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result {
+    smsHud.mode = MBProgressHUDModeText;
+    switch (result) {
+        case MessageComposeResultCancelled:
+            //取消
+            smsHud.labelText = @"邀请取消";
+            break;
+        case MessageComposeResultSent:
+            //发送成功
+            smsHud.labelText = @"邀请发送成功";
+            break;
+        case MessageComposeResultFailed:
+            //发送失败
+            smsHud.labelText = @"邀请发送失败";
+            break;
+            
+        default:
+            break;
+    }
+    [smsHud hide:YES afterDelay:1.0f];
+    [controller dismissViewControllerAnimated:YES completion:nil];
+
+}
 @end

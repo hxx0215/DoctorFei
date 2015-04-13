@@ -32,6 +32,7 @@
     [[self sharedManager]defaultGetWithMethod:kMethodCheckFriend WithParameters:parameters success:success failure:failure];
 }
 + (void)checkFriendIsRegisterWithParameters: (id)parameters success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure {
-    [[self sharedManager]defaultGetWithMethod:kMethodCheckFriendIsRegister WithParameters:parameters success:success failure:failure];
+    [[self sharedManager] defaultPostWithMethod:kMethodCheckFriendIsRegister WithParameters:nil WithBodyParameters:parameters success:success failure:failure];
+//    [[self sharedManager]defaultGetWithMethod:kMethodCheckFriendIsRegister WithParameters:parameters success:success failure:failure];
 }
 @end
