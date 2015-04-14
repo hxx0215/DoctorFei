@@ -114,7 +114,7 @@ class MySelfAddHistoryViewController: UIViewController,UICollectionViewDelegate,
         case 1:
             sourceType = UIImagePickerControllerSourceType.SavedPhotosAlbum
         default:
-            sourceType = UIImagePickerControllerSourceType.SavedPhotosAlbum
+            return
         }
         var imagePickController = UIImagePickerController()
         imagePickController.allowsEditing = true
