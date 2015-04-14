@@ -33,6 +33,7 @@
 #define kMethodGetOrgInfo @"get.org.info"
 #define kMethodGetProjectInformation @"get.project.infomation"
 #define kMethodGetNursing @"get.hg.infomation"
+#define kMethodLikeIt @"set.doctor.zan"
 @implementation MemberAPI
 + (void)updateInfomationWithParameters: (id)parameters success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
 {
@@ -145,6 +146,9 @@
 }
 + (void)getNursingWithParameters:(id)parameters success:(void (^)(AFHTTPRequestOperation *, id))success failure:(void (^)(AFHTTPRequestOperation *, NSError *))failure{
     [[self sharedManager] defaultGetWithMethod:kMethodGetNursing WithParameters:parameters success:success failure:failure];
+}
++ (void)likeItWithParameters:(id)parameters success:(void (^)(AFHTTPRequestOperation *, id))success failure:(void (^)(AFHTTPRequestOperation *, NSError *))failure{
+    [[self sharedManager] defaultGetWithMethod:kMethodLikeIt WithParameters:parameters success:success failure:failure];
 }
 @end
 
