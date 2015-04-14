@@ -59,6 +59,22 @@ class HisPageViewController: UIViewController,UITableViewDelegate,UITableViewDat
     @IBAction func backButtonClicked(sender: AnyObject) {
         self.navigationController?.popViewControllerAnimated(true)
     }
+    @IBAction func likeIt(sender: UIButton) {
+        let parma = ["doctorId" : self.doctor.userId,
+            "userid" : NSUserDefaults.standardUserDefaults().objectForKey("UserId") as NSNumber]
+        MemberAPI.likeItWithParameters(parma, success: {
+            operation, responseObject in
+            sender.enabled = false
+            var hud = MBProgressHUD.showHUDAddedTo(self.view, animated: true)
+            hud.dimBackground = true
+            hud.mode = MBProgressHUDMode.Text
+            hud.labelText = ((responseObject as NSArray).firstObject as NSDictionary).objectForKey("msg") as String
+            hud.hide(true, afterDelay: 0.5)
+            }, failure: {
+                operation, error in
+                
+        })
+    }
     func loadAllShuoshuoAndDaylog() {
         if self.doctor.userId.integerValue == 0{
             return
