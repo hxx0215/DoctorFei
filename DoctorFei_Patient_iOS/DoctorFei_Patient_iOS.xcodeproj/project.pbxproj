@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		066252435D862D351860BC4E /* libPods-DoctorFei_Patient_iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BCC976E6369EF3B95E69806 /* libPods-DoctorFei_Patient_iOS.a */; };
+		6A039DB61ADD7AA800A37D02 /* ContactInviteTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A039DB51ADD7AA800A37D02 /* ContactInviteTableViewCell.m */; };
 		6A1156761AB9CDC10049F42D /* JSQAudioMediaItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A1156751AB9CDC10049F42D /* JSQAudioMediaItem.m */; };
 		6A11569D1AB9D4AA0049F42D /* amrFileCodec.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A1156901AB9D4AA0049F42D /* amrFileCodec.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		6A11569E1AB9D4AA0049F42D /* libopencore-amrnb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A1156991AB9D4AA0049F42D /* libopencore-amrnb.a */; };
@@ -777,6 +778,8 @@
 /* Begin PBXFileReference section */
 		30AFFF2139DB1EDC1DF447AA /* Pods-DoctorFei_Patient_iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DoctorFei_Patient_iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DoctorFei_Patient_iOS/Pods-DoctorFei_Patient_iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		68E6BE58C33F18C0B038BAFC /* Pods-DoctorFei_Patient_iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DoctorFei_Patient_iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-DoctorFei_Patient_iOS/Pods-DoctorFei_Patient_iOS.release.xcconfig"; sourceTree = "<group>"; };
+		6A039DB41ADD7AA800A37D02 /* ContactInviteTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactInviteTableViewCell.h; sourceTree = "<group>"; };
+		6A039DB51ADD7AA800A37D02 /* ContactInviteTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactInviteTableViewCell.m; sourceTree = "<group>"; };
 		6A1156741AB9CDC10049F42D /* JSQAudioMediaItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSQAudioMediaItem.h; sourceTree = "<group>"; };
 		6A1156751AB9CDC10049F42D /* JSQAudioMediaItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSQAudioMediaItem.m; sourceTree = "<group>"; };
 		6A11568F1AB9D4AA0049F42D /* amrFileCodec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = amrFileCodec.h; sourceTree = "<group>"; };
@@ -1875,6 +1878,8 @@
 		6A28DDDA1A9EFA0A00B50F8E /* View */ = {
 			isa = PBXGroup;
 			children = (
+				6A039DB41ADD7AA800A37D02 /* ContactInviteTableViewCell.h */,
+				6A039DB51ADD7AA800A37D02 /* ContactInviteTableViewCell.m */,
 				6A28DDDB1A9EFA2F00B50F8E /* MainChatTableViewCell.h */,
 				6A28DDDC1A9EFA2F00B50F8E /* MainChatTableViewCell.m */,
 				6A28DDEA1AA0C95000B50F8E /* OrganDisplayTableViewCell.h */,
@@ -3647,6 +3652,7 @@
 				6ABE09B91ACAD160006B74F1 /* Chat.m in Sources */,
 				6A28DE501AA3340400B50F8E /* MoreUpdateViewController.m in Sources */,
 				6AF8EF791AB6DD7B00B12756 /* Message.m in Sources */,
+				6A039DB61ADD7AA800A37D02 /* ContactInviteTableViewCell.m in Sources */,
 				B9DC87EC1AC6DF3C0069015E /* AndroidTableView.swift in Sources */,
 				D3B9FC041A7145A70024F1DF /* SetOnlineStateUtil.m in Sources */,
 				6A28DE391AA3328500B50F8E /* MySelfMainTableViewController.m in Sources */,

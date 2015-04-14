@@ -132,6 +132,12 @@
 #define COCOAPODS_VERSION_MINOR_Masonry 6
 #define COCOAPODS_VERSION_PATCH_Masonry 1
 
+// RBStoryboardLink
+#define COCOAPODS_POD_AVAILABLE_RBStoryboardLink
+#define COCOAPODS_VERSION_MAJOR_RBStoryboardLink 0
+#define COCOAPODS_VERSION_MINOR_RBStoryboardLink 1
+#define COCOAPODS_VERSION_PATCH_RBStoryboardLink 4
+
 // RHAddressBook
 #define COCOAPODS_POD_AVAILABLE_RHAddressBook
 #define COCOAPODS_VERSION_MAJOR_RHAddressBook 1

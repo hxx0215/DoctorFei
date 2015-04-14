@@ -14,21 +14,31 @@
 #import <MBProgressHUD.h>
 #import "ContactDetailViewController.h"
 #import "Chat.h"
+#import "ContactInviteTableViewCell.h"
+@import MessageUI;
+#import <RHAddressBook.h>
+#import "UserAPI.h"
+#import "RHPerson.h"
+
 @interface ContactMainViewController ()
-    <UITableViewDelegate, UITableViewDataSource, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate, UISearchDisplayDelegate>
+    <UITableViewDelegate, UITableViewDataSource, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate, UISearchDisplayDelegate, MFMessageComposeViewControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *rightItem;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentControl;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *cellSelected;
 - (IBAction)segmentValueChanged:(id)sender;
+
+@property (nonatomic, strong) RHAddressBook *addressbook;
+
 @end
 
 @implementation ContactMainViewController
 {
-    NSArray *friendArray, *tableViewDataArray;
+    NSArray *friendArray, *tableViewDataArray, *needInvitePersonArray;
     NSMutableArray *searchResultArray;
     NSIndexPath *currentIndexPath;
+    MBProgressHUD *smsHud;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -52,6 +62,30 @@
         default:
             break;
     }
+    if ([RHAddressBook authorizationStatus] == RHAuthorizationStatusNotDetermined) {
+        [[[RHAddressBook alloc]init] requestAuthorizationWithCompletion:^(bool granted, NSError *error) {
+            if (!granted) {
+                UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示" message:@"没有获取到通讯录权限, 将不能使用推荐功能" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                [alert show];
+                self.addressbook = nil;
+            }else{
+                self.addressbook = [[RHAddressBook alloc]init];
+                [self checkNeedInviteArray];
+            }
+        }];
+    }
+    if ([RHAddressBook authorizationStatus] == RHAuthorizationStatusDenied || [RHAddressBook authorizationStatus] == RHAuthorizationStatusRestricted) {
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示" message:@"没有获取到通讯录, 将不能使用推荐功能" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [alert show];
+        self.addressbook = nil;
+    }
+    if ([RHAddressBook authorizationStatus] == RHAuthorizationStatusAuthorized) {
+        self.addressbook = [[RHAddressBook alloc]init];
+    }
+    if (_addressbook) {
+        [self checkNeedInviteArray];
+    }
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -65,6 +99,48 @@
     [self reloadTableViewDataWithUserType:[self currentUserType]];
 }
 
+- (void)checkNeedInviteArray {
+    NSArray *peoples = _addressbook.people;
+    NSMutableDictionary *checkDict = [NSMutableDictionary dictionary];
+    NSMutableArray *checkArray = [NSMutableArray array];
+    for (RHPerson *person in peoples) {
+        NSString *phoneString = [person.phoneNumbers valueAtIndex:0];
+        if (phoneString.length > 0) {
+            NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"-| |\\+86|\\(|\\)" options:0 error:nil];
+            NSMutableString *needReplacePhone = [phoneString copy];
+            NSString *phone = [regex stringByReplacingMatchesInString:needReplacePhone options:0 range:NSMakeRange(0, needReplacePhone.length) withTemplate:@""];
+            [checkArray addObject:phone];
+            [checkDict setObject:phone forKey:@(person.recordID)];
+        }
+    }
+    NSString *checkString = [checkArray componentsJoinedByString:@","];
+    NSLog(@"%@",checkString);
+    NSDictionary *param = @{
+                            @"mobile": checkString
+                            };
+    [UserAPI checkFriendIsRegisterWithParameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"%@",responseObject);
+        NSMutableArray *needArray = [NSMutableArray array];
+        for (NSDictionary *dict in responseObject) {
+            if (dict[@"isjoin"] && [dict[@"isjoin"] intValue] == 0) {
+                NSString *phone = dict[@"mobile"];
+                NSArray *recordIdArray = [checkDict allKeysForObject:phone];
+                for (NSNumber *recordId in recordIdArray) {
+                    RHPerson *person = [_addressbook personForABRecordID:recordId.intValue];
+                    if (![needArray containsObject:person]) {
+                        [needArray addObject:person];
+                    }
+                }
+            }
+        }
+        needInvitePersonArray = [needArray copy];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.tableView reloadData];
+        });
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"%@",error.localizedDescription);
+    }];
+}
 
 #pragma mark - Navigation
 
@@ -215,6 +291,26 @@
             break;
     }
 }
+- (IBAction)inviteButtonClicked:(id)sender {
+    if ([MFMessageComposeViewController canSendText]) {
+        RHPerson *person = needInvitePersonArray[((UIButton *)sender).tag];
+        MFMessageComposeViewController *mf = [[MFMessageComposeViewController alloc]init];
+        mf.messageComposeDelegate = self;
+        mf.navigationBar.tintColor = UIColorFromRGB(0xADE85B);
+        mf.body = @"";
+        mf.recipients = @[[person.phoneNumbers valueAtIndex:0]];
+        [self presentViewController:mf animated:YES completion:nil];
+        smsHud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        smsHud.removeFromSuperViewOnHide = YES;
+    }else{
+        smsHud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        smsHud.removeFromSuperViewOnHide = YES;
+        smsHud.mode = MBProgressHUDModeText;
+        smsHud.labelText = @"设备不支持发送短信";
+        [smsHud hide:YES afterDelay:1.0f];
+    }
+}
+
 #pragma mark - UITableView Delegate
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -258,6 +354,8 @@
     }
     if (section == 0) {
         return 3;
+    }else if (section == tableViewDataArray.count + 1){
+        return needInvitePersonArray.count;
     }else{
         return [tableViewDataArray[section - 1] count];
     }
@@ -270,7 +368,7 @@
     if (self.contactMode == ContactMainViewControllerModeCreateGroup){
         return tableViewDataArray.count;
     }
-    return tableViewDataArray.count + 1;
+    return tableViewDataArray.count + 1 + (needInvitePersonArray.count > 0 ? 1 : 0);
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -279,6 +377,8 @@
     static NSString *ContactGroupTalkCellIdentifier = @"ContactGroupTalkCellIdentifier";
     static NSString *ContactNearByCellIdentifier = @"ContactNearByCellIdentifier";
     static NSString *ContactFriendSelectCellIdentifier = @"ContactFriendSelectCellIdentifier";
+    static NSString *ContactInviteCellIdentifier = @"ContactInviteCellIdentifier";
+
     if (self.contactMode == ContactMainViewControllerModeNormal)
     {
         if (indexPath.section == 0) {
@@ -301,6 +401,13 @@
                 default:
                     break;
             }
+        }
+        else if (indexPath.section == tableViewDataArray.count + 1) {
+            ContactInviteTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ContactInviteCellIdentifier forIndexPath:indexPath];
+            [cell setPerson:needInvitePersonArray[indexPath.row]];
+            cell.inviteButton.tag = indexPath.row;
+            [cell.inviteButton addTarget:self action:@selector(inviteButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+            return cell;
         }
         else{
             ContactFriendTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ContactFriendCellIdentifier forIndexPath:indexPath];
@@ -325,6 +432,9 @@
     else if (self.contactMode == ContactMainViewControllerModeNormal){
         if (section == 0){
             return @" ";
+        }
+        else if (section == tableViewDataArray.count + 1){
+            return @"以下朋友还没有注册,赶紧邀请他们吧";
         }
         else{
             if ([tableViewDataArray[section - 1] count] > 0) {
@@ -375,6 +485,30 @@
         }
     }
     return YES;
+}
+#pragma mark - MFMessageComposeViewControllerDelegate
+- (void)messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result {
+    smsHud.mode = MBProgressHUDModeText;
+    switch (result) {
+        case MessageComposeResultCancelled:
+            //取消
+            smsHud.labelText = @"邀请取消";
+            break;
+        case MessageComposeResultSent:
+            //发送成功
+            smsHud.labelText = @"邀请发送成功";
+            break;
+        case MessageComposeResultFailed:
+            //发送失败
+            smsHud.labelText = @"邀请发送失败";
+            break;
+            
+        default:
+            break;
+    }
+    [smsHud hide:YES afterDelay:1.0f];
+    [controller dismissViewControllerAnimated:YES completion:nil];
+    
 }
 
 @end

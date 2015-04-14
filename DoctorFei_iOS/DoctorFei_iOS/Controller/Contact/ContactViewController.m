@@ -88,6 +88,7 @@
                 self.addressbook = nil;
             }else{
                 self.addressbook = [[RHAddressBook alloc]init];
+                [self checkNeedInviteArray];
             }
         }];
     }

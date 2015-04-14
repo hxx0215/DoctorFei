@@ -104,4 +104,36 @@
 //            exit(42);
 //    }];
 }
+
+- (void)defaultPostWithMethod:(NSString *)method WithParameters:(id)parameters WithBodyParameters:(id)bodyParameters success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
+{
+    //    NSLog(@"%@",[parameters JSONString]);
+    NSString *urlString = [NSString createResponseURLWithMethod:method Params:[parameters JSONString]];
+    [[BaseHTTPRequestOperationManager sharedManager] POST:urlString parameters:bodyParameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSString *retStr = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+        NSString *retJson =[NSString decodeFromPercentEscapeString:[retStr decryptWithDES]];
+        NSDictionary *result = [retJson objectFromJSONString];
+        NSLog(@"%@",result);
+        
+        if ([result[@"verification"]boolValue] && [result[@"error"]isEqual:[NSNull null]]) {
+            NSArray *dataArray = result[@"data"];
+            success(operation, dataArray);
+        }
+        else{
+            NSError *error;
+            if(result[@"error"])
+            {
+                error = [NSError errorWithDomain:kErrorDomain code:0 userInfo:@{NSLocalizedDescriptionKey : result[@"error"]}];
+            }
+            else
+            {
+                error = [NSError errorWithDomain:kErrorDomain code:0 userInfo:@{NSLocalizedDescriptionKey : @"其他错误"}];
+            }
+            failure(operation, error);
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        failure(operation, error);
+    }];
+}
+
 @end
