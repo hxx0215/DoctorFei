@@ -35,6 +35,7 @@
 #define kMethodUpdateDoctorSchedule @"update.doctor.schedule"
 #define kMethodGetDoctorDayarrange @"get.doctor.dayarrange"
 #define kMethodSetDoctorDayarrange @"set.doctor.dayarrange"
+#define kMethodUpdateDoctorDayarrange @"update.doctor.dayarrange"
 #define kMethodGetDoctorFastreply @"get.doctor.fastreply"
 #define kMethodSetDoctorFastreply @"set.doctor.fastreply"
 
@@ -206,6 +207,10 @@
     [[self sharedManager]defaultGetWithMethod:kMethodSetDoctorDayarrange WithParameters:parameters success:success failure:failure];
 }
 
+//删除医生日程安排表
++ (void)updateDoctorDayarrangeWithParameters: (id)parameters success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure {
+    [[self sharedManager]defaultGetWithMethod:kMethodUpdateDoctorDayarrange WithParameters:parameters success:success failure:failure];
+}
 + (void)getDoctorFastreplyWithParameters: (id)parameters success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
 {
     [[self sharedManager]defaultGetWithMethod:kMethodGetDoctorFastreply WithParameters:parameters success:success failure:failure];
@@ -273,6 +278,7 @@
     [[self sharedManager] defaultGetWithMethod:kMethodSetDoctorReferralAudit WithParameters:parameters success:success failure:failure];
 }
 //删除预约其实我觉得好奇怪啊。为啥是医生删除预约患者还看不到
+    //因为这个功能根本就没有闭环..根本就没有想清楚!
 + (void)deleteAppointmentWithParameters:(id)parameters success:(void (^)(AFHTTPRequestOperation *, id))success failure:(void (^)(AFHTTPRequestOperation *, NSError *))failure{
     [[self sharedManager] defaultGetWithMethod:kMethodDeleteAppointment WithParameters:parameters success:success failure:failure];
 }

@@ -198,7 +198,8 @@
                                                             <exclude reference="iir-Mu-VJy"/>
                                                         </mask>
                                                     </variation>
-                                                    <variation key="heightClass=regular-widthClass=compact">
+                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                        <rect key="frame" x="500" y="10" width="60" height="44"/>
                                                         <mask key="constraints">
                                                             <include reference="245-hT-Xuv"/>
                                                             <include reference="iir-Mu-VJy"/>
@@ -218,7 +219,8 @@
                                                             <exclude reference="1wl-ur-KjR"/>
                                                         </mask>
                                                     </variation>
-                                                    <variation key="heightClass=regular-widthClass=compact">
+                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                        <rect key="frame" x="71" y="21" width="421" height="21"/>
                                                         <mask key="constraints">
                                                             <include reference="1wl-ur-KjR"/>
                                                         </mask>
@@ -387,6 +389,9 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
+                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                        <rect key="frame" x="232" y="11.5" width="136" height="20.5"/>
+                                                    </variation>
                                                 </label>
                                             </subviews>
                                             <constraints>
@@ -426,6 +431,9 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
+                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                        <rect key="frame" x="232" y="11.5" width="136" height="20.5"/>
+                                                    </variation>
                                                 </label>
                                             </subviews>
                                             <constraints>
@@ -2791,6 +2799,7 @@
                         <outlet property="dataLabel" destination="BWK-lr-Pt8" id="3Em-Sl-g8S"/>
                         <outlet property="eventLabel" destination="Uts-Li-iPa" id="GRH-IL-jfh"/>
                         <outlet property="nameLabel" destination="l0v-rg-1Hn" id="EaH-Ot-H2v"/>
+                        <outlet property="okButton" destination="AQ7-Mf-FHc" id="44f-sa-sV7"/>
                         <outlet property="remindSwitch" destination="5Dv-9M-GHA" id="Lgv-YA-kki"/>
                         <outlet property="remindTimeButton" destination="HNB-fh-HTB" id="qzx-Fx-tbn"/>
                         <outlet property="remindTimeLabel" destination="hxP-k5-ZJC" id="QK8-T5-8fV"/>
@@ -2827,7 +2836,8 @@
                                         <exclude reference="akH-MJ-Gak"/>
                                     </mask>
                                 </variation>
-                                <variation key="heightClass=regular-widthClass=compact">
+                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="0.0" y="0.0" width="400" height="44"/>
                                     <mask key="constraints">
                                         <include reference="akH-MJ-Gak"/>
                                     </mask>
@@ -5189,7 +5199,7 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="nSx-LG-3TW" id="cwt-oV-E3C">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VKX-0F-8fP">
+                                                <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VKX-0F-8fP">
                                                     <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="104" id="0zV-E4-Bfp"/>
@@ -6891,7 +6901,8 @@
                                                     <exclude reference="agk-Ka-Nwv"/>
                                                 </mask>
                                             </variation>
-                                            <variation key="heightClass=regular-widthClass=compact">
+                                            <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                <rect key="frame" x="527" y="23" width="40" height="20"/>
                                                 <mask key="constraints">
                                                     <include reference="6zg-4E-mN6"/>
                                                     <include reference="agk-Ka-Nwv"/>
@@ -6906,12 +6917,18 @@
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <color key="textColor" red="0.4549019608" green="0.7843137255" blue="0.1960784314" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
+                                            <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                <rect key="frame" x="546" y="53" width="28" height="14.5"/>
+                                            </variation>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="赞" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FTN-ef-5Bj">
                                             <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <color key="textColor" red="0.45490196078431372" green="0.78431372549019607" blue="0.19607843137254902" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
+                                            <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                <rect key="frame" x="531" y="53" width="12" height="14.5"/>
+                                            </variation>
                                         </label>
                                     </subviews>
                                     <constraints>
@@ -7054,6 +7071,9 @@
                                                     <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
+                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                        <rect key="frame" x="8" y="8" width="584" height="30.5"/>
+                                                    </variation>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -12970,18 +12990,18 @@
         <image name="vip_pic.png" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="zKw-Eq-Pwx"/>
-        <segue reference="JeB-AN-IOM"/>
-        <segue reference="g9C-yb-yuY"/>
-        <segue reference="wpO-fm-KSL"/>
-        <segue reference="QWB-UP-Nry"/>
         <segue reference="Hb8-Q6-QO7"/>
-        <segue reference="SfG-iR-NoF"/>
+        <segue reference="6jn-ZK-h5N"/>
+        <segue reference="Mwl-tT-Jc7"/>
         <segue reference="pVr-DH-hJQ"/>
-        <segue reference="4Y7-Yi-Utz"/>
-        <segue reference="bnF-ld-Gwy"/>
-        <segue reference="kdj-0l-DOk"/>
-        <segue reference="TSG-uQ-7E1"/>
         <segue reference="PPz-pu-GWN"/>
+        <segue reference="nrB-L6-42j"/>
+        <segue reference="rqJ-cO-jCt"/>
+        <segue reference="zKw-Eq-Pwx"/>
+        <segue reference="8FK-Id-c2E"/>
+        <segue reference="bnF-ld-Gwy"/>
+        <segue reference="4Y7-Yi-Utz"/>
+        <segue reference="wpO-fm-KSL"/>
+        <segue reference="TSG-uQ-7E1"/>
     </inferredMetricsTieBreakers>
 </document>

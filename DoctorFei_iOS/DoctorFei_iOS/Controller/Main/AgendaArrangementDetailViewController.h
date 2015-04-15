@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@class AgendaArrangement;
 @interface AgendaArrangementDetailViewController : UIViewController
+
+@property (nonatomic, strong) AgendaArrangement *currentArrangement;
 
 @end

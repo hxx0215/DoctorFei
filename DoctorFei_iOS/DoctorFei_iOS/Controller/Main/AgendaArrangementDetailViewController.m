@@ -17,6 +17,7 @@
 #import <ReactiveCocoa.h>
 #import <NSDate+DateTools.h>
 #import "AgendaArrangementDetailEventViewController.h"
+#import "AgendaArrangement.h"
 @interface AgendaArrangementDetailViewController ()
     <AgendaArrangementDetailEventVCDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
@@ -26,6 +27,7 @@
 @property (weak, nonatomic) IBOutlet UISwitch *remindSwitch;
 @property (weak, nonatomic) IBOutlet UILabel *remindTimeLabel;
 @property (weak, nonatomic) IBOutlet UIButton *remindTimeButton;
+@property (weak, nonatomic) IBOutlet UIButton *okButton;
 - (IBAction)dateButtonClicked:(id)sender;
 - (IBAction)timeButtonClicked:(id)sender;
 - (IBAction)remindTimeButtonClicked:(id)sender;
@@ -38,6 +40,7 @@
     NSDate *date;
     double dateTimeInterval;
     Friends *currentSelectedFriend;
+    BOOL isNew;
 }
 
 - (void)viewDidLoad {
@@ -50,6 +53,65 @@
         }
         return isOn;
     }];
+    if (_currentArrangement) {
+        [self fetchDetailForArrangement];
+        isNew = NO;
+    }else{
+        isNew = YES;
+        _currentArrangement = [[AgendaArrangement alloc]init];
+        _currentArrangement.allowTip = @1;
+        _currentArrangement.tipType = @1;
+    }
+}
+
+- (void)reloadUIView {
+    NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+    [formatter setDateFormat:@"yyyy年MM月dd日"];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"HH:mm"];
+    [_nameLabel setText:_currentArrangement.memberName];
+    [_dataLabel setText:[formatter stringFromDate:_currentArrangement.dayTime]];
+    [_timeLabel setText:[dateFormatter stringFromDate:_currentArrangement.dayTime]];
+    [_eventLabel setText:_currentArrangement.title];
+    if (_currentArrangement.allowTip.boolValue) {
+        [_remindSwitch setOn:YES];
+        [_remindTimeLabel setText:kRemindTimeArray[_currentArrangement.tipType.intValue - 1]];
+    }else{
+        [_remindSwitch setOn:NO];
+    }
+}
+- (void)fetchDetailForArrangement {
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
+    [dateFormatter setDateFormat:@"yyyy年MM月dd日"];
+
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    NSNumber *doctorId = [[NSUserDefaults standardUserDefaults]objectForKey:@"UserId"];
+    NSDictionary *params = @{
+                             @"id": _currentArrangement.arrangeId,
+                             @"doctorid": doctorId,
+                             };
+    [DoctorAPI getDoctorDayarrangeWithParameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"%@",responseObject);
+        NSDictionary *result = [responseObject firstObject];
+        if (result) {
+            _currentArrangement.allowTip = @([result[@"allowtip"] intValue]);
+            _currentArrangement.tipType = @([result[@"tiptype"] intValue]);
+            _currentArrangement.tipTime = [NSDate dateWithTimeIntervalSince1970:[result[@"tiptime"] intValue]];
+            _currentArrangement.note = result[@"note"];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [hud hide:NO];
+                [self reloadUIView];
+            });
+        }
+        hud.mode = MBProgressHUDModeText;
+        hud.labelText = @"获取错误!";
+        [hud hide:YES afterDelay:1.5f];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"%@", error.localizedDescription);
+        hud.mode = MBProgressHUDModeText;
+        hud.labelText = error.localizedDescription;
+        [hud hide:YES afterDelay:1.5f];
+    }];
 }
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"AgendaScheduleContactSelectSegueIdentifier"]) {
@@ -59,6 +121,8 @@
         vc.didSelectFriends = ^(NSArray *selectArray){
             currentSelectedFriend = selectArray.firstObject;
             [_nameLabel setAttributedText:[DataUtil nameStringForFriend:currentSelectedFriend]];
+            _currentArrangement.memberId = currentSelectedFriend.userId;
+            _currentArrangement.memberName = currentSelectedFriend.realname;
         };
     } else if ([segue.identifier isEqualToString:@"AgendaScheduleEventSegueIdentifier"]) {
         AgendaArrangementDetailEventViewController *vc = [segue destinationViewController];
@@ -73,7 +137,8 @@
         [_dataLabel setText:[formatter stringFromDate:selectedDate]];
         double time = ((NSDate *)selectedDate).timeIntervalSince1970;
         dateTimeInterval = (long)time - (long)time % 86400 + (long)dateTimeInterval % 86400;
-        NSLog(@"%@", [NSDate dateWithTimeIntervalSince1970:dateTimeInterval]);
+        _currentArrangement.dayTime = [NSDate dateWithTimeIntervalSince1970:dateTimeInterval];
+//        NSLog(@"%@", [NSDate dateWithTimeIntervalSince1970:dateTimeInterval]);
     } cancelBlock:nil origin:sender];
     [actionSheetDatePicker showActionSheetPicker];
 }
@@ -85,13 +150,15 @@
         [_timeLabel setText:[dateFormatter stringFromDate:selectedDate]];
         double time = ((NSDate *)selectedDate).timeIntervalSince1970;
         dateTimeInterval = (long)dateTimeInterval - (long)dateTimeInterval % 86400 + (long)time % 86400;
-        NSLog(@"%@", [NSDate dateWithTimeIntervalSince1970:dateTimeInterval]);
+        _currentArrangement.dayTime = [NSDate dateWithTimeIntervalSince1970:dateTimeInterval];
+//        NSLog(@"%@", [NSDate dateWithTimeIntervalSince1970:dateTimeInterval]);
     } cancelBlock:nil origin:sender];
     [actionSheetTimePicker showActionSheetPicker];
 }
 
 - (IBAction)remindTimeButtonClicked:(id)sender {
     ActionSheetStringPicker *actionSheetRemindTimePicker = [[ActionSheetStringPicker alloc]initWithTitle:@"" rows:kRemindTimeArray initialSelection:2 doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
+        _currentArrangement.tipType = @(selectedIndex + 1);
         [_remindTimeLabel setText:selectedValue];
     } cancelBlock:nil origin:sender];
     [actionSheetRemindTimePicker showActionSheetPicker];
@@ -107,30 +174,42 @@
 }
 
 - (IBAction)OKButtonClicked:(id)sender {
-    [self addDayarrange];
+    _currentArrangement.allowTip = @(_remindSwitch.on);
+    if ([_eventLabel.text isEqualToString:@"无"]) {
+        _currentArrangement.tipType = @0;
+    }else {
+        _currentArrangement.tipType = @([kRemindTimeArray indexOfObject:_remindTimeLabel.text] + 1);
+    };
+    
+    if (_currentArrangement.memberName.length > 0
+        && ![_dataLabel.text isEqualToString:@"点击选择日期"]
+        && ![_timeLabel.text isEqualToString:@"点击选择时间"]
+        && _eventLabel.text.length > 0) {
+        [self addDayarrange];
+    }else{
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view.window animated:YES];
+        hud.mode = MBProgressHUDModeText;
+        hud.labelText = @"信息填写不全";
+        [hud hide:YES afterDelay:1.5f];
+    }
 }
 
 -(void)addDayarrange
 {
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view.window animated:YES];
     hud.dimBackground = YES;
-    hud.labelText = @"添加中";
+    hud.labelText = @"添加中...";
     NSNumber *doctorId = [[NSUserDefaults standardUserDefaults]objectForKey:@"UserId"];
-    NSNumber *tiptype;
-    if ([_eventLabel.text isEqualToString:@"无"]) {
-        tiptype = @0;
-    }else {
-        tiptype = @([kRemindTimeArray indexOfObject:_remindTimeLabel.text] + 1);
-    };
     NSDictionary *params = @{
                              @"doctorid": doctorId,
-                             @"title": _eventLabel.text,
-                             @"note": _eventLabel.text,
-                             @"memberid": currentSelectedFriend.userId,
-                             @"membername": currentSelectedFriend.realname,
-                             @"daytime": @(dateTimeInterval),
-                             @"allowtip": @(_remindSwitch.on),
-                             @"tiptype": tiptype
+                             @"id": isNew ? @0 : _currentArrangement.arrangeId,
+                             @"title": _currentArrangement.title,
+                             @"note": _currentArrangement.title,
+//                             @"memberid": _currentArrangement.memberId,
+                             @"membername": _currentArrangement.memberName,
+                             @"daytime": @([_currentArrangement.dayTime timeIntervalSince1970]),
+                             @"allowtip": _currentArrangement.allowTip,
+                             @"tiptype": _currentArrangement.tipType
                              };
     NSLog(@"%@",params);
     [DoctorAPI setDoctorDayarrangeWithParameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
@@ -152,6 +231,7 @@
 
 #pragma mark - AgendaArrangementDetailEventVCDelegate
 - (void)confirmButtonClickedForAgendaArrangementDetailEventVC:(AgendaArrangementDetailEventViewController *)vc eventString:(NSString *)eventString {
+    _currentArrangement.title = eventString;
     [_eventLabel setText:eventString];
 }
 @end
