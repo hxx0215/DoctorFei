@@ -32,8 +32,8 @@ static NSString * const kMyAppointmentIdenty = @"MyAppointmentIdenty";
     headFrame.size.height = 44;
     self.tableView.tableHeaderView.frame = headFrame;
     self.tableData = [NSMutableArray new];
-    [self.tableData addObject:[NSArray new]];
-    [self.tableData addObject:[NSArray new]];
+    [self.tableData addObject:[NSMutableArray new]];
+    [self.tableData addObject:[NSMutableArray new]];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -46,7 +46,7 @@ static NSString * const kMyAppointmentIdenty = @"MyAppointmentIdenty";
 }
 //TODO:将获得的数组排序
 - (void)sortAppointData{
-    self.tableData[0]=[self.tableData[0] sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2){
+    self.tableData[0]=[[self.tableData[0] sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2){
         NSString *s1 = obj1[@"addtime"];
         NSString *s2 = obj2[@"addtime"];
         NSDate *date1 = nil;
@@ -62,12 +62,12 @@ static NSString * const kMyAppointmentIdenty = @"MyAppointmentIdenty";
             date2 = [NSDate dateWithTimeIntervalSince1970:0];
         }
         return [date2 compare:date1];
-    }];
+    }] mutableCopy];
 }
 - (void)sortReferralData{
-    self.tableData[1] = [self.tableData[1] sortedArrayUsingComparator:^NSComparisonResult(id obj1,id obj2) {
+    self.tableData[1] = [[self.tableData[1] sortedArrayUsingComparator:^NSComparisonResult(id obj1,id obj2) {
         return [obj1[@"createtime"] integerValue]<[obj2[@"createtime"] integerValue];
-    }];
+    }] mutableCopy];
 }
 - (void)refreshData{
     NSDictionary *params = @{@"doctorid": [[NSUserDefaults standardUserDefaults] objectForKey:@"UserId"],@"sorttype" : @(1)};
@@ -76,7 +76,7 @@ static NSString * const kMyAppointmentIdenty = @"MyAppointmentIdenty";
         NSArray *resultArray = (NSArray *)responseObject;
         if (resultArray.firstObject[@"state"] && [resultArray.firstObject[@"state"] intValue] == 0) {
         }else{
-            self.tableData[0] = resultArray;
+            self.tableData[0] = [resultArray mutableCopy];
             [self sortAppointData];
             [self.tableView reloadData];
         }
@@ -87,7 +87,7 @@ static NSString * const kMyAppointmentIdenty = @"MyAppointmentIdenty";
         NSLog(@"referral:%@",responseObject);
         NSArray *resultArray = (NSArray *)responseObject;
         if (resultArray.count > 0) {
-            self.tableData[1] = resultArray;
+            self.tableData[1] = [resultArray mutableCopy];
             [self sortReferralData];
         }
     }failure:^(AFHTTPRequestOperation *operation, NSError *error){
@@ -117,8 +117,21 @@ static NSString * const kMyAppointmentIdenty = @"MyAppointmentIdenty";
     else
         return 0;
 }
-
-
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath{
+    return (self.appointSegment.selectedSegmentIndex == 0);
+}
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (editingStyle == UITableViewCellEditingStyleDelete){
+        NSDictionary *params = @{@"id": [self.tableData[0][indexPath.row] objectForKey:@"id"]};
+        [DoctorAPI deleteAppointmentWithParameters:params success:^(AFHTTPRequestOperation *operation, id responsObject){
+            
+        }failure:^(AFHTTPRequestOperation *operation,NSError *error){
+            
+        }];
+        [self.tableData[0] removeObjectAtIndex:indexPath.row];
+        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    }
+}
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kMyAppointmentIdenty forIndexPath:indexPath];
 //    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kMyAppointmentIdenty];
