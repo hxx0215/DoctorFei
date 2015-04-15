@@ -53,7 +53,7 @@
 #define kMethodUpdateDoctorReferral @"update.doctor.referral"//终止转诊
 #define kMethodGetDoctorReferral @"get.doctor.referral"
 #define kMethodSetDoctorReferralAudit @"set.doctor.referralaudit"
-
+#define kMethodDeleteAppointment @"update.member.appointment"
 @implementation DoctorAPI
 + (void)updateInfomationWithParameters: (id)parameters success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
 {
@@ -271,5 +271,9 @@
 //处理转诊信息
 + (void)AuditReferralWithParameters: (id)parameters success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure{
     [[self sharedManager] defaultGetWithMethod:kMethodSetDoctorReferralAudit WithParameters:parameters success:success failure:failure];
+}
+//删除预约其实我觉得好奇怪啊。为啥是医生删除预约患者还看不到
++ (void)deleteAppointmentWithParameters:(id)parameters success:(void (^)(AFHTTPRequestOperation *, id))success failure:(void (^)(AFHTTPRequestOperation *, NSError *))failure{
+    [[self sharedManager] defaultGetWithMethod:kMethodDeleteAppointment WithParameters:parameters success:success failure:failure];
 }
 @end
