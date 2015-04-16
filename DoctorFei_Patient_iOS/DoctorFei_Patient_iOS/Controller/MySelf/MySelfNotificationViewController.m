@@ -7,7 +7,7 @@
 //
 
 #import "MySelfNotificationViewController.h"
-
+#import "MemberAPI.h"
 @interface MySelfNotificationViewController ()
 - (IBAction)backButtonClicked:(id)sender;
 
@@ -24,7 +24,18 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self refreshData];
+}
+- (void)refreshData{
+    NSDictionary *params = @{@"userid":[[NSUserDefaults standardUserDefaults] objectForKey:@"UserId"]};
+    [MemberAPI notificationListWithParameters:params success:^(AFHTTPRequestOperation *operation,id responseObject){
+        
+    }failure:^(AFHTTPRequestOperation *operation, NSError *error){
+        
+    }];
+}
 /*
 #pragma mark - Navigation
 
