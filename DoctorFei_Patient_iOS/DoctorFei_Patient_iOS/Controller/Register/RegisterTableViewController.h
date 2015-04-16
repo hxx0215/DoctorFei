@@ -10,4 +10,6 @@
 
 @interface RegisterTableViewController : UITableViewController
 
+@property (nonatomic, strong) NSNumber *userType;
+
 @end

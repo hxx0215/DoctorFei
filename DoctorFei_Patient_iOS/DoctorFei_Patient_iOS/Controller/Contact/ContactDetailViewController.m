@@ -434,7 +434,7 @@ typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
         NSDictionary *param = @{
                                 @"groupid": _currentChat.chatId,
                                 @"userid": [[NSUserDefaults standardUserDefaults]objectForKey:@"UserId"],
-                                @"usertype": @0,
+                                @"usertype": [[NSUserDefaults standardUserDefaults]objectForKey:@"UserType"],
                                 @"msgtype": type,
                                 @"contents": content
                                 };
@@ -456,7 +456,7 @@ typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
         NSDictionary *param = @{
                                 @"groupid": _currentChat.chatId,
                                 @"userid": [[NSUserDefaults standardUserDefaults] objectForKey:@"UserId"],
-                                @"usertype": @0,
+                                @"usertype": [[NSUserDefaults standardUserDefaults]objectForKey:@"UserType"],
                                 @"msgtype": type,
                                 @"contents": content
                                 };

@@ -49,6 +49,11 @@
     RAC(self.confirmButton, enabled) = [RACSignal combineLatest:@[self.nameLabel.rac_textSignal, self.hospitalNameLabel.rac_textSignal, self.departmentLabel.rac_textSignal, self.jobTitleLabel.rac_textSignal, self.emailLabel.rac_textSignal, self.introductionTextView.rac_textSignal] reduce:^(NSString *name, NSString *hospitalName, NSString *department, NSString *jobTitle, NSString *email, NSString *introduction){
         return @(name.length > 0 && hospitalName.length > 0 && department.length > 0 && jobTitle.length > 0 && email.length > 0 && introduction.length > 0);
     }];
+    
+    if (_userType.intValue == 1) {
+        [self.hospitalNameLabel setPlaceholder:@"请输入您所关注的医院"];
+        [self.departmentLabel setPlaceholder:@"请输入您所关注的科室"];
+    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated

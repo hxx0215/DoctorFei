@@ -496,14 +496,14 @@
                                                     </constraints>
                                                     <variation key="default">
                                                         <mask key="constraints">
-                                                            <exclude reference="SKt-Bb-D1v"/>
                                                             <exclude reference="8Gt-8U-TA5"/>
+                                                            <exclude reference="SKt-Bb-D1v"/>
                                                         </mask>
                                                     </variation>
                                                     <variation key="heightClass=regular-widthClass=compact">
                                                         <mask key="constraints">
-                                                            <include reference="SKt-Bb-D1v"/>
                                                             <include reference="8Gt-8U-TA5"/>
+                                                            <include reference="SKt-Bb-D1v"/>
                                                         </mask>
                                                     </variation>
                                                 </imageView>
@@ -524,7 +524,8 @@
                                                             <exclude reference="kFc-sb-FkQ"/>
                                                         </mask>
                                                     </variation>
-                                                    <variation key="heightClass=regular-widthClass=compact">
+                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                        <rect key="frame" x="220" y="10.5" width="60" height="44"/>
                                                         <mask key="constraints">
                                                             <include reference="d06-bG-nkE"/>
                                                             <include reference="kFc-sb-FkQ"/>
@@ -544,7 +545,8 @@
                                                             <exclude reference="X4p-BN-R5f"/>
                                                         </mask>
                                                     </variation>
-                                                    <variation key="heightClass=regular-widthClass=compact">
+                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                        <rect key="frame" x="71" y="21.5" width="141" height="21"/>
                                                         <mask key="constraints">
                                                             <include reference="X4p-BN-R5f"/>
                                                         </mask>
@@ -568,8 +570,8 @@
                                                 </mask>
                                                 <mask key="constraints">
                                                     <exclude reference="72o-5K-J4W"/>
-                                                    <exclude reference="Asp-EF-XtT"/>
                                                     <exclude reference="5QN-5w-9oo"/>
+                                                    <exclude reference="Asp-EF-XtT"/>
                                                     <exclude reference="D8w-D2-LdF"/>
                                                     <exclude reference="Jkv-Nk-ShZ"/>
                                                     <exclude reference="7mo-XI-ZIH"/>
@@ -584,8 +586,8 @@
                                                 </mask>
                                                 <mask key="constraints">
                                                     <include reference="72o-5K-J4W"/>
-                                                    <include reference="Asp-EF-XtT"/>
                                                     <include reference="5QN-5w-9oo"/>
+                                                    <include reference="Asp-EF-XtT"/>
                                                     <include reference="D8w-D2-LdF"/>
                                                     <include reference="Jkv-Nk-ShZ"/>
                                                     <include reference="7mo-XI-ZIH"/>
@@ -5743,7 +5745,7 @@
                                         </state>
                                         <state key="highlighted" backgroundImage="button_sign-in_btn_after.png"/>
                                         <connections>
-                                            <segue destination="0cX-pU-Huh" kind="show" identifier="LoginRegisterSegueIdentifier" id="YxH-3m-ryh"/>
+                                            <segue destination="Ovn-qs-TTV" kind="presentation" identifier="RegisterUserTypeSelectSegueIdentifier" id="do4-Rq-FKA"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SjS-qZ-avX">
@@ -6019,6 +6021,7 @@
                         <outlet property="loginButton" destination="tDX-Ei-Tav" id="hkz-yo-s23"/>
                         <outlet property="passwordTextField" destination="2vX-hk-615" id="PVS-nH-VwD"/>
                         <outlet property="phoneTextField" destination="oCe-BC-Pnw" id="8SQ-5b-EOe"/>
+                        <segue destination="0cX-pU-Huh" kind="show" identifier="LoginRegisterSegueIdentifier" id="RG2-7r-WbU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Dx3-12-SnB" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -7026,7 +7029,7 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入您任职的医院名称" adjustsFontSizeToFit="NO" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="IQa-HS-yRa">
+                                                <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入您所就诊的医院" adjustsFontSizeToFit="NO" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="IQa-HS-yRa">
                                                     <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits" returnKeyType="next"/>
@@ -7093,7 +7096,7 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textField opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入您所在的科室" adjustsFontSizeToFit="NO" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="K5n-ss-c9T">
+                                                <textField opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入您所就诊的科室" adjustsFontSizeToFit="NO" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="K5n-ss-c9T">
                                                     <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits" returnKeyType="next"/>
@@ -7430,20 +7433,26 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JnJ-hq-Z6s">
                                         <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                        <state key="normal" title="患者登录" backgroundImage="button_narrow-02_btn.png">
+                                        <state key="normal" title="患者注册" backgroundImage="button_narrow-02_btn.png">
                                             <color key="titleColor" red="0.43137254899999999" green="0.6588235294" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <state key="highlighted" backgroundImage="button_narrow-02_btn_after.png"/>
+                                        <connections>
+                                            <action selector="userTypeButtonClicked:" destination="Ovn-qs-TTV" eventType="touchUpInside" id="l7b-Cr-0ES"/>
+                                        </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cL0-mW-nxt">
+                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cL0-mW-nxt">
                                         <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                        <state key="normal" title="家属登录" backgroundImage="button_narrow-02_btn.png">
+                                        <state key="normal" title="家属注册" backgroundImage="button_narrow-02_btn.png">
                                             <color key="titleColor" red="0.43137254899999999" green="0.6588235294" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <state key="highlighted" backgroundImage="button_narrow-02_btn_after.png"/>
+                                        <connections>
+                                            <action selector="userTypeButtonClicked:" destination="Ovn-qs-TTV" eventType="touchUpInside" id="Isy-rO-3aE"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -7542,7 +7551,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="I3n-66-0vv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-8352" y="4698.75"/>
+            <point key="canvasLocation" x="-7611" y="4017.75"/>
         </scene>
         <!--首页-->
         <scene sceneID="oUH-4H-uyO">
@@ -12485,13 +12494,13 @@
         <image name="weixin_logo.png" width="40" height="40"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ds7-ED-s8D"/>
-        <segue reference="kod-tF-SWu"/>
-        <segue reference="8dG-p0-wDZ"/>
         <segue reference="Paz-oa-rTw"/>
+        <segue reference="8dG-p0-wDZ"/>
+        <segue reference="ds7-ED-s8D"/>
+        <segue reference="za8-Z1-TCX"/>
+        <segue reference="lSs-Wa-zys"/>
+        <segue reference="kod-tF-SWu"/>
         <segue reference="4d4-mg-Sy5"/>
         <segue reference="PBF-TY-a31"/>
-        <segue reference="lSs-Wa-zys"/>
-        <segue reference="za8-Z1-TCX"/>
     </inferredMetricsTieBreakers>
 </document>

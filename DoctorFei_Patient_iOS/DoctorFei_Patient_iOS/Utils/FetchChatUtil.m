@@ -61,7 +61,7 @@
     }
     NSDictionary *requestDict = @{
                                   @"userid": userId,
-                                  @"usertype": @0,
+                                  @"usertype": [[NSUserDefaults standardUserDefaults]objectForKey:@"UserType"],
                                   @"groupid": groupId,
                                   @"lastmsgid": lastmsgid
                                   };
@@ -249,7 +249,7 @@
     }
     NSDictionary *requestDict = @{
                                   @"userid": userId,
-                                  @"usertype": @0,
+                                  @"usertype": [[NSUserDefaults standardUserDefaults]objectForKey:@"UserType"],
                                   @"groupid": groupId,
                                   @"lastmsgid": lastmsgid
                                   };

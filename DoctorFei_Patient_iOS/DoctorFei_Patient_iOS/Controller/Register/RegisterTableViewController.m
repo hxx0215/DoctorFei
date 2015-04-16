@@ -105,6 +105,7 @@ static const NSTimeInterval kDuration = 60;
     if ([segue.identifier isEqualToString:@"RegisterNextSegueIdentifier"]) {
         RegisterMoreTableViewController *vc = [segue destinationViewController];
         [vc setUserId:currentUserId];
+        [vc setUserType:_userType];
     }
 //    //仅供调试下一步专用
 //    else if ([segue.identifier isEqualToString:@"DebugMoreSegueIdentifier"]) {
@@ -176,6 +177,7 @@ static const NSTimeInterval kDuration = 60;
                              @"mobile": self.phoneTextField.text,
                              @"code": self.capthaTextField.text,
                              @"password": self.passwordTextField.text,
+                             @"usertype": _userType,
                              @"SN": [DeviceUtil getUUID]
                              };//[DeviceUtil getUUID]
     [RegisterAPI registerWithParameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
