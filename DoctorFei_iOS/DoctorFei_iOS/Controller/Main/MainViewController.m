@@ -36,6 +36,8 @@
 @property (weak, nonatomic) IBOutlet UIImageView *avatarImageView;
 - (IBAction)refreshButtonClicked:(id)sender;
 - (IBAction)userInfoButtonClicked:(id)sender;
+- (IBAction)quickReplyButtonClicked:(id)sender;
+@property (weak, nonatomic) IBOutlet UIButton *quickReplyButton;
 
 @property (weak, nonatomic) IBOutlet UIButton *titleButton;
 @property (weak, nonatomic) IBOutlet UIButton *auditButton;
@@ -56,6 +58,7 @@
     CABasicAnimation *rotation;
     WYPopoverController *popoverController;
     NSInteger currentUnreadCount;
+    NSString *currentFastReply;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -225,6 +228,29 @@
 
 }
 
+- (void)fetchQuickReplyState {
+    NSNumber *doctorId = [[NSUserDefaults standardUserDefaults] objectForKey:@"UserId"];
+    NSDictionary *param = @{@"doctorid": doctorId};
+    [DoctorAPI getDoctorMyFastReplyWithParameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSDictionary *result = [responseObject firstObject];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if ([result[@"allowdisturb"] intValue] == 1) {
+                [self.quickReplyButton setSelected:YES];
+            }else{
+                [self.quickReplyButton setSelected:NO];
+            }
+            if ([result[@"disturbtxt"] length] > 0) {
+                currentFastReply = result[@"disturbtxt"];
+            }else{
+                currentFastReply = @"无";
+            }
+        });
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"%@",error.localizedDescription);
+    }];
+}
+
+
 - (void)viewWillDisappear:(BOOL)animated {
     [[NSNotificationCenter defaultCenter]removeObserver:self];
     [super viewWillDisappear:animated];
@@ -270,6 +296,10 @@
 - (IBAction)userInfoButtonClicked:(id)sender {
 //    [self performSegueWithIdentifier:@"UserInfoSegueIdentifier" sender:nil];
     [self.tabBarController setSelectedIndex:2];
+}
+
+- (IBAction)quickReplyButtonClicked:(id)sender {
+    
 }
 - (IBAction)titleButtonClicked:(id)sender {
     [self fetchGroupArray];

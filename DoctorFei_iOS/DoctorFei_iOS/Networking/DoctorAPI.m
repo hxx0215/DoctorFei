@@ -55,6 +55,10 @@
 #define kMethodGetDoctorReferral @"get.doctor.referral"
 #define kMethodSetDoctorReferralAudit @"set.doctor.referralaudit"
 #define kMethodDeleteAppointment @"update.member.appointment"
+
+#define kMethodDelDoctorFastReply @"set.doctor.delfastreply"
+#define kMethodGetDoctorMyFastReply @"get.doctor.myfastreply"
+#define kMethodSetDoctorMyFastReply @"set.doctor.myfastreply"
 @implementation DoctorAPI
 + (void)updateInfomationWithParameters: (id)parameters success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
 {
@@ -282,4 +286,18 @@
 + (void)deleteAppointmentWithParameters:(id)parameters success:(void (^)(AFHTTPRequestOperation *, id))success failure:(void (^)(AFHTTPRequestOperation *, NSError *))failure{
     [[self sharedManager] defaultGetWithMethod:kMethodDeleteAppointment WithParameters:parameters success:success failure:failure];
 }
+
+//取得医生的快捷回复内容与状态情况
++ (void)getDoctorMyFastReplyWithParameters: (id)parameters success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure {
+    [[self sharedManager] defaultGetWithMethod:kMethodGetDoctorMyFastReply WithParameters:parameters success:success failure:failure];
+}
+//医生删除快捷回复
++ (void)delDoctorFastReplyWithParameters: (id)parameters success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure {
+    [[self sharedManager] defaultGetWithMethod:kMethodDelDoctorFastReply WithParameters:parameters success:success failure:failure];
+}
+//医生设定快捷回复内容并开启或关闭
++ (void)setDoctorMyFastReplyWithParameters: (id)parameters success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure {
+    [[self sharedManager] defaultGetWithMethod:kMethodSetDoctorMyFastReply WithParameters:parameters success:success failure:failure];
+}
+
 @end
