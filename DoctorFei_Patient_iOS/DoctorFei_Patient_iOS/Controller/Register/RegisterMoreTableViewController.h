@@ -11,5 +11,5 @@
 @interface RegisterMoreTableViewController : UITableViewController
 
 @property (nonatomic, assign) int userId;
-
+@property (nonatomic, strong) NSNumber *userType;
 @end

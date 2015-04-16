@@ -107,6 +107,12 @@
         [[SocketConnection sharedConnection]sendKeepAlive];
     }
     [self initShareSDK];
+    
+    NSNumber *userType = [[NSUserDefaults standardUserDefaults]objectForKey:@"UserType"];
+    if (userType == nil) {
+        [[NSUserDefaults standardUserDefaults]setObject:@0 forKey:@"UserType"];
+        [[NSUserDefaults standardUserDefaults]synchronize];
+    }
     return YES;
 }
 

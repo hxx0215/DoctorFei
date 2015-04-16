@@ -105,7 +105,7 @@ static NSString *ContactGroupUserCellIdentifier = @"ContactGroupUserCellIdentifi
         userDataArray = (NSArray *)responseObject;
         [_currentGroupChat removeMember:_currentGroupChat.member];
         for (NSDictionary *dict in responseObject) {
-            if ([dict[@"userid"] intValue] == [userId intValue] && [dict[@"usertype"] intValue] == 0) {
+            if ([dict[@"userid"] intValue] == [userId intValue] && ([dict[@"usertype"] intValue] == 0 || [dict[@"usertype"]intValue] == 1)) {
                 isCanDeleteUser = ([dict[@"role"] intValue] == 2);
                 userGroupId = @([dict[@"id"] intValue]);
                 [self updateQuitButtonTitle];
@@ -151,7 +151,7 @@ static NSString *ContactGroupUserCellIdentifier = @"ContactGroupUserCellIdentifi
     NSDictionary *param = @{@"id": friend.id,
                             @"groupid" : _currentGroupChat.groupId,
                             @"userid": [[NSUserDefaults standardUserDefaults]objectForKey:@"UserId"],
-                            @"usertype": @0,
+                            @"usertype": [[NSUserDefaults standardUserDefaults]objectForKey:@"UserType"],
                             @"etype": @1
                             };
     [ChatAPI delChatUserWithParameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
@@ -182,7 +182,7 @@ static NSString *ContactGroupUserCellIdentifier = @"ContactGroupUserCellIdentifi
     NSDictionary *param = @{
                             @"groupid": _currentGroupChat.groupId,
                             @"userid": [[NSUserDefaults standardUserDefaults]objectForKey:@"UserId"],
-                            @"usertype": @0,
+                            @"usertype": [[NSUserDefaults standardUserDefaults]objectForKey:@"UserType"],
                             @"joinuserids": [joinArray JSONString]
                             };
     NSLog(@"%@",param);
@@ -227,7 +227,7 @@ static NSString *ContactGroupUserCellIdentifier = @"ContactGroupUserCellIdentifi
         NSDictionary *param = @{
                                 @"groupid": _currentGroupChat.groupId,
                                 @"userid": [[NSUserDefaults standardUserDefaults]objectForKey:@"UserId"],
-                                @"usertype": @0
+                                @"usertype": [[NSUserDefaults standardUserDefaults]objectForKey:@"UserType"]
                                 };
         [ChatAPI delChatGroupWithParameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
             hud.mode = MBProgressHUDModeText;
@@ -256,7 +256,7 @@ static NSString *ContactGroupUserCellIdentifier = @"ContactGroupUserCellIdentifi
         NSDictionary *param = @{@"id": userGroupId,
                                 @"groupid" : _currentGroupChat.groupId,
                                 @"userid": [[NSUserDefaults standardUserDefaults]objectForKey:@"UserId"],
-                                @"usertype": @0,
+                                @"usertype": [[NSUserDefaults standardUserDefaults]objectForKey:@"UserType"],
                                 @"etype": @0
                                 };
         [ChatAPI delChatUserWithParameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {

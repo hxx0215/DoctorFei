@@ -7,7 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+@class LoginFirstViewController;
+
+@protocol RegisterTypeDelegate <NSObject>
+
+- (void)userTypeButtonClickedWithUserType: (NSNumber *)userType;
+
+@end
+
 
 @interface LoginFirstViewController : UIViewController
+
+@property (nonatomic, weak) id<RegisterTypeDelegate> delegate;
 
 @end

@@ -61,7 +61,7 @@
 - (void)checkFriend {
     NSDictionary *param = @{
                             @"myuserid": [[NSUserDefaults standardUserDefaults]objectForKey:@"UserId"],
-                            @"myusertype": @0,
+                            @"myusertype": [[NSUserDefaults standardUserDefaults]objectForKey:@"UserType"],
                             @"userid": _currentFriend.userId,
                             @"usertype": _currentFriend.userType
                             };

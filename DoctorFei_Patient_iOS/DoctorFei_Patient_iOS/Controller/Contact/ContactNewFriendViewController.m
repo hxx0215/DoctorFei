@@ -37,7 +37,7 @@
     NSNumber *memberId = [[NSUserDefaults standardUserDefaults]objectForKey:@"UserId"];
     NSDictionary *param = @{
                             @"userid": memberId,
-                            @"usertype": @0 //TODO 尚无家属类型相关处理
+                            @"usertype": [[NSUserDefaults standardUserDefaults]objectForKey:@"UserType"]
                             };
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [FriendAPI getInvitationWithParameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
@@ -62,7 +62,7 @@
     NSMutableDictionary *dict = [invitationsArray[index]mutableCopy];
     NSDictionary *param = @{
                             @"userid": memberId,
-                            @"usertype": @0,
+                            @"usertype": [[NSUserDefaults standardUserDefaults]objectForKey:@"UserType"],
                             @"id": dict[@"id"],
                             @"type": @1
                             };

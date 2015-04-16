@@ -57,7 +57,7 @@
     NSNumber *userId = [[NSUserDefaults standardUserDefaults]objectForKey:@"UserId"];
     NSDictionary *param = @{
                             @"userid": userId,
-                            @"usertype": @0,
+                            @"usertype": [[NSUserDefaults standardUserDefaults]objectForKey:@"UserType"],
                             };
     [ChatAPI getChatGroupWithParameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"%@",responseObject);
@@ -111,7 +111,7 @@
     NSNumber *userId = [[NSUserDefaults standardUserDefaults]objectForKey:@"UserId"];
     NSDictionary *param = @{
                             @"userid": userId,
-                            @"usertype": @0,
+                            @"usertype": [[NSUserDefaults standardUserDefaults]objectForKey:@"UserType"],
                             @"name": @"未命名",
                             @"joinuserids": [joinArray JSONString],
                             };
@@ -151,7 +151,7 @@
     NSDictionary *param = @{
                             @"groupid": groupChat.groupId,
                             @"userid": userId,
-                            @"usertype": @0
+                            @"usertype": [[NSUserDefaults standardUserDefaults]objectForKey:@"UserType"]
                             };
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view.window animated:YES];
     [ChatAPI delChatGroupWithParameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {

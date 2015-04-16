@@ -15,8 +15,10 @@
 #import "APService.h"
 #import "DataUtil.h"
 #import "SocketConnection.h"
+#import "RegisterTableViewController.h"
+#import "LoginFirstViewController.h"
 @interface LoginViewController ()
-    <UITextFieldDelegate>
+    <UITextFieldDelegate, RegisterTypeDelegate>
 @property (weak, nonatomic) IBOutlet UIView *loginBackgroundView;
 @property (weak, nonatomic) IBOutlet UITextField *phoneTextField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
@@ -103,6 +105,11 @@
     if ([segue.identifier isEqualToString:@"LoginRegisterSegueIdentifier"]) {
         [self.phoneTextField resignFirstResponder];
         [self.passwordTextField resignFirstResponder];
+        RegisterTableViewController *vc = [segue destinationViewController];
+        [vc setUserType:sender];
+    }else if ([segue.identifier isEqualToString:@"RegisterUserTypeSelectSegueIdentifier"]) {
+        LoginFirstViewController *vc = [segue destinationViewController];
+        [vc setDelegate:self];
     }
 }
 
@@ -144,6 +151,7 @@
             else{
                 [[NSUserDefaults standardUserDefaults] setObject:@(NO) forKey:@"IsAutoLogin"];
             }
+            [[NSUserDefaults standardUserDefaults] setObject:dataDict[@"usertype"] forKey:@"UserType"];
             [[NSUserDefaults standardUserDefaults] setObject:dataDict[@"userId"] forKey:@"UserId"];
             [[NSUserDefaults standardUserDefaults] setObject:dataDict[@"userId"] forKey:@"LastLoginUserId"];
             [[NSUserDefaults standardUserDefaults] setObject:dataDict[@"Mobile"] forKey:@"UserPhone"];
@@ -200,5 +208,8 @@
     [self.phoneTextField resignFirstResponder];
     [self.passwordTextField resignFirstResponder];
     return YES;
+}
+- (void)userTypeButtonClickedWithUserType:(NSNumber *)userType {
+    [self performSegueWithIdentifier:@"LoginRegisterSegueIdentifier" sender:userType];
 }
 @end
