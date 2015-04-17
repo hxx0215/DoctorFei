@@ -25,8 +25,8 @@ class HisPageViewController: UIViewController,UITableViewDelegate,UITableViewDat
     override func viewDidLoad() {
         super.viewDidLoad()
         self.avatarImageView.sd_setImageWithURL(NSURL(string: self.doctor.icon))
-        self.nameLabel.text = self.doctor.realname?
-        self.hospitalLabel.text = self.doctor.hospital?
+        self.nameLabel.text = self.doctor.realname
+        self.hospitalLabel.text = self.doctor.hospital
         var depart = self.doctor.department
         if depart == nil {
             depart = ""
@@ -61,14 +61,14 @@ class HisPageViewController: UIViewController,UITableViewDelegate,UITableViewDat
     }
     @IBAction func likeIt(sender: UIButton) {
         let parma = ["doctorId" : self.doctor.userId,
-            "userid" : NSUserDefaults.standardUserDefaults().objectForKey("UserId") as NSNumber]
+            "userid" : NSUserDefaults.standardUserDefaults().objectForKey("UserId") as! NSNumber]
         MemberAPI.likeItWithParameters(parma, success: {
             operation, responseObject in
             sender.enabled = false
             var hud = MBProgressHUD.showHUDAddedTo(self.view, animated: true)
             hud.dimBackground = true
             hud.mode = MBProgressHUDMode.Text
-            hud.labelText = ((responseObject as NSArray).firstObject as NSDictionary).objectForKey("msg") as String
+            hud.labelText = ((responseObject as! NSArray).firstObject as! NSDictionary).objectForKey("msg") as! String
             hud.hide(true, afterDelay: 0.5)
             }, failure: {
                 operation, error in
@@ -83,28 +83,38 @@ class HisPageViewController: UIViewController,UITableViewDelegate,UITableViewDat
         var hud = MBProgressHUD.showHUDAddedTo(self.view, animated: true)
         MemberAPI.getDoctorShuoShuoWithParameters(params, success: {
             operation, responseObject in
-            for iter in responseObject as NSArray {
-                let dict = iter as NSDictionary
-                if dict["type"] as Int == 1 {
-                    var date = dict.objectForKey("createtime" as NSString) as Double
-                    var shuoshuo = ShuoShuo(shuoShuoId: dict.objectForKey("id" as NSString) as NSNumber!,
-                        doctorId: NSNumber(integer: ((dict["doctorid"] as NSString).integerValue)),//这里这么写都是服务器的锅为毛doctorid返回的是个字符串！
-                        title: dict.objectForKey("title" as NSString) as NSString!,
-                        content: dict.objectForKey("content" as NSString) as NSString!,
+            for iter in responseObject as! NSArray {
+                let dict = iter as! NSDictionary
+                if dict["type"] as! Int == 1 {
+                    var date = dict.objectForKey("createtime" as NSString) as! Double
+//                    var shuoshuo = ShuoShuo(shuoShuoId: dict.objectForKey("id" as! NSString) as! NSNumber!,
+//                        doctorId: NSNumber(integer: ((dict["doctorid"] as! NSString).integerValue)),//这里这么写都是服务器的锅为毛doctorid返回的是个字符串！
+//                        title: dict.objectForKey("title" as! NSString) as! NSString!,
+//                        content: dict.objectForKey("content" as! NSString) as! NSString!,
+//                        createTime: NSDate(timeIntervalSince1970: date as NSTimeInterval))
+                    var shuoshuo = ShuoShuo(shuoShuoId: dict.objectForKey("id") as! NSNumber,
+                        doctorId: NSNumber(integer: (dict.objectForKey("doctorid") as! String).toInt()!),
+                        title: dict.objectForKey("title") as! String,
+                        content: dict.objectForKey("content") as! String,
                         createTime: NSDate(timeIntervalSince1970: date as NSTimeInterval))
-                    if (dict["doctorid"] as NSString).integerValue == self.doctor.userId as Int {
+                    if (dict["doctorid"] as! NSString).integerValue == self.doctor.userId as Int {
                         self.myContentArray.addObject(shuoshuo)
                     }else {
                         self.repostContentArray.addObject(shuoshuo)
                     }
-                } else if dict["type"] as Int == 2 {
+                } else if dict["type"] as! Int == 2 {
                     NSLog("%@", dict)
-                    var daylog = DayLog(dayLogId: dict["id"] as NSNumber,
-                        doctorId:NSNumber(integer: ((dict["doctorid"] as NSString).integerValue)),
-                        title: dict["title"] as NSString!,
-                        content: dict["content"] as NSString!,
-                        createTime: NSDate(timeIntervalSince1970: dict["createtime"] as NSTimeInterval))
-                    if (dict["doctorid"] as NSString).integerValue == self.doctor.userId as Int {
+//                    var daylog = DayLog(dayLogId: dict["id"] as! NSNumber,
+//                        doctorId:NSNumber(integer: ((dict["doctorid"] as! NSString).integerValue)),
+//                        title: dict["title"] as NSString!,
+//                        content: dict["content"] as NSString!,
+//                        createTime: NSDate(timeIntervalSince1970: dict["createtime"] as! NSTimeInterval))
+                    var daylog = DayLog(dayLogId: dict["id"] as! NSNumber,
+                        doctorId: NSNumber(integer: (dict.objectForKey("doctorid") as! String).toInt()!),
+                        title: dict.objectForKey("title") as! String,
+                        content: dict.objectForKey("content") as! String,
+                        createTime: NSDate(timeIntervalSince1970: dict["createtime"] as! NSTimeInterval))
+                    if (dict["doctorid"] as! NSString).integerValue == self.doctor.userId as Int {
                         self.myContentArray.addObject(daylog)
                     }else {
                         self.repostContentArray.addObject(daylog)
@@ -136,18 +146,18 @@ class HisPageViewController: UIViewController,UITableViewDelegate,UITableViewDat
         let HisPageContentArticleTableViewCellIdentifier = "UserPageContentArticleTableViewCell"
         var content:NSObject
         if self.contentTypeSegmentControl.selectedSegmentIndex > 0 {
-            content = repostContentArray[indexPath.row] as NSObject
+            content = repostContentArray[indexPath.row] as! NSObject
         }else{
-            content = myContentArray[indexPath.row] as NSObject
+            content = myContentArray[indexPath.row] as! NSObject
         }
         if content.isKindOfClass(ShuoShuo) {
-            var cell = tableView.dequeueReusableCellWithIdentifier(HisPageContentTalkTableViewCellIdentifier, forIndexPath: indexPath) as HisPageContentTalkTableViewCell
+            var cell = tableView.dequeueReusableCellWithIdentifier(HisPageContentTalkTableViewCellIdentifier, forIndexPath: indexPath) as! HisPageContentTalkTableViewCell
             cell.doctor = self.doctor
-            cell.shuoshuo = content as ShuoShuo
+            cell.shuoshuo = content as! ShuoShuo
             return cell
         } else if content.isKindOfClass(DayLog){
-            var cell = tableView.dequeueReusableCellWithIdentifier(HisPageContentArticleTableViewCellIdentifier, forIndexPath: indexPath) as HisPageContentArticleTableViewCell
-            cell.daylog = content as DayLog
+            var cell = tableView.dequeueReusableCellWithIdentifier(HisPageContentArticleTableViewCellIdentifier, forIndexPath: indexPath) as! HisPageContentArticleTableViewCell
+            cell.daylog = content as! DayLog
             return cell
         }
         var cell = UITableViewCell()
@@ -164,11 +174,11 @@ class HisPageViewController: UIViewController,UITableViewDelegate,UITableViewDat
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
         if (segue.identifier == "ShowHisDalylogDetailSegueIdentifier"){
-            var vc = segue.destinationViewController as HisPageDetailViewController
+            var vc = segue.destinationViewController as! HisPageDetailViewController
             if (self.contentTypeSegmentControl.selectedSegmentIndex > 0){
-                vc.daylog = repostContentArray[currentIndexPath.row] as DayLog
+                vc.daylog = repostContentArray[currentIndexPath.row] as! DayLog
             }else {
-                vc.daylog = myContentArray[currentIndexPath.row] as DayLog
+                vc.daylog = myContentArray[currentIndexPath.row] as! DayLog
             }
         }
     }

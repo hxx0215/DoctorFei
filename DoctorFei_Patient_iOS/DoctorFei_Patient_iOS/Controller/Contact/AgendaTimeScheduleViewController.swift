@@ -49,7 +49,7 @@ class AgendaTimeScheduleViewController: UIViewController {
     func test(){
         test()
     }
-    func testCallByName(bl: Bool,testfunc: @autoclosure ()->Void ){
+    func testCallByName(bl: Bool,@autoclosure testfunc:  ()->Void ){
         if bl {
             println("yes")
         }else {
@@ -74,14 +74,14 @@ class AgendaTimeScheduleViewController: UIViewController {
         let params = [ "doctorid" : self.doctorId] as NSDictionary
         MemberAPI.getDoctorScheduleWithParameters(params, success: {
             operation, responseObject in
-            NSLog("%@", responseObject as NSArray)
-            if (responseObject as NSArray).count > 0 {
-                for (key,value) in (responseObject? as NSArray).firstObject as NSDictionary{
-                    NSLog("%@:%@", key as NSObject,value as NSObject)
+            NSLog("%@", responseObject as! NSArray)
+            if (responseObject as! NSArray).count > 0 {
+                for (key,value) in (responseObject as! NSArray).firstObject as! NSDictionary{
+                    NSLog("%@:%@", key as! NSObject,value as! NSObject)
                     if let tTag: AnyObject = self.scheduleMap.objectForKey(key){
-                        let tag = tTag as NSNumber
-                        var btn = self.view.viewWithTag(tag.integerValue)? as UIButton?
-                        btn?.selected = (value as NSNumber).integerValue == 1
+                        let tag = tTag as! NSNumber
+                        var btn = self.view.viewWithTag(tag.integerValue) as! UIButton?
+                        btn?.selected = (value as! NSNumber).integerValue == 1
                     }
                 }
             }

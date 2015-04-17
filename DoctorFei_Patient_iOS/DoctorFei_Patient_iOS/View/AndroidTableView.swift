@@ -60,8 +60,8 @@ import UIKit
         tableView.separatorStyle = UITableViewCellSeparatorStyle.None
         tableView.delegate = self;
         tableView.dataSource = self;
-        cityButton = UIButton.buttonWithType(UIButtonType.Custom) as UIButton
-        areaButton = UIButton.buttonWithType(UIButtonType.Custom) as UIButton
+        cityButton = UIButton.buttonWithType(UIButtonType.Custom) as! UIButton
+        areaButton = UIButton.buttonWithType(UIButtonType.Custom) as! UIButton
         cityButton.setTitleColor(UIColor(white: 176.0/255.0, alpha: 1.0), forState: UIControlState.Normal)
         cityButton.setTitleColor(UIColor.greenColor(), forState: UIControlState.Selected)
         areaButton.setTitleColor(UIColor(white: 176.0/255.0, alpha: 1.0), forState: UIControlState.Normal)
@@ -115,7 +115,7 @@ import UIKit
         return ret!
     }
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell = tableView.dequeueReusableCellWithIdentifier(androidTableViewCellIdentifier) as UITableViewCell?
+        var cell = tableView.dequeueReusableCellWithIdentifier(androidTableViewCellIdentifier) as! UITableViewCell?
         if ((cell) == nil){
             cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: androidTableViewCellIdentifier)
         }
@@ -130,11 +130,13 @@ import UIKit
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         self.delegate?.androidTableView!(self, didSelectRowAtIndexPath: indexPath)
     }
-    override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
-        var touch = touches.anyObject() as UITouch
-        NSLog("%@", NSStringFromCGPoint(touch.locationInView(self)))
-        NSLog("%@", NSStringFromCGPoint(touch.locationInView(self.tableView)))
-        self.dismiss()
+    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+        for touch: AnyObject in touches{
+            NSLog("%@", NSStringFromCGPoint(touch.locationInView(self)))
+            NSLog("%@", NSStringFromCGPoint(touch.locationInView(self.tableView)))
+            self.dismiss()    
+        }
+        
     }
     /*
     // Only override drawRect: if you perform custom drawing.
