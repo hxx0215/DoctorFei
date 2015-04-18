@@ -40,22 +40,22 @@ class MySelfAddHistoryViewController: UIViewController,UICollectionViewDelegate,
         var imgUrl = ""
         if (self.images!.count > 0){
             for i in 0..<self.images!.count - 1{
-            imgUrl += self.images![i] as String
+            imgUrl += self.images![i] as! String
             imgUrl += ","
             }
         }
         if let l: AnyObject = self.images!.lastObject {
-            imgUrl += l as String
+            imgUrl += l as! String
         }
-        let params = ["suid" : NSUserDefaults.standardUserDefaults().objectForKey("UserId")! as NSNumber ,
+        let params = ["suid" : NSUserDefaults.standardUserDefaults().objectForKey("UserId")! as! NSNumber ,
             "notes" : self.notes.text,
             "imgs" : imgUrl]
         MemberAPI.setHistoryWithParameters(params,
             success: {
                 operation, responseObject in
-                let response = (responseObject as NSArray).firstObject as NSDictionary
+                let response = (responseObject as! NSArray).firstObject as! NSDictionary
                 var hud = MBProgressHUD.showHUDAddedTo(self.view.window, animated: true)
-                hud.labelText = response.objectForKey("msg") as String
+                hud.labelText = response.objectForKey("msg") as! String
                 hud.dimBackground = true
                 hud.hide(true, afterDelay: 0.5)
                 hud.mode = MBProgressHUDMode.Text
@@ -77,10 +77,10 @@ class MySelfAddHistoryViewController: UIViewController,UICollectionViewDelegate,
         }
     }
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        var cell = collectionView.dequeueReusableCellWithReuseIdentifier(collectionViewIdentifier, forIndexPath: indexPath) as MySelfRecordAddCollectionViewCell
+        var cell = collectionView.dequeueReusableCellWithReuseIdentifier(collectionViewIdentifier, forIndexPath: indexPath) as! MySelfRecordAddCollectionViewCell
         if let tImages=images{
             if indexPath.row < tImages.count{
-                cell.contentImage.sd_setImageWithURL(NSURL(string: images![indexPath.row] as String))
+                cell.contentImage.sd_setImageWithURL(NSURL(string: images![indexPath.row] as! String))
             } else{
                 cell.contentImage.image = UIImage(named: "add-picture_btn.png")
             }
@@ -126,15 +126,15 @@ class MySelfAddHistoryViewController: UIViewController,UICollectionViewDelegate,
     }
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
-        var image = (info as NSDictionary).objectForKey(UIImagePickerControllerEditedImage) as UIImage?
+        var image = (info as NSDictionary).objectForKey(UIImagePickerControllerEditedImage) as! UIImage?
         picker.dismissViewControllerAnimated(true, completion: {
             if let img = image {
                 var hud = MBProgressHUD.showHUDAddedTo(self.view.window, animated: true)
                 hud.labelText = "上传中"
-                MemberAPI.uploadImage(img, {
+                MemberAPI.uploadImage(img, success: {
                     operation,responseObject in
-                    NSLog("%@", responseObject as NSObject)
-                    self.images!.addObject(((responseObject as NSArray).firstObject as NSDictionary).objectForKey("spath")!)
+                    NSLog("%@", responseObject as! NSObject)
+                    self.images!.addObject(((responseObject as! NSArray).firstObject as! NSDictionary).objectForKey("spath")!)
                     hud.hide(true)
                     self.collectionView.reloadData()
                     }, failure: {

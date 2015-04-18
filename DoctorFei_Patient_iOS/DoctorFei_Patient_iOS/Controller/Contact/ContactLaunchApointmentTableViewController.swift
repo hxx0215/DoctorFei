@@ -32,7 +32,7 @@ class ContactLaunchApointmentTableViewController: UITableViewController,TextBasi
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         self.formatter.dateFormat = "yyyy-MM-dd HH:mm"
         self.dateLabel.text = self.formatter.stringFromDate(NSDate())
-        self.nameLabel.text = (NSUserDefaults.standardUserDefaults().objectForKey("UserRealName") as String);
+        self.nameLabel.text = (NSUserDefaults.standardUserDefaults().objectForKey("UserRealName") as! String);
         self.mobileLabel.text = ""
         self.ageLabel.text = "18"
         self.maleButton.selected = true
@@ -49,20 +49,20 @@ class ContactLaunchApointmentTableViewController: UITableViewController,TextBasi
     @IBAction func timeButtonClicked(sender: AnyObject) {
         var actionSheet = ActionSheetDatePicker(title: "", datePickerMode: UIDatePickerMode.DateAndTime, selectedDate: NSDate(), doneBlock: {
             picker, selectedDate, origin in
-            self.dateLabel.text = self.formatter.stringFromDate(selectedDate as NSDate)
+            self.dateLabel.text = self.formatter.stringFromDate(selectedDate as! NSDate)
             }, cancelBlock: {
                 picker in
                 
-        }, origin: sender as UIButton)
+        }, origin: sender as! UIButton)
         actionSheet.showActionSheetPicker()
     }
     @IBAction func ageButtonClicked(sender: AnyObject) {
-        var actionSheet = ActionSheetStringPicker(title: "", rows: self.ageArray, initialSelection: self.ageLabel.text!.toInt()! - 1, doneBlock: {
+        var actionSheet = ActionSheetStringPicker(title: "", rows: self.ageArray as [AnyObject], initialSelection: self.ageLabel.text!.toInt()! - 1, doneBlock: {
             picker, selectedIndex, selectedValue in
                 self.ageLabel.text = selectedValue as? String 
             }, cancelBlock: {
                 picker in
-        }, origin: sender as UIButton)
+        }, origin: sender as! UIButton)
         actionSheet.showActionSheetPicker()
     }
     @IBAction func maleButtonClicked(sender: UIButton) {
@@ -73,7 +73,7 @@ class ContactLaunchApointmentTableViewController: UITableViewController,TextBasi
         self.navigationController?.popViewControllerAnimated(true)
     }
     @IBAction func sendButtonClicked(sender: AnyObject) {
-        let uid = NSUserDefaults.standardUserDefaults().objectForKey("UserId") as NSNumber
+        let uid = NSUserDefaults.standardUserDefaults().objectForKey("UserId") as! NSNumber
         let params = ["userid" : uid,
             "doctorid" : self.doctorId,
             "uname" : self.nameLabel.text!,
@@ -85,9 +85,9 @@ class ContactLaunchApointmentTableViewController: UITableViewController,TextBasi
         MemberAPI.setAppointmentWithParameters(params,
             success: {
             operation, responseObject in
-                NSLog("%@", responseObject as NSObject)
+                NSLog("%@", responseObject as! NSObject)
                 var hud = MBProgressHUD.showHUDAddedTo(self.view.window, animated: true)
-                let msg = (responseObject as NSArray).firstObject?.objectForKey("msg") as String
+                let msg = (responseObject as! NSArray).firstObject?.objectForKey("msg") as! String
                 hud.labelText = msg
                 hud.dimBackground = true
                 hud.mode = MBProgressHUDMode.Text
@@ -172,12 +172,12 @@ class ContactLaunchApointmentTableViewController: UITableViewController,TextBasi
         // Get the new view controller using [segue destinationViewController].
         // Pass the selected object to the new view controller.
         if segue.identifier == "LaunchAppointmentNameSegueIdentifier" {
-            var vc = segue.destinationViewController as TextBasicInfoViewController
+            var vc = segue.destinationViewController as! TextBasicInfoViewController
             vc.delegate = self
             currentText = self.nameLabel
         }
         if segue.identifier == "LaunchAppointmentMobileSegueIdentifier" {
-            var vc = segue.destinationViewController as TextBasicInfoViewController
+            var vc = segue.destinationViewController as! TextBasicInfoViewController
             vc.delegate = self
             currentText = self.mobileLabel
         }
