@@ -9,8 +9,8 @@
 #import "MySelfNotificationViewController.h"
 #import "MemberAPI.h"
 #import "NotificationTableViewCell.h"
-
-@interface MySelfNotificationViewController ()<UITableViewDelegate,UITableViewDataSource>
+#import <UIScrollView+EmptyDataSet.h>
+@interface MySelfNotificationViewController ()<UITableViewDelegate,UITableViewDataSource, DZNEmptyDataSetSource>
 - (IBAction)backButtonClicked:(id)sender;
 @property (nonatomic,strong)NSMutableArray *tableData;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -35,8 +35,12 @@
 - (void)refreshData{
     NSDictionary *params = @{@"userid":[[NSUserDefaults standardUserDefaults] objectForKey:@"UserId"]};
     [MemberAPI notificationListWithParameters:params success:^(AFHTTPRequestOperation *operation,id responseObject){
-        self.tableData = [responseObject copy];
-        [self.tableView reloadData];
+        if ([responseObject firstObject][@"state"] && [[responseObject firstObject][@"state"]intValue] == 0){
+            
+        }else{
+            self.tableData = [responseObject copy];
+            [self.tableView reloadData];
+        }
     }failure:^(AFHTTPRequestOperation *operation, NSError *error){
         
     }];
@@ -58,6 +62,10 @@
     // Pass the selected object to the new view controller.
 }
 */
+#pragma mark - DZNEmptyDatasource
+- (NSAttributedString *)titleForEmptyDataSet:(UIScrollView *)scrollView {
+    return [[NSAttributedString alloc]initWithString:@"暂无通知"];
+}
 
 - (IBAction)backButtonClicked:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
