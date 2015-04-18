@@ -63,9 +63,9 @@ import UIKit
         cityButton = UIButton.buttonWithType(UIButtonType.Custom) as! UIButton
         areaButton = UIButton.buttonWithType(UIButtonType.Custom) as! UIButton
         cityButton.setTitleColor(UIColor(white: 176.0/255.0, alpha: 1.0), forState: UIControlState.Normal)
-        cityButton.setTitleColor(UIColor(red: 110.0/255.0, green: 168.0/255/0, blue: 0, alpha: 1.0), forState: UIControlState.Selected)
+        cityButton.setTitleColor(UIColor(red: 110.0/255.0, green: 168.0/255.0, blue: 0, alpha: 1.0), forState: UIControlState.Selected)
         areaButton.setTitleColor(UIColor(white: 176.0/255.0, alpha: 1.0), forState: UIControlState.Normal)
-        areaButton.setTitleColor(UIColor(red: 110.0/255.0, green: 168.0/255/0, blue: 0, alpha: 1.0), forState: UIControlState.Selected)
+        areaButton.setTitleColor(UIColor(red: 110.0/255.0, green: 168.0/255.0, blue: 0, alpha: 1.0), forState: UIControlState.Selected)
         cityButton.backgroundColor = UIColor.whiteColor()
         areaButton.backgroundColor = UIColor.whiteColor()
         horizontalView = UIView()
