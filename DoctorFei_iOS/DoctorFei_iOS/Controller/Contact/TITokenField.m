@@ -600,7 +600,7 @@ NSString * const kTextHidden = @"\u200D"; // Zero-Width Joiner
 			CGFloat availableWidth = self.bounds.size.width - self.leftView.bounds.size.width - self.rightView.bounds.size.width;
 			
 			if (_tokens.count > 1 && untokSize.width > availableWidth){
-				untokenized = [NSString stringWithFormat:@"%d recipients", titles.count];
+				untokenized = [NSString stringWithFormat:@"%d个收件人", titles.count];
 			}
 			
 		}

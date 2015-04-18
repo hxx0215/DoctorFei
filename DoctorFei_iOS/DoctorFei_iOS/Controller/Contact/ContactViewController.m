@@ -389,7 +389,7 @@
         RHPerson *person = needInvitePersonArray[((UIButton *)sender).tag];
         MFMessageComposeViewController *mf = [[MFMessageComposeViewController alloc]init];
         mf.messageComposeDelegate = self;
-        mf.navigationBar.tintColor = UIColorFromRGB(0xADE85B);
+        mf.navigationBar.tintColor = UIColorFromRGB(0x6EA800);
         mf.body = @"";
         mf.recipients = @[[person.phoneNumbers valueAtIndex:0]];
         [self presentViewController:mf animated:YES completion:nil];

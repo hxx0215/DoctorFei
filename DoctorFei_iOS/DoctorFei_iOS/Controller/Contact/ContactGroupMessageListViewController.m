@@ -10,6 +10,20 @@
 #import <UIScrollView+EmptyDataSet.h>
 #import "ChatAPI.h"
 #import "ContactGroupMessageTableViewCell.h"
+
+@implementation NSString (Size)
+- (CGSize)calculateSize:(CGSize)size font:(UIFont *)font {
+    CGSize expectedLabelSize = CGSizeZero;
+    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+    paragraphStyle.lineBreakMode = NSLineBreakByWordWrapping;
+    NSDictionary *attributes = @{NSFontAttributeName:font, NSParagraphStyleAttributeName:paragraphStyle.copy};
+    
+    expectedLabelSize = [self boundingRectWithSize:size options:NSStringDrawingUsesLineFragmentOrigin attributes:attributes context:nil].size;
+    
+    return CGSizeMake(ceil(expectedLabelSize.width), ceil(expectedLabelSize.height));
+}
+
+@end
 @interface ContactGroupMessageListViewController ()
     <DZNEmptyDataSetSource, UITableViewDelegate, UITableViewDataSource>
 - (IBAction)backButtonClicked:(id)sender;
@@ -24,7 +38,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+
+}
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
     groupMessageArray = [NSMutableArray array];
+    [self fetchGroupMessage];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -84,5 +103,14 @@
 
 - (NSAttributedString *)titleForEmptyDataSet:(UIScrollView *)scrollView {
     return [[NSAttributedString alloc]initWithString:@"暂无群聊信息"];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 102.0f;
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSString *content = groupMessageArray[indexPath.row][@"content"];
+    CGSize size = [content calculateSize:CGSizeMake(self.view.bounds.size.width - 20, FLT_MAX) font:[UIFont systemFontOfSize:17.0f]];
+    return size.height + 81.0f;
 }
 @end

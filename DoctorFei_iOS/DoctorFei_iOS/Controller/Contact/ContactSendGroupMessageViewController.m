@@ -12,32 +12,44 @@
 #import "Friends.h"
 #import <UIImageView+WebCache.h>
 #import "DataUtil.h"
+#import "ImageUtil.h"
+#import <JSONKit.h>
+#import "MBProgressHUD.h"
+#import "ChatAPI.h"
 @interface ContactSendGroupMessageViewController ()<TITokenFieldDelegate, UITextViewDelegate>
 @property (nonatomic, strong)NSArray *friends;
 @property (nonatomic, strong)TITokenFieldView *tokenFieldView;
 @property (nonatomic, strong)UITextView *messageView;
 @property (nonatomic, assign)CGFloat keyboardHeight;
 @property (nonatomic, strong)NSMutableArray *selectedFriends;
+- (IBAction)confirmButtonClicked:(id)sender;
 @end
 
 @implementation ContactSendGroupMessageViewController
-
+{
+    BOOL isBeginForTextView;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.friends = [Friends MR_findAll];
+    isBeginForTextView = YES;
+    self.friends = [Friends MR_findByAttribute:@"isFriend" withValue:@YES];
     _tokenFieldView = [[TITokenFieldView alloc] initWithFrame:self.view.bounds];
     [_tokenFieldView setSourceArray:self.friends];
     [self.view addSubview:_tokenFieldView];
     [_tokenFieldView.tokenField setDelegate:self];
+    [_tokenFieldView setForcePickSearchResult:YES];
     [_tokenFieldView setShouldSearchInBackground:NO];
     [_tokenFieldView setShouldSortResults:NO];
     [_tokenFieldView.tokenField addTarget:self action:@selector(tokenFieldFrameDidChange:) forControlEvents:(UIControlEvents)TITokenFieldControlEventFrameDidChange];
     [_tokenFieldView.tokenField setTokenizingCharacters:[NSCharacterSet characterSetWithCharactersInString:@",;."]]; // Default is a comma
-    [_tokenFieldView.tokenField setPromptText:@"To:"];
-    [_tokenFieldView.tokenField setPlaceholder:@"Type a name"];
+    [_tokenFieldView.tokenField setPromptText:@"收件人:"];
+    [_tokenFieldView.tokenField setPlaceholder:@"点击+号选取收件人"];
     
     UIButton * addButton = [UIButton buttonWithType:UIButtonTypeContactAdd];
+    [addButton setFrame:CGRectMake(0, 0, 44, 44)];
+    [addButton setImageEdgeInsets:UIEdgeInsetsMake(14, 14, 0, 0)];
+    [addButton setTintColor:UIColorFromRGB(0x6EA800)];
     [addButton addTarget:self action:@selector(showContactsPicker:) forControlEvents:UIControlEventTouchUpInside];
     [_tokenFieldView.tokenField setRightView:addButton];
     [_tokenFieldView.tokenField addTarget:self action:@selector(tokenFieldChangedEditing:) forControlEvents:UIControlEventEditingDidBegin];
@@ -48,7 +60,7 @@
     [_messageView setAutoresizingMask:UIViewAutoresizingNone];
     [_messageView setDelegate:self];
     [_messageView setFont:[UIFont systemFontOfSize:15]];
-    [_messageView setText:@"Some message. The whole view resizes as you type, not just the text view."];
+    [_messageView setText:@"请输入群发信息内容"];
     [_tokenFieldView.contentView addSubview:_messageView];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
@@ -57,6 +69,12 @@
     // You can call this on either the view on the field.
     // They both do the same thing.
     [_tokenFieldView becomeFirstResponder];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [_tokenFieldView resignFirstResponder];
+    [_messageView resignFirstResponder];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -83,7 +101,7 @@
         for (Friends *fr in friendArr){
             TIToken * token = [_tokenFieldView.tokenField addTokenWithTitle:fr.realname representedObject:fr];
             [_tokenFieldView.tokenField layoutTokensAnimated:YES];
-            [token setTintColor:[TIToken blueTintColor]];
+            [token setTintColor:UIColorFromRGB(0x6EA800)];
         }
         self.selectedFriends = [friendArr mutableCopy];
     };
@@ -92,6 +110,14 @@
 //        [ma addObject:token.title];
 //    }
     contact.selectedArray = self.selectedFriends;
+}
+
+- (BOOL)textViewShouldBeginEditing:(UITextView *)textView {
+    if (isBeginForTextView) {
+        isBeginForTextView = NO;
+        textView.text = @"";
+    }
+    return YES;
 }
 - (void)keyboardWillShow:(NSNotification *)notification {
     
@@ -216,10 +242,54 @@
 }
 - (void)tokenField:(TITokenField *)tokenField didAddToken:(TIToken *)token{
     NSLog(@"%@",token);
+    token.tintColor = UIColorFromRGB(0x6EA800);
     [self.selectedFriends addObject:[token representedObject]];
 }
 - (void)tokenField:(TITokenField *)tokenField didRemoveToken:(TIToken *)token{
     NSLog(@"%@",token);
     [self.selectedFriends removeObject:[token representedObject]];
+}
+//- (CGFloat)tokenField:(TITokenField *)tokenField resultsTableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+//    return 65.0f;
+//}
+
+- (void)sendGroupMessage {
+
+    NSNumber *userId = [[NSUserDefaults standardUserDefaults]objectForKey:@"UserId"];
+    NSMutableArray *userArray = [NSMutableArray array];
+    for (Friends *friend in _selectedFriends) {
+        [userArray addObject:@{@"id":friend.userId, @"type": friend.userType}];
+    }
+    NSDictionary *param = @{
+                            @"userid": userId,
+                            @"usertype": @2,
+                            @"msgtype": @"text",
+                            @"content": _messageView.text,
+                            @"senduserids": [userArray JSONString]
+                            };
+    NSLog(@"%@",param);
+    [ChatAPI setChatGroupSendWithParameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"%@",responseObject);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"%@",error.localizedDescription);
+    }];
+    
+}
+- (IBAction)confirmButtonClicked:(id)sender {
+    if (isBeginForTextView || _messageView.text.length == 0) {
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view.window animated:YES];
+        hud.mode = MBProgressHUDModeText;
+        hud.labelText  = @"请输入消息内容";
+        [hud hide:YES afterDelay:1.0f];
+        return;
+    }
+    if (_selectedFriends.count == 0) {
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view.window animated:YES];
+        hud.mode = MBProgressHUDModeText;
+        hud.labelText  = @"请添加收件人";
+        [hud hide:YES afterDelay:1.0f];
+        return;
+    }
+    [self sendGroupMessage];
 }
 @end
