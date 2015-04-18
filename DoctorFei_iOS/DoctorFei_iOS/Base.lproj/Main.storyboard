@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14D131" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="hjp-xA-J3Y">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="hjp-xA-J3Y">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -86,7 +86,7 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                     <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                        <rect key="frame" x="105" y="22" width="195" height="20.5"/>
+                                                        <rect key="frame" x="105" y="22" width="195" height="21"/>
                                                     </variation>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FkY-V8-lgK">
@@ -4479,6 +4479,7 @@
                                         <state key="normal" image="reply_btn.png">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <state key="selected" title="开启" image="DeleteEmoticonBtn_ios7.png"/>
                                         <state key="highlighted" image="reply_btn_after.png"/>
                                         <variation key="default">
                                             <mask key="constraints">
@@ -4829,7 +4830,7 @@
                                             </mask>
                                         </variation>
                                     </view>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OgW-po-fJ1">
+                                    <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OgW-po-fJ1">
                                         <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                         <state key="normal" image="off_line.png">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -4985,8 +4986,7 @@
                                                             <exclude reference="mjz-Ht-Lw9"/>
                                                         </mask>
                                                     </variation>
-                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                        <rect key="frame" x="72" y="8" width="137" height="20"/>
+                                                    <variation key="heightClass=regular-widthClass=compact">
                                                         <mask key="constraints">
                                                             <include reference="mjz-Ht-Lw9"/>
                                                         </mask>
@@ -4998,7 +4998,7 @@
                                                     <color key="textColor" red="0.64313725490196083" green="0.64313725490196083" blue="0.64313725490196083" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                     <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                        <rect key="frame" x="72" y="36" width="137" height="16.5"/>
+                                                        <rect key="frame" x="72" y="36" width="217" height="17"/>
                                                     </variation>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="[感冒]" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wds-DW-PEX">
@@ -5016,8 +5016,7 @@
                                                             <exclude reference="kFn-kO-aJn"/>
                                                         </mask>
                                                     </variation>
-                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                        <rect key="frame" x="236" y="8" width="73" height="20"/>
+                                                    <variation key="heightClass=regular-widthClass=compact">
                                                         <mask key="constraints">
                                                             <include reference="YZk-XK-HyL"/>
                                                             <include reference="kFn-kO-aJn"/>
@@ -5038,7 +5037,7 @@
                                                         </mask>
                                                     </variation>
                                                     <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                        <rect key="frame" x="220" y="36" width="89" height="20.5"/>
+                                                        <rect key="frame" x="300" y="36" width="89" height="21"/>
                                                         <mask key="constraints">
                                                             <include reference="WLH-cn-N55"/>
                                                         </mask>
@@ -6365,26 +6364,6 @@
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1UV-SH-SpA" id="k9f-ew-bi9">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ixF-bT-rjr">
-                                            <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="20" id="emg-7n-aP4"/>
-                                            </constraints>
-                                            <state key="normal" image="choose_btn.png">
-                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                            </state>
-                                            <state key="selected" image="choose_btn_after.png"/>
-                                            <variation key="default">
-                                                <mask key="constraints">
-                                                    <exclude reference="emg-7n-aP4"/>
-                                                </mask>
-                                            </variation>
-                                            <variation key="heightClass=regular-widthClass=compact">
-                                                <mask key="constraints">
-                                                    <include reference="emg-7n-aP4"/>
-                                                </mask>
-                                            </variation>
-                                        </button>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="你你你你你你你你你你你你你你你你你你" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VgM-5F-W5R">
                                             <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
@@ -6394,44 +6373,32 @@
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="VgM-5F-W5R" firstAttribute="centerY" secondItem="k9f-ew-bi9" secondAttribute="centerY" id="EBK-he-Mg9"/>
+                                        <constraint firstItem="VgM-5F-W5R" firstAttribute="leading" secondItem="k9f-ew-bi9" secondAttribute="leading" constant="20" id="LEY-1C-EZj"/>
                                         <constraint firstAttribute="trailing" secondItem="VgM-5F-W5R" secondAttribute="trailing" constant="20" id="S3M-rk-GKZ"/>
-                                        <constraint firstItem="ixF-bT-rjr" firstAttribute="leading" secondItem="k9f-ew-bi9" secondAttribute="leading" constant="20" id="V8z-94-XlC"/>
-                                        <constraint firstItem="VgM-5F-W5R" firstAttribute="top" secondItem="ixF-bT-rjr" secondAttribute="top" id="cqQ-Yd-rAQ"/>
-                                        <constraint firstItem="VgM-5F-W5R" firstAttribute="leading" secondItem="ixF-bT-rjr" secondAttribute="trailing" constant="10" id="jEd-vd-L8M"/>
-                                        <constraint firstItem="ixF-bT-rjr" firstAttribute="top" secondItem="k9f-ew-bi9" secondAttribute="top" constant="12" id="jP9-xF-yeU"/>
                                     </constraints>
                                     <variation key="default">
                                         <mask key="subviews">
-                                            <exclude reference="ixF-bT-rjr"/>
                                             <exclude reference="VgM-5F-W5R"/>
                                         </mask>
                                         <mask key="constraints">
                                             <exclude reference="EBK-he-Mg9"/>
+                                            <exclude reference="LEY-1C-EZj"/>
                                             <exclude reference="S3M-rk-GKZ"/>
-                                            <exclude reference="cqQ-Yd-rAQ"/>
-                                            <exclude reference="jEd-vd-L8M"/>
-                                            <exclude reference="V8z-94-XlC"/>
-                                            <exclude reference="jP9-xF-yeU"/>
                                         </mask>
                                     </variation>
                                     <variation key="heightClass=regular-widthClass=compact">
                                         <mask key="subviews">
-                                            <include reference="ixF-bT-rjr"/>
                                             <include reference="VgM-5F-W5R"/>
                                         </mask>
                                         <mask key="constraints">
                                             <include reference="EBK-he-Mg9"/>
+                                            <include reference="LEY-1C-EZj"/>
                                             <include reference="S3M-rk-GKZ"/>
-                                            <include reference="cqQ-Yd-rAQ"/>
-                                            <include reference="jEd-vd-L8M"/>
-                                            <include reference="V8z-94-XlC"/>
-                                            <include reference="jP9-xF-yeU"/>
                                         </mask>
                                     </variation>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="contentLabel" destination="VgM-5F-W5R" id="bA9-cg-qP2"/>
-                                    <outlet property="selectButton" destination="ixF-bT-rjr" id="8kP-SP-dAo"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="QuickReplyCustomCellIdentifier" rowHeight="45" id="dgQ-Aw-FLH" customClass="QuickReplyCustomActionTableViewCell">
@@ -12801,6 +12768,7 @@
     </scenes>
     <resources>
         <image name="Add-as-a-friend_btn.png" width="60" height="20"/>
+        <image name="DeleteEmoticonBtn_ios7.png" width="32" height="32"/>
         <image name="GO_login_btn.png" width="36" height="36"/>
         <image name="Group chat_corner-mark-minus.png" width="17" height="17"/>
         <image name="Group-chat_corner-mark-minus_after.png" width="17" height="17"/>
