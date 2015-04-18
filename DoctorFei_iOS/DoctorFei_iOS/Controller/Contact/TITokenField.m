@@ -609,9 +609,9 @@ NSString * const kTextHidden = @"\u200D"; // Zero-Width Joiner
 	}
 	
 	[self setResultsModeEnabled:NO];
-	if (_tokens.count < 1 && self.forcePickSearchResult) {
-		[self becomeFirstResponder];
-	}
+//	if (_tokens.count < 1 && self.forcePickSearchResult) {
+//		[self becomeFirstResponder];
+//	}
 }
 
 - (void)didChangeText {

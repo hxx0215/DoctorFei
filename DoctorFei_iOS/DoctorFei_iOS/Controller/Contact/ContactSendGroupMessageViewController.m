@@ -73,8 +73,8 @@
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    [_tokenFieldView resignFirstResponder];
-    [_messageView resignFirstResponder];
+//    [_tokenFieldView resignFirstResponder];
+//    [_messageView resignFirstResponder];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -254,7 +254,8 @@
 //}
 
 - (void)sendGroupMessage {
-
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view.window animated:YES];
+    hud.labelText = @"正在发送...";
     NSNumber *userId = [[NSUserDefaults standardUserDefaults]objectForKey:@"UserId"];
     NSMutableArray *userArray = [NSMutableArray array];
     for (Friends *friend in _selectedFriends) {
@@ -267,11 +268,22 @@
                             @"content": _messageView.text,
                             @"senduserids": [userArray JSONString]
                             };
-    NSLog(@"%@",param);
     [ChatAPI setChatGroupSendWithParameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"%@",responseObject);
+        NSDictionary *result = [responseObject firstObject];
+        hud.mode = MBProgressHUDModeText;
+        hud.labelText = result[@"msg"];
+        [hud hide:YES afterDelay:1.0f];
+        if ([result[@"state"] intValue] == 1) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.navigationController popViewControllerAnimated:YES];
+            });
+        }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"%@",error.localizedDescription);
+        hud.mode = MBProgressHUDModeText;
+        hud.labelText = error.localizedDescription;
+        [hud hide:YES afterDelay:1.5f];
     }];
     
 }
