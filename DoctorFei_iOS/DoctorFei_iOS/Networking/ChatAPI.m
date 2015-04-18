@@ -22,6 +22,8 @@
 #define kMethodDelChatGroupUser @"set.chat.userdel"
 #define kMethodGetChatNote @"get.chat.note"
 #define kMethodSetChatNote @"set.chat.note"
+#define kMethodGetChatGroupSend @"get.chat.groupsend"
+#define kMethodSetChatGroupSend @"set.chat.groupsend"
 @implementation ChatAPI
 + (void)getChatWithParameters: (id)parameters success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure {
     [[self sharedManager]defaultGetWithMethod:kMethodGetChat WithParameters:parameters success:success failure:failure];
@@ -69,6 +71,13 @@
 }
 + (void)setChatNoteWithParameters: (id)parameters success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure{
     [[self sharedManager]defaultGetWithMethod:kMethodSetChatNote WithParameters:parameters success:success failure:failure];
+}
+
++ (void)getChatGroupSendWithParameters: (id)parameters success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure {
+    [[self sharedManager]defaultGetWithMethod:kMethodGetChatGroupSend WithParameters:parameters success:success failure:failure];
+}
++ (void)setChatGroupSendWithParameters: (id)parameters success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure {
+    [[self sharedManager]defaultGetWithMethod:kMethodSetChatGroupSend WithParameters:parameters success:success failure:failure];
 }
 
 @end

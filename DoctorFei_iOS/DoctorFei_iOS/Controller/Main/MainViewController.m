@@ -26,8 +26,9 @@
 #import <JSBadgeView.h>
 #import "Groups.h"
 #import "MainGroupDetailViewController.h"
+#import "MBProgressHUD.h"
 @interface MainViewController ()
-    <UITableViewDelegate, UITableViewDataSource, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate, UIGestureRecognizerDelegate, MainGroupPopoverVCDelegate, WYPopoverControllerDelegate>
+    <UITableViewDelegate, UITableViewDataSource, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate, UIGestureRecognizerDelegate, MainGroupPopoverVCDelegate, WYPopoverControllerDelegate, UIAlertViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
@@ -85,7 +86,7 @@
     rotation.duration = 0.7f; // Speed
     rotation.repeatCount = HUGE_VALF; // Repeat forever. Can be a finite number.
     
-    
+    [self getAuditStatus];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -120,7 +121,7 @@
     [_infoLabel setText:infoString];
     [self fetchArrangement];
     [self reloadTableViewData];
-    [self getAuditStatus];
+    [self fetchQuickReplyState];
 
 //    //医生认证接口
 //    NSNumber *doctorId = [[NSUserDefaults standardUserDefaults]objectForKey:@"UserId"];
@@ -228,8 +229,12 @@
 
 }
 
+
 - (void)fetchQuickReplyState {
     NSNumber *doctorId = [[NSUserDefaults standardUserDefaults] objectForKey:@"UserId"];
+    if (!doctorId) {
+        return;
+    }
     NSDictionary *param = @{@"doctorid": doctorId};
     [DoctorAPI getDoctorMyFastReplyWithParameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSDictionary *result = [responseObject firstObject];
@@ -239,18 +244,37 @@
             }else{
                 [self.quickReplyButton setSelected:NO];
             }
-            if ([result[@"disturbtxt"] length] > 0) {
-                currentFastReply = result[@"disturbtxt"];
-            }else{
-                currentFastReply = @"无";
-            }
+            currentFastReply = result[@"disturbtxt"];
         });
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"%@",error.localizedDescription);
     }];
 }
 
-
+- (void)setMyFastReplyStateWithState:(NSNumber *)state {
+    NSNumber *doctorId = [[NSUserDefaults standardUserDefaults] objectForKey:@"UserId"];
+    NSDictionary *param = @{@"doctorid": doctorId,
+                            @"allowdisturb": state
+                            };
+    [DoctorAPI setDoctorMyFastReplyWithParameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSDictionary *result = [responseObject firstObject];
+        if ([result[@"state"] intValue] == 1) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.quickReplyButton setSelected:state.boolValue];
+                MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view.window animated:YES];
+                hud.mode = MBProgressHUDModeText;
+                hud.labelText = state.intValue > 0 ? @"已开启自动回复": @"已关闭自动回复";
+                [hud hide:YES afterDelay:1.0f];
+            });
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"%@",error.localizedDescription);
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view.window animated:YES];
+        hud.mode = MBProgressHUDModeText;
+        hud.labelText = error.localizedDescription;
+        [hud hide:YES afterDelay:1.5f];
+    }];
+}
 - (void)viewWillDisappear:(BOOL)animated {
     [[NSNotificationCenter defaultCenter]removeObserver:self];
     [super viewWillDisappear:animated];
@@ -299,7 +323,19 @@
 }
 
 - (IBAction)quickReplyButtonClicked:(id)sender {
-    
+    UIButton *button = (UIButton *)sender;
+    if (button.isSelected) { //Allow = 1 开启自动回复
+        //取消
+        [self setMyFastReplyStateWithState:@0];
+    }else{
+        if (currentFastReply.length > 0) {
+            UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"当前消息" message:currentFastReply delegate:self cancelButtonTitle: nil otherButtonTitles:@"自定义消息",([self.quickReplyButton isSelected]? @"取消功能": @"开启功能"), nil];
+            alertView.tag = 100;
+            [alertView show];
+        }else{
+            [self performSegueWithIdentifier:@"MainQuickReplySegueIdentifier" sender:nil];
+        }
+    }
 }
 - (IBAction)titleButtonClicked:(id)sender {
     [self fetchGroupArray];
@@ -439,4 +475,12 @@
     [self performSegueWithIdentifier:@"MainGroupDetailSegueIdentifier" sender:group];
 }
 
+#pragma mark - UIAlertView Delegate
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == 0) {
+        [self performSegueWithIdentifier:@"MainQuickReplySegueIdentifier" sender:nil];
+    }else{
+        [self setMyFastReplyStateWithState:@1];
+    }
+}
 @end

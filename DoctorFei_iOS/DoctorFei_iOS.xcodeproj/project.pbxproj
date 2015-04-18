@@ -46,6 +46,7 @@
 		6A2BD6071A31EC44002F7644 /* ChatAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A2BD6061A31EC44002F7644 /* ChatAPI.m */; };
 		6A2BD60A1A31EDA7002F7644 /* FetchChatUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A2BD6091A31EDA7002F7644 /* FetchChatUtil.m */; };
 		6A2E54151AD6BA220001222E /* BaiduMapAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A2E54141AD6BA220001222E /* BaiduMapAPI.framework */; };
+		6A3124241AE24833004ECC17 /* ContactGroupMessageListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A3124231AE24832004ECC17 /* ContactGroupMessageListViewController.m */; };
 		6A32523C1A827A5C00B5E31F /* AgendaArrangementDetailEventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A32523B1A827A5C00B5E31F /* AgendaArrangementDetailEventViewController.m */; };
 		6A32523F1A82835300B5E31F /* AgendaArrangement.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A32523E1A82835300B5E31F /* AgendaArrangement.m */; };
 		6A3252421A83697800B5E31F /* MainArrangementNewTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A3252411A83697800B5E31F /* MainArrangementNewTableViewCell.m */; };
@@ -550,6 +551,7 @@
 		6AD6A28C1A713A4A00CE9888 /* talk_box_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AD6A2801A713A4900CE9888 /* talk_box_btn.png */; };
 		6AD6A28D1A713A4A00CE9888 /* talk_box_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AD6A2811A713A4900CE9888 /* talk_box_btn@2x.png */; };
 		6AD6A28E1A713A4A00CE9888 /* talk_box_btn@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AD6A2821A713A4900CE9888 /* talk_box_btn@3x.png */; };
+		6AED681B1AE2548E0024A149 /* ContactGroupMessageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AED681A1AE2548E0024A149 /* ContactGroupMessageTableViewCell.m */; };
 		6AF48F161AA8A32A00735C81 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AF48F151AA8A32A00735C81 /* CoreLocation.framework */; };
 		6AF8EF591AB58F9100B12756 /* button_wide-02_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AF8EF531AB58F9100B12756 /* button_wide-02_btn.png */; };
 		6AF8EF5A1AB58F9100B12756 /* button_wide-02_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AF8EF541AB58F9100B12756 /* button_wide-02_btn@2x.png */; };
@@ -720,6 +722,8 @@
 		6A2BD6081A31EDA7002F7644 /* FetchChatUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FetchChatUtil.h; path = ../Networking/FetchChatUtil.h; sourceTree = "<group>"; };
 		6A2BD6091A31EDA7002F7644 /* FetchChatUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FetchChatUtil.m; path = ../Networking/FetchChatUtil.m; sourceTree = "<group>"; };
 		6A2E54141AD6BA220001222E /* BaiduMapAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BaiduMapAPI.framework; sourceTree = "<group>"; };
+		6A3124221AE24832004ECC17 /* ContactGroupMessageListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactGroupMessageListViewController.h; sourceTree = "<group>"; };
+		6A3124231AE24832004ECC17 /* ContactGroupMessageListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactGroupMessageListViewController.m; sourceTree = "<group>"; };
 		6A32523A1A827A5C00B5E31F /* AgendaArrangementDetailEventViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AgendaArrangementDetailEventViewController.h; sourceTree = "<group>"; };
 		6A32523B1A827A5C00B5E31F /* AgendaArrangementDetailEventViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AgendaArrangementDetailEventViewController.m; sourceTree = "<group>"; };
 		6A32523D1A82835300B5E31F /* AgendaArrangement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AgendaArrangement.h; sourceTree = "<group>"; };
@@ -1298,6 +1302,8 @@
 		6AD6A2811A713A4900CE9888 /* talk_box_btn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "talk_box_btn@2x.png"; sourceTree = "<group>"; };
 		6AD6A2821A713A4900CE9888 /* talk_box_btn@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "talk_box_btn@3x.png"; sourceTree = "<group>"; };
 		6AEA74501A260DD900EEF37C /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		6AED68191AE2548E0024A149 /* ContactGroupMessageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactGroupMessageTableViewCell.h; sourceTree = "<group>"; };
+		6AED681A1AE2548E0024A149 /* ContactGroupMessageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactGroupMessageTableViewCell.m; sourceTree = "<group>"; };
 		6AF48F151AA8A32A00735C81 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		6AF8EF531AB58F9100B12756 /* button_wide-02_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button_wide-02_btn.png"; sourceTree = "<group>"; };
 		6AF8EF541AB58F9100B12756 /* button_wide-02_btn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button_wide-02_btn@2x.png"; sourceTree = "<group>"; };
@@ -1981,6 +1987,8 @@
 				6ABF6D791AC1BB2F00C4ED19 /* ContactGroupUserCollectionViewCell.m */,
 				6A70B4931AD41801007C7BD0 /* ContactInviteTableViewCell.h */,
 				6A70B4941AD41801007C7BD0 /* ContactInviteTableViewCell.m */,
+				6AED68191AE2548E0024A149 /* ContactGroupMessageTableViewCell.h */,
+				6AED681A1AE2548E0024A149 /* ContactGroupMessageTableViewCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2030,6 +2038,8 @@
 				6ABF6D761AC1B76D00C4ED19 /* ContactGroupDetailUserTableViewController.m */,
 				6A01C65E1AC7197F003AD085 /* ContactGroupDetailInfoTableViewController.h */,
 				6A01C65F1AC7197F003AD085 /* ContactGroupDetailInfoTableViewController.m */,
+				6A3124221AE24832004ECC17 /* ContactGroupMessageListViewController.h */,
+				6A3124231AE24832004ECC17 /* ContactGroupMessageListViewController.m */,
 			);
 			path = Contact;
 			sourceTree = "<group>";
@@ -3186,9 +3196,11 @@
 				6ABF6D771AC1B76D00C4ED19 /* ContactGroupDetailUserTableViewController.m in Sources */,
 				6A1D42CC1A67EC10002B0F7C /* MyPageViewController.m in Sources */,
 				6AF8EF641AB5921200B12756 /* ContactDoctorFriendDetailTableViewController.m in Sources */,
+				6AED681B1AE2548E0024A149 /* ContactGroupMessageTableViewCell.m in Sources */,
 				6AB359B71A2B638C008C48B4 /* RegisterAPI.m in Sources */,
 				B99EFBA41AA0965500961E61 /* ContactRecordTableViewCell.m in Sources */,
 				B95EEFC71A669887006F7FEF /* ContactGroupListTableViewController.m in Sources */,
+				6A3124241AE24833004ECC17 /* ContactGroupMessageListViewController.m in Sources */,
 				6A3252421A83697800B5E31F /* MainArrangementNewTableViewCell.m in Sources */,
 				B92FA2F41A2F521C0029E6B8 /* MoreAboutUsViewController.m in Sources */,
 				B95EEFAF1A6559AB006F7FEF /* ContactNearbyTableViewController.m in Sources */,

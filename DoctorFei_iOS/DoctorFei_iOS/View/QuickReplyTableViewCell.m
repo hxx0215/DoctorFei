@@ -11,7 +11,6 @@
 @interface QuickReplyTableViewCell ()
 
 @property (weak, nonatomic) IBOutlet UILabel *contentLabel;
-@property (weak, nonatomic) IBOutlet UIButton *selectButton;
 
 
 @end
@@ -21,7 +20,6 @@
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-    [_selectButton setSelected:selected];
 }
 
 - (void)setReplyContent:(NSString *)replyContent {
