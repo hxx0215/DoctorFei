@@ -68,8 +68,9 @@
 //            hud.labelText = [dataArray firstObject][@"msg"];
 //            [hud hide:YES afterDelay:1.0f];
         }else{
-            [GroupChat MR_truncateAll];
+//            [GroupChat MR_truncateAll];
 //            [Chat MR_deleteAllMatchingPredicate:[NSPredicate predicateWithFormat:@"type == %@", @5]];
+            [GroupChat MR_deleteAllMatchingPredicate:[NSPredicate predicateWithFormat:@"chat == nil"]];
             for (NSDictionary *dict in dataArray) {
                 GroupChat *groupChat = [GroupChat MR_findFirstByAttribute:@"groupId" withValue:@([dict[@"groupid"] intValue])];
                 if (groupChat == nil) {
