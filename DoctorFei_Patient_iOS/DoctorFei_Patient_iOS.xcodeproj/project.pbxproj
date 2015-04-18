@@ -265,6 +265,7 @@
 		B9BF2A661AB58486003593A7 /* form_1@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = B9BF2A631AB58485003593A7 /* form_1@3x.png */; };
 		B9BF2A681AB5B3D0003593A7 /* AgendaTimeScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9BF2A671AB5B3D0003593A7 /* AgendaTimeScheduleViewController.swift */; };
 		B9BF2A6A1AB5CD8E003593A7 /* HisPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9BF2A691AB5CD8E003593A7 /* HisPageViewController.swift */; };
+		B9D2EB5B1AE150B1008F5B44 /* NotificationTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B9D2EB5A1AE150B1008F5B44 /* NotificationTableViewCell.m */; };
 		B9DC87EC1AC6DF3C0069015E /* AndroidTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9DC87EB1AC6DF3C0069015E /* AndroidTableView.swift */; };
 		B9E175DD1AAFBF650024967C /* MySelfRecordListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E175DB1AAFBF650024967C /* MySelfRecordListTableViewCell.swift */; };
 		B9E175DE1AAFBF650024967C /* MySelfRecordListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9E175DC1AAFBF650024967C /* MySelfRecordListTableViewCell.xib */; };
@@ -1122,6 +1123,8 @@
 		B9BF2A631AB58485003593A7 /* form_1@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "form_1@3x.png"; sourceTree = "<group>"; };
 		B9BF2A671AB5B3D0003593A7 /* AgendaTimeScheduleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AgendaTimeScheduleViewController.swift; sourceTree = "<group>"; };
 		B9BF2A691AB5CD8E003593A7 /* HisPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HisPageViewController.swift; sourceTree = "<group>"; };
+		B9D2EB591AE150B1008F5B44 /* NotificationTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationTableViewCell.h; sourceTree = "<group>"; };
+		B9D2EB5A1AE150B1008F5B44 /* NotificationTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationTableViewCell.m; sourceTree = "<group>"; };
 		B9DC87EB1AC6DF3C0069015E /* AndroidTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AndroidTableView.swift; sourceTree = "<group>"; };
 		B9E175D61AAF3B850024967C /* DoctorFei_Patient_iOS-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "DoctorFei_Patient_iOS-Bridging-Header.h"; path = "View/DoctorFei_Patient_iOS-Bridging-Header.h"; sourceTree = "<group>"; };
 		B9E175DB1AAFBF650024967C /* MySelfRecordListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MySelfRecordListTableViewCell.swift; sourceTree = "<group>"; };
@@ -1902,6 +1905,8 @@
 				B9DC87EB1AC6DF3C0069015E /* AndroidTableView.swift */,
 				6ABE09CC1ACAEEF4006B74F1 /* ContactGroupUserCollectionViewCell.h */,
 				6ABE09CD1ACAEEF4006B74F1 /* ContactGroupUserCollectionViewCell.m */,
+				B9D2EB591AE150B1008F5B44 /* NotificationTableViewCell.h */,
+				B9D2EB5A1AE150B1008F5B44 /* NotificationTableViewCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -3657,6 +3662,7 @@
 				D3B9FC041A7145A70024F1DF /* SetOnlineStateUtil.m in Sources */,
 				6A28DE391AA3328500B50F8E /* MySelfMainTableViewController.m in Sources */,
 				D3B9FC011A7145850024F1DF /* DataUtil.m in Sources */,
+				B9D2EB5B1AE150B1008F5B44 /* NotificationTableViewCell.m in Sources */,
 				6ABE09B01ACAD15F006B74F1 /* GroupChat.m in Sources */,
 				D3B9FBC61A712DE80024F1DF /* DeviceUtil.m in Sources */,
 				B9E175DD1AAFBF650024967C /* MySelfRecordListTableViewCell.swift in Sources */,

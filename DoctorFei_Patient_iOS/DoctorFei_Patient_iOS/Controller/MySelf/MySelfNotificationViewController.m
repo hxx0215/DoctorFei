@@ -8,9 +8,12 @@
 
 #import "MySelfNotificationViewController.h"
 #import "MemberAPI.h"
-@interface MySelfNotificationViewController ()
-- (IBAction)backButtonClicked:(id)sender;
+#import "NotificationTableViewCell.h"
 
+@interface MySelfNotificationViewController ()<UITableViewDelegate,UITableViewDataSource>
+- (IBAction)backButtonClicked:(id)sender;
+@property (nonatomic,strong)NSMutableArray *tableData;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 @end
 
 @implementation MySelfNotificationViewController
@@ -31,10 +34,19 @@
 - (void)refreshData{
     NSDictionary *params = @{@"userid":[[NSUserDefaults standardUserDefaults] objectForKey:@"UserId"]};
     [MemberAPI notificationListWithParameters:params success:^(AFHTTPRequestOperation *operation,id responseObject){
-        
+        self.tableData = [responseObject copy];
+        [self.tableView reloadData];
     }failure:^(AFHTTPRequestOperation *operation, NSError *error){
         
     }];
+}
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return [self.tableData count];
+}
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    NotificationTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"NotificationTableViewCellIdentifier" forIndexPath:indexPath];
+    [cell setCellData:self.tableData[indexPath.row]];
+    return cell;
 }
 /*
 #pragma mark - Navigation
