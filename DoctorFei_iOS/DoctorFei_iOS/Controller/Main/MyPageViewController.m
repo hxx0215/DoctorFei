@@ -75,6 +75,9 @@
             }
             [_departAndJobLabel setText:infoString];
         }
+        [self.contentTypeSegmentControl setTitle:@"他的主页" forSegmentAtIndex:0];
+        [self.contentTypeSegmentControl setTitle:@"他的转载" forSegmentAtIndex:1];
+        self.title = @"他的主页";
     }
 
 }
