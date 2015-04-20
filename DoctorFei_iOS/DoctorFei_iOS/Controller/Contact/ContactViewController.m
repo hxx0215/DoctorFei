@@ -464,6 +464,7 @@
     if (tableView == self.searchDisplayController.searchResultsTableView) {
         ContactFriendTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:ContactFriendCellIdentifier];
         [cell setDataFriend:searchResultArray[indexPath.row]];
+        cell.contactMode = ContactViewControllerModeNormal;
         return cell;
     }
     else if (indexPath.section == tableViewDataArray.count + 1){
@@ -552,6 +553,10 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (tableView == self.searchDisplayController.searchResultsTableView) {
+        [self performSegueWithIdentifier:@"ContactDetailSegueIdentifier" sender:[tableView cellForRowAtIndexPath:indexPath]];
+        return;
+    }
     if (self.contactMode == ContactViewControllerModeNormal)
     {
         if (indexPath.section == 0)
