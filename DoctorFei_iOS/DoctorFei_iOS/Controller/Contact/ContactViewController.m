@@ -582,7 +582,14 @@
             }
         }
         else
-            [self performSegueWithIdentifier:@"ContactDetailSegueIdentifier" sender:[tableView cellForRowAtIndexPath:indexPath]];
+        {
+            if (indexPath.section<[tableViewDataArray count]){
+                [self performSegueWithIdentifier:@"ContactDetailSegueIdentifier" sender:[tableView cellForRowAtIndexPath:indexPath]];
+            }else{
+                ContactInviteTableViewCell *cell = (ContactInviteTableViewCell*)[tableView cellForRowAtIndexPath:indexPath];
+                [self inviteButtonClicked:cell.inviteButton];
+            }
+        }
     }
     else{
         ContactFriendTableViewCell *cell = (ContactFriendTableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
