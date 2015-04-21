@@ -592,6 +592,7 @@
 		B94F6C6B1A5D7113004E1B93 /* DoctorRankTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B94F6C6A1A5D7113004E1B93 /* DoctorRankTableViewController.m */; };
 		B94F6C6E1A5D72D6004E1B93 /* ContactAddByTelTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B94F6C6D1A5D72D6004E1B93 /* ContactAddByTelTableViewController.m */; };
 		B94F6C701A5D752F004E1B93 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B94F6C6F1A5D752F004E1B93 /* AVFoundation.framework */; };
+		B9524EBD1AE527CA00BB16D1 /* NSString+PinYinUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = B9524EBC1AE527CA00BB16D1 /* NSString+PinYinUtil.m */; };
 		B95EEF921A65563C006F7FEF /* dector_tag.png in Resources */ = {isa = PBXBuildFile; fileRef = B95EEF8F1A65563B006F7FEF /* dector_tag.png */; };
 		B95EEF931A65563C006F7FEF /* dector_tag@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B95EEF901A65563C006F7FEF /* dector_tag@2x.png */; };
 		B95EEF941A65563C006F7FEF /* dector_tag@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = B95EEF911A65563C006F7FEF /* dector_tag@3x.png */; };
@@ -1357,6 +1358,8 @@
 		B94F6C6C1A5D72D6004E1B93 /* ContactAddByTelTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactAddByTelTableViewController.h; sourceTree = "<group>"; };
 		B94F6C6D1A5D72D6004E1B93 /* ContactAddByTelTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactAddByTelTableViewController.m; sourceTree = "<group>"; };
 		B94F6C6F1A5D752F004E1B93 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		B9524EBB1AE527CA00BB16D1 /* NSString+PinYinUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+PinYinUtil.h"; sourceTree = "<group>"; };
+		B9524EBC1AE527CA00BB16D1 /* NSString+PinYinUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+PinYinUtil.m"; sourceTree = "<group>"; };
 		B95EEF8F1A65563B006F7FEF /* dector_tag.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dector_tag.png; sourceTree = "<group>"; };
 		B95EEF901A65563C006F7FEF /* dector_tag@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dector_tag@2x.png"; sourceTree = "<group>"; };
 		B95EEF911A65563C006F7FEF /* dector_tag@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dector_tag@3x.png"; sourceTree = "<group>"; };
@@ -1923,6 +1926,8 @@
 			isa = PBXGroup;
 			children = (
 				6AEA74501A260DD900EEF37C /* Constants.h */,
+				B9524EBB1AE527CA00BB16D1 /* NSString+PinYinUtil.h */,
+				B9524EBC1AE527CA00BB16D1 /* NSString+PinYinUtil.m */,
 				6AC6EA051A28C4B5007689D8 /* NSString+Crypt.h */,
 				6AC6EA061A28C4B5007689D8 /* NSString+Crypt.m */,
 				6AB359B81A2B6C3B008C48B4 /* DeviceUtil.h */,
@@ -3238,6 +3243,7 @@
 				6A32523F1A82835300B5E31F /* AgendaArrangement.m in Sources */,
 				6A73763A1A208972006EF54F /* MainViewController.m in Sources */,
 				B90320BF1A5ADAA3001FA485 /* DoctorApproveViewController.m in Sources */,
+				B9524EBD1AE527CA00BB16D1 /* NSString+PinYinUtil.m in Sources */,
 				6A01C6601AC7197F003AD085 /* ContactGroupDetailInfoTableViewController.m in Sources */,
 				6ABFDBDF1A6B944C00DB8E74 /* MyPageContentTalkViewController.m in Sources */,
 				B93969C81A6406590073DEF4 /* ContactNewFriendTableViewController.m in Sources */,
