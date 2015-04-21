@@ -51,15 +51,14 @@
 + (void)fetchGroupChatWithParmas: (NSDictionary *)params {
     NSNumber *groupId = @([params[@"groupid"]intValue]);
     NSNumber *userId = [[NSUserDefaults standardUserDefaults]objectForKey:@"UserId"];
-//    NSNumber *lastmsgid = @0;
-//    Chat *currentChat = [Chat MR_findFirstWithPredicate:[NSPredicate predicateWithFormat:@"type == %@ && chatId == %@", @3, groupId]];
-//    if (currentChat != nil) {
-//        Message *lastMessage = [Message MR_findFirstWithPredicate:[NSPredicate predicateWithFormat:@"chat == %@", currentChat] sortedBy:@"messageId" ascending:NO];
-//        if (lastMessage != nil) {
-//            lastmsgid = lastMessage.messageId;
-//        }
-//    }
-    NSNumber *lastmsgid = @([params[@"lastmsgid"]intValue] - 1);
+    NSNumber *lastmsgid = @0;
+    Chat *currentChat = [Chat MR_findFirstWithPredicate:[NSPredicate predicateWithFormat:@"type == %@ && chatId == %@", @3, groupId]];
+    if (currentChat != nil) {
+        Message *lastMessage = [Message MR_findFirstWithPredicate:[NSPredicate predicateWithFormat:@"chat == %@", currentChat] sortedBy:@"messageId" ascending:NO];
+        if (lastMessage != nil) {
+            lastmsgid = lastMessage.messageId;
+        }
+    }
     NSDictionary *requestDict = @{
                                   @"userid": userId,
                                   @"usertype": [[NSUserDefaults standardUserDefaults]objectForKey:@"UserType"],
@@ -114,7 +113,7 @@
 
 
 + (void)fetchChatWithParmas: (NSDictionary *)params {
-//    NSLog(@"%@",params);
+    NSLog(@"%@",params);
     NSNumber *userId = @([params[@"userId"] intValue]);
     NSNumber *userType = @([params[@"usertype"] intValue]);
     Friends *friend = [Friends MR_findFirstWithPredicate:[NSPredicate predicateWithFormat:@"userId == %@ && userType == %@", userId, userType]];
@@ -152,11 +151,11 @@
     NSNumber *userId = @([params[@"userId"] intValue]);
     NSNumber *userType = @([params[@"usertype"]intValue]);
     NSNumber *chatType = @([params[@"type"]intValue]);
-    NSNumber *lastMessageId = @([params[@"lastmsgid"]intValue] - 1);
     if (memberId == nil || userId == nil || userType == nil || chatType == nil) {
         return;
     }
     Friends *friend = [Friends MR_findFirstWithPredicate:[NSPredicate predicateWithFormat:@"userId == %@ && userType == %@", userId, userType]];
+    NSLog(@"%@",friend.debugDescription);
     Chat *chat = [Chat MR_findFirstWithPredicate:[NSPredicate predicateWithFormat:@"type == %@ AND (ANY user == %@)", chatType, friend]];
     if (chat == nil) {
         chat = [Chat MR_createEntity];
@@ -164,23 +163,23 @@
         chat.user = [chat.user setByAddingObject:friend];
     }
     [[NSManagedObjectContext MR_defaultContext]MR_saveToPersistentStoreAndWait];
-//    Message *lastMessage = [Message MR_findFirstWithPredicate:[NSPredicate predicateWithFormat:@"chat == %@", chat] sortedBy:@"messageId" ascending:NO];
-//
+    Message *lastMessage = [Message MR_findFirstWithPredicate:[NSPredicate predicateWithFormat:@"chat == %@", chat] sortedBy:@"messageId" ascending:NO];
+
     NSDictionary *dict;
-//    if (lastMessage) {
+    if (lastMessage) {
         dict = @{
                  @"memberid": memberId,
                  @"userid": userId,
                  @"usertype": userType,
-                 @"lastmsgid": lastMessageId
+                 @"lastmsgid": lastMessage.messageId
                  };
-//    }
-//    else{
-//        dict = @{@"memberid": memberId, @"userid": userId, @"usertype": userType};
-//    }
+    }
+    else{
+        dict = @{@"memberid": memberId, @"userid": userId, @"usertype": userType};
+    }
     
     [MemberAPI getChatLogWithParameters:dict success:^(AFHTTPRequestOperation *operation, id responseObject) {
-//        NSLog(@"GetChat: %@", responseObject);
+        NSLog(@"GetChat: %@", responseObject);
         NSArray *messageArray = (NSArray *)responseObject;
         Friends *messageFriend = [Friends MR_findFirstWithPredicate:[NSPredicate predicateWithFormat:@"userId == %@ && userType == %@", userId, userType]];
         Chat *messageChat = [Chat MR_findFirstWithPredicate:[NSPredicate predicateWithFormat:@"type == %@ AND (ANY user == %@)", chatType, messageFriend]];
@@ -240,15 +239,14 @@
 + (void)fetchTempGroupChatWithParmas: (NSDictionary *)params {
     NSNumber *groupId = @([params[@"groupid"]intValue]);
     NSNumber *userId = [[NSUserDefaults standardUserDefaults]objectForKey:@"UserId"];
-//    NSNumber *lastmsgid = @0;
-//    Chat *currentChat = [Chat MR_findFirstWithPredicate:[NSPredicate predicateWithFormat:@"type == %@ && chatId == %@", @4, groupId]];
-//    if (currentChat != nil) {
-//        Message *lastMessage = [Message MR_findFirstWithPredicate:[NSPredicate predicateWithFormat:@"chat == %@", currentChat] sortedBy:@"messageId" ascending:NO];
-//        if (lastMessage != nil) {
-//            lastmsgid = lastMessage.messageId;
-//        }
-//    }
-    NSNumber *lastmsgid = @([params[@"minmsgid"] intValue] - 1);
+    NSNumber *lastmsgid = @0;
+    Chat *currentChat = [Chat MR_findFirstWithPredicate:[NSPredicate predicateWithFormat:@"type == %@ && chatId == %@", @4, groupId]];
+    if (currentChat != nil) {
+        Message *lastMessage = [Message MR_findFirstWithPredicate:[NSPredicate predicateWithFormat:@"chat == %@", currentChat] sortedBy:@"messageId" ascending:NO];
+        if (lastMessage != nil) {
+            lastmsgid = lastMessage.messageId;
+        }
+    }
     NSDictionary *requestDict = @{
                                   @"userid": userId,
                                   @"usertype": [[NSUserDefaults standardUserDefaults]objectForKey:@"UserType"],
@@ -257,7 +255,7 @@
                                   };
     NSMutableSet *lostInfomationUsers = [NSMutableSet set];
     [ChatAPI getTempGroupChatLogWithParameters:requestDict success:^(AFHTTPRequestOperation *operation, id responseObject) {
-//        NSLog(@"Get TempGroup Chat: %@", responseObject);
+        NSLog(@"Get TempGroup Chat: %@", responseObject);
         Chat *currentChat = [Chat MR_findFirstWithPredicate:[NSPredicate predicateWithFormat:@"type == %@ && chatId == %@", @4, requestDict[@"groupid"]]];
         NSArray *messageArray = (NSArray *)responseObject;
         for (NSDictionary *dict in messageArray) {
