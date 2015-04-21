@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6751" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7531" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MySelfRecordTableViewIdentifier" rowHeight="152" id="KGk-i7-Jjw" customClass="MySelfRecordListTableViewCell" customModule="DoctorFei_Patient_iOS">
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="MySelfRecordTableViewIdentifier" rowHeight="152" id="KGk-i7-Jjw" customClass="MySelfRecordListTableViewCell" customModule="DoctorFei_Patient_iOS">
             <rect key="frame" x="0.0" y="0.0" width="320" height="202"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
@@ -41,7 +41,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hio-m7-o06">
-                        <rect key="frame" x="0.0" y="72" width="320" height="120"/>
+                        <rect key="frame" x="8" y="72" width="304" height="120"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="120" id="pow-ac-Eo2"/>
@@ -57,11 +57,11 @@
                     <constraint firstItem="WY3-HS-Em4" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="bUi-MI-Utj"/>
                     <constraint firstAttribute="trailing" secondItem="ll9-Gx-c8Q" secondAttribute="trailing" id="dxi-IY-zhu"/>
                     <constraint firstItem="a9F-e3-CPM" firstAttribute="leading" secondItem="q5c-11-Yrz" secondAttribute="trailing" constant="8" id="j7R-XT-9CF"/>
-                    <constraint firstItem="hio-m7-o06" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="tl5-fE-8TC"/>
+                    <constraint firstItem="hio-m7-o06" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="tl5-fE-8TC"/>
                     <constraint firstAttribute="trailing" secondItem="WY3-HS-Em4" secondAttribute="trailing" constant="8" id="tuC-xc-dvL"/>
                     <constraint firstItem="q5c-11-Yrz" firstAttribute="centerY" secondItem="a9F-e3-CPM" secondAttribute="centerY" id="upA-dj-yGw"/>
                     <constraint firstItem="WY3-HS-Em4" firstAttribute="top" secondItem="ll9-Gx-c8Q" secondAttribute="bottom" constant="8" id="xPX-D2-qpE"/>
-                    <constraint firstAttribute="trailing" secondItem="hio-m7-o06" secondAttribute="trailing" id="xh0-Fd-vCX"/>
+                    <constraint firstAttribute="trailing" secondItem="hio-m7-o06" secondAttribute="trailing" constant="8" id="xh0-Fd-vCX"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>

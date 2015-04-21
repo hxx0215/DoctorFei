@@ -112,7 +112,7 @@ class MySelfAddHistoryViewController: UIViewController,UICollectionViewDelegate,
         case 0:
             sourceType = UIImagePickerControllerSourceType.Camera
         case 1:
-            sourceType = UIImagePickerControllerSourceType.SavedPhotosAlbum
+            sourceType = UIImagePickerControllerSourceType.PhotoLibrary
         default:
             return
         }
