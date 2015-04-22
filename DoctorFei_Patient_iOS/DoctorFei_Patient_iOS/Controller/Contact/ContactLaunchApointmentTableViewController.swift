@@ -174,11 +174,14 @@ class ContactLaunchApointmentTableViewController: UITableViewController,TextBasi
         if segue.identifier == "LaunchAppointmentNameSegueIdentifier" {
             var vc = segue.destinationViewController as! TextBasicInfoViewController
             vc.delegate = self
+            vc.titleString = "输入姓名"
             currentText = self.nameLabel
         }
         if segue.identifier == "LaunchAppointmentMobileSegueIdentifier" {
             var vc = segue.destinationViewController as! TextBasicInfoViewController
             vc.delegate = self
+            vc.titleString = "输入电话号码"
+            vc.keyboardType = UIKeyboardType.NumberPad.rawValue;
             currentText = self.mobileLabel
         }
     }

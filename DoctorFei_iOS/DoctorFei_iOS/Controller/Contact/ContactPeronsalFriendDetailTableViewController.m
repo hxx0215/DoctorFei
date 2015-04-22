@@ -58,7 +58,7 @@
     [self.genderLabel setText:_currentFriend.gender.intValue ? @"男" : @"女"];
     [self.phoneLabel setText:_currentFriend.mobile];
     [self.addToContactButton setHidden:[_currentFriend.isFriend boolValue]];
-    NSLog(@"%@",_currentFriend.isFriend);
+//    NSLog(@"%@",_currentFriend.isFriend);
     
 }
 - (void)checkFriend {

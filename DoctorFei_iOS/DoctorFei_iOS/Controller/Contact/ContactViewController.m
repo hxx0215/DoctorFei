@@ -122,12 +122,12 @@
         }
     }
     NSString *checkString = [checkArray componentsJoinedByString:@","];
-    NSLog(@"%@",checkString);
+//    NSLog(@"%@",checkString);
     NSDictionary *param = @{
                             @"mobile": checkString
                             };
     [UserAPI checkFriendIsRegisterWithParameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"%@",responseObject);
+//        NSLog(@"%@",responseObject);
         NSMutableArray *needArray = [NSMutableArray array];
         for (NSDictionary *dict in responseObject) {
             if (dict[@"isjoin"] && [dict[@"isjoin"] intValue] == 0) {
@@ -239,6 +239,7 @@
                              @"doctorid": [userId stringValue]
                              };
     [DoctorAPI getFriendsWithParameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"%@",responseObject);
         NSString *msg = [[responseObject firstObject] objectForKey:@"msg"];
         if (msg){//为毛服务器没有数据还要返回个啊哦。真是有病
             [self reloadTableViewData];

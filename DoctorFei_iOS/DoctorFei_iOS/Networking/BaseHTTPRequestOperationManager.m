@@ -64,7 +64,7 @@
             success(operation, dataArray);
         }
         else{
-            NSError *error = [NSError errorWithDomain:kErrorDomain code:0 userInfo:@{NSLocalizedDescriptionKey : result[@"error"]}];
+            NSError *error = [NSError errorWithDomain:kErrorDomain code:0 userInfo:@{NSLocalizedDescriptionKey : result ? result[@"error"]: @"未知错误"}];
             failure(operation, error);
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {

@@ -38,6 +38,7 @@ static NSString * const myselfRecordIdentifier = @"MySelfRecordTableViewIdentifi
     self.tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+    [self.tableView setTableFooterView:[UIView new]];
     [self.view addSubview:self.tableView];
     
     UINib *nib = [UINib nibWithNibName:@"MySelfRecordListTableViewCell" bundle:nil];

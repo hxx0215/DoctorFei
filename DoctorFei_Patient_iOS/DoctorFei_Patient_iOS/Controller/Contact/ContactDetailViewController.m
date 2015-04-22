@@ -30,6 +30,7 @@
 #import "ContactGroupDetailUserTableViewController.h"
 #import "GroupChat.h"
 #import "EmotionsKeyboardBuilder.h"
+#import "DataUtil.h"
 typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
     SMSToolbarSendMethodVoice,
     SMSToolbarSendMethodText
@@ -230,7 +231,7 @@ typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
 //        if ([message.flag intValue] != 0) {
         if (message.user != nil) {
             senderId = [NSString stringWithFormat:@"%@;%@",[message.user.userId stringValue],[message.user.userType stringValue]];
-            senderName = message.user.realname;
+            senderName = [[DataUtil nameStringForFriend:message.user] string];
         }
         else{
             senderId = mySenderId;
@@ -320,7 +321,7 @@ typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
                 }
             }];
         }
-        [nameDict setObject:friend.realname forKey:userSenderId];
+        [nameDict setObject:[[DataUtil nameStringForFriend:friend] string] forKey:userSenderId];
         [avatarDict setObject:userAvatarImage forKey:userSenderId];
     }
     
@@ -763,6 +764,7 @@ typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
         if(image)
         {
             MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+            hud.yOffset = -130.0f;
             hud.labelText = @"上传中...";
             UIImage *cropImage = [ImageUtil imageResizeToRetinaScreenSizeWithImage:image];
             [MemberAPI uploadImage:cropImage success:^(AFHTTPRequestOperation *operation, id responseObject) {

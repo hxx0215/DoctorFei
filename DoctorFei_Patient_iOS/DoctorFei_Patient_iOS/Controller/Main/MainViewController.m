@@ -15,6 +15,7 @@
 #import "ContactDetailViewController.h"
 #import "BaseHTTPRequestOperationManager.h"
 #import "OrganDisplayViewController.h"
+#import "Message.h"
 
 @interface MainViewController ()
     <UITableViewDelegate, UITableViewDataSource, DZNEmptyDataSetDelegate, DZNEmptyDataSetSource, UIGestureRecognizerDelegate>
@@ -113,6 +114,13 @@
 - (void)reloadTableViewData {
 //    chatArray = [Chat MR_findAll];
     chatArray = [Chat MR_findAllWithPredicate:[NSPredicate predicateWithFormat:@"messages.@count > 0"]];
+    chatArray = [chatArray sortedArrayUsingComparator:^NSComparisonResult(Chat *obj1, Chat *obj2) {
+        Message *last1 = [Message MR_findFirstWithPredicate:[NSPredicate predicateWithFormat:@"chat == %@", obj1] sortedBy:@"messageId" ascending:NO];
+        Message *last2 = [Message MR_findFirstWithPredicate:[NSPredicate predicateWithFormat:@"chat == %@", obj2] sortedBy:@"messageId" ascending:NO];
+        NSDate *last1Date = last1.createtime;
+        NSDate *last2Date = last2.createtime;
+        return [last2Date compare:last1Date];
+    }];
     [self.tableView reloadData];
 }
 
