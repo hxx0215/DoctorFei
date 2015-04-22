@@ -269,6 +269,7 @@
 		B9DC87EC1AC6DF3C0069015E /* AndroidTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9DC87EB1AC6DF3C0069015E /* AndroidTableView.swift */; };
 		B9E175DD1AAFBF650024967C /* MySelfRecordListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E175DB1AAFBF650024967C /* MySelfRecordListTableViewCell.swift */; };
 		B9E175DE1AAFBF650024967C /* MySelfRecordListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9E175DC1AAFBF650024967C /* MySelfRecordListTableViewCell.xib */; };
+		B9FC700F1AE6854800AADEE0 /* NSString+PinYinUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = B9FC700E1AE6854800AADEE0 /* NSString+PinYinUtil.m */; };
 		D3B9F9C11A712D150024F1DF /* Add-as-a-friend_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = D3B9F7E41A712D120024F1DF /* Add-as-a-friend_btn.png */; };
 		D3B9F9C21A712D150024F1DF /* Add-as-a-friend_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3B9F7E51A712D120024F1DF /* Add-as-a-friend_btn@2x.png */; };
 		D3B9F9C31A712D150024F1DF /* Add-as-a-friend_btn@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3B9F7E61A712D120024F1DF /* Add-as-a-friend_btn@3x.png */; };
@@ -1129,6 +1130,8 @@
 		B9E175D61AAF3B850024967C /* DoctorFei_Patient_iOS-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "DoctorFei_Patient_iOS-Bridging-Header.h"; path = "View/DoctorFei_Patient_iOS-Bridging-Header.h"; sourceTree = "<group>"; };
 		B9E175DB1AAFBF650024967C /* MySelfRecordListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MySelfRecordListTableViewCell.swift; sourceTree = "<group>"; };
 		B9E175DC1AAFBF650024967C /* MySelfRecordListTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MySelfRecordListTableViewCell.xib; sourceTree = "<group>"; };
+		B9FC700D1AE6854800AADEE0 /* NSString+PinYinUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+PinYinUtil.h"; sourceTree = "<group>"; };
+		B9FC700E1AE6854800AADEE0 /* NSString+PinYinUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+PinYinUtil.m"; sourceTree = "<group>"; };
 		D3B9F7E41A712D120024F1DF /* Add-as-a-friend_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Add-as-a-friend_btn.png"; sourceTree = "<group>"; };
 		D3B9F7E51A712D120024F1DF /* Add-as-a-friend_btn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Add-as-a-friend_btn@2x.png"; sourceTree = "<group>"; };
 		D3B9F7E61A712D120024F1DF /* Add-as-a-friend_btn@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Add-as-a-friend_btn@3x.png"; sourceTree = "<group>"; };
@@ -2863,6 +2866,8 @@
 				D3B9FBB81A712DE80024F1DF /* Constants.h */,
 				D3B9FBBB1A712DE80024F1DF /* DeviceUtil.h */,
 				D3B9FBBC1A712DE80024F1DF /* DeviceUtil.m */,
+				B9FC700D1AE6854800AADEE0 /* NSString+PinYinUtil.h */,
+				B9FC700E1AE6854800AADEE0 /* NSString+PinYinUtil.m */,
 				D3B9FBBF1A712DE80024F1DF /* NSString+Crypt.h */,
 				D3B9FBC01A712DE80024F1DF /* NSString+Crypt.m */,
 				D3B9FBC11A712DE80024F1DF /* pinyin.c */,
@@ -3636,6 +3641,7 @@
 				D3B9FBC91A712DE80024F1DF /* pinyin.c in Sources */,
 				6A28DE4E1AA3340400B50F8E /* MoreFeedbackViewController.m in Sources */,
 				6A28DDB81A9E07C700B50F8E /* RegisterMoreTableViewController.m in Sources */,
+				B9FC700F1AE6854800AADEE0 /* NSString+PinYinUtil.m in Sources */,
 				6A28DDB41A9E07C700B50F8E /* LoginFirstViewController.m in Sources */,
 				B9BF2A5D1AB327EB003593A7 /* ContactLaunchApointmentTableViewController.swift in Sources */,
 				6A28DE3F1AA3333800B50F8E /* MySelfRecordListViewController.m in Sources */,

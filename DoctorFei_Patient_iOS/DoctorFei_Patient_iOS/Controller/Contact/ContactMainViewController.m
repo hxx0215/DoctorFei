@@ -19,6 +19,7 @@
 #import <RHAddressBook.h>
 #import "UserAPI.h"
 #import "RHPerson.h"
+#import "NSString+PinYinUtil.h"
 
 @interface ContactMainViewController ()
     <UITableViewDelegate, UITableViewDataSource, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate, UISearchDisplayDelegate, MFMessageComposeViewControllerDelegate>
@@ -133,7 +134,12 @@
                 }
             }
         }
-        needInvitePersonArray = [needArray copy];
+        
+        needInvitePersonArray = [needArray sortedArrayUsingComparator:^NSComparisonResult(RHPerson *obj1,RHPerson *obj2){
+            NSString *st1 = [obj1.name getFirstCharPinYin];
+            NSString *st2 = [obj2.name getFirstCharPinYin];
+            return [st1 compare:st2 options:NSCaseInsensitiveSearch];
+        }];
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.tableView reloadData];
         });
