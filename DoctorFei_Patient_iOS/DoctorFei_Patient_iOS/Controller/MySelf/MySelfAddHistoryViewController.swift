@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MySelfAddHistoryViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,UICollectionViewDataSource,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate {
+class MySelfAddHistoryViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,UICollectionViewDataSource,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UITextViewDelegate {
     var images:NSMutableArray?
     private let collectionViewIdentifier = "HistoryCollectionCellIdentifier"
     override func viewDidLoad() {
@@ -143,6 +143,16 @@ class MySelfAddHistoryViewController: UIViewController,UICollectionViewDelegate,
                 })
             }
         })
+    }
+    func textViewDidBeginEditing(textView: UITextView) {
+        if textView.text == "病历信息" {
+            textView.text = ""
+        }
+    }
+    func textViewDidEndEditing(textView: UITextView) {
+        if textView.text == "" {
+            textView.text = "病历信息"
+        }
     }
     /*
     // MARK: - Navigation
