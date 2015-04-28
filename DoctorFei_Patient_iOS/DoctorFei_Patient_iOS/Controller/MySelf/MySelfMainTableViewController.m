@@ -180,7 +180,10 @@
     NSNumber *uid = [[NSUserDefaults standardUserDefaults] objectForKey:@"UserId"];
     hud = [MBProgressHUD HUDForView:self.view.window];
     if (hud.alpha == 0) {
-        hud = [MBProgressHUD showHUDAddedTo:self.view.window animated:YES];
+        if (self.view.window)
+            hud = [MBProgressHUD showHUDAddedTo:self.view.window animated:YES];
+        else
+            hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     }
     NSDictionary *param = @{
                             @"memberid": uid,
@@ -198,6 +201,8 @@
                     [[NSUserDefaults standardUserDefaults]setObject:value forKey:@"UserEmail"];
                 }else if ([key isEqualToString:@"usersex"]) {
                     [[NSUserDefaults standardUserDefaults]setObject:value forKey:@"UserGender"];
+                }else if ([key isEqualToString:@"mobile"]){
+                    [[NSUserDefaults standardUserDefaults] setObject:value forKey:@"UserPhone"];
                 }
                 [[NSUserDefaults standardUserDefaults] synchronize];
                 [self reloadInfoLabel];
@@ -333,6 +338,7 @@
         [self updateMemberInfoWithKey:@"realname" value:text];
     }else if ([infoVC.titleString isEqualToString:@"电话"]) {
         //接口未提供该字段
+        [self updateMemberInfoWithKey:@"mobile" value:text];
     }else if ([infoVC.titleString isEqualToString:@"邮箱"]) {
         [self updateMemberInfoWithKey:@"email" value:text];
     }

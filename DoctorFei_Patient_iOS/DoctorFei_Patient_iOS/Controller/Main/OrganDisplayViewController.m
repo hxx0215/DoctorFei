@@ -96,7 +96,7 @@
 	if (self.type == OrganTypeShow) {
 		NSDictionary *params = @{ @"id": @"0",
 			                      @"cid": _currentCity,
-			                      @"rid": _currentArea };
+                                  @"rid": _currentArea ? _currentArea : @"0"};
 		[MemberAPI getOrgListWithParameters:params success: ^(AFHTTPRequestOperation *operation, id responseObject) {
 		    self.tableData = responseObject;
 		    [self.tableView reloadData];
