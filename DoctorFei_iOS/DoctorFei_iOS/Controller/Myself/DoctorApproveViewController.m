@@ -71,7 +71,8 @@
 }
 
 - (IBAction)commitButtonClicked:(id)sender {
-    [self uploadImage:self.approveImage.currentImage];
+    if (self.approveImage.currentImage)
+        [self uploadImage:self.approveImage.currentImage];
 }
 
 - (void)uploadImage: (UIImage *)image {
