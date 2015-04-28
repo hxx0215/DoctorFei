@@ -203,8 +203,8 @@
     NSDictionary *params = @{
                              @"doctorid": doctorId,
                              @"id": isNew ? @0 : _currentArrangement.arrangeId,
-                             @"title": _currentArrangement.title,
-                             @"note": _currentArrangement.title,
+                             @"title": _currentArrangement.title ? _currentArrangement.title : @"",
+                             @"note": _currentArrangement.title ? _currentArrangement.title : @"",
 //                             @"memberid": _currentArrangement.memberId,
                              @"membername": _currentArrangement.memberName,
                              @"daytime": @([_currentArrangement.dayTime timeIntervalSince1970]),
