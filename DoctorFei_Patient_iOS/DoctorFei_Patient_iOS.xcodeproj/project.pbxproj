@@ -173,6 +173,7 @@
 		6A6D07131AB13A7A0052EA5A /* ContactDoctorRankViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A6D07121AB13A7A0052EA5A /* ContactDoctorRankViewController.m */; };
 		6A6D07161AB158F10052EA5A /* ContactDoctorRankTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A6D07151AB158F10052EA5A /* ContactDoctorRankTableViewCell.m */; };
 		6A6D07191AB168E50052EA5A /* ContactAddByTelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A6D07181AB168E50052EA5A /* ContactAddByTelViewController.m */; };
+		6A795D9E1AF13E3B00CF15F4 /* GroupChat.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A795D9D1AF13E3B00CF15F4 /* GroupChat.m */; };
 		6A7E7F461AA74E8F00E0D736 /* SocketConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A7E7F451AA74E8F00E0D736 /* SocketConnection.m */; };
 		6A7E7F4D1AA74F5E00E0D736 /* refresh_after.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A7E7F471AA74F5D00E0D736 /* refresh_after.png */; };
 		6A7E7F4E1AA74F5E00E0D736 /* refresh_after@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A7E7F481AA74F5D00E0D736 /* refresh_after@2x.png */; };
@@ -204,7 +205,6 @@
 		6AA67F4C1ABC8589002A0A8B /* ShareSDKFlatShareViewUI.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 6AA67F381ABC8588002A0A8B /* ShareSDKFlatShareViewUI.bundle */; };
 		6AA67F4D1ABC8589002A0A8B /* ShareSDKFlatShareViewUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AA67F391ABC8588002A0A8B /* ShareSDKFlatShareViewUI.framework */; };
 		6AA67F4E1ABC8589002A0A8B /* ShareSDKShareActionSheet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AA67F3A1ABC8588002A0A8B /* ShareSDKShareActionSheet.framework */; };
-		6ABE09B01ACAD15F006B74F1 /* GroupChat.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ABE09AF1ACAD15F006B74F1 /* GroupChat.m */; };
 		6ABE09B31ACAD160006B74F1 /* Friends.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ABE09B21ACAD160006B74F1 /* Friends.m */; };
 		6ABE09B61ACAD160006B74F1 /* GroupChatFriend.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ABE09B51ACAD160006B74F1 /* GroupChatFriend.m */; };
 		6ABE09B91ACAD160006B74F1 /* Chat.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ABE09B81ACAD160006B74F1 /* Chat.m */; };
@@ -1001,6 +1001,8 @@
 		6A6D07151AB158F10052EA5A /* ContactDoctorRankTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactDoctorRankTableViewCell.m; sourceTree = "<group>"; };
 		6A6D07171AB168E50052EA5A /* ContactAddByTelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactAddByTelViewController.h; sourceTree = "<group>"; };
 		6A6D07181AB168E50052EA5A /* ContactAddByTelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactAddByTelViewController.m; sourceTree = "<group>"; };
+		6A795D9C1AF13E3B00CF15F4 /* GroupChat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupChat.h; sourceTree = "<group>"; };
+		6A795D9D1AF13E3B00CF15F4 /* GroupChat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupChat.m; sourceTree = "<group>"; };
 		6A7E7F441AA74E8F00E0D736 /* SocketConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocketConnection.h; sourceTree = "<group>"; };
 		6A7E7F451AA74E8F00E0D736 /* SocketConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocketConnection.m; sourceTree = "<group>"; };
 		6A7E7F471AA74F5D00E0D736 /* refresh_after.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = refresh_after.png; sourceTree = "<group>"; };
@@ -1042,8 +1044,6 @@
 		6AA67F381ABC8588002A0A8B /* ShareSDKFlatShareViewUI.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ShareSDKFlatShareViewUI.bundle; sourceTree = "<group>"; };
 		6AA67F391ABC8588002A0A8B /* ShareSDKFlatShareViewUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ShareSDKFlatShareViewUI.framework; sourceTree = "<group>"; };
 		6AA67F3A1ABC8588002A0A8B /* ShareSDKShareActionSheet.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ShareSDKShareActionSheet.framework; sourceTree = "<group>"; };
-		6ABE09AE1ACAD15F006B74F1 /* GroupChat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupChat.h; sourceTree = "<group>"; };
-		6ABE09AF1ACAD15F006B74F1 /* GroupChat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupChat.m; sourceTree = "<group>"; };
 		6ABE09B11ACAD160006B74F1 /* Friends.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Friends.h; sourceTree = "<group>"; };
 		6ABE09B21ACAD160006B74F1 /* Friends.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Friends.m; sourceTree = "<group>"; };
 		6ABE09B41ACAD160006B74F1 /* GroupChatFriend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupChatFriend.h; sourceTree = "<group>"; };
@@ -1822,6 +1822,8 @@
 		6A28DD991A9E07C700B50F8E /* Modal */ = {
 			isa = PBXGroup;
 			children = (
+				6A795D9C1AF13E3B00CF15F4 /* GroupChat.h */,
+				6A795D9D1AF13E3B00CF15F4 /* GroupChat.m */,
 				6A28DD9C1A9E07C700B50F8E /* Friends+PinYinUtil.h */,
 				6A28DD9D1A9E07C700B50F8E /* Friends+PinYinUtil.m */,
 				6A28DDA01A9E07C700B50F8E /* MainCoreData.xcdatamodeld */,
@@ -1831,8 +1833,6 @@
 				6ABE09B51ACAD160006B74F1 /* GroupChatFriend.m */,
 				6ABE09B11ACAD160006B74F1 /* Friends.h */,
 				6ABE09B21ACAD160006B74F1 /* Friends.m */,
-				6ABE09AE1ACAD15F006B74F1 /* GroupChat.h */,
-				6ABE09AF1ACAD15F006B74F1 /* GroupChat.m */,
 				6AF8EF771AB6DD7B00B12756 /* Message.h */,
 				6AF8EF781AB6DD7B00B12756 /* Message.m */,
 				6A86B36C1AA60F2900D280AF /* Groups.h */,
@@ -3652,6 +3652,7 @@
 				6A28DDB51A9E07C700B50F8E /* LoginViewController.m in Sources */,
 				6A1156A31AB9D58E0049F42D /* ImageDetailViewController.m in Sources */,
 				B9BC81DE1AB7092A00AAEE8F /* ShuoShuo.m in Sources */,
+				6A795D9E1AF13E3B00CF15F4 /* GroupChat.m in Sources */,
 				B94543211ABE5B3000BC2AD1 /* HisPageDetailViewController.swift in Sources */,
 				6A28DDC41A9E07C700B50F8E /* MemberAPI.m in Sources */,
 				B9154DC11AB15E5800423B80 /* MySelfAddHistoryViewController.swift in Sources */,
@@ -3669,7 +3670,6 @@
 				6A28DE391AA3328500B50F8E /* MySelfMainTableViewController.m in Sources */,
 				D3B9FC011A7145850024F1DF /* DataUtil.m in Sources */,
 				B9D2EB5B1AE150B1008F5B44 /* NotificationTableViewCell.m in Sources */,
-				6ABE09B01ACAD15F006B74F1 /* GroupChat.m in Sources */,
 				D3B9FBC61A712DE80024F1DF /* DeviceUtil.m in Sources */,
 				B9E175DD1AAFBF650024967C /* MySelfRecordListTableViewCell.swift in Sources */,
 				6AFD404E1A5D5EF4009C0080 /* ViewController.m in Sources */,
