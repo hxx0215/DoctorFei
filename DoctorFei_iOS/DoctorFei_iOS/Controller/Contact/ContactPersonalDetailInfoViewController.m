@@ -5,10 +5,11 @@
 //  Created by GuJunjia on 15/3/15.
 //
 //
-
+#import "DoctorAPI.h"
 #import "ContactPersonalDetailInfoViewController.h"
 #import <ReactiveCocoa.h>
 #import "Friends.h"
+#import <MBProgressHUD.h>
 @interface ContactPersonalDetailInfoViewController ()
 - (IBAction)backButtonClicked:(id)sender;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *confirmButton;
@@ -39,6 +40,40 @@
     // Pass the selected object to the new view controller.
 }
 */
+- (IBAction)saveNote:(id)sender {
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view.window animated:YES];
+    hud.dimBackground = YES;
+    [hud setLabelText:@"设置备注中..."];
+    NSNumber *doctorId = [[NSUserDefaults standardUserDefaults]objectForKey:@"UserId"];
+    NSDictionary *params = @{
+                             @"doctorid": doctorId,
+                             @"userid": _currentFriend.userId,
+                             @"notename": self.noteTextField.text
+                             };
+    [DoctorAPI setUserNoteWithParameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSDictionary *dataDict = [responseObject firstObject];
+        hud.mode = MBProgressHUDModeText;
+        if ([dataDict[@"state"]intValue] == 1) {
+            hud.labelText = @"设置成功";
+            _currentFriend.noteName = self.noteTextField.text;
+            _currentFriend.situation = self.describeTextView.text;
+            [[NSManagedObjectContext MR_defaultContext]MR_saveToPersistentStoreAndWait];
+            [self.navigationController popViewControllerAnimated:YES];
+        }
+        else {
+            hud.labelText = @"设置失败";
+            hud.detailsLabelText = dataDict[@"msg"];
+        }
+        [hud hide:YES afterDelay:1.5f];
+
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"%@", error.localizedDescription);
+        hud.mode = MBProgressHUDModeText;
+        hud.labelText = @"错误";
+        hud.detailsLabelText = error.localizedDescription;
+        [hud hide:YES afterDelay:1.5f];
+    }];
+}
 
 - (IBAction)backButtonClicked:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];

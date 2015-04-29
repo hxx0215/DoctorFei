@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="hjp-xA-J3Y">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14D131" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="hjp-xA-J3Y">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
@@ -13046,6 +13046,9 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="保存" style="done" id="khj-jz-oAg">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="saveNote:" destination="mFe-nt-E90" id="fb5-50-2C5"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
@@ -13130,18 +13133,18 @@
         <image name="vip_pic.png" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="zKw-Eq-Pwx"/>
         <segue reference="JeB-AN-IOM"/>
-        <segue reference="Tpb-k1-2hl"/>
-        <segue reference="Hb8-Q6-QO7"/>
+        <segue reference="8FK-Id-c2E"/>
+        <segue reference="wpO-fm-KSL"/>
         <segue reference="pVr-DH-hJQ"/>
+        <segue reference="Hb8-Q6-QO7"/>
+        <segue reference="SfG-iR-NoF"/>
         <segue reference="QWB-UP-Nry"/>
         <segue reference="bnF-ld-Gwy"/>
-        <segue reference="kdj-0l-DOk"/>
         <segue reference="4Y7-Yi-Utz"/>
-        <segue reference="TSG-uQ-7E1"/>
+        <segue reference="kdj-0l-DOk"/>
         <segue reference="7qh-2R-9ti"/>
-        <segue reference="8FK-Id-c2E"/>
-        <segue reference="zKw-Eq-Pwx"/>
-        <segue reference="wpO-fm-KSL"/>
+        <segue reference="TSG-uQ-7E1"/>
     </inferredMetricsTieBreakers>
 </document>

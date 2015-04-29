@@ -12,6 +12,7 @@
 #import <MBProgressHUD.h>
 #import "UserAPI.h"
 #import "DoctorAPI.h"
+#import "ContactPersonalDetailInfoViewController.h"
 @interface ContactPeronsalFriendDetailTableViewController ()
 - (IBAction)backButtonClicked:(id)sender;
 @property (weak, nonatomic) IBOutlet UIImageView *avatarImageView;
@@ -187,15 +188,15 @@
 }
 */
 
-/*
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    ContactPersonalDetailInfoViewController *vc = [segue destinationViewController];
+    vc.currentFriend = self.currentFriend;
 }
-*/
 
 - (IBAction)backButtonClicked:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
