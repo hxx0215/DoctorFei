@@ -16,6 +16,8 @@
 #import "Friends.h"
 #import "GroupChat.h"
 #import "Chat.h"
+#import "ContactGroupListTableViewCell.h"
+#import "ContactGroupNewTypeTableViewCell.h"
 @interface ContactGroupListTableViewController ()
 
 @end
@@ -24,6 +26,21 @@
 {
     NSArray *groupArray;
     NSMutableArray *searchResultArray;
+}
++ (NSArray *)titles
+{
+    static NSArray *_titles;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        _titles = @[@{@"name": @"新建同城群",
+                      @"descript": @"会展示附近的群中, 结识周围新朋友"},
+                    @{@"name": @"新建私密群",
+                      @"descript": @"仅通过通讯录添加好友, 完全私密的交流空间"},
+                    @{@"name": @"附近的群",
+                      @"descript": @"查找和加入附近的群, 结识周围新朋友"}
+                    ];
+    });
+    return _titles;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -78,6 +95,14 @@
                     groupChat.groupId = @([dict[@"groupid"] intValue]);
                 }
                 groupChat.name = dict[@"name"];
+                groupChat.flag = @([dict[@"flag"] intValue]);
+                groupChat.address = dict[@"address"];
+                groupChat.taxis = @([dict[@"taxis"] intValue]);
+                groupChat.latitude = @([dict[@"lat"]doubleValue]);
+                groupChat.longtitude = @([dict[@"long"]doubleValue]);
+                groupChat.visible = @([dict[@"visible"] intValue]);
+                groupChat.icon = dict[@"icon"];
+                groupChat.note = dict[@"note"];
 //                Chat *receiveChat = [Chat MR_findFirstWithPredicate:[NSPredicate predicateWithFormat:@"type == %@ && chatId == %@", @5, @([dict[@"groupid"] intValue])]];
 //                if (receiveChat == nil) {
 //                    receiveChat = [Chat MR_createEntity];
@@ -196,29 +221,53 @@
     if (tableView == self.searchDisplayController.searchResultsTableView) {
         return searchResultArray.count;
     }
-    return groupArray.count + 1;
+    return groupArray.count + 3;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    static NSString *ContactGroupTypeCellIdentifier = @"ContactGroupTypeCellIdentifier";
+    static NSString *ContactGroupListCellIdentifier = @"ContactGroupListCellIdentifier";
     if (tableView == self.searchDisplayController.searchResultsTableView) {
-        UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"ContactGroupListCellIdentifier"];
-        cell.textLabel.text = [searchResultArray[indexPath.row] name];
-        cell.textLabel.textColor = [UIColor blackColor];
+        ContactGroupListTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ContactGroupListCellIdentifier forIndexPath:indexPath];
+        [cell setCurrentGroupChat:searchResultArray[indexPath.row]];
         return cell;
+//        UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"ContactGroupListCellIdentifier"];
+//        cell.textLabel.text = [searchResultArray[indexPath.row] name];
+//        cell.textLabel.textColor = [UIColor blackColor];
+//        return cell;
     }
     else{
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ContactGroupListCellIdentifier" forIndexPath:indexPath];
-        if (indexPath.row == 0){
-            cell.textLabel.text = NSLocalizedString(@"新建群", nil);
-            cell.textLabel.textColor = [UIColor colorWithRed:127.0/255 green:203.0/255.0 blue:62.0/255.0 alpha:1.0];
-        }else{
-            cell.textLabel.text = [groupArray[indexPath.row - 1] name];
-            cell.textLabel.textColor = [UIColor blackColor];
+        if (indexPath.row < 3) {
+            ContactGroupNewTypeTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ContactGroupTypeCellIdentifier forIndexPath:indexPath];
+            [cell.nameLabel setText:[[self class]titles][indexPath.row][@"name"]];
+            [cell.descriptionLabel setText:[[self class]titles][indexPath.row][@"descript"]];
+            return cell;
         }
-        return cell;
+        else{
+            ContactGroupListTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ContactGroupListCellIdentifier forIndexPath:indexPath];
+            [cell setCurrentGroupChat:groupArray[indexPath.row - 3]];
+            return cell;
+//            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ContactGroupListCellIdentifier" forIndexPath:indexPath];
+//            if (indexPath.row == 0){
+//                cell.textLabel.text = NSLocalizedString(@"新建群", nil);
+//                cell.textLabel.textColor = [UIColor colorWithRed:127.0/255 green:203.0/255.0 blue:62.0/255.0 alpha:1.0];
+//            }else{
+//                cell.textLabel.text = [groupArray[indexPath.row - 1] name];
+//                cell.textLabel.textColor = [UIColor blackColor];
+//            }
+//            return cell;
+        }
     }
     return nil;
+}
+#pragma mark - UITableView Delegate
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.row < 3) {
+        return 58.0f;
+    }else{
+        return 77.0f;
+    }
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
