@@ -274,6 +274,8 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (indexPath.row == 0){
         [self performSegueWithIdentifier:@"ContactCreateGroupSequeIdentifier" sender:[tableView cellForRowAtIndexPath:indexPath]];
+    }else if (indexPath.row == 2) {
+        [self performSegueWithIdentifier:@"ContactGroupNearbySegueIdentifier" sender:nil];
     }else{
         [self performSegueWithIdentifier:@"ContactGroupDetailSegueIdentifier" sender:indexPath];
     }

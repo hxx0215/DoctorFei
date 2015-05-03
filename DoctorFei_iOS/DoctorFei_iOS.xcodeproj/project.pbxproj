@@ -44,7 +44,6 @@
 		6A2BD5E31A31E025002F7644 /* ContactFriendSetNoteTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A2BD5E21A31E025002F7644 /* ContactFriendSetNoteTableViewController.m */; };
 		6A2BD6071A31EC44002F7644 /* ChatAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A2BD6061A31EC44002F7644 /* ChatAPI.m */; };
 		6A2BD60A1A31EDA7002F7644 /* FetchChatUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A2BD6091A31EDA7002F7644 /* FetchChatUtil.m */; };
-		6A2E54151AD6BA220001222E /* BaiduMapAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A2E54141AD6BA220001222E /* BaiduMapAPI.framework */; };
 		6A3124241AE24833004ECC17 /* ContactGroupMessageListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A3124231AE24832004ECC17 /* ContactGroupMessageListViewController.m */; };
 		6A32523C1A827A5C00B5E31F /* AgendaArrangementDetailEventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A32523B1A827A5C00B5E31F /* AgendaArrangementDetailEventViewController.m */; };
 		6A32523F1A82835300B5E31F /* AgendaArrangement.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A32523E1A82835300B5E31F /* AgendaArrangement.m */; };
@@ -233,6 +232,9 @@
 		6AA2EEF31AF36DE700A43CE5 /* group_preinstall_pic@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AA2EECF1AF36DE700A43CE5 /* group_preinstall_pic@3x.png */; };
 		6AA2EEF61AF370CF00A43CE5 /* ContactGroupNewTypeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AA2EEF51AF370CF00A43CE5 /* ContactGroupNewTypeTableViewCell.m */; };
 		6AA2EEF91AF370FE00A43CE5 /* ContactGroupListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AA2EEF81AF370FE00A43CE5 /* ContactGroupListTableViewCell.m */; };
+		6AA2EEFC1AF5FAF100A43CE5 /* ContactGroupNearbyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AA2EEFB1AF5FAF100A43CE5 /* ContactGroupNearbyTableViewCell.m */; };
+		6AA2EEFF1AF5FBFE00A43CE5 /* ContactGroupNearbyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AA2EEFE1AF5FBFE00A43CE5 /* ContactGroupNearbyViewController.m */; };
+		6AA2EF011AF6497A00A43CE5 /* BaiduMapAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AA2EF001AF6497A00A43CE5 /* BaiduMapAPI.framework */; };
 		6AA547401A4163CD00037C25 /* ContactFriendSetDescribeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AA5473F1A4163CD00037C25 /* ContactFriendSetDescribeTableViewController.m */; };
 		6AA94DB51AB812A60095D1C8 /* amrFileCodec.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AA94DA81AB812A60095D1C8 /* amrFileCodec.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		6AA94DB61AB812A60095D1C8 /* libopencore-amrnb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AA94DB11AB812A60095D1C8 /* libopencore-amrnb.a */; };
@@ -764,7 +766,6 @@
 		6A2BD6061A31EC44002F7644 /* ChatAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatAPI.m; sourceTree = "<group>"; };
 		6A2BD6081A31EDA7002F7644 /* FetchChatUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FetchChatUtil.h; path = ../Networking/FetchChatUtil.h; sourceTree = "<group>"; };
 		6A2BD6091A31EDA7002F7644 /* FetchChatUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FetchChatUtil.m; path = ../Networking/FetchChatUtil.m; sourceTree = "<group>"; };
-		6A2E54141AD6BA220001222E /* BaiduMapAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BaiduMapAPI.framework; sourceTree = "<group>"; };
 		6A3124221AE24832004ECC17 /* ContactGroupMessageListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactGroupMessageListViewController.h; sourceTree = "<group>"; };
 		6A3124231AE24832004ECC17 /* ContactGroupMessageListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactGroupMessageListViewController.m; sourceTree = "<group>"; };
 		6A32523A1A827A5C00B5E31F /* AgendaArrangementDetailEventViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AgendaArrangementDetailEventViewController.h; sourceTree = "<group>"; };
@@ -1001,6 +1002,11 @@
 		6AA2EEF51AF370CF00A43CE5 /* ContactGroupNewTypeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactGroupNewTypeTableViewCell.m; sourceTree = "<group>"; };
 		6AA2EEF71AF370FE00A43CE5 /* ContactGroupListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactGroupListTableViewCell.h; sourceTree = "<group>"; };
 		6AA2EEF81AF370FE00A43CE5 /* ContactGroupListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactGroupListTableViewCell.m; sourceTree = "<group>"; };
+		6AA2EEFA1AF5FAF100A43CE5 /* ContactGroupNearbyTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactGroupNearbyTableViewCell.h; sourceTree = "<group>"; };
+		6AA2EEFB1AF5FAF100A43CE5 /* ContactGroupNearbyTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactGroupNearbyTableViewCell.m; sourceTree = "<group>"; };
+		6AA2EEFD1AF5FBFE00A43CE5 /* ContactGroupNearbyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactGroupNearbyViewController.h; sourceTree = "<group>"; };
+		6AA2EEFE1AF5FBFE00A43CE5 /* ContactGroupNearbyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactGroupNearbyViewController.m; sourceTree = "<group>"; };
+		6AA2EF001AF6497A00A43CE5 /* BaiduMapAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BaiduMapAPI.framework; sourceTree = "<group>"; };
 		6AA5473E1A4163CD00037C25 /* ContactFriendSetDescribeTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactFriendSetDescribeTableViewController.h; sourceTree = "<group>"; };
 		6AA5473F1A4163CD00037C25 /* ContactFriendSetDescribeTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactFriendSetDescribeTableViewController.m; sourceTree = "<group>"; };
 		6AA94DA71AB812A60095D1C8 /* amrFileCodec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = amrFileCodec.h; sourceTree = "<group>"; };
@@ -1556,7 +1562,7 @@
 				6A69A0191A2CC8FE00D85777 /* CFNetwork.framework in Frameworks */,
 				6AA94DB61AB812A60095D1C8 /* libopencore-amrnb.a in Frameworks */,
 				6A69A0171A2CC8EB00D85777 /* libPushSDK.a in Frameworks */,
-				6A2E54151AD6BA220001222E /* BaiduMapAPI.framework in Frameworks */,
+				6AA2EF011AF6497A00A43CE5 /* BaiduMapAPI.framework in Frameworks */,
 				E5DC0A78865BEBA4AB7CC615 /* libPods-DoctorFei_iOS.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1667,7 +1673,7 @@
 		6A69A0131A2CC8E400D85777 /* Dependence */ = {
 			isa = PBXGroup;
 			children = (
-				6A2E54141AD6BA220001222E /* BaiduMapAPI.framework */,
+				6AA2EF001AF6497A00A43CE5 /* BaiduMapAPI.framework */,
 				6AA94DA61AB812A60095D1C8 /* arm */,
 				6A69A0141A2CC8EB00D85777 /* JPush */,
 			);
@@ -2090,6 +2096,8 @@
 				6AA2EEF51AF370CF00A43CE5 /* ContactGroupNewTypeTableViewCell.m */,
 				6AA2EEF71AF370FE00A43CE5 /* ContactGroupListTableViewCell.h */,
 				6AA2EEF81AF370FE00A43CE5 /* ContactGroupListTableViewCell.m */,
+				6AA2EEFA1AF5FAF100A43CE5 /* ContactGroupNearbyTableViewCell.h */,
+				6AA2EEFB1AF5FAF100A43CE5 /* ContactGroupNearbyTableViewCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2141,6 +2149,8 @@
 				6A3124231AE24832004ECC17 /* ContactGroupMessageListViewController.m */,
 				B9F0C6E11A66A89A00AAD860 /* ContactSendGroupMessageViewController.h */,
 				B9F0C6E21A66A89A00AAD860 /* ContactSendGroupMessageViewController.m */,
+				6AA2EEFD1AF5FBFE00A43CE5 /* ContactGroupNearbyViewController.h */,
+				6AA2EEFE1AF5FBFE00A43CE5 /* ContactGroupNearbyViewController.m */,
 			);
 			path = Contact;
 			sourceTree = "<group>";
@@ -3343,6 +3353,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6AB8B0981A3742A200866281 /* pinyin.c in Sources */,
+				6AA2EEFC1AF5FAF100A43CE5 /* ContactGroupNearbyTableViewCell.m in Sources */,
 				6AC6EA071A28C4B5007689D8 /* NSString+Crypt.m in Sources */,
 				6A6454271A6D4C0F00070D5E /* MainGroupDetailActionViewController.m in Sources */,
 				6A795D9B1AF13DEF00CF15F4 /* GroupChat.m in Sources */,
@@ -3391,6 +3402,7 @@
 				6AED681B1AE2548E0024A149 /* ContactGroupMessageTableViewCell.m in Sources */,
 				6AB359B71A2B638C008C48B4 /* RegisterAPI.m in Sources */,
 				B99EFBA41AA0965500961E61 /* ContactRecordTableViewCell.m in Sources */,
+				6AA2EEFF1AF5FBFE00A43CE5 /* ContactGroupNearbyViewController.m in Sources */,
 				B95EEFC71A669887006F7FEF /* ContactGroupListTableViewController.m in Sources */,
 				6A3124241AE24833004ECC17 /* ContactGroupMessageListViewController.m in Sources */,
 				6A3252421A83697800B5E31F /* MainArrangementNewTableViewCell.m in Sources */,

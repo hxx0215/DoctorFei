@@ -24,6 +24,7 @@
 #define kMethodSetChatNote @"set.chat.note"
 #define kMethodGetChatGroupSend @"get.chat.groupsend"
 #define kMethodSetChatGroupSend @"set.chat.groupsend"
+#define kMethodSearchGroup @"get.search.group"
 @implementation ChatAPI
 + (void)getChatWithParameters: (id)parameters success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure {
     [[self sharedManager]defaultGetWithMethod:kMethodGetChat WithParameters:parameters success:success failure:failure];
@@ -80,4 +81,7 @@
     [[self sharedManager]defaultGetWithMethod:kMethodSetChatGroupSend WithParameters:parameters success:success failure:failure];
 }
 
++ (void)searchGroupWithParameters: (id)parameters success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure {
+    [[self sharedManager]defaultGetWithMethod:kMethodSearchGroup WithParameters:parameters success:success failure:failure];
+}
 @end
