@@ -12,11 +12,14 @@
 #import "ChatAPI.h"
 #import <BaiduMapAPI/BMapKit.h>
 #import <UIImageView+WebCache.h>
+#import "UIScrollView+EmptyDataSet.h"
 #define kGroupNearbyPageSize 10
+
 static NSString *ContactGroupNearbyCellIdentifier = @"ContactGroupNearbyCellIdentifier";
 
 @interface ContactGroupNearbyViewController ()
-    <UITableViewDelegate, UITableViewDataSource, BMKLocationServiceDelegate>
+    <UITableViewDelegate, UITableViewDataSource, BMKLocationServiceDelegate, DZNEmptyDataSetSource>
+- (IBAction)backButtonClicked:(id)sender;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end
@@ -27,9 +30,12 @@ static NSString *ContactGroupNearbyCellIdentifier = @"ContactGroupNearbyCellIden
     int pageNum;
     BMKLocationService *locationService;
     CLLocationCoordinate2D currentLocation;
+    BOOL isCanLocate;
 }
 - (void)viewDidLoad {
+
     [super viewDidLoad];
+    isCanLocate = YES;
     // Do any additional setup after loading the view.
     [BMKLocationService setLocationDesiredAccuracy:kCLLocationAccuracyNearestTenMeters];
     [BMKLocationService setLocationDistanceFilter:100.f];
@@ -101,6 +107,7 @@ static NSString *ContactGroupNearbyCellIdentifier = @"ContactGroupNearbyCellIden
 
 #pragma mark - BMKLocation Delegate
 - (void)didUpdateBMKUserLocation:(BMKUserLocation *)userLocation {
+    isCanLocate = YES;
     NSLog(@"didUpdateUserLocation lat %f,long %f",userLocation.location.coordinate.latitude,userLocation.location.coordinate.longitude);
     currentLocation = userLocation.location.coordinate;
     [locationService stopUserLocationService];
@@ -112,7 +119,19 @@ static NSString *ContactGroupNearbyCellIdentifier = @"ContactGroupNearbyCellIden
 }
 - (void)didFailToLocateUserWithError:(NSError *)error {
     NSLog(@"Get Location Error: %@",error.localizedDescription);
+    isCanLocate = NO;
 }
 
+#pragma mark - DZNEmptyDatasource
+- (NSAttributedString *)titleForEmptyDataSet:(UIScrollView *)scrollView {
+    if (isCanLocate) {
+        return [[NSAttributedString alloc]initWithString:@"暂无附近的群"];
+    }else{
+        return [[NSAttributedString alloc]initWithString:@"无法获取位置"];
+    }
+}
 
+- (IBAction)backButtonClicked:(id)sender {
+    [self.navigationController popViewControllerAnimated:YES];
+}
 @end

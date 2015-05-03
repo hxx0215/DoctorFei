@@ -235,6 +235,8 @@
 		6AA2EEFC1AF5FAF100A43CE5 /* ContactGroupNearbyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AA2EEFB1AF5FAF100A43CE5 /* ContactGroupNearbyTableViewCell.m */; };
 		6AA2EEFF1AF5FBFE00A43CE5 /* ContactGroupNearbyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AA2EEFE1AF5FBFE00A43CE5 /* ContactGroupNearbyViewController.m */; };
 		6AA2EF011AF6497A00A43CE5 /* BaiduMapAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AA2EF001AF6497A00A43CE5 /* BaiduMapAPI.framework */; };
+		6AA2EF041AF6791C00A43CE5 /* ContactGroupNewLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AA2EF031AF6791C00A43CE5 /* ContactGroupNewLocationViewController.m */; };
+		6AA2EF071AF67B7800A43CE5 /* ContactGroupNewLocationTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AA2EF061AF67B7800A43CE5 /* ContactGroupNewLocationTableViewCell.m */; };
 		6AA547401A4163CD00037C25 /* ContactFriendSetDescribeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AA5473F1A4163CD00037C25 /* ContactFriendSetDescribeTableViewController.m */; };
 		6AA94DB51AB812A60095D1C8 /* amrFileCodec.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AA94DA81AB812A60095D1C8 /* amrFileCodec.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		6AA94DB61AB812A60095D1C8 /* libopencore-amrnb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AA94DB11AB812A60095D1C8 /* libopencore-amrnb.a */; };
@@ -1007,6 +1009,10 @@
 		6AA2EEFD1AF5FBFE00A43CE5 /* ContactGroupNearbyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactGroupNearbyViewController.h; sourceTree = "<group>"; };
 		6AA2EEFE1AF5FBFE00A43CE5 /* ContactGroupNearbyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactGroupNearbyViewController.m; sourceTree = "<group>"; };
 		6AA2EF001AF6497A00A43CE5 /* BaiduMapAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BaiduMapAPI.framework; sourceTree = "<group>"; };
+		6AA2EF021AF6791C00A43CE5 /* ContactGroupNewLocationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactGroupNewLocationViewController.h; sourceTree = "<group>"; };
+		6AA2EF031AF6791C00A43CE5 /* ContactGroupNewLocationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactGroupNewLocationViewController.m; sourceTree = "<group>"; };
+		6AA2EF051AF67B7800A43CE5 /* ContactGroupNewLocationTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactGroupNewLocationTableViewCell.h; sourceTree = "<group>"; };
+		6AA2EF061AF67B7800A43CE5 /* ContactGroupNewLocationTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactGroupNewLocationTableViewCell.m; sourceTree = "<group>"; };
 		6AA5473E1A4163CD00037C25 /* ContactFriendSetDescribeTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactFriendSetDescribeTableViewController.h; sourceTree = "<group>"; };
 		6AA5473F1A4163CD00037C25 /* ContactFriendSetDescribeTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactFriendSetDescribeTableViewController.m; sourceTree = "<group>"; };
 		6AA94DA71AB812A60095D1C8 /* amrFileCodec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = amrFileCodec.h; sourceTree = "<group>"; };
@@ -2098,6 +2104,8 @@
 				6AA2EEF81AF370FE00A43CE5 /* ContactGroupListTableViewCell.m */,
 				6AA2EEFA1AF5FAF100A43CE5 /* ContactGroupNearbyTableViewCell.h */,
 				6AA2EEFB1AF5FAF100A43CE5 /* ContactGroupNearbyTableViewCell.m */,
+				6AA2EF051AF67B7800A43CE5 /* ContactGroupNewLocationTableViewCell.h */,
+				6AA2EF061AF67B7800A43CE5 /* ContactGroupNewLocationTableViewCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2151,6 +2159,8 @@
 				B9F0C6E21A66A89A00AAD860 /* ContactSendGroupMessageViewController.m */,
 				6AA2EEFD1AF5FBFE00A43CE5 /* ContactGroupNearbyViewController.h */,
 				6AA2EEFE1AF5FBFE00A43CE5 /* ContactGroupNearbyViewController.m */,
+				6AA2EF021AF6791C00A43CE5 /* ContactGroupNewLocationViewController.h */,
+				6AA2EF031AF6791C00A43CE5 /* ContactGroupNewLocationViewController.m */,
 			);
 			path = Contact;
 			sourceTree = "<group>";
@@ -3360,6 +3370,7 @@
 				B94F6C681A5D70AF004E1B93 /* QRCodeScanViewController.m in Sources */,
 				6A40CA0E1AD98AF4005690A5 /* EmotionsKeyboardBuilder.m in Sources */,
 				6A5DE8171A791A3C000F24DA /* QuickReplyTableViewCell.m in Sources */,
+				6AA2EF041AF6791C00A43CE5 /* ContactGroupNewLocationViewController.m in Sources */,
 				B94F6C6B1A5D7113004E1B93 /* DoctorRankTableViewController.m in Sources */,
 				6A2BD5E01A31B139002F7644 /* ContactFriendDetailTableViewController.m in Sources */,
 				6A5DE81D1A79E7C8000F24DA /* QuickReplyAddCustomViewController.m in Sources */,
@@ -3427,6 +3438,7 @@
 				6A7376481A20D052006EF54F /* MyselfTableViewController.m in Sources */,
 				6A73764F1A20D829006EF54F /* MainTabBarViewController.m in Sources */,
 				B9FBC4E11A77D2E200BD6C0F /* ContactTransferViewController.m in Sources */,
+				6AA2EF071AF67B7800A43CE5 /* ContactGroupNewLocationTableViewCell.m in Sources */,
 				6ABF6D7A1AC1BB2F00C4ED19 /* ContactGroupUserCollectionViewCell.m in Sources */,
 				6A64542A1A6D615F00070D5E /* MainGroupSelectTableViewCell.m in Sources */,
 				B9E2E0E61A6E9F75009401F1 /* ContactDetailPopoverViewController.m in Sources */,

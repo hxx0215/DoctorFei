@@ -273,7 +273,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (indexPath.row == 0){
-        [self performSegueWithIdentifier:@"ContactCreateGroupSequeIdentifier" sender:[tableView cellForRowAtIndexPath:indexPath]];
+        [self performSegueWithIdentifier:@"ContactGroupCreateNewLocationSegueIdentifier" sender:nil];
     }else if (indexPath.row == 2) {
         [self performSegueWithIdentifier:@"ContactGroupNearbySegueIdentifier" sender:nil];
     }else{
