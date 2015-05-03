@@ -47,8 +47,8 @@
     NSNumber *doctorId = [[NSUserDefaults standardUserDefaults]objectForKey:@"UserId"];
     NSDictionary *params = @{
                              @"doctorid": doctorId,
-                             @"userid": _currentFriend.userId,
-                             @"notename": self.noteTextField.text
+                             @"userid": _currentFriend.userId ? _currentFriend.userId:@"",
+                             @"notename": self.noteTextField.text ? self.noteTextField.text : @""
                              };
     [DoctorAPI setUserNoteWithParameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSDictionary *dataDict = [responseObject firstObject];
