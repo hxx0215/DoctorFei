@@ -9,22 +9,26 @@
 #import "ContactGroupNewLocationViewController.h"
 #import <BaiduMapAPI/BMapKit.h>
 #import "ContactGroupNewLocationTableViewCell.h"
+#import <UIScrollView+EmptyDataSet.h>
 @interface ContactGroupNewLocationViewController ()
-    <BMKLocationServiceDelegate, BMKGeoCodeSearchDelegate, UITableViewDelegate, UITableViewDataSource>
+    <BMKLocationServiceDelegate, BMKGeoCodeSearchDelegate, UITableViewDelegate, UITableViewDataSource, DZNEmptyDataSetSource>
 - (IBAction)backButtonClicked:(id)sender;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+- (IBAction)nextButtonClicked:(id)sender;
 @end
 
 @implementation ContactGroupNewLocationViewController
 {
     BMKLocationService *locationService;
     BMKGeoCodeSearch *geoSearch;
-    BOOL isCanLocate, isCanPOI, poiHasResult;
+    BOOL isCanLocate, isCanPOI, isLoading;
     NSArray *infoArray;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
     isCanLocate = YES;
+    isCanPOI = YES;
+    isLoading = YES;
     // Do any additional setup after loading the view.
     [self.tableView setTableFooterView:[UIView new]];
 
@@ -60,6 +64,10 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 57.0f;
 }
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+}
 /*
 #pragma mark - Navigation
 
@@ -89,13 +97,31 @@
 
 #pragma mark - BMKGeoCode Delegate
 - (void)onGetReverseGeoCodeResult:(BMKGeoCodeSearch *)searcher result:(BMKReverseGeoCodeResult *)result errorCode:(BMKSearchErrorCode)error {
+    isLoading = NO;
     if (error == BMK_SEARCH_NO_ERROR) {
-        poiHasResult = YES;
         infoArray = result.poiList;
-    }else{
-        poiHasResult = NO;
     }
     [self.tableView reloadData];
+    [self.tableView layoutIfNeeded];
+    [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:YES scrollPosition:UITableViewScrollPositionTop];
 }
 
+#pragma mark - DZNEmprtDatasource
+- (NSAttributedString *)titleForEmptyDataSet:(UIScrollView *)scrollView {
+    NSString *string;
+    if (!isCanLocate) {
+        string = @"无法获取您的位置";
+    }else if (!isCanPOI) {
+        string = @"无法获取周边兴趣点";
+    }else if (isLoading) {
+        string = @"正在加载...";
+    }else {
+        string = @"周边无兴趣点";
+    }
+    return [[NSAttributedString alloc]initWithString:string];
+}
+
+- (IBAction)nextButtonClicked:(id)sender {
+    
+}
 @end
