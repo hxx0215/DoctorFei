@@ -329,7 +329,7 @@
     }else if ([segue.identifier isEqualToString:@"ContactGroupDetailSegueIdentifier"]){
         NSIndexPath *indexPath = (NSIndexPath *)sender;
 //        Chat *selectedChat = groupArray[indexPath.row - 1];
-        GroupChat *selectedGroupChat = groupArray[indexPath.row - 1];
+        GroupChat *selectedGroupChat = groupArray[indexPath.row - 3];
         Chat *selectedChat = selectedGroupChat.chat;
 //        Chat *selectedChat = [Chat MR_findFirstWithPredicate:[NSPredicate predicateWithFormat:@"ANY groupChat == %@", selectedGroupChat]];
         if (selectedChat == nil) {

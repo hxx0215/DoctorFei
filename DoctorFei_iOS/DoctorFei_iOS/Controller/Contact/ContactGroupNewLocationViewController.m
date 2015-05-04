@@ -41,6 +41,11 @@
     geoSearch = [[BMKGeoCodeSearch alloc]init];
     geoSearch.delegate = self;
 }
+- (void)viewWillDisappear:(BOOL)animated {
+    locationService.delegate = nil;
+    geoSearch.delegate = nil;
+    [super viewWillDisappear:animated];
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

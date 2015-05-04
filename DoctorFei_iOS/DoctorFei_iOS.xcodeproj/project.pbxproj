@@ -36,6 +36,7 @@
 		6A21F5781A68FAF400504C65 /* edit_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A21F56C1A68FAF400504C65 /* edit_btn.png */; };
 		6A21F5791A68FAF400504C65 /* edit_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A21F56D1A68FAF400504C65 /* edit_btn@2x.png */; };
 		6A21F57A1A68FAF400504C65 /* edit_btn@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A21F56E1A68FAF400504C65 /* edit_btn@3x.png */; };
+		6A2396941AF7B550001180AB /* ContactGroupNewGeneralViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A2396931AF7B550001180AB /* ContactGroupNewGeneralViewController.m */; };
 		6A2BD5CC1A300207002F7644 /* MobileAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A2BD5CB1A300207002F7644 /* MobileAPI.m */; };
 		6A2BD5CF1A3008BF002F7644 /* SetOnlineStateUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A2BD5CE1A3008BF002F7644 /* SetOnlineStateUtil.m */; };
 		6A2BD5D21A3031F7002F7644 /* SocketConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A2BD5D11A3031F7002F7644 /* SocketConnection.m */; };
@@ -752,6 +753,8 @@
 		6A21F56C1A68FAF400504C65 /* edit_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = edit_btn.png; sourceTree = "<group>"; };
 		6A21F56D1A68FAF400504C65 /* edit_btn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "edit_btn@2x.png"; sourceTree = "<group>"; };
 		6A21F56E1A68FAF400504C65 /* edit_btn@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "edit_btn@3x.png"; sourceTree = "<group>"; };
+		6A2396921AF7B550001180AB /* ContactGroupNewGeneralViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactGroupNewGeneralViewController.h; sourceTree = "<group>"; };
+		6A2396931AF7B550001180AB /* ContactGroupNewGeneralViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactGroupNewGeneralViewController.m; sourceTree = "<group>"; };
 		6A2BD5CA1A300207002F7644 /* MobileAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobileAPI.h; sourceTree = "<group>"; };
 		6A2BD5CB1A300207002F7644 /* MobileAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MobileAPI.m; sourceTree = "<group>"; };
 		6A2BD5CD1A3008BF002F7644 /* SetOnlineStateUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetOnlineStateUtil.h; sourceTree = "<group>"; };
@@ -2161,6 +2164,8 @@
 				6AA2EEFE1AF5FBFE00A43CE5 /* ContactGroupNearbyViewController.m */,
 				6AA2EF021AF6791C00A43CE5 /* ContactGroupNewLocationViewController.h */,
 				6AA2EF031AF6791C00A43CE5 /* ContactGroupNewLocationViewController.m */,
+				6A2396921AF7B550001180AB /* ContactGroupNewGeneralViewController.h */,
+				6A2396931AF7B550001180AB /* ContactGroupNewGeneralViewController.m */,
 			);
 			path = Contact;
 			sourceTree = "<group>";
@@ -3466,6 +3471,7 @@
 				6A4F2E011A237FFF008C2D10 /* MyCardViewController.m in Sources */,
 				6A3DA1091A7F5DF100BE721B /* ShuoShuo.m in Sources */,
 				6AA2EEF61AF370CF00A43CE5 /* ContactGroupNewTypeTableViewCell.m in Sources */,
+				6A2396941AF7B550001180AB /* ContactGroupNewGeneralViewController.m in Sources */,
 				6A5DC5F01A33135E00961E53 /* MainChatTableViewCell.m in Sources */,
 				B94F6C651A5D6FBC004E1B93 /* ContactAddFriendViewController.m in Sources */,
 				B9A6F9D61A5EA71800B01686 /* DoctorRankTableViewCell.m in Sources */,

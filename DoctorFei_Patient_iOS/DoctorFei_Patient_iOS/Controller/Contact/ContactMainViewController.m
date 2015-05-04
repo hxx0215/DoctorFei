@@ -216,7 +216,7 @@
             if (dict[@"state"] && [dict[@"state"]intValue] == 0) {
                 break;
             }
-            Friends *friend = [Friends MR_findFirstByAttribute:@"userId" withValue:dict[@"userid"]];
+            Friends *friend = [Friends MR_findFirstWithPredicate:[NSPredicate predicateWithFormat:@"userId == %@ && userType == %@", @([dict[@"userid"] intValue]), @([dict[@"usertype"]intValue])]];
             if (friend == nil) {
                 friend = [Friends MR_createEntity];
                 friend.userId = @([dict[@"userid"]intValue]);

@@ -164,9 +164,9 @@
 }
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self fetchFriend];
+    [self fetchFriendWithUsertype:[self currentUserType]];
     [self shouldShowSegment];
-    [self reloadTableViewData];
+    [self reloadTableViewDataWithUserType:[self currentUserType]];
 }
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
@@ -197,11 +197,8 @@
             break;
     }
 }
-- (void)reloadTableViewData {
-//    friendArray = [Friends MR_findAll];
-    friendArray = [Friends MR_findAllWithPredicate:[NSPredicate predicateWithFormat:@"userType == %@ && isFriend == %@", [self currentUserType], @YES]];
-//    friendArray = [Friends MR_findByAttribute:@"userType" withValue:[self currentUserType]];
-    
+- (void)reloadTableViewDataWithUserType:(NSNumber *)type {
+    friendArray = [Friends MR_findAllWithPredicate:[NSPredicate predicateWithFormat:@"userType == %@ && isFriend == %@", type, @YES]];
     NSInteger sectionTitlesCount = [[[UILocalizedIndexedCollation currentCollation] sectionTitles] count];
     
     NSMutableArray *mutableSections = [[NSMutableArray alloc]initWithCapacity:sectionTitlesCount];
@@ -230,26 +227,57 @@
     if (self.cellSelected.count >0)
         self.navigationItem.rightBarButtonItem.enabled = YES;
     [self.tableView reloadData];
-}
 
-- (void)fetchFriend
-{
+}
+//- (void)reloadTableViewData {
+////    friendArray = [Friends MR_findAll];
+//    friendArray = [Friends MR_findAllWithPredicate:[NSPredicate predicateWithFormat:@"userType == %@ && isFriend == %@", [self currentUserType], @YES]];
+////    friendArray = [Friends MR_findByAttribute:@"userType" withValue:[self currentUserType]];
+//    
+//    NSInteger sectionTitlesCount = [[[UILocalizedIndexedCollation currentCollation] sectionTitles] count];
+//    
+//    NSMutableArray *mutableSections = [[NSMutableArray alloc]initWithCapacity:sectionTitlesCount];
+//    for (int i = 0 ; i < sectionTitlesCount; i ++) {
+//        [mutableSections addObject:[NSMutableArray array]];
+//    }
+//    for (Friends *friend in friendArray) {
+//        NSInteger sectionNumber = [[UILocalizedIndexedCollation currentCollation]sectionForObject:friend collationStringSelector:@selector(getFirstCharPinYin)];
+//        NSMutableArray *section = mutableSections[sectionNumber];
+//        [section addObject:friend];
+//    }
+//    
+//    for (int i = 0; i < sectionTitlesCount; i ++) {
+//        NSArray *sortedArrayForSection = [[UILocalizedIndexedCollation currentCollation]sortedArrayFromArray:mutableSections[i] collationStringSelector:@selector(getFirstCharPinYin)];
+//        mutableSections[i] = sortedArrayForSection;
+//    }
+//    
+//    
+//    
+//    tableViewDataArray = mutableSections;
+//    for (Friends *f in [Friends MR_findAll]){
+//        if ([self.selectedArray containsObject:f])
+//            [self.cellSelected addObject:f];
+//    }
+//    [self.selectedArray removeAllObjects];
+//    if (self.cellSelected.count >0)
+//        self.navigationItem.rightBarButtonItem.enabled = YES;
+//    [self.tableView reloadData];
+//}
+
+- (void)fetchFriendWithUsertype:(NSNumber *)type {
     NSNumber *userId = [[NSUserDefaults standardUserDefaults]objectForKey:@"UserId"];
     NSDictionary *params = @{
-                             @"doctorid": [userId stringValue]
+                             @"doctorid": [userId stringValue],
+                             @"userType": type
                              };
     [DoctorAPI getFriendsWithParameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"%@",responseObject);
-        NSString *msg = [[responseObject firstObject] objectForKey:@"msg"];
-        if (msg){//为毛服务器没有数据还要返回个啊哦。真是有病
-            [self reloadTableViewData];
-            return ;
-        }
-//        [Friends MR_deleteAllMatchingPredicate:[NSPredicate predicateWithFormat:@"userType == %@", [self currentUserType]]];
         NSArray *dataArray = (NSArray *)responseObject;
         for (NSDictionary *dict in dataArray) {
+            if (dict[@"state"] && [dict[@"state"]intValue] == 0) {
+                break;
+            }
             Friends *friend = [Friends MR_findFirstWithPredicate:[NSPredicate predicateWithFormat:@"userId == %@ && userType == %@", @([dict[@"userid"] intValue]), @([dict[@"usertype"]intValue])]];
-//            Friends *friend = [Friends MR_findFirstByAttribute:@"userId" withValue:dict[@"userid"]];
             if (friend == nil) {
                 friend = [Friends MR_createEntity];
                 friend.userId = @([dict[@"userid"]intValue]);
@@ -265,11 +293,11 @@
             friend.department = dict[@"department"];
             friend.jobTitle = dict[@"jobTitle"];
             friend.otherContact = dict[@"OtherContact"];
-            friend.userType = @([dict[@"usertype"]intValue]);
+            friend.userType = type;
             friend.isFriend = @YES;
         }
         [[NSManagedObjectContext MR_defaultContext]MR_saveToPersistentStoreAndWait];
-        [self reloadTableViewData];
+        [self reloadTableViewDataWithUserType: type];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view.window animated:YES];
         hud.mode = MBProgressHUDModeText;
@@ -277,7 +305,55 @@
         hud.detailsLabelText = error.localizedDescription;
         [hud hide:YES afterDelay:1.5f];
     }];
+
 }
+
+//- (void)fetchFriend
+//{
+//    NSNumber *userId = [[NSUserDefaults standardUserDefaults]objectForKey:@"UserId"];
+//    NSDictionary *params = @{
+//                             @"doctorid": [userId stringValue]
+//                             };
+//    [DoctorAPI getFriendsWithParameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+//        NSLog(@"%@",responseObject);
+//        NSString *msg = [[responseObject firstObject] objectForKey:@"msg"];
+//        if (msg){//为毛服务器没有数据还要返回个啊哦。真是有病
+//            [self reloadTableViewData];
+//            return ;
+//        }
+////        [Friends MR_deleteAllMatchingPredicate:[NSPredicate predicateWithFormat:@"userType == %@", [self currentUserType]]];
+//        NSArray *dataArray = (NSArray *)responseObject;
+//        for (NSDictionary *dict in dataArray) {
+//            Friends *friend = [Friends MR_findFirstWithPredicate:[NSPredicate predicateWithFormat:@"userId == %@ && userType == %@", @([dict[@"userid"] intValue]), @([dict[@"usertype"]intValue])]];
+////            Friends *friend = [Friends MR_findFirstByAttribute:@"userId" withValue:dict[@"userid"]];
+//            if (friend == nil) {
+//                friend = [Friends MR_createEntity];
+//                friend.userId = @([dict[@"userid"]intValue]);
+//            }
+//            friend.icon = dict[@"icon"];
+//            friend.realname = dict[@"RealName"];
+//            friend.gender = @([dict[@"Gender"]intValue]);
+//            friend.mobile = dict[@"Mobile"];
+//            friend.noteName = dict[@"notename"];
+//            friend.situation = dict[@"describe"];
+//            friend.email = dict[@"Email"];
+//            friend.hospital = dict[@"hospital"];
+//            friend.department = dict[@"department"];
+//            friend.jobTitle = dict[@"jobTitle"];
+//            friend.otherContact = dict[@"OtherContact"];
+//            friend.userType = @([dict[@"usertype"]intValue]);
+//            friend.isFriend = @YES;
+//        }
+//        [[NSManagedObjectContext MR_defaultContext]MR_saveToPersistentStoreAndWait];
+//        [self reloadTableViewData];
+//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view.window animated:YES];
+//        hud.mode = MBProgressHUDModeText;
+//        hud.labelText = @"错误";
+//        hud.detailsLabelText = error.localizedDescription;
+//        [hud hide:YES afterDelay:1.5f];
+//    }];
+//}
 - (NSNumber *)currentUserType {
     switch (_segmentControl.selectedSegmentIndex) {
         case 0:
@@ -389,7 +465,8 @@
     }
 }
 - (IBAction)segmentValueChanged:(id)sender {
-    [self reloadTableViewData];
+    [self fetchFriendWithUsertype:[self currentUserType]];
+    [self reloadTableViewDataWithUserType:[self currentUserType]];
 }
 
 - (IBAction)inviteButtonClicked:(id)sender {
@@ -674,7 +751,7 @@
 //                }
                 [friend MR_deleteEntity];
                 [[NSManagedObjectContext MR_defaultContext]MR_saveToPersistentStoreAndWait];
-                [self reloadTableViewData];
+                [self reloadTableViewDataWithUserType:[self currentUserType]];
             }
             else {
                 hud.labelText = @"删除失败";
