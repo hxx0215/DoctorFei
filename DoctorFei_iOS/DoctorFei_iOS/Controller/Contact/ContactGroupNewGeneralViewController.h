@@ -12,8 +12,9 @@ typedef NS_ENUM(NSUInteger, ContactGroupNewMode) {
 };
 
 #import <UIKit/UIKit.h>
-
+#import <BaiduMapAPI/BMapKit.h>
 @interface ContactGroupNewGeneralViewController : UITableViewController
 @property (nonatomic, assign) ContactGroupNewMode vcMode;
+@property (nonatomic, strong) BMKPoiInfo *currentPoi;
 
 @end

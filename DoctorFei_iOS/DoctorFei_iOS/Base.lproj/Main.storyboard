@@ -3405,6 +3405,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="nextButton" destination="oMK-Kv-Djg" id="YeB-aD-ApC"/>
                         <outlet property="tableView" destination="s5P-MY-2TJ" id="tPc-UI-V3j"/>
                     </connections>
                 </viewController>
@@ -3499,7 +3500,7 @@
                                             </variation>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="64" id="HQw-Gn-36N">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="64" id="HQw-Gn-36N">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="HQw-Gn-36N" id="nZY-GL-rFl">
                                             <autoresizingMask key="autoresizingMask"/>
@@ -3598,7 +3599,7 @@
                                             </variation>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="150" id="JvE-tC-m0n">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="150" id="JvE-tC-m0n">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="JvE-tC-m0n" id="f8n-dD-UPX">
                                             <autoresizingMask key="autoresizingMask"/>
@@ -3628,7 +3629,7 @@
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="请输入群简介(不少于15个字)" translatesAutoresizingMaskIntoConstraints="NO" id="j13-64-gjM">
                                                     <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <color key="textColor" red="0.81568627450980391" green="0.81568627450980391" blue="0.81568627450980391" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="textColor" red="0.792156862745098" green="0.792156862745098" blue="0.792156862745098" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                     <connections>
@@ -3728,7 +3729,7 @@
                                             </variation>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="56" id="sef-2C-3L3">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="56" id="sef-2C-3L3">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="sef-2C-3L3" id="5MO-mL-zmy">
@@ -3755,6 +3756,9 @@
                                                             <include reference="kWk-of-pgY"/>
                                                         </mask>
                                                     </variation>
+                                                    <connections>
+                                                        <action selector="commitButtonClicked:" destination="wo0-zd-IuG" eventType="touchUpInside" id="3D0-CB-2pw"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>
@@ -3796,6 +3800,9 @@
                     <navigationItem key="navigationItem" title="填写群信息" id="AHP-jW-5Q1">
                         <barButtonItem key="leftBarButtonItem" image="return.png" id="chD-8G-LNh">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="backButtonClicked:" destination="wo0-zd-IuG" id="cl9-iG-X6B"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
@@ -3963,7 +3970,7 @@
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="18" id="sa2-di-OPc"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                             <variation key="default">
@@ -4067,6 +4074,7 @@
                         <segue destination="QZS-KQ-MzU" kind="show" identifier="ContactGroupDetailSegueIdentifier" id="yFq-lP-6PL"/>
                         <segue destination="hgm-eI-myW" kind="show" identifier="ContactGroupNearbySegueIdentifier" id="z3H-Zt-cBd"/>
                         <segue destination="xTM-Bn-7M9" kind="show" identifier="ContactGroupCreateNewLocationSegueIdentifier" id="bEc-aG-cHj"/>
+                        <segue destination="wo0-zd-IuG" kind="show" identifier="ContactGroupNewPrivateSegueIdentifier" id="OrE-Ab-N1o"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Btd-3S-Mg7" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -14284,18 +14292,19 @@
         <image name="vip_pic.png" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="yFq-lP-6PL"/>
+        <segue reference="Hb8-Q6-QO7"/>
         <segue reference="Tpb-k1-2hl"/>
-        <segue reference="nrB-L6-42j"/>
-        <segue reference="zKw-Eq-Pwx"/>
         <segue reference="JeB-AN-IOM"/>
+        <segue reference="nrB-L6-42j"/>
         <segue reference="8FK-Id-c2E"/>
+        <segue reference="zKw-Eq-Pwx"/>
         <segue reference="TSG-uQ-7E1"/>
         <segue reference="7qh-2R-9ti"/>
         <segue reference="wpO-fm-KSL"/>
-        <segue reference="Hb8-Q6-QO7"/>
         <segue reference="pVr-DH-hJQ"/>
-        <segue reference="yFq-lP-6PL"/>
-        <segue reference="bnF-ld-Gwy"/>
+        <segue reference="SKm-Gd-3TR"/>
         <segue reference="4Y7-Yi-Utz"/>
+        <segue reference="bnF-ld-Gwy"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -18,6 +18,7 @@
 #import "Chat.h"
 #import "ContactGroupListTableViewCell.h"
 #import "ContactGroupNewTypeTableViewCell.h"
+#import "ContactGroupNewGeneralViewController.h"
 @interface ContactGroupListTableViewController ()
 
 @end
@@ -274,6 +275,8 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (indexPath.row == 0){
         [self performSegueWithIdentifier:@"ContactGroupCreateNewLocationSegueIdentifier" sender:nil];
+    }else if (indexPath.row == 1) {
+        [self performSegueWithIdentifier:@"ContactGroupNewPrivateSegueIdentifier" sender:nil];
     }else if (indexPath.row == 2) {
         [self performSegueWithIdentifier:@"ContactGroupNearbySegueIdentifier" sender:nil];
     }else{
@@ -342,6 +345,9 @@
         }
         ContactDetailViewController *vc = [segue destinationViewController];
         [vc setCurrentChat:selectedChat];
+    }else if ([segue.identifier isEqualToString:@"ContactGroupNewPrivateSegueIdentifier"]) {
+        ContactGroupNewGeneralViewController *vc = [segue destinationViewController];
+        [vc setVcMode:ContactGroupNewModePrivate];
     }
 }
 

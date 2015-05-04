@@ -10,11 +10,13 @@
 #import <BaiduMapAPI/BMapKit.h>
 #import "ContactGroupNewLocationTableViewCell.h"
 #import <UIScrollView+EmptyDataSet.h>
+#import "ContactGroupNewGeneralViewController.h"
 @interface ContactGroupNewLocationViewController ()
     <BMKLocationServiceDelegate, BMKGeoCodeSearchDelegate, UITableViewDelegate, UITableViewDataSource, DZNEmptyDataSetSource>
 - (IBAction)backButtonClicked:(id)sender;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 - (IBAction)nextButtonClicked:(id)sender;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *nextButton;
 @end
 
 @implementation ContactGroupNewLocationViewController
@@ -40,6 +42,7 @@
 
     geoSearch = [[BMKGeoCodeSearch alloc]init];
     geoSearch.delegate = self;
+    [self.nextButton setEnabled:NO];
 }
 - (void)viewWillDisappear:(BOOL)animated {
     locationService.delegate = nil;
@@ -73,15 +76,20 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
 }
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    if ([segue.identifier isEqualToString:@"ContactGroupNewSameCitySegueIdentifier"]) {
+        NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
+        ContactGroupNewGeneralViewController *vc = [segue destinationViewController];
+        [vc setVcMode:ContactGroupNewModeSameCity];
+        [vc setCurrentPoi:infoArray[indexPath.row]];
+    }
 }
-*/
 
 - (IBAction)backButtonClicked:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
@@ -105,10 +113,13 @@
     isLoading = NO;
     if (error == BMK_SEARCH_NO_ERROR) {
         infoArray = result.poiList;
+        [self.tableView reloadData];
+        [self.tableView layoutIfNeeded];
+        [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:YES scrollPosition:UITableViewScrollPositionTop];
+        [self.nextButton setEnabled:YES];
+        return;
     }
     [self.tableView reloadData];
-    [self.tableView layoutIfNeeded];
-    [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:YES scrollPosition:UITableViewScrollPositionTop];
 }
 
 #pragma mark - DZNEmprtDatasource
