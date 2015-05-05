@@ -13,6 +13,7 @@
 #import "UIImageView+WebCache.h"
 #import <ReactiveCocoa.h>
 #import "ChatAPI.h"
+#import "GroupChat.h"
 @interface ContactGroupNewGeneralViewController ()
     <UITextViewDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIActionSheetDelegate>
 @property (weak, nonatomic) IBOutlet UIImageView *avatarImageView;
@@ -39,6 +40,13 @@
     }];
     if (_vcMode == ContactGroupNewModePrivate) {
         [_commitButton setTitle:@"保存并提交" forState:UIControlStateNormal];
+    }
+    if (_currentGroup != nil) {
+        self.title = @"群信息";
+        self.nameTextField.text = _currentGroup.name;
+        self.introTextView.text = _currentGroup.note;
+        self.introTextView.textColor = [UIColor blackColor];
+        [self.avatarImageView sd_setImageWithURL:[NSURL URLWithString:_currentGroup.icon] placeholderImage:[UIImage imageNamed:@"group_preinstall_pic"]];
     }
 }
 
@@ -98,44 +106,71 @@
 }
 
 - (IBAction)commitButtonClicked:(id)sender {
-    NSNumber *userId = [[NSUserDefaults standardUserDefaults]objectForKey:@"UserId"];
-    NSMutableDictionary *param = [NSMutableDictionary dictionary];
-    [param setObject:userId forKey:@"userid"];
-    [param setObject:@2 forKey:@"usertype"];
-    if (_vcMode == ContactGroupNewModePrivate) {
-        [param setObject:@1 forKey:@"flag"];
+    if (_currentGroup != nil) {
+        NSDictionary *param = @{
+                                @"groupid": _currentGroup.groupId,
+                                @"name": _nameTextField.text,
+                                @"note": _introTextView.text,
+                                @"icon": currentIcon.length > 0 ? currentIcon : _currentGroup.icon
+                                };
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view.window animated:YES];
+        hud.labelText = @"提交中...";
+
+        [ChatAPI updateChatGroupWithParameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            NSLog(@"%@",responseObject);
+            NSDictionary *result = [responseObject firstObject];
+            hud.mode = MBProgressHUDModeText;
+            hud.labelText = result[@"msg"];
+            [hud hide:YES afterDelay:1.0f];
+            if ([result[@"state"] intValue] == 1){
+                [self.navigationController popViewControllerAnimated:YES];
+            }
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            NSLog(@"%@",error.localizedDescription);
+            hud.mode = MBProgressHUDModeText;
+            hud.detailsLabelText = error.localizedDescription;
+            [hud hide:YES afterDelay:1.5f];
+        }];
     }else{
-        [param setObject:@0 forKey:@"flag"];
-        [param setObject:_currentPoi.city forKey:@"city"];
-        [param setObject:_currentPoi.address forKey:@"address"];
-        [param setObject:@(_currentPoi.pt.longitude) forKey:@"lng"];
-        [param setObject:@(_currentPoi.pt.latitude) forKey:@"lat"];
-    }
-    [param setObject:_introTextView.text forKey:@"note"];
-    [param setObject:_nameTextField.text forKey:@"name"];
-    if (currentIcon.length > 0) {
-        [param setObject:currentIcon forKey:@"icon"];
-    }
-    [param setObject:@1 forKey:@"visible"];
-    NSLog(@"%@",param);
-    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view.window animated:YES];
-    hud.labelText = @"提交中...";
-    [ChatAPI setChatGroupWithParameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"%@",responseObject);
-        NSDictionary *result = [responseObject firstObject];
-        hud.mode = MBProgressHUDModeText;
-        hud.labelText = result[@"msg"];
-        if ([result[@"state"] intValue] == 1){
-            //Success
-            [self performSegueWithIdentifier:@"ContactCreateGroupSuccessBackSegueIdentifier" sender:nil];
+        NSNumber *userId = [[NSUserDefaults standardUserDefaults]objectForKey:@"UserId"];
+        NSMutableDictionary *param = [NSMutableDictionary dictionary];
+        [param setObject:userId forKey:@"userid"];
+        [param setObject:@2 forKey:@"usertype"];
+        if (_vcMode == ContactGroupNewModePrivate) {
+            [param setObject:@1 forKey:@"flag"];
+        }else{
+            [param setObject:@0 forKey:@"flag"];
+            [param setObject:_currentPoi.city forKey:@"city"];
+            [param setObject:_currentPoi.address forKey:@"address"];
+            [param setObject:@(_currentPoi.pt.longitude) forKey:@"lng"];
+            [param setObject:@(_currentPoi.pt.latitude) forKey:@"lat"];
         }
-        [hud hide:YES afterDelay:1.0f];
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"%@",error.localizedDescription);
-        hud.mode = MBProgressHUDModeText;
-        hud.detailsLabelText = error.localizedDescription;
-        [hud hide:YES afterDelay:1.5f];
-    }];
+        [param setObject:_introTextView.text forKey:@"note"];
+        [param setObject:_nameTextField.text forKey:@"name"];
+        if (currentIcon.length > 0) {
+            [param setObject:currentIcon forKey:@"icon"];
+        }
+        [param setObject:@1 forKey:@"visible"];
+        NSLog(@"%@",param);
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view.window animated:YES];
+        hud.labelText = @"提交中...";
+        [ChatAPI setChatGroupWithParameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            NSLog(@"%@",responseObject);
+            NSDictionary *result = [responseObject firstObject];
+            hud.mode = MBProgressHUDModeText;
+            hud.labelText = result[@"msg"];
+            if ([result[@"state"] intValue] == 1){
+                //Success
+                [self performSegueWithIdentifier:@"ContactCreateGroupSuccessBackSegueIdentifier" sender:nil];
+            }
+            [hud hide:YES afterDelay:1.0f];
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            NSLog(@"%@",error.localizedDescription);
+            hud.mode = MBProgressHUDModeText;
+            hud.detailsLabelText = error.localizedDescription;
+            [hud hide:YES afterDelay:1.5f];
+        }];
+    }
 }
 
 - (void)uploadImage: (UIImage *)image {

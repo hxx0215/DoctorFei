@@ -52,6 +52,7 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     self.tableView.tableFooterView = [UIView new];
+    self.searchDisplayController.searchResultsTableView.tableFooterView = [UIView new];
     [self reloadTableViewData];
 }
 
@@ -104,6 +105,7 @@
                 groupChat.visible = @([dict[@"visible"] intValue]);
                 groupChat.icon = dict[@"icon"];
                 groupChat.note = dict[@"note"];
+                groupChat.total = @([dict[@"total"]intValue]);
 //                Chat *receiveChat = [Chat MR_findFirstWithPredicate:[NSPredicate predicateWithFormat:@"type == %@ && chatId == %@", @5, @([dict[@"groupid"] intValue])]];
 //                if (receiveChat == nil) {
 //                    receiveChat = [Chat MR_createEntity];
@@ -230,7 +232,7 @@
     static NSString *ContactGroupTypeCellIdentifier = @"ContactGroupTypeCellIdentifier";
     static NSString *ContactGroupListCellIdentifier = @"ContactGroupListCellIdentifier";
     if (tableView == self.searchDisplayController.searchResultsTableView) {
-        ContactGroupListTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ContactGroupListCellIdentifier forIndexPath:indexPath];
+        ContactGroupListTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:ContactGroupListCellIdentifier];
         [cell setCurrentGroupChat:searchResultArray[indexPath.row]];
         return cell;
 //        UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"ContactGroupListCellIdentifier"];
@@ -264,6 +266,9 @@
 }
 #pragma mark - UITableView Delegate
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (tableView == self.searchDisplayController.searchResultsTableView) {
+        return 77.0f;
+    }
     if (indexPath.row < 3) {
         return 58.0f;
     }else{
@@ -273,48 +278,21 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    if (indexPath.row == 0){
+    if (tableView == self.searchDisplayController.searchResultsTableView) {
+        GroupChat *groupChat = searchResultArray[indexPath.row];
+        [self performSegueWithIdentifier:@"ContactGroupDetailSegueIdentifier" sender:groupChat];
+    }
+    else if (indexPath.row == 0){
         [self performSegueWithIdentifier:@"ContactGroupCreateNewLocationSegueIdentifier" sender:nil];
     }else if (indexPath.row == 1) {
         [self performSegueWithIdentifier:@"ContactGroupNewPrivateSegueIdentifier" sender:nil];
     }else if (indexPath.row == 2) {
         [self performSegueWithIdentifier:@"ContactGroupNearbySegueIdentifier" sender:nil];
     }else{
-        [self performSegueWithIdentifier:@"ContactGroupDetailSegueIdentifier" sender:indexPath];
+        GroupChat *groupChat = groupArray[indexPath.row - 3];
+        [self performSegueWithIdentifier:@"ContactGroupDetailSegueIdentifier" sender:groupChat];
     }
 }
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-
-// Override to support editing the table view.
-//- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-//    if (editingStyle == UITableViewCellEditingStyleDelete) {
-//        // Delete the row from the data source
-//        [self deleteChatGroupWithIndexPath:indexPath];
-////        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-//    }}
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -330,18 +308,16 @@
         };
 
     }else if ([segue.identifier isEqualToString:@"ContactGroupDetailSegueIdentifier"]){
-        NSIndexPath *indexPath = (NSIndexPath *)sender;
-//        Chat *selectedChat = groupArray[indexPath.row - 1];
-        GroupChat *selectedGroupChat = groupArray[indexPath.row - 3];
-        Chat *selectedChat = selectedGroupChat.chat;
+        GroupChat *groupChat = (GroupChat *)sender;
+        Chat *selectedChat = groupChat.chat;
 //        Chat *selectedChat = [Chat MR_findFirstWithPredicate:[NSPredicate predicateWithFormat:@"ANY groupChat == %@", selectedGroupChat]];
         if (selectedChat == nil) {
             selectedChat = [Chat MR_createEntity];
-            selectedChat.chatId = selectedGroupChat.groupId;
+            selectedChat.chatId = groupChat.groupId;
             selectedChat.type = @3;
-            selectedChat.user = selectedGroupChat.member;
-            selectedChat.title = selectedGroupChat.name;
-            selectedGroupChat.chat = selectedChat;
+            selectedChat.user = groupChat.member;
+            selectedChat.title = groupChat.name;
+            groupChat.chat = selectedChat;
         }
         ContactDetailViewController *vc = [segue destinationViewController];
         [vc setCurrentChat:selectedChat];

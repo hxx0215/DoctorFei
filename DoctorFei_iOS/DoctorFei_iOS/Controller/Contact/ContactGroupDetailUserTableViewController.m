@@ -21,6 +21,7 @@
 #import "ContactGroupListTableViewController.h"
 #import "ContactDoctorFriendDetailTableViewController.h"
 #import "ContactPeronsalFriendDetailTableViewController.h"
+#import "ContactGroupNewGeneralViewController.h"
 static NSString *ContactGroupUserCellIdentifier = @"ContactGroupUserCellIdentifier";
 @interface ContactGroupDetailUserTableViewController ()
     <UICollectionViewDelegate, UICollectionViewDataSource>
@@ -78,6 +79,7 @@ static NSString *ContactGroupUserCellIdentifier = @"ContactGroupUserCellIdentifi
     }else{
         [self.quitButton setTitle:@"退出该群" forState:UIControlStateNormal];
     }
+    [self.tableView reloadData];
 }
 
 - (void)reloadCollectionViewData{
@@ -283,11 +285,17 @@ static NSString *ContactGroupUserCellIdentifier = @"ContactGroupUserCellIdentifi
     }
 
 }
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (!isCanDeleteUser && (indexPath.row == 0 || indexPath.row == 2)) {
+        return 0;
+    }
+    return [super tableView:tableView heightForRowAtIndexPath:indexPath];
+}
 
 
 #pragma mark - UICollectionView Datasource
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return userArray.count + (isCanDeleteUser ? 3 : 2);
+    return userArray.count + (isCanDeleteUser ? 3 : 1);
 }
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     ContactGroupUserCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:ContactGroupUserCellIdentifier forIndexPath:indexPath];
@@ -358,6 +366,9 @@ static NSString *ContactGroupUserCellIdentifier = @"ContactGroupUserCellIdentifi
     }else if ([segue.identifier isEqualToString:@"ContactGroupUserDetailMemberSegueIdentifier"]) {
         ContactPeronsalFriendDetailTableViewController *vc = [segue destinationViewController];
         [vc setCurrentFriend:sender];
+    }else if ([segue.identifier isEqualToString:@"ContactGroupInfoDetailSegueIdentifier"]) {
+        ContactGroupNewGeneralViewController *vc = [segue destinationViewController];
+        [vc setCurrentGroup:_currentGroupChat];
     }
 
 }

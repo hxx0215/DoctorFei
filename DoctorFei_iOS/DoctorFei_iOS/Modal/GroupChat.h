@@ -2,7 +2,7 @@
 //  GroupChat.h
 //  DoctorFei_iOS
 //
-//  Created by GuJunjia on 15/4/30.
+//  Created by GuJunjia on 15/5/6.
 //
 //
 
@@ -13,17 +13,18 @@
 
 @interface GroupChat : NSManagedObject
 
+@property (nonatomic, retain) NSString * address;
+@property (nonatomic, retain) NSString * city;
+@property (nonatomic, retain) NSNumber * flag;
 @property (nonatomic, retain) NSNumber * groupId;
 @property (nonatomic, retain) NSString * icon;
-@property (nonatomic, retain) NSString * name;
-@property (nonatomic, retain) NSNumber * flag;
-@property (nonatomic, retain) NSString * city;
-@property (nonatomic, retain) NSString * address;
-@property (nonatomic, retain) NSNumber * taxis;
 @property (nonatomic, retain) NSNumber * latitude;
 @property (nonatomic, retain) NSNumber * longtitude;
-@property (nonatomic, retain) NSNumber * visible;
+@property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSString * note;
+@property (nonatomic, retain) NSNumber * taxis;
+@property (nonatomic, retain) NSNumber * total;
+@property (nonatomic, retain) NSNumber * visible;
 @property (nonatomic, retain) Chat *chat;
 @property (nonatomic, retain) NSSet *member;
 @end

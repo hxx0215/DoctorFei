@@ -94,7 +94,7 @@
     [super viewWillAppear:animated];
     
     [[BaseHTTPRequestOperationManager sharedManager] defaultAuth];
-    
+    [[SocketConnection sharedConnection]sendCheckMessages];
     
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(reloadTableViewData) name:@"NewChatArrivedNotification" object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(fetchChatComplete) name:@"FetchChatCompleteNotification" object:nil];

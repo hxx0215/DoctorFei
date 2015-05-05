@@ -186,7 +186,6 @@
 		6A795D931AF1277700CF15F4 /* miandarao_off.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A795D901AF1277700CF15F4 /* miandarao_off.png */; };
 		6A795D941AF1277700CF15F4 /* miandarao_off@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A795D911AF1277700CF15F4 /* miandarao_off@2x.png */; };
 		6A795D951AF1277700CF15F4 /* miandarao_off@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A795D921AF1277700CF15F4 /* miandarao_off@3x.png */; };
-		6A795D9B1AF13DEF00CF15F4 /* GroupChat.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A795D9A1AF13DEF00CF15F4 /* GroupChat.m */; };
 		6A86B3561AA5FF1D00D280AF /* JSQAudioMediaItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A86B3551AA5FF1D00D280AF /* JSQAudioMediaItem.m */; };
 		6A86B35D1AA600D800D280AF /* chat_animation_white1.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A86B3571AA600D800D280AF /* chat_animation_white1.png */; };
 		6A86B35E1AA600D800D280AF /* chat_animation_white2.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A86B3581AA600D800D280AF /* chat_animation_white2.png */; };
@@ -247,6 +246,7 @@
 		6AB359B11A2B5758008C48B4 /* BaseHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AB359B01A2B5758008C48B4 /* BaseHTTPRequestOperationManager.m */; };
 		6AB359B71A2B638C008C48B4 /* RegisterAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AB359B61A2B638C008C48B4 /* RegisterAPI.m */; };
 		6AB359BA1A2B6C3B008C48B4 /* DeviceUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AB359B91A2B6C3B008C48B4 /* DeviceUtil.m */; };
+		6AB720941AF9296100E2DE2F /* GroupChat.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AB720931AF9296100E2DE2F /* GroupChat.m */; };
 		6AB8B0981A3742A200866281 /* pinyin.c in Sources */ = {isa = PBXBuildFile; fileRef = 6AB8B0961A3742A200866281 /* pinyin.c */; };
 		6AB8B09B1A3747EA00866281 /* Friends+PinYinUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AB8B09A1A3747EA00866281 /* Friends+PinYinUtil.m */; };
 		6AB8B0A21A387D7D00866281 /* ImageUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AB8B0A11A387D7D00866281 /* ImageUtil.m */; };
@@ -954,8 +954,6 @@
 		6A795D901AF1277700CF15F4 /* miandarao_off.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = miandarao_off.png; sourceTree = "<group>"; };
 		6A795D911AF1277700CF15F4 /* miandarao_off@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "miandarao_off@2x.png"; sourceTree = "<group>"; };
 		6A795D921AF1277700CF15F4 /* miandarao_off@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "miandarao_off@3x.png"; sourceTree = "<group>"; };
-		6A795D991AF13DEF00CF15F4 /* GroupChat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupChat.h; sourceTree = "<group>"; };
-		6A795D9A1AF13DEF00CF15F4 /* GroupChat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupChat.m; sourceTree = "<group>"; };
 		6A8155DD1AEFF1AE00D49DA1 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		6A86B3541AA5FF1D00D280AF /* JSQAudioMediaItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSQAudioMediaItem.h; sourceTree = "<group>"; };
 		6A86B3551AA5FF1D00D280AF /* JSQAudioMediaItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSQAudioMediaItem.m; sourceTree = "<group>"; };
@@ -1037,6 +1035,8 @@
 		6AB359B81A2B6C3B008C48B4 /* DeviceUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceUtil.h; sourceTree = "<group>"; };
 		6AB359B91A2B6C3B008C48B4 /* DeviceUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceUtil.m; sourceTree = "<group>"; };
 		6AB359BB1A2B6C93008C48B4 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		6AB720921AF9296100E2DE2F /* GroupChat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupChat.h; sourceTree = "<group>"; };
+		6AB720931AF9296100E2DE2F /* GroupChat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupChat.m; sourceTree = "<group>"; };
 		6AB8B0961A3742A200866281 /* pinyin.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pinyin.c; sourceTree = "<group>"; };
 		6AB8B0971A3742A200866281 /* pinyin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pinyin.h; sourceTree = "<group>"; };
 		6AB8B0991A3747EA00866281 /* Friends+PinYinUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Friends+PinYinUtil.h"; sourceTree = "<group>"; };
@@ -1764,8 +1764,8 @@
 		6A73748E1A207E88006EF54F /* Modal */ = {
 			isa = PBXGroup;
 			children = (
-				6A795D991AF13DEF00CF15F4 /* GroupChat.h */,
-				6A795D9A1AF13DEF00CF15F4 /* GroupChat.m */,
+				6AB720921AF9296100E2DE2F /* GroupChat.h */,
+				6AB720931AF9296100E2DE2F /* GroupChat.m */,
 				6A3DA1011A7E7BF200BE721B /* MainCoreData.xcdatamodeld */,
 				6A01C65B1AC70549003AD085 /* Friends.h */,
 				6A01C65C1AC70549003AD085 /* Friends.m */,
@@ -3371,7 +3371,6 @@
 				6AA2EEFC1AF5FAF100A43CE5 /* ContactGroupNearbyTableViewCell.m in Sources */,
 				6AC6EA071A28C4B5007689D8 /* NSString+Crypt.m in Sources */,
 				6A6454271A6D4C0F00070D5E /* MainGroupDetailActionViewController.m in Sources */,
-				6A795D9B1AF13DEF00CF15F4 /* GroupChat.m in Sources */,
 				B94F6C681A5D70AF004E1B93 /* QRCodeScanViewController.m in Sources */,
 				6A40CA0E1AD98AF4005690A5 /* EmotionsKeyboardBuilder.m in Sources */,
 				6A5DE8171A791A3C000F24DA /* QuickReplyTableViewCell.m in Sources */,
@@ -3483,6 +3482,7 @@
 				B9DD58E11A30912200AA4CDC /* MoreUpdateViewController.m in Sources */,
 				6A01C65D1AC70549003AD085 /* Friends.m in Sources */,
 				6A01C65A1AC70548003AD085 /* GroupChatFriend.m in Sources */,
+				6AB720941AF9296100E2DE2F /* GroupChat.m in Sources */,
 				6A01C6571AC6AED0003AD085 /* Chat.m in Sources */,
 				6A2BD6071A31EC44002F7644 /* ChatAPI.m in Sources */,
 				6A78BE271A2215DD005457F3 /* RegisterMoreTableViewController.m in Sources */,
