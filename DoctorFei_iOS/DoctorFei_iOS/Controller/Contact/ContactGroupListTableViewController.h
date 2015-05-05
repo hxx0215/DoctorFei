@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface ContactGroupListTableViewController : UITableViewController
-
+- (IBAction)backToListVC:(UIStoryboardSegue *)segue;
 @end

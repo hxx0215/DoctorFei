@@ -3418,6 +3418,7 @@
             <objects>
                 <tableViewController id="wo0-zd-IuG" customClass="ContactGroupNewGeneralViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="static" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="npg-yY-t3p">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="487"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <sections>
@@ -3570,13 +3571,13 @@
                                                 <mask key="constraints">
                                                     <exclude reference="OWh-yz-WAQ"/>
                                                     <exclude reference="zlg-UO-3ge"/>
+                                                    <exclude reference="HdQ-VG-TUz"/>
+                                                    <exclude reference="PUR-3f-Qkl"/>
+                                                    <exclude reference="i2k-Ci-Jap"/>
                                                     <exclude reference="1cv-XF-Fh8"/>
                                                     <exclude reference="VQ6-U5-loY"/>
                                                     <exclude reference="bR6-l9-xfY"/>
                                                     <exclude reference="xBW-Xq-VCU"/>
-                                                    <exclude reference="HdQ-VG-TUz"/>
-                                                    <exclude reference="PUR-3f-Qkl"/>
-                                                    <exclude reference="i2k-Ci-Jap"/>
                                                 </mask>
                                             </variation>
                                             <variation key="heightClass=regular-widthClass=compact">
@@ -3588,13 +3589,13 @@
                                                 <mask key="constraints">
                                                     <include reference="OWh-yz-WAQ"/>
                                                     <include reference="zlg-UO-3ge"/>
+                                                    <include reference="HdQ-VG-TUz"/>
+                                                    <include reference="PUR-3f-Qkl"/>
+                                                    <include reference="i2k-Ci-Jap"/>
                                                     <include reference="1cv-XF-Fh8"/>
                                                     <include reference="VQ6-U5-loY"/>
                                                     <include reference="bR6-l9-xfY"/>
                                                     <include reference="xBW-Xq-VCU"/>
-                                                    <include reference="HdQ-VG-TUz"/>
-                                                    <include reference="PUR-3f-Qkl"/>
-                                                    <include reference="i2k-Ci-Jap"/>
                                                 </mask>
                                             </variation>
                                         </tableViewCellContentView>
@@ -3810,6 +3811,7 @@
                         <outlet property="commitButton" destination="DWH-h3-bnY" id="QpK-sD-L0z"/>
                         <outlet property="introTextView" destination="j13-64-gjM" id="gqK-f9-32c"/>
                         <outlet property="nameTextField" destination="dbq-OK-ZdI" id="NH8-pC-fZ7"/>
+                        <segue destination="olV-gy-bvT" kind="unwind" identifier="ContactCreateGroupSuccessBackSegueIdentifier" unwindAction="backToListVC:" id="xLv-JR-W8p"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Lc2-Ef-iWR" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -4078,6 +4080,7 @@
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Btd-3S-Mg7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="olV-gy-bvT" userLabel="Exit" sceneMemberID="exit"/>
                 <searchDisplayController id="nWr-sY-86e">
                     <connections>
                         <outlet property="delegate" destination="Y1U-Bf-7rt" id="399-fa-OYd"/>

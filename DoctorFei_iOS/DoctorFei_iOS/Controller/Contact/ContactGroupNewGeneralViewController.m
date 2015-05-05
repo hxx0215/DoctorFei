@@ -122,10 +122,12 @@
     hud.labelText = @"提交中...";
     [ChatAPI setChatGroupWithParameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"%@",responseObject);
+        NSDictionary *result = [responseObject firstObject];
         hud.mode = MBProgressHUDModeText;
-        hud.labelText = responseObject[@"msg"];
-        if ([responseObject[@"state"] intValue] == 1){
+        hud.labelText = result[@"msg"];
+        if ([result[@"state"] intValue] == 1){
             //Success
+            [self performSegueWithIdentifier:@"ContactCreateGroupSuccessBackSegueIdentifier" sender:nil];
         }
         [hud hide:YES afterDelay:1.0f];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
