@@ -36,7 +36,7 @@
         if (_vcMode == ContactGroupNewModePrivate) {
             return @(name.length > 1 && name.length < 11);
         }
-        return @(name.length > 1 && name.length < 11 && intro.length > 14);
+        return @(name.length > 1 && name.length < 11 && intro.length > 14 && ![intro isEqualToString:@"请输入群简介(不少于15个字)"]);
     }];
     if (_vcMode == ContactGroupNewModePrivate) {
         [_commitButton setTitle:@"保存并提交" forState:UIControlStateNormal];
@@ -47,9 +47,15 @@
         self.introTextView.text = _currentGroup.note;
         self.introTextView.textColor = [UIColor blackColor];
         [self.avatarImageView sd_setImageWithURL:[NSURL URLWithString:_currentGroup.icon] placeholderImage:[UIImage imageNamed:@"group_preinstall_pic"]];
+//        [self.commitButton setEnabled:YES];
     }
 }
-
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [self.nameTextField becomeFirstResponder];
+    [self.introTextView becomeFirstResponder];
+    [self.introTextView resignFirstResponder];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
