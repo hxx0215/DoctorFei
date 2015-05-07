@@ -668,7 +668,7 @@
         }
         else
         {
-            if (indexPath.section<[tableViewDataArray count]){
+            if (indexPath.section<[tableViewDataArray count] + 1){
                 [self performSegueWithIdentifier:@"ContactDetailSegueIdentifier" sender:[tableView cellForRowAtIndexPath:indexPath]];
             }else{
                 ContactInviteTableViewCell *cell = (ContactInviteTableViewCell*)[tableView cellForRowAtIndexPath:indexPath];

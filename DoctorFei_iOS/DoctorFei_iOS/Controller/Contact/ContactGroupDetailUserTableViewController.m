@@ -30,6 +30,9 @@ static NSString *ContactGroupUserCellIdentifier = @"ContactGroupUserCellIdentifi
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UIButton *quitButton;
 - (IBAction)quitButtonClicked:(id)sender;
+@property (weak, nonatomic) IBOutlet UISwitch *visiableSwitch;
+@property (weak, nonatomic) IBOutlet UISwitch *noDisturbSwitch;
+- (IBAction)visiableSwitchValueChanged:(id)sender;
 
 @end
 
@@ -158,6 +161,9 @@ static NSString *ContactGroupUserCellIdentifier = @"ContactGroupUserCellIdentifi
     [ChatAPI delChatUserWithParameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"%@",responseObject);
         if ([[responseObject firstObject][@"state"]intValue] == 1) {
+            [_currentGroupChat removeMemberObject:friend];
+            [_currentGroupChat.chat removeUserObject:friend.friend];
+            [[NSManagedObjectContext MR_defaultContext]MR_saveToPersistentStoreAndWait];
             [self fetchChatUser];
         }
         hud.mode = MBProgressHUDModeText;
@@ -223,7 +229,6 @@ static NSString *ContactGroupUserCellIdentifier = @"ContactGroupUserCellIdentifi
 }
 - (IBAction)quitButtonClicked:(id)sender {
     if (isCanDeleteUser) {
-        //TODO解散
         MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view.window animated:YES];
         NSDictionary *param = @{
                                 @"groupid": _currentGroupChat.groupId,
@@ -354,6 +359,11 @@ static NSString *ContactGroupUserCellIdentifier = @"ContactGroupUserCellIdentifi
         UINavigationController *nav = [segue destinationViewController];
         ContactViewController *contact = nav.viewControllers.firstObject;
         contact.contactMode = ContactViewControllerModeCreateGroup;
+//        NSMutableArray *array = [NSMutableArray array];
+//        for (GroupChatFriend *groupFriend in _currentGroupChat.member) {
+//            [array addObject:groupFriend.friend];
+//        }
+//        contact.selectedArray = array;
         contact.selectedArray = [_currentGroupChat.chat.user.allObjects mutableCopy];
         contact.didSelectFriends = ^(NSArray *friends){
 //            NSLog(@"%@",friends);
@@ -374,4 +384,6 @@ static NSString *ContactGroupUserCellIdentifier = @"ContactGroupUserCellIdentifi
 }
 
 
+- (IBAction)visiableSwitchValueChanged:(id)sender {
+}
 @end

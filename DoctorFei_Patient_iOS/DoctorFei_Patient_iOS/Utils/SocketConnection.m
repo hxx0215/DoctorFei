@@ -127,17 +127,20 @@
     isAlive = YES;
     [sock readDataWithTimeout:-1 tag:0];
     if (![string isEqualToString:@"1"]) {
-        [[NSNotificationCenter defaultCenter]postNotificationName:@"FetchChatCompleteNotification" object:nil];
-        NSDictionary *result = [string objectFromJSONString];
-        if ([result[@"verification"]boolValue] && [result[@"error"]isEqual:[NSNull null]]) {
-            NSArray *dataArray = result[@"data"];
-//            NSLog(@"%@",dataArray);
-            for (NSDictionary *dict in dataArray) {
-                [FetchChatUtil fetchGeneralChatWithParmas:dict];
+        NSNumber *userId = [[NSUserDefaults standardUserDefaults]objectForKey:@"UserId"];
+        if (userId != nil) {
+            [[NSNotificationCenter defaultCenter]postNotificationName:@"FetchChatCompleteNotification" object:nil];
+            NSDictionary *result = [string objectFromJSONString];
+            if ([result[@"verification"]boolValue] && [result[@"error"]isEqual:[NSNull null]]) {
+                NSArray *dataArray = result[@"data"];
+                //            NSLog(@"%@",dataArray);
+                for (NSDictionary *dict in dataArray) {
+                    [FetchChatUtil fetchGeneralChatWithParmas:dict];
+                }
             }
-        }
-        else{
-            NSLog(@"%@",result[@"error"]);
+            else{
+                NSLog(@"%@",result[@"error"]);
+            }
         }
 
     }
