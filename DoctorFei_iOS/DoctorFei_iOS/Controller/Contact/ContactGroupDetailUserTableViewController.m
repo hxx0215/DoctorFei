@@ -64,6 +64,7 @@ static NSString *ContactGroupUserCellIdentifier = @"ContactGroupUserCellIdentifi
     isCanDeleteUser = NO;
     [self updateQuitButtonTitle];
     [self fetchChatUser];
+    [_visiableSwitch setOn:_currentGroupChat.visible.boolValue];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -101,6 +102,7 @@ static NSString *ContactGroupUserCellIdentifier = @"ContactGroupUserCellIdentifi
 - (void)dealloc {
     [self.collectionView removeObserver:self forKeyPath:@"contentSize"];
 }
+
 
 - (void)fetchChatUser{
     NSDictionary *param = @{@"groupid": _currentGroupChat.groupId};
@@ -385,5 +387,24 @@ static NSString *ContactGroupUserCellIdentifier = @"ContactGroupUserCellIdentifi
 
 
 - (IBAction)visiableSwitchValueChanged:(id)sender {
+    NSDictionary *param = @{@"groupid": _currentGroupChat.groupId,
+                            @"visible": self.visiableSwitch.isOn ? @1 : @0};
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view.window animated:YES];
+    hud.labelText = @"设置中...";
+    [ChatAPI updateChatGroupWithParameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"%@",responseObject);
+        hud.mode = MBProgressHUDModeText;
+        if ([[responseObject firstObject][@"state"]intValue] == 1) {
+            hud.labelText = self.visiableSwitch.isOn ? @"附近的人将能够搜索到该群": @"附近的人将不能搜索到该群";
+        }else{
+            hud.labelText = @"设置失败";
+        }
+        [hud hide:YES afterDelay:1.0f];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"%@",error.localizedDescription);
+        hud.mode = MBProgressHUDModeText;
+        hud.labelText = error.localizedDescription;
+        [hud hide:YES afterDelay:1.5f];
+    }];
 }
 @end
