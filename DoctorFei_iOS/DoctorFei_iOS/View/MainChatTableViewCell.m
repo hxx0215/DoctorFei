@@ -12,6 +12,7 @@
 #import "Message.h"
 #import <UIImageView+WebCache.h>
 #import <JSBadgeView.h>
+#import "GroupChat.h"
 #import <NSDate+DateTools.h>
 //#import "DataUtil.h"
 @interface MainChatTableViewCell ()
@@ -52,6 +53,11 @@
             [self.nameLabel setText: friend.realname];
         }
         [self.situationLabel setText:friend.situation];
+    }
+    else if (_currentChat.type.intValue == 3) {
+        [self.avatarImageView sd_setImageWithURL:[NSURL URLWithString:_currentChat.groupChat.icon] placeholderImage:[UIImage imageNamed:@"group_preinstall_pic"]];
+        [self.nameLabel setText:_currentChat.title];
+        [self.situationLabel setText:nil];
     }
     else {
         [self.avatarImageView setImage:[UIImage imageNamed:@"list_user-big_example_pic"]];

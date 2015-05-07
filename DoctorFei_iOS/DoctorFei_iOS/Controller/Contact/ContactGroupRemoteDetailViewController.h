@@ -11,5 +11,6 @@
 @interface ContactGroupRemoteDetailViewController : UITableViewController
 
 @property (nonatomic, strong) NSNumber *groupId;
-
+@property (nonatomic, strong) NSNumber *longtitude;
+@property (nonatomic, strong) NSNumber *latitude;
 @end

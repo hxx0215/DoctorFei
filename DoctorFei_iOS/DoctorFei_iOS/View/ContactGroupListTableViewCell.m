@@ -24,7 +24,7 @@
 - (void)setCurrentGroupChat:(GroupChat *)currentGroupChat {
     _currentGroupChat = currentGroupChat;
     [_avatarImageView sd_setImageWithURL:[NSURL URLWithString:_currentGroupChat.icon] placeholderImage:[UIImage imageNamed:@"group_preinstall_pic"]];
-    [_nameLabel setText:_currentGroupChat.name];
+    [_nameLabel setText:[NSString stringWithFormat:@"%@(%@)",_currentGroupChat.name, _currentGroupChat.total.stringValue]];
     [_typeButton setHighlighted:!_currentGroupChat.flag.boolValue];
 }
 

@@ -25,6 +25,8 @@
 #define kMethodGetChatGroupSend @"get.chat.groupsend"
 #define kMethodSetChatGroupSend @"set.chat.groupsend"
 #define kMethodSearchGroup @"get.search.group"
+#define kMethodGetGroupInfo @"get.chat.groupinfo"
+#define kMethodJoinGroup @"set.chat.user"
 @implementation ChatAPI
 + (void)getChatWithParameters: (id)parameters success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure {
     [[self sharedManager]defaultGetWithMethod:kMethodGetChat WithParameters:parameters success:success failure:failure];
@@ -83,5 +85,12 @@
 
 + (void)searchGroupWithParameters: (id)parameters success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure {
     [[self sharedManager]defaultGetWithMethod:kMethodSearchGroup WithParameters:parameters success:success failure:failure];
+}
+
++ (void)getGroupInfoWithParameters: (id)parameters success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure{
+    [[self sharedManager]defaultGetWithMethod:kMethodGetGroupInfo WithParameters:parameters success:success failure:failure];
+}
++ (void)joinGroupWithParameters: (id)parameters success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure {
+    [[self sharedManager]defaultGetWithMethod:kMethodJoinGroup WithParameters:parameters success:success failure:failure];
 }
 @end

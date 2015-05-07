@@ -52,9 +52,9 @@
 }
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    [self.nameTextField becomeFirstResponder];
     [self.introTextView becomeFirstResponder];
-    [self.introTextView resignFirstResponder];
+    [self.nameTextField becomeFirstResponder];
+    [self.nameTextField resignFirstResponder];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

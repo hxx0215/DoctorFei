@@ -13,6 +13,7 @@
 #import <BaiduMapAPI/BMapKit.h>
 #import <UIImageView+WebCache.h>
 #import "UIScrollView+EmptyDataSet.h"
+#import "ContactGroupRemoteDetailViewController.h"
 #define kGroupNearbyPageSize 10
 
 static NSString *ContactGroupNearbyCellIdentifier = @"ContactGroupNearbyCellIdentifier";
@@ -91,8 +92,12 @@ static NSString *ContactGroupNearbyCellIdentifier = @"ContactGroupNearbyCellIden
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     ContactGroupNearbyTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ContactGroupNearbyCellIdentifier forIndexPath:indexPath];
     [cell.avatarImageView sd_setImageWithURL:[NSURL URLWithString:nearbyArray[indexPath.row][@"icon"] ] placeholderImage:[UIImage imageNamed:@"group_preinstall_pic"]];
-//    [cell.addressLabel setText:nearbyArray[indexPath.row][@"address"]];
-    [cell.distanceLabel setText:[nearbyArray[indexPath.row][@"distance"]stringValue]];
+    if ([nearbyArray[indexPath.row][@"address"] isKindOfClass:[NSString class]]) {
+        [cell.addressLabel setText:nearbyArray[indexPath.row][@"address"]];
+    }else{
+        [cell.addressLabel setText:@""];
+    }
+    [cell.distanceLabel setText:[NSString stringWithFormat:@"%@m",[nearbyArray[indexPath.row][@"distance"]stringValue]]];
     [cell.nameLabel setText:[NSString stringWithFormat:@"%@(%@)",nearbyArray[indexPath.row][@"name"], [nearbyArray[indexPath.row][@"total"]stringValue]]];
     return cell;
 }
@@ -100,15 +105,21 @@ static NSString *ContactGroupNearbyCellIdentifier = @"ContactGroupNearbyCellIden
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 77.0f;
 }
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    if ([segue.identifier isEqualToString:@"ContactGroupInfoSegueIdentifier"]) {
+        NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
+        ContactGroupRemoteDetailViewController *vc = [segue destinationViewController];
+        [vc setGroupId:@([nearbyArray[indexPath.row][@"groupid"]intValue])];
+        [vc setLongtitude:@(currentLocation.longitude)];
+        [vc setLatitude:@(currentLocation.latitude)];
+    }
 }
-*/
 
 #pragma mark - BMKLocation Delegate
 - (void)didUpdateBMKUserLocation:(BMKUserLocation *)userLocation {
