@@ -32,6 +32,7 @@
     </entity>
     <entity name="GroupChat" representedClassName="GroupChat" syncable="YES">
         <attribute name="address" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="allowDisturb" optional="YES" attributeType="Boolean" defaultValueString="0" syncable="YES"/>
         <attribute name="city" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="flag" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="groupId" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
@@ -72,7 +73,7 @@
     <elements>
         <element name="Chat" positionX="18" positionY="284" width="128" height="148"/>
         <element name="Friends" positionX="-63" positionY="-18" width="128" height="328"/>
-        <element name="GroupChat" positionX="63" positionY="135" width="128" height="255"/>
+        <element name="GroupChat" positionX="63" positionY="135" width="128" height="270"/>
         <element name="GroupChatFriend" positionX="72" positionY="144" width="128" height="133"/>
         <element name="Groups" positionX="187" positionY="144" width="128" height="103"/>
         <element name="Message" positionX="162" positionY="-9" width="128" height="148"/>

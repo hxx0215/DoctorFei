@@ -47,7 +47,7 @@
         [self fetchGroupChatWithParmas: params];
     }
 }
-+ (void)fetchGroupChatWithParmas: (NSDictionary *)params {
++ (void)fetchGroupHasGroupInfoWithParams: (NSDictionary *)params {
     NSNumber *groupId = @([params[@"groupid"]intValue]);
     NSNumber *userId = [[NSUserDefaults standardUserDefaults]objectForKey:@"UserId"];
     NSNumber *lastmsgid = @0;
@@ -109,10 +109,51 @@
         [[NSManagedObjectContext MR_defaultContext]MR_saveToPersistentStoreAndWait];
         //发送通知通知刷新MainVC
         [[NSNotificationCenter defaultCenter]postNotificationName:@"NewChatArrivedNotification" object:nil];
-
+        
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"%@",error.localizedDescription);
     }];
+
+}
++ (void)fetchGroupChatWithParmas: (NSDictionary *)params {
+    NSNumber *groupId = @([params[@"groupid"]intValue]);
+    NSNumber *userId = [[NSUserDefaults standardUserDefaults]objectForKey:@"UserId"];
+    GroupChat *groupChat = [GroupChat MR_findFirstByAttribute:@"groupId" withValue:groupId];
+    if (groupChat == nil) {
+        NSDictionary *param = @{
+                                @"groupid": groupId,
+                                @"userid": userId,
+                                @"userType": @2
+                                };
+        [ChatAPI getGroupInfoWithParameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            NSLog(@"%@",responseObject);
+            NSDictionary *dict = [responseObject firstObject];
+            if (dict != nil) {
+                GroupChat *groupChat = [GroupChat MR_findFirstByAttribute:@"groupId" withValue:@([dict[@"groupid"] intValue])];
+                if (groupChat == nil) {
+                    groupChat = [GroupChat MR_createEntity];
+                    groupChat.groupId = @([dict[@"groupid"] intValue]);
+                }
+                groupChat.name = dict[@"name"];
+                groupChat.flag = @([dict[@"flag"] intValue]);
+                groupChat.address = [dict[@"address"] isKindOfClass:[NSString class]] ? dict[@"address"] : nil;
+                groupChat.taxis = @([dict[@"taxis"] intValue]);
+                groupChat.latitude = @([dict[@"lat"]doubleValue]);
+                groupChat.longtitude = @([dict[@"long"]doubleValue]);
+                groupChat.visible = @([dict[@"visible"] intValue]);
+                groupChat.icon = dict[@"icon"];
+                groupChat.note = [dict[@"note"] isKindOfClass:[NSString class]] ? dict[@"note"]: nil;
+                groupChat.total = @([dict[@"total"]intValue]);
+                groupChat.allowDisturb = @([dict[@"allowdisturb"] intValue]);
+                [[NSManagedObjectContext MR_defaultContext]MR_saveToPersistentStoreAndWait];
+                [self fetchGroupHasGroupInfoWithParams:params];
+            }
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            NSLog(@"%@",error.localizedDescription);
+        }];
+    }else{
+        [self fetchGroupHasGroupInfoWithParams:params];
+    }
 }
 + (void)fetchChatWithParmas: (NSDictionary *)params {
     NSNumber *userId = @([params[@"userId"] intValue]);

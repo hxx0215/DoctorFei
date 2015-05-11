@@ -247,7 +247,6 @@
 		6AB359B11A2B5758008C48B4 /* BaseHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AB359B01A2B5758008C48B4 /* BaseHTTPRequestOperationManager.m */; };
 		6AB359B71A2B638C008C48B4 /* RegisterAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AB359B61A2B638C008C48B4 /* RegisterAPI.m */; };
 		6AB359BA1A2B6C3B008C48B4 /* DeviceUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AB359B91A2B6C3B008C48B4 /* DeviceUtil.m */; };
-		6AB720941AF9296100E2DE2F /* GroupChat.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AB720931AF9296100E2DE2F /* GroupChat.m */; };
 		6AB8B0981A3742A200866281 /* pinyin.c in Sources */ = {isa = PBXBuildFile; fileRef = 6AB8B0961A3742A200866281 /* pinyin.c */; };
 		6AB8B09B1A3747EA00866281 /* Friends+PinYinUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AB8B09A1A3747EA00866281 /* Friends+PinYinUtil.m */; };
 		6AB8B0A21A387D7D00866281 /* ImageUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AB8B0A11A387D7D00866281 /* ImageUtil.m */; };
@@ -601,6 +600,7 @@
 		6AD6A28C1A713A4A00CE9888 /* talk_box_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AD6A2801A713A4900CE9888 /* talk_box_btn.png */; };
 		6AD6A28D1A713A4A00CE9888 /* talk_box_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AD6A2811A713A4900CE9888 /* talk_box_btn@2x.png */; };
 		6AD6A28E1A713A4A00CE9888 /* talk_box_btn@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AD6A2821A713A4900CE9888 /* talk_box_btn@3x.png */; };
+		6ADBADFC1B00E222007593F6 /* GroupChat.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ADBADFB1B00E222007593F6 /* GroupChat.m */; };
 		6AED681B1AE2548E0024A149 /* ContactGroupMessageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AED681A1AE2548E0024A149 /* ContactGroupMessageTableViewCell.m */; };
 		6AF48F161AA8A32A00735C81 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AF48F151AA8A32A00735C81 /* CoreLocation.framework */; };
 		6AF8EF591AB58F9100B12756 /* button_wide-02_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AF8EF531AB58F9100B12756 /* button_wide-02_btn.png */; };
@@ -1038,8 +1038,6 @@
 		6AB359B81A2B6C3B008C48B4 /* DeviceUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceUtil.h; sourceTree = "<group>"; };
 		6AB359B91A2B6C3B008C48B4 /* DeviceUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceUtil.m; sourceTree = "<group>"; };
 		6AB359BB1A2B6C93008C48B4 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		6AB720921AF9296100E2DE2F /* GroupChat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupChat.h; sourceTree = "<group>"; };
-		6AB720931AF9296100E2DE2F /* GroupChat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupChat.m; sourceTree = "<group>"; };
 		6AB8B0961A3742A200866281 /* pinyin.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pinyin.c; sourceTree = "<group>"; };
 		6AB8B0971A3742A200866281 /* pinyin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pinyin.h; sourceTree = "<group>"; };
 		6AB8B0991A3747EA00866281 /* Friends+PinYinUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Friends+PinYinUtil.h"; sourceTree = "<group>"; };
@@ -1411,6 +1409,8 @@
 		6AD6A2801A713A4900CE9888 /* talk_box_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = talk_box_btn.png; sourceTree = "<group>"; };
 		6AD6A2811A713A4900CE9888 /* talk_box_btn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "talk_box_btn@2x.png"; sourceTree = "<group>"; };
 		6AD6A2821A713A4900CE9888 /* talk_box_btn@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "talk_box_btn@3x.png"; sourceTree = "<group>"; };
+		6ADBADFA1B00E222007593F6 /* GroupChat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupChat.h; sourceTree = "<group>"; };
+		6ADBADFB1B00E222007593F6 /* GroupChat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupChat.m; sourceTree = "<group>"; };
 		6AEA74501A260DD900EEF37C /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		6AED68191AE2548E0024A149 /* ContactGroupMessageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactGroupMessageTableViewCell.h; sourceTree = "<group>"; };
 		6AED681A1AE2548E0024A149 /* ContactGroupMessageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactGroupMessageTableViewCell.m; sourceTree = "<group>"; };
@@ -1767,8 +1767,8 @@
 		6A73748E1A207E88006EF54F /* Modal */ = {
 			isa = PBXGroup;
 			children = (
-				6AB720921AF9296100E2DE2F /* GroupChat.h */,
-				6AB720931AF9296100E2DE2F /* GroupChat.m */,
+				6ADBADFA1B00E222007593F6 /* GroupChat.h */,
+				6ADBADFB1B00E222007593F6 /* GroupChat.m */,
 				6A3DA1011A7E7BF200BE721B /* MainCoreData.xcdatamodeld */,
 				6A01C65B1AC70549003AD085 /* Friends.h */,
 				6A01C65C1AC70549003AD085 /* Friends.m */,
@@ -3375,6 +3375,7 @@
 				6AB8B0981A3742A200866281 /* pinyin.c in Sources */,
 				6AA2EEFC1AF5FAF100A43CE5 /* ContactGroupNearbyTableViewCell.m in Sources */,
 				6AC6EA071A28C4B5007689D8 /* NSString+Crypt.m in Sources */,
+				6ADBADFC1B00E222007593F6 /* GroupChat.m in Sources */,
 				6A6454271A6D4C0F00070D5E /* MainGroupDetailActionViewController.m in Sources */,
 				B94F6C681A5D70AF004E1B93 /* QRCodeScanViewController.m in Sources */,
 				6A40CA0E1AD98AF4005690A5 /* EmotionsKeyboardBuilder.m in Sources */,
@@ -3488,7 +3489,6 @@
 				6A01C65D1AC70549003AD085 /* Friends.m in Sources */,
 				6A47456C1AFBADE10065ED1D /* ContactGroupRemoteDetailViewController.m in Sources */,
 				6A01C65A1AC70548003AD085 /* GroupChatFriend.m in Sources */,
-				6AB720941AF9296100E2DE2F /* GroupChat.m in Sources */,
 				6A01C6571AC6AED0003AD085 /* Chat.m in Sources */,
 				6A2BD6071A31EC44002F7644 /* ChatAPI.m in Sources */,
 				6A78BE271A2215DD005457F3 /* RegisterMoreTableViewController.m in Sources */,
@@ -3598,8 +3598,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Keke Li (59VBND372M)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Keke Li (59VBND372M)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/DoctorFei_iOS/Dependence",
@@ -3614,7 +3614,7 @@
 					"$(PROJECT_DIR)/DoctorFei_iOS/Dependence/arm/lib",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "eefc7fdc-4cea-4e36-9543-cea55aec30db";
 			};
 			name = Debug;
 		};
@@ -3624,8 +3624,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Keke Li (59VBND372M)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Keke Li (59VBND372M)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/DoctorFei_iOS/Dependence",
@@ -3640,7 +3640,7 @@
 					"$(PROJECT_DIR)/DoctorFei_iOS/Dependence/arm/lib",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "eefc7fdc-4cea-4e36-9543-cea55aec30db";
 			};
 			name = Release;
 		};

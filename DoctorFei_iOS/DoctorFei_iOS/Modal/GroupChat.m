@@ -2,7 +2,7 @@
 //  GroupChat.m
 //  DoctorFei_iOS
 //
-//  Created by GuJunjia on 15/5/6.
+//  Created by GuJunjia on 15/5/11.
 //
 //
 
@@ -25,6 +25,7 @@
 @dynamic taxis;
 @dynamic total;
 @dynamic visible;
+@dynamic allowDisturb;
 @dynamic chat;
 @dynamic member;
 

@@ -2,7 +2,7 @@
 //  GroupChat.h
 //  DoctorFei_iOS
 //
-//  Created by GuJunjia on 15/5/6.
+//  Created by GuJunjia on 15/5/11.
 //
 //
 
@@ -25,6 +25,7 @@
 @property (nonatomic, retain) NSNumber * taxis;
 @property (nonatomic, retain) NSNumber * total;
 @property (nonatomic, retain) NSNumber * visible;
+@property (nonatomic, retain) NSNumber * allowDisturb;
 @property (nonatomic, retain) Chat *chat;
 @property (nonatomic, retain) NSSet *member;
 @end

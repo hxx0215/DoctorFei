@@ -82,13 +82,7 @@
         NSLog(@"%@",responseObject);
         NSArray *dataArray = (NSArray *)responseObject;
         if ([dataArray firstObject][@"state"] && [[dataArray firstObject][@"state"]intValue] == 0) {
-//            MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-//            hud.mode = MBProgressHUDModeText;
-//            hud.labelText = [dataArray firstObject][@"msg"];
-//            [hud hide:YES afterDelay:1.0f];
         }else{
-//            [GroupChat MR_truncateAll];
-//            [Chat MR_deleteAllMatchingPredicate:[NSPredicate predicateWithFormat:@"type == %@", @5]];
             [GroupChat MR_deleteAllMatchingPredicate:[NSPredicate predicateWithFormat:@"chat == nil"]];
             for (NSDictionary *dict in dataArray) {
                 GroupChat *groupChat = [GroupChat MR_findFirstByAttribute:@"groupId" withValue:@([dict[@"groupid"] intValue])];
@@ -98,21 +92,15 @@
                 }
                 groupChat.name = dict[@"name"];
                 groupChat.flag = @([dict[@"flag"] intValue]);
-                groupChat.address = dict[@"address"];
+                groupChat.address = [dict[@"address"] isKindOfClass:[NSString class]] ? dict[@"address"] : nil;
                 groupChat.taxis = @([dict[@"taxis"] intValue]);
                 groupChat.latitude = @([dict[@"lat"]doubleValue]);
                 groupChat.longtitude = @([dict[@"long"]doubleValue]);
                 groupChat.visible = @([dict[@"visible"] intValue]);
                 groupChat.icon = dict[@"icon"];
-                groupChat.note = dict[@"note"];
+                groupChat.note = [dict[@"note"] isKindOfClass:[NSString class]] ? dict[@"note"]: nil;
                 groupChat.total = @([dict[@"total"]intValue]);
-//                Chat *receiveChat = [Chat MR_findFirstWithPredicate:[NSPredicate predicateWithFormat:@"type == %@ && chatId == %@", @5, @([dict[@"groupid"] intValue])]];
-//                if (receiveChat == nil) {
-//                    receiveChat = [Chat MR_createEntity];
-//                    receiveChat.chatId = @([dict[@"groupid"] intValue]);
-//                }
-//                receiveChat.type = @5;
-//                receiveChat.title = dict[@"name"];
+                groupChat.allowDisturb = @([dict[@"allowdisturb"] intValue]);
             }
             [[NSManagedObjectContext MR_defaultContext]MR_saveToPersistentStoreAndWait];
             dispatch_async(dispatch_get_main_queue(), ^{

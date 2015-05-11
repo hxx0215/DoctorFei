@@ -33,6 +33,7 @@ static NSString *ContactGroupUserCellIdentifier = @"ContactGroupUserCellIdentifi
 @property (weak, nonatomic) IBOutlet UISwitch *visiableSwitch;
 @property (weak, nonatomic) IBOutlet UISwitch *noDisturbSwitch;
 - (IBAction)visiableSwitchValueChanged:(id)sender;
+- (IBAction)disturbSwitchValueChanged:(id)sender;
 
 @end
 
@@ -65,6 +66,7 @@ static NSString *ContactGroupUserCellIdentifier = @"ContactGroupUserCellIdentifi
     [self updateQuitButtonTitle];
     [self fetchChatUser];
     [_visiableSwitch setOn:_currentGroupChat.visible.boolValue];
+    [_noDisturbSwitch setOn:_currentGroupChat.allowDisturb.boolValue];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -103,6 +105,39 @@ static NSString *ContactGroupUserCellIdentifier = @"ContactGroupUserCellIdentifi
     [self.collectionView removeObserver:self forKeyPath:@"contentSize"];
 }
 
+- (void)fetchGroupInfo {
+    NSNumber *userId = [[NSUserDefaults standardUserDefaults]objectForKey:@"UserId"];
+    NSDictionary *param = @{@"groupid": _currentGroupChat.groupId,
+                            @"userid": userId,
+                            @"usertype": @2};
+    [ChatAPI getGroupInfoWithParameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"%@",responseObject);
+        NSDictionary *dict = [responseObject firstObject];
+        if (dict) {
+            GroupChat *groupChat = [GroupChat MR_findFirstByAttribute:@"groupId" withValue:@([dict[@"groupid"] intValue])];
+            if (groupChat == nil) {
+                groupChat = [GroupChat MR_createEntity];
+                groupChat.groupId = @([dict[@"groupid"] intValue]);
+            }
+            groupChat.name = dict[@"name"];
+            groupChat.flag = @([dict[@"flag"] intValue]);
+            groupChat.address = [dict[@"address"] isKindOfClass:[NSString class]] ? dict[@"address"] : nil;
+            groupChat.taxis = @([dict[@"taxis"] intValue]);
+            groupChat.latitude = @([dict[@"lat"]doubleValue]);
+            groupChat.longtitude = @([dict[@"long"]doubleValue]);
+            groupChat.visible = @([dict[@"visible"] intValue]);
+            groupChat.icon = dict[@"icon"];
+            groupChat.note = [dict[@"note"] isKindOfClass:[NSString class]] ? dict[@"note"]: nil;
+            groupChat.total = @([dict[@"total"]intValue]);
+            groupChat.allowDisturb = @([dict[@"allowdisturb"] intValue]);
+            [[NSManagedObjectContext MR_defaultContext]MR_saveToPersistentStoreAndWait];
+            [self.noDisturbSwitch setOn:groupChat.allowDisturb.boolValue];
+            [self.visiableSwitch setOn:groupChat.visible.boolValue];
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"%@",error.localizedDescription);
+    }];
+}
 
 - (void)fetchChatUser{
     NSDictionary *param = @{@"groupid": _currentGroupChat.groupId};
@@ -400,11 +435,37 @@ static NSString *ContactGroupUserCellIdentifier = @"ContactGroupUserCellIdentifi
             hud.labelText = @"设置失败";
         }
         [hud hide:YES afterDelay:1.0f];
+        [self fetchGroupInfo];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"%@",error.localizedDescription);
         hud.mode = MBProgressHUDModeText;
         hud.labelText = error.localizedDescription;
         [hud hide:YES afterDelay:1.5f];
     }];
+}
+
+- (IBAction)disturbSwitchValueChanged:(id)sender {
+    NSDictionary *param = @{@"groupid": _currentGroupChat.groupId,
+                            @"allowdisturb": self.noDisturbSwitch.isOn ? @1 : @0};
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view.window animated:YES];
+    hud.labelText = @"设置中...";
+    [ChatAPI updateChatGroupWithParameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"%@",responseObject);
+        hud.mode = MBProgressHUDModeText;
+        if ([[responseObject firstObject][@"state"]intValue] == 1) {
+//            hud.labelText = [responseObject firstObject][@"msg"];
+            hud.labelText = self.visiableSwitch.isOn ? @"您将不会收到该群消息提醒": @"您将收到该群消息提醒";
+        }else{
+            hud.labelText = @"设置失败";
+        }
+        [hud hide:YES afterDelay:1.0f];
+        [self fetchGroupInfo];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"%@",error.localizedDescription);
+        hud.mode = MBProgressHUDModeText;
+        hud.labelText = error.localizedDescription;
+        [hud hide:YES afterDelay:1.5f];
+    }];
+
 }
 @end
