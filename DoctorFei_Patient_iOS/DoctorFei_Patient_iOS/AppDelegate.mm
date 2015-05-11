@@ -52,17 +52,14 @@
     NSLog(@"Documents Directory: %@", [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject]);
 #endif
     
-    /*
-     UMeng..需注册新Key
+
      
-    [MobClick startWithAppkey:@"54928fcbfd98c58aaa00136c" reportPolicy:BATCH channelId:@""];
+    [MobClick startWithAppkey:@"5550db92e0f55a1daf00449a" reportPolicy:BATCH channelId:@""];
     
-     */
     [MagicalRecord setupCoreDataStackWithStoreNamed:@"DoctorFei.sqlite"];
     
     [AFNetworkActivityIndicatorManager sharedManager].enabled = YES;
-    /*
-     JPush相关
+
     
     // Required
 #if __IPHONE_OS_VERSION_MAX_ALLOWED > __IPHONE_7_1
@@ -83,7 +80,6 @@
     // Required
     [APService setupWithOption:launchOptions];
     
-     */
     
     mapManager = [[BMKMapManager alloc]init];
     ret = [mapManager start:@"XmUOrGFycHzclI8BpnV6wjFX" generalDelegate:nil];
@@ -158,30 +154,30 @@
 }
 
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
-//    [APService registerDeviceToken:deviceToken];
+    [APService registerDeviceToken:deviceToken];
     //使用UUID设置别名
-//    [APService setAlias: [DeviceUtil getUUID] callbackSelector:@selector(tagsAliasCallback:tags:alias:) object:self];
+    [APService setAlias: [DeviceUtil getUUID] callbackSelector:@selector(tagsAliasCallback:tags:alias:) object:self];
 }
 
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
-//    [APService handleRemoteNotification:userInfo];
+    [APService handleRemoteNotification:userInfo];
 }
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
-//    [APService handleRemoteNotification:userInfo];
-//    completionHandler(UIBackgroundFetchResultNewData);
+    [APService handleRemoteNotification:userInfo];
+    completionHandler(UIBackgroundFetchResultNewData);
 }
 
 
-//- (void)tagsAliasCallback:(int)iResCode tags:(NSSet *)tags alias:(NSString *)alias {
-//    NSString *callbackString = [NSString stringWithFormat:@"%d, alias: %@\n", iResCode, alias];
-//    NSLog(@"TagsAlias回调:%@", callbackString);
-//    if (iResCode != 0){
-//        NSLog(@"注册别名失败");
-//    }
-//}
-//
+- (void)tagsAliasCallback:(int)iResCode tags:(NSSet *)tags alias:(NSString *)alias {
+    NSString *callbackString = [NSString stringWithFormat:@"%d, alias: %@\n", iResCode, alias];
+    NSLog(@"TagsAlias回调:%@", callbackString);
+    if (iResCode != 0){
+        NSLog(@"注册别名失败");
+    }
+}
+
 - (void)beginFetchUserLocation{
     [locationService startUserLocationService];
 }
