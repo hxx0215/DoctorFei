@@ -65,13 +65,15 @@ static NSString *ContactGroupUserCellIdentifier = @"ContactGroupUserCellIdentifi
     isCanDeleteUser = NO;
     [self updateQuitButtonTitle];
     [self fetchChatUser];
-    [_visiableSwitch setOn:_currentGroupChat.visible.boolValue];
-    [_noDisturbSwitch setOn:_currentGroupChat.allowDisturb.boolValue];
+//    [_visiableSwitch setOn:_currentGroupChat.visible.boolValue];
+//    [_noDisturbSwitch setOn:_currentGroupChat.allowDisturb.boolValue];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     _nameLabel.text = _currentGroupChat.name;
+    [self fetchGroupInfo];
+
 
 }
 - (void)didReceiveMemoryWarning {

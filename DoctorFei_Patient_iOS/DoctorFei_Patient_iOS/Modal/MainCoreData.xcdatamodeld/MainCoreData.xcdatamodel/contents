@@ -32,6 +32,7 @@
     </entity>
     <entity name="GroupChat" representedClassName="GroupChat" syncable="YES">
         <attribute name="address" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="allowDisturb" optional="YES" attributeType="Boolean" defaultValueString="0" syncable="YES"/>
         <attribute name="city" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="flag" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="groupId" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
@@ -41,6 +42,7 @@
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="note" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="taxis" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="total" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="visible" optional="YES" attributeType="Boolean" defaultValueString="0" syncable="YES"/>
         <relationship name="chat" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Chat" inverseName="groupChat" inverseEntity="Chat" syncable="YES"/>
         <relationship name="member" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="GroupChatFriend" inverseName="groupChat" inverseEntity="GroupChatFriend" syncable="YES"/>
@@ -71,7 +73,7 @@
     <elements>
         <element name="Chat" positionX="61" positionY="189" width="128" height="150"/>
         <element name="Friends" positionX="-63" positionY="-18" width="128" height="330"/>
-        <element name="GroupChat" positionX="54" positionY="144" width="128" height="240"/>
+        <element name="GroupChat" positionX="54" positionY="144" width="128" height="270"/>
         <element name="GroupChatFriend" positionX="45" positionY="135" width="128" height="133"/>
         <element name="Groups" positionX="45" positionY="126" width="128" height="103"/>
         <element name="Message" positionX="144" positionY="-21" width="128" height="148"/>

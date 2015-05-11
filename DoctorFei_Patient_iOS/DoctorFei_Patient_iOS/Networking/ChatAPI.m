@@ -22,6 +22,10 @@
 #define kMethodDelChatGroupUser @"set.chat.userdel"
 #define kMethodGetChatNote @"get.chat.note"
 #define kMethodSetChatNote @"set.chat.note"
+#define kMethodSearchGroup @"get.search.group"
+#define kMethodGetGroupInfo @"get.chat.groupinfo"
+#define kMethodJoinGroup @"set.chat.user"
+
 #import "NSString+Crypt.h"
 #import <JSONKit.h>
 @implementation ChatAPI
@@ -145,6 +149,16 @@
     [[self sharedManager]defaultGetWithMethod:kMethodSetChatNote WithParameters:parameters success:success failure:failure];
 }
 
++ (void)searchGroupWithParameters: (id)parameters success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure {
+    [[self sharedManager]defaultGetWithMethod:kMethodSearchGroup WithParameters:parameters success:success failure:failure];
+}
+
++ (void)getGroupInfoWithParameters: (id)parameters success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure{
+    [[self sharedManager]defaultGetWithMethod:kMethodGetGroupInfo WithParameters:parameters success:success failure:failure];
+}
++ (void)joinGroupWithParameters: (id)parameters success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure {
+    [[self sharedManager]defaultGetWithMethod:kMethodJoinGroup WithParameters:parameters success:success failure:failure];
+}
 
 
 @end

@@ -124,7 +124,8 @@ typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
             self.title = currentFriend.realname;
         }
     }else if (_currentChat.type.intValue == 3){
-        self.title = _currentChat.title;
+//        self.title = _currentChat.title;
+        self.title = [NSString stringWithFormat:@"%@ (%@)", _currentChat.groupChat.name, _currentChat.groupChat.total];
         groupUserButtonItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"group-data_btn"] style:UIBarButtonItemStyleBordered target:self action:@selector(groupUserButtonItemClicked:)];
         [groupUserButtonItem setTintColor:[UIColor whiteColor]];
         [self.navigationItem setRightBarButtonItem:groupUserButtonItem];

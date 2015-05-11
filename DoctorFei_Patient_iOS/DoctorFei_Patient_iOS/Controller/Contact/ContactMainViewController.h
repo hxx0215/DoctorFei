@@ -15,4 +15,5 @@ typedef void(^editCallback)(NSArray *friendSelect);
 @interface ContactMainViewController : UIViewController
 @property (nonatomic, assign)ContactMainViewControllerMode contactMode;
 @property (nonatomic, copy)editCallback didSelectFriend;
+@property (nonatomic, strong) NSMutableArray *selectedArray;
 @end

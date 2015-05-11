@@ -28,6 +28,7 @@
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentControl;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *cellSelected;
+
 - (IBAction)segmentValueChanged:(id)sender;
 
 @property (nonatomic, strong) RHAddressBook *addressbook;
@@ -216,7 +217,7 @@
             if (dict[@"state"] && [dict[@"state"]intValue] == 0) {
                 break;
             }
-            Friends *friend = [Friends MR_findFirstWithPredicate:[NSPredicate predicateWithFormat:@"userId == %@ && userType == %@", @([dict[@"userid"] intValue]), @([dict[@"usertype"]intValue])]];
+            Friends *friend = [Friends MR_findFirstWithPredicate:[NSPredicate predicateWithFormat:@"userId == %@ && userType == %@", @([dict[@"userid"] intValue]), type]];
             if (friend == nil) {
                 friend = [Friends MR_createEntity];
                 friend.userId = @([dict[@"userid"]intValue]);
@@ -268,6 +269,13 @@
         mutableSections[i] = sortedArrayForSection;
     }
     tableViewDataArray = mutableSections;
+    for (Friends *f in [Friends MR_findAll]){
+        if ([self.selectedArray containsObject:f])
+            [self.cellSelected addObject:f];
+    }
+    [self.selectedArray removeAllObjects];
+    if (self.cellSelected.count >0)
+        self.navigationItem.rightBarButtonItem.enabled = YES;
 
     
     [self.tableView reloadData];
