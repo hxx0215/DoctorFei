@@ -456,7 +456,7 @@ static NSString *ContactGroupUserCellIdentifier = @"ContactGroupUserCellIdentifi
         hud.mode = MBProgressHUDModeText;
         if ([[responseObject firstObject][@"state"]intValue] == 1) {
             //            hud.labelText = [responseObject firstObject][@"msg"];
-            hud.labelText = self.visiableSwitch.isOn ? @"您将不会收到该群消息提醒": @"您将收到该群消息提醒";
+            hud.labelText = self.noDisturbSwitch.isOn ? @"您将不会收到该群消息提醒": @"您将收到该群消息提醒";
         }else{
             hud.labelText = @"设置失败";
         }

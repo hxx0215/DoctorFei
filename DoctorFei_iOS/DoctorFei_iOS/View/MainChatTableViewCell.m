@@ -65,7 +65,14 @@
         [self.situationLabel setText:nil];
     }
     if ([_currentChat.unreadMessageCount intValue] > 0) {
-        self.badgeView.badgeText = [NSString stringWithFormat:@"%d", _currentChat.unreadMessageCount.intValue];
+        if (_currentChat.type.intValue == 3 &&  _currentChat.groupChat.allowDisturb.boolValue) {
+            self.badgeView.badgeText = @"  ";
+        }else{
+            if ([[[NSUserDefaults standardUserDefaults]objectForKey:@"EnableQuickReply"]boolValue]) {
+                self.badgeView.badgeText = @" ";
+            }
+            self.badgeView.badgeText = [NSString stringWithFormat:@"%d", _currentChat.unreadMessageCount.intValue];
+        }
     }
     else {
         self.badgeView.badgeText = @"";

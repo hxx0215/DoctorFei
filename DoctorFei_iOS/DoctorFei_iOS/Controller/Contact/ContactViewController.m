@@ -65,6 +65,7 @@
                  action:@selector(tableviewCellLongPressed:)];
     longPress.minimumPressDuration = 1.0;
     [self.tableView addGestureRecognizer:longPress];
+    
     [self initStableTableData];
     if (self.contactMode == ContactViewControllerModeNormal)
     {
@@ -273,6 +274,11 @@
     [DoctorAPI getFriendsWithParameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"%@",responseObject);
         NSArray *dataArray = (NSArray *)responseObject;
+        NSArray *setDataStateArray = [Friends MR_findByAttribute:@"userType" withValue:type];
+        for (Friends *friend in setDataStateArray) {
+            friend.isFriend = @NO;
+        }
+        [[NSManagedObjectContext MR_defaultContext]MR_saveToPersistentStoreAndWait];
         for (NSDictionary *dict in dataArray) {
             if (dict[@"state"] && [dict[@"state"]intValue] == 0) {
                 break;
@@ -768,15 +774,21 @@
 
     }
     else if (buttonIndex == 1) {
-        Chat *chat = [Chat MR_findFirstByAttribute:@"user" withValue:friend];
-        if (chat) {
-            [chat MR_deleteEntity];
+        NSArray *chatArray = [Chat MR_findAllWithPredicate:[NSPredicate predicateWithFormat:@"ANY user = %@", friend]];
+        for (Chat *chat in chatArray) {
+            if (chat.user.count == 1) {
+                [chat MR_deleteEntity];
+            }
         }
-        NSArray *messageArray = [Message MR_findByAttribute:@"user" withValue:friend];
-        for (Message *message in messageArray) {
-            [message MR_deleteEntity];
-        }
-        [[NSManagedObjectContext MR_defaultContext]MR_saveToPersistentStoreAndWait];
+//        Chat *chat = [Chat MR_findFirstByAttribute:@"user" withValue:friend];
+//        if (chat) {
+//            [chat MR_deleteEntity];
+//        }
+//        NSArray *messageArray = [Message MR_findByAttribute:@"user" withValue:friend];
+//        for (Message *message in messageArray) {
+//            [message MR_deleteEntity];
+//        }
+//        [[NSManagedObjectContext MR_defaultContext]MR_saveToPersistentStoreAndWait];
         MBProgressHUD *deleteHud = [MBProgressHUD showHUDAddedTo:self.view.window animated:YES];
         deleteHud.mode = MBProgressHUDModeText;
         deleteHud.labelText = @"聊天记录已清除";

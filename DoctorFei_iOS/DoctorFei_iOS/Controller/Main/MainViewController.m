@@ -241,10 +241,13 @@
         NSDictionary *result = [responseObject firstObject];
         dispatch_async(dispatch_get_main_queue(), ^{
             if ([result[@"allowdisturb"] intValue] == 1) {
+                [[NSUserDefaults standardUserDefaults]setObject:@YES forKey:@"EnableQuickReply"];
                 [self.quickReplyButton setSelected:YES];
             }else{
+                [[NSUserDefaults standardUserDefaults]setObject:@NO forKey:@"EnableQuickReply"];
                 [self.quickReplyButton setSelected:NO];
             }
+            [[NSUserDefaults standardUserDefaults]synchronize];
             currentFastReply = result[@"disturbtxt"];
         });
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {

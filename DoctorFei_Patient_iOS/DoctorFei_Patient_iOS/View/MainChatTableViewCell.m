@@ -13,6 +13,7 @@
 #import <UIImageView+WebCache.h>
 #import <JSBadgeView.h>
 #import <NSDate+DateTools.h>
+#import "GroupChat.h"
 
 @interface MainChatTableViewCell ()
 @property (weak, nonatomic) IBOutlet UIImageView *avatarImageView;
@@ -52,12 +53,20 @@
             [self.nameLabel setText: friend.realname];
         }
     }
+    else if (_currentChat.type.intValue == 3) {
+        [self.avatarImageView sd_setImageWithURL:[NSURL URLWithString:_currentChat.groupChat.icon] placeholderImage:[UIImage imageNamed:@"group_preinstall_pic"]];
+        [self.nameLabel setText:_currentChat.title];
+    }
     else {
         [self.avatarImageView setImage:[UIImage imageNamed:@"list_user-big_example_pic"]];
         [self.nameLabel setText:_currentChat.title];
     }
     if ([_currentChat.unreadMessageCount intValue] > 0) {
-        self.badgeView.badgeText = [NSString stringWithFormat:@"%d", _currentChat.unreadMessageCount.intValue];
+        if (_currentChat.type.intValue == 3 &&  _currentChat.groupChat.allowDisturb.boolValue) {
+            self.badgeView.badgeText = @"  ";
+        }else{
+            self.badgeView.badgeText = [NSString stringWithFormat:@"%d", _currentChat.unreadMessageCount.intValue];
+        }
     }
     else {
         self.badgeView.badgeText = @"";

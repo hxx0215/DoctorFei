@@ -22,7 +22,7 @@
 #import "NSString+PinYinUtil.h"
 
 @interface ContactMainViewController ()
-    <UITableViewDelegate, UITableViewDataSource, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate, UISearchDisplayDelegate, MFMessageComposeViewControllerDelegate>
+    <UITableViewDelegate, UITableViewDataSource, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate, UISearchDisplayDelegate, MFMessageComposeViewControllerDelegate, UIActionSheetDelegate>
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *rightItem;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentControl;
@@ -64,6 +64,14 @@
         default:
             break;
     }
+    
+    
+    UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc]
+                                               initWithTarget:self
+                                               action:@selector(tableviewCellLongPressed:)];
+    longPress.minimumPressDuration = 1.0;
+    [self.tableView addGestureRecognizer:longPress];
+
     if ([RHAddressBook authorizationStatus] == RHAuthorizationStatusNotDetermined) {
         [[[RHAddressBook alloc]init] requestAuthorizationWithCompletion:^(bool granted, NSError *error) {
             if (!granted) {
@@ -213,6 +221,11 @@
     [MemberAPI getFriendsWithParameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
 //        NSLog(@"%@",responseObject);
         NSArray *dataArray = (NSArray *)responseObject;
+        NSArray *setDataStateArray = [Friends MR_findByAttribute:@"userType" withValue:type];
+        for (Friends *friend in setDataStateArray) {
+            friend.isFriend = @NO;
+        }
+        [[NSManagedObjectContext MR_defaultContext]MR_saveToPersistentStoreAndWait];
         for (NSDictionary *dict in dataArray) {
             if (dict[@"state"] && [dict[@"state"]intValue] == 0) {
                 break;
@@ -524,5 +537,95 @@
     [controller dismissViewControllerAnimated:YES completion:nil];
     
 }
+
+-(void)tableviewCellLongPressed:(UILongPressGestureRecognizer *)gestureRecognizer{
+    if (gestureRecognizer.state == UIGestureRecognizerStateBegan) {
+        NSLog(@"UIGestureRecognizerStateBegan");
+        CGPoint ponit=[gestureRecognizer locationInView:self.tableView];
+        NSIndexPath* path=[self.tableView indexPathForRowAtPoint:ponit];
+        currentIndexPath = path;
+        //        NSLog(@"row:%ld",(long)path.row);
+        UIActionSheet *sheet  = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"删除好友",@"清空聊天记录", nil];
+        sheet.tag = 123;
+        //        [sheet showInView:self.view];
+        [sheet showFromTabBar:self.tabBarController.tabBar];
+    }else if(gestureRecognizer.state == UIGestureRecognizerStateEnded)
+    {
+        //未用
+    }
+    else if(gestureRecognizer.state == UIGestureRecognizerStateChanged)
+    {
+        //未用
+    }
+    
+    
+}
+#pragma mark - UIActionSheet Delegate
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    Friends *friend = tableViewDataArray[currentIndexPath.section - 1][currentIndexPath.row];
+    if (buttonIndex == 0) {
+        NSNumber *doctorId = [[NSUserDefaults standardUserDefaults]objectForKey:@"UserId"];
+        NSDictionary *params = @{
+                                 @"userid": doctorId,
+                                 @"friendid": friend.userId
+                                 };
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view.window animated:YES];
+        hud.dimBackground = YES;
+        hud.labelText = @"删除中...";
+        [MemberAPI delFriendWithParameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            NSDictionary *dict = [responseObject firstObject];
+            hud.mode = MBProgressHUDModeText;
+            if ([dict[@"state"]intValue] == 1) {
+                hud.labelText = @"删除成功";
+                for (Chat *chat in friend.chat) {
+                    if (chat.type.intValue < 3) {
+                        [chat MR_deleteEntity];
+                    }
+                }
+                //                Chat *chat = [Chat MR_findFirstByAttribute:@"user" withValue:friend];
+                //                if (chat) {
+                //                    [chat MR_deleteEntity];
+                //                }
+                [friend MR_deleteEntity];
+                [[NSManagedObjectContext MR_defaultContext]MR_saveToPersistentStoreAndWait];
+                [self reloadTableViewDataWithUserType:[self currentUserType]];
+            }
+            else {
+                hud.labelText = @"删除失败";
+                hud.detailsLabelText = dict[@"msg"];
+            }
+            [hud hide:YES afterDelay:1.0f];
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            NSLog(@"%@", error.localizedDescription);
+            hud.mode = MBProgressHUDModeText;
+            hud.labelText = @"错误";
+            hud.detailsLabelText = error.localizedDescription;
+            [hud hide:YES afterDelay:1.0f];
+        }];
+        
+    }
+    else if (buttonIndex == 1) {
+        NSArray *chatArray = [Chat MR_findAllWithPredicate:[NSPredicate predicateWithFormat:@"ANY user = %@", friend]];
+        for (Chat *chat in chatArray) {
+            if (chat.user.count == 1) {
+                [chat MR_deleteEntity];
+            }
+        }
+        //        Chat *chat = [Chat MR_findFirstByAttribute:@"user" withValue:friend];
+        //        if (chat) {
+        //            [chat MR_deleteEntity];
+        //        }
+        //        NSArray *messageArray = [Message MR_findByAttribute:@"user" withValue:friend];
+        //        for (Message *message in messageArray) {
+        //            [message MR_deleteEntity];
+        //        }
+        //        [[NSManagedObjectContext MR_defaultContext]MR_saveToPersistentStoreAndWait];
+        MBProgressHUD *deleteHud = [MBProgressHUD showHUDAddedTo:self.view.window animated:YES];
+        deleteHud.mode = MBProgressHUDModeText;
+        deleteHud.labelText = @"聊天记录已清除";
+        [deleteHud hide:YES afterDelay:1.0f];
+    }
+}
+
 
 @end
