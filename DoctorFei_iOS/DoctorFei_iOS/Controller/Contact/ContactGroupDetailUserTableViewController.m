@@ -330,6 +330,9 @@ static NSString *ContactGroupUserCellIdentifier = @"ContactGroupUserCellIdentifi
 
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (_currentGroupChat.flag.intValue > 0 && indexPath.row == 2) {
+        return 0;
+    }
     if (!isCanDeleteUser && (indexPath.row == 0 || indexPath.row == 2)) {
         return 0;
     }
@@ -418,6 +421,11 @@ static NSString *ContactGroupUserCellIdentifier = @"ContactGroupUserCellIdentifi
     }else if ([segue.identifier isEqualToString:@"ContactGroupInfoDetailSegueIdentifier"]) {
         ContactGroupNewGeneralViewController *vc = [segue destinationViewController];
         [vc setCurrentGroup:_currentGroupChat];
+        if (_currentGroupChat.flag.intValue > 0) {
+            [vc setVcMode:ContactGroupNewModePrivate];
+        }else{
+            [vc setVcMode:ContactGroupNewModeSameCity];
+        }
     }
 
 }
