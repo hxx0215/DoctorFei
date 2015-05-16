@@ -70,8 +70,8 @@
     NSNumber *userId = [[NSUserDefaults standardUserDefaults]objectForKey:@"UserId"];
     NSDictionary *params = @{
                              @"type": @2,
-//                             @"userid": [userId stringValue],
-//                             @"usertype": @2,
+                             @"userid": userId,
+                             @"usertype": @2,
                              @"pageSize": @Contact_PageSize,
                              @"pageIndex": [NSNumber numberWithInteger:pageIndex]
                              };

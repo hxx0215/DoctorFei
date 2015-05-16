@@ -10,6 +10,17 @@
 #import "MBProgressHUD.h"
 #import <UIImageView+WebCache.h>
 #import "DoctorAPI.h"
+
+@interface DoctorRankTableViewCell ()
+@property (nonatomic,weak) IBOutlet UILabel *nameLabel;
+@property (nonatomic,weak) IBOutlet UIImageView *iconImage;
+@property (nonatomic,weak) IBOutlet UIButton *addButton;
+@property (weak, nonatomic) IBOutlet UILabel *hospitalLabel;
+@property (weak, nonatomic) IBOutlet UILabel *jobLabel;
+@property (weak, nonatomic) IBOutlet UILabel *departmentLabel;
+@property (weak, nonatomic) IBOutlet UILabel *zanLabel;
+@end
+
 @implementation DoctorRankTableViewCell
 {
     NSMutableDictionary *dict;
@@ -61,5 +72,9 @@
     self.nameLabel.text = dict[@"realname"];
     [self.iconImage sd_setImageWithURL:dict[@"icon"] placeholderImage:[UIImage imageNamed:@"doctor-ranking_preinstall_pic.png"]];
     self.addButton.enabled = ![dic[@"myfirend"] integerValue];
+    self.hospitalLabel.text = dict[@"hospital"];
+    self.jobLabel.text = dict[@"jobtitle"];
+    self.departmentLabel.text = dict[@"department"];
+    self.zanLabel.text = [dict[@"zan"] stringValue];
 }
 @end

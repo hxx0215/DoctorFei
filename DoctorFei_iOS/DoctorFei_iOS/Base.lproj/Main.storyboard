@@ -8101,15 +8101,41 @@
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="李晓峰" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="phL-Nf-fvV">
                                             <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="20" id="NCP-g6-gUx"/>
+                                            </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="NCP-g6-gUx"/>
+                                                </mask>
+                                            </variation>
+                                            <variation key="heightClass=regular-widthClass=compact">
+                                                <mask key="constraints">
+                                                    <include reference="NCP-g6-gUx"/>
+                                                </mask>
+                                            </variation>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="河南省人民医院" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ncj-sS-yM5">
                                             <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="15" id="VSC-bj-zUo"/>
+                                            </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="VSC-bj-zUo"/>
+                                                </mask>
+                                            </variation>
+                                            <variation key="heightClass=regular-widthClass=compact">
+                                                <mask key="constraints">
+                                                    <include reference="VSC-bj-zUo"/>
+                                                </mask>
+                                            </variation>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="医师" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pTk-sm-m8W">
                                             <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
@@ -8145,8 +8171,7 @@
                                                     <exclude reference="agk-Ka-Nwv"/>
                                                 </mask>
                                             </variation>
-                                            <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                <rect key="frame" x="535" y="23" width="40" height="20"/>
+                                            <variation key="heightClass=regular-widthClass=compact">
                                                 <mask key="constraints">
                                                     <include reference="6zg-4E-mN6"/>
                                                     <include reference="agk-Ka-Nwv"/>
@@ -8161,18 +8186,12 @@
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <color key="textColor" red="0.4549019608" green="0.7843137255" blue="0.1960784314" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
-                                            <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                <rect key="frame" x="554" y="54" width="28" height="15"/>
-                                            </variation>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="赞" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FTN-ef-5Bj">
                                             <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <color key="textColor" red="0.45490196078431372" green="0.78431372549019607" blue="0.19607843137254902" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
-                                            <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                <rect key="frame" x="539" y="54" width="12" height="15"/>
-                                            </variation>
                                         </label>
                                     </subviews>
                                     <constraints>
@@ -8181,7 +8200,7 @@
                                         <constraint firstItem="phL-Nf-fvV" firstAttribute="leading" secondItem="W2i-Tl-LYq" secondAttribute="leading" id="Crd-K4-Ccc"/>
                                         <constraint firstItem="W2i-Tl-LYq" firstAttribute="centerY" secondItem="VSC-3K-MQa" secondAttribute="centerY" id="EMF-j1-iAn"/>
                                         <constraint firstAttribute="trailing" secondItem="vdl-Lx-Gsn" secondAttribute="trailing" constant="25" id="HD2-O1-nTd"/>
-                                        <constraint firstItem="8oG-ZK-GhD" firstAttribute="leading" secondItem="5H6-4f-Dc9" secondAttribute="leadingMargin" constant="13" id="KEY-bS-Z5d"/>
+                                        <constraint firstItem="8oG-ZK-GhD" firstAttribute="leading" secondItem="5H6-4f-Dc9" secondAttribute="leading" constant="20" id="KEY-bS-Z5d"/>
                                         <constraint firstItem="FTN-ef-5Bj" firstAttribute="leading" secondItem="vdl-Lx-Gsn" secondAttribute="leading" id="OLu-YS-t10">
                                             <variation key="heightClass=regular-widthClass=compact" constant="4"/>
                                         </constraint>
@@ -8191,7 +8210,7 @@
                                         </constraint>
                                         <constraint firstItem="FTN-ef-5Bj" firstAttribute="centerY" secondItem="VSC-3K-MQa" secondAttribute="centerY" id="a5c-Wg-ZYt"/>
                                         <constraint firstItem="VSC-3K-MQa" firstAttribute="leading" secondItem="W2i-Tl-LYq" secondAttribute="trailing" constant="8" id="cBO-13-et0"/>
-                                        <constraint firstItem="vdl-Lx-Gsn" firstAttribute="top" secondItem="5H6-4f-Dc9" secondAttribute="topMargin" constant="15" id="fHp-sE-O5V"/>
+                                        <constraint firstItem="vdl-Lx-Gsn" firstAttribute="top" secondItem="5H6-4f-Dc9" secondAttribute="top" constant="23" id="fHp-sE-O5V"/>
                                         <constraint firstItem="pTk-sm-m8W" firstAttribute="leading" secondItem="Ncj-sS-yM5" secondAttribute="trailing" constant="8" id="izG-ph-zXa"/>
                                         <constraint firstItem="Ncj-sS-yM5" firstAttribute="top" secondItem="pTk-sm-m8W" secondAttribute="top" id="jWq-wo-kCY"/>
                                         <constraint firstItem="W2i-Tl-LYq" firstAttribute="top" secondItem="Ncj-sS-yM5" secondAttribute="bottom" constant="9" id="kbz-TV-VUs">
@@ -8272,8 +8291,12 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="addButton" destination="vdl-Lx-Gsn" id="I83-yC-9wC"/>
+                                    <outlet property="departmentLabel" destination="VSC-3K-MQa" id="Y0c-li-IXp"/>
+                                    <outlet property="hospitalLabel" destination="Ncj-sS-yM5" id="8Xk-QX-sb3"/>
                                     <outlet property="iconImage" destination="8oG-ZK-GhD" id="6zv-CF-n32"/>
+                                    <outlet property="jobLabel" destination="pTk-sm-m8W" id="Ehp-Dh-5XU"/>
                                     <outlet property="nameLabel" destination="phL-Nf-fvV" id="XGd-6e-qgR"/>
+                                    <outlet property="zanLabel" destination="hCj-2w-9lV" id="0dR-Y3-ilc"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
