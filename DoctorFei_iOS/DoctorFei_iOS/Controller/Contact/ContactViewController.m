@@ -194,6 +194,8 @@
             self.tableVIewTopConstraint.constant = -38;
             self.segmentControl.hidden = YES;
             self.segmentControl.selectedSegmentIndex = 1;
+            [self fetchFriendWithUsertype:[self currentUserType]];
+            [self reloadTableViewDataWithUserType:[self currentUserType]];
         default:
             break;
     }
@@ -481,7 +483,7 @@
         MFMessageComposeViewController *mf = [[MFMessageComposeViewController alloc]init];
         mf.messageComposeDelegate = self;
         mf.navigationBar.tintColor = UIColorFromRGB(0x6EA800);
-        mf.body = @"";
+        mf.body = @"推荐！最近在使用一款非常便捷的医患社交APP费医生，微信聊天的功能全都在里面，还专业地为医生提供患者预约咨询、诊后随防、病患管理等功能，让医生工作更轻松，帮助解决医患交流，提升患者依从性，维护良好医患关系。快来体验吧！";
         mf.recipients = @[[person.phoneNumbers valueAtIndex:0]];
         [self presentViewController:mf animated:YES completion:nil];
         smsHud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];

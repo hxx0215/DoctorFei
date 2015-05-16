@@ -87,7 +87,7 @@
     rotation.duration = 0.7f; // Speed
     rotation.repeatCount = HUGE_VALF; // Repeat forever. Can be a finite number.
     
-    [self getAuditStatus];
+    [self refreshApproveResult];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -167,6 +167,21 @@
         self.auditButton.selected = YES;
     else
         self.auditButton.selected = NO;
+}
+
+- (void)refreshApproveResult{
+    NSNumber *doctorId = [[NSUserDefaults standardUserDefaults] objectForKey:@"UserId"];
+    NSDictionary *params = @{
+                             @"doctorid": doctorId,
+                             };
+    [DoctorAPI getAuditWithParameters:params success:^(AFHTTPRequestOperation *operation,id responseObject){
+        NSLog(@"%@",responseObject);
+        [[NSUserDefaults standardUserDefaults] setObject:responseObject[0][@"state"] forKey:@"auditState"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        [self getAuditStatus];
+    }failure:^(AFHTTPRequestOperation *operation, NSError *error){
+        NSLog(@"%@",error);
+    }];
 }
 - (void)fetchArrangement {
     NSMutableArray *array = [NSMutableArray array];
