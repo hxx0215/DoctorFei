@@ -25,6 +25,8 @@
     BMKGeoCodeSearch *geoSearch;
     BOOL isCanLocate, isCanPOI, isLoading;
     NSArray *infoArray;
+    CLLocationCoordinate2D *currentLocation;
+    NSString *currentAddress;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -33,15 +35,21 @@
     isLoading = YES;
     // Do any additional setup after loading the view.
     [self.tableView setTableFooterView:[UIView new]];
+    
 
-    [BMKLocationService setLocationDesiredAccuracy:kCLLocationAccuracyNearestTenMeters];
-    [BMKLocationService setLocationDistanceFilter:100.f];
-    locationService = [[BMKLocationService alloc]init];
-    locationService.delegate = self;
-    [locationService startUserLocationService];
+    if ([CLLocationManager locationServicesEnabled] && ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorizedWhenInUse || [CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorized)) {
+        isCanLocate = YES;
+        [BMKLocationService setLocationDesiredAccuracy:kCLLocationAccuracyBest];
+        [BMKLocationService setLocationDistanceFilter:30.0f];
+        locationService = [[BMKLocationService alloc]init];
+        locationService.delegate = self;
+        [locationService startUserLocationService];
 
-    geoSearch = [[BMKGeoCodeSearch alloc]init];
-    geoSearch.delegate = self;
+        geoSearch = [[BMKGeoCodeSearch alloc]init];
+        geoSearch.delegate = self;
+    }else{
+        isCanLocate = NO;
+    }
     [self.nextButton setEnabled:NO];
 }
 - (void)viewWillDisappear:(BOOL)animated {
@@ -102,17 +110,28 @@
     BMKReverseGeoCodeOption *option = [[BMKReverseGeoCodeOption alloc]init];
     option.reverseGeoPoint = userLocation.location.coordinate;
     isCanPOI = [geoSearch reverseGeoCode:option];
+//    [self.tableView reloadData];
 }
 - (void)didFailToLocateUserWithError:(NSError *)error {
     NSLog(@"Get Location Error: %@",error.localizedDescription);
     isCanLocate = NO;
+    [self.tableView reloadData];
 }
 
 #pragma mark - BMKGeoCode Delegate
 - (void)onGetReverseGeoCodeResult:(BMKGeoCodeSearch *)searcher result:(BMKReverseGeoCodeResult *)result errorCode:(BMKSearchErrorCode)error {
     isLoading = NO;
     if (error == BMK_SEARCH_NO_ERROR) {
-        infoArray = result.poiList;
+        if (result.poiList.count > 0) {
+            infoArray = result.poiList;
+        }
+        else{
+            BMKPoiInfo *info = [[BMKPoiInfo alloc]init];
+            info.name = @"当前位置";
+            info.address = result.address;
+            info.city = result.addressDetail.city;
+            infoArray = @[info];
+        }
         [self.tableView reloadData];
         [self.tableView layoutIfNeeded];
         [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:YES scrollPosition:UITableViewScrollPositionTop];
