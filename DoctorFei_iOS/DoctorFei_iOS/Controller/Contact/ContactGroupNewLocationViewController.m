@@ -138,6 +138,9 @@
         [self.nextButton setEnabled:YES];
         return;
     }
+    else{
+        isCanPOI = NO;
+    }
     [self.tableView reloadData];
 }
 

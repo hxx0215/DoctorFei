@@ -38,14 +38,17 @@ static NSString *ContactGroupNearbyCellIdentifier = @"ContactGroupNearbyCellIden
     [super viewDidLoad];
     isCanLocate = YES;
     // Do any additional setup after loading the view.
-    [BMKLocationService setLocationDesiredAccuracy:kCLLocationAccuracyNearestTenMeters];
-    [BMKLocationService setLocationDistanceFilter:100.f];
-    locationService = [[BMKLocationService alloc]init];
-    locationService.delegate = self;
-    [locationService startUserLocationService];
-    
+    if ([CLLocationManager locationServicesEnabled] && ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorizedWhenInUse || [CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorized)) {
+        [BMKLocationService setLocationDesiredAccuracy:kCLLocationAccuracyNearestTenMeters];
+        [BMKLocationService setLocationDistanceFilter:100.f];
+        locationService = [[BMKLocationService alloc]init];
+        locationService.delegate = self;
+        [locationService startUserLocationService];
+    }else{
+        isCanLocate = NO;
+    }
     [self.tableView setTableFooterView:[UIView new]];
-    
+    [self.tableView reloadData];
     pageNum = 1;
     nearbyArray = [NSMutableArray array];
 }
@@ -140,6 +143,7 @@ static NSString *ContactGroupNearbyCellIdentifier = @"ContactGroupNearbyCellIden
 - (void)didFailToLocateUserWithError:(NSError *)error {
     NSLog(@"Get Location Error: %@",error.localizedDescription);
     isCanLocate = NO;
+    [self.tableView reloadData];
 }
 
 #pragma mark - DZNEmptyDatasource
