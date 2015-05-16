@@ -25,8 +25,6 @@
     BMKGeoCodeSearch *geoSearch;
     BOOL isCanLocate, isCanPOI, isLoading;
     NSArray *infoArray;
-    CLLocationCoordinate2D *currentLocation;
-    NSString *currentAddress;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -110,7 +108,9 @@
     BMKReverseGeoCodeOption *option = [[BMKReverseGeoCodeOption alloc]init];
     option.reverseGeoPoint = userLocation.location.coordinate;
     isCanPOI = [geoSearch reverseGeoCode:option];
-//    [self.tableView reloadData];
+    if (!isCanPOI) {
+        [self.tableView reloadData];
+    }
 }
 - (void)didFailToLocateUserWithError:(NSError *)error {
     NSLog(@"Get Location Error: %@",error.localizedDescription);
