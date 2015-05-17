@@ -31,7 +31,7 @@
 {
     UIBarButtonItem *fetchButtonItem, *loadingButtonItem;
     CABasicAnimation *rotation;
-    NSArray *chatArray;
+    NSMutableArray *chatArray;
 }
 
 - (void)viewDidLoad {
@@ -113,14 +113,14 @@
 #pragma mark - Actions
 - (void)reloadTableViewData {
 //    chatArray = [Chat MR_findAll];
-    chatArray = [Chat MR_findAllWithPredicate:[NSPredicate predicateWithFormat:@"messages.@count > 0"]];
-    chatArray = [chatArray sortedArrayUsingComparator:^NSComparisonResult(Chat *obj1, Chat *obj2) {
+    NSArray *Array = [Chat MR_findAllWithPredicate:[NSPredicate predicateWithFormat:@"messages.@count > 0"]];
+    chatArray = [[Array sortedArrayUsingComparator:^NSComparisonResult(Chat *obj1, Chat *obj2) {
         Message *last1 = [Message MR_findFirstWithPredicate:[NSPredicate predicateWithFormat:@"chat == %@", obj1] sortedBy:@"messageId" ascending:NO];
         Message *last2 = [Message MR_findFirstWithPredicate:[NSPredicate predicateWithFormat:@"chat == %@", obj2] sortedBy:@"messageId" ascending:NO];
         NSDate *last1Date = last1.createtime;
         NSDate *last2Date = last2.createtime;
         return [last2Date compare:last1Date];
-    }];
+    }] mutableCopy];
     [self.tableView reloadData];
 }
 
@@ -140,6 +140,17 @@
 
 
 #pragma mark - UITableView Delegate
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    return YES;
+}
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        Chat *deleteChat = chatArray[indexPath.row];
+        [deleteChat MR_deleteEntity];
+        [chatArray removeObjectAtIndex:indexPath.row];
+        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+    }
+}
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 65.0f;
 }
