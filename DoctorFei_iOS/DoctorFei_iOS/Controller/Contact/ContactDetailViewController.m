@@ -42,6 +42,7 @@
 #import "MyPageViewController.h"
 #import "EmotionsKeyboardBuilder.h"
 #import "DataUtil.h"
+#import "JSONKit.h"
 typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
     SMSToolbarSendMethodVoice,
     SMSToolbarSendMethodText
@@ -729,48 +730,85 @@ typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
         if (mode == 3){
             vc.didSelectFriends = ^(NSArray *friend){
                 Friends *currentFriend = _currentChat.user.allObjects.firstObject;
-                NSString *doctorIdArrayString = [[friend valueForKeyPath:@"userId"]componentsJoinedByString:@","];
+//                NSString *doctorIdArrayString = [[friend valueForKeyPath:@"userId"]componentsJoinedByString:@","];
                 
+                NSMutableArray *joinArray = [NSMutableArray array];
+                for (Friends *friendItem in friend) {
+                    [joinArray addObject:@{@"id": friendItem.userId, @"type": friendItem.userType}];
+                }
+                [joinArray addObject:@{@"id": currentFriend.userId, @"type" : currentFriend.userType}];
                 NSDictionary *param = @{
                                         @"userid":[[NSUserDefaults standardUserDefaults] objectForKey:@"UserId"],
-                                        @"memberid": currentFriend.userId,
-                                        @"joinuserids" : doctorIdArrayString
+//                                        @"memberid": currentFriend.userId,
+                                        @"usertype": @2,
+                                        @"flag":@1,
+                                        @"name":[NSString stringWithFormat:@"患者%@的会诊", currentFriend.realname],
+                                        @"joinuserids" : [joinArray JSONString]
                                         };
-                [ChatAPI setTempGroupWithParameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                [ChatAPI setChatGroupWithParameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
                     NSLog(@"%@",responseObject);
                     NSDictionary *result = [responseObject firstObject];
-                    NSNumber *tempGroupId = result[@"curid"];
-                    if ([result[@"curid"] intValue] > 0) {
-                        Chat *tempChat = [Chat MR_findFirstWithPredicate:[NSPredicate predicateWithFormat:@"type == %@ && chatId == %@", @4, tempGroupId]];
+                    if ([result[@"state"] intValue] == 1) {
+                        GroupChat *groupChat = [GroupChat MR_findFirstByAttribute:@"groupId" withValue:result[@"curid"]];
+                        if (groupChat == nil) {
+                            groupChat = [GroupChat MR_createEntity];
+                            groupChat.groupId = result[@"curid"];
+                        }
+                        groupChat.flag = @1;
+                        groupChat.name = [NSString stringWithFormat:@"患者%@的会诊", currentFriend.realname];
+                        groupChat.total = @(joinArray.count + 1);
+                        Chat *tempChat = [Chat MR_findFirstByAttribute:@"chatId" withValue:groupChat.groupId];
                         if (tempChat == nil) {
                             tempChat = [Chat MR_createEntity];
-                            tempChat.type = @4;
-                            tempChat.chatId = tempGroupId;
+                            tempChat.chatId = groupChat.groupId;
                         }
-                        tempChat.title = [NSString stringWithFormat:@"患者%@的会诊", currentFriend.realname];
-                        tempChat.user = [tempChat.user setByAddingObjectsFromArray:friend];
+                        tempChat.type = @3;
+                        tempChat.title =[NSString stringWithFormat:@"患者%@的会诊", currentFriend.realname];
+                        groupChat.chat = tempChat;
+                        tempChat.groupChat = groupChat;
                         [[NSManagedObjectContext MR_defaultContext]MR_saveToPersistentStoreAndWait];
-                        
-                        //
-                        ContactDetailViewController *contact = [self.storyboard instantiateViewControllerWithIdentifier:@"ContactDetailStoryboardID"];//[[ContactDetailViewController alloc] init];
-                        //                contact.currentFriend = self.currentFriend;
-                        //                contact.detailMode = ContactDetailModeConsultation;
+                        ContactDetailViewController *contact = [self.storyboard instantiateViewControllerWithIdentifier:@"ContactDetailStoryboardID"];
                         [contact setCurrentChat:tempChat];
-//                        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:contact];
-//                        nav.navigationBar.barTintColor = self.navigationController.navigationBar.barTintColor;
-//                        nav.navigationBar.translucent = self.navigationController.navigationBar.translucent;
-//                        nav.navigationBar.barStyle = self.navigationController.navigationBar.barStyle;
-//                        nav.navigationBar.titleTextAttributes = self.navigationController.navigationBar.titleTextAttributes;
-//                        [self.navigationController presentViewController:nav animated:YES completion:^{
-//                            
-//                        }];
-//
                         [self.navigationController pushViewController:contact animated:YES];
-                        
                     }
                 } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                     NSLog(@"%@",error.localizedDescription);
                 }];
+//                [ChatAPI setTempGroupWithParameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
+//                    NSLog(@"%@",responseObject);
+//                    NSDictionary *result = [responseObject firstObject];
+//                    NSNumber *tempGroupId = result[@"curid"];
+//                    if ([result[@"curid"] intValue] > 0) {
+//                        Chat *tempChat = [Chat MR_findFirstWithPredicate:[NSPredicate predicateWithFormat:@"type == %@ && chatId == %@", @4, tempGroupId]];
+//                        if (tempChat == nil) {
+//                            tempChat = [Chat MR_createEntity];
+//                            tempChat.type = @4;
+//                            tempChat.chatId = tempGroupId;
+//                        }
+//                        tempChat.title = [NSString stringWithFormat:@"患者%@的会诊", currentFriend.realname];
+//                        tempChat.user = [tempChat.user setByAddingObjectsFromArray:friend];
+//                        [[NSManagedObjectContext MR_defaultContext]MR_saveToPersistentStoreAndWait];
+//                        
+//                        //
+//                        ContactDetailViewController *contact = [self.storyboard instantiateViewControllerWithIdentifier:@"ContactDetailStoryboardID"];//[[ContactDetailViewController alloc] init];
+//                        //                contact.currentFriend = self.currentFriend;
+//                        //                contact.detailMode = ContactDetailModeConsultation;
+//                        [contact setCurrentChat:tempChat];
+////                        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:contact];
+////                        nav.navigationBar.barTintColor = self.navigationController.navigationBar.barTintColor;
+////                        nav.navigationBar.translucent = self.navigationController.navigationBar.translucent;
+////                        nav.navigationBar.barStyle = self.navigationController.navigationBar.barStyle;
+////                        nav.navigationBar.titleTextAttributes = self.navigationController.navigationBar.titleTextAttributes;
+////                        [self.navigationController presentViewController:nav animated:YES completion:^{
+////                            
+////                        }];
+////
+//                        [self.navigationController pushViewController:contact animated:YES];
+//                        
+//                    }
+//                } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//                    NSLog(@"%@",error.localizedDescription);
+//                }];
             };
         }
         else{

@@ -171,6 +171,9 @@
 
 - (void)refreshApproveResult{
     NSNumber *doctorId = [[NSUserDefaults standardUserDefaults] objectForKey:@"UserId"];
+    if (doctorId == nil) {
+        return;
+    }
     NSDictionary *params = @{
                              @"doctorid": doctorId,
                              };

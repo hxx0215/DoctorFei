@@ -114,6 +114,7 @@
 - (void)didFailToLocateUserWithError:(NSError *)error {
     NSLog(@"Get Location Error: %@",error.localizedDescription);
     isCanLocate = NO;
+    [self.tableView reloadData];
 }
 
 #pragma mark - BMKGeoCode Delegate
