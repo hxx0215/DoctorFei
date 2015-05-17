@@ -25,6 +25,9 @@
     [_nameLabel setText:_dataDict[@"realname"]];
     [_avatarImageView sd_setImageWithURL:[NSURL URLWithString:_dataDict[@"icon"]] placeholderImage:[UIImage imageNamed:@"doctor-ranking_preinstall_pic"]];
     [_addButton setEnabled:![_dataDict[@"myfriend"]intValue]];
+    self.hospitalLabel.text = [NSString stringWithFormat:@"%@ %@",_dataDict[@"hospital"],_dataDict[@"jobtitle"] ];
+    self.goodAtLabel.text = _dataDict[@"department"];
+    self.upCountLabel.text = [NSString stringWithFormat:@"赞 %@",[_dataDict[@"zan"] stringValue]];
 }
 
 - (void)awakeFromNib {
