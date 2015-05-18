@@ -198,6 +198,7 @@
 }
 
 - (IBAction)demoButtonClicked:(id)sender {
+    [DataUtil cleanCoreData];
     [[NSUserDefaults standardUserDefaults] setObject:@1 forKey:@"UserId"];
     [self dismissViewControllerAnimated:YES
                              completion:nil];

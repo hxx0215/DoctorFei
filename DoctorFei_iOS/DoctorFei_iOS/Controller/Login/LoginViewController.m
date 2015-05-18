@@ -24,6 +24,7 @@
 - (IBAction)loginButtonClicked:(id)sender;
 @property (weak, nonatomic) IBOutlet UIButton *autoLoginButton;
 - (IBAction)autoLoginButtonClicked:(id)sender;
+- (IBAction)demoButtonClicked:(id)sender;
 
 @end
 
@@ -181,6 +182,13 @@
     else{
         [self.autoLoginButton setSelected:YES];
     }
+}
+
+- (IBAction)demoButtonClicked:(id)sender {
+    [DataUtil cleanCoreData];
+    [[NSUserDefaults standardUserDefaults] setObject:@1 forKey:@"UserId"];
+    [self dismissViewControllerAnimated:YES
+                             completion:nil];
 }
 
 #pragma mark - UITextField Delegate
