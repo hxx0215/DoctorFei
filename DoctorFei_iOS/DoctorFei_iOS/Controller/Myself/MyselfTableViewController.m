@@ -53,7 +53,7 @@
     
     
     [self.tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
-    [self.introductionTextView setTextContainerInset:UIEdgeInsetsZero];
+//    [self.introductionTextView setTextContainerInset:UIEdgeInsetsZero];
     
 }
 

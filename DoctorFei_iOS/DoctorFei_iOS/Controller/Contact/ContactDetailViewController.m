@@ -309,6 +309,7 @@ typedef NS_ENUM(NSUInteger, SMSToolbarSendMethod) {
 }
 
 - (void)faceButtonClicked:(UIButton *)sender {
+    [self setToolbarSendMethod:SMSToolbarSendMethodText];
     if (self.inputToolbar.contentView.textView.isFirstResponder) {
         if (self.inputToolbar.contentView.textView.emoticonsKeyboard) [self.inputToolbar.contentView.textView switchToDefaultKeyboard];
         else [self.inputToolbar.contentView.textView switchToEmoticonsKeyboard:[EmotionsKeyboardBuilder sharedEmoticonsKeyboard]];

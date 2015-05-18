@@ -106,25 +106,22 @@
     }
 }
 
-#pragma mark - Actions
-- (IBAction)loginButtonClicked:(id)sender {
-
-//    NSLog(@"%@",[APService registrationID]);
-    if (self.autoLoginButton.selected)
-    {
-        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        [defaults setObject:self.phoneTextField.text forKey:@"autoLoginUserName"];
-        [defaults setObject:self.passwordTextField.text forKey:@"autoLoginPassword"];
-        [defaults synchronize];
-    }
+- (void)loginActionWithUsername: (NSString *)username password:(NSString *)password sn:(NSString *)sn {
+//    if (self.autoLoginButton.selected)
+//    {
+//        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+//        [defaults setObject:self.phoneTextField.text forKey:@"autoLoginUserName"];
+//        [defaults setObject:self.passwordTextField.text forKey:@"autoLoginPassword"];
+//        [defaults synchronize];
+//    }
     
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view.window animated:YES];
     hud.dimBackground = YES;
     [hud setLabelText:@"登录中..."];
     NSDictionary *params = @{
-                             @"username": self.phoneTextField.text,
-                             @"password": self.passwordTextField.text,
-                             @"sn": [DeviceUtil getUUID]
+                             @"username": username,
+                             @"password": password,
+                             @"sn": sn
                              };
     NSLog(@"%@",params);
     [DoctorAPI loginWithParameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
@@ -173,7 +170,14 @@
         [hud hide:YES afterDelay:1.5f];
     }];
     
+}
+#pragma mark - Actions
+- (IBAction)loginButtonClicked:(id)sender {
+
+//    NSLog(@"%@",[APService registrationID]);
+    
 //    [self dismissViewControllerAnimated:YES completion:nil];
+    [self loginActionWithUsername:self.phoneTextField.text password:self.passwordTextField.text sn:[DeviceUtil getUUID]];
 }
 - (IBAction)autoLoginButtonClicked:(id)sender {
     if ([self.autoLoginButton isSelected]) {
@@ -186,9 +190,10 @@
 
 - (IBAction)demoButtonClicked:(id)sender {
     [DataUtil cleanCoreData];
-    [[NSUserDefaults standardUserDefaults] setObject:@1 forKey:@"UserId"];
-    [self dismissViewControllerAnimated:YES
-                             completion:nil];
+//    [[NSUserDefaults standardUserDefaults] setObject:@1 forKey:@"UserId"];
+//    [self dismissViewControllerAnimated:YES
+//                             completion:nil];
+    [self loginActionWithUsername:@"18888888888" password:@"123456" sn:@""];
 }
 
 #pragma mark - UITextField Delegate

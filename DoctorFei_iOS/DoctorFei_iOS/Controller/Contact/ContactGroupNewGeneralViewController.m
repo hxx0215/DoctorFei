@@ -36,7 +36,7 @@
         if (_vcMode == ContactGroupNewModePrivate) {
             return @(name.length > 1 && name.length < 11);
         }
-        return @(name.length > 1 && name.length < 11 && intro.length > 14 && ![intro isEqualToString:@"请输入群简介(不少于15个字)"]);
+        return @(name.length > 1 && name.length < 11 && ([_introTextView.markedTextRange isEmpty] || _introTextView.markedTextRange == nil) && intro.length > 14 && ![intro isEqualToString:@"请输入群简介(不少于15个字)"]);
     }];
     if (_vcMode == ContactGroupNewModePrivate) {
         [_commitButton setTitle:@"保存并提交" forState:UIControlStateNormal];
