@@ -3085,6 +3085,11 @@
 					6AFD40411A5D5EF4009C0080 = {
 						CreatedOnToolsVersion = 6.1.1;
 						DevelopmentTeam = 6LJK287Y2H;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 					6AFD405A1A5D5EF4009C0080 = {
 						CreatedOnToolsVersion = 6.1.1;
@@ -4056,8 +4061,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Keke Li (59VBND372M)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Keke Li (59VBND372M)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/DoctorFei_Patient_iOS/ThirdParty/ShareSDK/Connection",
@@ -4080,7 +4085,7 @@
 					"$(PROJECT_DIR)/DoctorFei_Patient_iOS/ThirdParty/ShareSDK/Extend/WeChatSDK",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "7e92afdc-6e08-484d-97c7-56c61b557e5b";
 				SWIFT_OBJC_BRIDGING_HEADER = "DoctorFei_Patient_iOS/View/DoctorFei_Patient_iOS-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -4093,8 +4098,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Keke Li (59VBND372M)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Keke Li (59VBND372M)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/DoctorFei_Patient_iOS/ThirdParty/ShareSDK/Connection",
@@ -4117,7 +4122,7 @@
 					"$(PROJECT_DIR)/DoctorFei_Patient_iOS/ThirdParty/ShareSDK/Extend/WeChatSDK",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "7e92afdc-6e08-484d-97c7-56c61b557e5b";
 				SWIFT_OBJC_BRIDGING_HEADER = "DoctorFei_Patient_iOS/View/DoctorFei_Patient_iOS-Bridging-Header.h";
 			};
 			name = Release;
