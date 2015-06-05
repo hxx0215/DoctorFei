@@ -12,6 +12,7 @@
 #import "DeviceUtil.h"
 #import <ReactiveCocoa.h>
 #import "RegisterMoreTableViewController.h"
+#import "DataUtil.h"
 static const NSTimeInterval kDuration = 60;
 
 @interface RegisterTableViewController ()
@@ -186,6 +187,7 @@ static const NSTimeInterval kDuration = 60;
         if ([dataDict[@"state"]intValue] == 1) {
             hud.labelText = dataDict[@"msg"];
             currentUserId = [dataDict[@"userid"]intValue];
+            [DataUtil cleanCoreData];
             [self performSegueWithIdentifier:@"RegisterNextSegueIdentifier" sender:nil];
         }
         else{

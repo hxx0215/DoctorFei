@@ -135,6 +135,7 @@ static NSString *ContactGroupUserCellIdentifier = @"ContactGroupUserCellIdentifi
             [[NSManagedObjectContext MR_defaultContext]MR_saveToPersistentStoreAndWait];
             [self.noDisturbSwitch setOn:groupChat.allowDisturb.boolValue];
             [self.visiableSwitch setOn:groupChat.visible.boolValue];
+            [self.tableView reloadData];
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"%@",error.localizedDescription);

@@ -202,6 +202,7 @@
             hud.mode = MBProgressHUDModeText;
             hud.labelText = @"图片上传成功";
             currentIcon = urlString;
+            [self.commitButton setEnabled:YES];
             [_avatarImageView sd_setImageWithURL:[NSURL URLWithString:urlString] placeholderImage:[UIImage imageNamed:@"group_preinstall_pic"]];
         }
         else{

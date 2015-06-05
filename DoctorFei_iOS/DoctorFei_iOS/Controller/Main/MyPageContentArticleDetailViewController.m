@@ -44,7 +44,9 @@
         }else{
             _deleteButton.hidden = YES;
             _repostButton.hidden = NO;
-            self.navigationItem.rightBarButtonItem = nil;
+            UIBarButtonItem *reprintItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"reprinted-big_btn"] style:UIBarButtonItemStyleBordered target:self action:@selector(repostButtonClicked:)];
+            reprintItem.tintColor = [UIColor whiteColor];
+            self.navigationItem.rightBarButtonItem = reprintItem;
         }
     }
 }
