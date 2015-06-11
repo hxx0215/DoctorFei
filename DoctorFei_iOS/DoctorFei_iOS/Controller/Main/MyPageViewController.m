@@ -124,14 +124,14 @@
             }
             if ([dict[@"type"]intValue] == 1) {
                 ShuoShuo *shuoshuo = [[ShuoShuo alloc]initWithShuoShuoId:dict[@"id"] doctorId:dict[@"doctorid"] title:dict[@"title"] content:dict[@"content"] createTime:[NSDate dateWithTimeIntervalSince1970:[dict[@"createtime"]intValue]]];
-                if ([dict[@"doctorid"]intValue] == _currentDoctorId.intValue) {
+                if ([dict[@"sourceid"]intValue] == 0) {
                     [myContentArray addObject:shuoshuo];
                 }else {
                     [repostContentArray addObject:shuoshuo];
                 }
             } else if ([dict[@"type"]intValue] == 2) {
                 DayLog *dayLog = [[DayLog alloc]initWithDayLogId:dict[@"id"] doctorId:dict[@"doctorid"] title:dict[@"title"] content:dict[@"content"] createTime:[NSDate dateWithTimeIntervalSince1970:[dict[@"createtime"]intValue]]];
-                if ([dict[@"doctorid"]intValue] == _currentDoctorId.intValue) {
+                if ([dict[@"sourceid"]intValue] == 0) {
                     [myContentArray addObject:dayLog];
                 } else {
                     [repostContentArray addObject:dayLog];
