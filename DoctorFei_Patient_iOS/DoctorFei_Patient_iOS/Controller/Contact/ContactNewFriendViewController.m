@@ -11,6 +11,9 @@
 #import <MBProgressHUD.h>
 #import <UIScrollView+EmptyDataSet.h>
 #import "ContactNewFriendTableViewCell.h"
+#import "UserAPI.h"
+#import "ContactNewFriendGroupTableViewCell.h"
+#import "ChatAPI.h"
 @interface ContactNewFriendViewController ()
     <UITableViewDelegate, UITableViewDataSource, DZNEmptyDataSetSource>
 - (IBAction)backButtonClicked:(id)sender;
@@ -20,13 +23,14 @@
 
 @implementation ContactNewFriendViewController
 {
-    NSMutableArray *invitationsArray;
+    NSMutableArray *invitationsArray, *newListArray;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self.tableView setTableFooterView:[UIView new]];
     [self fetchNewFriendInvation];
+    [self fetchNewList];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -54,6 +58,26 @@
         hud.mode = MBProgressHUDModeText;
         hud.labelText = error.localizedDescription;
         [hud hide:YES afterDelay:1.5f];
+    }];
+}
+- (void)fetchNewList {
+    NSNumber *memberId = [[NSUserDefaults standardUserDefaults]objectForKey:@"UserId"];
+    NSDictionary *param = @{
+                            @"userid": memberId,
+                            @"usertype": [[NSUserDefaults standardUserDefaults]objectForKey:@"UserType"]
+                            };
+    [UserAPI getFriendNewListWithParameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"%@", responseObject);
+        if ([responseObject count] > 0) {
+            if ([responseObject firstObject][@"state"]) {
+            }
+            else {
+                newListArray = [(NSArray *)responseObject mutableCopy];
+                [self.tableView reloadData];
+            }
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"%@", error.localizedDescription);
     }];
 }
 
@@ -106,16 +130,29 @@
 #pragma mark - UITableView Datasource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return invitationsArray.count;
+    return invitationsArray.count + newListArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *NewFriendCellIdentifier = @"NewFriendCellIdentifier";
-    ContactNewFriendTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NewFriendCellIdentifier forIndexPath:indexPath];
-    [cell setDataDict:invitationsArray[indexPath.row]];
-    [cell.agreeButton addTarget:self action:@selector(agreeButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
-    [cell.agreeButton setTag:indexPath.row];
-    return cell;
+    static NSString *NewFriendGroupCellIdentifier = @"NewFriendGroupCellIdentifier";
+    if (indexPath.row < newListArray.count) {
+        ContactNewFriendGroupTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NewFriendGroupCellIdentifier forIndexPath:indexPath];
+        [cell setDict:newListArray[indexPath.row]];
+        return cell;
+    }
+    else {
+        ContactNewFriendTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NewFriendCellIdentifier forIndexPath:indexPath];
+        [cell setDataDict:invitationsArray[indexPath.row - newListArray.count]];
+        [cell.agreeButton addTarget:self action:@selector(agreeButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+        [cell.agreeButton setTag:(indexPath.row - newListArray.count)];
+        return cell;
+    }
+//    ContactNewFriendTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NewFriendCellIdentifier forIndexPath:indexPath];
+//    [cell setDataDict:invitationsArray[indexPath.row]];
+//    [cell.agreeButton addTarget:self action:@selector(agreeButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+//    [cell.agreeButton setTag:indexPath.row];
+//    return cell;
 }
 
 #pragma mark - UITableView Delegate
@@ -123,6 +160,31 @@
     return 56.0f;
 }
 
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    // Return NO if you do not want the specified item to be editable.
+    if (indexPath.row < newListArray.count) {
+        return YES;
+    }
+    return NO;
+}
+
+// Override to support editing the table view.
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        // Delete the row from the data source
+        NSDictionary *dict = newListArray[indexPath.row];
+        NSDictionary *param = @{@"rid":dict[@"id"],
+                                @"isaudit": @3};
+        [ChatAPI setChatAuditWithParameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            NSLog(@"%@", responseObject);
+            [newListArray removeObject:dict];
+//            [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+            [self.tableView reloadData];
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            NSLog(@"%@", error.localizedDescription);
+        }];
+    }
+}
 #pragma mark - DZNEmpty Datasource
 
 - (NSAttributedString *)titleForEmptyDataSet:(UIScrollView *)scrollView {

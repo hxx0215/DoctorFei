@@ -1,8 +1,8 @@
 //
 //  ContactNewFriendGroupTableViewCell.m
-//  DoctorFei_iOS
+//  DoctorFei_Patient_iOS
 //
-//  Created by GuJunjia on 15/6/12.
+//  Created by GuJunjia on 15/6/13.
 //
 //
 
@@ -21,13 +21,21 @@
 
     // Configure the view for the selected state
 }
-
 - (void)setDict:(NSDictionary *)dict {
     _dict = dict;
-    [_nameLabel setText:_dict[@"name"]];
-    [_descLabel setText:_dict[@"msg"]];
+    _nameLabel.text = _dict[@"name"];
+    _descLabel.text = _dict[@"msg"];
+    if ([_dict[@"isaudit"] intValue] == 0) {
+        [_agreeLabel setHidden:YES];
+        [_agreeButton setHidden:NO];
+    }
+    else {
+        [_agreeLabel setHidden:NO];
+        [_agreeButton setHidden:YES];
+    }
 }
-- (IBAction)acceptButtonClicked:(id)sender {
+
+- (IBAction)agreeButtonClicked:(id)sender {
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.window animated:YES];
     NSDictionary *param = @{@"rid": _dict[@"id"],
                             @"isaudit": @1};
@@ -35,7 +43,8 @@
         NSLog(@"%@", responseObject);
         NSDictionary *result = [responseObject firstObject];
         if ([result[@"state"]intValue] == 1) {
-            [sender setEnabled:NO];
+            [sender setHidden:YES];
+            [_agreeLabel setHidden:NO];
             hud.mode = MBProgressHUDModeText;
             hud.detailsLabelText = result[@"msg"];
         }
