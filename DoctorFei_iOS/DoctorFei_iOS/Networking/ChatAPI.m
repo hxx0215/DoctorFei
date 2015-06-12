@@ -27,6 +27,7 @@
 #define kMethodSearchGroup @"get.search.group"
 #define kMethodGetGroupInfo @"get.chat.groupinfo"
 #define kMethodJoinGroup @"set.chat.user"
+#define kMethodSetChatAudit @"set.chat.audit"
 @implementation ChatAPI
 + (void)getChatWithParameters: (id)parameters success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure {
     [[self sharedManager]defaultGetWithMethod:kMethodGetChat WithParameters:parameters success:success failure:failure];
@@ -92,5 +93,8 @@
 }
 + (void)joinGroupWithParameters: (id)parameters success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure {
     [[self sharedManager]defaultGetWithMethod:kMethodJoinGroup WithParameters:parameters success:success failure:failure];
+}
++ (void)setChatAuditWithParameters: (id)parameters success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure {
+    [[self sharedManager]defaultGetWithMethod:kMethodSetChatAudit WithParameters:parameters success:success failure:failure];
 }
 @end

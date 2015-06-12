@@ -13,6 +13,7 @@
 #define kMethodGetMemberInfomation @"get.member.information"
 #define kMethodCheckFriend @"get.user.checkfriend"
 #define kMethodCheckFriendIsRegister @"get.friend.check"
+#define kMethodCheckNewList @"get.friend.newlist"
 @implementation UserAPI
 
 + (void)getUserInfomationWithParameters: (id)parameters success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure {
@@ -34,5 +35,8 @@
 + (void)checkFriendIsRegisterWithParameters: (id)parameters success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure {
     [[self sharedManager] defaultPostWithMethod:kMethodCheckFriendIsRegister WithParameters:nil WithBodyParameters:parameters success:success failure:failure];
 //    [[self sharedManager]defaultGetWithMethod:kMethodCheckFriendIsRegister WithParameters:parameters success:success failure:failure];
+}
++ (void)getFriendNewListWithParameters: (id)parameters success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure {
+    [[self sharedManager]defaultGetWithMethod:kMethodCheckNewList WithParameters:parameters success:success failure:failure];
 }
 @end

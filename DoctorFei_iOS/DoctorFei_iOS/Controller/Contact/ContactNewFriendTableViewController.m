@@ -10,13 +10,16 @@
 #import "ContactNewFriendTableViewCell.h"
 #import "DoctorAPI.h"
 #import <MBProgressHUD.h>
+#import "ContactNewFriendGroupTableViewCell.h"
+#import "UserAPI.h"
+#import "ChatAPI.h"
 @interface ContactNewFriendTableViewController ()
 
 @end
 
 @implementation ContactNewFriendTableViewController
 {
-    NSMutableArray *tableViewDicArray;
+    NSMutableArray *tableViewDicArray, *newListArray;
     BOOL first;
 }
 
@@ -31,6 +34,7 @@
     self.tableView.tableFooterView = [UIView new];
     
     tableViewDicArray = [[NSMutableArray alloc]init];
+    newListArray = [NSMutableArray array];
     first = YES;
 }
 
@@ -47,8 +51,29 @@
     [super viewDidAppear:animated];
     if (first) {
         [self loadFriendInvitation];
+        [self fetchFriendNewList];
         first = NO;
     }
+}
+- (void)fetchFriendNewList {
+    NSNumber *userId = [[NSUserDefaults standardUserDefaults]objectForKey:@"UserId"];
+    NSDictionary *params = @{
+                             @"usertype": @2,
+                             @"userid": [userId stringValue]
+                             };
+    [UserAPI getFriendNewListWithParameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"%@", responseObject);
+        if ([responseObject count] > 0) {
+            if ([responseObject firstObject][@"state"]) {
+            }
+            else {
+                newListArray = [(NSArray *)responseObject mutableCopy];
+                [self.tableView reloadData];
+            }
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"%@", error.localizedDescription);
+    }];
 }
 
 -(void)loadFriendInvitation
@@ -61,14 +86,14 @@
                              };
     [DoctorAPI getFriendInvitationWithParameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"%@",responseObject);
-        NSArray *dataArray = (NSArray *)responseObject;
-        for (NSDictionary *dict in dataArray) {
-            NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:dict];
-            [tableViewDicArray addObject:dic];
+        if ([responseObject count] > 0) {
+            NSArray *dataArray = (NSArray *)responseObject;
+            tableViewDicArray = [dataArray mutableCopy];
+            [self.tableView reloadData];
         }
-        [self.tableView reloadData];
         [hud hide:YES];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"%@",error.localizedDescription);
         hud.mode = MBProgressHUDModeText;
         hud.labelText = @"错误";
         hud.detailsLabelText = error.localizedDescription;
@@ -79,47 +104,58 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-
     // Return the number of sections.
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-
     // Return the number of rows in the section.
-    return [tableViewDicArray count];
+    return tableViewDicArray.count + newListArray.count;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *identifier = @"ContactNewFriendCellIdentifier";
-    ContactNewFriendTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
-    
-    // Configure the cell...
-    [cell setDataDic:[tableViewDicArray objectAtIndex:indexPath.row]];
-    return cell;
+    static NSString *ContactNewFriendGroupCellIdentifier = @"ContactNewFriendGroupCellIdentifier";
+    if (indexPath.row < newListArray.count) {
+        ContactNewFriendGroupTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ContactNewFriendGroupCellIdentifier forIndexPath:indexPath];
+        [cell setDict:newListArray[indexPath.row]];
+        return cell;
+    }
+    else {
+        ContactNewFriendTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
+        [cell setDataDic:tableViewDicArray[indexPath.row - newListArray.count]];
+        return cell;
+    }
 }
 
 
-/*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
     // Return NO if you do not want the specified item to be editable.
-    return YES;
+    if (indexPath.row < newListArray.count) {
+        return YES;
+    }
+    return NO;
 }
-*/
 
-/*
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
+        NSDictionary *dict = newListArray[indexPath.row];
+        NSDictionary *param = @{@"rid":dict[@"id"],
+                                @"isaudit": @3};
+        [ChatAPI setChatAuditWithParameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            NSLog(@"%@", responseObject);
+            [newListArray removeObject:dict];
+//            [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+            [self.tableView reloadData];
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            NSLog(@"%@", error.localizedDescription);
+        }];
+    }
 }
-*/
 
 /*
 // Override to support rearranging the table view.
