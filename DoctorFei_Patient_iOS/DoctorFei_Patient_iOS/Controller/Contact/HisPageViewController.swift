@@ -97,7 +97,7 @@ class HisPageViewController: UIViewController,UITableViewDelegate,UITableViewDat
                         title: dict.objectForKey("title") as! String,
                         content: dict.objectForKey("content") as! String,
                         createTime: NSDate(timeIntervalSince1970: date as NSTimeInterval))
-                    if (dict["doctorid"] as! NSString).integerValue == self.doctor.userId as Int {
+                    if (dict["sourceid"] as! Int == 0){
                         self.myContentArray.addObject(shuoshuo)
                     }else {
                         self.repostContentArray.addObject(shuoshuo)
@@ -114,7 +114,7 @@ class HisPageViewController: UIViewController,UITableViewDelegate,UITableViewDat
                         title: dict.objectForKey("title") as! String,
                         content: dict.objectForKey("content") as! String,
                         createTime: NSDate(timeIntervalSince1970: dict["createtime"] as! NSTimeInterval))
-                    if (dict["doctorid"] as! NSString).integerValue == self.doctor.userId as Int {
+                    if (dict["sourceid"] as! Int == 0){
                         self.myContentArray.addObject(daylog)
                     }else {
                         self.repostContentArray.addObject(daylog)
