@@ -254,7 +254,7 @@
 //}
 
 - (void)sendGroupMessage {
-    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view.window animated:YES];
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     hud.labelText = @"正在发送...";
     NSNumber *userId = [[NSUserDefaults standardUserDefaults]objectForKey:@"UserId"];
     NSMutableArray *userArray = [NSMutableArray array];
@@ -275,7 +275,7 @@
         hud.labelText = result[@"msg"];
         [hud hide:YES afterDelay:1.0f];
         if ([result[@"state"] intValue] == 1) {
-            dispatch_async(dispatch_get_main_queue(), ^{
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 [self.navigationController popViewControllerAnimated:YES];
             });
         }
