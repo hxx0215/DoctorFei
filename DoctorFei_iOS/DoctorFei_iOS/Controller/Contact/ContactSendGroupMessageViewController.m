@@ -45,6 +45,8 @@
     [_tokenFieldView.tokenField setTokenizingCharacters:[NSCharacterSet characterSetWithCharactersInString:@",;."]]; // Default is a comma
     [_tokenFieldView.tokenField setPromptText:@"收件人:"];
     [_tokenFieldView.tokenField setPlaceholder:@"点击+号选取收件人"];
+    [_tokenFieldView.tokenField setReturnKeyType:UIReturnKeyGo];
+
     
     UIButton * addButton = [UIButton buttonWithType:UIButtonTypeContactAdd];
     [addButton setFrame:CGRectMake(0, 0, 44, 44)];
@@ -248,6 +250,16 @@
 - (void)tokenField:(TITokenField *)tokenField didRemoveToken:(TIToken *)token{
     NSLog(@"%@",token);
     [self.selectedFriends removeObject:[token representedObject]];
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
+    _tokenFieldView.resultsTable.hidden = YES;
+    [textField resignFirstResponder];
+    return YES;
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField{
+    [self.messageView becomeFirstResponder];
 }
 //- (CGFloat)tokenField:(TITokenField *)tokenField resultsTableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
 //    return 65.0f;
