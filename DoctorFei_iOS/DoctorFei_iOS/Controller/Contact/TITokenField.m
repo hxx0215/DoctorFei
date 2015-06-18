@@ -254,8 +254,8 @@
 - (void)tokenFieldTextDidChange:(TITokenField *)field {
     [self resultsForSearchString:_tokenField.text];
     
-    if (_forcePickSearchResult) [self setSearchResultsVisible:YES];
-	else [self setSearchResultsVisible:(_resultsArray.count > 0)];
+//    if (_forcePickSearchResult) [self setSearchResultsVisible:YES];
+	/*else*/ [self setSearchResultsVisible:(_resultsArray.count > 0)];
 }
 
 - (void)tokenFieldFrameWillChange:(TITokenField *)field {

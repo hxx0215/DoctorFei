@@ -41,7 +41,7 @@
     [_tokenFieldView setForcePickSearchResult:YES];
     [_tokenFieldView setShouldSearchInBackground:NO];
     [_tokenFieldView setShouldSortResults:NO];
-    [_tokenFieldView.tokenField addTarget:self action:@selector(tokenFieldFrameDidChange:) forControlEvents:(UIControlEvents)TITokenFieldControlEventFrameDidChange];
+    _tokenFieldView.tokenField.returnKeyType = UIReturnKeyDone;
     [_tokenFieldView.tokenField setTokenizingCharacters:[NSCharacterSet characterSetWithCharactersInString:@",;."]]; // Default is a comma
     [_tokenFieldView.tokenField setPromptText:@"收件人:"];
     [_tokenFieldView.tokenField setPlaceholder:@"点击+号选取收件人"];
@@ -252,15 +252,15 @@
     [self.selectedFriends removeObject:[token representedObject]];
 }
 
-- (BOOL)textFieldShouldReturn:(UITextField *)textField{
-    _tokenFieldView.resultsTable.hidden = YES;
-    [textField resignFirstResponder];
-    return YES;
-}
+//- (BOOL)textFieldShouldReturn:(UITextField *)textField{
+//    _tokenFieldView.resultsTable.hidden = YES;
+//    [textField resignFirstResponder];
+//    return YES;
+//}
 
-- (void)textFieldDidEndEditing:(UITextField *)textField{
-    [self.messageView becomeFirstResponder];
-}
+//- (void)textFieldDidEndEditing:(UITextField *)textField{
+//    [self.messageView becomeFirstResponder];
+//}
 //- (CGFloat)tokenField:(TITokenField *)tokenField resultsTableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
 //    return 65.0f;
 //}
@@ -314,6 +314,8 @@
         [hud hide:YES afterDelay:1.0f];
         return;
     }
+    [self.tokenFieldView resignFirstResponder];
+    [self.messageView resignFirstResponder];
     [self sendGroupMessage];
 }
 @end
