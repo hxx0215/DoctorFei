@@ -24,14 +24,12 @@ import UIKit
     weak var delegate:androidTableViewDelegate?
     weak var dataSource:androidTableViewDataSource?
     let androidTableViewCellIdentifier = "AndroidTableViewCellIdentifier"
+    struct AndroidTableViewConstant {
+        static let cellIdentifier = "AndroidTableViewCellIdentifier"
+    }
     var currentCity:String{
         get{
-            if let text = self.cityButton.titleLabel?.text{
-                return text
-            }
-            else {
-                return ""
-            }
+            return self.cityButton.titleLabel?.text ?? ""
         }
         set{
             self.cityButton.setTitle(newValue, forState: UIControlState.Normal)
@@ -39,12 +37,7 @@ import UIKit
     }
     var currentArea:String{
         get{
-            if let text = self.areaButton.titleLabel?.text{
-                return text
-            }
-            else{
-                return ""
-            }
+            return self.areaButton.titleLabel?.text ?? ""
         }
         set{
             self.areaButton.setTitle(newValue, forState: UIControlState.Normal)
@@ -57,7 +50,7 @@ import UIKit
         backgroudView.backgroundColor = UIColor(white: 0.0, alpha: 0.9)
         self.addSubview(self.backgroudView)
         tableView = UITableView(frame: frame, style: UITableViewStyle.Plain)
-        tableView.separatorStyle = UITableViewCellSeparatorStyle.None
+        tableView.separatorStyle = .None
         tableView.delegate = self;
         tableView.dataSource = self;
         cityButton = UIButton.buttonWithType(UIButtonType.Custom) as! UIButton
@@ -115,7 +108,7 @@ import UIKit
         return ret!
     }
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell = tableView.dequeueReusableCellWithIdentifier(androidTableViewCellIdentifier) as! UITableViewCell?
+        var cell = tableView.dequeueReusableCellWithIdentifier(AndroidTableViewConstant.cellIdentifier) as! UITableViewCell?
         if ((cell) == nil){
             cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: androidTableViewCellIdentifier)
         }
