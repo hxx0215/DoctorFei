@@ -49,12 +49,12 @@ import UIKit
         self.backgroundColor = UIColor.clearColor()
         backgroudView.backgroundColor = UIColor(white: 0.0, alpha: 0.9)
         self.addSubview(self.backgroudView)
-        tableView = UITableView(frame: frame, style: UITableViewStyle.Plain)
+        tableView = UITableView(frame: frame, style: .Plain)
         tableView.separatorStyle = .None
         tableView.delegate = self;
         tableView.dataSource = self;
-        cityButton = UIButton.buttonWithType(UIButtonType.Custom) as! UIButton
-        areaButton = UIButton.buttonWithType(UIButtonType.Custom) as! UIButton
+        cityButton = UIButton.buttonWithType(.Custom) as! UIButton
+        areaButton = UIButton.buttonWithType(.Custom) as! UIButton
         cityButton.setTitleColor(UIColor(white: 176.0/255.0, alpha: 1.0), forState: UIControlState.Normal)
         cityButton.setTitleColor(UIColor(red: 110.0/255.0, green: 168.0/255.0, blue: 0, alpha: 1.0), forState: UIControlState.Selected)
         areaButton.setTitleColor(UIColor(white: 176.0/255.0, alpha: 1.0), forState: UIControlState.Normal)
@@ -114,9 +114,9 @@ import UIKit
         }
         cell?.textLabel?.text = self.dataSource?.androidTableView(self, cellForRowAtIndexPath: indexPath)
         if (cell?.textLabel?.text == self.cityButton.currentTitle)||(cell?.textLabel?.text == self.areaButton.currentTitle){
-            cell?.accessoryType = UITableViewCellAccessoryType.Checkmark
+            cell?.accessoryType = .Checkmark
         }else{
-            cell?.accessoryType = UITableViewCellAccessoryType.None
+            cell?.accessoryType = .None
         }
         return cell!
     }

@@ -47,7 +47,7 @@ class ContactLaunchApointmentTableViewController: UITableViewController,TextBasi
         // Dispose of any resources that can be recreated.
     }
     @IBAction func timeButtonClicked(sender: AnyObject) {
-        var actionSheet = ActionSheetDatePicker(title: "", datePickerMode: UIDatePickerMode.DateAndTime, selectedDate: NSDate(), doneBlock: {
+        var actionSheet = ActionSheetDatePicker(title: "", datePickerMode: .DateAndTime, selectedDate: NSDate(), doneBlock: {
             picker, selectedDate, origin in
             self.dateLabel.text = self.formatter.stringFromDate(selectedDate as! NSDate)
             }, cancelBlock: {
@@ -90,7 +90,7 @@ class ContactLaunchApointmentTableViewController: UITableViewController,TextBasi
                 let msg = (responseObject as! NSArray).firstObject?.objectForKey("msg") as! String
                 hud.labelText = msg
                 hud.dimBackground = true
-                hud.mode = MBProgressHUDMode.Text
+                hud.mode = .Text
                 hud.hide(true, afterDelay: 1.0)
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), {
                     self.navigationController?.popViewControllerAnimated(true)

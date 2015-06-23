@@ -58,7 +58,7 @@ class MySelfAddHistoryViewController: UIViewController,UICollectionViewDelegate,
                 hud.labelText = response.objectForKey("msg") as! String
                 hud.dimBackground = true
                 hud.hide(true, afterDelay: 0.5)
-                hud.mode = MBProgressHUDMode.Text
+                hud.mode = .Text
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(0.5 * Double(NSEC_PER_SEC))), dispatch_get_main_queue(), {
                     self.navigationController?.popViewControllerAnimated(true)
                     return
@@ -110,9 +110,9 @@ class MySelfAddHistoryViewController: UIViewController,UICollectionViewDelegate,
         var sourceType = UIImagePickerControllerSourceType.Camera
         switch (buttonIndex){
         case 0:
-            sourceType = UIImagePickerControllerSourceType.Camera
+            sourceType = .Camera
         case 1:
-            sourceType = UIImagePickerControllerSourceType.PhotoLibrary
+            sourceType = .PhotoLibrary
         default:
             return
         }
