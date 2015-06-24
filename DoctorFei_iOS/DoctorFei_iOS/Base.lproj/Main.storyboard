@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="hjp-xA-J3Y">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="hjp-xA-J3Y">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -11368,14 +11368,14 @@
                                             </state>
                                             <variation key="default">
                                                 <mask key="constraints">
-                                                    <exclude reference="kYa-oG-BBB"/>
                                                     <exclude reference="Z0A-lg-pJG"/>
+                                                    <exclude reference="kYa-oG-BBB"/>
                                                 </mask>
                                             </variation>
                                             <variation key="heightClass=regular-widthClass=compact">
                                                 <mask key="constraints">
-                                                    <include reference="kYa-oG-BBB"/>
                                                     <include reference="Z0A-lg-pJG"/>
+                                                    <include reference="kYa-oG-BBB"/>
                                                 </mask>
                                             </variation>
                                             <connections>
@@ -11388,7 +11388,7 @@
                                                 <constraint firstAttribute="height" constant="17" id="sPS-Ue-Sl5"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                             <variation key="default">
                                                 <mask key="constraints">
@@ -11424,8 +11424,6 @@
                                             <exclude reference="fuj-L8-lKc"/>
                                         </mask>
                                         <mask key="constraints">
-                                            <exclude reference="Dj2-6k-qL8"/>
-                                            <exclude reference="MKl-JU-gnr"/>
                                             <exclude reference="NOL-Nd-hIz"/>
                                             <exclude reference="qSh-Lh-cAl"/>
                                             <exclude reference="9ir-lP-3rV"/>
@@ -11434,6 +11432,8 @@
                                             <exclude reference="TIP-jA-vt7"/>
                                             <exclude reference="a4s-Qf-s6Q"/>
                                             <exclude reference="vHW-bx-Qyi"/>
+                                            <exclude reference="Dj2-6k-qL8"/>
+                                            <exclude reference="MKl-JU-gnr"/>
                                         </mask>
                                     </variation>
                                     <variation key="heightClass=regular-widthClass=compact">
@@ -11444,8 +11444,6 @@
                                             <include reference="fuj-L8-lKc"/>
                                         </mask>
                                         <mask key="constraints">
-                                            <include reference="Dj2-6k-qL8"/>
-                                            <include reference="MKl-JU-gnr"/>
                                             <include reference="NOL-Nd-hIz"/>
                                             <include reference="qSh-Lh-cAl"/>
                                             <include reference="9ir-lP-3rV"/>
@@ -11454,6 +11452,8 @@
                                             <include reference="TIP-jA-vt7"/>
                                             <include reference="a4s-Qf-s6Q"/>
                                             <include reference="vHW-bx-Qyi"/>
+                                            <include reference="Dj2-6k-qL8"/>
+                                            <include reference="MKl-JU-gnr"/>
                                         </mask>
                                     </variation>
                                 </tableViewCellContentView>
@@ -15042,18 +15042,18 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="Tpb-k1-2hl"/>
-        <segue reference="Hb8-Q6-QO7"/>
-        <segue reference="iEM-sC-kWf"/>
-        <segue reference="8FK-Id-c2E"/>
-        <segue reference="zKw-Eq-Pwx"/>
-        <segue reference="rqJ-cO-jCt"/>
-        <segue reference="JeB-AN-IOM"/>
         <segue reference="nrB-L6-42j"/>
-        <segue reference="wpO-fm-KSL"/>
-        <segue reference="wCG-zt-sFj"/>
-        <segue reference="FI4-2P-0On"/>
-        <segue reference="sJm-G3-3UH"/>
+        <segue reference="8FK-Id-c2E"/>
+        <segue reference="rqJ-cO-jCt"/>
+        <segue reference="zKw-Eq-Pwx"/>
+        <segue reference="JeB-AN-IOM"/>
         <segue reference="TSG-uQ-7E1"/>
         <segue reference="PPz-pu-GWN"/>
+        <segue reference="wpO-fm-KSL"/>
+        <segue reference="sJm-G3-3UH"/>
+        <segue reference="FI4-2P-0On"/>
+        <segue reference="wCG-zt-sFj"/>
+        <segue reference="iEM-sC-kWf"/>
+        <segue reference="KvB-o4-las"/>
     </inferredMetricsTieBreakers>
 </document>
