@@ -167,6 +167,12 @@ static NSString * const kMyAppointmentIdenty = @"MyAppointmentIdenty";
     MyAppointmentDetailViewController *vc = [segue destinationViewController];
     NSIndexPath *indexPath = sender;
     NSInteger segmentIndex = self.appointSegment.selectedSegmentIndex;
+    if (segmentIndex > 0) {
+        [vc setTitle:@"我的转诊"];
+    }
+    else {
+        [vc setTitle:@"我的预约"];
+    }
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateStyle:NSDateFormatterMediumStyle];
     [formatter setTimeStyle:NSDateFormatterShortStyle];
