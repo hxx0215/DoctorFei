@@ -86,7 +86,7 @@ class ContactLaunchApointmentTableViewController: UITableViewController,TextBasi
             success: {
             operation, responseObject in
                 NSLog("%@", responseObject as! NSObject)
-                var hud = MBProgressHUD.showHUDAddedTo(self.view.window, animated: true)
+                var hud = MBProgressHUD.showHUDAddedTo(self.view, animated: true)
                 let msg = (responseObject as! NSArray).firstObject?.objectForKey("msg") as! String
                 hud.labelText = msg
                 hud.dimBackground = true
