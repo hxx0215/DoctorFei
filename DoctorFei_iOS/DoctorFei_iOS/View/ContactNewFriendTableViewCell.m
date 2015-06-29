@@ -45,7 +45,7 @@
             hud.customView = completeImage;
         }
         hud.labelText = dic[@"msg"];//NSLocalizedString(@"好友添加成功", nil);
-        [hud hide:YES afterDelay:2.0];
+        [hud hide:YES afterDelay:1.0];
         sender.enabled = NO;
         [dict setValue:@1 forKey:@"isaudit"];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {

@@ -78,7 +78,7 @@
 
 -(void)loadFriendInvitation
 {
-    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view.window animated:YES];
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     NSNumber *userId = [[NSUserDefaults standardUserDefaults]objectForKey:@"UserId"];
     NSDictionary *params = @{
                              @"usertype": @2,
@@ -88,7 +88,10 @@
         NSLog(@"%@",responseObject);
         if ([responseObject count] > 0) {
             NSArray *dataArray = (NSArray *)responseObject;
-            tableViewDicArray = [dataArray mutableCopy];
+            tableViewDicArray = [NSMutableArray array];
+            for (NSDictionary *dict in dataArray) {
+                [tableViewDicArray addObject:[dict mutableCopy]];
+            }
             [self.tableView reloadData];
         }
         [hud hide:YES];
@@ -120,11 +123,13 @@
     if (indexPath.row < newListArray.count) {
         ContactNewFriendGroupTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ContactNewFriendGroupCellIdentifier forIndexPath:indexPath];
         [cell setDict:newListArray[indexPath.row]];
+        [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
         return cell;
     }
     else {
         ContactNewFriendTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
         [cell setDataDic:tableViewDicArray[indexPath.row - newListArray.count]];
+        [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
         return cell;
     }
 }
