@@ -15,7 +15,7 @@
 }
 
 + (void)offline {
-    [self setOnlineStateWithStatue:@(2)];
+    [self setOnlineStateWithStatue:@(0)];
 }
 
 + (void)setOnlineStateWithStatue: (NSNumber *) statue {

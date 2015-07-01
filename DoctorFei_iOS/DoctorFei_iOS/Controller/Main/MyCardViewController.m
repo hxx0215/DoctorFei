@@ -34,7 +34,7 @@
     self.infoLabel.text = [NSString stringWithFormat:@"%@ %@", department, jobTitle];
     NSString *qrCodeURL = [[NSUserDefaults standardUserDefaults]objectForKey:@"UserQRCodeURL"];
     if (qrCodeURL) {
-        [self.qRCodeImageView sd_setImageWithURL:[NSURL URLWithString:qrCodeURL]];
+        [self.qRCodeImageView sd_setImageWithURL:[NSURL URLWithString:qrCodeURL] placeholderImage:nil options:SDWebImageRefreshCached];
     }
     [self fetchQRCode];
 }
@@ -54,7 +54,11 @@
             NSString *qrScene = dataDict[@"qrscene"];
             [[NSUserDefaults standardUserDefaults] setObject:qrScene forKey:@"UserQRCodeURL"];
             [[NSUserDefaults standardUserDefaults] synchronize];
-            [self.qRCodeImageView sd_setImageWithURL:[NSURL URLWithString:qrScene]];
+            [self.qRCodeImageView sd_setImageWithURL:[NSURL URLWithString:qrScene] placeholderImage:nil options:SDWebImageRefreshCached completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+                if (image) {
+                    [self.qRCodeImageView setImage:image];
+                }
+            }];
         }
         else{
             MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view.window animated:YES];
