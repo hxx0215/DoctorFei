@@ -184,6 +184,7 @@
 		6A8265DD1AAC7C0C004F71FE /* FriendAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A8265DC1AAC7C0C004F71FE /* FriendAPI.m */; };
 		6A8265E01AAC805A004F71FE /* ContactNewFriendTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A8265DF1AAC805A004F71FE /* ContactNewFriendTableViewCell.m */; };
 		6A86B36E1AA60F2900D280AF /* Groups.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A86B36D1AA60F2900D280AF /* Groups.m */; };
+		6A974C361B44D4BE0003FD26 /* JSQPhotoMediaSDWebImageItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A974C351B44D4BE0003FD26 /* JSQPhotoMediaSDWebImageItem.m */; };
 		6AA67F3B1ABC8588002A0A8B /* QQConnection.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AA67F191ABC8588002A0A8B /* QQConnection.framework */; };
 		6AA67F3C1ABC8588002A0A8B /* QZoneConnection.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AA67F1A1ABC8588002A0A8B /* QZoneConnection.framework */; };
 		6AA67F3D1ABC8589002A0A8B /* SinaWeiboConnection.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AA67F1B1ABC8588002A0A8B /* SinaWeiboConnection.framework */; };
@@ -1062,6 +1063,8 @@
 		6A8265DF1AAC805A004F71FE /* ContactNewFriendTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactNewFriendTableViewCell.m; sourceTree = "<group>"; };
 		6A86B36C1AA60F2900D280AF /* Groups.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Groups.h; sourceTree = "<group>"; };
 		6A86B36D1AA60F2900D280AF /* Groups.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Groups.m; sourceTree = "<group>"; };
+		6A974C341B44D4BE0003FD26 /* JSQPhotoMediaSDWebImageItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSQPhotoMediaSDWebImageItem.h; sourceTree = "<group>"; };
+		6A974C351B44D4BE0003FD26 /* JSQPhotoMediaSDWebImageItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSQPhotoMediaSDWebImageItem.m; sourceTree = "<group>"; };
 		6AA67F191ABC8588002A0A8B /* QQConnection.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = QQConnection.framework; sourceTree = "<group>"; };
 		6AA67F1A1ABC8588002A0A8B /* QZoneConnection.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = QZoneConnection.framework; sourceTree = "<group>"; };
 		6AA67F1B1ABC8588002A0A8B /* SinaWeiboConnection.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SinaWeiboConnection.framework; sourceTree = "<group>"; };
@@ -3010,6 +3013,8 @@
 		D3B9FBB71A712DE80024F1DF /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				6A974C341B44D4BE0003FD26 /* JSQPhotoMediaSDWebImageItem.h */,
+				6A974C351B44D4BE0003FD26 /* JSQPhotoMediaSDWebImageItem.m */,
 				6A40CAA41ADACB8E005690A5 /* EmotionsKeyboardBuilder.h */,
 				6A40CAA51ADACB8E005690A5 /* EmotionsKeyboardBuilder.m */,
 				6A1156741AB9CDC10049F42D /* JSQAudioMediaItem.h */,
@@ -3880,6 +3885,7 @@
 				6A8265DD1AAC7C0C004F71FE /* FriendAPI.m in Sources */,
 				6A28DE081AA1903C00B50F8E /* ContactDetailPopoverViewController.m in Sources */,
 				6A28DDC11A9E07C700B50F8E /* MessagesModalData.m in Sources */,
+				6A974C361B44D4BE0003FD26 /* JSQPhotoMediaSDWebImageItem.m in Sources */,
 				6ADBAE991B00F693007593F6 /* ContactGroupNearbyTableViewCell.m in Sources */,
 				B9BF2A681AB5B3D0003593A7 /* AgendaTimeScheduleViewController.swift in Sources */,
 				6A11569D1AB9D4AA0049F42D /* amrFileCodec.m in Sources */,
