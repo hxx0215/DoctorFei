@@ -21,6 +21,18 @@
 #import "Friends.h"
 #import "MyPageContentTalkViewController.h"
 #import "MyPageContentArticleDetailViewController.h"
+@implementation NSString (Size)
+- (CGSize)calculateSize:(CGSize)size font:(UIFont *)font {
+    CGSize expectedLabelSize = CGSizeZero;
+    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+    paragraphStyle.lineBreakMode = NSLineBreakByWordWrapping;
+    NSDictionary *attributes = @{NSFontAttributeName:font, NSParagraphStyleAttributeName:paragraphStyle.copy};
+    
+    expectedLabelSize = [self boundingRectWithSize:size options:NSStringDrawingUsesLineFragmentOrigin attributes:attributes context:nil].size;
+    
+    return CGSizeMake(ceil(expectedLabelSize.width), ceil(expectedLabelSize.height));
+}
+@end
 @interface MyPageViewController ()
     <MyPageActionPopoverVCDelegate, WYPopoverControllerDelegate, UITableViewDelegate, UITableViewDataSource, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate, UIAlertViewDelegate>
 - (IBAction)backButtonClicked:(id)sender;
@@ -192,10 +204,9 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"MyPageActionSegueIdentifier"]) {
         MyPageActionPopoverViewController *vc = [segue destinationViewController];
-        vc.preferredContentSize = CGSizeMake(90, 101);
+        vc.preferredContentSize = CGSizeMake(100, 101);
         vc.delegate = self;
         WYStoryboardPopoverSegue *popoverSegue = (WYStoryboardPopoverSegue *)segue;
-        
         popoverController = [popoverSegue popoverControllerWithSender:sender permittedArrowDirections:WYPopoverArrowDirectionAny animated:YES];
         popoverController.delegate = self;
         popoverController.dismissOnTap = YES;
@@ -238,6 +249,22 @@
 }
 
 #pragma mark - UITableView Delegate
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    id content;
+    if (_contentTypeSegmentControl.selectedSegmentIndex) {
+        content = repostContentArray[indexPath.row];
+    } else {
+        content = myContentArray[indexPath.row];
+    }
+    if ([content isKindOfClass:[ShuoShuo class]]) {
+        NSString *contentString = [(ShuoShuo *)content content];
+        CGSize size = [contentString calculateSize:CGSizeMake(self.view.bounds.size.width - 50, CGFLOAT_MAX) font:[UIFont systemFontOfSize:14.0f]];
+        return 124-50+size.height;
+    }
+    else {
+        return 124.0f;
+    }
+}
 
 #pragma mark - UITableView DataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {

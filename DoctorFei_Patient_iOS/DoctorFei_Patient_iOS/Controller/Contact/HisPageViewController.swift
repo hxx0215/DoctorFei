@@ -7,7 +7,16 @@
 //
 
 import UIKit
-
+extension NSString {
+    func calcSize(size: CGSize, font: UIFont) -> CGSize {
+        var expectedLabelSize = CGSizeZero;
+        var paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineBreakMode = NSLineBreakMode.ByWordWrapping;
+        let attributes = [NSFontAttributeName: font, NSParagraphStyleAttributeName: paragraphStyle.copy()]
+        expectedLabelSize = self.boundingRectWithSize(size, options: NSStringDrawingOptions.UsesLineFragmentOrigin, attributes: attributes, context: nil).size
+        return CGSizeMake(ceil(expectedLabelSize.width), ceil(expectedLabelSize.height));
+    }
+}
 class HisPageViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
 //    var doctorID = NSNumber()
     var doctor:Friends!
@@ -140,6 +149,20 @@ class HisPageViewController: UIViewController,UITableViewDelegate,UITableViewDat
         } else {
             return myContentArray.count
         }
+    }
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        var content:NSObject
+        if self.contentTypeSegmentControl.selectedSegmentIndex > 0 {
+            content = repostContentArray[indexPath.row] as! NSObject
+        }else{
+            content = myContentArray[indexPath.row] as! NSObject
+        }
+        if content.isKindOfClass(ShuoShuo) {
+            let contentString = (content as! ShuoShuo).content;
+            let size = contentString.calcSize(CGSizeMake(self.view.bounds.size.width - 50.0, CGFloat.max), font: UIFont.systemFontOfSize(14.0))
+            return 124 - 50 + size.height;
+        }
+        return 124.0 as CGFloat;
     }
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let HisPageContentTalkTableViewCellIdentifier = "UserPageContentTalkTableViewCellIdentifier"
