@@ -34,9 +34,11 @@
     
     self.title = [NSString stringWithFormat:@"修改%@", _name];
     [self.infoTextField setPlaceholder:[NSString stringWithFormat:@"请输入您的%@", _name]];
-    RAC(self.navigationItem.rightBarButtonItem, enabled) = [RACSignal combineLatest:@[_infoTextField.rac_textSignal] reduce:^(NSString *info){
-        return @(info.length > 0);
-    }];
+    RAC(self.navigationItem.rightBarButtonItem, enabled) =[_infoTextField.rac_textSignal map:^id(NSString *value) {
+        return @(value.length > 0);
+    }]; //[RACSignal combineLatest:@[_infoTextField.rac_textSignal] reduce:^(NSString *info){
+//        return @(info.length > 0);
+//    }];
     [self.infoTextField setText:_value];
 }
 
