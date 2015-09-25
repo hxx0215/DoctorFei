@@ -1,1 +1,0 @@
-../../../JSBadgeView/JSBadgeView/JSBadgeView.h
